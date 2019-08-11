@@ -1,18 +1,31 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container-fluid">
+    <div class="row">
+      <Sidebar msg="Welcome to Your Vue.js App" />
+      <ListPlanDay msg="Welcome to Your Vue.js App" />
+      <ListDay msg="Welcome to Your Vue.js App" />
+      <ListNext msg="Welcome to Your Vue.js App" />
+      <ListWeek msg="Welcome to Your Vue.js App" />
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Sidebar from "@/components/Sidebar.vue";
+import ListPlanDay from "@/components/ListPlanDay.vue";
+import ListDay from "@/components/ListDay.vue";
+import ListNext from "@/components/ListNext.vue";
+import ListWeek from "@/components/ListWeek.vue";
 
 export default {
-  name: 'home',
+  name: "home",
   components: {
-    HelloWorld
+    Sidebar,
+    ListPlanDay,
+    ListDay,
+    ListNext,
+    ListWeek
   }
-}
+};
 </script>
