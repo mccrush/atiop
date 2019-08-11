@@ -1,0 +1,88 @@
+body {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  background: #fff;
+  /* background: #f2f2f2; */
+}
+
+.container {
+  max-width:1200px;
+  /* background: #fff; */
+}
+
+.container-fluid {
+  background: #fff;
+}
+
+
+a, a:active, a:hover {
+  color: #2c3e50;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #FFC000;
+}
+
+
+.fw700 {
+  font-weight: 700;
+}
+
+.fw400 {
+  font-weight: 400;
+}
+
+.fs-50 {
+  font-size: 50px;
+}
+
+.fs-30 {
+  font-size: 30px;
+}
+
+.fs-16 {
+  font-size: 16px;
+}
+
+.lh-1 {
+  line-height: 1; 
+}
+
+.bg-red {
+  background: #F80915;
+}
+
+.bg-yellow {
+  background: #FFED00;
+}
+
+.bg-grey {
+  background: #f2f2f2;
+}
+
+.bg-blue {
+  background: #26477C;
+}
+
+.bg-orange {
+  background: #F47A00;
+}
+
+.bg-vishnya {
+  background: #B70047;
+}
+
+.text-yellow {
+  color: #FFED00;
+}
