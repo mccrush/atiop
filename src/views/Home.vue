@@ -1,10 +1,10 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <Sidebar msg="Welcome to Your Vue.js App" />
+      <Sidebar v-if="this.$store.state.spheArr[0]" msg="Welcome to Your Vue.js App" />
       <ListPlanDay msg="Welcome to Your Vue.js App" />
       <ListDay msg="Welcome to Your Vue.js App" />
-      <ListNext msg="Welcome to Your Vue.js App" />
+      <ListNext v-if="this.$store.state.taskArr[0]" />
       <ListWeek msg="Welcome to Your Vue.js App" />
     </div>
   </div>

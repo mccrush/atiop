@@ -4,10 +4,10 @@
       <li class="list-group-item">
         <button class="btn btn-block btn-success" type="button">Person Plan</button>
       </li>
-      <li class="list-group-item" v-for="item in 3" :key="item">
-        <button class="btn btn-block btn-primary" type="button" data-toggle="collapse" :data-target="'#collapseExample'+item" aria-expanded="false" :aria-controls="'collapseExample'+item">Button with data-target</button>
+      <li class="list-group-item" v-for="(item, index) in this.$store.state.spheArr" :key="'sp'+index">
+        <button class="btn btn-block btn-primary" type="button" data-toggle="collapse" :data-target="'#collapseExample'+item" aria-expanded="false" :aria-controls="'collapseExample'+item">{{item.title}}</button>
         <div class="collapse" :id="'collapseExample'+item">
-          <div class>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.</div>
+          <div class v-for="(item, index) in this.$store.state.projArr" :key="'pr'+index">{{item.title}}</div>
         </div>
       </li>
     </ul>
