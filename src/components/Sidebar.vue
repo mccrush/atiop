@@ -7,7 +7,7 @@
       <li class="list-group-item" v-for="(item, index) in this.$store.state.spheArr" :key="'sp'+index">
         <button class="btn btn-block btn-primary" type="button" data-toggle="collapse" :data-target="'#collapseExample'+item" aria-expanded="false" :aria-controls="'collapseExample'+item">{{item.title}}</button>
         <div class="collapse" :id="'collapseExample'+item">
-          <div class v-for="(item, index) in this.$store.state.projArr" :key="'pr'+index">{{item.title}}</div>
+          <!-- <div class v-for="(item2, index2) in this.$store.state.projArr" :key="'pr'+index2">{{item2.title}}</div> -->
         </div>
       </li>
     </ul>

@@ -2,7 +2,7 @@
   <div class="col-2 border-right">
     <h4 class="text-center pt-2">Следующее</h4>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item" v-for="item in 7" :key="item">Task {{item}}</li>
+      <li class="list-group-item" v-for="(item, index) in this.$store.state.taskArr" :key="'ta'+index">{{index+1}}. {{item.title}}</li>
     </ul>
   </div>
 </template>
