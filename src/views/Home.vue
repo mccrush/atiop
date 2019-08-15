@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <Sidebar msg="Welcome to Your Vue.js App" />
+      <Sidebar :spheId="this.$store.state.spheId" />
       <ListPlanDay msg="Welcome to Your Vue.js App" />
       <ListDay msg="Welcome to Your Vue.js App" />
       <ListNext />

@@ -7,10 +7,7 @@
       <li class="list-group-item" v-for="(item, index) in this.$store.state.spheArr" :key="'sp'+index">
         <button class="btn btn-block btn-primary" type="button" data-toggle="collapse" :data-target="'#collapseExample'+index" aria-expanded="false" :aria-controls="'collapseExample'+index">{{item.title}}</button>
         <div class="collapse" :id="'collapseExample'+index">
-          <!-- {{this.$store.state.spheId[0]}} -->
-          <!-- <ul class="list-group list-group-flush">
-            <li class="list-group-item" v-for="(proj, indexp) in this.$store.state.projArr.filter(pj => pj.sphe == this.$store.state.spheId[0])" :key="'pj'+indexp">{{proj.title}}</li>
-          </ul>-->
+          <ListProj :sphe="spheId[index]" />
         </div>
       </li>
     </ul>
@@ -18,10 +15,18 @@
 </template>
 
 <script>
+import ListProj from "@/components/ListProj.vue";
+
 export default {
   name: "sidebar",
+  components: {
+    ListProj
+  },
   props: {
-    msg: String
+    spheId: Array
+  },
+  created() {
+    console.log("Пришел масс", this.spheId);
   }
 };
 </script>
