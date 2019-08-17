@@ -1,6 +1,6 @@
 <template>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item" v-for="(item, index) in projArr" :key="'pj'+index">{{index+1}}. {{item.title}}</li>
+    <li class="list-group-item" v-for="(item, indexp) in projArr" :key="'pj'+indexp">{{indexp+1}}. {{item.title}}</li>
   </ul>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
   name: "listproj",
   props: {
-    sphe: String
+    index: Number
   },
   data() {
     return {
@@ -16,10 +16,11 @@ export default {
     };
   },
   created() {
-    console.log("Пришел id", this.sphe);
+    console.log("Пришел index", this.index);
     console.log("Текущий массив:", this.$store.state.projArr);
+    let idSphe = this.$store.state.spheId[this.index];
     this.projArr = this.$store.state.projArr.filter(function(item) {
-      return item.sphe == this.sphe;
+      return item.sphe == idSphe;
     });
     console.log("Получили новый projArr", this.projArr);
   }

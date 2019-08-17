@@ -7,7 +7,7 @@
       <li class="list-group-item" v-for="(item, index) in this.$store.state.spheArr" :key="'sp'+index">
         <button class="btn btn-block btn-primary" type="button" data-toggle="collapse" :data-target="'#collapseExample'+index" aria-expanded="false" :aria-controls="'collapseExample'+index">{{item.title}}</button>
         <div class="collapse" :id="'collapseExample'+index">
-          <ListProj :sphe="spheId[index]" />
+          <ListProj :index="index" />
         </div>
       </li>
     </ul>
@@ -23,10 +23,10 @@ export default {
     ListProj
   },
   props: {
-    spheId: Array
+    
   },
   created() {
-    console.log("Пришел масс", this.spheId);
+   //console.log("Пришел масс", this.spheId);
   }
 };
 </script>
