@@ -13,7 +13,11 @@ export default new Vuex.Store({
     listArr: [],
     listId: [],
     taskArr: [],
-    taskId: []
+    taskId: [],
+    sphe: '',
+    proj: '',
+    list: '',
+    task: ''
   },
   mutations: {
     getArr(state, table) {
@@ -28,8 +32,10 @@ export default new Vuex.Store({
         .catch(error => {
           console.log(error);
         });
+    },
+    setState(state, prop, val) {
+      state[prop] = val;
     }
-
   },
   actions: {
 

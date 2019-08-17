@@ -1,12 +1,13 @@
 <template>
   <div class="col-10 border-right">
     <div class="row">
-      <List />
+      <List title="Задачи" />
     </div>
   </div>
 </template>
 
 <script>
+import store from "@/store";
 import List from "@/components/List.vue";
 
 export default {

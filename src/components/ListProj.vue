@@ -1,7 +1,7 @@
 <template>
   <ul class="list-group list-group-flush">
     <li class="list-group-item" v-for="(item, indexp) in projArr" :key="'pj'+indexp">
-      <button type="button" class="btn btn-sm btn-block btn-light">{{item.title}}</button>
+      <button type="button" class="btn btn-sm btn-block btn-light" @click="setState(indexp)">{{item.title}}</button>
     </li>
   </ul>
 </template>
@@ -25,6 +25,9 @@ export default {
       return item.sphe == id;
     });
     console.log("Получили новый projArr", this.projArr);
+  },
+  methods: {
+    setState(index) {}
   }
 };
 </script>

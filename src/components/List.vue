@@ -1,8 +1,8 @@
 <template>
   <div class="col-3 border-right">
-    <h4 class="text-center pt-2">Следующее</h4>
+    <h4 class="text-center pt-2">{{title}}</h4>
     <ul class="list-group list-group-flush" v-if="this.$store.state.taskArr[0]">
-      <li class="list-group-item" v-for="(item, index) in this.$store.state.taskArr" :key="'ta'+index">{{index+1}}. {{item.title}}</li>
+      <li class="list-group-item" v-for="(item, indext) in taskArr" :key="'ta'+indext">{{indext+1}}. {{item.title}}</li>
     </ul>
   </div>
 </template>
@@ -11,7 +11,8 @@
 export default {
   name: "list",
   props: {
-    index: Number
+    index: Number,
+    title: String
   },
   data() {
     return {
@@ -25,7 +26,7 @@ export default {
     this.taskArr = this.$store.state.taskArr.filter(function(item) {
       return item.list == id;
     });
-    console.log("Получили новый projArr", this.taskArr);
+    console.log("Получили новый taskArr", this.taskArr);
   }
 };
 </script>
