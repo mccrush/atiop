@@ -20,9 +20,9 @@ export default {
   created() {
     console.log("Пришел index", this.index);
     console.log("Текущий массив:", this.$store.state.projArr);
-    let idSphe = this.$store.state.spheId[this.index];
+    let id = this.$store.state.spheId[this.index];
     this.projArr = this.$store.state.projArr.filter(function(item) {
-      return item.sphe == idSphe;
+      return item.sphe == id;
     });
     console.log("Получили новый projArr", this.projArr);
   }
