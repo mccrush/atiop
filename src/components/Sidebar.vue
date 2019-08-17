@@ -22,11 +22,9 @@ export default {
   components: {
     ListProj
   },
-  props: {
-    
-  },
+  props: {},
   created() {
-   //console.log("Пришел масс", this.spheId);
+    //console.log("Пришел масс", this.spheId);
   }
 };
 </script>
@@ -36,5 +34,11 @@ export default {
 .col-2 {
   padding-left: 0;
   padding-right: 0;
+}
+
+.list-group-item {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border: none;
 }
 </style>

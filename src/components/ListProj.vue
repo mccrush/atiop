@@ -1,6 +1,8 @@
 <template>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item" v-for="(item, indexp) in projArr" :key="'pj'+indexp">{{indexp+1}}. {{item.title}}</li>
+    <li class="list-group-item" v-for="(item, indexp) in projArr" :key="'pj'+indexp">
+      <button type="button" class="btn btn-sm btn-block btn-light">{{item.title}}</button>
+    </li>
   </ul>
 </template>
 
@@ -32,5 +34,9 @@ export default {
 .col-2 {
   padding-left: 0;
   padding-right: 0;
+}
+
+.list-group-item {
+  border: none;
 }
 </style>
