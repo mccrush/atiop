@@ -33,4 +33,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.col-3 {
+  padding-right: 0;
+}
 </style>

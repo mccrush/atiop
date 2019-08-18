@@ -1,7 +1,7 @@
 <template>
   <div class="col-10 border-right">
     <div class="row">
-      <List title="Задачи" />
+      <List v-for="(item, index) in listArr" :key="'lt'+index" :title="item.title" :index="index" />
     </div>
   </div>
 </template>
@@ -23,11 +23,26 @@ export default {
     };
   },
   created() {
-    this.id = this.$store.state.proj;
-    this.listArr = this.$store.state.listArr.filter(function(item) {
-      return item.proj == this.id;
-    });
-    console.log("Получили новый listArr", this.listArr);
+    // this.id = this.$store.state.proj;
+    // this.listArr = this.$store.state.listArr.filter(function(item) {
+    //   return item.proj == this.id;
+    // });
+    // console.log("Получили новый listArr", this.listArr);
+  },
+  mounted() {
+    this.$store.watch(
+      state => state.proj,
+      (newV, oldV) => {
+        if (newV !== "") {
+          console.log("Текущий id proj=", newV);
+          console.log("Старый listArr", this.$store.state.listArr);
+          this.listArr = this.$store.state.listArr.filter(function(item) {
+            return item.proj == newV;
+          });
+          console.log("Получили новый listArr", this.listArr);
+        }
+      }
+    );
   }
 };
 </script>

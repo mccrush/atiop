@@ -1,7 +1,7 @@
 <template>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item" v-for="(item, indexp) in projArr" :key="'pj'+indexp">
-      <button type="button" class="btn btn-sm btn-block btn-light" @click="setState(indexp)">{{item.title}}</button>
+    <li class="list-group-item" v-for="(item, index) in projArr" :key="'pj'+index">
+      <button type="button" class="btn btn-sm btn-block btn-light" @click="setState(index)">{{item.title}}</button>
     </li>
   </ul>
 </template>
@@ -39,11 +39,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.col-2 {
-  padding-left: 0;
-  padding-right: 0;
-}
-
 .list-group-item {
   border: none;
 }
