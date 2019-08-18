@@ -15,7 +15,20 @@ export default {
   components: {
     List
   },
-  props: {}
+  props: {},
+  data() {
+    return {
+      listArr: [],
+      id: ""
+    };
+  },
+  created() {
+    this.id = this.$store.state.proj;
+    this.listArr = this.$store.state.listArr.filter(function(item) {
+      return item.proj == this.id;
+    });
+    console.log("Получили новый listArr", this.listArr);
+  }
 };
 </script>
 

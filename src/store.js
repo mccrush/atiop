@@ -32,9 +32,6 @@ export default new Vuex.Store({
         .catch(error => {
           console.log(error);
         });
-    },
-    setState(state, prop, val) {
-      state[prop] = val;
     }
   },
   actions: {

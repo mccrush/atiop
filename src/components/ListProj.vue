@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import store from "@/store";
+
 export default {
   name: "listproj",
   props: {
@@ -20,14 +22,17 @@ export default {
   created() {
     console.log("Пришел index", this.index);
     console.log("Текущий массив:", this.$store.state.projArr);
-    let id = this.$store.state.spheId[this.index];
+    const id = this.$store.state.spheId[this.index];
     this.projArr = this.$store.state.projArr.filter(function(item) {
       return item.sphe == id;
     });
     console.log("Получили новый projArr", this.projArr);
   },
   methods: {
-    setState(index) {}
+    setState(index) {
+      this.$store.state.proj = this.$store.state.projId[index];
+      console.log("Новое значение proj =", this.$store.state.proj);
+    }
   }
 };
 </script>
