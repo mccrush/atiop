@@ -1,6 +1,6 @@
 <template>
   <div class="col-10 border-right">
-    <div class="row">
+    <div class="row" v-if="this.$store.state.proj !== ''">
       <List v-for="(item, index) in listArr" :key="'lt'+index" :title="item.title" :index="index" />
     </div>
   </div>
