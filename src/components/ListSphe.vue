@@ -1,12 +1,12 @@
 <template>
-  <ul class="list-group list-group-flush" v-if="this.$store.state.spheArr[0] && this.$store.state.spheId[0] && this.$store.state.projArr[0]">
+  <ul class="list-group list-group-flush" v-if="this.$store.state.spheArr[0] && this.$store.state.projArr[0]">
     <li class="list-group-item">
       <button class="btn btn-block btn-success" type="button">Person Plan</button>
     </li>
     <li class="list-group-item" v-for="(item, index) in this.$store.state.spheArr" :key="'sp'+index">
-      <button class="btn btn-block btn-primary" type="button" data-toggle="collapse" :data-target="'#collapseExample'+index" aria-expanded="false" :aria-controls="'collapseExample'+index">{{item.title}}</button>
-      <div class="collapse" :id="'collapseExample'+index">
-        <ListProj :index="index" />
+      <button class="btn btn-block btn-primary" type="button" data-toggle="collapse" :data-target="'#collapseProj'+index" aria-expanded="false" :aria-controls="'collapseProj'+index">{{item.title}}</button>
+      <div class="collapse" :id="'collapseProj'+index" v-if="this.$store.state.projArr[0]">
+        <ListProj :id="item.id" :array="this.$store.state.projArr" />
       </div>
     </li>
   </ul>

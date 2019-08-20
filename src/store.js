@@ -7,13 +7,13 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     spheArr: [],
-    spheId: [],
+    //spheId: [],
     projArr: [],
-    projId: [],
+    //projId: [],
     listArr: [],
-    listId: [],
+    //listId: [],
     taskArr: [],
-    taskId: [],
+    //taskId: [],
     sphe: '',
     proj: '',
     list: '',
@@ -25,9 +25,13 @@ export default new Vuex.Store({
         .get()
         .then(querySnapshot => {
           querySnapshot.forEach(doc => {
-            state[table + 'Id'].push(doc.id);
-            state[table + 'Arr'].push(doc.data());
+            //state[table + 'Id'].push(doc.id);
+            let tobj = doc.data();
+            tobj.id = doc.id;
+            state[table + 'Arr'].push(tobj);
+            console.log('store: tobj = ', tobj);
           });
+
         })
         .catch(error => {
           console.log(error);
