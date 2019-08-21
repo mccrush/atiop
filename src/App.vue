@@ -10,7 +10,7 @@
         </li>
       </ul>
     </nav>
-    <router-view />
+    <router-view v-if="this.$store.state.projArr[0] && this.$store.state.spheArr[0] && this.$store.state.listArr[0] && this.$store.state.taskArr[0]" />
     <Foot msg="Welcome to Your Vue.js App" />
   </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <div class="col-3 border-right">
     <h4 class="text-center pt-2">{{title}}</h4>
-    <ul class="list-group list-group-flush" v-if="this.$store.state.taskArr[0] && this.$store.state.listArr[0] && this.$store.state.proj !== ''">
+    <ul class="list-group list-group-flush" v-if="this.$store.state.proj !== ''">
       <li class="list-group-item" v-for="(item, index) in taskArr" :key="'ta'+index">{{index+1}}. {{item.title}}</li>
     </ul>
   </div>
