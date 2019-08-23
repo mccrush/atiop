@@ -1,6 +1,6 @@
 <template>
   <div class="col-10 border-right">
-    <div class="row" v-if="this.$store.state.proj !== ''">
+    <div class="row">
       <List v-for="(item, index) in listArr" :key="'lt'+index" :title="item.title" :id="item.id" />
     </div>
   </div>
@@ -28,12 +28,10 @@ export default {
       state => state.proj,
       (newV, oldV) => {
         if (newV !== "") {
-          //console.log("Board: id proj обновился на =", newV);
-          //console.log("Старый listArr", this.$store.state.listArr);
           this.listArr = this.$store.state.listArr.filter(item => {
             return item.proj == newV;
           });
-          console.log("Board: Получили новый listArr", this.listArr);
+          console.log("Board: listArr", this.listArr);
         }
       }
     );

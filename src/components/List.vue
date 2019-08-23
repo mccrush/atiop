@@ -19,27 +19,18 @@ export default {
       taskArr: []
     };
   },
-  created() {
-    // console.log("Пришел index", this.index);
-    // console.log("Текущий массив:", this.$store.state.taskArr);
-    // this.id = this.$store.state.listId[this.index];
-    // this.taskArr = this.$store.state.taskArr.filter(function(item) {
-    //   return item.list == this.id;
-    // });
-    // console.log("Получили новый taskArr", this.taskArr);
-  },
+  created() {},
   mounted() {
     this.$store.watch(
       state => state.proj,
       (newV, oldV) => {
         if (newV !== "") {
-          //console.log("List: Пришел index", this.index);
-          console.log("List: Текущий массив:", this.$store.state.taskArr);
-          //this.id = this.$store.state.listId[this.index]; // Вот тут избавится от массива id
+          console.log("List: new state.proj=", newV);
+          //console.log("List: Текущий массив:", this.$store.state.taskArr);
           this.taskArr = this.$store.state.taskArr.filter(item => {
             return item.list == this.id;
           });
-          console.log("List: Получили новый taskArr", this.taskArr);
+          console.log("List: taskArr", this.taskArr);
         }
       }
     );

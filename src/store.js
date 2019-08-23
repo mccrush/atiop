@@ -7,13 +7,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     spheArr: [],
-    //spheId: [],
     projArr: [],
-    //projId: [],
     listArr: [],
-    //listId: [],
     taskArr: [],
-    //taskId: [],
     sphe: '',
     proj: '',
     list: '',
