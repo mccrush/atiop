@@ -1,6 +1,6 @@
 <template>
   <div class="col-2 border-right">
-    <ListSphe :projArr="this.$store.state.projArr" :spheArr="this.$store.state.spheArr" />
+    <ListSphe />
   </div>
 </template>
 

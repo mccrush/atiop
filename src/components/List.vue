@@ -1,7 +1,7 @@
 <template>
   <div class="col-3 border-right">
     <h4 class="text-center pt-2">{{title}}</h4>
-    <ul class="list-group list-group-flush" v-if="this.$store.state.proj !== ''">
+    <ul class="list-group list-group-flush">
       <li class="list-group-item" v-for="(item, index) in taskArr" :key="'ta'+index">{{index+1}}. {{item.title}}</li>
     </ul>
   </div>
@@ -26,11 +26,10 @@ export default {
       (newV, oldV) => {
         if (newV !== "") {
           console.log("List: new state.proj=", newV);
-          //console.log("List: Текущий массив:", this.$store.state.taskArr);
           this.taskArr = this.$store.state.taskArr.filter(item => {
             return item.list == this.id;
           });
-          console.log("List: taskArr", this.taskArr);
+          //console.log("List: taskArr", this.taskArr);
         }
       }
     );

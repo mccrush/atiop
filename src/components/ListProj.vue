@@ -12,8 +12,7 @@ import store from "@/store";
 export default {
   name: "listproj",
   props: {
-    id: String,
-    array: Array
+    id: String
   },
   data() {
     return {
@@ -21,17 +20,16 @@ export default {
     };
   },
   created() {
-    console.log("ListProj: Пришел id", this.id);
-    console.log("ListProj: Пришел array", this.array);
+    //console.log("ListProj: Пришел id", this.id);
     this.projArr = this.$store.state.projArr.filter(item => {
       return item.sphe == this.id;
     });
-    console.log("ListProj: projArr", this.projArr);
+    //console.log("ListProj: projArr", this.projArr);
   },
   methods: {
     setState(id) {
       this.$store.state.proj = id;
-      console.log("ListProj: proj id =", this.$store.state.proj);
+      //console.log("ListProj: proj id =", this.$store.state.proj);
     }
   }
 };

@@ -21,11 +21,10 @@ export default new Vuex.Store({
         .get()
         .then(querySnapshot => {
           querySnapshot.forEach(doc => {
-            //state[table + 'Id'].push(doc.id);
             let tobj = doc.data();
             tobj.id = doc.id;
             state[table + 'Arr'].push(tobj);
-            console.log('store: tobj = ', tobj);
+            //console.log('store: tobj = ', tobj);
           });
 
         })

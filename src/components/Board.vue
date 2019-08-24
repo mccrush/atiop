@@ -31,7 +31,7 @@ export default {
           this.listArr = this.$store.state.listArr.filter(item => {
             return item.proj == newV;
           });
-          console.log("Board: listArr", this.listArr);
+          //console.log("Board: listArr", this.listArr);
         }
       }
     );
