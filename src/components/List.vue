@@ -22,10 +22,10 @@ export default {
   created() {},
   mounted() {
     this.$store.watch(
-      state => state.proj,
+      state => state.list,
       (newV, oldV) => {
         if (newV !== "") {
-          console.log("List: new state.proj=", newV);
+          console.log("List: new state.list=", newV);
           this.taskArr = this.$store.state.taskArr.filter(item => {
             return item.list == this.id;
           });
