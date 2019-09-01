@@ -9,6 +9,9 @@
         <ListProj :id="item.id" />
       </div>
     </li>
+    <li class="list-group-item text-center small new-sphe">
+      <a href="#" @click="createSphe">Создать сферу</a>
+    </li>
   </ul>
 </template>
 
