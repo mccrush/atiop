@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import store from "@/store";
+//import store from "@/store";
 import List from "@/components/List.vue";
 
 export default {
@@ -18,10 +18,8 @@ export default {
   props: {},
   data() {
     return {
-      //spheId: this.$store.state.sphe || "",
       spheObj: {},
-      projObj: {},
-      listObj: {}
+      projObj: {}
     };
   },
   created() {},
