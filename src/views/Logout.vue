@@ -19,11 +19,12 @@ export default {
         .signOut()
         .then(function() {
           // Sign-out successful.
-          this.$router.push("/login");
+          document.location.replace("/login");
+          //this.$router.push("/login");
         })
         .catch(function(error) {
           // An error happened.
-          console.log("Logout: Ошибка при выходе из пользователя");
+          console.log("Logout: errors,", error);
         });
     } else {
       // No user is signed in.

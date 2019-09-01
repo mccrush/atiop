@@ -43,7 +43,7 @@ export default {
 
     if (user) {
       console.log("Login: Пользователь авторизован");
-      this.$router.push("/home");
+      this.$router.push("/");
       // User is signed in.
     } else {
       // No user is signed in.
@@ -55,6 +55,9 @@ export default {
     login() {
       auth
         .signInWithEmailAndPassword(this.email, this.password)
+        .then(() => {
+          this.$router.push("/");
+        })
         .catch(function(error) {
           // Handle Errors here.
           var errorCode = error.code;
