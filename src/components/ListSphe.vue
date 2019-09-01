@@ -6,7 +6,7 @@
     <li class="list-group-item" v-for="(value, name, index) in this.$store.state.mapTask" :key="'sp'+index">
       <button class="btn btn-block btn-primary" type="button" data-toggle="collapse" :data-target="'#collapseProj'+index" aria-expanded="false" :aria-controls="'collapseProj'+index">{{value.title}}</button>
       <div class="collapse" :id="'collapseProj'+index">
-        <ListProj :spheid="name" :projObj="value" />
+        <ListProj :spheId="name" :projObj="value" />
       </div>
     </li>
     <li class="list-group-item text-center small new-sphe">

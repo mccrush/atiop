@@ -10,7 +10,7 @@ export default new Vuex.Store({
     // projArr: [],
     // listArr: [],
     // taskArr: [],
-    // sphe: '',
+    sphe: '',
     proj: '',
     // list: '',
     // task: '',
