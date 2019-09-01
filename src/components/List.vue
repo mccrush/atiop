@@ -1,5 +1,5 @@
 <template>
-  <div class="col-5 border-right bg-light">
+  <div class="col-4 border-right bg-light">
     <h5 class="text-center pt-2 border-bottom pb-2">{{title}}</h5>
     <ul class="list-group list-group-flush">
       <li class="list-group-item shadow-sm mb-1 mt-1 border-0 text-muted" v-for="(value, name, index) in listObj" :key="'ta'+index">{{value.title}}</li>

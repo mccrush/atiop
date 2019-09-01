@@ -2,6 +2,9 @@
   <div class="col-8 border-right">
     <div class="row" v-if="this.$store.state.proj">
       <List v-for="(value, name, index) in projObj" :key="'lt'+index" :title="value.title" :listObj="value" />
+      <div class="col-4 border-right bg-light">
+        <a href="#">Добавить список</a>
+      </div>
     </div>
   </div>
 </template>
