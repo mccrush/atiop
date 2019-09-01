@@ -1,5 +1,5 @@
 <template>
-  <div class="col-2 border-right">
+  <div class="col-4 border-right">
     <ListSphe />
   </div>
 </template>

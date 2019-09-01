@@ -11,7 +11,7 @@ export default new Vuex.Store({
     // listArr: [],
     // taskArr: [],
     // sphe: '',
-    // proj: '',
+    proj: '',
     // list: '',
     // task: '',
     mapTask: {},

@@ -1,7 +1,7 @@
 <template>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item" v-for="(item, index) in projArr" :key="'pj'+index">
-      <button type="button" class="btn btn-sm btn-block btn-light" @click="setState(item.id)">{{index+1}}. {{item.title}}</button>
+    <li class="list-group-item" v-for="(value, name, index) in this.$store.state.mapTask[spheid]" :key="'pr'+index">
+      <button type="button" class="btn btn-sm btn-block btn-light" @click="setState(name)">{{index+1}}. {{value.title}}</button>
     </li>
     <li class="list-group-item text-center small new-proj">
       <a href="#" @click="createProj">Создать проект</a>
@@ -15,7 +15,7 @@ import store from "@/store";
 export default {
   name: "listproj",
   props: {
-    id: String
+    spheid: String
   },
   data() {
     return {
@@ -23,15 +23,11 @@ export default {
     };
   },
   created() {
-    //console.log("ListProj: Пришел id", this.id);
-    this.projArr = this.$store.state.projArr.filter(item => {
-      return item.sphe == this.id;
-    });
-    //console.log("ListProj: projArr", this.projArr);
+    
   },
   methods: {
-    setState(id) {
-      this.$store.state.proj = id;
+    setState(projid) {
+      this.$store.state.proj = projid;
       console.log("ListProj: proj id =", this.$store.state.proj);
     },
     createProj(event) {
@@ -45,10 +41,11 @@ export default {
 
       inputForm.addEventListener("keypress", e => {
         if (e.keyCode == 13) {
-          this.$store.state.projArr.push({
-            title: e.target.value,
-            sphe: "Надо как-то его получить"
-          });
+          // this.$store.state.projArr.push({
+          //   title: e.target.value,
+          //   sphe: "Надо как-то его получить"
+          // });
+          console.log("ListProj: Вызван метод создания проекта");
           // Добавить в State, реактивно обновить Вид, отправить в Фаерстор. Подумать как сгенерировать id...
           // Ну можно отправить в Фаерстор, а потом обновить State... Но что делать если интернета нет?
           // Да, можно работать со Стором, и отправлять в Фаерстор как появится интернет, но тогда где взять id для дальнейшей работы... Если нет интернета \_( )_/
