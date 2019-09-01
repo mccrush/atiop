@@ -1,6 +1,6 @@
 <template>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item" v-for="(value, name, index) in this.$store.state.mapTask[spheid]" :key="'pr'+index">
+    <li class="list-group-item" v-for="(value, name, index) in projObj" :key="'pr'+index">
       <button type="button" class="btn btn-sm btn-block btn-light" @click="setState(name)">{{index+1}}. {{value.title}}</button>
     </li>
     <li class="list-group-item text-center small new-proj">
@@ -15,15 +15,27 @@ import store from "@/store";
 export default {
   name: "listproj",
   props: {
-    spheid: String
+    spheid: String,
+    projObj: Object
   },
   data() {
     return {
       projArr: []
+      //projObj: this.$store.state.mapTask[this.spheid].delete("title")
     };
   },
   created() {
-    
+    console.log("ListProj: this.projObj =", this.projObj);
+    delete this.projObj.title;
+    // for (let key of this.projObj.keys()) {
+    //   if (key == "title") this.projObj.delete(key);
+    // }
+    //console.log("ListProj: this.projObj =", this.projObj);
+  },
+  computed: {
+    // projObjClear() {
+    //   return this.projObj.delete("title");
+    // }
   },
   methods: {
     setState(projid) {
