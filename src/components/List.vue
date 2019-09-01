@@ -2,7 +2,7 @@
   <div class="col-3 border-right">
     <h4 class="text-center pt-2">{{title}}</h4>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item" v-for="(item, index) in taskArr" :key="'ta'+index">{{index+1}}. {{item.title}}</li>
+      <!-- <li class="list-group-item" v-for="(item, index) in taskArr" :key="'ta'+index">{{index+1}}. {{item.title}}</li> -->
     </ul>
   </div>
 </template>
@@ -19,21 +19,20 @@ export default {
       taskArr: []
     };
   },
-  created() {},
-  mounted() {
-    this.$store.watch(
-      state => state.list,
-      (newV, oldV) => {
-        if (newV !== "") {
-          console.log("List: new state.list=", newV);
-          this.taskArr = this.$store.state.taskArr.filter(item => {
-            return item.list == this.id;
-          });
-          //console.log("List: taskArr", this.taskArr);
-        }
-      }
-    );
-  }
+  created() {}
+  // mounted() {
+  //   this.$store.watch(
+  //     state => state.list,
+  //     (newV, oldV) => {
+  //       if (newV !== "") {
+  //         console.log("List: new state.list=", newV);
+  //         this.taskArr = this.$store.state.taskArr.filter(item => {
+  //           return item.list == this.id;
+  //         });
+  //       }
+  //     }
+  //   );
+  // }
 };
 </script>
 
