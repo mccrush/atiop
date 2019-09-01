@@ -1,7 +1,7 @@
 <template>
   <div class="col-8 border-right">
     <div class="row" v-if="this.$store.state.proj">
-      <List v-for="(value, name, index) in projObj" :key="'lt'+index" :title="value.title" />
+      <List v-for="(value, name, index) in projObj" :key="'lt'+index" :title="value.title" :listObj="value" />
     </div>
   </div>
 </template>
