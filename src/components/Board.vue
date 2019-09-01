@@ -1,7 +1,7 @@
 <template>
-  <div class="col-10 border-right">
-    <div class="row">
-      <List v-for="(item) in 10" :key="'lt'+item" :title="item" />
+  <div class="col-8 border-right">
+    <div class="row" v-if="this.$store.state.proj">
+      <List v-for="(value, name, index) in projObj" :key="'lt'+index" :title="value.title" />
     </div>
   </div>
 </template>
@@ -18,23 +18,23 @@ export default {
   props: {},
   data() {
     return {
-      listArr: [],
-      id: ""
+      //spheId: this.$store.state.sphe || "",
+      spheObj: {},
+      projObj: {},
+      listObj: {}
     };
   },
-  created() {}
-  // mounted() {
-  //   this.$store.watch(
-  //     state => state.proj,
-  //     (newV, oldV) => {
-  //       if (newV !== "") {
-  //         this.listArr = this.$store.state.listArr.filter(item => {
-  //           return item.proj == newV;
-  //         });
-  //       }
-  //     }
-  //   );
-  // }
+  created() {},
+  mounted() {
+    this.$store.watch(
+      state => state.proj,
+      (newV, oldV) => {
+        this.spheObj = this.$store.state.mapTask[this.$store.state.sphe];
+        this.projObj = this.spheObj[newV];
+        delete this.projObj["title"];
+      }
+    );
+  }
 };
 </script>
 

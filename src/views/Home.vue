@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <Sidebar />
-      <!-- <Board />-->
+      <Board />
     </div>
   </div>
 </template>

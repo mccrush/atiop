@@ -29,7 +29,12 @@ export default {
     setStateProjId(projid) {
       this.$store.state.sphe = this.spheId;
       this.$store.state.proj = projid;
-      console.log("ListProj: proj id =", this.$store.state.proj);
+      console.log(
+        "ListProj: projId =",
+        this.$store.state.proj,
+        "spheId=",
+        this.$store.state.sphe
+      );
     },
     createProj(event) {
       let inputForm = document.createElement("input");
