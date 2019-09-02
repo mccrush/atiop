@@ -1,6 +1,6 @@
 <template>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item" v-for="(value, name, index) in projObj" :key="'pr'+index">
+    <li class="list-group-item" v-for="(value, name, index) in projObjClear" :key="'pr'+index">
       <button type="button" class="btn btn-sm btn-block btn-light" @click="setStateProjId(name)">{{index+1}}. {{value.title}}</button>
     </li>
     <li class="list-group-item text-center small new-proj">
@@ -19,10 +19,13 @@ export default {
     projObj: Object
   },
   data() {
-    return {};
+    return {
+      projObjClear: {}
+    };
   },
   created() {
-    delete this.projObj.title;
+    this.projObjClear = this.projObj;
+    delete this.projObjClear.title;
   },
   computed: {},
   methods: {

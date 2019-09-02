@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <Sidebar />
+      <UlSphe v-if="Object.keys(this.$store.state.mapTask).length > 0" />
       <Board />
     </div>
   </div>
@@ -10,19 +10,22 @@
 <script>
 // @ is an alias to /src
 import { auth } from "@/main.js";
-import Sidebar from "@/components/Sidebar.vue";
+import UlSphe from "@/components/UlSphe.vue";
 import Board from "@/components/Board.vue";
 
 export default {
   name: "home",
   components: {
-    Sidebar,
+    UlSphe,
     Board
   },
   mounted() {
+    // let len = Object.keys(this.$store.state.mapTask).length;
+    // console.log("Home: coun key in obj=", len);
     var user = auth.currentUser;
 
     if (user) {
+      this.$store.state.mapTask;
       console.log("Home: Пользователь авторизован");
       this.$store.state.userId = user.uid;
       console.log("Home: userId", this.$store.state.userId);

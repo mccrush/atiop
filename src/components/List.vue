@@ -2,7 +2,7 @@
   <div class="col-4 border-right bg-light">
     <h5 class="text-center pt-2 border-bottom pb-2">{{title}}</h5>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item shadow-sm mb-1 mt-1 border-0 text-muted" v-for="(value, name, index) in listObj" :key="'ta'+index">{{value.title}}</li>
+      <Task v-for="(value, name, index) in listObjClear" :key="'ta'+index" :listId="listId" :taskId="name" :taskObj="value" />
       <li class="list-group-item text-center small border-0">
         <a href="#" @click="createTask">Добавить задачу</a>
       </li>
@@ -11,21 +11,25 @@
 </template>
 
 <script>
+import Task from "@/components/Task.vue";
 export default {
   name: "list",
+  components: {
+    Task
+  },
   props: {
+    lisId: String,
     title: String,
     listObj: Object
   },
   data() {
     return {
-      //taskArr: []
+      listObjClear: {}
     };
   },
-  created() {
-    ///console.log("List: before del title this.projObj=", this.listObj);
-    //delete this.listObj.title;
-    //console.log("List: after del title this.projObj=", this.listObj);
+  mounted() {
+    this.listObjClear = this.listObj;
+    delete this.listObClear.title;
   },
   methods: {
     createTask() {}

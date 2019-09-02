@@ -1,7 +1,7 @@
 <template>
   <div class="col-8 border-right">
     <div class="row" v-if="this.$store.state.proj">
-      <List v-for="(value, name, index) in projObj" :key="'lt'+index" :title="value.title" :listObj="value" />
+      <List v-for="(value, name, index) in projObj" :key="'lt'+index" :title="value.title" :listId="name" :listObj="value" />
       <div class="col-4 border-right bg-light">
         <a href="#">Добавить список</a>
       </div>
@@ -32,7 +32,7 @@ export default {
       (newV, oldV) => {
         this.spheObj = this.$store.state.mapTask[this.$store.state.sphe];
         this.projObj = this.spheObj[newV];
-        delete this.projObj["title"];
+        delete this.projObj.title;
       }
     );
   }

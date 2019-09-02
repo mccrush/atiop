@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { auth } from "@/main.js";
 import Foot from "@/components/Foot.vue";
 
 export default {
@@ -29,6 +30,21 @@ export default {
   components: {
     Foot
   }
+  // mounted() {
+  //   var user = auth.currentUser;
+
+  //   if (user) {
+  //     console.log("App: Пользователь авторизован");
+  //     this.$store.state.userId = user.uid;
+  //     console.log("App: userId", this.$store.state.userId);
+  //     this.$store.commit("getTask", user.uid);
+  //     // User is signed in.
+  //   } else {
+  //     // No user is signed in.
+  //     console.log("App: Пользователь Не авторизован");
+  //     this.$router.push("/login");
+  //   }
+  // }
 };
 </script>
 
