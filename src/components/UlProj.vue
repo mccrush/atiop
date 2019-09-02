@@ -1,6 +1,6 @@
 <template>
   <ul class="list-group list-group-flush">
-    <Proj v-for="(value, name, i) in spheObj" :key="'ulpr'+name+i" :title="value.title" :projId="name" :spheId="spheId" />
+    <Proj v-for="(value, name, i) in spheObjClear" :key="'ulpr'+name+i" :title="value.title" :projId="name" :spheId="spheId" />
     <li class="list-group-item text-center small new-proj">
       <a href="#">Создать проект</a>
     </li>
@@ -21,6 +21,15 @@ export default {
     spheId: String,
     title: String,
     spheObj: Object
+  },
+  data() {
+    return {
+      spheObjClear: {}
+    };
+  },
+  mounted() {
+    this.spheObjClear = this.spheObj;
+    delete this.spheObjClear.title;
   }
 };
 </script>

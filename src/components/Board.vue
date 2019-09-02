@@ -1,7 +1,7 @@
 <template>
   <div class="col-8 border-right">
     <div class="row" v-if="this.$store.state.proj">
-      <UlTask v-for="(value, name) in projObj" :key="'lt'+name" :title="value.title" :listId="name" :listObj="value" />
+      <UlTask v-for="(value, name, i) in projObj" :key="'lt'+name+i" :title="value.title" :listId="name" :listObj="value" />
       <div class="col-4 border-right bg-light">
         <a href="#">Добавить список</a>
       </div>

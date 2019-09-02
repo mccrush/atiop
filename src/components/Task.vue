@@ -1,11 +1,12 @@
 <template>
-  <li class="list-group-item shadow-sm mb-1 mt-1 border-0 text-muted" id="taskId">{{taskObj.title}}</li>
+  <li class="list-group-item shadow-sm mb-1 mt-1 border-0 text-muted" id="taskId">{{titleList}}</li>
 </template>
 
 <script>
 export default {
   name: "task",
   props: {
+    titleList: String,
     listId: String,
     taskId: String,
     taskObj: Object

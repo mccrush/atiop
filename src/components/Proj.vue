@@ -27,9 +27,9 @@ export default {
   methods: {
     setStateProjId() {
       this.$store.state.sphe = this.spheId;
-      this.$store.state.proj = this.spheId;
+      this.$store.state.proj = this.projId;
       console.log(
-        "ListProj: projId =",
+        "List: projId =",
         this.$store.state.proj,
         "spheId=",
         this.$store.state.sphe
