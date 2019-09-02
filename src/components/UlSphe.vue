@@ -4,7 +4,7 @@
       <li class="list-group-item">
         <button class="btn btn-block btn-success" type="button">Person Plan</button>
       </li>
-      <Sphe v-for="(value, name, index) in this.$store.state.mapTask" :key="'sp'+index" :title="value.title" :spheId="name" />
+      <Sphe v-for="(value, name) in this.$store.state.mapTask" :key="'sp'+name" :title="value.title" :spheId="name" :spheObj="value" />
       <li class="list-group-item text-center small new-sphe">
         <a href="#" @click="createSphe">Создать сферу</a>
       </li>

@@ -1,37 +1,33 @@
 <template>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item" v-for="(value, name, index) in projObjClear" :key="'pr'+index">
-      <button type="button" class="btn btn-sm btn-block btn-light" @click="setStateProjId(name)">{{index+1}}. {{value.title}}</button>
-    </li>
-    <li class="list-group-item text-center small new-proj">
-      <a href="#" @click="createProj">Создать проект</a>
-    </li>
-  </ul>
+  <li class="list-group-item" :id="projId">
+    <button type="button" class="btn btn-sm btn-block btn-light" @click="setStateProjId">{{title}}</button>
+  </li>
 </template>
 
 <script>
-import store from "@/store";
+//import store from "@/store";
 
 export default {
-  name: "listproj",
+  name: "Proj",
   props: {
     spheId: String,
-    projObj: Object
+    projId: String,
+    title: String
   },
   data() {
     return {
-      projObjClear: {}
+      //projObjClear: {}
     };
   },
   created() {
-    this.projObjClear = this.projObj;
-    delete this.projObjClear.title;
+    //this.projObjClear = this.projObj;
+    //delete this.projObjClear.title;
   },
   computed: {},
   methods: {
-    setStateProjId(projid) {
+    setStateProjId() {
       this.$store.state.sphe = this.spheId;
-      this.$store.state.proj = projid;
+      this.$store.state.proj = this.spheId;
       console.log(
         "ListProj: projId =",
         this.$store.state.proj,
