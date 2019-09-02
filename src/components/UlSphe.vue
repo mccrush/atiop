@@ -4,12 +4,7 @@
       <li class="list-group-item">
         <button class="btn btn-block btn-success" type="button">Person Plan</button>
       </li>
-      <li class="list-group-item" v-for="(value, name, index) in this.$store.state.mapTask" :key="'sp'+index">
-        <button class="btn btn-block btn-primary" type="button" data-toggle="collapse" :data-target="'#collapseProj'+index" aria-expanded="false" :aria-controls="'collapseProj'+index">{{value.title}}</button>
-        <div class="collapse" :id="'collapseProj'+index">
-          <ListProj v-if="name !== 'title'" :spheId="name" :projObj="value" />
-        </div>
-      </li>
+      <Sphe v-for="(value, name, index) in this.$store.state.mapTask" :key="'sp'+index" :title="value.title" :spheId="name" />
       <li class="list-group-item text-center small new-sphe">
         <a href="#" @click="createSphe">Создать сферу</a>
       </li>
@@ -18,13 +13,14 @@
 </template>
 
 <script>
-import ListProj from "@/components/ListProj.vue";
+import Sphe from "@/components/Sphe.vue";
+//import ListProj from "@/components/ListProj.vue";
 //import ListSphe from "@/components/ListSphe.vue";
 
 export default {
   name: "UlSphe",
   components: {
-    ListProj
+    Sphe
   }
 };
 </script>

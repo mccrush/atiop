@@ -13,7 +13,7 @@
 <script>
 import Task from "@/components/Task.vue";
 export default {
-  name: "list",
+  name: "UlTask",
   components: {
     Task
   },
