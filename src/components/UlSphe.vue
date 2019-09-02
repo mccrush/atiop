@@ -4,9 +4,9 @@
       <li class="list-group-item">
         <button class="btn btn-block btn-success" type="button">Person Plan</button>
       </li>
-      <Sphe v-for="(value, name) in this.$store.state.mapTask" :key="'sp'+name" :title="value.title" :spheId="name" :spheObj="value" />
+      <Sphe v-for="(value, name, i) in this.$store.state.mapTask" :key="'ulsp'+name+i" :title="value.title" :spheId="name" :spheObj="value" />
       <li class="list-group-item text-center small new-sphe">
-        <a href="#" @click="createSphe">Создать сферу</a>
+        <a href="#">Создать сферу</a>
       </li>
     </ul>
   </div>

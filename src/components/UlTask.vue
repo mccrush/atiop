@@ -2,9 +2,9 @@
   <div class="col-4 border-right bg-light">
     <h5 class="text-center pt-2 border-bottom pb-2">{{title}}</h5>
     <ul class="list-group list-group-flush">
-      <Task v-for="(value, name, index) in listObjClear" :key="'ta'+index" :listId="listId" :taskId="name" :taskObj="value" />
+      <Task v-for="(value, name) in listObjClear" :key="'ta'+name" :listId="listId" :taskId="name" :taskObj="value" />
       <li class="list-group-item text-center small border-0">
-        <a href="#" @click="createTask">Добавить задачу</a>
+        <a href="#">Добавить задачу</a>
       </li>
     </ul>
   </div>
@@ -18,7 +18,7 @@ export default {
     Task
   },
   props: {
-    lisId: String,
+    listId: String,
     title: String,
     listObj: Object
   },
