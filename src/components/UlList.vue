@@ -1,9 +1,13 @@
 <template>
   <div class="col-8 border-right">
     <div class="row" v-if="this.$store.state.proj">
-      <UlTask v-for="(value, name, i) in projObj" :key="'lt'+name+i" :title="value.title" :listId="name" :listObj="value" />
+      <List v-for="(value, name, i) in projObj" :key="'lt'+name+i" :title="value.title" :listId="name" :listObj="value" />
       <div class="col-4 border-right bg-light">
-        <a href="#">Добавить список</a>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item text-center small new-sphe">
+            <a href="#">Добавить список</a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -11,12 +15,12 @@
 
 <script>
 //import store from "@/store";
-import UlTask from "@/components/UlTask.vue";
+import List from "@/components/List.vue";
 
 export default {
-  name: "board",
+  name: "UlList",
   components: {
-    UlTask
+    List
   },
   props: {},
   data() {

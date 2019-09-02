@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <UlSphe v-if="Object.keys(this.$store.state.mapTask).length > 0" />
-      <Board />
+      <UlList />
     </div>
   </div>
 </template>
@@ -11,13 +11,13 @@
 // @ is an alias to /src
 import { auth } from "@/main.js";
 import UlSphe from "@/components/UlSphe.vue";
-import Board from "@/components/Board.vue";
+import UlList from "@/components/UlList.vue";
 
 export default {
   name: "home",
   components: {
     UlSphe,
-    Board
+    UlList
   },
   mounted() {
     // let len = Object.keys(this.$store.state.mapTask).length;
