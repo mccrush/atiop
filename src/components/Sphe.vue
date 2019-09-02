@@ -2,7 +2,7 @@
   <li class="list-group-item" :id="spheId">
     <button class="btn btn-block btn-primary" type="button" data-toggle="collapse" :data-target="'#collapseProj'+spheId" aria-expanded="false" :aria-controls="'collapseProj'+spheId">{{title}}</button>
     <div class="collapse" :id="'collapseProj'+spheId">
-      <UlProj v-for="(value, name, i) in spheObj" :key="'sp'+name+i" :projId="name" :title="value.title" :spheId="spheId" :projObj="value" />
+      <UlProj :spheId="spheId" :spheObj="spheObj" />
     </div>
   </li>
 </template>
