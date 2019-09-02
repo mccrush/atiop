@@ -28,7 +28,7 @@ export default {
     };
   },
   mounted() {
-    this.spheObjClear = this.spheObj;
+    this.spheObjClear = Object.assign({}, this.spheObj);
     delete this.spheObjClear.title;
   }
 };

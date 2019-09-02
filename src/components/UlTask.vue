@@ -27,7 +27,7 @@ export default {
     };
   },
   mounted() {
-    this.listObjClear = this.listObj;
+    this.listObjClear = Object.assign({}, this.listObj);
     delete this.listObjClear.title;
   }
 };
