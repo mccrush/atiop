@@ -1,5 +1,5 @@
 <template>
-  <li class="list-group-item shadow-sm mb-1 mt-1 border-0 text-muted" :id="taskId">{{titleList}}</li>
+  <li class="list-group-item shadow-sm mb-1 mt-1 border-0 text-muted" :id="taskId">{{taskObj.title}}</li>
 </template>
 
 <script>

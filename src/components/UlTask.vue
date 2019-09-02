@@ -1,8 +1,8 @@
 <template>
   <ul class="list-group list-group-flush">
     <Task v-for="(value, name, i) in listObjClear" :key="'ta'+name+i" :taskId="name" :taskObj="value" :listId="listId" />
-    <li class="list-group-item text-center small new-proj">
-      <a href="#">Создать проект</a>
+    <li class="list-group-item text-center small border-0">
+      <a href="#">Добавить задачу</a>
     </li>
   </ul>
 </template>
@@ -28,7 +28,7 @@ export default {
   },
   mounted() {
     this.listObjClear = this.listObj;
-    delete this.listObClear.title;
+    delete this.listObjClear.title;
   }
 };
 </script>

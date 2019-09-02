@@ -1,12 +1,8 @@
 <template>
   <div class="col-4 border-right bg-light">
     <h5 class="text-center pt-2 border-bottom pb-2">{{title}}</h5>
-    <ul class="list-group list-group-flush">
-      <UlTask :listId="listId" :listObj="listObj" />
-      <li class="list-group-item text-center small border-0">
-        <a href="#">Добавить задачу</a>
-      </li>
-    </ul>
+
+    <UlTask :listId="listId" :listObj="listObj" />
   </div>
 </template>
 
@@ -15,7 +11,7 @@ import UlTask from "@/components/UlTask.vue";
 export default {
   name: "List",
   components: {
-    Task
+    UlTask
   },
   props: {
     listId: String,
