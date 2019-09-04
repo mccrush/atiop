@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+    <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <router-link to="/" class="nav-link">Home</router-link>
