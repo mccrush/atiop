@@ -14,6 +14,8 @@ export default new Vuex.Store({
     proj: '',
     // list: '',
     // task: '',
+    timeup: '',
+    allData: {},
     mapTask: {},
     userId: ''
   },
@@ -38,8 +40,13 @@ export default new Vuex.Store({
       db.collection('user').doc(uid)
         .get()
         .then(querySnapshot => {
-          state.mapTask = querySnapshot.data();
-          console.log('Storejs: state.mapTask=', state.mapTask);
+          state.allData = querySnapshot.data();
+          state.timeup = state.allData.timeup;
+          let tempData = Object.assign({}, state.allData);
+          delete tempData.timeup;
+          state.mapTask = tempData
+          console.log('Storejs: timeup =', state.timeup);
+          console.log('Storejs: state.mapTask =', state.mapTask);
         })
         .catch(error => {
           console.log(error);

@@ -31,10 +31,10 @@ export default {
   methods: {
     createNewSphe() {
       this.showForm = true;
-document.querySelector("#formNewSphe").focus();
+      //document.querySelector("#formNewSphe").focus();
     },
     saveNewSphe(e) {
-      if ((e.key = 13)) {
+      if (e.keyCode == 13) {
         this.showForm = false;
       }
     }
