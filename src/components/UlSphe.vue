@@ -6,7 +6,8 @@
       </li>
       <Sphe v-for="(value, name, i) in this.$store.state.mapTask" :key="'ulsp'+name+i" :title="value.title" :spheId="name" :spheObj="value" />
       <li class="list-group-item text-center small new-sphe">
-        <a href="#">Создать сферу</a>
+        <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название сферы" id="formNewSphe" @keypress="saveNewSphe" />
+        <a href="#" v-if="!showForm" @click="createNewSphe">Создать сферу</a>
       </li>
     </ul>
   </div>
@@ -21,6 +22,22 @@ export default {
   name: "UlSphe",
   components: {
     Sphe
+  },
+  data() {
+    return {
+      showForm: false
+    };
+  },
+  methods: {
+    createNewSphe() {
+      this.showForm = true;
+document.querySelector("#formNewSphe").focus();
+    },
+    saveNewSphe(e) {
+      if ((e.key = 13)) {
+        this.showForm = false;
+      }
+    }
   }
 };
 </script>
