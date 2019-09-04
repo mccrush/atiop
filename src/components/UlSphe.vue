@@ -35,6 +35,14 @@ export default {
     },
     saveNewSphe(e) {
       if (e.keyCode == 13) {
+        let nameNewSphe = e.target.value;
+        let idNewSphe = Date.now();
+        let newSphe = {
+          title: nameNewSphe
+        };
+        this.$store.state.mapTask[idNewSphe] = newSphe;
+        console.log("Новыый главный объект:", this.$store.state.mapTask);
+
         this.showForm = false;
       }
     }
