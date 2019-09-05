@@ -2,7 +2,8 @@
   <ul class="list-group list-group-flush">
     <Proj v-for="(value, name, i) in spheObjClear" :key="'ulpr'+name+i" :title="value.title" :projId="name" :spheId="spheId" />
     <li class="list-group-item text-center small new-proj">
-      <a href="#">Создать проект</a>
+      <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название сферы" id="formNewSphe" @keypress="saveNewProj" />
+      <a href="#" v-if="!showForm" @click="createNewProj">Создать проект</a>
     </li>
   </ul>
 </template>
@@ -24,12 +25,36 @@ export default {
   },
   data() {
     return {
-      spheObjClear: {}
+      spheObjClear: {},
+      showForm: false
     };
   },
   mounted() {
     this.spheObjClear = Object.assign({}, this.spheObj);
     delete this.spheObjClear.title;
+  },
+  methods: {
+    createNewProj() {
+      this.showForm = true;
+      //document.querySelector("#formNewSphe").focus();
+    },
+    saveNewProj(e) {
+      if (e.keyCode == 13) {
+        let nameNewProj = e.target.value;
+        let idNewProj = Date.now();
+        let newProj = {
+          title: nameNewProj
+        };
+        this.$store.state.mapTask[this.spheId][idNewProj] = newProj;
+        //this.$store.state.mapTask[idNewSphe] = newSphe;
+        console.log(
+          "UlProj: Новыый главный объект:",
+          this.$store.state.mapTask
+        );
+
+        this.showForm = false;
+      }
+    }
   }
 };
 </script>
