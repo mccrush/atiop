@@ -19,13 +19,18 @@ export default {
     UlSphe,
     UlList
   },
+  data() {
+    return {
+      //uid: ''
+    };
+  },
   mounted() {
     // let len = Object.keys(this.$store.state.mapTask).length;
     // console.log("Home: coun key in obj=", len);
-    var user = auth.currentUser;
+    const user = auth.currentUser;
 
     if (user) {
-      this.$store.state.mapTask;
+      //this.$store.state.mapTask;
       console.log("Home: Пользователь авторизован");
       this.$store.state.userId = user.uid;
       console.log("Home: userId", this.$store.state.userId);

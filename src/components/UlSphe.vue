@@ -42,6 +42,7 @@ export default {
         };
         this.$store.state.mapTask[idNewSphe] = newSphe;
         this.$store.state.timeup = Date.now();
+        this.$store.commit("saveOnServer", this.$store.state.userId);
         console.log(
           "UlSphe: Новыый главный объект:",
           this.$store.state.mapTask

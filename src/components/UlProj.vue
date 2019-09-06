@@ -54,6 +54,7 @@ export default {
         this.$store.state.mapTask[this.spheId][idNewProj] = newProj;
         this.$store.state.timeup = Date.now();
         this.removeTitleFromObject();
+        this.$store.commit("saveOnServer", this.$store.state.userId);
         //this.$store.state.mapTask[idNewSphe] = newSphe;
         console.log(
           "UlProj: Новыый главный объект:",
