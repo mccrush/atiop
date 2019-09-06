@@ -52,6 +52,7 @@ export default {
           title: nameNewProj
         };
         this.$store.state.mapTask[this.spheId][idNewProj] = newProj;
+        this.$store.state.timeup = Date.now();
         this.removeTitleFromObject();
         //this.$store.state.mapTask[idNewSphe] = newSphe;
         console.log(

@@ -51,6 +51,15 @@ export default new Vuex.Store({
         .catch(error => {
           console.log(error);
         });
+    },
+    saveOnServer(state, uid) {
+      state.mapTask['timeup'] = state.timeup;
+      let updateState = db.collection('user').doc(uid).update(state.mapTask);
+      if (updateState) {
+        console.log('Store: Date success updated!');
+      } else {
+        console.log('Store: Errore in update process');
+      }
     }
   },
   actions: {
