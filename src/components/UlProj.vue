@@ -2,7 +2,7 @@
   <ul class="list-group list-group-flush">
     <Proj v-for="(value, name, i) in spheObjClear" :key="'ulpr'+name+i" :title="value.title" :projId="name" :spheId="spheId" />
     <li class="list-group-item text-center small new-proj">
-      <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название сферы" id="formNewSphe" @keypress="saveNewProj" />
+      <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название проекта" id="formNewSphe" @keypress="saveNewProj" />
       <a href="#" v-if="!showForm" @click="createNewProj">Создать проект</a>
     </li>
   </ul>
@@ -30,10 +30,16 @@ export default {
     };
   },
   mounted() {
-    this.spheObjClear = Object.assign({}, this.spheObj);
-    delete this.spheObjClear.title;
+    this.removeTitleFromObject();
   },
   methods: {
+    removeTitleFromObject() {
+      this.spheObjClear = Object.assign(
+        {},
+        this.$store.state.mapTask[this.spheId]
+      );
+      delete this.spheObjClear.title;
+    },
     createNewProj() {
       this.showForm = true;
       //document.querySelector("#formNewSphe").focus();
@@ -46,6 +52,7 @@ export default {
           title: nameNewProj
         };
         this.$store.state.mapTask[this.spheId][idNewProj] = newProj;
+        this.removeTitleFromObject();
         //this.$store.state.mapTask[idNewSphe] = newSphe;
         console.log(
           "UlProj: Новыый главный объект:",
