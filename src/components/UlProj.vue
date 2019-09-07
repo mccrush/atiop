@@ -1,6 +1,6 @@
 <template>
   <ul class="list-group list-group-flush">
-    <Proj v-for="(value, name, i) in spheObjClear" :key="'ulpr'+name+i" :title="value.title" :projId="name" :spheId="spheId" />
+    <Proj v-for="(value, name, i) in this.$store.state.mapTask[spheId]" :key="'ulpr'+name+i" :title="value.title" :projId="name" :spheId="spheId" />
     <li class="list-group-item text-center small new-proj">
       <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название проекта" id="formNewSphe" @keypress="saveNewProj" />
       <a href="#" v-if="!showForm" @click="createNewProj">Создать проект</a>
@@ -20,25 +20,22 @@ export default {
   },
   props: {
     spheId: String,
-    title: String,
-    spheObj: Object
+    title: String
   },
   data() {
     return {
-      spheObjClear: {},
+      actualSphe: this.$store.state.mapTask[this.spheId],
       showForm: false
     };
   },
-  mounted() {
-    this.removeTitleFromObject();
-  },
+  mounted() {},
   methods: {
-    removeTitleFromObject() {
-      this.spheObjClear = Object.assign(
+    getActualSphe() {
+      this.actualSphe = Object.assign(
         {},
         this.$store.state.mapTask[this.spheId]
       );
-      delete this.spheObjClear.title;
+      delete this.actualSphe.title;
     },
     createNewProj() {
       this.showForm = true;

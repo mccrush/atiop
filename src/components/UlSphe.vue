@@ -4,7 +4,7 @@
       <li class="list-group-item">
         <button class="btn btn-block btn-success" type="button">Person Plan</button>
       </li>
-      <Sphe v-for="(value, name, i) in actualSphe" :key="'ulsp'+name+i" :title="value.title" :spheId="name" :spheObj="value" />
+      <Sphe v-for="(value, name, i) in this.$store.state.mapTask" :key="'ulsp'+name+i" :title="value.title" :spheId="name" :spheObj="value" />
       <li class="list-group-item text-center small">
         <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название сферы" id="formNewSphe" @keypress="saveNewSphe" />
         <a href="#" v-if="!showForm" @click="createNewSphe">Создать сферу</a>
@@ -30,12 +30,12 @@ export default {
     };
   },
   mounted() {
-    this.getActualSphe();
+    //this.getActualSphe();
 
     this.$store.watch(
       state => state.mapTask,
       (newV, oldV) => {
-        this.getActualSphe();
+        //this.getActualSphe();
       }
     );
   },
