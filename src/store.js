@@ -6,55 +6,38 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    // spheArr: [],
-    // projArr: [],
-    // listArr: [],
-    // taskArr: [],
-    sphe: '',
-    proj: '',
-    // list: '',
-    // task: '',
-    timeup: '',
-    allData: {},
-    mapTask: {},
+    userId: '',
+    tecSpheId: '',
+    tecProjId: '',
+    //timeup: '', // Время последнего изменения данных
+    mainObject: {},
     userId: ''
   },
   mutations: {
-    // getArr(state, table) {
-    //   db.collection(table)
-    //     .get()
-    //     .then(querySnapshot => {
-    //       querySnapshot.forEach(doc => {
-    //         let tobj = doc.data();
-    //         tobj.id = doc.id;
-    //         state[table + 'Arr'].push(tobj);
-    //         //console.log('store: tobj = ', tobj);
-    //       });
-
-    //     })
-    //     .catch(error => {
-    //       console.log(error);
-    //     });
-    // },
-    getTask(state, uid) {
-      db.collection('user').doc(uid)
+    getMainObject(state) {
+      db.collection('user').doc(state.userId)
         .get()
         .then(querySnapshot => {
-          state.allData = querySnapshot.data();
-          state.timeup = state.allData.timeup;
-          let tempData = Object.assign({}, state.allData);
-          delete tempData.timeup;
-          state.mapTask = tempData
-          console.log('Storejs: timeup =', state.timeup);
-          console.log('Storejs: state.mapTask =', state.mapTask);
+          // let allData = querySnapshot.data();
+          // state.timeup = allData.timeup;
+          // let tempData = Object.assign({}, allData);
+          // delete tempData.timeup;
+          // state.mainObject = tempData
+          //console.log('Storejs: timeup =', state.timeup);
+          //console.log('Storejs: state.mapTask =', state.mainObject);
+          state.mainObject = querySnapshot.data();
         })
         .catch(error => {
           console.log(error);
         });
     },
-    saveOnServer(state, uid) {
-      state.mapTask['timeup'] = state.timeup;
-      let updateState = db.collection('user').doc(uid).update(state.mapTask);
+    updateMainObject(state, newData) {
+      state.mainObject[Date.now()] = newData;
+      store.commit('saveOnServer')
+    },
+    saveOnServer(state) {
+      //state.mainObject['timeup'] = Date.now();
+      let updateState = db.collection('user').doc(state.userId).update(state.mainObject);
       if (updateState) {
         console.log('Store: Date success updated!');
       } else {

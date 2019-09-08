@@ -4,7 +4,7 @@
       <li class="list-group-item">
         <button class="btn btn-block btn-success" type="button">Person Plan</button>
       </li>
-      <Sphe v-for="(value, name, i) in this.$store.state.mapTask" :key="'ulsp'+name+i" :title="value.title" :spheId="name" :spheObj="value" />
+      <Sphe v-for="(value, id, index) in this.$store.state.mainObject" :key="'ulsp'+id+index" :title="value.prop.title" :id="id" :child="value.child" />
       <li class="list-group-item text-center small">
         <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название сферы" id="formNewSphe" @keypress="saveNewSphe" />
         <a href="#" v-if="!showForm" @click="createNewSphe">Создать сферу</a>
@@ -25,24 +25,20 @@ export default {
   },
   data() {
     return {
-      actualSphe: {},
       showForm: false
     };
   },
   mounted() {
     //this.getActualSphe();
-
-    this.$store.watch(
-      state => state.mapTask,
-      (newV, oldV) => {
-        //this.getActualSphe();
-      }
-    );
+    // this.$store.watch(
+    //   state => state.mapTask,
+    //   (newV, oldV) => {
+    //     this.getActualSphe();
+    //   }
+    // );
   },
   methods: {
-    getActualSphe() {
-      this.actualSphe = this.$store.state.mapTask;
-    },
+    getActualSphe() {},
     createNewSphe() {
       this.showForm = true;
       //document.querySelector("#formNewSphe").focus();
@@ -50,17 +46,17 @@ export default {
     saveNewSphe(e) {
       if (e.keyCode == 13) {
         let nameNewSphe = e.target.value;
-        let idNewSphe = Date.now();
-        let newSphe = {
-          title: nameNewSphe
+        //let spheId = Date.now();
+        let spheObj = {
+          prop: { title: nameNewSphe }
         };
-        this.$store.state.mapTask[idNewSphe] = newSphe;
-        this.$store.state.timeup = Date.now();
-        this.$store.commit("saveOnServer", this.$store.state.userId);
-        console.log(
-          "UlSphe: Новыый главный объект:",
-          this.$store.state.mapTask
-        );
+
+        this.$store.commit("updateMainObject", spheObj);
+        //this.$store.commit("saveOnServer");
+        // console.log(
+        //   "UlSphe: Новыый главный объект:",
+        //   this.$store.state.mapTask
+        // );
 
         this.showForm = false;
       }

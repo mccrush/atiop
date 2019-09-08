@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <UlSphe v-if="Object.keys(this.$store.state.mapTask).length > 0" />
+      <UlSphe />
       <UlList />
     </div>
   </div>
@@ -25,20 +25,16 @@ export default {
     };
   },
   mounted() {
-    // let len = Object.keys(this.$store.state.mapTask).length;
-    // console.log("Home: coun key in obj=", len);
     const user = auth.currentUser;
 
     if (user) {
-      //this.$store.state.mapTask;
-      console.log("Home: Пользователь авторизован");
+      //console.log("Home: Пользователь авторизован");
       this.$store.state.userId = user.uid;
-      console.log("Home: userId", this.$store.state.userId);
-      this.$store.commit("getTask", user.uid);
-      // User is signed in.
+      //console.log("Home: userId", this.$store.state.userId);
+      this.$store.commit("getMainObject");
+      // Вот здесь как раз и можно сверять имеющееся время и время на сервере. Если отличается то загружать, иначе незачем лишний раз тащить все данные
     } else {
-      // No user is signed in.
-      console.log("Home: Пользователь Не авторизован");
+      //console.log("Home: Пользователь Не авторизован");
       this.$router.push("/login");
     }
   }

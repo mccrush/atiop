@@ -1,12 +1,12 @@
 <template>
-  <li class="list-group-item" :id="spheId">
+  <li class="list-group-item" :id="id">
     <div class="btn-group" role="group" aria-label="Basic example">
       <button type="button" class="btn btn-secondary" @click="deleteSphe">Del</button>
-      <button class="btn btn-primary" type="button" data-toggle="collapse" :data-target="'#collapseProj'+spheId" aria-expanded="false" :aria-controls="'collapseProj'+spheId">{{title}}</button>
+      <button class="btn btn-primary" type="button" data-toggle="collapse" :data-target="'#collapseProj'+id" aria-expanded="false" :aria-controls="'collapseProj'+id">{{title}}</button>
       <button type="button" class="btn btn-secondary">G</button>
     </div>
-    <div class="collapse" :id="'collapseProj'+spheId">
-      <UlProj :spheId="spheId" :spheObj="spheObj" />
+    <div class="collapse" :id="'collapseProj'+id">
+      <!-- <UlProj :spheId="spheId" :spheObj="spheObj" /> -->
     </div>
   </li>
 </template>
@@ -21,14 +21,14 @@ export default {
     UlProj
   },
   props: {
-    spheId: String,
+    id: String,
     title: String,
-    spheObj: Object
+    child: Object
   },
   methods: {
     deleteSphe() {
-      delete this.$store.state.mapTask[this.spheId];
-      console.log("Sphe: Новыый главный объект:", this.$store.state.mapTask);
+      delete this.$store.state.mainObject[this.id];
+      //console.log("Sphe: Новыый главный объект:", this.$store.state.mapTask);
     }
   }
 };
