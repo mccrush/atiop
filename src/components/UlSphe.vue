@@ -4,9 +4,17 @@
       <li class="list-group-item">
         <button class="btn btn-block btn-success" type="button">Person Plan</button>
       </li>
-      <Sphe v-for="(value, id, index) in this.$store.state.mainObject" :key="'ulsp'+id+index" :title="value.prop.title" :id="id" :child="value.child" />
+      <Sphe v-for="(value, id, index) in this.$store.state.mainObject" :key="'ulsp'+id+index" :title="value" :id="id" :child="value.child" />
       <li class="list-group-item text-center small">
-        <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название сферы" id="formNewSphe" @keypress="saveNewSphe" />
+        <!-- <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название сферы" @keypress="saveNewSphe" /> -->
+
+        <div class="input-group" v-if="showForm">
+          <input type="text" class="form-control form-control-sm" placeholder="Название сферы" @keypress="saveNewSphe" aria-label="Recipient's username" aria-describedby="button-addon2" />
+          <div class="input-group-append">
+            <button @click="saveNewSphe" class="btn btn-sm btn-success" type="button" id="button-addon2">&nbsp;+&nbsp;</button>
+          </div>
+        </div>
+
         <a href="#" v-if="!showForm" @click="createNewSphe">Создать сферу</a>
       </li>
     </ul>
