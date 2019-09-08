@@ -11,7 +11,7 @@
         <div class="input-group" v-if="showForm">
           <input type="text" class="form-control form-control-sm" placeholder="Название сферы" @keypress="saveNewSphe" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="nameNewSphe" />
           <div class="input-group-append">
-            <button @click="saveNewSpheB" class="btn btn-sm btn-success" type="button" id="button-addon2">&nbsp;+&nbsp;</button>
+            <button class="btn btn-sm btn-success" type="button" id="button-addon2">&nbsp;+&nbsp;</button>
           </div>
         </div>
 
@@ -23,8 +23,6 @@
 
 <script>
 import Sphe from "@/components/Sphe.vue";
-//import ListProj from "@/components/ListProj.vue";
-//import ListSphe from "@/components/ListSphe.vue";
 
 export default {
   name: "UlSphe",
@@ -38,11 +36,9 @@ export default {
     };
   },
   mounted() {
-    //this.getActualSphe();
     // this.$store.watch(
     //   state => state.mapTask,
     //   (newV, oldV) => {
-    //     this.getActualSphe();
     //   }
     // );
   },
@@ -58,25 +54,14 @@ export default {
 
         this.$store.commit("addElement", spheObj);
         this.nameNewSphe = "";
-
         this.showForm = false;
       }
-    },
-    saveNewSpheB() {
-      let spheObj = {
-        prop: { title: this.nameNewSphe }
-      };
-
-      this.$store.commit("addElement", spheObj);
-      this.nameNewSphe = "";
-
-      this.showForm = false;
     }
   }
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- Add "scoped"  -->
 <style scoped>
 .list-group-item {
   margin-bottom: 0;

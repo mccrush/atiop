@@ -16,17 +16,10 @@ export default new Vuex.Store({
   },
   mutations: {
     getMainObject(state) {
-      // Но сначала сверить времена, стоит ли обращаться за данными
+      // Но сначала сверить времена, стоит ли обновлять данные
       db.collection('user').doc(state.userId).get().then(querySnapshot => {
-        // let allData = querySnapshot.data();
-        // state.timeup = allData.timeup;
-        // let tempData = Object.assign({}, allData);
-        // delete tempData.timeup;
-        // state.mainObject = tempData
-        //console.log('Storejs: timeup =', state.timeup);
-        //console.log('Storejs: state.mapTask =', state.mainObject);
         state.mainObject = querySnapshot.data();
-        console.log('Storejs: state.mainObject =', state.mainObject);
+        //console.log('Storejs: state.mainObject =', state.mainObject);
       })
         .catch(error => {
           console.log(error);
@@ -36,14 +29,14 @@ export default new Vuex.Store({
       const spheId = Date.now();
       state.mainObject[spheId] = newData;
       db.collection('user').doc(state.userId).set({ [spheId]: newData }, { merge: true });
-      console.log('Store: Date success added!:', state.mainObject);
+      //console.log('Store: Date success added!:', state.mainObject);
     },
     deleteElement(state, elementId) {
       delete state.mainObject[elementId]
       let res = db.collection('user').doc(state.userId).update({
         [elementId]: fb.FieldValue.delete()
       });
-      console.log('Store: Date success deleted!', state.mainObject);
+      //console.log('Store: Date success deleted!', state.mainObject);
     },
     saveOnServer(state) {
       //let updateState = db.collection('user').doc(state.userId).update
