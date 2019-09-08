@@ -4,14 +4,14 @@
       <li class="list-group-item">
         <button class="btn btn-block btn-success" type="button">Person Plan</button>
       </li>
-      <Sphe v-for="(value, id, index) in this.$store.state.mainObject" :key="'ulsp'+id+index" :title="value" :id="id" :child="value.child" />
+      <Sphe v-for="(value, id, index) in this.$store.state.mainObject" :key="'ulsp'+id+index" :title="value.prop.title" :id="id" :child="value.child" />
       <li class="list-group-item text-center small">
         <!-- <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название сферы" @keypress="saveNewSphe" /> -->
 
         <div class="input-group" v-if="showForm">
-          <input type="text" class="form-control form-control-sm" placeholder="Название сферы" @keypress="saveNewSphe" aria-label="Recipient's username" aria-describedby="button-addon2" />
+          <input type="text" class="form-control form-control-sm" placeholder="Название сферы" @keypress="saveNewSphe" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="nameNewSphe" />
           <div class="input-group-append">
-            <button @click="saveNewSphe" class="btn btn-sm btn-success" type="button" id="button-addon2">&nbsp;+&nbsp;</button>
+            <button @click="saveNewSpheB" class="btn btn-sm btn-success" type="button" id="button-addon2">&nbsp;+&nbsp;</button>
           </div>
         </div>
 
@@ -33,7 +33,8 @@ export default {
   },
   data() {
     return {
-      showForm: false
+      showForm: false,
+      nameNewSphe: ""
     };
   },
   mounted() {
@@ -46,29 +47,30 @@ export default {
     // );
   },
   methods: {
-    getActualSphe() {},
     createNewSphe() {
       this.showForm = true;
-      //document.querySelector("#formNewSphe").focus();
     },
     saveNewSphe(e) {
       if (e.keyCode == 13) {
-        let nameNewSphe = e.target.value;
-        //let spheId = Date.now();
         let spheObj = {
-          prop: { title: nameNewSphe }
+          prop: { title: this.nameNewSphe }
         };
 
-        this.$store.commit("addSpheInMainObject", spheObj);
-        console.log("Запуск сохранения на сервере");
-        this.$store.commit("saveOnServer");
-        // console.log(
-        //   "UlSphe: Новыый главный объект:",
-        //   this.$store.state.mapTask
-        // );
+        this.$store.commit("addElement", spheObj);
+        this.nameNewSphe = "";
 
         this.showForm = false;
       }
+    },
+    saveNewSpheB() {
+      let spheObj = {
+        prop: { title: this.nameNewSphe }
+      };
+
+      this.$store.commit("addElement", spheObj);
+      this.nameNewSphe = "";
+
+      this.showForm = false;
     }
   }
 };

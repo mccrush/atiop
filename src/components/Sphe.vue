@@ -28,7 +28,7 @@ export default {
   methods: {
     deleteSphe(e) {
       e.target.parentNode.parentNode.classList.add("d-none"); // Вынужденная мера, т.к. DOM не сразу обновляется сам
-      this.$store.commit("deleteFromMainObject", this.id);
+      this.$store.commit("deleteElement", this.id);
       // this.$store.commit("saveOnServer");
     }
   }

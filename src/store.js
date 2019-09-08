@@ -32,16 +32,18 @@ export default new Vuex.Store({
           console.log(error);
         });
     },
-    addSpheInMainObject(state, newData) {
-      state.mainObject[Date.now()] = newData;
+    addElement(state, newData) {
+      const spheId = Date.now();
+      state.mainObject[spheId] = newData;
+      db.collection('user').doc(state.userId).set({ [spheId]: newData }, { merge: true });
       console.log('Store: Date success added!:', state.mainObject);
     },
-    deleteFromMainObject(state, spheId) {
-      delete state.mainObject[spheId]
+    deleteElement(state, elementId) {
+      delete state.mainObject[elementId]
       let res = db.collection('user').doc(state.userId).update({
-        spheId: fb.FieldValue.delete()
+        [elementId]: fb.FieldValue.delete()
       });
-      console.log('Store: Date success deleted!: res = ', res, ' ', state.mainObject);
+      console.log('Store: Date success deleted!', state.mainObject);
     },
     saveOnServer(state) {
       //let updateState = db.collection('user').doc(state.userId).update
