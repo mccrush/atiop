@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { db } from "@/main.js";
+let FieldValue = require('firebase-admin').firestore.FieldValue;
 
 Vue.use(Vuex)
 
@@ -15,6 +16,7 @@ export default new Vuex.Store({
   },
   mutations: {
     getMainObject(state) {
+      // Но сначала сверить времена, стоит ли обращаться за данными
       db.collection('user').doc(state.userId)
         .get()
         .then(querySnapshot => {
@@ -31,9 +33,16 @@ export default new Vuex.Store({
           console.log(error);
         });
     },
-    updateMainObject(state, newData) {
+    addSpheInMainObject(state, newData) {
       state.mainObject[Date.now()] = newData;
-      store.commit('saveOnServer')
+      console.log('Store: Date success added!:', state.mainObject);
+    },
+    deleteFromMainObject(state, spheId) {
+      delete state.mainObject[spheId]
+      db.collection('user').doc(state.userId).update({
+        spheId: FieldValue.delete()
+      });
+      console.log('Store: Date success deleted!:', state.mainObject);
     },
     saveOnServer(state) {
       //state.mainObject['timeup'] = Date.now();

@@ -51,8 +51,9 @@ export default {
           prop: { title: nameNewSphe }
         };
 
-        this.$store.commit("updateMainObject", spheObj);
-        //this.$store.commit("saveOnServer");
+        this.$store.commit("addSpheInMainObject", spheObj);
+        console.log("Запуск сохранения на сервере");
+        this.$store.commit("saveOnServer");
         // console.log(
         //   "UlSphe: Новыый главный объект:",
         //   this.$store.state.mapTask

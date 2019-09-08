@@ -26,9 +26,10 @@ export default {
     child: Object
   },
   methods: {
-    deleteSphe() {
-      delete this.$store.state.mainObject[this.id];
-      //console.log("Sphe: Новыый главный объект:", this.$store.state.mapTask);
+    deleteSphe(e) {
+      e.target.parentNode.parentNode.classList.add("d-none"); // Вынужденная мера, т.к. DOM не сразу обновляется сам
+      this.$store.commit("deleteFromMainObject", this.id);
+      this.$store.commit("saveOnServer");
     }
   }
 };
