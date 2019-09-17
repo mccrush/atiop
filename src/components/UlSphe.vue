@@ -52,7 +52,7 @@ export default {
           prop: { title: this.nameNewSphe }
         };
 
-        this.$store.commit("addElement", spheObj);
+        this.$store.commit("addSphe", spheObj);
         this.nameNewSphe = "";
         this.showForm = false;
       }

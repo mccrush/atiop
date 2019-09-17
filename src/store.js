@@ -25,10 +25,20 @@ export default new Vuex.Store({
           console.log(error);
         });
     },
-    addElement(state, newData) {
+    addSphe(state, newData) {
       const spheId = Date.now();
       state.mainObject[spheId] = newData; // Сохраняет в локальное хранилище
       db.collection('user').doc(state.userId).set({ [spheId]: newData }, { merge: true }); // Сохраняет на сервере
+      //console.log('Store: Date success added!:', state.mainObject);
+    },
+    addProj(state, payload) {
+      //console.log('Пришли данные: newData:', payload.child, ' sid:', payload.spheid);
+      const projId = Date.now();
+      //let temObj = state.mainObject[payload.spheid]
+      //temObj.child = 'ttesstt';
+      //console.log('res: ', temObj);
+      state.mainObject[payload.spheid].child = { [projId]: payload.child }; // Сохраняет в локальное хранилище
+      db.collection('user').doc(state.userId).set({ [payload.spheid]: state.mainObject[payload.spheid] }, { merge: true }); // Сохраняет на сервере
       //console.log('Store: Date success added!:', state.mainObject);
     },
     deleteElement(state, elementId) {

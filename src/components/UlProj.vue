@@ -2,8 +2,8 @@
   <ul class="list-group list-group-flush">
     <Proj v-for="(value, id, index) in spheObj" :key="'ulpr'+id+index" :title="value.prop.title" :projId="id" :spheId="spheId" />
     <li class="list-group-item small new-proj">
-      <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название проекта" id="formNewSphe" @keypress="saveNewProj" />
-      <a href="#" class="btn btn-sm btn-light btn-block text-left" v-if="!showForm" @click="createNewProj">Создать проект</a>
+      <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название проекта" id="formNewSphe" @keypress="saveNewItem" v-model="nameNewItem" />
+      <a href="#" class="btn btn-sm btn-light btn-block text-left" v-if="!showForm" @click="createNewItem">Создать проект</a>
     </li>
   </ul>
 </template>
@@ -25,40 +25,24 @@ export default {
   },
   data() {
     return {
-      actualSphe: this.$store.state.mainObject[this.spheId],
-      showForm: false
+      showForm: false,
+      nameNewItem: ""
     };
   },
   mounted() {},
   methods: {
-    getActualSphe() {
-      this.actualSphe = Object.assign(
-        {},
-        this.$store.state.mainObject[this.spheId]
-      );
-      delete this.actualSphe.title;
-    },
-    createNewProj() {
+    createNewItem() {
       this.showForm = true;
       //document.querySelector("#formNewSphe").focus();
     },
-    saveNewProj(e) {
+    saveNewItem(e) {
       if (e.keyCode == 13) {
-        let nameNewProj = e.target.value;
-        let idNewProj = Date.now();
-        let newProj = {
-          title: nameNewProj
+        let payload = {
+          spheid: this.spheId,
+          child: { prop: { title: this.nameNewItem } }
         };
-        this.$store.state.mainObject[this.spheId][idNewProj] = newProj;
-        this.$store.state.timeup = Date.now();
-        this.removeTitleFromObject();
-        this.$store.commit("saveOnServer", this.$store.state.userId);
-        //this.$store.state.mainObject[idNewSphe] = newSphe;
-        console.log(
-          "UlProj: Новыый главный объект:",
-          this.$store.state.mainObject
-        );
-
+        this.$store.commit("addProj", payload);
+        this.nameNewItem = "";
         this.showForm = false;
       }
     }
