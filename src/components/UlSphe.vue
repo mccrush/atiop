@@ -4,7 +4,7 @@
       <li class="list-group-item">
         <button class="btn btn-sm btn-block btn-warning" type="button">Показать все задачи</button>
       </li>
-      <Sphe v-for="(value, id, index) in this.$store.state.mainObject" :key="'ulsp'+id+index" :title="value.prop.title" :id="id" :child="value.child" />
+      <Sphe v-for="(value, id, index) in this.$store.state.mainObject" :key="'ulsp'+id+index" :title="value.prop.title" :idSphe="id" :child="value.child" />
       <li class="list-group-item text-center small">
         <!-- <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название сферы" @keypress="saveNewSphe" /> -->
 

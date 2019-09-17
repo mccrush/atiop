@@ -21,7 +21,7 @@ export default {
     UlProj
   },
   props: {
-    id: String,
+    idSphe: String,
     title: String,
     child: Object
   },

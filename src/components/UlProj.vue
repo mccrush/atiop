@@ -1,6 +1,6 @@
 <template>
   <ul class="list-group list-group-flush">
-    <Proj v-for="(value, name, i) in this.$store.state.mapTask[spheId]" :key="'ulpr'+name+i" :title="value.title" :projId="name" :spheId="spheId" />
+    <Proj v-for="(value, name, index) in this.$store.state.mainObject[spheId]" :key="'ulpr'+id+index" :title="value.title" :projId="name" :spheId="spheId" />
     <li class="list-group-item text-center small new-proj">
       <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название проекта" id="formNewSphe" @keypress="saveNewProj" />
       <a href="#" v-if="!showForm" @click="createNewProj">Создать проект</a>
@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      actualSphe: this.$store.state.mapTask[this.spheId],
+      actualSphe: this.$store.state.mainObject[this.spheId],
       showForm: false
     };
   },
@@ -33,7 +33,7 @@ export default {
     getActualSphe() {
       this.actualSphe = Object.assign(
         {},
-        this.$store.state.mapTask[this.spheId]
+        this.$store.state.mainObject[this.spheId]
       );
       delete this.actualSphe.title;
     },
@@ -48,14 +48,14 @@ export default {
         let newProj = {
           title: nameNewProj
         };
-        this.$store.state.mapTask[this.spheId][idNewProj] = newProj;
+        this.$store.state.mainObject[this.spheId][idNewProj] = newProj;
         this.$store.state.timeup = Date.now();
         this.removeTitleFromObject();
         this.$store.commit("saveOnServer", this.$store.state.userId);
-        //this.$store.state.mapTask[idNewSphe] = newSphe;
+        //this.$store.state.mainObject[idNewSphe] = newSphe;
         console.log(
           "UlProj: Новыый главный объект:",
-          this.$store.state.mapTask
+          this.$store.state.mainObject
         );
 
         this.showForm = false;
