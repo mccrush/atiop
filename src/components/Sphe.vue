@@ -1,12 +1,12 @@
 <template>
-  <li class="list-group-item" :id="id">
+  <li class="list-group-item" :id="spheId">
     <div class="btn-group" role="group" aria-label="Basic example">
-      <button type="button" class="btn btn-sm btn-light" @click="deleteSphe">Del</button>
-      <button class="btn btn-sm btn-light" type="button" data-toggle="collapse" :data-target="'#collapseProj'+id" aria-expanded="false" :aria-controls="'collapseProj'+id">{{title}}</button>
+      <button type="button" class="btn btn-sm btn-dark" @click="deleteSphe" title="Удалить объект">D</button>
+      <button class="btn btn-sm btn-light" type="button" data-toggle="collapse" :data-target="'#collapseProj'+spheId" aria-expanded="false" :aria-controls="'collapseProj'+spheId">{{title}}</button>
       <!-- <button type="button" class="btn btn-secondary">G</button> -->
     </div>
-    <div class="collapse" :id="'collapseProj'+id">
-      <!-- <UlProj :spheId="spheId" :spheObj="spheObj" /> -->
+    <div class="collapse" :id="'collapseProj'+spheId">
+      <UlProj :spheId="spheId" :spheObj="child" />
     </div>
   </li>
 </template>
@@ -21,14 +21,14 @@ export default {
     UlProj
   },
   props: {
-    idSphe: String,
+    spheId: String,
     title: String,
     child: Object
   },
   methods: {
     deleteSphe(e) {
       e.target.parentNode.parentNode.classList.add("d-none"); // Вынужденная мера, т.к. DOM не сразу обновляется сам
-      this.$store.commit("deleteElement", this.id);
+      this.$store.commit("deleteElement", this.spheId);
     }
   }
 };

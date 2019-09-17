@@ -1,9 +1,9 @@
 <template>
   <ul class="list-group list-group-flush">
-    <Proj v-for="(value, name, index) in this.$store.state.mainObject[spheId]" :key="'ulpr'+id+index" :title="value.title" :projId="name" :spheId="spheId" />
-    <li class="list-group-item text-center small new-proj">
+    <Proj v-for="(value, id, index) in spheObj" :key="'ulpr'+id+index" :title="value.prop.title" :projId="id" :spheId="spheId" />
+    <li class="list-group-item small new-proj">
       <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название проекта" id="formNewSphe" @keypress="saveNewProj" />
-      <a href="#" v-if="!showForm" @click="createNewProj">Создать проект</a>
+      <a href="#" class="btn btn-sm btn-light btn-block text-left" v-if="!showForm" @click="createNewProj">Создать проект</a>
     </li>
   </ul>
 </template>
@@ -20,7 +20,8 @@ export default {
   },
   props: {
     spheId: String,
-    title: String
+    title: String,
+    spheObj: Object
   },
   data() {
     return {
