@@ -2,20 +2,20 @@
   <div class="col-4 border-right">
     <ul class="list-group list-group-flush">
       <li class="list-group-item">
-        <button class="btn btn-block btn-success" type="button">Person Plan</button>
+        <button class="btn btn-sm btn-block btn-warning" type="button">Показать все задачи</button>
       </li>
       <Sphe v-for="(value, id, index) in this.$store.state.mainObject" :key="'ulsp'+id+index" :title="value.prop.title" :id="id" :child="value.child" />
       <li class="list-group-item text-center small">
         <!-- <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название сферы" @keypress="saveNewSphe" /> -->
 
         <div class="input-group" v-if="showForm">
-          <input type="text" class="form-control form-control-sm" placeholder="Название сферы" @keypress="saveNewSphe" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="nameNewSphe" />
-          <div class="input-group-append">
+          <input type="text" class="form-control form-control-sm" placeholder="Название сферы + Enter" @keypress="saveNewSphe" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="nameNewSphe" />
+          <!-- <div class="input-group-append">
             <button class="btn btn-sm btn-success" type="button" id="button-addon2">&nbsp;+&nbsp;</button>
-          </div>
+          </div>-->
         </div>
 
-        <a href="#" v-if="!showForm" @click="createNewSphe">Создать сферу</a>
+        <a href="#" class="btn btn-sm btn-light" v-if="!showForm" @click="createNewSphe">Создать объект</a>
       </li>
     </ul>
   </div>

@@ -1,9 +1,9 @@
 <template>
   <li class="list-group-item" :id="id">
     <div class="btn-group" role="group" aria-label="Basic example">
-      <button type="button" class="btn btn-secondary" @click="deleteSphe">Del</button>
-      <button class="btn btn-primary" type="button" data-toggle="collapse" :data-target="'#collapseProj'+id" aria-expanded="false" :aria-controls="'collapseProj'+id">{{title}}</button>
-      <button type="button" class="btn btn-secondary">G</button>
+      <button type="button" class="btn btn-sm btn-light" @click="deleteSphe">Del</button>
+      <button class="btn btn-sm btn-light" type="button" data-toggle="collapse" :data-target="'#collapseProj'+id" aria-expanded="false" :aria-controls="'collapseProj'+id">{{title}}</button>
+      <!-- <button type="button" class="btn btn-secondary">G</button> -->
     </div>
     <div class="collapse" :id="'collapseProj'+id">
       <!-- <UlProj :spheId="spheId" :spheObj="spheObj" /> -->

@@ -27,15 +27,15 @@ export default new Vuex.Store({
     },
     addElement(state, newData) {
       const spheId = Date.now();
-      state.mainObject[spheId] = newData;
-      db.collection('user').doc(state.userId).set({ [spheId]: newData }, { merge: true });
+      state.mainObject[spheId] = newData; // Сохраняет в локальное хранилище
+      db.collection('user').doc(state.userId).set({ [spheId]: newData }, { merge: true }); // Сохраняет на сервере
       //console.log('Store: Date success added!:', state.mainObject);
     },
     deleteElement(state, elementId) {
-      delete state.mainObject[elementId]
+      delete state.mainObject[elementId]; // Удаляет с локального хранилища
       let res = db.collection('user').doc(state.userId).update({
         [elementId]: fb.FieldValue.delete()
-      });
+      }); // Удаляет на сервере
       //console.log('Store: Date success deleted!', state.mainObject);
     },
     saveOnServer(state) {
