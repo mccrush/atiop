@@ -2,7 +2,7 @@
   <ul class="list-group list-group-flush">
     <Proj v-for="(value, id, index) in spheObj" :key="'ulpr'+id+index" :title="value.prop.title" :projId="id" :spheId="spheId" />
     <li class="list-group-item small new-proj">
-      <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название проекта" id="formNewSphe" @keypress="saveNewItem" v-model="nameNewItem" />
+      <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название проекта" id="formNewSphe" @keypress="saveNewItem" v-model="nameNewItem" @blur="hideForm" autofocus />
       <a href="#" class="btn btn-sm btn-light btn-block text-left" v-if="!showForm" @click="createNewItem">Создать проект</a>
     </li>
   </ul>
@@ -31,9 +31,8 @@ export default {
   },
   mounted() {},
   methods: {
-    createNewItem() {
+    createNewItem(e) {
       this.showForm = true;
-      //document.querySelector("#formNewSphe").focus();
     },
     saveNewItem(e) {
       if (e.keyCode == 13) {
@@ -46,6 +45,11 @@ export default {
         };
         this.$store.commit("addProj", payload);
         this.nameNewItem = "";
+        this.showForm = false;
+      }
+    },
+    hideForm() {
+      if (!this.nameNewItem) {
         this.showForm = false;
       }
     }

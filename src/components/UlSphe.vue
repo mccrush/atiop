@@ -9,7 +9,7 @@
         <!-- <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название сферы" @keypress="saveNewSphe" /> -->
 
         <div class="input-group" v-if="showForm">
-          <input type="text" class="form-control form-control-sm" placeholder="Название сферы + Enter" @keypress="saveNewSphe" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="nameNewSphe" />
+          <input type="text" class="form-control form-control-sm" placeholder="Название сферы + Enter" @keypress="saveNewSphe" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="nameNewSphe" @blur="hideForm" autofocus />
           <!-- <div class="input-group-append">
             <button class="btn btn-sm btn-success" type="button" id="button-addon2">&nbsp;+&nbsp;</button>
           </div>-->
@@ -55,6 +55,11 @@ export default {
 
         this.$store.commit("addSphe", spheObj);
         this.nameNewSphe = "";
+        this.showForm = false;
+      }
+    },
+    hideForm() {
+      if (!this.nameNewItem) {
         this.showForm = false;
       }
     }
