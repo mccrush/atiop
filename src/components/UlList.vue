@@ -1,10 +1,10 @@
 <template>
   <div class="col-8 border-right">
     <div class="row" v-if="this.$store.state.proj">
-      <List v-for="(value, id, index) in projObj" :key="'li'+id+index" :title="value.title" :listId="id" :listObj="value" />
+      <List v-for="(value, id, index) in projObj" :key="'li'+id+index" :title="value.prop.title" :listId="id" :listObj="value" />
       <div class="col-5 border-right">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item text-center small new-sphe">
+          <li class="list-group-item text-center small new-sphe pl-0 pr-0">
             <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название проекта" id="formNewSphe" @keypress="saveNewItem" v-model="nameNewItem" @blur="hideForm" autofocus />
             <a href="#" class="btn btn-sm btn-light btn-block text-left" v-if="!showForm" @click="createNewItem">Добавить список</a>
           </li>
@@ -38,7 +38,7 @@ export default {
       state => state.proj,
       (newV, oldV) => {
         this.spheObj = this.$store.state.mainObject[this.$store.state.sphe];
-        this.projObj = this.spheObj.child[newV];
+        this.projObj = this.spheObj.child[newV].child;
         //delete this.projObj.title;
       }
     );
@@ -50,13 +50,14 @@ export default {
     saveNewItem(e) {
       if (e.keyCode == 13) {
         let payload = {
-          spheid: this.spheId, //////////////////////////////
+          spheid: this.$store.state.sphe, //////////////////////////////
+          projid: this.$store.state.proj,
           child: {
             prop: { title: this.nameNewItem },
             child: {}
           }
         };
-        //this.$store.commit("addProj", payload);
+        this.$store.commit("addList", payload);
         this.nameNewItem = "";
         this.showForm = false;
       }

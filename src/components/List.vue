@@ -1,7 +1,7 @@
 <template>
-  <div class="col-5 border-right bg-light">
-    <h6 class="pt-2 border-bottom pb-2">{{title}}</h6>
-    <UlTask :listId="listId" :listObj="listObj" />
+  <div class="col-5 border-right">
+    <h6 class="pt-3 border-bottom pb-2">{{title}}</h6>
+    <!-- <UlTask :listId="listId" :listObj="listObj" /> -->
   </div>
 </template>
 
