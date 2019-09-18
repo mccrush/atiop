@@ -9,13 +9,13 @@
         <!-- <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название сферы" @keypress="saveNewSphe" /> -->
 
         <div class="input-group" v-if="showForm">
-          <input type="text" class="form-control form-control-sm" placeholder="Название сферы + Enter" @keypress="saveNewSphe" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="nameNewSphe" @blur="hideForm" autofocus />
+          <input type="text" class="form-control form-control-sm" placeholder="Название сферы + Enter" @keypress="saveNewItem" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="nameNewItem" @blur="hideForm" autofocus />
           <!-- <div class="input-group-append">
             <button class="btn btn-sm btn-success" type="button" id="button-addon2">&nbsp;+&nbsp;</button>
           </div>-->
         </div>
 
-        <a href="#" class="btn btn-sm btn-light btn-block text-left" v-if="!showForm" @click="createNewSphe">Создать объект</a>
+        <a href="#" class="btn btn-sm btn-light btn-block text-left" v-if="!showForm" @click="createNewItem">Создать объект</a>
       </li>
     </ul>
   </div>
@@ -32,7 +32,7 @@ export default {
   data() {
     return {
       showForm: false,
-      nameNewSphe: ""
+      nameNewItem: ""
     };
   },
   mounted() {
@@ -43,18 +43,18 @@ export default {
     // );
   },
   methods: {
-    createNewSphe() {
+    createNewItem() {
       this.showForm = true;
     },
-    saveNewSphe(e) {
+    saveNewItem(e) {
       if (e.keyCode == 13) {
-        let spheObj = {
-          prop: { title: this.nameNewSphe },
+        let payload = {
+          prop: { title: this.nameNewItem },
           child: {}
         };
 
-        this.$store.commit("addSphe", spheObj);
-        this.nameNewSphe = "";
+        this.$store.commit("addSphe", payload);
+        this.nameNewItem = "";
         this.showForm = false;
       }
     },

@@ -31,7 +31,7 @@ export default {
   },
   mounted() {},
   methods: {
-    createNewItem(e) {
+    createNewItem() {
       this.showForm = true;
     },
     saveNewItem(e) {
