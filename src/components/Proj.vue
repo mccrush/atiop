@@ -44,7 +44,7 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- Add "scoped" -->
 <style scoped>
 .list-group-item {
   border: none;

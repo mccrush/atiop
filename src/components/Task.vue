@@ -6,7 +6,7 @@
 export default {
   name: "Task",
   props: {
-    listId: String,
+    listId: String, // Не используется
     taskId: String,
     tasktitle: String
   },

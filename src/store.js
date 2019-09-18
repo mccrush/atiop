@@ -33,36 +33,6 @@ export default new Vuex.Store({
         console.info("%c Document successfully written!", 'color: #28a745');
       }); // Сохраняет на сервере
     },
-    addProj(state, payload) {
-      console.log('Пришли данные в addProj: newData:', payload.child, ' sid:', payload.spheid);
-      const projId = Date.now();
-      if (!state.mainObject[payload.spheid].child) {
-        state.mainObject[payload.spheid].child = {}; // Если такого поля еще нет, то создает
-      }
-      state.mainObject[payload.spheid].child[projId] = payload.child; // Сохраняет в локальное хранилище
-      db.collection('user').doc(state.userId).update({ [payload.spheid]: state.mainObject[payload.spheid] }).then(function () {
-        console.info("%c Document successfully updated!", 'color: #28a745');
-      })
-        .catch(function (error) {
-          // Возможно документ еще не существует
-          console.error("Store.js: во время обновления произошла ошибка", error);
-        }); // Сохраняет на сервере
-    },
-    addList(state, payload) {
-      console.log('Пришли данные в addProj: newData:', payload.child, ' sid:', payload.spheid, ' pid:', payload.projid);
-      const listId = Date.now();
-      if (!state.mainObject[payload.spheid].child[payload.projid].child) {
-        state.mainObject[payload.spheid].child[payload.projid].child = {}; // Если такого поля еще нет, то создает
-      }
-      state.mainObject[payload.spheid].child[payload.projid].child[listId] = payload.child; // Сохраняет в локальное хранилище
-      db.collection('user').doc(state.userId).update({ [payload.spheid]: state.mainObject[payload.spheid] }).then(function () {
-        console.info("%c Document successfully updated!", 'color: #28a745');
-      })
-        .catch(function (error) {
-          // Возможно документ еще не существует
-          console.error("Store.js: во время обновления произошла ошибка", error);
-        }); // Сохраняет на сервере
-    },
     addElement(state, payload) {
       const itemId = Date.now();
       switch (payload.type) {
