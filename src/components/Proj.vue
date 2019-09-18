@@ -4,7 +4,7 @@
     <small class="text-muted">&nbsp;&nbsp;|_&nbsp;&nbsp;</small>
     <div class="btn-group btn-block" role="group" aria-label="Basic example">
       <button type="button" class="btn btn-sm btn-dark" @click="deleteProj" title="Удалить проект">D</button>
-      <button class="btn btn-sm btn-light btn-block text-left" type="button" @click="setStateProjId">{{title}}</button>
+      <button class="btn btn-sm btn-light btn-block text-left proj-item" type="button" @click="setStateProjId">{{title}}</button>
     </div>
   </li>
 </template>
@@ -56,5 +56,9 @@ export default {
 <style scoped>
 .list-group-item {
   border: none;
+}
+
+.proj-item {
+  border-bottom: 1px solid rgba(52, 58, 64, 0.07);
 }
 </style>
