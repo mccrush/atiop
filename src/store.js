@@ -49,15 +49,12 @@ export default new Vuex.Store({
     addList(state, payload) {
       console.log('Пришли данные в addProj: newData:', payload.child, ' sid:', payload.spheid, ' pid:', payload.projid);
       const listId = Date.now();
-      if (!state.mainObject[payload.spheid].child) {
-        state.mainObject[payload.spheid].child = {}; // Если такого поля еще нет, то создает
-      }
       if (!state.mainObject[payload.spheid].child[payload.projid].child) {
-        state.mainObject[payload.spheid].child[payload.projid].child = {};
+        state.mainObject[payload.spheid].child[payload.projid].child = {}; // Если такого поля еще нет, то создает
       }
       state.mainObject[payload.spheid].child[payload.projid].child[listId] = payload.child; // Сохраняет в локальное хранилище
       db.collection('user').doc(state.userId).update({ [payload.spheid]: state.mainObject[payload.spheid] }).then(function () {
-        state.proj = state.proj;
+        //state.proj = state.proj;
         console.info("%c Document successfully updated!", 'color: #28a745');
       })
         .catch(function (error) {
