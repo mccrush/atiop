@@ -10,8 +10,6 @@
 
 <script>
 import Task from "@/components/Task.vue";
-//import ListProj from "@/components/ListProj.vue";
-//import ListSphe from "@/components/ListSphe.vue";
 
 export default {
   name: "UlTask",
@@ -47,9 +45,6 @@ export default {
         this.$store.commit("addElement", payload);
         this.nameNewItem = "";
         this.showForm = false;
-        // this.listObj = this.spheObj.child[this.$store.state.proj].child[
-        //   this.listId
-        // ].child;
       }
     },
     hideForm() {
@@ -61,7 +56,7 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- Add "scoped" -->
 <style scoped>
 .list-group-item {
   margin-bottom: 0;

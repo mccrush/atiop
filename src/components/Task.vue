@@ -24,7 +24,6 @@ export default {
 <!-- Add "scoped" -->
 <style scoped>
 .task-item {
-  /*border-bottom: 4px solid rgb(255, 193, 7) !important;*/
   font-size: 14px;
   border-bottom: 1px solid rgba(52, 58, 64, 0.07) !important;
 }

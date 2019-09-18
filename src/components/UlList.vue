@@ -15,7 +15,6 @@
 </template>
 
 <script>
-//import store from "@/store";
 import List from "@/components/List.vue";
 
 export default {
@@ -49,7 +48,7 @@ export default {
     saveNewItem(e) {
       if (e.keyCode == 13) {
         let payload = {
-          type: 'l',
+          type: "l",
           spheid: this.$store.state.sphe,
           projid: this.$store.state.proj,
           child: {

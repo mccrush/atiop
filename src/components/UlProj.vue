@@ -2,7 +2,7 @@
   <ul class="list-group list-group-flush">
     <Proj v-for="(value, id, index) in spheObj" :key="'ulpr'+id+index" :title="value.prop.title" :projId="id" :spheId="spheId" />
     <li class="list-group-item small new-proj">
-      <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название проекта" id="formNewSphe" @keypress="saveNewItem" v-model="nameNewItem" @blur="hideForm" autofocus />
+      <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название проекта + Enter" id="formNewSphe" @keypress="saveNewItem" v-model="nameNewItem" @blur="hideForm" autofocus />
       <a href="#" class="btn btn-sm btn-light btn-block text-left" v-if="!showForm" @click="createNewItem">Создать проект</a>
     </li>
   </ul>
@@ -10,8 +10,6 @@
 
 <script>
 import Proj from "@/components/Proj.vue";
-//import ListProj from "@/components/ListProj.vue";
-//import ListSphe from "@/components/ListSphe.vue";
 
 export default {
   name: "UlProj",
@@ -58,7 +56,7 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- Add "scoped" -->
 <style scoped>
 .list-group-item {
   margin-bottom: 0;

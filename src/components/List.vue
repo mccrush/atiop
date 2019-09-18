@@ -18,9 +18,7 @@ export default {
     listObj: Object
   },
   data() {
-    return {
-      //listObjClear: {}
-    };
+    return {};
   },
   mounted() {},
   methods: {

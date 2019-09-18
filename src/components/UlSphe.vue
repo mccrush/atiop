@@ -6,12 +6,10 @@
       </li>
       <Sphe v-for="(value, id, index) in this.$store.state.mainObject" :key="'ulsp'+id+index" :title="value.prop.title" :spheId="id" :child="value.child" />
       <li class="list-group-item small">
-        <!-- <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название сферы" @keypress="saveNewSphe" /> -->
-
         <div class="input-group" v-if="showForm">
           <input type="text" class="form-control form-control-sm" placeholder="Название сферы + Enter" @keypress="saveNewItem" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="nameNewItem" @blur="hideForm" autofocus />
           <!-- <div class="input-group-append">
-            <button class="btn btn-sm btn-success" type="button" id="button-addon2">&nbsp;+&nbsp;</button>
+            <button class="btn btn-sm btn-success" type="button" id="button-addon2" @click="createNewItem">&nbsp;+&nbsp;</button>
           </div>-->
         </div>
 
@@ -35,13 +33,7 @@ export default {
       nameNewItem: ""
     };
   },
-  mounted() {
-    // this.$store.watch(
-    //   state => state.mapTask,
-    //   (newV, oldV) => {
-    //   }
-    // );
-  },
+  mounted() {},
   methods: {
     createNewItem() {
       this.showForm = true;

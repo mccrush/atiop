@@ -1,6 +1,5 @@
 <template>
   <li class="list-group-item pr-4" :id="projId">
-    <!-- <button type="button" class="btn btn-sm btn-block btn-success" @click="setStateProjId">{{title}}</button> -->
     <small class="text-muted">&nbsp;&nbsp;|_&nbsp;&nbsp;</small>
     <div class="btn-group btn-block" role="group" aria-label="Basic example">
       <button type="button" class="btn btn-sm btn-dark" @click="deleteProj" title="Удалить проект">D</button>
@@ -10,8 +9,6 @@
 </template>
 
 <script>
-//import store from "@/store";
-
 export default {
   name: "Proj",
   props: {
@@ -20,14 +17,9 @@ export default {
     title: String
   },
   data() {
-    return {
-      //projObjClear: {}
-    };
+    return {};
   },
-  created() {
-    //this.projObjClear = this.projObj;
-    //delete this.projObjClear.title;
-  },
+  created() {},
   computed: {},
   methods: {
     deleteProj(e) {
