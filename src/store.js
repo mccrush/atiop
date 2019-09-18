@@ -54,13 +54,13 @@ export default new Vuex.Store({
         }); // Удаляет на сервере
       } else if (payload.type == 'p') {
         delete state.mainObject[payload.spheid].child[payload.projid]; // Удаляет с локального хранилища
-        let res = db.collection('user').doc(state.userId).update({
-          [payload.spheid]: {
-            child: {
-              [payload.projid]: fb.FieldValue.delete()
-            }
-          }
-        }); // Удаляет на сервере
+        db.collection('user').doc(state.userId).update({ [payload.spheid]: state.mainObject[payload.spheid] }).then(function () {
+          console.info("%c Document successfully deleted!", 'color: #bada55');
+        })
+          .catch(function (error) {
+            // Возможно документ еще не существует
+            console.error("Store.js: во время обновления произошла ошибка", error);
+          }); // Удаляет с сервера
       }
 
     },
