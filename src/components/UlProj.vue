@@ -37,6 +37,7 @@ export default {
     saveNewItem(e) {
       if (e.keyCode == 13) {
         let payload = {
+          type: "p",
           spheid: this.spheId,
           child: {
             prop: { title: this.nameNewItem },

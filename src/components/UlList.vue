@@ -49,6 +49,7 @@ export default {
     saveNewItem(e) {
       if (e.keyCode == 13) {
         let payload = {
+          type: 'l',
           spheid: this.$store.state.sphe,
           projid: this.$store.state.proj,
           child: {

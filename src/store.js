@@ -90,7 +90,7 @@ export default new Vuex.Store({
       if (payload.type == 's') {
         delete state.mainObject[payload.spheid]; // Удаляет с локального хранилища
         let res = db.collection('user').doc(state.userId).update({
-          [elementId]: fb.FieldValue.delete()
+          [payload.spheid]: fb.FieldValue.delete()
         }); // Удаляет на сервере
       } else if (payload.type == 'p') {
         delete state.mainObject[payload.spheid].child[payload.projid]; // Удаляет с локального хранилища
