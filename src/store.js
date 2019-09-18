@@ -19,35 +19,52 @@ export default new Vuex.Store({
       // Но сначала сверить времена, стоит ли обновлять данные
       db.collection('user').doc(state.userId).get().then(querySnapshot => {
         state.mainObject = querySnapshot.data();
-        //console.log('Storejs: state.mainObject =', state.mainObject);
       })
         .catch(error => {
-          console.log(error);
+          console.log("Store.js: при получении данных с сервера произошла ошибка", error);
         });
     },
     addSphe(state, newData) {
       const spheId = Date.now();
       state.mainObject[spheId] = newData; // Сохраняет в локальное хранилище
-      db.collection('user').doc(state.userId).set({ [spheId]: newData }, { merge: true }); // Сохраняет на сервере
-      //console.log('Store: Date success added!:', state.mainObject);
+      db.collection('user').doc(state.userId).set({ [spheId]: newData }, { merge: true }).then(function () {
+        console.info("Document successfully written!");
+      }); // Сохраняет на сервере
     },
     addProj(state, payload) {
-      //console.log('Пришли данные: newData:', payload.child, ' sid:', payload.spheid);
+      console.log('Пришли данные в addProj: newData:', payload.child, ' sid:', payload.spheid);
       const projId = Date.now();
-      //let temObj = state.mainObject[payload.spheid]
-      //temObj.child = 'ttesstt';
-      //console.log('res: ', temObj);
-      state.mainObject[payload.spheid].child = { [projId]: payload.child }; // Сохраняет в локальное хранилище
-      db.collection('user').doc(state.userId).set({ [payload.spheid]: state.mainObject[payload.spheid] }, { merge: true }); // Сохраняет на сервере
-      //console.log('Store: Date success added!:', state.mainObject);
+      if (!state.mainObject[payload.spheid].child) {
+        state.mainObject[payload.spheid].child = {}; // Если такого поля еще нет, то создает
+      }
+      state.mainObject[payload.spheid].child[projId] = payload.child; // Сохраняет в локальное хранилище
+      db.collection('user').doc(state.userId).update({ [payload.spheid]: state.mainObject[payload.spheid] }).then(function () {
+        console.info("Document successfully updated!");
+      })
+        .catch(function (error) {
+          // Возможно документ еще не существует
+          console.error("Store.js: во время обновления произошла ошибка", error);
+        }); // Сохраняет на сервере
     },
-    deleteElement(state, elementId) {
-      delete state.mainObject[elementId]; // Удаляет с локального хранилища
-      let res = db.collection('user').doc(state.userId).update({
-        [elementId]: fb.FieldValue.delete()
-      }); // Удаляет на сервере
-      //console.log('Store: Date success deleted!', state.mainObject);
+    deleteElement(state, payload) {
+      if (payload.type == 's') {
+        delete state.mainObject[payload.spheid]; // Удаляет с локального хранилища
+        let res = db.collection('user').doc(state.userId).update({
+          [elementId]: fb.FieldValue.delete()
+        }); // Удаляет на сервере
+      } else if (payload.type == 'p') {
+        delete state.mainObject[payload.spheid].child[payload.projid]; // Удаляет с локального хранилища
+        let res = db.collection('user').doc(state.userId).update({
+          [payload.spheid]: {
+            child: {
+              [payload.projid]: fb.FieldValue.delete()
+            }
+          }
+        }); // Удаляет на сервере
+      }
+
     },
+    // Что делает этот метод?
     saveOnServer(state) {
       //let updateState = db.collection('user').doc(state.userId).update
 

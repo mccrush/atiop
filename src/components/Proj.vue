@@ -30,7 +30,14 @@ export default {
   },
   computed: {},
   methods: {
-    deleteProj() {},
+    deleteProj(e) {
+      e.target.parentNode.parentNode.classList.add("d-none"); // Вынужденная мера, т.к. DOM не сразу обновляется сам
+      this.$store.commit("deleteElement", {
+        type: "p",
+        spheid: this.spheId,
+        projid: this.projId
+      });
+    },
     setStateProjId() {
       this.$store.state.sphe = this.spheId;
       this.$store.state.proj = this.projId;
