@@ -1,10 +1,10 @@
 <template>
-  <li class="list-group-item" :id="projId">
+  <li class="list-group-item pr-4" :id="projId">
     <!-- <button type="button" class="btn btn-sm btn-block btn-success" @click="setStateProjId">{{title}}</button> -->
     <small class="text-muted">&nbsp;&nbsp;|_&nbsp;&nbsp;</small>
-    <div class="btn-group" role="group" aria-label="Basic example">
+    <div class="btn-group btn-block" role="group" aria-label="Basic example">
       <button type="button" class="btn btn-sm btn-dark" @click="deleteProj" title="Удалить проект">D</button>
-      <button class="btn btn-sm btn-light" type="button" @click="setStateProjId">{{title}}</button>
+      <button class="btn btn-sm btn-light btn-block text-left" type="button" @click="setStateProjId">{{title}}</button>
     </div>
   </li>
 </template>
