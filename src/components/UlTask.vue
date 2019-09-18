@@ -2,7 +2,8 @@
   <ul class="list-group list-group-flush">
     <Task v-for="(value, taskid, index) in listObj" :key="'ta'+taskid+index" :taskId="taskid" :tasktitle="value.title" :listId="listId" />
     <li class="list-group-item text-center small border-0 pl-0 pr-0">
-      <a href="#" class="btn btn-sm btn-light btn-block text-left">Добавить задачу</a>
+      <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Заголовок задачи" id="formNewSphe" @keypress="saveNewItem" v-model="nameNewItem" @blur="hideForm" autofocus />
+      <a href="#" class="btn btn-sm btn-light btn-block text-left" v-if="!showForm" @click="createNewItem">Добавить задачу</a>
     </li>
   </ul>
 </template>
@@ -23,12 +24,37 @@ export default {
   },
   data() {
     return {
-      listObjClear: {}
+      showForm: false
     };
   },
-  mounted() {
-    //this.listObjClear = Object.assign({}, this.listObj);
-    //delete this.listObjClear.title;
+  methods: {
+    createNewItem(e) {
+      this.showForm = true;
+    },
+    saveNewItem(e) {
+      if (e.keyCode == 13) {
+        let payload = {
+          spheid: this.$store.state.sphe,
+          projid: this.$store.state.proj,
+          listid: this.listId,
+          child: {
+            prop: { title: this.nameNewItem },
+            child: {}
+          }
+        };
+        this.$store.commit("addElement", payload);
+        this.nameNewItem = "";
+        this.showForm = false;
+        this.listObj = this.spheObj.child[this.$store.state.proj].child[
+          this.listId
+        ].child;
+      }
+    },
+    hideForm() {
+      if (!this.nameNewItem) {
+        this.showForm = false;
+      }
+    }
   }
 };
 </script>

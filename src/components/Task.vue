@@ -28,4 +28,9 @@ export default {
   font-size: 14px;
   border-bottom: 1px solid rgba(52, 58, 64, 0.07) !important;
 }
+
+.task-item:hover {
+  cursor: pointer;
+  background: rgba(52, 58, 64, 0.07);
+}
 </style>

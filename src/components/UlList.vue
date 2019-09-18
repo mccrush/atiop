@@ -5,7 +5,7 @@
       <div class="col-5 border-right">
         <ul class="list-group list-group-flush">
           <li class="list-group-item text-center small new-sphe pl-0 pr-0">
-            <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название проекта" id="formNewSphe" @keypress="saveNewItem" v-model="nameNewItem" @blur="hideForm" autofocus />
+            <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название списка" id="formNewSphe" @keypress="saveNewItem" v-model="nameNewItem" @blur="hideForm" autofocus />
             <a href="#" class="btn btn-sm btn-light btn-block text-left" v-if="!showForm" @click="createNewItem">Добавить список</a>
           </li>
         </ul>
@@ -56,7 +56,7 @@ export default {
             child: {}
           }
         };
-        this.$store.commit("addList", payload);
+        this.$store.commit("addElement", payload);
         this.nameNewItem = "";
         this.showForm = false;
         this.projObj = this.spheObj.child[this.$store.state.proj].child;

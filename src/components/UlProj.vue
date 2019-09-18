@@ -43,7 +43,7 @@ export default {
             child: {}
           }
         };
-        this.$store.commit("addProj", payload);
+        this.$store.commit("addElement", payload);
         this.nameNewItem = "";
         this.showForm = false;
       }

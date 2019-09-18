@@ -10,6 +10,8 @@ export default new Vuex.Store({
     userId: '',
     sphe: '',
     proj: '',
+    list: '',
+    task: '',
     //timeup: '', // Время последнего изменения данных
     mainObject: {},
     userId: ''
@@ -58,6 +60,29 @@ export default new Vuex.Store({
       })
         .catch(function (error) {
           // Возможно документ еще не существует
+          console.error("Store.js: во время обновления произошла ошибка", error);
+        }); // Сохраняет на сервере
+    },
+    addElement(state, payload) {
+      const itemId = Date.now();
+      switch (payload.type) {
+        case 'p':
+          state.mainObject[payload.spheid].child[itemId] = payload.child;
+          break;
+        case 'l':
+          state.mainObject[payload.spheid].child[payload.projid].child[itemId] = payload.child;
+          break;
+        case 't':
+          state.mainObject[payload.spheid].child[payload.projid].child[payload.listid].child[itemId] = payload.child;
+          break;
+        default:
+          alert("Ошибка при создании элемента!");
+      }
+
+      db.collection('user').doc(state.userId).update({ [payload.spheid]: state.mainObject[payload.spheid] }).then(function () {
+        console.info("%c Document successfully updated!", 'color: #28a745');
+      })
+        .catch(function (error) {
           console.error("Store.js: во время обновления произошла ошибка", error);
         }); // Сохраняет на сервере
     },
