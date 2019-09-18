@@ -49,7 +49,8 @@ export default {
     saveNewSphe(e) {
       if (e.keyCode == 13) {
         let spheObj = {
-          prop: { title: this.nameNewSphe }
+          prop: { title: this.nameNewSphe },
+          child: {}
         };
 
         this.$store.commit("addSphe", spheObj);

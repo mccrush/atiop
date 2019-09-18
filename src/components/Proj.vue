@@ -47,28 +47,6 @@ export default {
         "spheId=",
         this.$store.state.sphe
       );
-    },
-    createProj(event) {
-      let inputForm = document.createElement("input");
-      inputForm.setAttribute("type", "text");
-      inputForm.setAttribute("value", "");
-      inputForm.slassName = "form-control, form-control-sm";
-      inputForm.setAttribute("autofocus", "");
-      event.target.parentElement.replaceWith(inputForm);
-      //"<input type='text' value='' autofocus/>";
-
-      inputForm.addEventListener("keypress", e => {
-        if (e.keyCode == 13) {
-          // this.$store.state.projArr.push({
-          //   title: e.target.value,
-          //   sphe: "Надо как-то его получить"
-          // });
-          console.log("ListProj: Вызван метод создания проекта");
-          // Добавить в State, реактивно обновить Вид, отправить в Фаерстор. Подумать как сгенерировать id...
-          // Ну можно отправить в Фаерстор, а потом обновить State... Но что делать если интернета нет?
-          // Да, можно работать со Стором, и отправлять в Фаерстор как появится интернет, но тогда где взять id для дальнейшей работы... Если нет интернета \_( )_/
-        }
-      });
     }
   }
 };

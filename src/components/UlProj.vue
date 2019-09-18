@@ -39,7 +39,10 @@ export default {
       if (e.keyCode == 13) {
         let payload = {
           spheid: this.spheId,
-          child: { prop: { title: this.nameNewItem } }
+          child: {
+            prop: { title: this.nameNewItem },
+            child: {}
+          }
         };
         this.$store.commit("addProj", payload);
         this.nameNewItem = "";

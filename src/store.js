@@ -28,7 +28,7 @@ export default new Vuex.Store({
       const spheId = Date.now();
       state.mainObject[spheId] = newData; // Сохраняет в локальное хранилище
       db.collection('user').doc(state.userId).set({ [spheId]: newData }, { merge: true }).then(function () {
-        console.info("Document successfully written!");
+        console.info("%c Document successfully written!", 'color: #28a745');
       }); // Сохраняет на сервере
     },
     addProj(state, payload) {
@@ -39,7 +39,7 @@ export default new Vuex.Store({
       }
       state.mainObject[payload.spheid].child[projId] = payload.child; // Сохраняет в локальное хранилище
       db.collection('user').doc(state.userId).update({ [payload.spheid]: state.mainObject[payload.spheid] }).then(function () {
-        console.info("Document successfully updated!");
+        console.info("%c Document successfully updated!", 'color: #28a745');
       })
         .catch(function (error) {
           // Возможно документ еще не существует
@@ -55,7 +55,7 @@ export default new Vuex.Store({
       } else if (payload.type == 'p') {
         delete state.mainObject[payload.spheid].child[payload.projid]; // Удаляет с локального хранилища
         db.collection('user').doc(state.userId).update({ [payload.spheid]: state.mainObject[payload.spheid] }).then(function () {
-          console.info("%c Document successfully deleted!", 'color: #bada55');
+          console.info("%c Document successfully deleted!", 'color: #28a745');
         })
           .catch(function (error) {
             // Возможно документ еще не существует
