@@ -54,7 +54,6 @@ export default new Vuex.Store({
       }
       state.mainObject[payload.spheid].child[payload.projid].child[listId] = payload.child; // Сохраняет в локальное хранилище
       db.collection('user').doc(state.userId).update({ [payload.spheid]: state.mainObject[payload.spheid] }).then(function () {
-        //state.proj = state.proj;
         console.info("%c Document successfully updated!", 'color: #28a745');
       })
         .catch(function (error) {

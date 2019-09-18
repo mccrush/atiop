@@ -1,7 +1,7 @@
 <template>
   <div class="col-5 border-right">
     <h6 class="pt-3 border-bottom pb-2">{{title}}</h6>
-    <!-- <UlTask :listId="listId" :listObj="listObj" /> -->
+    <UlTask :listId="listId" :listObj="listObj" />
   </div>
 </template>
 
@@ -22,30 +22,14 @@ export default {
       //listObjClear: {}
     };
   },
-  mounted() {
-    //this.listObjClear = this.listObj;
-    //delete this.listObClear.title;
-  },
+  mounted() {},
   methods: {
     createTask() {}
   }
-  // mounted() {
-  //   this.$store.watch(
-  //     state => state.list,
-  //     (newV, oldV) => {
-  //       if (newV !== "") {
-  //         console.log("List: new state.list=", newV);
-  //         this.taskArr = this.$store.state.taskArr.filter(item => {
-  //           return item.list == this.id;
-  //         });
-  //       }
-  //     }
-  //   );
-  // }
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- Add "scoped" -->
 <style scoped>
 .col-3 {
   padding-right: 0;
