@@ -1,8 +1,8 @@
 <template>
   <li class="list-group-item shadow-sm rounded p-0 mb-2" :id="taskId">
-    <div v-if="!showForm" class="pt-2 pb-2 pl-2 task-item" @click="editItem">
+    <div v-if="!showForm" class="pt-2 pb-2 pl-2 task-item" @click.prevent="editItem">
       {{itemTitle}}
-      <button class="btn btn-sm btn-light text-center delbutton" @click="deleteItem">D</button>
+      <button class="btn btn-sm btn-light text-center delbutton" @click.prevent="deleteItem">D</button>
     </div>
 
     <input class="form-control form-control-sm formitem" v-if="showForm" v-model="itemTitle" @blur="hideForm" @focus="hideBorder" type="text" />
@@ -26,7 +26,7 @@ export default {
   mounted() {},
   methods: {
     deleteItem(e) {
-      e.target.parentNode.classList.add("d-none"); // Вынужденная мера, т.к. DOM не сразу обновляется сам
+      e.target.parentNode.parentNode.classList.add("d-none"); // Вынужденная мера, т.к. DOM не сразу обновляется сам
       this.$store.commit("deleteElement", {
         type: "t",
         spheid: this.$store.state.sphe,
