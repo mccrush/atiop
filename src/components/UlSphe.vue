@@ -13,7 +13,7 @@
           </div>-->
         </div>
 
-        <a href="#" class="btn btn-sm btn-light btn-block text-left" v-if="!showForm" @click="createNewItem">Создать объект</a>
+        <a href="#" class="btn btn-sm btn-light btn-block text-left text-muted" v-if="!showForm" @click="createNewItem">Создать объект</a>
       </li>
     </ul>
   </div>

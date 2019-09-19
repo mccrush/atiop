@@ -6,7 +6,7 @@
         <ul class="list-group list-group-flush">
           <li class="list-group-item text-center small new-sphe pl-0 pr-0">
             <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название списка + Enter" id="formNewSphe" @keypress="saveNewItem" v-model="nameNewItem" @blur="hideForm" autofocus />
-            <a href="#" class="btn btn-sm btn-light btn-block text-left" v-if="!showForm" @click="createNewItem">Добавить список</a>
+            <a href="#" class="btn btn-sm btn-light btn-block text-left text-muted" v-if="!showForm" @click="createNewItem">Добавить список</a>
           </li>
         </ul>
       </div>

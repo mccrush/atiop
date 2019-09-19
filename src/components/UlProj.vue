@@ -3,7 +3,7 @@
     <Proj v-for="(value, id, index) in spheObj" :key="'ulpr'+id+index" :title="value.prop.title" :projId="id" :spheId="spheId" />
     <li class="list-group-item small new-proj">
       <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название проекта + Enter" id="formNewSphe" @keypress="saveNewItem" v-model="nameNewItem" @blur="hideForm" autofocus />
-      <a href="#" class="btn btn-sm btn-light btn-block text-left" v-if="!showForm" @click="createNewItem">Создать проект</a>
+      <a href="#" class="btn btn-sm btn-light btn-block text-left text-muted" v-if="!showForm" @click="createNewItem">Создать проект</a>
     </li>
   </ul>
 </template>
