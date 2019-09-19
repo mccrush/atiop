@@ -2,7 +2,7 @@
   <li class="list-group-item shadow-sm rounded p-0 mb-2" :id="taskId">
     <div v-if="!showForm" class="pt-2 pb-2 pl-2 task-item" @click.prevent="editItem">
       {{itemTitle}}
-      <button class="btn btn-sm btn-light text-center delbutton" @click.prevent="deleteItem">D</button>
+      <button class="btn btn-sm btn-light text-center delbutton" title="Удалить задачу" @click.prevent="deleteItem">D</button>
     </div>
 
     <input class="form-control form-control-sm formitem" v-if="showForm" v-model="itemTitle" @blur="hideForm" @focus="hideBorder" type="text" />

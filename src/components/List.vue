@@ -2,7 +2,7 @@
   <div class="col-5 border-right">
     <h6 v-if="!showForm" class="pt-3 border-bottom pb-2 font-weight-bold listtitle" @click="editItem">
       {{itemTitle}}
-      <button class="btn btn-sm btn-light text-center delbutton" @click="deleteItem">D</button>
+      <button class="btn btn-sm btn-light text-center delbutton" title="Удалить список" @click="deleteItem">D</button>
     </h6>
     <input class="form-control form-control-sm formitem" v-if="showForm" v-model="itemTitle" @blur="hideForm" @focus="hideBorder" type="text" />
     <UlTask :listId="listId" :listObj="listObj" />
