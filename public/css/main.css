@@ -11,5 +11,11 @@ a, a:active, a:hover {
   /* color: #2c3e50; */
 }
 
+*:focus {
+  outline: none;
+}
 
-
+.form-control:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
