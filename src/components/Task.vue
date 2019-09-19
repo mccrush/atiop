@@ -1,5 +1,8 @@
 <template>
-  <li class="list-group-item shadow-sm rounded pb-1 pl-2 mb-2 task-item" :id="taskId">{{tasktitle}}</li>
+  <li class="list-group-item shadow-sm rounded pb-1 pl-2 mb-2 task-item" :id="taskId">
+    {{tasktitle}}
+    <button class="btn btn-sm btn-light text-center delbutton" @click="deleteItem">D</button>
+  </li>
 </template>
 
 <script>
@@ -15,8 +18,8 @@ export default {
   },
   mounted() {},
   methods: {
-    deleteProj(e) {
-      e.target.parentNode.parentNode.classList.add("d-none"); // Вынужденная мера, т.к. DOM не сразу обновляется сам
+    deleteItem(e) {
+      e.target.parentNode.classList.add("d-none"); // Вынужденная мера, т.к. DOM не сразу обновляется сам
       this.$store.commit("deleteElement", {
         type: "t",
         spheid: this.$store.state.sphe,
@@ -40,5 +43,19 @@ export default {
 .task-item:hover {
   cursor: pointer;
   background: rgba(52, 58, 64, 0.07);
+}
+
+.delbutton {
+  position: absolute;
+  float: right;
+  width: 30px;
+  display: none;
+  top: 4px;
+  right: 3px;
+  cursor: pointer;
+}
+
+.task-item:hover .delbutton {
+  display: block;
 }
 </style>
