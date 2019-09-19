@@ -1,7 +1,7 @@
 <template>
   <li class="list-group-item" :id="spheId">
     <div class="btn-group btn-block" role="group" aria-label="Basic example">
-      <button type="button" class="btn btn-sm btn-dark" @click="deleteSphe" title="Удалить объект">D</button>
+      <button type="button" class="btn btn-sm btn-dark" @click="deleteItem" title="Удалить объект">D</button>
       <button class="btn btn-sm btn-light btn-block text-left sphe-item" type="button" data-toggle="collapse" :data-target="'#collapseProj'+spheId" aria-expanded="false" :aria-controls="'collapseProj'+spheId">{{title}}</button>
     </div>
     <div class="collapse" :id="'collapseProj'+spheId">
@@ -24,7 +24,7 @@ export default {
     child: Object
   },
   methods: {
-    deleteSphe(e) {
+    deleteItem(e) {
       e.target.parentNode.parentNode.classList.add("d-none"); // Вынужденная мера, т.к. DOM не сразу обновляется сам
       this.$store.commit("deleteSphe", {
         type: "s",

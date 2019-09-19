@@ -2,7 +2,7 @@
   <li class="list-group-item pr-4" :id="projId">
     <small class="text-muted">&nbsp;&nbsp;|_&nbsp;&nbsp;</small>
     <div class="btn-group btn-block" role="group" aria-label="Basic example">
-      <button type="button" class="btn btn-sm btn-dark" @click="deleteProj" title="Удалить проект">D</button>
+      <button type="button" class="btn btn-sm btn-dark" @click="deleteItem" title="Удалить проект">D</button>
       <button class="btn btn-sm btn-light btn-block text-left proj-item" type="button" @click="setStateProjId">{{title}}</button>
     </div>
   </li>
@@ -22,7 +22,7 @@ export default {
   created() {},
   computed: {},
   methods: {
-    deleteProj(e) {
+    deleteItem(e) {
       e.target.parentNode.parentNode.classList.add("d-none"); // Вынужденная мера, т.к. DOM не сразу обновляется сам
       this.$store.commit("deleteElement", {
         type: "p",
