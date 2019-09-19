@@ -15,7 +15,16 @@ export default {
   },
   mounted() {},
   methods: {
-    createTask() {}
+    deleteProj(e) {
+      e.target.parentNode.parentNode.classList.add("d-none"); // Вынужденная мера, т.к. DOM не сразу обновляется сам
+      this.$store.commit("deleteElement", {
+        type: "t",
+        spheid: this.spheId,
+        projid: this.projId,
+        listid: this.listId,
+        taskid: this.taskId
+      });
+    }
   },
   mounted() {}
 };

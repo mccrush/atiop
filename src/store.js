@@ -53,33 +53,41 @@ export default new Vuex.Store({
         console.info("%c Document successfully updated!", 'color: #28a745');
       })
         .catch(function (error) {
-          console.error("Store.js: во время обновления произошла ошибка", error);
+          console.error("Store.js: во время обновления после создания элемента произошла ошибка", error);
         }); // Сохраняет на сервере
     },
+    deleteSphe(state, payload) {
+      delete state.mainObject[payload.spheid]; // Удаляет с локального хранилища
+      let res = db.collection('user').doc(state.userId).update({
+        [payload.spheid]: fb.FieldValue.delete()
+      }); // Удаляет на сервере
+    },
     deleteElement(state, payload) {
-      if (payload.type == 's') {
-        delete state.mainObject[payload.spheid]; // Удаляет с локального хранилища
-        let res = db.collection('user').doc(state.userId).update({
-          [payload.spheid]: fb.FieldValue.delete()
-        }); // Удаляет на сервере
-      } else if (payload.type == 'p') {
-        delete state.mainObject[payload.spheid].child[payload.projid]; // Удаляет с локального хранилища
-        db.collection('user').doc(state.userId).update({ [payload.spheid]: state.mainObject[payload.spheid] }).then(function () {
-          console.info("%c Document successfully deleted!", 'color: #28a745');
-        })
-          .catch(function (error) {
-            // Возможно документ еще не существует
-            console.error("Store.js: во время обновления произошла ошибка", error);
-          }); // Удаляет с сервера
+      switch (payload.type) {
+        case 'p':
+          delete state.mainObject[payload.spheid].child[payload.projid];
+          break;
+        case 'l':
+          delete state.mainObject[payload.spheid].child[payload.projid].child[payload.listid];
+          break;
+        case 't':
+          delete state.mainObject[payload.spheid].child[payload.projid].child[payload.listid].child[payload.taskid];
+          break;
+        default:
+          alert("Ошибка при создании элемента!");
       }
 
+      db.collection('user').doc(state.userId).update({ [payload.spheid]: state.mainObject[payload.spheid] }).then(function () {
+        console.info("%c Document successfully deleted!", 'color: #28a745');
+      })
+        .catch(function (error) {
+          // Возможно документ еще не существует
+          console.error("Store.js: во время обновления после удаления элемента произошла ошибка", error);
+        }); // Удаляет с сервера
     },
     // Что делает этот метод?
     saveOnServer(state) {
       //let updateState = db.collection('user').doc(state.userId).update
-
-
-
       let updateState = db.collection('user').doc(state.userId).update(state.mainObject);
       if (updateState) {
         console.log('Store: Date success updated!');
