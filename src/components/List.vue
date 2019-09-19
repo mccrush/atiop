@@ -4,7 +4,7 @@
       {{itemTitle}}
       <button class="btn btn-sm btn-light text-center delbutton" @click="deleteItem">D</button>
     </h6>
-    <input class="form-control form-control-sm formitem" v-if="showForm" v-model="itemTitle" @blur="hideForm" @focus="validateDate" type="text" />
+    <input class="form-control form-control-sm formitem" v-if="showForm" v-model="itemTitle" @blur="hideForm" @focus="hideBorder" type="text" />
     <UlTask :listId="listId" :listObj="listObj" />
   </div>
 </template>
@@ -41,13 +41,11 @@ export default {
     editItem(e) {
       this.showForm = true;
     },
-    validateDate(e) {
-      //e.target.classList.add("border-0");
+    hideBorder(e) {
       e.target.style = "border-bottom: 1px solid #dee2e6 !important;";
     },
     hideForm(e) {
       if (!this.itemTitle) {
-        //e.target.style = ("border-0");
         e.target.style = "border-bottom: 1px solid #dc3545 !important;";
       } else {
         e.target.style = "border-bottom: 1px solid #dee2e6 !important;";
@@ -56,7 +54,8 @@ export default {
           type: "l",
           spheid: this.$store.state.sphe,
           projid: this.$store.state.proj,
-          listid: this.listId
+          listid: this.listId,
+          title: this.itemTitle
         });
       }
     }
