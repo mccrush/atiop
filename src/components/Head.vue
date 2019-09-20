@@ -1,7 +1,8 @@
 <template>
   <nav class="navbar navbar-light bg-white border-bottom pt-0 pb-0">
     <a class="navbar-brand" href="/">
-      <img src="/img/icons/favicon-32x32.png" width="32" height="32" class="d-inline-block align-top" alt="ATIOP" />
+      <img src="/img/icons/favicon-32x32.png" width="32" height="32" class="d-inline-block align-top mb-1" alt="ATIOP" />
+      <small class="d-inline-block ml-2 pt-2 font-weight-bold">ATIOP</small>
     </a>
 
     <ul class="nav">
