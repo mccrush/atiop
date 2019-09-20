@@ -24,19 +24,34 @@ export default {
       //uid: ''
     };
   },
-  mounted() {
-    const user = auth.currentUser;
-
-    if (user) {
-      //console.log("Home: Пользователь авторизован");
-      this.$store.state.userId = user.uid;
-      //console.log("Home: userId", this.$store.state.userId);
-      this.$store.commit("getMainObject");
-      // Вот здесь как раз и можно сверять имеющееся время и время на сервере. Если отличается то загружать, иначе незачем лишний раз тащить все данные
+  mounted() {},
+  created() {
+    auth.onAuthStateChanged(function(user) {
+      if (user) {
+        console.log("Home: Пользователь вошел в аккаунт");
+      } else {
+        console.log("Home: Пользователь вышел из аккаунта");
+        this.$router.push("/login");
+      }
+    });
+    /*
+   console.log("Home: this.$store.state.userId:", this.$store.state.userId);
+    if (this.$store.state.userId) {
+      const user = auth.currentUser;
+      if (user) {
+        //console.log("Home: Пользователь авторизован");
+        this.$store.state.userId = user.uid;
+        //console.log("Home: userId", this.$store.state.userId);
+        this.$store.commit("getMainObject");
+        // Вот здесь как раз и можно сверять имеющееся время и время на сервере. Если отличается то загружать, иначе незачем лишний раз тащить все данные
+      } else {
+        console.log("Home: Пользователь Не авторизован");
+      }
     } else {
       //console.log("Home: Пользователь Не авторизован");
       this.$router.push("/login");
     }
+    */
   }
 };
 </script>

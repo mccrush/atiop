@@ -19,7 +19,7 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-export const fb = firebase.firestore;
+export const fb = firebase.firestore; // Для прямого удаления из БД, используется в файле Store
 export const db = firebase.firestore();
 export const auth = firebase.auth();
 

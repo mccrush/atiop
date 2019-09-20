@@ -41,24 +41,32 @@ export default {
     };
   },
   mounted() {
+    /*
     var user = auth.currentUser;
 
     if (user) {
       console.log("Login: Пользователь авторизован");
       this.$router.push("/");
-      // User is signed in.
     } else {
-      // No user is signed in.
       console.log("Login: Пользователь Не авторизован");
-      //this.$router.push("/login");
-    }
+    }*/
+  },
+  created() {
+    auth.onAuthStateChanged(function(user) {
+      if (user) {
+        console.log("Home: Пользователь вошел в аккаунт");
+        this.$store.state.userId = user.uid;
+        this.$router.push("/");
+      }
+    });
   },
   methods: {
     login() {
       auth
         .signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
-          this.$router.push("/");
+          //this.$store.state.userId = auth.currentUser.uid;
+          //this.$router.push("/");
         })
         .catch(function(error) {
           // Handle Errors here.

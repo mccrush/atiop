@@ -17,8 +17,8 @@
         </router-link>
       </li>
       <li class="nav-item" v-if="this.$store.state.userId">
-        <router-link to="/logout" class="nav-link pr-0">
-          <button class="btn btn-sm btn-outline-secondary">Выйти</button>
+        <router-link to="#" class="nav-link pr-0">
+          <button class="btn btn-sm btn-outline-secondary" @click="logout">Выйти</button>
         </router-link>
       </li>
     </ul>
@@ -30,6 +30,19 @@ export default {
   name: "Head",
   props: {
     msg: String
+  },
+  methods: {
+    logout() {
+      auth
+        .signOut()
+        .then(function() {
+          this.$router.push("/login");
+          //document.location.replace("/login");
+        })
+        .catch(function(error) {
+          console.log("Logout: errors,", error);
+        });
+    }
   }
 };
 </script>
