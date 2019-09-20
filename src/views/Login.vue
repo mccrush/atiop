@@ -52,15 +52,9 @@ export default {
     }*/
   },
   created() {
-    auth.onAuthStateChanged(function(user) {
-      if (user) {
-        console.log("Home: Пользователь вошел в аккаунт");
-        //this.$store.state.userId = user.uid;
-        //document.location.replace("/");
-        //
-        //this.$router.push("/");
-      }
-    });
+    if (this.$store.state.userId) {
+      this.$router.push("/");
+    } 
   },
   methods: {
     login() {
@@ -77,9 +71,6 @@ export default {
           console.log("Login: errors:", errorCode, "& ", errorMessage);
           // ...
         });
-    },
-    rout() {
-      this.$router.push("/");
     }
   }
 };

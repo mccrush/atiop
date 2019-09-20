@@ -31,6 +31,7 @@ export default {
         console.log("Home: Пользователь вошел в аккаунт");
       } else {
         console.log("Home: Пользователь вышел из аккаунта");
+        document.location.replace("/login");
       }
     });
 

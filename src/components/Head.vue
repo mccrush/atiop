@@ -17,9 +17,7 @@
         </router-link>
       </li>
       <li class="nav-item" v-if="this.$store.state.sphe">
-        <router-link to="#" class="nav-link pr-0">
-          <button class="btn btn-sm btn-outline-secondary" @click="logout">Выйти</button>
-        </router-link>
+        <button class="btn btn-sm btn-outline-secondary" @click="logout">Выйти</button>
       </li>
     </ul>
   </nav>
@@ -39,7 +37,7 @@ export default {
         .signOut()
         .then(function() {
           //this.$router.push("/login");
-          document.location.replace("/login");
+          //document.location.replace("/login");
         })
         .catch(function(error) {
           console.log("Logout: errors,", error);
