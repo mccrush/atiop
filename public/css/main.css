@@ -6,11 +6,6 @@ body {
   background: #fff;
 }
 
-
-a, a:active, a:hover {
-  /* color: #2c3e50; */
-}
-
 *:focus {
   outline: none;
 }

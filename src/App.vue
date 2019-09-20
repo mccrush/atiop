@@ -1,33 +1,21 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <router-link to="/" class="nav-link">Home</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/about" class="nav-link">About</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/login" class="nav-link">Login</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/logout" class="nav-link">Logout</router-link>
-        </li>
-      </ul>
-    </nav>
+    <Head />
+
     <router-view />
-    <Foot msg="Welcome to Your Vue.js App" />
+    <Foot />
   </div>
 </template>
 
 <script>
 import { auth } from "@/main.js";
+import Head from "@/components/Head.vue";
 import Foot from "@/components/Foot.vue";
 
 export default {
   name: "app",
   components: {
+    Head,
     Foot
   }
   // mounted() {
