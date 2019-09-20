@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-4 mt-5 border pt-3 pb-3 bg-light">
-        <h3 class="text-center">Форма входа</h3>
+        <h4 class="text-center">Форма входа</h4>
         <form>
           <div class="form-group">
             <label for="email">Email адрес</label>
@@ -15,7 +15,9 @@
           </div>
           <div class="form-group form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1" checked />
-            <label class="form-check-label" for="exampleCheck1">Запомнить меня</label>
+            <label class="form-check-label text-secondary" for="exampleCheck1">
+              <small>Запомнить меня</small>
+            </label>
           </div>
           <button type="button" @click="login" class="btn btn-sm btn-secondary btn-block">Войти</button>
         </form>

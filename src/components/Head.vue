@@ -1,8 +1,8 @@
 <template>
   <nav class="navbar navbar-light bg-white border-bottom pt-0 pb-0">
     <a class="navbar-brand" href="/">
-      <img src="/img/icons/favicon-32x32.png" width="32" height="32" class="d-inline-block align-top mb-1" alt="ATIOP" />
-      <small class="d-inline-block ml-2 pt-2 font-weight-bold">ATIOP</small>
+      <img src="/img/icons/favicon-32x32.png" width="32" height="32" class="d-inline-block align-top" alt="Контроль" />
+      <small class="d-inline-block ml-2 pt-2 font-weight-bold">Контроль</small>
     </a>
 
     <ul class="nav">
@@ -13,7 +13,7 @@
       </li>
       <li class="nav-item" v-if="!this.$store.state.userId">
         <router-link to="/login" class="nav-link pr-0">
-          <button class="btn btn-outline-warning btn-sm">Войти</button>
+          <button class="btn btn-outline-warning btn-sm">Вход</button>
         </router-link>
       </li>
       <li class="nav-item" v-if="this.$store.state.userId">
