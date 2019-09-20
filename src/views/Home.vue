@@ -34,6 +34,13 @@ export default {
         this.$router.push("/login");
       }
     });
+
+    if (this.$store.state.userId) {
+      this.$store.commit("getMainObject");
+    } else {
+      console.log("Home: Пользователь Не авторизован");
+      //this.$router.push("/login");
+    }
     /*
    console.log("Home: this.$store.state.userId:", this.$store.state.userId);
     if (this.$store.state.userId) {

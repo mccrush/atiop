@@ -11,12 +11,12 @@
           <button class="btn btn-sm btn-outline-secondary">Инструкция</button>
         </router-link>
       </li>
-      <li class="nav-item" v-if="!this.$store.state.userId">
+      <li class="nav-item">
         <router-link to="/login" class="nav-link pr-0">
           <button class="btn btn-outline-warning btn-sm">Вход</button>
         </router-link>
       </li>
-      <li class="nav-item" v-if="this.$store.state.userId">
+      <li class="nav-item">
         <router-link to="#" class="nav-link pr-0">
           <button class="btn btn-sm btn-outline-secondary" @click="logout">Выйти</button>
         </router-link>
@@ -26,6 +26,8 @@
 </template>
 
 <script>
+import { auth } from "@/main.js";
+
 export default {
   name: "Head",
   props: {
