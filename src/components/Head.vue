@@ -11,12 +11,12 @@
           <button class="btn btn-sm btn-outline-secondary">Инструкция</button>
         </router-link>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" v-if="!this.$store.state.sphe">
         <router-link to="/login" class="nav-link pr-0">
           <button class="btn btn-outline-warning btn-sm">Вход</button>
         </router-link>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" v-if="this.$store.state.sphe">
         <router-link to="#" class="nav-link pr-0">
           <button class="btn btn-sm btn-outline-secondary" @click="logout">Выйти</button>
         </router-link>
@@ -38,8 +38,8 @@ export default {
       auth
         .signOut()
         .then(function() {
-          this.$router.push("/login");
-          //document.location.replace("/login");
+          //this.$router.push("/login");
+          document.location.replace("/login");
         })
         .catch(function(error) {
           console.log("Logout: errors,", error);

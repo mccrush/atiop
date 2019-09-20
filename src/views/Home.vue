@@ -31,7 +31,6 @@ export default {
         console.log("Home: Пользователь вошел в аккаунт");
       } else {
         console.log("Home: Пользователь вышел из аккаунта");
-        this.$router.push("/login");
       }
     });
 
@@ -39,7 +38,7 @@ export default {
       this.$store.commit("getMainObject");
     } else {
       console.log("Home: Пользователь Не авторизован");
-      //this.$router.push("/login");
+      this.$router.push("/login");
     }
     /*
    console.log("Home: this.$store.state.userId:", this.$store.state.userId);

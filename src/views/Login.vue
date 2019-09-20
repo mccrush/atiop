@@ -55,8 +55,10 @@ export default {
     auth.onAuthStateChanged(function(user) {
       if (user) {
         console.log("Home: Пользователь вошел в аккаунт");
-        this.$store.state.userId = user.uid;
-        this.$router.push("/");
+        //this.$store.state.userId = user.uid;
+        //document.location.replace("/");
+        //
+        //this.$router.push("/");
       }
     });
   },
@@ -65,8 +67,8 @@ export default {
       auth
         .signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
-          //this.$store.state.userId = auth.currentUser.uid;
-          //this.$router.push("/");
+          this.$store.state.userId = auth.currentUser.uid;
+          this.$router.push("/");
         })
         .catch(function(error) {
           // Handle Errors here.
@@ -75,6 +77,9 @@ export default {
           console.log("Login: errors:", errorCode, "& ", errorMessage);
           // ...
         });
+    },
+    rout() {
+      this.$router.push("/");
     }
   }
 };
