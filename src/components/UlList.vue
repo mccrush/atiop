@@ -2,7 +2,7 @@
   <div class="col-8 border-right">
     <div class="row" v-if="this.$store.state.proj">
       <List v-for="(value, id, index) in projObj" :key="'li'+id+index" :title="value.prop.title" :listId="id" :listObj="value.child" />
-      <div class="col-5 border-right">
+      <div class="col-4 border-right">
         <ul class="list-group list-group-flush">
           <li class="list-group-item text-center small new-sphe pl-0 pr-0">
             <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название списка + Enter" id="formNewSphe" @keypress="saveNewItem" v-model="nameNewItem" @blur="hideForm" autofocus />

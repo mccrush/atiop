@@ -1,5 +1,5 @@
 <template>
-  <div class="col-5 border-right">
+  <div class="col-4 border-right">
     <h6 v-if="!showForm" class="pt-3 border-bottom pb-2 font-weight-bold listtitle" @click="editItem">
       {{itemTitle}}
       <button class="btn btn-sm btn-light text-center delbutton" title="Удалить список" @click="deleteItem">D</button>
