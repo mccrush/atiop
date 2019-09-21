@@ -30,7 +30,7 @@
 import { auth } from "@/main.js";
 
 export default {
-  name: "login",
+  name: "login2",
   components: {},
   data() {
     return {
@@ -48,7 +48,6 @@ export default {
           console.log(
             "Login: Выполнился метод auth.signInWithEmailAndPassword"
           );
-          //this.$store.state.userId = "uid";
           this.$store.state.userId = auth.currentUser.uid;
           this.$router.push("/app");
         })

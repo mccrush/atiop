@@ -37,9 +37,6 @@ export default {
   components: {
     Login2
   },
-  props: {
-    msg: String
-  },
   methods: {
     logout() {
       auth

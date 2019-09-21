@@ -20,10 +20,7 @@ export default {
     UlList
   },
   data() {
-    return {
-      //uid: auth.currentUser.uid ? auth.currentUser.uid : ""
-      //authStat: flase
-    };
+    return {};
   },
   mounted() {
     this.$store.commit("getMainObject");
@@ -33,29 +30,10 @@ export default {
       console.log("Home: Выполнился метод auth.onAuthStateChanged");
       if (user) {
         console.log("Home: Пользователь вошел в аккаунт");
-        //this.authStat = true;
-
-        //document.location.replace("/app");
       } else {
         console.log("Home: Пользователь вышел из аккаунта");
-        //document.location.replace("/about");
-        //this.$router.push("/about");
       }
     });
-
-    // console.log("this.uid:", this.uid);
-    // if (this.uid) {
-    //   console.log("Home: Выполнился метод if (this.uid)");
-    //   this.$store.commit("getMainObject");
-    // } else {
-    //   console.log("Home: Пользователь Не авторизован");
-    //   this.$router.push("/about");
-    // }
   }
-  // watch: {
-  //   authStat: function() {
-  //     this.$store.commit("getMainObject");
-  //   }
-  // }
 };
 </script>
