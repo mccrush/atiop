@@ -21,7 +21,7 @@ export default {
   },
   data() {
     return {
-      //uid: ''
+      uid: auth.currentUser.uid
     };
   },
   mounted() {},
@@ -35,7 +35,9 @@ export default {
       }
     });
 
-    if (this.$store.state.userId) {
+    // Вот то что ниже - все херня. Проверку надо делать по auth.currentUser.uid !!!
+    console.log("this.uid:", this.uid);
+    if (this.uid) {
       this.$store.commit("getMainObject");
     } else {
       console.log("Home: Пользователь Не авторизован");
