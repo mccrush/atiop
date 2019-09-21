@@ -16,7 +16,7 @@
           <button class="btn btn-outline-warning btn-sm">Вход</button>
         </router-link>
       </li>-->
-      <li class="nav-item" v-if="this.$store.state.userId">
+      <li class="nav-item" v-if="this.$store.state.userId && this.$route.path !== '/app'">
         <router-link to="/app" class="nav-link pr-0">
           <button class="btn btn-sm btn-outline-warning">Приложение</button>
         </router-link>
@@ -55,6 +55,8 @@ export default {
     //     this.projObj = this.spheObj.child[newV].child;
     //   }
     // );
+    console.log("Head: this.$route.path:", this.$route.path);
+    //this.$router.path
   },
   created() {
     auth.onAuthStateChanged(function(user) {
