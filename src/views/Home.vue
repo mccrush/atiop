@@ -21,45 +21,41 @@ export default {
   },
   data() {
     return {
-      uid: auth.currentUser.uid || ""
+      //uid: auth.currentUser.uid ? auth.currentUser.uid : ""
+      //authStat: flase
     };
   },
-  mounted() {},
+  mounted() {
+    this.$store.commit("getMainObject");
+  },
   created() {
     auth.onAuthStateChanged(function(user) {
+      console.log("Home: Выполнился метод auth.onAuthStateChanged");
       if (user) {
         console.log("Home: Пользователь вошел в аккаунт");
+        //this.authStat = true;
+
+        //document.location.replace("/app");
       } else {
         console.log("Home: Пользователь вышел из аккаунта");
-        document.location.replace("/about");
+        //document.location.replace("/about");
+        //this.$router.push("/about");
       }
     });
 
-    console.log("this.uid:", this.uid);
-    if (this.uid) {
-      this.$store.commit("getMainObject");
-    } else {
-      console.log("Home: Пользователь Не авторизован");
-      this.$router.push("/about");
-    }
-    /*
-   console.log("Home: this.$store.state.userId:", this.$store.state.userId);
-    if (this.$store.state.userId) {
-      const user = auth.currentUser;
-      if (user) {
-        //console.log("Home: Пользователь авторизован");
-        this.$store.state.userId = user.uid;
-        //console.log("Home: userId", this.$store.state.userId);
-        this.$store.commit("getMainObject");
-        // Вот здесь как раз и можно сверять имеющееся время и время на сервере. Если отличается то загружать, иначе незачем лишний раз тащить все данные
-      } else {
-        console.log("Home: Пользователь Не авторизован");
-      }
-    } else {
-      //console.log("Home: Пользователь Не авторизован");
-      this.$router.push("/login");
-    }
-    */
+    // console.log("this.uid:", this.uid);
+    // if (this.uid) {
+    //   console.log("Home: Выполнился метод if (this.uid)");
+    //   this.$store.commit("getMainObject");
+    // } else {
+    //   console.log("Home: Пользователь Не авторизован");
+    //   this.$router.push("/about");
+    // }
   }
+  // watch: {
+  //   authStat: function() {
+  //     this.$store.commit("getMainObject");
+  //   }
+  // }
 };
 </script>

@@ -1,15 +1,22 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import { auth } from "@/main.js";
 import Home from './views/Home.vue'
 //import Login from './views/Login.vue'
-//import Logout from './views/Logout.vue'
+import NotFound from './views/NotFound.vue'
 
 Vue.use(Router)
 
-export default new Router({
+//export default 
+let router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
+    {
+      path: '/404', // Первая, для перекрытия остальных
+      name: '404',
+      component: NotFound
+    },
     {
       path: '/',
       name: 'home',
@@ -23,7 +30,10 @@ export default new Router({
     {
       path: '/app',
       name: 'home',
-      component: Home
+      component: Home,
+      meta: {
+        requiresAuth: true
+      }
     },
     // {
     //   path: '/login',
@@ -44,6 +54,28 @@ export default new Router({
       component: function () {
         return import(/* webpackChunkName: "about" */ './views/About.vue')
       }
+    },
+    {
+      path: '*', // Для всех прочих кроме существующих
+      redirect: '/404'
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  let currentUser = auth.currentUser
+  let requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+
+  // 3
+  if (requiresAuth) {
+    if (currentUser) {
+      next()
+    } else {
+      next('/about')
+    }
+  } else {
+    next()
+  }
+})
+
+export default router
