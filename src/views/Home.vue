@@ -23,7 +23,11 @@ export default {
     return {};
   },
   mounted() {
-    this.$store.commit("getMainObject");
+    if (this.$store.state.userId) {
+      this.$store.commit("getMainObject");
+    } else {
+      console.log("Home: Пользователь не авторизован");
+    }
   },
   created() {
     auth.onAuthStateChanged(function(user) {

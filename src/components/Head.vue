@@ -16,10 +16,15 @@
           <button class="btn btn-outline-warning btn-sm">Вход</button>
         </router-link>
       </li>-->
-      <li class="nav-item" v-if="!this.$store.state.sphe">
+      <li class="nav-item" v-if="this.$store.state.userId">
+        <router-link to="/app" class="nav-link pr-0">
+          <button class="btn btn-sm btn-outline-warning">Приложение</button>
+        </router-link>
+      </li>
+      <li class="nav-item" v-if="!this.$store.state.userId">
         <Login2 />
       </li>
-      <li class="nav-item" v-if="this.$store.state.sphe">
+      <li class="nav-item" v-if="this.$store.state.userId">
         <router-link to="#" class="nav-link pr-0 pl-2">
           <button class="btn btn-sm btn-outline-secondary" @click="logout">Выйти</button>
         </router-link>
@@ -36,6 +41,30 @@ export default {
   name: "Head",
   components: {
     Login2
+  },
+  data() {
+    return {
+      showButton: false
+    };
+  },
+  mounted() {
+    // this.$store.watch(
+    //   state => state.sphe,
+    //   (newV, oldV) => {
+    //     this.spheObj = this.$store.state.mainObject[this.$store.state.sphe];
+    //     this.projObj = this.spheObj.child[newV].child;
+    //   }
+    // );
+  },
+  created() {
+    auth.onAuthStateChanged(function(user) {
+      console.log("Head: Выполнился метод auth.onAuthStateChanged");
+      if (user) {
+        console.log("Head: Пользователь вошел в аккаунт");
+      } else {
+        console.log("Head: Пользователь вышел из аккаунта");
+      }
+    });
   },
   methods: {
     logout() {
