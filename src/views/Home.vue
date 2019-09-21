@@ -21,7 +21,7 @@ export default {
   },
   data() {
     return {
-      uid: auth.currentUser.uid
+      uid: auth.currentUser.uid || ""
     };
   },
   mounted() {},
@@ -35,7 +35,6 @@ export default {
       }
     });
 
-    // Вот то что ниже - все херня. Проверку надо делать по auth.currentUser.uid !!!
     console.log("this.uid:", this.uid);
     if (this.uid) {
       this.$store.commit("getMainObject");

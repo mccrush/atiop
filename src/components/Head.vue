@@ -16,7 +16,7 @@
           <button class="btn btn-outline-warning btn-sm">Вход</button>
         </router-link>
       </li>-->
-      <li class="nav-item">
+      <li class="nav-item" v-if="!this.$store.state.sphe">
         <Login2 />
         <!-- <div class="btn-group mt-2 ml-2">
           <button class="btn btn-outline-warning btn-sm dropdown-toggle" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">Вход 2</button>

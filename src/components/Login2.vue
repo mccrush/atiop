@@ -1,12 +1,12 @@
 <template>
-  <div class="btn-group mt-2 ml-2">
-    <button class="btn btn-outline-warning btn-sm dropdown-toggle" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">Вход 2</button>
+  <div class="btn-group mt-2 ml-2 mb-2">
+    <button class="btn btn-outline-warning btn-sm dropdown-toggle" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">Вход</button>
     <div class="dropdown-menu dropdown-menu-right dropmenu">
       <form class="px-3 py-2">
         <div class="form-group">
           <label for="email">Email адрес</label>
           <input type="email" class="form-control form-control-sm" id="email" aria-describedby="emailHelp" placeholder="Enter email" v-model="email" />
-          <small id="emailHelp" class="form-text text-muted">--</small>
+          <!-- <small id="emailHelp" class="form-text text-muted">Мы не передаем ваши данные третим лицам</small> -->
         </div>
         <div class="form-group">
           <label for="password">Пароль</label>
@@ -45,6 +45,7 @@ export default {
       auth
         .signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
+          //this.$store.state.userId = "uid";
           this.$store.state.userId = auth.currentUser.uid;
           this.$router.push("/app");
         })
