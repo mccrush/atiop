@@ -24,6 +24,11 @@ let router = new Router({
       component: About
     },
     {
+      path: '/about',
+      name: 'about',
+      component: About
+    },
+    {
       path: '/app',
       name: 'app',
       component: App,
@@ -54,7 +59,7 @@ router.beforeEach((to, from, next) => {
     if (currentUser) {
       next()
     } else {
-      next('/')
+      next('/about')
     }
   } else {
     next()

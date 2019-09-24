@@ -1,13 +1,13 @@
 <template>
   <nav class="navbar navbar-light bg-white border-bottom pt-0 pb-0">
-    <a class="navbar-brand" href="/">
+    <div class="navbar-brand">
       <img src="/img/icons/favicon-32x32.png" width="32" height="32" class="d-inline-block align-top" alt="Контроль" />
       <small class="d-inline-block ml-2 pt-2 font-weight-bold">Контроль</small>
-    </a>
+    </div>
 
     <ul class="nav">
       <!-- <li class="nav-item">
-        <router-link to="/" class="nav-link pr-0">
+        <router-link to="/about" class="nav-link pr-0">
           <button class="btn btn-sm btn-outline-secondary">Инструкция</button>
         </router-link>
       </li>-->
@@ -16,7 +16,7 @@
           <button class="btn btn-outline-warning btn-sm">Вход</button>
         </router-link>
       </li>-->
-      <li class="nav-item" v-if="this.$store.state.userId && this.$route.path !== '/app'">
+      <li class="nav-item" v-if="auth.currentUser.uid && this.$route.path !== '/app'">
         <router-link to="/app" class="nav-link pr-0">
           <button class="btn btn-sm btn-outline-warning">Приложение</button>
         </router-link>
