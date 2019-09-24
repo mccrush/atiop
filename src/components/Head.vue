@@ -6,23 +6,23 @@
     </div>
 
     <ul class="nav">
-      <!-- <li class="nav-item">
+      <li class="nav-item" v-if="this.$store.state.userId && this.$route.path !== '/about'">
         <router-link to="/about" class="nav-link pr-0">
-          <button class="btn btn-sm btn-outline-secondary">Инструкция</button>
+          <button class="btn btn-sm btn-outline-secondary">О приложении</button>
         </router-link>
-      </li>-->
+      </li>
       <!-- <li class="nav-item" v-if="!this.$store.state.sphe">
         <router-link to="/" class="nav-link pr-0">
           <button class="btn btn-outline-warning btn-sm">Вход</button>
         </router-link>
       </li>-->
-      <li class="nav-item" v-if="auth.currentUser.uid && this.$route.path !== '/app'">
+      <li class="nav-item" v-if="this.$store.state.userId && this.$route.path !== '/app'">
         <router-link to="/app" class="nav-link pr-0">
-          <button class="btn btn-sm btn-outline-warning">Приложение</button>
+          <button class="btn btn-sm btn-outline-warning">Перейти в приложение</button>
         </router-link>
       </li>
       <li class="nav-item" v-if="!this.$store.state.userId">
-        <Login2 />
+        <LoginForm />
       </li>
       <li class="nav-item" v-if="this.$store.state.userId">
         <router-link to="#" class="nav-link pr-0 pl-2">
@@ -35,39 +35,32 @@
 
 <script>
 import { auth } from "@/main.js";
-import Login2 from "@/components/Login2.vue";
+import LoginForm from "@/components/LoginForm.vue";
 
 export default {
   name: "Head",
   components: {
-    Login2
+    LoginForm
   },
   data() {
     return {
-      showButton: false
+      showButtonForm: false,
+      showButtonApp: false,
+      showButtonAbout: false,
+      showButtonExit: false
     };
   },
-  mounted() {
-    //console.log("Head: this.$route.path:", this.$route.path);
-  },
-  created() {
-    auth.onAuthStateChanged(function(user) {
-      console.log("Head: Выполнился метод auth.onAuthStateChanged");
-      if (user) {
-        console.log("Head: Пользователь вошел в аккаунт");
-      } else {
-        console.log("Head: Пользователь вышел из аккаунта");
-      }
-    });
-  },
+  mounted() {},
+  created() {},
   methods: {
     logout() {
       auth
         .signOut()
-        .then(function() {
-          console.log("Head: Выполнился метод auth.signOut()");
+        .then(() => {
+          this.$store.state.userId = "";
+          this.$router.replace("about");
         })
-        .catch(function(error) {
+        .catch(error => {
           console.log("Head: errors,", error);
         });
     }
