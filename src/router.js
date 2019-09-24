@@ -3,8 +3,6 @@ import Router from 'vue-router'
 import { auth } from "@/main.js";
 import About from './views/About.vue'
 import App from './views/App.vue'
-//import Login from './views/Login.vue'
-import NotFound from './views/NotFound.vue'
 
 Vue.use(Router)
 
@@ -14,9 +12,8 @@ let router = new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/404', // Первая, для перекрытия остальных
-      name: '404',
-      component: NotFound
+      path: '*',
+      redirect: '/about'
     },
     {
       path: '/',
@@ -35,17 +32,6 @@ let router = new Router({
       meta: {
         requiresAuth: true
       }
-    },
-    // {
-    //   path: '/about',
-    //   name: 'about',
-    //   component: function () {
-    //     return import(/* webpackChunkName: "about" */ './views/About.vue')
-    //   }
-    // },
-    {
-      path: '*', // Для всех прочих кроме существующих
-      redirect: '/404'
     }
   ]
 })
