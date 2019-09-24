@@ -3,15 +3,19 @@
     <table class="mr-3">
       <tr>
         <td>
-          <small id="emailHelp" class="form-text text-muted m-0">
-            <router-link to="/signin">Зарегистрироваться</router-link>
+          <small id="emailHelp" class="form-text m-0">
+            <router-link to="/signin" class="text-muted">
+              <u>Зарегистрироваться</u>
+            </router-link>
           </small>
         </td>
       </tr>
       <tr>
         <td>
           <small id="emailHelp" class="form-text text-muted m-0">
-            <router-link to="/repass">Восстановить пароль</router-link>
+            <router-link to="/repass" class="text-muted">
+              <u>Восстановить пароль</u>
+            </router-link>
           </small>
         </td>
       </tr>
@@ -59,7 +63,4 @@ export default {
 </script>
 <!-- Add "scoped" -->
 <style scoped>
-.dropmenu {
-  width: 220px;
-}
 </style>
