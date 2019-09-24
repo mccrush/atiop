@@ -4,6 +4,10 @@ import router from './router'
 import store from './store'
 import './registerServiceWorker'
 
+Vue.config.productionTip = false
+
+let app = "";
+
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore"; // DB
@@ -23,10 +27,10 @@ export const fb = firebase.firestore; // Для прямого удаления 
 export const db = firebase.firestore();
 export const auth = firebase.auth();
 
-Vue.config.productionTip = false
-
-new Vue({
-  router,
-  store,
-  render: function (h) { return h(App) }
-}).$mount('#app')
+if (!app) {
+  app = new Vue({
+    router,
+    store,
+    render: function (h) { return h(App) }
+  }).$mount('#app')
+}
