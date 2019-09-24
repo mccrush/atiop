@@ -49,7 +49,8 @@ export default {
       auth
         .signInWithEmailAndPassword(this.email, this.password)
         .then(user => {
-          this.$store.state.userId = user.uid;
+          //console.log("user.uid=", user.uid);
+          //this.$store.state.userId = user.uid;
           this.$router.push("/app");
         })
         .catch(error => {

@@ -14,7 +14,7 @@ import UlSphe from "@/components/UlSphe.vue";
 import UlList from "@/components/UlList.vue";
 
 export default {
-  name: "home",
+  name: "App",
   components: {
     UlSphe,
     UlList
@@ -22,23 +22,9 @@ export default {
   data() {
     return {};
   },
-  mounted() {
-    if (this.$store.state.userId) {
-      this.$store.commit("getMainObject");
-    } else {
-      this.$router.push("/about");
-      //console.log("Home: Пользователь не авторизован");
-    }
-  },
+  mounted() {},
   created() {
-    auth.onAuthStateChanged(function(user) {
-      console.log("Home: Выполнился метод auth.onAuthStateChanged");
-      if (user) {
-        console.log("Home: Пользователь вошел в аккаунт");
-      } else {
-        console.log("Home: Пользователь вышел из аккаунта");
-      }
-    });
+    this.$store.commit("getMainObject");
   }
 };
 </script>
