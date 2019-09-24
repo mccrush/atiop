@@ -1,18 +1,18 @@
 <template>
   <nav class="navbar navbar-light bg-white border-bottom pt-0 pb-0">
-    <a class="navbar-brand" href="/about">
+    <a class="navbar-brand" href="/">
       <img src="/img/icons/favicon-32x32.png" width="32" height="32" class="d-inline-block align-top" alt="Контроль" />
       <small class="d-inline-block ml-2 pt-2 font-weight-bold">Контроль</small>
     </a>
 
     <ul class="nav">
       <!-- <li class="nav-item">
-        <router-link to="/about" class="nav-link pr-0">
+        <router-link to="/" class="nav-link pr-0">
           <button class="btn btn-sm btn-outline-secondary">Инструкция</button>
         </router-link>
       </li>-->
       <!-- <li class="nav-item" v-if="!this.$store.state.sphe">
-        <router-link to="/login" class="nav-link pr-0">
+        <router-link to="/" class="nav-link pr-0">
           <button class="btn btn-outline-warning btn-sm">Вход</button>
         </router-link>
       </li>-->
@@ -48,15 +48,7 @@ export default {
     };
   },
   mounted() {
-    // this.$store.watch(
-    //   state => state.sphe,
-    //   (newV, oldV) => {
-    //     this.spheObj = this.$store.state.mainObject[this.$store.state.sphe];
-    //     this.projObj = this.spheObj.child[newV].child;
-    //   }
-    // );
-    console.log("Head: this.$route.path:", this.$route.path);
-    //this.$router.path
+    //console.log("Head: this.$route.path:", this.$route.path);
   },
   created() {
     auth.onAuthStateChanged(function(user) {

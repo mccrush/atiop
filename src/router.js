@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import { auth } from "@/main.js";
 import About from './views/About.vue'
+import App from './views/App.vue'
 //import Login from './views/Login.vue'
 import NotFound from './views/NotFound.vue'
 
