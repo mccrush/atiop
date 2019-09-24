@@ -26,7 +26,8 @@ export default {
     if (this.$store.state.userId) {
       this.$store.commit("getMainObject");
     } else {
-      console.log("Home: Пользователь не авторизован");
+      this.$router.push("/about");
+      //console.log("Home: Пользователь не авторизован");
     }
   },
   created() {
