@@ -27,10 +27,12 @@ export const fb = firebase.firestore; // Для прямого удаления 
 export const db = firebase.firestore();
 export const auth = firebase.auth();
 
-if (!app) {
-  app = new Vue({
-    router,
-    store,
-    render: function (h) { return h(App) }
-  }).$mount('#app')
-}
+firebase.auth().onAuthStateChanged(() => {
+  if (!app) {
+    app = new Vue({
+      router,
+      store,
+      render(h) { return h(App); },
+    }).$mount('#app');
+  }
+});
