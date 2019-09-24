@@ -1,6 +1,6 @@
 <template>
   <div class="btn-group mt-2 ml-2 mb-2">
-    <button class="btn btn-outline-warning btn-sm dropdown-toggle" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">Вход</button>
+    <button class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">Вход</button>
     <div class="dropdown-menu dropdown-menu-right dropmenu">
       <form class="px-3 py-2">
         <div class="form-group">
