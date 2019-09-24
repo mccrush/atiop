@@ -3,7 +3,7 @@
     <div class="form-group">
       <input type="email" class="form-control form-control-sm" id="email" aria-describedby="emailHelp" placeholder="Enter email" v-model="email" />
       <small id="emailHelp" class="form-text text-muted">
-        <router-link to="/restorpass">Восстановить пароль</router-link>
+        <router-link to="/repass">Восстановить пароль</router-link>
       </small>
     </div>
     <div class="form-group">
