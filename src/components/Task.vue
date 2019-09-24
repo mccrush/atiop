@@ -5,7 +5,7 @@
       <button class="btn btn-sm btn-light text-center delbutton" title="Удалить задачу" @click.prevent="deleteItem">D</button>
     </div>
 
-    <input class="form-control form-control-sm formitem" v-if="showForm" v-model="itemTitle" @blur="hideForm" @focus="hideBorder" type="text" />
+    <input class="form-control form-control-sm formitem" v-if="showForm" v-model="itemTitle" @blur="blurForm" @focus="hideBorder" type="text" @keypress="pressEnter" />
   </li>
 </template>
 
@@ -41,20 +41,30 @@ export default {
     hideBorder(e) {
       e.target.style = "border-bottom: 1px solid #dee2e6 !important;";
     },
-    hideForm(e) {
+    saveChangeName() {
+      this.$store.commit("renameElement", {
+        type: "t",
+        spheid: this.$store.state.sphe,
+        projid: this.$store.state.proj,
+        listid: this.listId,
+        taskid: this.taskId,
+        title: this.itemTitle
+      });
+    },
+    pressEnter(e) {
+      if (e.keyCode == 13 && this.itemTitle) {
+        e.target.style = "border-bottom: 1px solid #dee2e6 !important;";
+        this.showForm = false;
+        this.saveChangeName();
+      }
+    },
+    blurForm(e) {
       if (!this.itemTitle) {
         e.target.style = "border-bottom: 1px solid #dc3545 !important;";
       } else {
         e.target.style = "border-bottom: 1px solid #dee2e6 !important;";
         this.showForm = false;
-        this.$store.commit("renameElement", {
-          type: "t",
-          spheid: this.$store.state.sphe,
-          projid: this.$store.state.proj,
-          listid: this.listId,
-          taskid: this.taskId,
-          title: this.itemTitle
-        });
+        this.saveChangeName();
       }
     }
   },
