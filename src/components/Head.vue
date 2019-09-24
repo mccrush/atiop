@@ -43,12 +43,7 @@ export default {
     LoginForm
   },
   data() {
-    return {
-      showButtonForm: false,
-      showButtonApp: false,
-      showButtonAbout: false,
-      showButtonExit: false
-    };
+    return {};
   },
   mounted() {},
   created() {},
