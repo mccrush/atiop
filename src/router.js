@@ -17,8 +17,7 @@ let router = new Router({
     },
     {
       path: '/',
-      name: 'about',
-      component: About
+      redirect: '/about'
     },
     {
       path: '/about',
