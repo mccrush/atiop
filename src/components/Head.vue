@@ -6,7 +6,7 @@
     </div>
 
     <ul class="nav">
-      <li class="nav-item" v-if="this.$store.state.userId && this.$route.path !== '/about'">
+      <li class="nav-item" v-if="auth.currentUser && this.$route.path !== '/about'">
         <router-link to="/about" class="nav-link pr-0">
           <button class="btn btn-sm btn-outline-secondary">О приложении</button>
         </router-link>
@@ -16,15 +16,15 @@
           <button class="btn btn-outline-warning btn-sm">Вход</button>
         </router-link>
       </li>-->
-      <li class="nav-item" v-if="this.$store.state.userId && this.$route.path !== '/app'">
+      <li class="nav-item" v-if="auth.currentUser && this.$route.path !== '/app'">
         <router-link to="/app" class="nav-link pr-0">
           <button class="btn btn-sm btn-outline-warning">Перейти в приложение</button>
         </router-link>
       </li>
-      <li class="nav-item" v-if="!this.$store.state.userId">
+      <li class="nav-item" v-if="!auth.currentUser">
         <LoginForm />
       </li>
-      <li class="nav-item" v-if="this.$store.state.userId">
+      <li class="nav-item" v-if="auth.currentUser">
         <router-link to="#" class="nav-link pr-0 pl-2">
           <button class="btn btn-sm btn-outline-secondary" @click="logout">Выйти</button>
         </router-link>
@@ -52,7 +52,7 @@ export default {
       auth
         .signOut()
         .then(() => {
-          this.$store.state.userId = "";
+          //this.$store.state.userId = "";
           this.$router.replace("about");
         })
         .catch(error => {
