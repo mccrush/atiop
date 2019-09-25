@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import { auth } from "@/main.js";
 import About from './views/About.vue'
+import Signin from './views/Signin.vue'
 import App from './views/App.vue'
 
 Vue.use(Router)
@@ -23,6 +24,11 @@ let router = new Router({
       path: '/about',
       name: 'about',
       component: About
+    },
+    {
+      path: '/signin',
+      name: 'signin',
+      component: Signin
     },
     {
       path: '/app',
