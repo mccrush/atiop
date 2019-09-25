@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { fb, db } from "@/main.js";
+import { fb, db, auth } from "@/main.js";
 
 
 Vue.use(Vuex)
@@ -19,7 +19,7 @@ export default new Vuex.Store({
   mutations: {
     getMainObject(state) {
       // Но сначала сверить времена, стоит ли обновлять данные
-      db.collection('user').doc(state.userId).get().then(querySnapshot => {
+      db.collection('user').doc(auth.currentUser.uid).get().then(querySnapshot => {
         state.mainObject = querySnapshot.data();
       }).catch(error => {
         console.log("Store.js: при получении данных с сервера произошла ошибка", error);
@@ -28,7 +28,7 @@ export default new Vuex.Store({
     addSphe(state, newData) {
       const spheId = Date.now();
       state.mainObject[spheId] = newData; // Сохраняет в локальное хранилище
-      db.collection('user').doc(state.userId).set({ [spheId]: newData }, { merge: true }).then(function () {
+      db.collection('user').doc(auth.currentUser.uid).set({ [spheId]: newData }, { merge: true }).then(function () {
         console.info("%c Document successfully written!", 'color: #28a745');
       }); // Сохраняет на сервере
     },
@@ -48,7 +48,7 @@ export default new Vuex.Store({
           alert("Ошибка при создании элемента!");
       }
 
-      db.collection('user').doc(state.userId).update({ [payload.spheid]: state.mainObject[payload.spheid] }).then(function () {
+      db.collection('user').doc(auth.currentUser.uid).update({ [payload.spheid]: state.mainObject[payload.spheid] }).then(function () {
         console.info("%c Document successfully updated!", 'color: #28a745');
       }).catch(function (error) {
         console.error("Store.js: во время обновления после создания элемента произошла ошибка", error);
@@ -69,7 +69,7 @@ export default new Vuex.Store({
           alert("Ошибка при создании элемента!");
       }
 
-      db.collection('user').doc(state.userId).update({ [payload.spheid]: state.mainObject[payload.spheid] }).then(function () {
+      db.collection('user').doc(auth.currentUser.uid).update({ [payload.spheid]: state.mainObject[payload.spheid] }).then(function () {
         console.info("%c Document successfully renamed!", 'color: #28a745');
       }).catch(function (error) {
         // Возможно документ еще не существует
@@ -78,7 +78,7 @@ export default new Vuex.Store({
     },
     deleteSphe(state, payload) {
       delete state.mainObject[payload.spheid]; // Удаляет с локального хранилища
-      let res = db.collection('user').doc(state.userId).update({
+      let res = db.collection('user').doc(auth.currentUser.uid).update({
         [payload.spheid]: fb.FieldValue.delete()
       }); // Удаляет на сервере
     },
@@ -97,7 +97,7 @@ export default new Vuex.Store({
           alert("Ошибка при создании элемента!");
       }
 
-      db.collection('user').doc(state.userId).update({ [payload.spheid]: state.mainObject[payload.spheid] }).then(function () {
+      db.collection('user').doc(auth.currentUser.uid).update({ [payload.spheid]: state.mainObject[payload.spheid] }).then(function () {
         console.info("%c Document successfully deleted!", 'color: #28a745');
       }).catch(function (error) {
         // Возможно документ еще не существует
