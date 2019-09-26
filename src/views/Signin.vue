@@ -14,6 +14,10 @@
             <input type="password" class="form-control form-control-sm" id="password" placeholder="Password" v-model="password" />
           </div>
           <button type="button" @click="login" class="btn btn-sm btn-secondary btn-block">Зарегистрироваться</button>
+
+          <small class="form-text mt-3">
+            <router-link to="/login" class="text-muted" title="У меня уже есть аккаунт">У меня уже есть аккаунт</router-link>
+          </small>
         </form>
       </div>
     </div>

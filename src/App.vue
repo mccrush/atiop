@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Head v-if="uid" :uid="uid" />
+    <Head :uid="uid" />
 
     <router-view />
     <Foot />
@@ -20,24 +20,14 @@ export default {
   },
   data() {
     return {
-      uid: auth.currentUser.uid
+      uid: ""
     };
+  },
+  mounted() {
+    if (auth.currentUser) {
+      this.uid = auth.currentUser.uid;
+    }
   }
-  // mounted() {
-  //   var user = auth.currentUser;
-
-  //   if (user) {
-  //     console.log("App: Пользователь авторизован");
-  //     this.$store.state.userId = user.uid;
-  //     console.log("App: userId", this.$store.state.userId);
-  //     this.$store.commit("getTask", user.uid);
-  //     // User is signed in.
-  //   } else {
-  //     // No user is signed in.
-  //     console.log("App: Пользователь Не авторизован");
-  //     this.$router.push("/login");
-  //   }
-  // }
 };
 </script>
 
