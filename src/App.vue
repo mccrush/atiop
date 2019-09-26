@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Head />
+    <Head v-if="uid" :uid="uid" />
 
     <router-view />
     <Foot />
@@ -17,6 +17,11 @@ export default {
   components: {
     Head,
     Foot
+  },
+  data() {
+    return {
+      uid: auth.currentUser.uid
+    };
   }
   // mounted() {
   //   var user = auth.currentUser;

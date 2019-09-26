@@ -6,7 +6,7 @@
     </div>
 
     <ul class="nav">
-      <li class="nav-item" v-if="auth.currentUser && this.$route.path !== '/about'">
+      <li class="nav-item" v-if="uid && this.$route.path !== '/about'">
         <router-link to="/about" class="nav-link pr-0">
           <button class="btn btn-sm btn-outline-secondary">О приложении</button>
         </router-link>
@@ -16,15 +16,15 @@
           <button class="btn btn-outline-warning btn-sm">Вход</button>
         </router-link>
       </li>-->
-      <li class="nav-item" v-if="auth.currentUser && this.$route.path !== '/app'">
+      <li class="nav-item" v-if="uid && this.$route.path !== '/app'">
         <router-link to="/app" class="nav-link pr-0">
           <button class="btn btn-sm btn-outline-warning">Перейти в приложение</button>
         </router-link>
       </li>
-      <li class="nav-item" v-if="!auth.currentUser">
+      <li class="nav-item" v-if="!uid">
         <LoginForm />
       </li>
-      <li class="nav-item" v-if="auth.currentUser">
+      <li class="nav-item" v-if="uid">
         <router-link to="#" class="nav-link pr-0 pl-2">
           <button class="btn btn-sm btn-outline-secondary" @click="logout">Выйти</button>
         </router-link>
@@ -41,6 +41,9 @@ export default {
   name: "Head",
   components: {
     LoginForm
+  },
+  props: {
+    uid: String
   },
   data() {
     return {};
