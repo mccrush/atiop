@@ -45,7 +45,8 @@ export default {
     login() {
       auth
         .signInWithEmailAndPassword(this.email, this.password)
-        .then(() => {
+        .then(user => {
+          console.log("user.uid=", user.uid);
           // this.$store.state.userId = auth.currentUser.uid;
           this.$router.push("/app");
         })

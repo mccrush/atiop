@@ -58,6 +58,7 @@ export default {
         .signOut()
         .then(() => {
           //this.$store.state.userId = "";
+          this.uid = "";
           this.$router.replace("about");
         })
         .catch(error => {
