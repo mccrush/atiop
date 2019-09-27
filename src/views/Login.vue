@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row justify-content-center">
-      <div class="col-4 mt-5 border pt-3 pb-3 bg-light">
+      <div class="col-4 mt-5 border pt-3 pb-3 bg-light shadow-sm">
         <h4 class="text-center">Авторизация</h4>
         <form>
           <div class="form-group">

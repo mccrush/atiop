@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-12">
+    <div class="row p-3">
+      <div class="col-12 bg-white shadow-sm">
         <h3 class="mt-3">О приложении Контроль</h3>
         <p>Краткое описание</p>
         <!-- <h1 class="mt-3">Философия</h1>
