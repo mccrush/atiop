@@ -58,3 +58,13 @@ export default {
   }
 };
 </script>
+<!-- Add "scoped" -->
+<style scoped>
+a {
+  text-decoration: underline;
+}
+
+a:hover {
+  text-decoration: none;
+}
+</style>
