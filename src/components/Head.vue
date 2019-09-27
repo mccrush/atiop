@@ -23,7 +23,7 @@
           <button class="btn btn-sm btn-outline-warning">Перейти в приложение</button>
         </router-link>
       </li>
-      <li class="nav-item" v-if="!uid && this.$route.path !== '/signin'">
+      <li class="nav-item" v-if="!uid && this.$route.path !== '/signin' && this.$route.path !== '/login'">
         <LoginForm />
       </li>
       <li class="nav-item" v-if="uid">

@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-4 mt-5 border pt-3 pb-3 bg-light">
-        <h4 class="text-center">Регистрация</h4>
+        <h4 class="text-center">Авторизация</h4>
         <form>
           <div class="form-group">
             <label for="email">Email адрес</label>
@@ -13,11 +13,11 @@
             <label for="password">Пароль</label>
             <input type="password" class="form-control form-control-sm" id="password" placeholder="Password" v-model="password" />
           </div>
-          <button type="button" @click="signin" class="btn btn-sm btn-warning btn-block">Зарегистрироваться</button>
+          <button type="button" @click="login" class="btn btn-sm btn-success btn-block">Войти</button>
 
           <small class="form-text text-center mt-3">
-            Или
-            <router-link to="/login" class="text-muted" title="Войти">войти</router-link>
+            <router-link to="/signin" class="text-muted" title="Зарегистрироваться">Зарегистрироваться</router-link>&nbsp;или
+            <router-link to="/repass" class="text-muted" title="Восстановить пароль">Восстановить пароль</router-link>
           </small>
         </form>
       </div>
@@ -31,7 +31,7 @@
 import { auth } from "@/main.js";
 
 export default {
-  name: "signin",
+  name: "login",
   components: {},
   data() {
     return {
@@ -42,9 +42,9 @@ export default {
   mounted() {},
   created() {},
   methods: {
-    signin() {
+    login() {
       auth
-        .createUserWithEmailAndPassword(this.email, this.password)
+        .signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
           // this.$store.state.userId = auth.currentUser.uid;
           this.$router.push("/app");
@@ -52,9 +52,19 @@ export default {
         .catch(function(error) {
           var errorCode = error.code;
           var errorMessage = error.message;
-          console.log("Signin: errors:", errorCode, "& ", errorMessage);
+          console.log("Login: errors:", errorCode, "& ", errorMessage);
         });
     }
   }
 };
 </script>
+<!-- Add "scoped" -->
+<style scoped>
+a {
+  text-decoration: underline;
+}
+
+a:hover {
+  text-decoration: none;
+}
+</style>
