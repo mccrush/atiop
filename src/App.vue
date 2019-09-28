@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Head v-if="this.store.uid" />
+    <Head />
 
     <router-view />
     <Foot />

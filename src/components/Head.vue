@@ -18,7 +18,7 @@
           <button class="btn btn-outline-warning btn-sm">Вход</button>
         </router-link>
       </li>-->
-      <li class="nav-item" v-if="this.store.uid && this.$route.path !== '/app'">
+      <li class="nav-item" v-if="this.$store.state.uid && this.$route.path !== '/app'">
         <router-link to="/app" class="nav-link pr-0">
           <button class="btn btn-sm btn-outline-warning">Перейти в приложение</button>
         </router-link>
@@ -26,15 +26,15 @@
       <!-- <li class="nav-item" v-if="!uid && this.$route.path !== '/signin' && this.$route.path !== '/login'">
         <LoginForm />
       </li>-->
-      <li class="nav-item" v-if="this.store.uid">
+      <li class="nav-item" v-if="this.$store.state.uid">
         <router-link to="#" class="nav-link pr-0 pl-2">
           <button class="btn btn-sm btn-outline-secondary" @click="logout">Выйти</button>
         </router-link>
       </li>
-      <li class="nav-item" v-if="!this.store.uid">
+      <li class="nav-item" v-if="!this.$store.state.uid">
         <button class="btn btn-sm btn-success ml-3" data-toggle="modal" data-target="#formLogin">Войти</button>
       </li>
-      <li class="nav-item" v-if="!this.store.uid">
+      <li class="nav-item" v-if="!this.$store.state.uid">
         <button class="btn btn-sm btn-warning ml-3" data-toggle="modal" data-target="#formSignin">Зарегистрироваться</button>
       </li>
     </ul>
@@ -63,7 +63,9 @@ export default {
     return {};
   },
   mounted() {},
-  created() {},
+  created() {
+    console.log("uid from store = ", this.$store.uid);
+  },
   methods: {
     logout() {
       auth

@@ -54,6 +54,9 @@ export default {
       auth
         .createUserWithEmailAndPassword(this.email, this.password)
         .then(() => {
+          this.$store.commit("setUid", {
+            uid: auth.currentUser.uid
+          });
           // this.$store.state.userId = auth.currentUser.uid;
           this.$router.push("/app");
           $("#formSignin").modal("hide");
