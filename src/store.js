@@ -14,7 +14,7 @@ export default new Vuex.Store({
     task: '',
     //timeup: '', // Время последнего изменения данных
     mainObject: {},
-    userId: ''
+    uid: ''
   },
   mutations: {
     getMainObject(state) {
@@ -104,6 +104,12 @@ export default new Vuex.Store({
         console.error("Store.js: во время обновления после удаления элемента произошла ошибка", error);
       }); // Удаляет с сервера
     },
+    setUid(state, payload) {
+      state.uid = payload.uid
+    },
+    clearUid(state) {
+      state.uid = ''
+    }
   },
   actions: {
 

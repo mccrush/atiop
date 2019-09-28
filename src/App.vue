@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Head :uid="uid" />
+    <Head v-if="this.store.uid" />
 
     <router-view />
     <Foot />
@@ -25,7 +25,10 @@ export default {
   },
   mounted() {
     if (auth.currentUser) {
-      this.uid = auth.currentUser.uid;
+      this.$store.commit("setUid", {
+        uid: auth.currentUser.uid
+      });
+      //this.uid = auth.currentUser.uid;
     }
   }
 };

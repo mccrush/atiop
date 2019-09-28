@@ -18,35 +18,47 @@
           <button class="btn btn-outline-warning btn-sm">Вход</button>
         </router-link>
       </li>-->
-      <li class="nav-item" v-if="uid && this.$route.path !== '/app'">
+      <li class="nav-item" v-if="this.store.uid && this.$route.path !== '/app'">
         <router-link to="/app" class="nav-link pr-0">
           <button class="btn btn-sm btn-outline-warning">Перейти в приложение</button>
         </router-link>
       </li>
-      <li class="nav-item" v-if="!uid && this.$route.path !== '/signin' && this.$route.path !== '/login'">
+      <!-- <li class="nav-item" v-if="!uid && this.$route.path !== '/signin' && this.$route.path !== '/login'">
         <LoginForm />
-      </li>
-      <li class="nav-item" v-if="uid">
+      </li>-->
+      <li class="nav-item" v-if="this.store.uid">
         <router-link to="#" class="nav-link pr-0 pl-2">
           <button class="btn btn-sm btn-outline-secondary" @click="logout">Выйти</button>
         </router-link>
       </li>
+      <li class="nav-item" v-if="!this.store.uid">
+        <button class="btn btn-sm btn-success ml-3" data-toggle="modal" data-target="#formLogin">Войти</button>
+      </li>
+      <li class="nav-item" v-if="!this.store.uid">
+        <button class="btn btn-sm btn-warning ml-3" data-toggle="modal" data-target="#formSignin">Зарегистрироваться</button>
+      </li>
     </ul>
+    <!-- Формы  -->
+    <FormLogin />
+    <FormSignin />
+    <!-- Конец формы -->
   </nav>
 </template>
 
 <script>
 import { auth } from "@/main.js";
 import LoginForm from "@/components/LoginForm.vue";
+import FormLogin from "@/components/FormLogin.vue";
+import FormSignin from "@/components/FormSignin.vue";
 
 export default {
   name: "Head",
   components: {
-    LoginForm
+    LoginForm,
+    FormLogin,
+    FormSignin
   },
-  props: {
-    uid: String
-  },
+  props: {},
   data() {
     return {};
   },
@@ -58,7 +70,8 @@ export default {
         .signOut()
         .then(() => {
           //this.$store.state.userId = "";
-          this.uid = "";
+          //this.uid = ""; // Так не делается. Надо через...
+          this.$store.commit("clearUid");
           this.$router.replace("about");
         })
         .catch(error => {
