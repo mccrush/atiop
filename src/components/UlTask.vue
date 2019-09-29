@@ -1,6 +1,6 @@
 <template>
   <ul class="list-group list-group-flush">
-    <Task v-for="(value, taskid, index) in listObj" :key="'ta'+taskid+index" :taskId="taskid" :tasktitle="value.prop.title" :listId="listId" />
+    <Task v-for="(value, taskid, index) in listObj" :key="'ta'+taskid+index" :taskId="taskid" :task="value.prop" :listId="listId" />
     <li class="list-group-item text-center small border-0 pl-0 pr-0">
       <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Заголовок задачи + Enter" id="formNewSphe" @keypress="saveNewItem" v-model="nameNewItem" @blur="hideForm" autofocus />
       <a href="#" class="btn btn-sm btn-light btn-block text-left text-muted" v-if="!showForm" @click="createNewItem">Добавить задачу</a>
@@ -51,6 +51,18 @@ export default {
       if (!this.nameNewItem) {
         this.showForm = false;
       }
+    }
+  },
+  computed: {
+    sortArray: () => {
+      let sara = [];
+      for (let key in this.listObj) {
+        sara[key] = this.listObj[key];
+        sara.sort((a, b) => {
+          return a.pos - b.pos;
+        });
+      }
+      return sara;
     }
   }
 };
