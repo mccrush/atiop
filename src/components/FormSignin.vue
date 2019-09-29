@@ -21,7 +21,7 @@
 
                   <small class="form-text text-center mt-3">
                     Или
-                    <router-link to="/login" class="text-muted" title="Войти">войти</router-link>
+                    <a href="#" @click="hideFormsignin" class="text-muted" title="Войти">войти</a>
                   </small>
                 </form>
               </div>
@@ -67,7 +67,7 @@ export default {
           console.log("Signin: errors:", errorCode, "& ", errorMessage);
         });
     },
-    hideSelf() {
+    hideFormsignin() {
       $("#formSignin").modal("hide");
       $("#formLogin").modal("show");
     }
