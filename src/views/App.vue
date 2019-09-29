@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid bg-white pb-3 shadow-sm">
+  <div class="container-fluid bg-white pb-3">
     <div class="row">
       <UlSphe />
       <UlList />

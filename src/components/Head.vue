@@ -9,7 +9,7 @@
 
     <ul class="nav">
       <li class="nav-item" v-if="this.$store.state.uid && this.$route.path !== '/app'">
-        <router-link to="/app" class="nav-link pr-0">
+        <router-link to="/app" class="nav-link">
           <button class="btn btn-sm btn-outline-warning">Перейти в приложение</button>
         </router-link>
       </li>
