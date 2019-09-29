@@ -55,7 +55,8 @@ export default {
         .createUserWithEmailAndPassword(this.email, this.password)
         .then(() => {
           this.$store.commit("setUid", {
-            uid: auth.currentUser.uid
+            uid: auth.currentUser.uid,
+            uemail: auth.currentUser.email
           });
           this.$store.commit("addDoc"); // Создает пустой документс id пользователя
           this.$router.push("/app");

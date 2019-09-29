@@ -7,14 +7,14 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    userId: '',
     sphe: '',
     proj: '',
     list: '',
     task: '',
     //timeup: '', // Время последнего изменения данных
     mainObject: {},
-    uid: ''
+    uid: '',
+    uemail: ''
   },
   mutations: {
     getMainObject(state) {
@@ -112,10 +112,12 @@ export default new Vuex.Store({
       }); // Удаляет с сервера
     },
     setUid(state, payload) {
-      state.uid = payload.uid
+      state.uid = payload.uid;
+      state.uemail = payload.uemail;
     },
     clearUid(state) {
-      state.uid = ''
+      state.uid = '';
+      state.uemail = '';
     }
   },
   actions: {

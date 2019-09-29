@@ -26,7 +26,8 @@ export default {
   mounted() {
     if (auth.currentUser) {
       this.$store.commit("setUid", {
-        uid: auth.currentUser.uid
+        uid: auth.currentUser.uid,
+        uemail: auth.currentUser.email
       });
       //this.uid = auth.currentUser.uid;
     }

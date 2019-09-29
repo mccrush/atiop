@@ -13,6 +13,9 @@
           <button class="btn btn-sm btn-outline-warning">Перейти в приложение</button>
         </router-link>
       </li>
+      <li class="nav-item pt-2 pr-2 uemail" v-if="this.$store.state.uid">
+        <small class="text-muted">{{this.$store.state.uemail}}</small>
+      </li>
       <li class="nav-item" v-if="this.$store.state.uid">
         <router-link to="#" class="nav-link pr-0 pl-2">
           <button class="btn btn-sm btn-outline-secondary" @click="logout">Выйти</button>
@@ -66,10 +69,12 @@ export default {
 
 <!-- Add "scoped" -->
 <style scoped>
-.navbar {
+/* .navbar {
   height: 58px;
+} */
+.uemail {
+  line-height: 2.1;
 }
-
 a {
   color: black;
 }
