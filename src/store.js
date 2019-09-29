@@ -25,6 +25,13 @@ export default new Vuex.Store({
         console.log("Store.js: при получении данных с сервера произошла ошибка", error);
       });
     },
+    addDoc(state) {
+      db.collection('user').doc(auth.currentUser.uid).set({}).then(() => {
+        console.info("%c Document successfully created!", 'color: #28a745');
+      }).catch(error => {
+        console.error("Store.js: во время создания документа произошла ошибка", error);
+      });
+    },
     addSphe(state, newData) {
       const spheId = Date.now();
       state.mainObject[spheId] = newData; // Сохраняет в локальное хранилище

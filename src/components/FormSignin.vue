@@ -57,7 +57,7 @@ export default {
           this.$store.commit("setUid", {
             uid: auth.currentUser.uid
           });
-          // this.$store.state.userId = auth.currentUser.uid;
+          this.$store.commit("addDoc"); // Создает пустой документс id пользователя
           this.$router.push("/app");
           $("#formSignin").modal("hide");
         })
