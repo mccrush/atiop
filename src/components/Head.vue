@@ -63,9 +63,7 @@ export default {
     return {};
   },
   mounted() {},
-  created() {
-    console.log("uid from store = ", this.$store.uid);
-  },
+  created() {},
   methods: {
     logout() {
       auth
@@ -74,7 +72,7 @@ export default {
           //this.$store.state.userId = "";
           //this.uid = ""; // Так не делается. Надо через...
           this.$store.commit("clearUid");
-          this.$router.replace("about");
+          //this.$router.replace("about");
         })
         .catch(error => {
           console.log("Head: errors,", error);
