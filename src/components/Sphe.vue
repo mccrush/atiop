@@ -1,12 +1,12 @@
 <template>
-  <li class="list-group-item" :id="spheId">
+  <li class="list-group-item" :id="sphe.id">
     <div class="btn-group btn-block" role="group" aria-label="Basic example">
       <button type="button" class="btn btn-sm btn-dark" @click="deleteItem" title="Удалить объект">D</button>
-      <button class="btn btn-sm btn-light btn-block text-left sphe-item" type="button" data-toggle="collapse" :data-target="'#collapseProj'+spheId" aria-expanded="false" :aria-controls="'collapseProj'+spheId">{{title}}</button>
+      <button class="btn btn-sm btn-light btn-block text-left sphe-item" type="button" data-toggle="collapse" :data-target="'#collapseProj'+sphe.id" aria-expanded="false" :aria-controls="'collapseProj'+sphe.id">{{sphe.title}}</button>
     </div>
-    <div class="collapse" :id="'collapseProj'+spheId">
-      <UlProj :spheId="spheId" :spheObj="child" />
-    </div>
+    <!-- <div class="collapse" :id="'collapseProj'+sphe.id">
+      <UlProj :spheId="sphe.id" :projArr="sphe.proj" />
+    </div>-->
   </li>
 </template>
 
@@ -19,6 +19,7 @@ export default {
     UlProj
   },
   props: {
+    sphe: Object,
     spheId: String,
     title: String,
     child: Object

@@ -13,6 +13,7 @@ export default new Vuex.Store({
     task: '',
     //timeup: '', // Время последнего изменения данных
     mainObject: {},
+    spheArr: [],
     uid: '',
     uemail: ''
   },
@@ -20,13 +21,14 @@ export default new Vuex.Store({
     getMainObject(state) {
       // Но сначала сверить времена, стоит ли обновлять данные
       db.collection('user').doc(auth.currentUser.uid).get().then(querySnapshot => {
-        state.mainObject = querySnapshot.data();
+        state.spheArr = querySnapshot.data().sphe;
+        console.log('Получены данные state.spheArr:', state.spheArr);
       }).catch(error => {
         console.log("Store.js: при получении данных с сервера произошла ошибка", error);
       });
     },
     addDoc(state) {
-      db.collection('user').doc(auth.currentUser.uid).set({}).then(() => {
+      db.collection('user').doc(auth.currentUser.uid).set({ sphe: [] }).then(() => {
         console.info("%c Document successfully created!", 'color: #28a745');
       }).catch(error => {
         console.error("Store.js: во время создания документа произошла ошибка", error);
@@ -36,6 +38,13 @@ export default new Vuex.Store({
       const spheId = Date.now();
       state.mainObject[spheId] = newData; // Сохраняет в локальное хранилище
       db.collection('user').doc(auth.currentUser.uid).set({ [spheId]: newData }, { merge: true }).then(function () {
+        console.info("%c Document successfully written!", 'color: #28a745');
+      }); // Сохраняет на сервере
+    },
+    addSphe2(state, payload) {
+      //const spheId = Date.now();
+      state.spheArr.push(payload); // Сохраняет в локальное хранилище
+      db.collection('user').doc(auth.currentUser.uid).set({ sphe: state.spheArr }, { merge: true }).then(function () {
         console.info("%c Document successfully written!", 'color: #28a745');
       }); // Сохраняет на сервере
     },
