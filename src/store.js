@@ -85,12 +85,27 @@ export default new Vuex.Store({
           alert("Ошибка при создании элемента!");
       }
 
-      db.collection('user').doc(auth.currentUser.uid).update({ [payload.spheid]: state.mainObject[payload.spheid] }).then(function () {
+      db.collection('user').doc(auth.currentUser.uid).update({ [payload.spheid]: state.mainObject[payload.spheid] }).then(() => {
         console.info("%c Document successfully renamed!", 'color: #28a745');
-      }).catch(function (error) {
+      }).catch((error) => {
         // Возможно документ еще не существует
         console.error("Store.js: во время обновления после переименования элемента произошла ошибка", error);
       }); // Обновляет на сервере
+    },
+    deleteSphe2(state, payload) {
+      let index = state.spheArr.findIndex((item) => item.id == payload.spheid);
+      if (index !== -1) {
+        state.spheArr.splice(index, 1);
+        db.collection('user').doc(auth.currentUser.uid).update({
+          sphe: state.spheArr
+        }).then(() => {
+          console.info("%c Sphe successfully deleted!", 'color: #28a745');
+        }).catch((error) => {
+          // Возможно документ еще не существует
+          console.error("Store.js: во время удаления сферы произошла ошибка", error);
+        }); // Удаляет на сервере
+      }
+
     },
     deleteSphe(state, payload) {
       delete state.mainObject[payload.spheid]; // Удаляет с локального хранилища

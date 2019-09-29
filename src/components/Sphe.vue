@@ -19,18 +19,17 @@ export default {
     UlProj
   },
   props: {
-    sphe: Object,
-    spheId: String,
-    title: String,
-    child: Object
+    sphe: Object
+    // spheId: String,
+    // title: String,
+    // child: Object
   },
   methods: {
     deleteItem(e) {
-      e.target.parentNode.parentNode.classList.add("d-none"); // Вынужденная мера, т.к. DOM не сразу обновляется сам
-      this.$store.commit("deleteSphe", {
+      //e.target.parentNode.parentNode.classList.add("d-none"); // Вынужденная мера, т.к. DOM не сразу обновляется сам
+      this.$store.commit("deleteSphe2", {
         type: "s",
-        spheid: this.spheId,
-        projid: ""
+        spheid: this.sphe.id
       });
     }
   }
