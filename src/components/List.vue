@@ -91,6 +91,7 @@ export default {
   top: 11px;
   right: 15px;
   cursor: pointer;
+  opacity: 0.8;
 }
 
 .listtitle:hover .delbutton {

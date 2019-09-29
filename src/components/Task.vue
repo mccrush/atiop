@@ -92,6 +92,7 @@ export default {
   top: 3px;
   right: 3px;
   cursor: pointer;
+  opacity: 0.8;
 }
 
 .task-item:hover .delbutton {
