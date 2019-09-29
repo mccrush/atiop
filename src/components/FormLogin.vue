@@ -21,7 +21,7 @@
 
                   <small class="form-text text-center mt-3">
                     <a href="#" @click="hideFormLogin" class="text-muted" title="Зарегистрироваться">Зарегистрироваться</a>&nbsp;или
-                    <a href="#" @click="hideFormLogin2" class="text-muted" title="Восстановить пароль">Восстановить пароль</a>
+                    <a href="#" @click="hideFormLogin2" class="text-muted" title="Восстановить пароль">восстановить пароль</a>
                   </small>
                 </form>
               </div>

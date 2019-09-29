@@ -31,6 +31,7 @@
     <!-- Формы  -->
     <FormLogin />
     <FormSignin />
+    <FormRestore />
     <!-- Конец формы -->
   </nav>
 </template>
@@ -39,12 +40,14 @@
 import { auth } from "@/main.js";
 import FormLogin from "@/components/FormLogin.vue";
 import FormSignin from "@/components/FormSignin.vue";
+import FormRestore from "@/components/FormRestore.vue";
 
 export default {
   name: "Head",
   components: {
     FormLogin,
-    FormSignin
+    FormSignin,
+    FormRestore
   },
   props: {},
   data() {
