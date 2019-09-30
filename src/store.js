@@ -19,7 +19,6 @@ export default new Vuex.Store({
   },
   mutations: {
     getMainObject(state) {
-      // Но сначала сверить времена, стоит ли обновлять данные
       db.collection('user').doc(auth.currentUser.uid).get().then(querySnapshot => {
         state.spheArr = querySnapshot.data().sphe;
         console.log('Получены данные state.spheArr:', state.spheArr);
@@ -34,21 +33,13 @@ export default new Vuex.Store({
         console.error("Store.js: во время создания документа произошла ошибка", error);
       });
     },
-    addSphe(state, newData) {
-      const spheId = Date.now();
-      state.mainObject[spheId] = newData; // Сохраняет в локальное хранилище
-      db.collection('user').doc(auth.currentUser.uid).set({ [spheId]: newData }, { merge: true }).then(function () {
-        console.info("%c Document successfully written!", 'color: #28a745');
-      }); // Сохраняет на сервере
-    },
     addSphe2(state, payload) {
-      //const spheId = '' + Date.now();
-      state.spheArr.push(payload.sphe); // Сохраняет в локальное хранилище
+      state.spheArr.push(payload.sphe);
       db.collection('user').doc(auth.currentUser.uid).update({
         sphe: state.spheArr
       }).then(function () {
         console.info("%c Document successfully written!", 'color: #28a745');
-      }); // Сохраняет на сервере
+      });
     },
     addElement(state, payload) {
       const itemId = Date.now();
@@ -98,19 +89,14 @@ export default new Vuex.Store({
       let index = state.spheArr.findIndex((item) => item.id == payload.id);
       if (index !== -1) {
         state.spheArr.splice(index, 1);
-        db.collection('user').doc(auth.currentUser.uid).collection('sphe').doc(payload.id).delete().then(() => {
+        db.collection('user').doc(auth.currentUser.uid).update({
+          sphe: state.spheArr
+        }).then(() => {
           console.info("%c Sphe successfully deleted!", 'color: #28a745');
         }).catch((error) => {
           console.error("Store.js: во время удаления сферы произошла ошибка", error);
         });
       }
-
-    },
-    deleteSphe(state, payload) {
-      delete state.mainObject[payload.spheid]; // Удаляет с локального хранилища
-      let res = db.collection('user').doc(auth.currentUser.uid).update({
-        [payload.spheid]: fb.FieldValue.delete()
-      }); // Удаляет на сервере
     },
     deleteElement(state, payload) {
       switch (payload.type) {
