@@ -33,7 +33,7 @@ export default new Vuex.Store({
         console.error("Store.js: во время создания документа произошла ошибка", error);
       });
     },
-    addSphe2(state, payload) {
+    addSphe(state, payload) {
       state.spheArr.push(payload.sphe);
       db.collection('user').doc(auth.currentUser.uid).update({
         sphe: state.spheArr
@@ -85,7 +85,7 @@ export default new Vuex.Store({
         console.error("Store.js: во время обновления после переименования элемента произошла ошибка", error);
       }); // Обновляет на сервере
     },
-    deleteSphe2(state, payload) {
+    deleteSphe(state, payload) {
       let index = state.spheArr.findIndex((item) => item.id == payload.id);
       if (index !== -1) {
         state.spheArr.splice(index, 1);

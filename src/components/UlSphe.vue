@@ -8,7 +8,7 @@
       <Sphe v-for="(value, index) in this.$store.state.spheArr" :key="'ulsp'+index" :sphe="value" />
       <li class="list-group-item small">
         <div class="input-group" v-if="showForm">
-          <input type="text" class="form-control form-control-sm" placeholder="Название сферы + Enter" @keypress="saveNewItem2" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="nameNewItem" @blur="hideForm" autofocus />
+          <input type="text" class="form-control form-control-sm" placeholder="Название сферы + Enter" @keypress="saveNewItem" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="nameNewItem" @blur="hideForm" autofocus />
           <!-- <div class="input-group-append">
             <button class="btn btn-sm btn-success" type="button" id="button-addon2" @click="createNewItem">&nbsp;+&nbsp;</button>
           </div>-->
@@ -42,18 +42,6 @@ export default {
     saveNewItem(e) {
       if (e.keyCode == 13) {
         let payload = {
-          prop: { title: this.nameNewItem },
-          child: {}
-        };
-
-        this.$store.commit("addSphe", payload);
-        this.nameNewItem = "";
-        this.showForm = false;
-      }
-    },
-    saveNewItem2(e) {
-      if (e.keyCode == 13) {
-        let payload = {
           sphe: {
             id: Date.now(),
             title: this.nameNewItem,
@@ -61,7 +49,7 @@ export default {
           }
         };
 
-        this.$store.commit("addSphe2", payload);
+        this.$store.commit("addSphe", payload);
         this.nameNewItem = "";
         this.showForm = false;
       }
