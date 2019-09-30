@@ -20,8 +20,13 @@ export default new Vuex.Store({
   mutations: {
     getMainObject(state) {
       // Но сначала сверить времена, стоит ли обновлять данные
-      db.collection('user').doc(auth.currentUser.uid).get().then(querySnapshot => {
-        state.spheArr = querySnapshot.data().sphe;
+      db.collection('user').doc(auth.currentUser.uid).collection('sphe').get().then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          state.spheArr.push(doc.data());
+          //console.log(doc.id, " => ", doc.data());
+        });
+
+        //state.spheArr = querySnapshot.data().sphe;
         console.log('Получены данные state.spheArr:', state.spheArr);
       }).catch(error => {
         console.log("Store.js: при получении данных с сервера произошла ошибка", error);
@@ -42,9 +47,9 @@ export default new Vuex.Store({
       }); // Сохраняет на сервере
     },
     addSphe2(state, payload) {
-      //const spheId = Date.now();
-      state.spheArr.push(payload); // Сохраняет в локальное хранилище
-      db.collection('user').doc(auth.currentUser.uid).set({ sphe: state.spheArr }, { merge: true }).then(function () {
+      //const spheId = '' + Date.now();
+      state.spheArr.push(payload.sphe); // Сохраняет в локальное хранилище
+      db.collection('user').doc(auth.currentUser.uid).collection('sphe').doc(payload.sphe.id).set(payload.sphe).then(function () {
         console.info("%c Document successfully written!", 'color: #28a745');
       }); // Сохраняет на сервере
     },
@@ -93,12 +98,10 @@ export default new Vuex.Store({
       }); // Обновляет на сервере
     },
     deleteSphe2(state, payload) {
-      let index = state.spheArr.findIndex((item) => item.id == payload.spheid);
+      let index = state.spheArr.findIndex((item) => item.id == payload.id);
       if (index !== -1) {
         state.spheArr.splice(index, 1);
-        db.collection('user').doc(auth.currentUser.uid).update({
-          sphe: state.spheArr
-        }).then(() => {
+        db.collection('user').doc(auth.currentUser.uid).collection('sphe').doc(payload.id).delete().then(() => {
           console.info("%c Sphe successfully deleted!", 'color: #28a745');
         }).catch((error) => {
           // Возможно документ еще не существует

@@ -54,9 +54,11 @@ export default {
     saveNewItem2(e) {
       if (e.keyCode == 13) {
         let payload = {
-          id: Date.now(),
-          title: this.nameNewItem,
-          proj: []
+          sphe: {
+            id: "" + Date.now(),
+            title: this.nameNewItem,
+            pos: 1
+          }
         };
 
         this.$store.commit("addSphe2", payload);

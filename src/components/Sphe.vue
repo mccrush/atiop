@@ -29,7 +29,7 @@ export default {
       //e.target.parentNode.parentNode.classList.add("d-none"); // Вынужденная мера, т.к. DOM не сразу обновляется сам
       this.$store.commit("deleteSphe2", {
         type: "s",
-        spheid: this.sphe.id
+        id: this.sphe.id
       });
     }
   }
