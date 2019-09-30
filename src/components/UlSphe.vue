@@ -55,7 +55,7 @@ export default {
       if (e.keyCode == 13) {
         let payload = {
           sphe: {
-            id: "" + Date.now(),
+            id: Date.now(),
             title: this.nameNewItem,
             pos: 1
           }
