@@ -11,14 +11,13 @@ export default new Vuex.Store({
     proj: '',
     list: '',
     task: '',
-    //timeup: '', // Время последнего изменения данных
     mainObject: {},
     spheArr: [],
     uid: '',
     uemail: ''
   },
   mutations: {
-    getMainObject(state) {
+    getMainArray(state) {
       db.collection('user').doc(auth.currentUser.uid).get().then(querySnapshot => {
         state.spheArr = querySnapshot.data().sphe;
         console.log('Получены данные state.spheArr:', state.spheArr);
