@@ -38,12 +38,14 @@ export default {
       if (e.keyCode == 13) {
         let payload = {
           type: "p",
-          spheid: this.spheId,
-          proj: {
-            id: Date.now(),
-            title: this.nameNewItem,
-            pos: 1,
-            list: []
+          spheId: this.spheId,
+          item: {
+            prop: {
+              id: Date.now(),
+              title: this.nameNewItem,
+              pos: 1
+            },
+            child: {}
           }
         };
         this.$store.commit("addElement", payload);

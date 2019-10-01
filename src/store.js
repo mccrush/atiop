@@ -19,14 +19,14 @@ export default new Vuex.Store({
   mutations: {
     getMainArray(state) {
       db.collection('user').doc(auth.currentUser.uid).get().then(querySnapshot => {
-        state.spheArr = querySnapshot.data().sphe;
-        console.log('Получены данные state.spheArr:', state.spheArr);
+        state.mainObject = querySnapshot.data();
+        console.log('Получены данные state.mainObject:', state.mainObject);
       }).catch(error => {
         console.log("Store.js: при получении данных с сервера произошла ошибка", error);
       });
     },
     addDoc(state) {
-      db.collection('user').doc(auth.currentUser.uid).set({ sphe: [] }).then(() => {
+      db.collection('user').doc(auth.currentUser.uid).set({}).then(() => {
         console.info("%c Document successfully created!", 'color: #28a745');
       }).catch(error => {
         console.error("Store.js: во время создания документа произошла ошибка", error);
@@ -40,24 +40,26 @@ export default new Vuex.Store({
         console.info("%c Document successfully written!", 'color: #28a745');
       });
     },
-    addElement(state, payload) {
-      //const itemId = Date.now();
-      let index = state.spheArr.findIndex((item) => item.id == payload.id);
+    addItem(state, payload) {
+
       switch (payload.type) {
+        case 's':
+          state.mainObject[payload.sphe.prop.id] = payload.sphe;
+          break;
         case 'p':
-          state.spheArr[index].proj.push(payload.proj);
+          state.mainObject[payload.spheId].child[payload.proj.prop.id] = payload.proj;
           break;
         case 'l':
-          state.spheArr[index].proj[index2].list.push(payload.list);
+          state.mainObject[payload.spheId].child[payload.projId].child[payload.list.prop.id] = payload.list;
           break;
         case 't':
-          state.spheArr[index].proj[index2].list[index3].task.push(payload.list);
+          state.mainObject[payload.spheId].child[payload.projId].child[payload.listId].child[payload.task.prop.id] = payload.task;
           break;
         default:
           alert("Ошибка при создании элемента!");
       }
 
-      db.collection('user').doc(auth.currentUser.uid).update({ [payload.spheid]: state.mainObject[payload.spheid] }).then(function () {
+      db.collection('user').doc(auth.currentUser.uid).update({ [payload.spheId]: state.mainObject[payload.spheId] }).then(function () {
         console.info("%c Document successfully updated!", 'color: #28a745');
       }).catch(function (error) {
         console.error("Store.js: во время обновления после создания элемента произошла ошибка", error);

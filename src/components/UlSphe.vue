@@ -36,16 +36,21 @@ export default {
     },
     saveNewItem(e) {
       if (e.keyCode == 13) {
+        const spheId = "" + Date.now();
         let payload = {
-          sphe: {
-            id: Date.now(),
-            title: this.nameNewItem,
-            pos: 1,
-            proj: []
+          type: "s",
+          spheId,
+          item: {
+            prop: {
+              id: spheId,
+              title: this.nameNewItem,
+              pos: 1
+            },
+            child: {}
           }
         };
 
-        this.$store.commit("addSphe", payload);
+        this.$store.commit("addItem", payload);
         this.nameNewItem = "";
         this.showForm = false;
       }
