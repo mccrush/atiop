@@ -41,16 +41,17 @@ export default new Vuex.Store({
       });
     },
     addElement(state, payload) {
-      const itemId = Date.now();
+      //const itemId = Date.now();
+      let index = state.spheArr.findIndex((item) => item.id == payload.id);
       switch (payload.type) {
         case 'p':
-          state.mainObject[payload.spheid].child[itemId] = payload.child;
+          state.spheArr[index].proj.push(payload.proj);
           break;
         case 'l':
-          state.mainObject[payload.spheid].child[payload.projid].child[itemId] = payload.child;
+          state.spheArr[index].proj[index2].list.push(payload.list);
           break;
         case 't':
-          state.mainObject[payload.spheid].child[payload.projid].child[payload.listid].child[itemId] = payload.child;
+          state.spheArr[index].proj[index2].list[index3].task.push(payload.list);
           break;
         default:
           alert("Ошибка при создании элемента!");

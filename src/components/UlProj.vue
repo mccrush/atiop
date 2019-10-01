@@ -39,10 +39,11 @@ export default {
         let payload = {
           type: "p",
           spheid: this.spheId,
-          list: {
+          proj: {
             id: Date.now(),
-            prop: { title: this.nameNewItem },
-            pos: 1
+            title: this.nameNewItem,
+            pos: 1,
+            list: []
           }
         };
         this.$store.commit("addElement", payload);

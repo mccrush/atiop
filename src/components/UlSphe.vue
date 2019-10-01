@@ -40,7 +40,8 @@ export default {
           sphe: {
             id: Date.now(),
             title: this.nameNewItem,
-            pos: 1
+            pos: 1,
+            proj: []
           }
         };
 
