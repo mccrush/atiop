@@ -41,7 +41,6 @@ export default new Vuex.Store({
       });
     },
     addItem(state, payload) {
-
       switch (payload.type) {
         case 's':
           state.mainObject[payload.spheId] = payload.sphe;
@@ -56,7 +55,7 @@ export default new Vuex.Store({
           state.mainObject[payload.spheId].child[payload.projId].child[payload.listId].child[payload.task.prop.id] = payload.task;
           break;
         default:
-          alert("Ошибка при создании элемента!");
+          console.error("Store: Ошибка при создании элемента!");
       }
 
       db.collection('user').doc(auth.currentUser.uid).update({ [payload.spheId]: state.mainObject[payload.spheId] }).then(function () {
@@ -77,7 +76,7 @@ export default new Vuex.Store({
           state.mainObject[payload.spheid].child[payload.projid].child[payload.listid].child[payload.taskid].prop.title = payload.title;
           break;
         default:
-          alert("Ошибка при создании элемента!");
+          console.error("Store: Ошибка при переименовании элемента!");
       }
 
       db.collection('user').doc(auth.currentUser.uid).update({ [payload.spheid]: state.mainObject[payload.spheid] }).then(() => {
@@ -88,17 +87,10 @@ export default new Vuex.Store({
       }); // Обновляет на сервере
     },
     deleteSphe(state, payload) {
-      let index = state.spheArr.findIndex((item) => item.id == payload.id);
-      if (index !== -1) {
-        state.spheArr.splice(index, 1);
-        db.collection('user').doc(auth.currentUser.uid).update({
-          sphe: state.spheArr
-        }).then(() => {
-          console.info("%c Sphe successfully deleted!", 'color: #28a745');
-        }).catch((error) => {
-          console.error("Store.js: во время удаления сферы произошла ошибка", error);
-        });
-      }
+      delete state.mainObject[payload.spheId];
+      db.collection('user').doc(auth.currentUser.uid).update({
+        [payload.spheId]: fb.FieldValue.delete()
+      });
     },
     deleteElement(state, payload) {
       switch (payload.type) {
@@ -112,7 +104,7 @@ export default new Vuex.Store({
           delete state.mainObject[payload.spheid].child[payload.projid].child[payload.listid].child[payload.taskid];
           break;
         default:
-          alert("Ошибка при создании элемента!");
+          console.error("Store: Ошибка при удалении элемента!");
       }
 
       db.collection('user').doc(auth.currentUser.uid).update({ [payload.spheid]: state.mainObject[payload.spheid] }).then(function () {
