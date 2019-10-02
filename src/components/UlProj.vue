@@ -41,7 +41,7 @@ export default {
           spheId: this.spheId,
           item: {
             prop: {
-              id: Date.now(),
+              id:"" + Date.now(),
               title: this.nameNewItem,
               pos: 1
             },

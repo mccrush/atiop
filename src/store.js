@@ -44,7 +44,7 @@ export default new Vuex.Store({
 
       switch (payload.type) {
         case 's':
-          state.mainObject[payload.sphe.prop.id] = payload.sphe;
+          state.mainObject[payload.spheId] = payload.sphe;
           break;
         case 'p':
           state.mainObject[payload.spheId].child[payload.proj.prop.id] = payload.proj;
