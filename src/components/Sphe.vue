@@ -1,11 +1,11 @@
 <template>
-  <li class="list-group-item" :id="sphe.id">
+  <li class="list-group-item" :id="sphe.prop.id">
     <div class="btn-group btn-block" role="group" aria-label="Basic example">
       <button type="button" class="btn btn-sm btn-dark" @click="deleteItem" title="Удалить объект">D</button>
-      <button class="btn btn-sm btn-light btn-block text-left sphe-item" type="button" data-toggle="collapse" :data-target="'#collapseProj'+sphe.id" aria-expanded="false" :aria-controls="'collapseProj'+sphe.id">{{sphe.title}}</button>
+      <button class="btn btn-sm btn-light btn-block text-left sphe-item" type="button" data-toggle="collapse" :data-target="'#collapseProj'+sphe.prop.id" aria-expanded="false" :aria-controls="'collapseProj'+sphe.prop.id">{{sphe.prop.title}}</button>
     </div>
-    <div class="collapse" :id="'collapseProj'+sphe.id">
-      <UlProj :spheId="sphe.id" :projArr="sphe.proj" />
+    <div class="collapse" :id="'collapseProj'+sphe.prop.id">
+      <!-- <UlProj :spheId="sphe.prop.id" /> -->
     </div>
   </li>
 </template>
@@ -29,7 +29,7 @@ export default {
       //e.target.parentNode.parentNode.classList.add("d-none"); // Вынужденная мера, т.к. DOM не сразу обновляется сам
       this.$store.commit("deleteSphe", {
         type: "s",
-        spheId: this.sphe.id
+        spheId: this.sphe.prop.id
       });
     }
   }

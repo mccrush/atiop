@@ -43,16 +43,16 @@ export default new Vuex.Store({
     addItem(state, payload) {
       switch (payload.type) {
         case 's':
-          state.mainObject[payload.spheId] = payload.sphe;
+          state.mainObject[payload.spheId] = payload.item;
           break;
         case 'p':
-          state.mainObject[payload.spheId].child[payload.proj.prop.id] = payload.proj;
+          state.mainObject[payload.spheId].child[payload.proj.prop.id] = payload.item;
           break;
         case 'l':
-          state.mainObject[payload.spheId].child[payload.projId].child[payload.list.prop.id] = payload.list;
+          state.mainObject[payload.spheId].child[payload.projId].child[payload.list.prop.id] = payload.item;
           break;
         case 't':
-          state.mainObject[payload.spheId].child[payload.projId].child[payload.listId].child[payload.task.prop.id] = payload.task;
+          state.mainObject[payload.spheId].child[payload.projId].child[payload.listId].child[payload.task.prop.id] = payload.item;
           break;
         default:
           console.error("Store: Ошибка при создании элемента!");
@@ -136,7 +136,7 @@ export default new Vuex.Store({
           state.taskArr = payload.arr;
           break;
         default:
-          console.error("Store: Ошибка при установке массива!");
+          console.error("Store: Ошибка при установки массива!");
       }
 
     }
