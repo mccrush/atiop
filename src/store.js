@@ -13,6 +13,9 @@ export default new Vuex.Store({
     task: '',
     mainObject: {},
     spheArr: [],
+    projArr: [],
+    listArr: [],
+    taskArr: [],
     uid: '',
     uemail: ''
   },
@@ -21,6 +24,9 @@ export default new Vuex.Store({
       db.collection('user').doc(auth.currentUser.uid).get().then(querySnapshot => {
         state.mainObject = querySnapshot.data();
         console.log('Получены данные state.mainObject:', state.mainObject);
+        for (let key in state.mainObject) {
+          state.spheArr.push(state.mainObject[key]);
+        }
       }).catch(error => {
         console.log("Store.js: при получении данных с сервера произошла ошибка", error);
       });
@@ -44,15 +50,19 @@ export default new Vuex.Store({
       switch (payload.type) {
         case 's':
           state.mainObject[payload.spheId] = payload.item;
+          state.spheArr.push(payload.item);
           break;
         case 'p':
           state.mainObject[payload.spheId].child[payload.proj.prop.id] = payload.item;
+          state.projArr.push(payload.item);
           break;
         case 'l':
           state.mainObject[payload.spheId].child[payload.projId].child[payload.list.prop.id] = payload.item;
+          state.listArr.push(payload.item);
           break;
         case 't':
           state.mainObject[payload.spheId].child[payload.projId].child[payload.listId].child[payload.task.prop.id] = payload.item;
+          state.taskArr.push(payload.item);
           break;
         default:
           console.error("Store: Ошибка при создании элемента!");

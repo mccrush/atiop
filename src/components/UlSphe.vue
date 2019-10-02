@@ -31,14 +31,14 @@ export default {
     };
   },
   mounted() {
-    for (let key in this.$store.state.mainObject) {
-      this.spheArr.push(this.$store.state.mainObject[key]);
-    }
-    console.log("this.spheArr:", this.spheArr);
-    this.$store.commit("setItemArr", {
-      type: "s",
-      arr: this.spheArr
-    });
+    // for (let key in this.$store.state.mainObject) {
+    //   this.spheArr.push(this.$store.state.mainObject[key]);
+    // }
+    // console.log("this.spheArr:", this.spheArr);
+    // this.$store.commit("setItemArr", {
+    //   type: "s",
+    //   arr: this.spheArr
+    // });
   },
   methods: {
     createNewItem() {

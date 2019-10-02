@@ -54,11 +54,12 @@ export default {
         .signInWithEmailAndPassword(this.email, this.password)
         .then(user => {
           //console.log("afte log uid=", auth.currentUser.uid);
+
           this.$store.commit("setUid", {
             uid: auth.currentUser.uid,
             uemail: auth.currentUser.email
           });
-          // this.$store.state.userId = auth.currentUser.uid;
+
           this.$router.push("/app");
           $("#formLogin").modal("hide");
         })
