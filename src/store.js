@@ -62,7 +62,7 @@ export default new Vuex.Store({
         console.info("%c Document successfully updated!", 'color: #28a745');
       }).catch(function (error) {
         console.error("Store.js: во время обновления после создания элемента произошла ошибка", error);
-      }); // Сохраняет на сервере
+      });
     },
     renameElement(state, payload) {
       switch (payload.type) {
@@ -110,9 +110,8 @@ export default new Vuex.Store({
       db.collection('user').doc(auth.currentUser.uid).update({ [payload.spheid]: state.mainObject[payload.spheid] }).then(function () {
         console.info("%c Document successfully deleted!", 'color: #28a745');
       }).catch(function (error) {
-        // Возможно документ еще не существует
         console.error("Store.js: во время обновления после удаления элемента произошла ошибка", error);
-      }); // Удаляет с сервера
+      });
     },
     setUid(state, payload) {
       state.uid = payload.uid;
