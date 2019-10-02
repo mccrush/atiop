@@ -26,10 +26,20 @@ export default {
   data() {
     return {
       showForm: false,
-      nameNewItem: ""
+      nameNewItem: "",
+      spheArr: []
     };
   },
-  mounted() {},
+  mounted() {
+    for (let key in this.$store.state.mainObject) {
+      this.spheArr.push(this.$store.state.mainObject[key]);
+    }
+
+    this.$store.commit("setItemArr", {
+      t: "s",
+      arr: this.spheArr
+    });
+  },
   methods: {
     createNewItem() {
       this.showForm = true;

@@ -24,7 +24,7 @@ export default {
   },
   mounted() {},
   created() {
-    this.$store.commit("getMainArray");
+    this.$store.commit("getMainObject");
   }
 };
 </script>

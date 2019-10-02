@@ -17,7 +17,7 @@ export default new Vuex.Store({
     uemail: ''
   },
   mutations: {
-    getMainArray(state) {
+    getMainObject(state) {
       db.collection('user').doc(auth.currentUser.uid).get().then(querySnapshot => {
         state.mainObject = querySnapshot.data();
         console.log('Получены данные state.mainObject:', state.mainObject);
@@ -32,14 +32,14 @@ export default new Vuex.Store({
         console.error("Store.js: во время создания документа произошла ошибка", error);
       });
     },
-    addSphe(state, payload) {
-      state.spheArr.push(payload.sphe);
-      db.collection('user').doc(auth.currentUser.uid).update({
-        sphe: state.spheArr
-      }).then(function () {
-        console.info("%c Document successfully written!", 'color: #28a745');
-      });
-    },
+    // addSphe(state, payload) {
+    //   state.spheArr.push(payload.sphe);
+    //   db.collection('user').doc(auth.currentUser.uid).update({
+    //     sphe: state.spheArr
+    //   }).then(function () {
+    //     console.info("%c Document successfully written!", 'color: #28a745');
+    //   });
+    // },
     addItem(state, payload) {
       switch (payload.type) {
         case 's':
@@ -120,6 +120,25 @@ export default new Vuex.Store({
     clearUid(state) {
       state.uid = '';
       state.uemail = '';
+    },
+    setItemArr(state, payload) {
+      switch (payload.type) {
+        case 's':
+          state.spheArr = payload.arr;
+          break;
+        case 'p':
+          state.projArr = payload.arr;
+          break;
+        case 'l':
+          state.listArr = payload.arr;
+          break;
+        case 't':
+          state.taskArr = payload.arr;
+          break;
+        default:
+          console.error("Store: Ошибка при установке массива!");
+      }
+
     }
   },
   actions: {
