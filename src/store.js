@@ -22,9 +22,9 @@ export default new Vuex.Store({
       db.collection('user').doc(auth.currentUser.uid).get().then(querySnapshot => {
         state.mainObject = querySnapshot.data();
         console.log('Получены данные state.mainObject:', state.mainObject);
-        for (let key in state.mainObject) {
-          state.spheArr.push(state.mainObject[key]);
-        }
+        // for (let key in state.mainObject) {
+        //   state.spheArr.push(state.mainObject[key]);
+        // }
       }).catch(error => {
         console.log("Store.js: при получении данных с сервера произошла ошибка", error);
       });

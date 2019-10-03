@@ -4,7 +4,7 @@
       <li class="list-group-item">
         <button class="btn btn-sm btn-block btn-warning" type="button">Показать все задачи</button>
       </li>
-      <Sphe v-for="(value, index) in this.$store.state.spheArr" :key="'ulsp'+index" :sphe="value" />
+      <Sphe v-for="(value, index) in this.spheArr" :key="'ulsp'+index" :sphe="value" />
       <li class="list-group-item small">
         <div class="input-group" v-if="showForm">
           <input type="text" class="form-control form-control-sm" placeholder="Название сферы + Enter" @keypress="saveNewItem" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="nameNewItem" @blur="hideForm" autofocus />
@@ -27,13 +27,33 @@ export default {
     return {
       showForm: false,
       nameNewItem: "",
-      spheArr: []
+      spheArr: [],
+      tecObject: this.$store.state.mainObject
     };
+  },
+  watch: {
+    tecObject: (newVal, oldVal) => {
+      this.getArray();
+    }
   },
   mounted() {
     // Здесь надо получать массив Сфере через Вотч за Главным объектом. Именился главный объект, изменился массив сфер, перерисовалось представление.
+    //this.getArray();
+    this.$store.subscripe((mutation, state) => {
+      switch (mutation.type) {
+        case "getMainObject":
+          this.getArray();
+          break;
+      }
+    });
   },
   methods: {
+    getArray() {
+      for (let key in this.$store.state.mainObject) {
+        this.spheArr.push(this.$store.state.mainObject[key]);
+      }
+      console.log("Получен массив this.spheArr:", this.spheArr);
+    },
     createNewItem() {
       this.showForm = true;
     },
