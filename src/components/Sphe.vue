@@ -4,9 +4,7 @@
       <button type="button" class="btn btn-sm btn-dark" @click="deleteItem" title="Удалить объект">D</button>
       <button class="btn btn-sm btn-light btn-block text-left sphe-item" type="button" data-toggle="collapse" :data-target="'#collapseProj'+sphe.prop.id" aria-expanded="false" :aria-controls="'collapseProj'+sphe.prop.id">{{sphe.prop.title}}</button>
     </div>
-    <div class="collapse" :id="'collapseProj'+sphe.prop.id">
-      <!-- <UlProj :spheId="sphe.prop.id" projArr:="sphe.child"/> -->
-    </div>
+    <div class="collapse" :id="'collapseProj'+sphe.prop.id"><UlProj :spheId="sphe.prop.id" projArr:="sphe.child"/></div>
   </li>
 </template>
 

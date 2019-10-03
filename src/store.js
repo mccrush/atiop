@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { fb, db, auth } from "@/main.js";
+import { stat } from 'fs';
 
 
 Vue.use(Vuex)
@@ -50,16 +51,13 @@ export default new Vuex.Store({
           state.spheArr.push(payload.item);
           break;
         case 'p':
-          state.mainObject[payload.spheId].child[payload.proj.prop.id] = payload.item;
-          state.projArr.push(payload.item);
+          state.mainObject[payload.spheId].child[payload.item.prop.id] = payload.item;
           break;
         case 'l':
-          state.mainObject[payload.spheId].child[payload.projId].child[payload.list.prop.id] = payload.item;
-          state.listArr.push(payload.item);
+          state.mainObject[payload.spheId].child[payload.projId].child[payload.item.prop.id] = payload.item;
           break;
         case 't':
-          state.mainObject[payload.spheId].child[payload.projId].child[payload.listId].child[payload.task.prop.id] = payload.item;
-          state.taskArr.push(payload.item);
+          state.mainObject[payload.spheId].child[payload.projId].child[payload.listId].child[payload.item.prop.id] = payload.item;
           break;
         default:
           console.error("Store: Ошибка при создании элемента!");
@@ -146,6 +144,10 @@ export default new Vuex.Store({
           console.error("Store: Ошибка при установки массива!");
       }
 
+    },
+    setStateProjId(state, payload) {
+      state.sphe = payload.spheId;
+      state.proj = payload.projId;
     }
   },
   actions: {

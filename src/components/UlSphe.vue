@@ -31,14 +31,7 @@ export default {
     };
   },
   mounted() {
-    // for (let key in this.$store.state.mainObject) {
-    //   this.spheArr.push(this.$store.state.mainObject[key]);
-    // }
-    // console.log("this.spheArr:", this.spheArr);
-    // this.$store.commit("setItemArr", {
-    //   type: "s",
-    //   arr: this.spheArr
-    // });
+    // Здесь надо получать массив Сфере через Вотч за Главным объектом. Именился главный объект, изменился массив сфер, перерисовалось представление.
   },
   methods: {
     createNewItem() {

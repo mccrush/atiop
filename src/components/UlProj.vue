@@ -41,14 +41,14 @@ export default {
           spheId: this.spheId,
           item: {
             prop: {
-              id:"" + Date.now(),
+              id: "" + Date.now(),
               title: this.nameNewItem,
               pos: 1
             },
             child: {}
           }
         };
-        this.$store.commit("addElement", payload);
+        this.$store.commit("addItem", payload);
         this.nameNewItem = "";
         this.showForm = false;
       }

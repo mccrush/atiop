@@ -1,9 +1,9 @@
 <template>
-  <li class="list-group-item pr-4" :id="projId">
+  <li class="list-group-item pr-4" :id="proj.prop.id">
     <small class="text-muted">&nbsp;&nbsp;|_&nbsp;&nbsp;</small>
     <div class="btn-group btn-block" role="group" aria-label="Basic example">
       <button type="button" class="btn btn-sm btn-dark" @click="deleteItem" title="Удалить проект">D</button>
-      <button class="btn btn-sm btn-light btn-block text-left proj-item" type="button" @click="setStateProjId">{{title}}</button>
+      <button class="btn btn-sm btn-light btn-block text-left proj-item" type="button" @click="setStateProjId">{{proj.prop.title}}</button>
     </div>
   </li>
 </template>
@@ -12,6 +12,7 @@
 export default {
   name: "Proj",
   props: {
+    proj: Object,
     spheId: String,
     projId: String,
     title: String
@@ -23,22 +24,19 @@ export default {
   computed: {},
   methods: {
     deleteItem(e) {
-      e.target.parentNode.parentNode.classList.add("d-none"); // Вынужденная мера, т.к. DOM не сразу обновляется сам
+      //e.target.parentNode.parentNode.classList.add("d-none"); // Вынужденная мера, т.к. DOM не сразу обновляется сам
       this.$store.commit("deleteElement", {
         type: "p",
         spheid: this.spheId,
         projid: this.projId
       });
     },
+
     setStateProjId() {
-      this.$store.state.sphe = this.spheId;
-      this.$store.state.proj = this.projId;
-      console.log(
-        "Proj: projId =",
-        this.$store.state.proj,
-        "spheId=",
-        this.$store.state.sphe
-      );
+this.$store.commit("setStateProjId", {
+        spheId: this.spheId,
+        projid: this.projId
+      });
     }
   }
 };
