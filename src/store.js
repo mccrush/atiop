@@ -27,6 +27,9 @@ export default new Vuex.Store({
         for (let key in state.mainObject) {
           state.spheArr.push(state.mainObject[key]);
         }
+        forEach.state.spheArr((item, index, arr) => {
+          state.projArr.push(item.child);
+        });
       }).catch(error => {
         console.log("Store.js: при получении данных с сервера произошла ошибка", error);
       });
