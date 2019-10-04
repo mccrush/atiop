@@ -33,13 +33,14 @@ export default {
   },
   watch: {
     tecObject: (newVal, oldVal) => {
-      this.getArray();
+      console.log("Сработал метод Вотч:");
+      //this.getArray();
     }
   },
   mounted() {
     // Здесь надо получать массив Сфере через Вотч за Главным объектом. Именился главный объект, изменился массив сфер, перерисовалось представление.
     //this.getArray();
-    this.$store.subscripe((mutation, state) => {
+    this.$store.subscribe((mutation, state) => {
       switch (mutation.type) {
         case "getMainObject":
           this.getArray();
