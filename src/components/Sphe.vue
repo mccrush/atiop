@@ -20,9 +20,6 @@ export default {
   },
   props: {
     sphe: Object
-    // spheId: String,
-    // title: String,
-    // child: Object
   },
   methods: {
     deleteItem(e) {

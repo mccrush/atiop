@@ -32,7 +32,7 @@ export default {
     setStateProjId() {
       this.$store.commit("setStateProjId", {
         spheId: this.spheId,
-        projid: this.proj.prop.id
+        projId: this.proj.prop.id
       });
     }
   }
