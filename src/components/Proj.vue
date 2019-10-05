@@ -13,9 +13,7 @@ export default {
   name: "Proj",
   props: {
     proj: Object,
-    spheId: String,
-    projId: String,
-    title: String
+    spheId: String
   },
   data() {
     return {};
@@ -27,14 +25,14 @@ export default {
       this.$store.commit("deleteElement", {
         type: "p",
         spheid: this.spheId,
-        projid: this.projId
+        projid: this.proj.prop.id
       });
     },
 
     setStateProjId() {
       this.$store.commit("setStateProjId", {
         spheId: this.spheId,
-        projid: this.projId
+        projid: this.proj.prop.id
       });
     }
   }
