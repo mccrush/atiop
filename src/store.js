@@ -48,7 +48,7 @@ export default new Vuex.Store({
       switch (payload.type) {
         case 's':
           state.mainObject[payload.spheId] = payload.item;
-          state.spheArr.push(payload.item);
+          //state.spheArr.push(payload.item);
           break;
         case 'p':
           state.mainObject[payload.spheId].child[payload.item.prop.id] = payload.item;
