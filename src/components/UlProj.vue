@@ -1,6 +1,5 @@
 <template>
   <ul class="list-group list-group-flush">
-    <!-- <Proj v-for="(value, id, index) in spheObj" :key="'ulpr'+id+index" :title="value.prop.title" :projId="id" :spheId="spheId" /> -->
     <Proj v-for="(value, id, index) in projArr" :key="'ulpr'+index" :spheId="spheId" :proj="value" />
     <li class="list-group-item small new-proj">
       <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название проекта + Enter" id="formNewSphe" @keypress="saveNewItem" v-model="nameNewItem" @blur="hideForm" autofocus />

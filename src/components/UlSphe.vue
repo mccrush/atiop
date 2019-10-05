@@ -26,9 +26,7 @@ export default {
   data() {
     return {
       showForm: false,
-      nameNewItem: "",
-      //spheArr: [],
-      //tecObject: this.$store.state.mainObject
+      nameNewItem: ""
     };
   },
   // watch: {
@@ -39,15 +37,6 @@ export default {
   // },
   mounted() {
     // Здесь надо получать массив Сфере через Вотч за Главным объектом. Именился главный объект, изменился массив сфер, перерисовалось представление.
-    //this.getArray();
-    
-    // this.$store.subscribe((mutation, state) => {
-    //   switch (mutation.type) {
-    //     case "getMainObject":
-    //       this.getArray();
-    //       break;
-    //   }
-    // });
   },
   methods: {
     // getArray() {
