@@ -69,19 +69,19 @@ export default new Vuex.Store({
     renameElement(state, payload) {
       switch (payload.type) {
         case 'p':
-          state.mainObject[payload.spheid].child[payload.projid].prop.title = payload.title;
+          state.mainObject[payload.spheId].child[payload.projId].prop.title = payload.title;
           break;
         case 'l':
-          state.mainObject[payload.spheid].child[payload.projid].child[payload.listid].prop.title = payload.title;
+          state.mainObject[payload.spheId].child[payload.projId].child[payload.listId].prop.title = payload.title;
           break;
         case 't':
-          state.mainObject[payload.spheid].child[payload.projid].child[payload.listid].child[payload.taskid].prop.title = payload.title;
+          state.mainObject[payload.spheId].child[payload.projId].child[payload.listId].child[payload.taskId].prop.title = payload.title;
           break;
         default:
           console.error("Store: Ошибка при переименовании элемента!");
       }
 
-      db.collection('user').doc(auth.currentUser.uid).update({ [payload.spheid]: state.mainObject[payload.spheid] }).then(() => {
+      db.collection('user').doc(auth.currentUser.uid).update({ [payload.spheId]: state.mainObject[payload.spheId] }).then(() => {
         console.info("%c Document successfully renamed!", 'color: #28a745');
       }).catch((error) => {
         // Возможно документ еще не существует
@@ -97,19 +97,19 @@ export default new Vuex.Store({
     deleteElement(state, payload) {
       switch (payload.type) {
         case 'p':
-          delete state.mainObject[payload.spheid].child[payload.projid];
+          delete state.mainObject[payload.spheId].child[payload.projId];
           break;
         case 'l':
-          delete state.mainObject[payload.spheid].child[payload.projid].child[payload.listid];
+          delete state.mainObject[payload.spheId].child[payload.projId].child[payload.listId];
           break;
         case 't':
-          delete state.mainObject[payload.spheid].child[payload.projid].child[payload.listid].child[payload.taskid];
+          delete state.mainObject[payload.spheId].child[payload.projId].child[payload.listId].child[payload.taskId];
           break;
         default:
           console.error("Store: Ошибка при удалении элемента!");
       }
 
-      db.collection('user').doc(auth.currentUser.uid).update({ [payload.spheid]: state.mainObject[payload.spheid] }).then(function () {
+      db.collection('user').doc(auth.currentUser.uid).update({ [payload.spheId]: state.mainObject[payload.spheId] }).then(function () {
         console.info("%c Document successfully deleted!", 'color: #28a745');
       }).catch(function (error) {
         console.error("Store.js: во время обновления после удаления элемента произошла ошибка", error);

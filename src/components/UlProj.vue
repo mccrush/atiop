@@ -17,13 +17,14 @@ export default {
     Proj
   },
   props: {
-    projObj: Object,
+    ///projObj: Object,
     spheId: String
   },
   data() {
     return {
       showForm: false,
-      nameNewItem: ""
+      nameNewItem: "",
+      projObj: this.$store.state.mainObject[this.spheId].child
     };
   },
   mounted() {},
