@@ -1,7 +1,7 @@
 <template>
   <div class="col-8 border-right">
     <div class="row" v-if="this.$store.state.proj">
-      <List v-for="(value, id, index) in projObj" :key="'li'+id+index" :title="value.prop.title" :listId="id" :listObj="value.child" />
+      <List v-for="(value, id, index) in listObj" :key="'li'+id+index" :list="value" />
       <div class="col-4 border-right">
         <ul class="list-group list-group-flush">
           <li class="list-group-item text-center small new-sphe pl-0 pr-0">
@@ -27,6 +27,7 @@ export default {
     return {
       spheObj: {},
       projObj: {},
+      listObj: {},
       showForm: false,
       nameNewItem: ""
     };
@@ -37,7 +38,8 @@ export default {
       state => state.proj,
       (newV, oldV) => {
         this.spheObj = this.$store.state.mainObject[this.$store.state.sphe];
-        this.projObj = this.spheObj.child[newV].child;
+        this.projObj = this.spheObj.child[newV];
+        this.listObj = this.projObj.child;
       }
     );
   },
@@ -49,17 +51,21 @@ export default {
       if (e.keyCode == 13) {
         let payload = {
           type: "l",
-          spheid: this.$store.state.sphe,
-          projid: this.$store.state.proj,
-          child: {
-            prop: { title: this.nameNewItem },
+          spheId: this.$store.state.sphe,
+          projId: this.$store.state.proj,
+          item: {
+            prop: {
+              id: "" + Date.now(),
+              title: this.nameNewItem,
+              pos: 1
+            },
             child: {}
           }
         };
-        this.$store.commit("addElement", payload);
+        this.$store.commit("addItem", payload);
         this.nameNewItem = "";
         this.showForm = false;
-        this.projObj = this.spheObj.child[this.$store.state.proj].child;
+        this.listObj = this.spheObj.child[this.$store.state.proj].child;
       }
     },
     hideForm() {

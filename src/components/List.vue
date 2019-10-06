@@ -5,7 +5,7 @@
       <button class="btn btn-sm btn-light text-center delbutton" title="Удалить список" @click="deleteItem">D</button>
     </h6>
     <input class="form-control form-control-sm formitem" v-if="showForm" v-model="itemTitle" @blur="blurForm" @focus="hideBorder" type="text" @keypress="pressEnter" />
-    <UlTask :listId="listId" :listObj="listObj" />
+    <UlTask :listId="list.prop.id" :taskObj="listObj.child" />
   </div>
 </template>
 
@@ -17,25 +17,23 @@ export default {
     UlTask
   },
   props: {
-    listId: String,
-    title: String,
-    listObj: Object
+    list: Object
   },
   data() {
     return {
       showForm: false,
-      itemTitle: this.title
+      itemTitle: this.list.prop.title
     };
   },
   mounted() {},
   methods: {
     deleteItem(e) {
-      e.target.parentNode.parentNode.classList.add("d-none"); // Вынужденная мера, т.к. DOM не сразу обновляется сам
+      //e.target.parentNode.parentNode.classList.add("d-none"); // Вынужденная мера, т.к. DOM не сразу обновляется сам
       this.$store.commit("deleteElement", {
         type: "l",
-        spheid: this.$store.state.sphe,
-        projid: this.$store.state.proj,
-        listid: this.listId
+        spheId: this.$store.state.sphe,
+        projId: this.$store.state.proj,
+        listId: this.list.prop.id
       });
     },
     editItem(e) {
@@ -47,9 +45,9 @@ export default {
     saveChangeName() {
       this.$store.commit("renameElement", {
         type: "l",
-        spheid: this.$store.state.sphe,
-        projid: this.$store.state.proj,
-        listid: this.listId,
+        spheId: this.$store.state.sphe,
+        projId: this.$store.state.proj,
+        listId: this.list.prop.id,
         title: this.itemTitle
       });
     },
