@@ -4,7 +4,7 @@
       <li class="list-group-item">
         <button class="btn btn-sm btn-block btn-warning" type="button">Показать все задачи</button>
       </li>
-      <Sphe v-for="(value, id, index) in this.$store.state.mainObject" :key="'ulsp'+index" :sphe="value" />
+      <Sphe v-for="(value, id, index) in mainObject" :key="'ulsp'+index" :sphe="value" />
       <li class="list-group-item small">
         <div class="input-group" v-if="showForm">
           <input type="text" class="form-control form-control-sm" placeholder="Название сферы + Enter" @keypress="saveNewItem" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="nameNewItem" @blur="hideForm" autofocus />
@@ -26,18 +26,11 @@ export default {
   data() {
     return {
       showForm: false,
-      nameNewItem: ""
+      nameNewItem: "",
+      mainObject: this.$store.state.mainObject
     };
   },
-  // watch: {
-  //   tecObject: (newVal, oldVal) => {
-  //     console.log("Сработал метод Вотч:");
-  //     //this.getArray();
-  //   }
-  // },
-  mounted() {
-    // Здесь надо получать массив Сфере через Вотч за Главным объектом. Именился главный объект, изменился массив сфер, перерисовалось представление.
-  },
+  mounted() {},
   methods: {
     // getArray() {
     //   for (let key in this.$store.state.mainObject) {
