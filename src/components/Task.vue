@@ -1,5 +1,5 @@
 <template>
-  <li class="list-group-item shadow-sm rounded p-0 mb-2" :id="taskId">
+  <li class="list-group-item shadow-sm rounded p-0 mb-2" :id="task.prop.id">
     <div v-if="!showForm" class="pt-2 pb-2 pl-2 task-item" @click.prevent="editItem">
       {{itemTitle}}
       <button class="btn btn-sm btn-light text-center delbutton" title="Удалить задачу" @click.prevent="deleteItem">D</button>
@@ -13,26 +13,25 @@
 export default {
   name: "Task",
   props: {
-    listId: String, // Не используется
-    taskId: String,
-    tasktitle: String
+    listId: String,
+    task: Object
   },
   data() {
     return {
       showForm: false,
-      itemTitle: this.tasktitle
+      itemTitle: this.task.prop.title
     };
   },
   mounted() {},
   methods: {
     deleteItem(e) {
-      e.target.parentNode.parentNode.classList.add("d-none"); // Вынужденная мера, т.к. DOM не сразу обновляется сам
+      //e.target.parentNode.parentNode.classList.add("d-none"); // Вынужденная мера, т.к. DOM не сразу обновляется сам
       this.$store.commit("deleteElement", {
         type: "t",
-        spheid: this.$store.state.sphe,
-        projid: this.$store.state.proj,
-        listid: this.listId,
-        taskid: this.taskId
+        spheId: this.$store.state.sphe,
+        projId: this.$store.state.proj,
+        listId: this.listId,
+        taskId: this.task.prop.id
       });
     },
     editItem(e) {
@@ -44,10 +43,10 @@ export default {
     saveChangeName() {
       this.$store.commit("renameElement", {
         type: "t",
-        spheid: this.$store.state.sphe,
-        projid: this.$store.state.proj,
-        listid: this.listId,
-        taskid: this.taskId,
+        spheId: this.$store.state.sphe,
+        projId: this.$store.state.proj,
+        listId: this.listId,
+        taskId: this.task.prop.id,
         title: this.itemTitle
       });
     },

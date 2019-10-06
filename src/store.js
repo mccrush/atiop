@@ -10,10 +10,7 @@ export default new Vuex.Store({
   state: {
     sphe: '',
     proj: '',
-    list: '',
-    task: '',
     mainObject: {},
-    spheArr: [],
     uid: '',
     uemail: ''
   },
@@ -33,19 +30,10 @@ export default new Vuex.Store({
         console.error("Store.js: во время создания документа произошла ошибка", error);
       });
     },
-    // addSphe(state, payload) {
-    //   state.spheArr.push(payload.sphe);
-    //   db.collection('user').doc(auth.currentUser.uid).update({
-    //     sphe: state.spheArr
-    //   }).then(function () {
-    //     console.info("%c Document successfully written!", 'color: #28a745');
-    //   });
-    // },
     addItem(state, payload) {
       switch (payload.type) {
         case 's':
           state.mainObject[payload.spheId] = payload.item;
-          //state.spheArr.push(payload.item);
           break;
         case 'p':
           state.mainObject[payload.spheId].child[payload.item.prop.id] = payload.item;
@@ -61,13 +49,16 @@ export default new Vuex.Store({
       }
 
       db.collection('user').doc(auth.currentUser.uid).update({ [payload.spheId]: state.mainObject[payload.spheId] }).then(function () {
-        console.info("%c Document successfully updated!", 'color: #28a745');
+        console.info("%c Document successfully added!", 'color: #28a745');
       }).catch(function (error) {
-        console.error("Store.js: во время обновления после создания элемента произошла ошибка", error);
+        console.error("Store.js: во время создания элемента произошла ошибка", error);
       });
     },
     renameElement(state, payload) {
       switch (payload.type) {
+        case 's':
+          state.mainObject[payload.spheId].prop.title = payload.title;
+          break;
         case 'p':
           state.mainObject[payload.spheId].child[payload.projId].prop.title = payload.title;
           break;
@@ -122,25 +113,6 @@ export default new Vuex.Store({
     clearUid(state) {
       state.uid = '';
       state.uemail = '';
-    },
-    setItemArr(state, payload) {
-      switch (payload.type) {
-        case 's':
-          state.spheArr = payload.arr;
-          break;
-        case 'p':
-          state.projArr = payload.arr;
-          break;
-        case 'l':
-          state.listArr = payload.arr;
-          break;
-        case 't':
-          state.taskArr = payload.arr;
-          break;
-        default:
-          console.error("Store: Ошибка при установки массива!");
-      }
-
     },
     setStateProjId(state, payload) {
       state.sphe = payload.spheId;

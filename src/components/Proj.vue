@@ -24,8 +24,8 @@ export default {
     deleteItem(e) {
       this.$store.commit("deleteElement", {
         type: "p",
-        spheid: this.spheId,
-        projid: this.proj.prop.id
+        spheId: this.spheId,
+        projId: this.proj.prop.id
       });
     },
 
