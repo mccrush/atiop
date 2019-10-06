@@ -5,7 +5,7 @@
       <button class="btn btn-sm btn-light text-center delbutton" title="Удалить список" @click="deleteItem">D</button>
     </h6>
     <input class="form-control form-control-sm formitem" v-if="showForm" v-model="itemTitle" @blur="blurForm" @focus="hideBorder" type="text" @keypress="pressEnter" />
-    <UlTask :listId="list.prop.id" :taskObj="listObj.child" />
+    <UlTask :listId="list.prop.id" :taskObj="list.child" />
   </div>
 </template>
 

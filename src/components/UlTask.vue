@@ -1,6 +1,6 @@
 <template>
   <ul class="list-group list-group-flush">
-    <Task v-for="(value, taskid, index) in listObj" :key="'ta'+taskid+index" :taskId="taskid" :task="value.prop" :listId="listId" />
+    <Task v-for="(value, id, index) in taskObj" :key="'ta'+id+index" :task="value" :listId="listId" />
     <li class="list-group-item text-center small border-0 pl-0 pr-0">
       <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Заголовок задачи + Enter" id="formNewSphe" @keypress="saveNewItem" v-model="nameNewItem" @blur="hideForm" autofocus />
       <a href="#" class="btn btn-sm btn-light btn-block text-left text-muted" v-if="!showForm" @click="createNewItem">Добавить задачу</a>
@@ -18,7 +18,7 @@ export default {
   },
   props: {
     listId: String,
-    listObj: Object
+    taskObj: Object
   },
   data() {
     return {
@@ -34,15 +34,19 @@ export default {
       if (e.keyCode == 13) {
         let payload = {
           type: "t",
-          spheid: this.$store.state.sphe,
-          projid: this.$store.state.proj,
-          listid: this.listId,
-          child: {
-            prop: { title: this.nameNewItem },
+          spheId: this.$store.state.sphe,
+          projId: this.$store.state.proj,
+          listId: this.listId,
+          item: {
+            prop: {
+              id: "" + Date.now(),
+              title: this.nameNewItem,
+              pos: 1
+            },
             child: {}
           }
         };
-        this.$store.commit("addElement", payload);
+        this.$store.commit("addItem", payload);
         this.nameNewItem = "";
         this.showForm = false;
       }
@@ -56,12 +60,14 @@ export default {
   computed: {
     sortArray: () => {
       let sara = [];
-      for (let key in this.listObj) {
-        sara[key] = this.listObj[key];
-        sara.sort((a, b) => {
-          return a.pos - b.pos;
-        });
+      for (let key in this.taskObj) {
+        sara[key] = this.taskObj[key];
       }
+
+      sara.sort((a, b) => {
+        return a.pos - b.pos;
+      });
+
       return sara;
     }
   }
