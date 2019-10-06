@@ -33,6 +33,7 @@ export default {
         listId: this.listId,
         taskId: this.task.prop.id
       });
+      //this.$store.commit("getMainObject");
     },
     editItem(e) {
       this.showForm = true;

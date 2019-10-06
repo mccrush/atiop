@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { fb, db, auth } from "@/main.js";
-import { stat } from 'fs';
-
 
 Vue.use(Vuex)
 
@@ -91,10 +89,10 @@ export default new Vuex.Store({
           delete state.mainObject[payload.spheId].child[payload.projId];
           break;
         case 'l':
-          delete state.mainObject[payload.spheId].child[payload.projId].child[payload.listId];
+          delete state.mainObject[state.sphe].child[state.proj].child[payload.listId];
           break;
         case 't':
-          delete state.mainObject[payload.spheId].child[payload.projId].child[payload.listId].child[payload.taskId];
+          delete state.mainObject[state.sphe].child[state.proj].child[payload.listId].child[payload.taskId];
           break;
         default:
           console.error("Store: Ошибка при удалении элемента!");
