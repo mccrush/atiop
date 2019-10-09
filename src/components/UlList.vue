@@ -1,7 +1,7 @@
 <template>
   <div class="col-8 border-right">
     <div class="row" v-if="this.$store.state.proj">
-      <List v-for="(value, id, index) in listObj" :key="'li'+id+index" :list="value" />
+      <List v-for="(value, id, index) in listObj" :key="'ulli'+id" :list="value" />
       <div class="col-4 border-right">
         <ul class="list-group list-group-flush">
           <li class="list-group-item text-center small new-sphe pl-0 pr-0">
