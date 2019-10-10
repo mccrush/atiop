@@ -4,12 +4,12 @@
       <li class="list-group-item">
         <button class="btn btn-sm btn-block btn-warning" type="button">Показать все задачи</button>
       </li>
-      <Sphe v-for="(value, id) in this.$store.state.mainObject" :key="'ulsp'+id" :sphe="value" />
+      <Sphe v-for="(value, id) in mainObject" :key="'ulsp'+id" :sphe="value" />
       <li class="list-group-item small">
         <div class="input-group" v-if="showForm">
           <input type="text" class="form-control form-control-sm" placeholder="Название сферы + Enter" @keypress="saveNewItem" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="nameNewItem" @blur="hideForm" autofocus />
         </div>
-        <a href="#" class="btn btn-sm btn-light btn-block text-left text-muted" v-if="!showForm" @click="createNewItem">Создать объект</a>
+        <button href="#" class="btn btn-sm btn-light btn-block text-left text-muted" v-if="!showForm" @click="createNewItem">Создать объект</button>
       </li>
     </ul>
   </div>
@@ -26,11 +26,15 @@ export default {
   data() {
     return {
       showForm: false,
-      nameNewItem: "",
-      mainObject: this.$store.state.mainObject
+      nameNewItem: ""
+      //mainObject: this.$store.state.mainObject
     };
   },
-  mounted() {},
+  computed: {
+    mainObject() {
+      return this.$store.state.mainObject;
+    }
+  },
   methods: {
     // getArray() {
     //   for (let key in this.$store.state.mainObject) {
