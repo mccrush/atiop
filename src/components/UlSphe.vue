@@ -36,12 +36,6 @@ export default {
     }
   },
   methods: {
-    // getArray() {
-    //   for (let key in this.$store.state.mainObject) {
-    //     this.spheArr.push(this.$store.state.mainObject[key]);
-    //   }
-    //   console.log("Получен массив this.spheArr:", this.spheArr);
-    // },
     createNewItem() {
       this.showForm = true;
     },
