@@ -27,7 +27,6 @@ export default {
     return {
       showForm: false,
       nameNewItem: ""
-      //mainObject: this.$store.state.mainObject
     };
   },
   computed: {
