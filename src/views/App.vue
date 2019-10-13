@@ -19,10 +19,6 @@ export default {
     UlSphe,
     UlList
   },
-  data() {
-    return {};
-  },
-  mounted() {},
   created() {
     this.$store.commit("getMainObject");
   }
