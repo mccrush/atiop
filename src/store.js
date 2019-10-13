@@ -13,14 +13,18 @@ export default new Vuex.Store({
     uemail: ''
   },
   mutations: {
-    getMainObject(state) {
-      db.collection('user').doc(auth.currentUser.uid).get().then(querySnapshot => {
-        state.mainObject = querySnapshot.data();
-        console.log('Получены данные state.mainObject:', state.mainObject);
-      }).catch(error => {
-        console.log("Store.js: при получении данных с сервера произошла ошибка", error);
-      });
+    'SET_STORE'(state, products) {
+      state.mainObject = products;
     },
+    // getMainObject(state) {
+    //   db.collection('user').doc(auth.currentUser.uid).get().then(querySnapshot => {
+    //     console.log('Получены данные querySnapshot.data():', querySnapshot.data());
+    //     state.mainObject = querySnapshot.data();
+    //     commit('SET_STORE', querySnapshot.data());
+    //   }).catch(error => {
+    //     console.log("Store.js: при получении данных с сервера произошла ошибка", error);
+    //   });
+    // },
     addDoc(state) {
       db.collection('user').doc(auth.currentUser.uid).set({}).then(() => {
         console.info("%c Document successfully created!", 'color: #28a745');
@@ -120,6 +124,17 @@ export default new Vuex.Store({
     }
   },
   actions: {
-
+    initStore(state) {
+      db.collection('user').doc(auth.currentUser.uid).get().then(querySnapshot => {
+        console.log('Получены данные querySnapshot.data():', querySnapshot.data());
+        state.mainObject = querySnapshot.data();
+        commit('SET_STORE', querySnapshot.data());
+      }).catch(error => {
+        console.log("Store.js: при получении данных с сервера произошла ошибка", error);
+      });
+    }
+  },
+  getters: {
+    products: state => state.mainObject
   }
 })

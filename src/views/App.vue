@@ -20,7 +20,8 @@ export default {
     UlList
   },
   created() {
-    this.$store.commit("getMainObject");
+    //this.$store.commit("getMainObject");
+    this.$store.dispatch("initStore");
   }
 };
 </script>

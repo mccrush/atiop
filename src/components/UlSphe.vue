@@ -31,7 +31,8 @@ export default {
   },
   computed: {
     mainObject() {
-      return this.$store.state.mainObject;
+      //return this.$store.state.mainObject;
+      return this.$store.getters.products;
     }
   },
   methods: {
