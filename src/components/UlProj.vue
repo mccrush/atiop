@@ -17,7 +17,6 @@ export default {
     Proj
   },
   props: {
-    ///projObj: Object,
     spheId: String
   },
   data() {
