@@ -36,3 +36,4 @@ firebase.auth().onAuthStateChanged(() => {
     }).$mount('#app');
   }
 });
+// Комментарий
