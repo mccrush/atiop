@@ -102,8 +102,6 @@ export default new Vuex.Store({
           console.error("Store: Ошибка при удалении элемента!");
       }
 
-      //Object.assign(state.mainObject, {});
-
       db.collection('user').doc(auth.currentUser.uid).update({ [payload.spheId]: state.mainObject[payload.spheId] }).then(function () {
         console.info("%c Document successfully deleted!", 'color: #28a745');
       }).catch(function (error) {
