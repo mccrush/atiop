@@ -79,7 +79,7 @@ export default new Vuex.Store({
       }).catch((error) => {
         // Возможно документ еще не существует
         console.error("Store.js: во время обновления после переименования элемента произошла ошибка", error);
-      }); // Обновляет на сервере
+      });
     },
     deleteSphe(state, payload) {
       delete state.mainObject[payload.spheId];
