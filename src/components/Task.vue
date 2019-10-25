@@ -1,5 +1,5 @@
 <template>
-  <li class="list-group-item shadow-sm rounded p-0 mb-2" :id="task.prop.id">
+  <li class="list-group-item shadow-sm rounded p-0 mb-2" :id="task.id">
     <div v-if="!showForm" class="pt-2 pb-2 pl-2 task-item" @click.prevent="editItem">
       {{itemTitle}}
       <button class="btn btn-sm btn-light text-center delbutton" title="Удалить задачу" @click.prevent="deleteItem">D</button>
@@ -19,7 +19,7 @@ export default {
   data() {
     return {
       showForm: false,
-      itemTitle: this.task.prop.title
+      itemTitle: this.task.title
     };
   },
   mounted() {},
@@ -31,7 +31,7 @@ export default {
         spheId: this.$store.state.sphe,
         projId: this.$store.state.proj,
         listId: this.listId,
-        taskId: this.task.prop.id
+        taskId: this.task.id
       });
       //this.$store.commit("getMainObject");
     },
@@ -47,7 +47,7 @@ export default {
         spheId: this.$store.state.sphe,
         projId: this.$store.state.proj,
         listId: this.listId,
-        taskId: this.task.prop.id,
+        taskId: this.task.id,
         title: this.itemTitle
       });
     },

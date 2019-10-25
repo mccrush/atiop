@@ -1,6 +1,6 @@
 <template>
   <ul class="list-group list-group-flush">
-    <Task v-for="(value, id) in taskObj" :key="'ulta'+id" :task="value" :listId="listId" />
+    <Task v-for="(value, index) in taskArr" :key="'ulta'+index" :task="value" :listId="listId" />
     <li class="list-group-item text-center small border-0 pl-0 pr-0">
       <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Заголовок задачи + Enter" id="formNewSphe" @keypress="saveNewItem" v-model="nameNewItem" @blur="hideForm" autofocus />
       <a href="#" class="btn btn-sm btn-light btn-block text-left text-muted" v-if="!showForm" @click="createNewItem">Добавить задачу</a>
@@ -17,14 +17,21 @@ export default {
     Task
   },
   props: {
-    listId: String,
-    taskObj: Object
+    listId: String
+    //taskObj: Object
   },
   data() {
     return {
       showForm: false,
       nameNewItem: ""
     };
+  },
+  computed: {
+    taskArr() {
+      return this.$store.getters.taskArr.filter(
+        task => task.list == this.listId
+      );
+    }
   },
   methods: {
     createNewItem() {

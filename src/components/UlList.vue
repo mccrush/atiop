@@ -1,7 +1,7 @@
 <template>
   <div class="col-8 border-right">
     <div class="row" v-if="this.$store.state.proj">
-      <List v-for="(value, id) in listObj" :key="'ulli'+id" :list="value" />
+      <List v-for="(value, index) in listArr" :key="'ulli'+index" :list="value" />
       <div class="col-4 border-right">
         <ul class="list-group list-group-flush">
           <li class="list-group-item text-center small new-sphe pl-0 pr-0">
@@ -29,7 +29,8 @@ export default {
       projObj: {},
       listObj: {},
       showForm: false,
-      nameNewItem: ""
+      nameNewItem: "",
+      listArr: []
     };
   },
   created() {},
@@ -37,13 +38,19 @@ export default {
     this.$store.watch(
       state => state.proj,
       (newV, oldV) => {
-        this.spheObj = this.$store.state.mainObject[this.$store.state.sphe];
-        this.projObj = this.spheObj.child[newV];
-        this.listObj = this.projObj.child;
+        // this.spheObj = this.$store.state.mainObject[this.$store.state.sphe];
+        // this.projObj = this.spheObj.child[newV];
+        // this.listObj = this.projObj.child;
+        this.listArr = this.getListArr;
       }
     );
   },
   methods: {
+    getListArr() {
+      return this.$store.getters.listArr.filter(
+        list => list.proj == this.$store.state.proj
+      );
+    },
     createNewItem() {
       this.showForm = true;
     },

@@ -18,22 +18,12 @@ export default new Vuex.Store({
   },
   mutations: {
     'SET_STORE'(state, products) {
-      // Перебрать объект, и в зависимости от имени ключа, присвоить соответсвующему значению store
-      //state.mainObject = products;
+      ;
       state.spheArr = products.sphe;
       state.projArr = products.proj;
       state.listArr = products.list;
       state.taskArr = products.task;
     },
-    // getMainObject(state) {
-    //   db.collection('user').doc(auth.currentUser.uid).get().then(querySnapshot => {
-    //     console.log('Получены данные querySnapshot.data():', querySnapshot.data());
-    //     state.mainObject = querySnapshot.data();
-    //     commit('SET_STORE', querySnapshot.data());
-    //   }).catch(error => {
-    //     console.log("Store.js: при получении данных с сервера произошла ошибка", error);
-    //   });
-    // },
     addDoc(state) {
       db.collection('user').doc(auth.currentUser.uid).set({}).then(() => {
         console.info("%c Document successfully created!", 'color: #28a745');
@@ -142,7 +132,6 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    products: state => state.mainObject,
     spheArr: state => state.spheArr,
     projArr: state => state.projArr,
     listArr: state => state.listArr,

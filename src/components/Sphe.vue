@@ -5,7 +5,7 @@
       <button class="btn btn-sm btn-light btn-block text-left sphe-item" type="button" data-toggle="collapse" :data-target="'#collapseProj'+sphe.id" aria-expanded="false" :aria-controls="'collapseProj'+sphe.id">{{sphe.title}}</button>
     </div>
     <div class="collapse" :id="'collapseProj'+sphe.id">
-      <UlProj :spheId="sphe.id" :projObj="sphe.child" />
+      <UlProj :spheId="sphe.id" />
     </div>
   </li>
 </template>

@@ -5,7 +5,7 @@
       <button class="btn btn-sm btn-light text-center delbutton" title="Удалить список" @click="deleteItem">D</button>
     </h6>
     <input class="form-control form-control-sm formitem" v-if="showForm" v-model="itemTitle" @blur="blurForm" @focus="hideBorder" type="text" @keypress="pressEnter" />
-    <UlTask :listId="list.prop.id" :taskObj="list.child" />
+    <UlTask :listId="list.id" />
   </div>
 </template>
 
@@ -22,7 +22,7 @@ export default {
   data() {
     return {
       showForm: false,
-      itemTitle: this.list.prop.title
+      itemTitle: this.list.title
     };
   },
   mounted() {},
@@ -33,7 +33,7 @@ export default {
         type: "l",
         spheId: this.$store.state.sphe,
         projId: this.$store.state.proj,
-        listId: this.list.prop.id
+        listId: this.list.id
       });
     },
     editItem(e) {
@@ -47,7 +47,7 @@ export default {
         type: "l",
         spheId: this.$store.state.sphe,
         projId: this.$store.state.proj,
-        listId: this.list.prop.id,
+        listId: this.list.id,
         title: this.itemTitle
       });
     },
