@@ -25,7 +25,7 @@ export default new Vuex.Store({
       state.taskArr = products.task;
     },
     addDoc(state) {
-      db.collection('user').doc(auth.currentUser.uid).set({ sphe: [], proj: [], list: [], task: [] }).then(() => {
+      db.collection('user').doc(auth.currentUser.uid).set({ sphe: [{}], proj: [{}], list: [{}], task: [{}] }).then(() => {
         console.info("%c Document successfully created!", 'color: #28a745');
       }).catch(error => {
         console.error("Store.js: во время создания документа произошла ошибка", error);
@@ -87,27 +87,37 @@ export default new Vuex.Store({
       }); //Комментарий
     },
     deleteSphe(state, payload) {
-      delete state.mainObject[payload.spheId];
+      //delete state.mainObject[payload.spheId];
       db.collection('user').doc(auth.currentUser.uid).update({
-        [payload.spheId]: fb.FieldValue.delete()
+        [payload.type]: fb.FieldValue.delete()
       });
     },
     deleteElement(state, payload) {
+      let itemArr = [];
+      let index = '';
       switch (payload.type) {
-        case 'p':
+        case 'sphe':
+          //delete state.mainObject[payload.spheId].child[payload.projId];
+          index = state.spheArr.findIndex(item => item.id == payload.spheId);
+          if (index != -1) {
+            state.spheArr.splice(index, 1);
+            itemArr = state.spheArr;
+          }
+          break;
+        case 'proj':
           delete state.mainObject[payload.spheId].child[payload.projId];
           break;
-        case 'l':
+        case 'list':
           delete state.mainObject[state.sphe].child[state.proj].child[payload.listId];
           break;
-        case 't':
+        case 'task':
           delete state.mainObject[state.sphe].child[state.proj].child[payload.listId].child[payload.taskId];
           break;
         default:
           console.error("Store: Ошибка при удалении элемента!");
       }
 
-      db.collection('user').doc(auth.currentUser.uid).update({ [payload.spheId]: state.mainObject[payload.spheId] }).then(function () {
+      db.collection('user').doc(auth.currentUser.uid).update({ [payload.type]: itemArr }).then(function () {
         console.info("%c Document successfully deleted!", 'color: #28a745');
       }).catch(function (error) {
         console.error("Store.js: во время обновления после удаления элемента произошла ошибка", error);
