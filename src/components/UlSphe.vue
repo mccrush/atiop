@@ -30,12 +30,7 @@ export default {
     };
   },
   computed: {
-    mainObject() {
-      //return this.$store.state.mainObject;
-      return this.$store.getters.products;
-    },
     spheArr() {
-      //return this.$store.state.mainObject;
       return this.$store.getters.spheArr;
     }
   },
@@ -47,15 +42,12 @@ export default {
       if (e.keyCode == 13) {
         const spheId = "" + Date.now();
         let payload = {
-          type: "s",
+          type: "sphe",
           spheId,
           item: {
-            prop: {
-              id: spheId,
-              title: this.nameNewItem,
-              pos: 1
-            },
-            child: {}
+            id: spheId,
+            title: this.nameNewItem,
+            pos: 1
           }
         };
 

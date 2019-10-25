@@ -25,31 +25,37 @@ export default new Vuex.Store({
       state.taskArr = products.task;
     },
     addDoc(state) {
-      db.collection('user').doc(auth.currentUser.uid).set({}).then(() => {
+      db.collection('user').doc(auth.currentUser.uid).set({ sphe: [], proj: [], list: [], task: [] }).then(() => {
         console.info("%c Document successfully created!", 'color: #28a745');
       }).catch(error => {
         console.error("Store.js: во время создания документа произошла ошибка", error);
       });
     },
     addItem(state, payload) {
+      let itemArr = [];
       switch (payload.type) {
-        case 's':
-          state.mainObject[payload.spheId] = payload.item;
+        case 'sphe':
+          //state.mainObject[payload.spheId] = payload.item;
+          state.spheArr.push(payload.item);
+          itemArr = state.spheArr;
           break;
-        case 'p':
-          state.mainObject[payload.spheId].child[payload.item.prop.id] = payload.item;
+        case 'proj':
+          state.projArr.push(payload.item);
+          itemArr = state.projArr;
           break;
-        case 'l':
-          state.mainObject[payload.spheId].child[payload.projId].child[payload.item.prop.id] = payload.item;
+        case 'list':
+          state.listArr.push(payload.item);
+          itemArr = state.listArr;
           break;
-        case 't':
-          state.mainObject[payload.spheId].child[payload.projId].child[payload.listId].child[payload.item.prop.id] = payload.item;
+        case 'task':
+          state.taskArr.push(payload.item);
+          itemArr = state.taskArr;
           break;
         default:
           console.error("Store: Ошибка при создании элемента!");
       }
 
-      db.collection('user').doc(auth.currentUser.uid).update({ [payload.spheId]: state.mainObject[payload.spheId] }).then(function () {
+      db.collection('user').doc(auth.currentUser.uid).update({ [payload.type]: itemArr }).then(function () {
         console.info("%c Document successfully added!", 'color: #28a745');
       }).catch(function (error) {
         console.error("Store.js: во время создания элемента произошла ошибка", error);
