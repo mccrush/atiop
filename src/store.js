@@ -10,12 +10,20 @@ export default new Vuex.Store({
     proj: '',
     mainObject: {},
     uid: '',
-    uemail: ''
+    uemail: '',
+    spheArr: [],
+    projArr: [],
+    listArr: [],
+    taskArr: []
   },
   mutations: {
     'SET_STORE'(state, products) {
       // Перебрать объект, и в зависимости от имени ключа, присвоить соответсвующему значению store
-      state.mainObject = products;
+      //state.mainObject = products;
+      state.spheArr = products.sphe;
+      state.projArr = products.proj;
+      state.listArr = products.list;
+      state.taskArr = products.task;
     },
     // getMainObject(state) {
     //   db.collection('user').doc(auth.currentUser.uid).get().then(querySnapshot => {
@@ -126,14 +134,18 @@ export default new Vuex.Store({
     initStore(state) {
       db.collection('user').doc(auth.currentUser.uid).get().then(querySnapshot => {
         console.log('Получены данные querySnapshot.data():', querySnapshot.data());
-        state.mainObject = querySnapshot.data();
-        commit('SET_STORE', querySnapshot.data());
+        //state.mainObject = querySnapshot.data();
+        this.commit('SET_STORE', querySnapshot.data());
       }).catch(error => {
-        console.log("Store.js: при получении данных с сервера произошла ошибка", error);
+        console.log("Store.js initStore: при получении данных с сервера произошла ошибка", error);
       });
     }
   },
   getters: {
-    products: state => state.mainObject
+    products: state => state.mainObject,
+    spheArr: state => state.spheArr,
+    projArr: (state, spheId) => { return state.projArr.filter(proj => proj.sphe == spheId); },
+    listArr: state => state.listArr,
+    taskArr: state => state.taskArr,
   }
 })

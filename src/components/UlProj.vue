@@ -1,6 +1,6 @@
 <template>
   <ul class="list-group list-group-flush">
-    <Proj v-for="(value, id) in projObj" :key="'ulpr'+id" :spheId="spheId" :proj="value" />
+    <Proj v-for="(value, index) in projArr" :key="'ulpr'+index" :spheId="spheId" :proj="value" />
     <li class="list-group-item small new-proj">
       <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название проекта + Enter" id="formNewSphe" @keypress="saveNewItem" v-model="nameNewItem" @blur="hideForm" autofocus />
       <a href="#" class="btn btn-sm btn-light btn-block text-left text-muted" v-if="!showForm" @click="createNewItem">Создать проект</a>
@@ -22,11 +22,16 @@ export default {
   data() {
     return {
       showForm: false,
-      nameNewItem: "",
-      projObj: this.$store.state.mainObject[this.spheId].child
+      nameNewItem: ""
+      //projObj: this.$store.state.mainObject[this.spheId].child
     };
   },
-  mounted() {},
+  computed: {
+    projArr() {
+      //return this.$store.state.mainObject;
+      return this.$store.getters.spheArr(this.spheId);
+    }
+  },
   methods: {
     createNewItem() {
       this.showForm = true;
