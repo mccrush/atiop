@@ -1,9 +1,9 @@
 <template>
-  <li class="list-group-item pr-4" :id="proj.prop.id">
+  <li class="list-group-item pr-4" :id="proj.id">
     <small class="text-muted">&nbsp;&nbsp;|_&nbsp;&nbsp;</small>
     <div class="btn-group btn-block" role="group" aria-label="Basic example">
       <button type="button" class="btn btn-sm btn-dark" @click="deleteItem" title="Удалить проект">D</button>
-      <button class="btn btn-sm btn-light btn-block text-left proj-item" type="button" @click="setStateProjId">{{proj.prop.title}}</button>
+      <button class="btn btn-sm btn-light btn-block text-left proj-item" type="button" @click="setStateProjId">{{proj.title}}</button>
     </div>
   </li>
 </template>
@@ -25,14 +25,14 @@ export default {
       this.$store.commit("deleteElement", {
         type: "p",
         spheId: this.spheId,
-        projId: this.proj.prop.id
+        projId: this.proj.id
       });
     },
 
     setStateProjId() {
       this.$store.commit("setStateProjId", {
         spheId: this.spheId,
-        projId: this.proj.prop.id
+        projId: this.proj.id
       });
     }
   }

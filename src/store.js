@@ -144,7 +144,7 @@ export default new Vuex.Store({
   getters: {
     products: state => state.mainObject,
     spheArr: state => state.spheArr,
-    projArr: (state, spheId) => { return state.projArr.filter(proj => proj.sphe == spheId); },
+    projArr: state => state.projArr,
     listArr: state => state.listArr,
     taskArr: state => state.taskArr,
   }

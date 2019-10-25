@@ -23,13 +23,13 @@ export default {
     return {
       showForm: false,
       nameNewItem: ""
-      //projObj: this.$store.state.mainObject[this.spheId].child
     };
   },
   computed: {
     projArr() {
-      //return this.$store.state.mainObject;
-      return this.$store.getters.spheArr(this.spheId);
+      return this.$store.getters.projArr.filter(
+        proj => proj.sphe == this.spheId
+      );
     }
   },
   methods: {
