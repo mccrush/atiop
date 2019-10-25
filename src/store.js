@@ -85,12 +85,6 @@ export default new Vuex.Store({
         console.error("Store.js: во время обновления после переименования элемента произошла ошибка", error);
       }); //Комментарий
     },
-    // deleteSphe(state, payload) {
-    //   //delete state.mainObject[payload.spheId];
-    //   db.collection('user').doc(auth.currentUser.uid).update({
-    //     [payload.type]: fb.FieldValue.delete()
-    //   });
-    // },
     deleteElement(state, payload) {
       let itemArr = [];
       let index = '';
