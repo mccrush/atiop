@@ -14,6 +14,7 @@ export default new Vuex.Store({
   },
   mutations: {
     'SET_STORE'(state, products) {
+      // Перебрать объект, и в зависимости от имени ключа, присвоить соответсвующему значению store
       state.mainObject = products;
     },
     // getMainObject(state) {
