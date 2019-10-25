@@ -35,7 +35,6 @@ export default new Vuex.Store({
       let itemArr = [];
       switch (payload.type) {
         case 'sphe':
-          //state.mainObject[payload.spheId] = payload.item;
           state.spheArr.push(payload.item);
           itemArr = state.spheArr;
           break;
@@ -86,35 +85,23 @@ export default new Vuex.Store({
         console.error("Store.js: во время обновления после переименования элемента произошла ошибка", error);
       }); //Комментарий
     },
-    deleteSphe(state, payload) {
-      //delete state.mainObject[payload.spheId];
-      db.collection('user').doc(auth.currentUser.uid).update({
-        [payload.type]: fb.FieldValue.delete()
-      });
-    },
+    // deleteSphe(state, payload) {
+    //   //delete state.mainObject[payload.spheId];
+    //   db.collection('user').doc(auth.currentUser.uid).update({
+    //     [payload.type]: fb.FieldValue.delete()
+    //   });
+    // },
     deleteElement(state, payload) {
       let itemArr = [];
       let index = '';
-      switch (payload.type) {
-        case 'sphe':
-          //delete state.mainObject[payload.spheId].child[payload.projId];
-          index = state.spheArr.findIndex(item => item.id == payload.spheId);
-          if (index != -1) {
-            state.spheArr.splice(index, 1);
-            itemArr = state.spheArr;
-          }
-          break;
-        case 'proj':
-          delete state.mainObject[payload.spheId].child[payload.projId];
-          break;
-        case 'list':
-          delete state.mainObject[state.sphe].child[state.proj].child[payload.listId];
-          break;
-        case 'task':
-          delete state.mainObject[state.sphe].child[state.proj].child[payload.listId].child[payload.taskId];
-          break;
-        default:
-          console.error("Store: Ошибка при удалении элемента!");
+
+      index = state[payload.type + 'Arr'].findIndex(item => item.id == payload[payload.type + 'Id']);
+
+      if (index != -1) {
+        state[payload.type + 'Arr'].splice(index, 1);
+        itemArr = state[payload.type + 'Arr'];
+      } else {
+        itemArr = state[payload.type + 'Arr'];
       }
 
       db.collection('user').doc(auth.currentUser.uid).update({ [payload.type]: itemArr }).then(function () {
