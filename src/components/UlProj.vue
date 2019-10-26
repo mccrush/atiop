@@ -39,15 +39,13 @@ export default {
     saveNewItem(e) {
       if (e.keyCode == 13) {
         let payload = {
-          type: "p",
+          type: "proj",
           spheId: this.spheId,
           item: {
-            prop: {
-              id: "" + Date.now(),
-              title: this.nameNewItem,
-              pos: 1
-            },
-            child: {}
+            id: "" + Date.now(),
+            title: this.nameNewItem,
+            pos: 1,
+            sphe: this.spheId
           }
         };
         this.$store.commit("addItem", payload);

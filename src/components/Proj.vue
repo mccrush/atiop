@@ -23,7 +23,7 @@ export default {
   methods: {
     deleteItem(e) {
       this.$store.commit("deleteElement", {
-        type: "p",
+        type: "proj",
         spheId: this.spheId,
         projId: this.proj.id
       });

@@ -24,7 +24,7 @@ export default new Vuex.Store({
       state.taskArr = products.task;
     },
     addDoc(state) {
-      db.collection('user').doc(auth.currentUser.uid).set({ sphe: [{}], proj: [{}], list: [{}], task: [{}] }).then(() => {
+      db.collection('user').doc(auth.currentUser.uid).set({ sphe: [], proj: [], list: [], task: [] }).then(() => {
         console.info("%c Document successfully created!", 'color: #28a745');
       }).catch(error => {
         console.error("Store.js: во время создания документа произошла ошибка", error);
