@@ -40,7 +40,7 @@ export default {
     saveNewItem(e) {
       if (e.keyCode == 13) {
         let payload = {
-          type: "t",
+          type: "task",
           spheId: this.$store.state.sphe,
           projId: this.$store.state.proj,
           listId: this.listId,

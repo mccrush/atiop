@@ -27,7 +27,7 @@ export default {
     deleteItem(e) {
       //e.target.parentNode.parentNode.classList.add("d-none"); // Вынужденная мера, т.к. DOM не сразу обновляется сам
       this.$store.commit("deleteElement", {
-        type: "t",
+        type: "task",
         spheId: this.$store.state.sphe,
         projId: this.$store.state.proj,
         listId: this.listId,
@@ -43,7 +43,7 @@ export default {
     },
     saveChangeName() {
       this.$store.commit("renameElement", {
-        type: "t",
+        type: "task",
         spheId: this.$store.state.sphe,
         projId: this.$store.state.proj,
         listId: this.listId,
