@@ -68,6 +68,18 @@ export default new Vuex.Store({
       }).catch(function (error) {
         console.error("Store.js: во время обновления после удаления элемента произошла ошибка", error);
       });
+
+      if (payload.type == 'sphe') {
+        let newArray = state.projArr.filter(
+          proj => proj.sphe !== payload.spheId
+        );
+
+        db.collection('user').doc(auth.currentUser.uid).update({ proj: newArray }).then(function () {
+          console.info("%c Projects successfully deleted!", 'color: #28a745');
+        }).catch(function (error) {
+          console.error("Store.js: во время обновления после удаления проектов произошла ошибка", error);
+        });
+      }
     },
     setUid(state, payload) {
       state.uid = payload.uid;
