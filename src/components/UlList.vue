@@ -30,12 +30,11 @@ export default {
       listArr: []
     };
   },
-  created() {},
   mounted() {
     this.$store.watch(
       state => state.proj,
       (newV, oldV) => {
-        this.listArr = this.getListArr;
+        this.listArr = this.getListArr();
       }
     );
   },
@@ -61,6 +60,9 @@ export default {
           }
         };
         this.$store.commit("addItem", payload);
+        this.$store.commit("setStateProjId", {
+          projId: this.$store.state.proj
+        });
         this.nameNewItem = "";
         this.showForm = false;
       }

@@ -22,16 +22,19 @@ export default {
   data() {
     return {
       showForm: false,
-      nameNewItem: ""
+      nameNewItem: "",
+      taskArr: this.$store.getters.taskArr.filter(
+        task => task.list == this.listId
+      )
     };
   },
-  computed: {
-    taskArr() {
-      return this.$store.getters.taskArr.filter(
-        task => task.list == this.listId
-      );
-    }
-  },
+  // computed: {
+  //   taskArr() {
+  //     return this.$store.getters.taskArr.filter(
+  //       task => task.list == this.listId
+  //     );
+  //   }
+  // },
   methods: {
     createNewItem() {
       this.showForm = true;
