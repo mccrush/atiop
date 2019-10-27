@@ -69,16 +69,39 @@ export default new Vuex.Store({
         console.error("Store.js: во время обновления после удаления элемента произошла ошибка", error);
       });
 
-      if (payload.type == 'sphe') {
-        let newArray = state.projArr.filter(
-          proj => proj.sphe !== payload.spheId
-        );
+      let deleteChild = typeArr => {
+        let newArray = [];
+        let itogArr = [];
 
-        db.collection('user').doc(auth.currentUser.uid).update({ proj: newArray }).then(function () {
-          console.info("%c Projects successfully deleted!", 'color: #28a745');
-        }).catch(function (error) {
-          console.error("Store.js: во время обновления после удаления проектов произошла ошибка", error);
+        typeArr.forEach(item => {
+          newArray = state[item + 'Arr'].filter(
+            item => item[payload.type] !== payload[payload.type + 'Id']
+          );
+
+          itogArr.push({ type: item, val: newArray });
         });
+
+        itogArr.forEach(item => {
+          db.collection('user').doc(auth.currentUser.uid).update({ [item.type]: item.val }).then(function () {
+            console.info("%c Projects successfully deleted!", 'color: #28a745');
+          }).catch(function (error) {
+            console.error("Store.js: во время обновления после удаления проектов произошла ошибка", error);
+          });
+        });
+      }
+
+      switch (payload.type) {
+        case 'sphe':
+          deleteChild(['proj', 'list', 'task']);
+          break;
+        case 'proj':
+          deleteChild(['list', 'task']);
+          break;
+        case 'list':
+          deleteChild(['task']);
+          break;
+        default:
+          console.error('Store.js: Ошибка при удалении детей');
       }
     },
     setUid(state, payload) {
