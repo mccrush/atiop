@@ -30,19 +30,41 @@ export default {
       listArr: []
     };
   },
-  mounted() {
-    this.$store.watch(
-      state => state.proj,
-      (newV, oldV) => {
-        this.listArr = this.getListArr();
+  created() {
+    // this.$store.watch(
+    //   state => state.proj,
+    //   (newV, oldV) => {
+    //     console.log("Произошло изменение projId");
+    //     this.getListArr();
+    //   }
+    // );
+
+    this.$store.subscribe((mutation, state) => {
+      if (mutation.type == "setStateProjId") {
+        this.listArr = state.listArr.filter(list => list.proj == state.proj);
       }
-    );
+    });
+
+    // this.$store.subscribe((mutation, state) => {
+    //   if (mutation.type == "addItem" && mutation.payload.type == "list") {
+    //     this.listArr = this.getListArr();
+    //   }
+    // });
   },
+  // computed: {
+  //   listArr() {
+  //     return this.$store.getters.listArr.filter(
+  //       list => list.proj == this.$store.state.proj
+  //     );
+  //   }
+  // },
   methods: {
     getListArr() {
-      return this.$store.getters.listArr.filter(
+      //console.log("Произошел вызов метода getListArr()");
+      this.listArr = this.$store.getters.listArr.filter(
         list => list.proj == this.$store.state.proj
       );
+      console.log("Новое значение this.listArr = ", this.listArr);
     },
     createNewItem() {
       this.showForm = true;
@@ -60,9 +82,6 @@ export default {
           }
         };
         this.$store.commit("addItem", payload);
-        this.$store.commit("setStateProjId", {
-          projId: this.$store.state.proj
-        });
         this.nameNewItem = "";
         this.showForm = false;
       }

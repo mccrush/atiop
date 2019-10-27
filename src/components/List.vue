@@ -25,7 +25,13 @@ export default {
       itemTitle: this.list.title
     };
   },
-  mounted() {},
+  created() {
+    this.$store.subscribe((mutation, state) => {
+      if (mutation.type == "setStateProjId") {
+        this.itemTitle = this.list.title;
+      }
+    });
+  },
   methods: {
     deleteItem(e) {
       this.$store.commit("deleteElement", {
