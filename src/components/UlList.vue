@@ -63,7 +63,6 @@ export default {
         this.$store.commit("addItem", payload);
         this.nameNewItem = "";
         this.showForm = false;
-        this.listObj = this.spheObj.child[this.$store.state.proj].child;
       }
     },
     hideForm() {
