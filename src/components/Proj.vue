@@ -24,7 +24,6 @@ export default {
     deleteItem(e) {
       this.$store.commit("deleteElement", {
         type: "proj",
-        spheId: this.spheId,
         projId: this.proj.id
       });
     },

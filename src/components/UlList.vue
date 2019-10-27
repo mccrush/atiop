@@ -25,9 +25,6 @@ export default {
   props: {},
   data() {
     return {
-      spheObj: {},
-      projObj: {},
-      listObj: {},
       showForm: false,
       nameNewItem: "",
       listArr: []
@@ -38,9 +35,6 @@ export default {
     this.$store.watch(
       state => state.proj,
       (newV, oldV) => {
-        // this.spheObj = this.$store.state.mainObject[this.$store.state.sphe];
-        // this.projObj = this.spheObj.child[newV];
-        // this.listObj = this.projObj.child;
         this.listArr = this.getListArr;
       }
     );
@@ -58,15 +52,12 @@ export default {
       if (e.keyCode == 13) {
         let payload = {
           type: "list",
-          spheId: this.$store.state.sphe,
-          projId: this.$store.state.proj,
           item: {
-            prop: {
-              id: "" + Date.now(),
-              title: this.nameNewItem,
-              pos: 1
-            },
-            child: {}
+            id: "" + Date.now(),
+            title: this.nameNewItem,
+            pos: 1,
+            sphe: this.$store.state.sphe,
+            proj: this.$store.state.proj
           }
         };
         this.$store.commit("addItem", payload);

@@ -8,7 +8,6 @@ export default new Vuex.Store({
   state: {
     sphe: '',
     proj: '',
-    mainObject: {},
     uid: '',
     uemail: '',
     spheArr: [],

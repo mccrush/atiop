@@ -43,7 +43,6 @@ export default {
         const spheId = "" + Date.now();
         let payload = {
           type: "sphe",
-          spheId,
           item: {
             id: spheId,
             title: this.nameNewItem,

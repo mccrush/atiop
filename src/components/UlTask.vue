@@ -18,7 +18,6 @@ export default {
   },
   props: {
     listId: String
-    //taskObj: Object
   },
   data() {
     return {
@@ -45,12 +44,12 @@ export default {
           projId: this.$store.state.proj,
           listId: this.listId,
           item: {
-            prop: {
-              id: "" + Date.now(),
-              title: this.nameNewItem,
-              pos: 1
-            },
-            child: {}
+            id: "" + Date.now(),
+            title: this.nameNewItem,
+            pos: 1,
+            sphe: this.$store.state.sphe,
+            proj: this.$store.state.proj,
+            list: this.listId
           }
         };
         this.$store.commit("addItem", payload);
@@ -64,20 +63,7 @@ export default {
       }
     }
   },
-  computed: {
-    sortArray: () => {
-      let sara = [];
-      for (let key in this.taskObj) {
-        sara[key] = this.taskObj[key];
-      }
-
-      sara.sort((a, b) => {
-        return a.pos - b.pos;
-      });
-
-      return sara;
-    }
-  }
+  computed: {}
 };
 </script>
 

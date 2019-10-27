@@ -28,12 +28,8 @@ export default {
       //e.target.parentNode.parentNode.classList.add("d-none"); // Вынужденная мера, т.к. DOM не сразу обновляется сам
       this.$store.commit("deleteElement", {
         type: "task",
-        spheId: this.$store.state.sphe,
-        projId: this.$store.state.proj,
-        listId: this.listId,
         taskId: this.task.id
       });
-      //this.$store.commit("getMainObject");
     },
     editItem(e) {
       this.showForm = true;
@@ -44,9 +40,6 @@ export default {
     saveChangeName() {
       this.$store.commit("renameElement", {
         type: "task",
-        spheId: this.$store.state.sphe,
-        projId: this.$store.state.proj,
-        listId: this.listId,
         taskId: this.task.id,
         title: this.itemTitle
       });

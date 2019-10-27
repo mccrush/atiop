@@ -40,7 +40,6 @@ export default {
       if (e.keyCode == 13) {
         let payload = {
           type: "proj",
-          spheId: this.spheId,
           item: {
             id: "" + Date.now(),
             title: this.nameNewItem,

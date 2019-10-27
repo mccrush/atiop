@@ -28,11 +28,8 @@ export default {
   mounted() {},
   methods: {
     deleteItem(e) {
-      //e.target.parentNode.parentNode.classList.add("d-none"); // Вынужденная мера, т.к. DOM не сразу обновляется сам
       this.$store.commit("deleteElement", {
         type: "list",
-        spheId: this.$store.state.sphe,
-        projId: this.$store.state.proj,
         listId: this.list.id
       });
     },
@@ -45,8 +42,6 @@ export default {
     saveChangeName() {
       this.$store.commit("renameElement", {
         type: "list",
-        spheId: this.$store.state.sphe,
-        projId: this.$store.state.proj,
         listId: this.list.id,
         title: this.itemTitle
       });
