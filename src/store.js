@@ -69,25 +69,30 @@ export default new Vuex.Store({
         console.error("Store.js: во время обновления после удаления элемента произошла ошибка", error);
       });
 
-      let deleteChild = typeArr => {
+      let deleteChild = function (typeArr) {
         let newArray = [];
         let itogArr = [];
 
         typeArr.forEach(item => {
-          newArray = state[item + 'Arr'].filter(
-            item => item[payload.type] !== payload[payload.type + 'Id']
-          );
+          if (state[item + 'Arr'].length > 0) {
+            newArray = state[item + 'Arr'].filter(
+              elem => elem[payload.type] !== payload[payload.type + 'Id']
+            );
 
-          itogArr.push({ type: item, val: newArray });
+            state[item + 'Arr'] = newArray;
+            itogArr.push({ type: item, val: newArray });
+          }
         });
 
-        itogArr.forEach(item => {
-          db.collection('user').doc(auth.currentUser.uid).update({ [item.type]: item.val }).then(function () {
-            console.info("%c Projects successfully deleted!", 'color: #28a745');
-          }).catch(function (error) {
-            console.error("Store.js: во время обновления детей после удаления проектов произошла ошибка", error);
+        if (itogArr.length > 0) {
+          itogArr.forEach(item => {
+            db.collection('user').doc(auth.currentUser.uid).update({ [item.type]: item.val }).then(function () {
+              console.info("%c Projects successfully deleted!", 'color: #28a745');
+            }).catch(function (error) {
+              console.error("Store.js: во время обновления детей после удаления проектов произошла ошибка", error);
+            });
           });
-        });
+        }
       }
 
       switch (payload.type) {
