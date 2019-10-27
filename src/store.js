@@ -85,7 +85,7 @@ export default new Vuex.Store({
           db.collection('user').doc(auth.currentUser.uid).update({ [item.type]: item.val }).then(function () {
             console.info("%c Projects successfully deleted!", 'color: #28a745');
           }).catch(function (error) {
-            console.error("Store.js: во время обновления после удаления проектов произошла ошибка", error);
+            console.error("Store.js: во время обновления детей после удаления проектов произошла ошибка", error);
           });
         });
       }
