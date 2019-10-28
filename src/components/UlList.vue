@@ -27,7 +27,7 @@ export default {
     return {
       showForm: false,
       nameNewItem: "",
-      listArr: []
+      //listArr: []
     };
   },
   created() {
@@ -39,11 +39,11 @@ export default {
     //   }
     // );
 
-    this.$store.subscribe((mutation, state) => {
-      if (mutation.type == "setStateProjId") {
-        this.listArr = state.listArr.filter(list => list.proj == state.proj);
-      }
-    });
+    // this.$store.subscribe((mutation, state) => {
+    //   if (mutation.type == "setStateProjId") {
+    //     this.listArr = state.listArr.filter(list => list.proj == state.proj);
+    //   }
+    // });
 
     // this.$store.subscribe((mutation, state) => {
     //   if (mutation.type == "addItem" && mutation.payload.type == "list") {
@@ -51,13 +51,11 @@ export default {
     //   }
     // });
   },
-  // computed: {
-  //   listArr() {
-  //     return this.$store.getters.listArr.filter(
-  //       list => list.proj == this.$store.state.proj
-  //     );
-  //   }
-  // },
+  computed: {
+    listArr() {
+      return this.$store.getters.newListArr;
+    }
+  },
   methods: {
     getListArr() {
       //console.log("Произошел вызов метода getListArr()");

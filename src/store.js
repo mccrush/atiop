@@ -13,7 +13,8 @@ export default new Vuex.Store({
     spheArr: [],
     projArr: [],
     listArr: [],
-    taskArr: []
+    taskArr: [],
+    newListArr: []
   },
   mutations: {
     'SET_STORE'(state, products) {
@@ -119,6 +120,9 @@ export default new Vuex.Store({
     setStateProjId(state, payload) {
       state.sphe = payload.spheId;
       state.proj = payload.projId;
+    },
+    getNewListArr(state, payload) {
+      state.newListArr = state.listArr.filter(list => list.proj == payload.projId);
     }
   },
   actions: {

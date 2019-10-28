@@ -33,6 +33,9 @@ export default {
         spheId: this.spheId,
         projId: this.proj.id
       });
+      this.$store.commit("getNewListArr", {
+        projId: this.proj.id
+      });
     }
   }
 };
