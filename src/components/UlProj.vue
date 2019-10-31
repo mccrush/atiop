@@ -2,7 +2,7 @@
   <ul class="list-group list-group-flush">
     <Proj v-for="(value, index) in projArr" :key="'ulpr'+index" :spheId="spheId" :proj="value" />
     <li class="list-group-item small new-proj">
-      <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название проекта + Enter" id="formNewSphe" @keypress="saveNewItem" v-model="nameNewItem" @blur="hideForm" autofocus />
+      <input v-if="showForm" type="text" class="form-control form-control-sm" placeholder="Название проекта + Enter" id="formNewSphe" @keyup.enter="saveNewItem" v-model="nameNewItem" @blur="hideForm" autofocus />
       <a href="#" class="btn btn-sm btn-light btn-block text-left text-muted" v-if="!showForm" @click="createNewItem">Создать проект</a>
     </li>
   </ul>
@@ -37,20 +37,20 @@ export default {
       this.showForm = true;
     },
     saveNewItem(e) {
-      if (e.keyCode == 13) {
-        let payload = {
-          type: "proj",
-          item: {
-            id: "" + Date.now(),
-            title: this.nameNewItem,
-            pos: 1,
-            sphe: this.spheId
-          }
-        };
-        this.$store.commit("addItem", payload);
-        this.nameNewItem = "";
-        this.showForm = false;
-      }
+      // if (e.keyCode == 13) {
+      let payload = {
+        type: "proj",
+        item: {
+          id: "" + Date.now(),
+          title: this.nameNewItem,
+          pos: 1,
+          sphe: this.spheId
+        }
+      };
+      this.$store.commit("addItem", payload);
+      this.nameNewItem = "";
+      this.showForm = false;
+      // }
     },
     hideForm() {
       if (!this.nameNewItem) {

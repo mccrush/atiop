@@ -7,7 +7,7 @@
       <Sphe v-for="(value, index) in spheArr" :key="'ulsp'+index" :sphe="value" />
       <li class="list-group-item small">
         <div class="input-group" v-if="showForm">
-          <input type="text" class="form-control form-control-sm" placeholder="Название сферы + Enter" @keypress="saveNewItem" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="nameNewItem" @blur="hideForm" autofocus />
+          <input type="text" class="form-control form-control-sm" placeholder="Название сферы + Enter" @keyup.enter="saveNewItem" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="nameNewItem" @blur="hideForm" autofocus />
         </div>
         <button href="#" class="btn btn-sm btn-light btn-block text-left text-muted" v-if="!showForm" @click="createNewItem">Создать объект</button>
       </li>
@@ -39,7 +39,7 @@ export default {
       this.showForm = true;
     },
     saveNewItem(e) {
-      if (e.keyCode == 13) {
+      //if (e.keyCode == 13) {
         const spheId = "" + Date.now();
         let payload = {
           type: "sphe",
@@ -53,7 +53,7 @@ export default {
         this.$store.commit("addItem", payload);
         this.nameNewItem = "";
         this.showForm = false;
-      }
+     // }
     },
     hideForm() {
       if (!this.nameNewItem) {
