@@ -1,7 +1,7 @@
 <template>
   <li class="list-group-item" :id="sphe.id">
     <div class="btn-group btn-block" role="group" aria-label="Basic example">
-      <button type="button" class="btn btn-sm btn-dark" @click="deleteItem" title="Удалить объект">D</button>
+      <button type="button" class="btn btn-sm btn-dark" @click="deleteItem(sphe)" title="Удалить объект">D</button>
       <button class="btn btn-sm btn-light btn-block text-left sphe-item" type="button" data-toggle="collapse" :data-target="'#collapseProj'+sphe.id" aria-expanded="false" :aria-controls="'collapseProj'+sphe.id">{{sphe.title}}</button>
     </div>
     <div class="collapse" :id="'collapseProj'+sphe.id">
@@ -22,8 +22,9 @@ export default {
     sphe: Object
   },
   methods: {
-    deleteItem(e) {
+    deleteItem(item) {
       this.$store.commit("deleteElement", {
+        item,
         type: "sphe",
         spheId: this.sphe.id
       });

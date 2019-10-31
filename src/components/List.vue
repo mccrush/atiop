@@ -2,9 +2,9 @@
   <div class="col-4 border-right">
     <h6 v-if="!showForm" class="pt-3 border-bottom pb-2 font-weight-bold listtitle" @click="editItem">
       {{itemTitle}}
-      <button class="btn btn-sm btn-light text-center delbutton" title="Удалить список" @click="deleteItem">D</button>
+      <button class="btn btn-sm btn-light text-center delbutton" title="Удалить список" @click="deleteItem(list)">D</button>
     </h6>
-    <input class="form-control form-control-sm formitem" v-if="showForm" v-model="itemTitle" @blur="blurForm" @focus="hideBorder" type="text" @keypress="pressEnter" />
+    <input class="form-control form-control-sm formitem" v-if="showForm" v-model="itemTitle" @blur="blurForm" @focus="hideBorder" type="text" @keyup.enter="pressEnter" />
     <UlTask :listId="list.id" />
   </div>
 </template>
@@ -33,8 +33,9 @@ export default {
     });
   },
   methods: {
-    deleteItem(e) {
+    deleteItem(item) {
       this.$store.commit("deleteElement", {
+        item,
         type: "list",
         listId: this.list.id
       });
@@ -53,11 +54,11 @@ export default {
       });
     },
     pressEnter(e) {
-      if (e.keyCode == 13 && this.itemTitle) {
-        e.target.style = "border-bottom: 1px solid #dee2e6 !important;";
-        this.showForm = false;
-        this.saveChangeName();
-      }
+      //if (e.keyCode == 13 && this.itemTitle) {
+      e.target.style = "border-bottom: 1px solid #dee2e6 !important;";
+      this.showForm = false;
+      this.saveChangeName();
+      //}
     },
     blurForm(e) {
       if (!this.itemTitle) {

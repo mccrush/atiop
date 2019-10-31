@@ -2,10 +2,10 @@
   <li class="list-group-item shadow-sm rounded p-0 mb-2" :id="task.id">
     <div v-if="!showForm" class="pt-2 pb-2 pl-2 task-item" @click.prevent="editItem">
       {{itemTitle}}
-      <button class="btn btn-sm btn-light text-center delbutton" title="Удалить задачу" @click.prevent="deleteItem">D</button>
+      <button class="btn btn-sm btn-light text-center delbutton" title="Удалить задачу" @click.prevent="deleteItem(task)">D</button>
     </div>
 
-    <input class="form-control form-control-sm formitem" v-if="showForm" v-model="itemTitle" @blur="blurForm" @focus="hideBorder" type="text" @keypress="pressEnter" />
+    <input class="form-control form-control-sm formitem" v-if="showForm" v-model="itemTitle" @blur="blurForm" @focus="hideBorder" type="text" @keyup.enter="pressEnter" />
   </li>
 </template>
 
@@ -24,9 +24,10 @@ export default {
   },
   mounted() {},
   methods: {
-    deleteItem(e) {
+    deleteItem(item) {
       //e.target.parentNode.parentNode.classList.add("d-none"); // Вынужденная мера, т.к. DOM не сразу обновляется сам
       this.$store.commit("deleteElement", {
+        item,
         type: "task",
         taskId: this.task.id
       });
@@ -45,11 +46,11 @@ export default {
       });
     },
     pressEnter(e) {
-      if (e.keyCode == 13 && this.itemTitle) {
-        e.target.style = "border-bottom: 1px solid #dee2e6 !important;";
-        this.showForm = false;
-        this.saveChangeName();
-      }
+      //if (e.keyCode == 13 && this.itemTitle) {
+      e.target.style = "border-bottom: 1px solid #dee2e6 !important;";
+      this.showForm = false;
+      this.saveChangeName();
+      //}
     },
     blurForm(e) {
       if (!this.itemTitle) {

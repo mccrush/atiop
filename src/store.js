@@ -55,13 +55,15 @@ export default new Vuex.Store({
       });
     },
     deleteElement(state, payload) {
-      let index = '';
+      // let index = '';
 
-      index = state[payload.type + 'Arr'].findIndex(item => item.id == payload[payload.type + 'Id']);
+      // index = state[payload.type + 'Arr'].findIndex(item => item.id == payload[payload.type + 'Id']);
 
-      if (index != -1) {
-        state[payload.type + 'Arr'].splice(index, 1);
-      }
+      // if (index != -1) {
+      //   state[payload.type + 'Arr'].splice(index, 1);
+      // }
+
+      state[payload.type + 'Arr'].splice(state[payload.type + 'Arr'].indexOf(payload.item), 1);
 
       db.collection('user').doc(auth.currentUser.uid).update({ [payload.type]: state[payload.type + 'Arr'] }).then(function () {
         console.info("%c Document successfully deleted!", 'color: #28a745');
