@@ -1,6 +1,6 @@
 <template>
-  <div class="row border">
-    <div class="col-3 border">
+  <div class="row">
+    <div class="col-3 border-right">
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Cras justo odio</li>
         <li class="list-group-item">Dapibus ac facilisis in</li>
@@ -9,9 +9,9 @@
         <li class="list-group-item">Vestibulum at eros</li>
       </ul>
     </div>
-    <div class="col-9 border">
-      <div class="row border">
-        <div class="col-4">
+    <div class="col-9 pt-3">
+      <div class="row pl-3">
+        <div class="col-4 pl-0">
           <ul class="list-group">
             <li class="list-group-item">Cras justo odio</li>
             <li class="list-group-item">Dapibus ac facilisis in</li>
@@ -20,7 +20,7 @@
             <li class="list-group-item">Vestibulum at eros</li>
           </ul>
         </div>
-        <div class="col-4">
+        <div class="col-4 pl-0">
           <ul class="list-group">
             <li class="list-group-item">Cras justo odio</li>
             <li class="list-group-item">Dapibus ac facilisis in</li>

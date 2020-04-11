@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom">
     <a class="navbar-brand" href="#">
       <img src="img/icons/favicon-32x32.png" width="30" height="30" class="d-inline-block align-top" alt="ATIOP" />
       ATIOP
