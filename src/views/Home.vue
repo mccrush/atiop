@@ -69,6 +69,12 @@ export default {
       idtasks: ''
     }
   },
+  mounted() {
+    this.idsphers = localStorage.getItem('idsphers') || ''
+    this.idnapravs = localStorage.getItem('idnapravs') || ''
+    this.idprojects = localStorage.getItem('idprojects') || ''
+    this.idetaps = localStorage.getItem('idetaps') || ''
+  },
   computed: {
     sphers() {
       return this.$store.getters.sphers
@@ -131,6 +137,22 @@ export default {
     },
     selectItem({ id, type }) {
       this['id' + type] = id
+      localStorage.setItem('id' + type, id)
+      switch (type) {
+        case 'sphers':
+          this.idnapravs = ''
+          this.idprojects = ''
+          this.idetaps = ''
+          break
+        case 'napravs':
+          this.idprojects = ''
+          this.idetaps = ''
+          break
+        case 'projects':
+          this.idetaps = ''
+          break
+        default:
+      }
     }
   }
 }

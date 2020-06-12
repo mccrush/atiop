@@ -1,6 +1,6 @@
 <template>
   <div class="col-2">
-    <h5 class="text-center">{{type}}</h5>
+    <h5 class="text-center mt-2">{{type}}</h5>
     <form @submit.prevent="addItem">
       <input
         type="text"
