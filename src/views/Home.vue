@@ -1,15 +1,15 @@
 <template>
   <div class="row">
-    <List :sphers="sphers" :type="sphers" @add-item="addItem" />
-    <List :napravs="napravs" :type="napravs" />
-    <List :projects="projects" :type="projects" />
-    <List :etaps="etaps" :type="etaps" />
-    <List :tasks="tasks" :type="tasks" />
+    <List :list="sphers" type="sphers" @add-item="addItem" />
+    <List v-if="idSpher" :list="napravs" type="napravs" />
+    <List v-if="idNaprav" :list="projects" type="projects" />
+    <List v-if="idProj" :list="etaps" type="etaps" />
+    <List v-if="idEtap" :list="tasks" type="tasks" />
   </div>
 </template>
 
 <script>
-import { mapGettets, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 import List from '@/components/List'
 
 export default {
@@ -19,13 +19,30 @@ export default {
   },
   data() {
     return {
-      aliasSpher: '',
-      aliasNaprav: '',
-      aliasProj: '',
-      aliasEtap: ''
+      idSpher: '',
+      idNaprav: '',
+      idProj: '',
+      idEtap: ''
     }
   },
-  computed: mapGettets(['sphers', 'napravs', 'projects', 'etaps', 'tasks']),
+  //computed: mapGettets(['sphers', 'napravs', 'projects', 'etaps', 'tasks']),
+  computed: {
+    sphers() {
+      return this.$store.getters.sphers
+    },
+    napravs() {
+      return this.$store.getters.napravs
+    },
+    projects() {
+      return this.$store.getters.projects
+    },
+    etaps() {
+      return this.$store.getters.etaps
+    },
+    tasks() {
+      return this.$store.getters.tasks
+    }
+  },
   methods: {
     ...mapActions(['addItem']),
     addItem(item) {
@@ -33,29 +50,29 @@ export default {
     }
   },
   watch: {
-    aliasSpher() {
+    idSpher() {
       this.napravs = this.napravs.filter(
-        naprav => naprav.spher === this.aliasSpher
+        naprav => naprav.idSpher === this.idSpher
       )
       this.projects = this.projects.filter(
-        proj => proj.spher === this.aliasSpher
+        proj => proj.idSpher === this.idSpher
       )
-      this.etaps = this.etaps.filter(etap => etap.spher === this.aliasSpher)
-      this.tasks = this.tasks.filter(task => task.spher === this.aliasSpher)
+      this.etaps = this.etaps.filter(etap => etap.idSpher === this.idSpher)
+      this.tasks = this.tasks.filter(task => task.idSpher === this.idSpher)
     },
-    aliasNaprav() {
+    idNaprav() {
       this.projects = this.projects.filter(
-        proj => proj.naprav === this.aliasNaprav
+        proj => proj.idNaprav === this.idNaprav
       )
-      this.etaps = this.etaps.filter(etap => etap.naprav === this.aliasNaprav)
-      this.tasks = this.tasks.filter(task => task.naprav === this.aliasNaprav)
+      this.etaps = this.etaps.filter(etap => etap.idNaprav === this.idNaprav)
+      this.tasks = this.tasks.filter(task => task.idNaprav === this.idNaprav)
     },
-    aliasProj() {
-      this.etaps = this.etaps.filter(etap => etap.proj === this.aliasProj)
-      this.tasks = this.tasks.filter(task => task.proj === this.aliasProj)
+    idProj() {
+      this.etaps = this.etaps.filter(etap => etap.idProj === this.idProj)
+      this.tasks = this.tasks.filter(task => task.idProj === this.idProj)
     },
-    aliasEtap() {
-      this.tasks = this.tasks.filter(task => task.etap === this.aliasEtap)
+    idEtap() {
+      this.tasks = this.tasks.filter(task => task.idEtap === this.idEtap)
     }
   }
 }

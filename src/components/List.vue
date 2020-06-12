@@ -1,5 +1,6 @@
 <template>
   <div class="col-2">
+    <h5 class="text-center">{{type}}</h5>
     <form @submit.prevent="addItem">
       <input type="text" class="form-control" v-model="title" />
       <button type="submit" class="btn btn-light">Add</button>
