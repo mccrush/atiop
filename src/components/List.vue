@@ -1,24 +1,47 @@
 <template>
-  <div class="col-9 pt-3">
-    <div class="row pl-3">
-      <div class="col-4 pl-0">
-        <ul class="list-group">
-          <li class="list-group-item">Cras justo odio</li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Morbi leo risus</li>
-          <li class="list-group-item">Porta ac consectetur ac</li>
-          <li class="list-group-item">Vestibulum at eros</li>
-        </ul>
-      </div>
-      <div class="col-4 pl-0">
-        <ul class="list-group">
-          <li class="list-group-item">Cras justo odio</li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Morbi leo risus</li>
-          <li class="list-group-item">Porta ac consectetur ac</li>
-          <li class="list-group-item">Vestibulum at eros</li>
-        </ul>
-      </div>
-    </div>
+  <div class="col-2">
+    <form @submit.prevent="addItem">
+      <input type="text" class="form-control" v-model="title" />
+      <button type="submit" class="btn btn-light">Add</button>
+    </form>
+    <ul v-if="list.length" class="list-group">
+      <li
+        v-for="(item, index) in list"
+        :key="'in'+index"
+        class="list-group-item"
+      >{{index + 1}} {{item.title}}</li>
+    </ul>
+    <p v-else>Значений нет</p>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    list: {
+      type: Array
+    },
+    type: {
+      type: String
+    }
+  },
+  data() {
+    return {
+      title: ''
+    }
+  },
+  addItem() {
+    const item = {
+      title: this.title.trim(),
+      id: Date.now().toString,
+      type: this.type,
+      idSpher: '',
+      idNaprav: '',
+      idProj: '',
+      idEtap: ''
+    }
+    this.title = ''
+    this.$emit('add-item', item)
+  }
+}
+</script>
