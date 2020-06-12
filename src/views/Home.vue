@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { mapGettets, mapMutations } from 'vuex'
+import { mapGettets, mapActions } from 'vuex'
 import List from '@/components/List'
 
 export default {
@@ -25,11 +25,9 @@ export default {
       aliasEtap: ''
     }
   },
-  computed: {
-    ...mapGettets(['sphers', 'napravs', 'projects', 'etaps', 'tasks'])
-  },
+  computed: mapGettets(['sphers', 'napravs', 'projects', 'etaps', 'tasks']),
   methods: {
-    ...mapMutations(['addItem']),
+    ...mapActions(['addItem']),
     addItem(item) {
       this.addItem(item)
     }

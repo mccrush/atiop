@@ -18,6 +18,9 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    addItem({ commit }, item) {
+      commit('addItem', item)
+    }
   },
   modules: {
   },
