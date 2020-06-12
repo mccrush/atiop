@@ -143,13 +143,19 @@ export default {
           this.idnapravs = ''
           this.idprojects = ''
           this.idetaps = ''
+          localStorage.setItem('idnapravs', '')
+          localStorage.setItem('idprojects', '')
+          localStorage.setItem('idetaps', '')
           break
         case 'napravs':
           this.idprojects = ''
           this.idetaps = ''
+          localStorage.setItem('idprojects', '')
+          localStorage.setItem('idetaps', '')
           break
         case 'projects':
           this.idetaps = ''
+          localStorage.setItem('idetaps', '')
           break
         default:
       }

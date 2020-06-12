@@ -17,6 +17,7 @@
         :key="'in'+index"
         class="list-group-item p-2 pl-3 d-flex justify-content-between align-items-center cursor-pointer"
         @click="$emit('select-item', {id: item.id, type: item.type})"
+        ref="itemli"
       >
         <small>{{index + 1}} {{item.title}}</small>
         <button
@@ -56,6 +57,11 @@ export default {
       title: '',
       error: false
     }
+  },
+  mounted() {
+    let elem = this.$refs.itemli
+    //elem.onclick = alert('click')
+    //console.log(elem)
   },
   methods: {
     addItem() {
