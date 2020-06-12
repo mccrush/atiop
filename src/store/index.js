@@ -15,11 +15,18 @@ export default new Vuex.Store({
     addItem(state, item) {
       state[item.type].push(item)
       localStorage.setItem(item.type, JSON.stringify(state[item.type]))
+    },
+    removeItem(state, { id, type }) {
+      state[type] = state[type].filter(item => item.id !== id)
+      localStorage.setItem(type, JSON.stringify(state[type]))
     }
   },
   actions: {
     addItem({ commit }, item) {
       commit('addItem', item)
+    },
+    removeItem({ commit }, { id, type }) {
+      commit('removeItem', { id, type })
     }
   },
   modules: {

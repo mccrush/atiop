@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <List :list="sphers" type="sphers" @add-item="addItem" />
+    <List :list="sphers" type="sphers" @add-item="addItem" @remove-todo="removeItem" />
     <List v-if="idSpher" :list="napravs" type="napravs" />
     <List v-if="idNaprav" :list="projects" type="projects" />
     <List v-if="idProj" :list="etaps" type="etaps" />
@@ -44,9 +44,11 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['addItem']),
     addItem(item) {
-      this.addItem(item)
+      this.$store.dispatch('addItem', item)
+    },
+    removeItem(id, type) {
+      this.$store.dispatch('removeItem', id, type)
     }
   },
   watch: {
