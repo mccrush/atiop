@@ -2,19 +2,26 @@
   <div class="col-2">
     <h5 class="text-center">{{type}}</h5>
     <form @submit.prevent="addItem">
-      <input type="text" class="form-control form-control-sm" v-model="title" />
+      <input
+        type="text"
+        class="form-control form-control-sm"
+        :class="{'border-danger': error}"
+        v-model="title"
+        @focus="error = false"
+      />
       <button type="submit" class="btn btn-sm btn-block btn-light">Add</button>
     </form>
     <ul v-if="list.length" class="list-group mt-3">
       <li
         v-for="(item, index) in list"
         :key="'in'+index"
-        class="list-group-item p-2 pl-3 d-flex justify-content-between align-items-center"
+        class="list-group-item p-2 pl-3 d-flex justify-content-between align-items-center cursor-pointer"
+        @click="$emit('select-item', {id: item.id, type: item.type})"
       >
         <small>{{index + 1}} {{item.title}}</small>
         <button
           class="btn btn-sm btn-light p-0 pl-2 pr-2"
-          @click="$emit('remove-todo', {id: item.id, type: item.type})"
+          @click.stop="$emit('remove-item', {id: item.id, type: item.type})"
         >&times;</button>
       </li>
     </ul>
@@ -30,27 +37,50 @@ export default {
     },
     type: {
       type: String
+    },
+    idsphers: {
+      defauit: ''
+    },
+    idnapravs: {
+      defauit: ''
+    },
+    idprojects: {
+      defauit: ''
+    },
+    idetaps: {
+      defauit: ''
     }
   },
   data() {
     return {
-      title: ''
+      title: '',
+      error: false
     }
   },
   methods: {
     addItem() {
-      const item = {
-        title: this.title.trim(),
-        id: Date.now().toString(),
-        type: this.type,
-        idSpher: '',
-        idNaprav: '',
-        idProj: '',
-        idEtap: ''
+      if (this.title.trim()) {
+        const item = {
+          title: this.title.trim(),
+          id: Date.now().toString(),
+          type: this.type,
+          idsphers: this.idsphers,
+          idnapravs: this.idnapravs,
+          idprojects: this.idprojects,
+          idetaps: this.idetaps
+        }
+        this.title = ''
+        this.$emit('add-item', item)
+      } else {
+        this.error = true
       }
-      this.title = ''
-      this.$emit('add-item', item)
     }
   }
 }
 </script>
+
+<style scoped>
+.cursor-pointer {
+  cursor: pointer;
+}
+</style>

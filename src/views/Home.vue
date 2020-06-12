@@ -1,15 +1,58 @@
 <template>
   <div class="row">
-    <List :list="sphers" type="sphers" @add-item="addItem" @remove-todo="removeItem" />
-    <List v-if="idSpher" :list="napravs" type="napravs" />
-    <List v-if="idNaprav" :list="projects" type="projects" />
-    <List v-if="idProj" :list="etaps" type="etaps" />
-    <List v-if="idEtap" :list="tasks" type="tasks" />
+    <List
+      :list="sphers"
+      type="sphers"
+      @add-item="addItem"
+      @remove-item="removeItem"
+      @select-item="selectItem"
+    />
+    <List
+      v-if="idsphers"
+      :list="dispalyNapravs"
+      :idsphers="idsphers"
+      type="napravs"
+      @add-item="addItem"
+      @remove-item="removeItem"
+      @select-item="selectItem"
+    />
+    <List
+      v-if="idnapravs"
+      :list="displayProjects"
+      :idsphers="idsphers"
+      :idnapravs="idnapravs"
+      type="projects"
+      @add-item="addItem"
+      @remove-item="removeItem"
+      @select-item="selectItem"
+    />
+    <List
+      v-if="idprojects"
+      :list="displayEtaps"
+      :idsphers="idsphers"
+      :idnapravs="idnapravs"
+      :idprojects="idprojects"
+      type="etaps"
+      @add-item="addItem"
+      @remove-item="removeItem"
+      @select-item="selectItem"
+    />
+    <List
+      v-if="idetaps"
+      :list="displayTasks"
+      :idsphers="idsphers"
+      :idnapravs="idnapravs"
+      :idprojects="idprojects"
+      :idetaps="idetaps"
+      type="tasks"
+      @add-item="addItem"
+      @remove-item="removeItem"
+      @select-item="selectItem"
+    />
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 import List from '@/components/List'
 
 export default {
@@ -19,13 +62,13 @@ export default {
   },
   data() {
     return {
-      idSpher: '',
-      idNaprav: '',
-      idProj: '',
-      idEtap: ''
+      idsphers: '',
+      idnapravs: '',
+      idprojects: '',
+      idetaps: '',
+      idtasks: ''
     }
   },
-  //computed: mapGettets(['sphers', 'napravs', 'projects', 'etaps', 'tasks']),
   computed: {
     sphers() {
       return this.$store.getters.sphers
@@ -41,40 +84,53 @@ export default {
     },
     tasks() {
       return this.$store.getters.tasks
+    },
+    dispalyNapravs() {
+      return this.napravs.filter(item => {
+        if (!this.idsphers) {
+          return false
+        } else {
+          return item.idsphers === this.idsphers
+        }
+      })
+    },
+    displayProjects() {
+      return this.projects.filter(item => {
+        if (!this.idnapravs) {
+          return false
+        } else {
+          return item.idnapravs === this.idnapravs
+        }
+      })
+    },
+    displayEtaps() {
+      return this.etaps.filter(item => {
+        if (!this.idprojects) {
+          return false
+        } else {
+          return item.idprojects === this.idprojects
+        }
+      })
+    },
+    displayTasks() {
+      return this.tasks.filter(item => {
+        if (!this.idetaps) {
+          return false
+        } else {
+          return item.idetaps === this.idetaps
+        }
+      })
     }
   },
   methods: {
     addItem(item) {
       this.$store.dispatch('addItem', item)
     },
-    removeItem(id, type) {
-      this.$store.dispatch('removeItem', id, type)
-    }
-  },
-  watch: {
-    idSpher() {
-      this.napravs = this.napravs.filter(
-        naprav => naprav.idSpher === this.idSpher
-      )
-      this.projects = this.projects.filter(
-        proj => proj.idSpher === this.idSpher
-      )
-      this.etaps = this.etaps.filter(etap => etap.idSpher === this.idSpher)
-      this.tasks = this.tasks.filter(task => task.idSpher === this.idSpher)
+    removeItem({ id, type }) {
+      this.$store.dispatch('removeItem', { id, type })
     },
-    idNaprav() {
-      this.projects = this.projects.filter(
-        proj => proj.idNaprav === this.idNaprav
-      )
-      this.etaps = this.etaps.filter(etap => etap.idNaprav === this.idNaprav)
-      this.tasks = this.tasks.filter(task => task.idNaprav === this.idNaprav)
-    },
-    idProj() {
-      this.etaps = this.etaps.filter(etap => etap.idProj === this.idProj)
-      this.tasks = this.tasks.filter(task => task.idProj === this.idProj)
-    },
-    idEtap() {
-      this.tasks = this.tasks.filter(task => task.idEtap === this.idEtap)
+    selectItem({ id, type }) {
+      this['id' + type] = id
     }
   }
 }
