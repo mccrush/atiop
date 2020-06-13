@@ -3,8 +3,8 @@
     <a class="navbar-brand" href="#">
       <img
         src="img/icons/favicon-32x32.png"
-        width="30"
-        height="30"
+        width="32"
+        height="32"
         class="d-inline-block align-top"
         alt="ATIOP"
       />
@@ -24,14 +24,14 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <router-link to="/" class="nav-link">Home</router-link>
-        </li>
-        <li class="nav-item active">
+        <li class="nav-item">
           <router-link to="/general" class="nav-link">General</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/about" class="nav-link">About</router-link>
+          <router-link to="/about" class="nav-link">Projects</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/" class="nav-link">Create</router-link>
         </li>
       </ul>
     </div>

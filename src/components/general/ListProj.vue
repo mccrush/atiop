@@ -4,7 +4,7 @@
       <li
         v-for="(item, index) in displayProj"
         :key="'in'+index"
-        class="list-group-item p-2 pl-3 justify-content-between align-items-center cursor-pointer"
+        class="list-group-item p-0 pl-1 pr-1 justify-content-between align-items-center cursor-pointer"
       >
         <span>{{item.title}}</span>
       </li>
@@ -25,8 +25,14 @@ export default {
   },
   computed: {
     displayProj() {
-      return this.projects.filter(item => (item.idnapravs = this.idnapravs))
+      return this.projects.filter(item => item.idnapravs === this.idnapravs)
     }
   }
 }
 </script>
+
+<style scoped>
+li {
+  min-width: 120px;
+}
+</style>
