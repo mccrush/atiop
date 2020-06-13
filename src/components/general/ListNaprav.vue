@@ -1,6 +1,6 @@
 <template>
   <div class="col-2">
-    <ul v-if="napravs.length" class="list-group list-group-flush list-group-horizontal mt-3">
+    <ul v-if="displayNaprav.length" class="list-group list-group-flush list-group-horizontal mt-3">
       <li
         v-for="(item, index) in displayNaprav"
         :key="'in'+index"
@@ -12,7 +12,9 @@
         </div>
       </li>
     </ul>
-    <p v-else>Значений нет</p>
+    <p v-else>
+      <small>Список пуст</small>
+    </p>
   </div>
 </template>
 

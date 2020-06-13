@@ -1,10 +1,10 @@
 <template>
-  <div class="col-2">
-    <ul v-if="displayProj.length" class="list-group list-group-horizontal mt-3">
+  <div class="p-0">
+    <ul v-if="displayTasks.length" class="list-group mt-1">
       <li
-        v-for="(item, index) in displayProj"
+        v-for="(item, index) in displayTasks"
         :key="'in'+index"
-        class="list-group-item p-0 pl-1 pr-1 justify-content-between align-items-center cursor-pointer"
+        class="list-group-item justify-content-between align-items-center cursor-pointer p-2 pl-3"
       >
         <span>{{item.title}}</span>
       </li>
@@ -18,16 +18,16 @@
 <script>
 export default {
   props: {
-    projects: {
+    tasks: {
       type: Array
     },
-    idnapravs: {
+    idprojects: {
       type: String
     }
   },
   computed: {
-    displayProj() {
-      return this.projects.filter(item => item.idnapravs === this.idnapravs)
+    displayTasks() {
+      return this.tasks.filter(item => item.idprojects === this.idprojects)
     }
   }
 }

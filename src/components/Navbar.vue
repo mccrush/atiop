@@ -25,13 +25,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
+          <router-link to="/" class="nav-link">Projects</router-link>
+        </li>
+        <li class="nav-item">
           <router-link to="/general" class="nav-link">General</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/about" class="nav-link">Projects</router-link>
+          <router-link to="/create" class="nav-link">Create</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/" class="nav-link">Create</router-link>
+          <router-link to="/about" class="nav-link">About</router-link>
         </li>
       </ul>
     </div>

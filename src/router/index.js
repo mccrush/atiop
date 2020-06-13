@@ -8,6 +8,10 @@ export default new Router({
   routes: [
     {
       path: '/',
+      component: () => import('../views/Projects.vue')
+    },
+    {
+      path: '/create',
       component: () => import('../views/Home.vue')
     },
     {

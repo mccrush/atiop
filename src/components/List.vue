@@ -1,5 +1,5 @@
 <template>
-  <div class="col-2">
+  <div class="col-2 p-1">
     <h5 class="text-center mt-2">{{type}}</h5>
     <form @submit.prevent="addItem">
       <input
@@ -26,7 +26,9 @@
         >&times;</button>
       </li>
     </ul>
-    <p v-else>Значений нет</p>
+    <p v-else>
+      <small>Список пуст</small>
+    </p>
   </div>
 </template>
 
