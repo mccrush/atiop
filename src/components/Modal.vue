@@ -9,24 +9,33 @@
   >
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header">
+        <!-- <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-        </div>
+        </div>-->
         <div class="modal-body">
           <form>
             <input type="text" class="form-control" v-model="title" />
-
             <div class="row">
-              <div class="col-8">
-                <input type="datetime-local" v-model="date" />
+              <div class="col-8 mt-2">
+                <div class="form-group">
+                  <label for="date">
+                    <small>Срок выполнения</small>
+                  </label>
+                  <input
+                    type="datetime-local"
+                    id="date"
+                    class="form-control form-control-sm"
+                    v-model="date"
+                  />
+                </div>
               </div>
-              <div class="col-4">
-                <button class="btn btn-block btn-sm btn-success">Завершить</button>
-                <button class="btn btn-block btn-sm btn-light">В архив</button>
-                <button class="btn btn-block btn-sm btn-danger">Удалить</button>
+              <div class="col-4 mt-2">
+                <button class="btn btn-block btn-sm btn-outline-success">Завершить</button>
+                <button class="btn btn-block btn-sm btn-outline-secondary">В архив</button>
+                <button class="btn btn-block btn-sm btn-outline-danger">Удалить</button>
               </div>
             </div>
           </form>
@@ -54,13 +63,13 @@ export default {
       date: ''
     }
   },
-  mounted() {
-    console.log(this.item)
-
-    if (this.item) {
+  watch: {
+    item() {
       this.title = this.item.title
       this.status = this.item.status
       this.date = this.item.date
+
+      console.log(this.date)
     }
   }
 }

@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-12 d-flex ower">
       <div v-for="(item, index) in projects" :key="'in'+index" class="p-1">
-        <h6 class="text-center bg-light p-1 rounded-lg m-0">{{item.title}}</h6>
+        <h6 class="text-center bg-light p-1 rounded-lg m-0 elem">{{item.title}}</h6>
         <ListTasks
           :tasks="tasks"
           :idprojects="item.id"
@@ -47,13 +47,13 @@ export default {
   methods: {
     editItem({ id, type }) {
       this.item = this.tasks.find(item => item.id === id)
-      //$('#exampleModal').modal('show')
+      $('#exampleModal').modal('show')
     }
   }
 }
 </script>
 
-<style scoped>
+<style>
 .ower {
   overflow: auto;
   min-height: 500px;
@@ -61,6 +61,10 @@ export default {
 
 .w150 {
   width: 150px;
+}
+
+.elem {
+  user-select: none;
 }
 </style>
  

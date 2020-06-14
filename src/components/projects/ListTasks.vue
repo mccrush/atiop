@@ -5,9 +5,9 @@
         v-for="(item, index) in displayTasks"
         :key="'in'+index"
         class="list-group-item justify-content-between align-items-center cursor-pointer p-1 pl-2"
-        @dblclick="$emit('edit-item', {id: item.id, type: item.type})"
+        @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
       >
-        <small>{{item.title}}</small>
+        <small class="elem">{{item.title}}</small>
       </li>
     </ul>
     <!-- <p v-else class="li">
