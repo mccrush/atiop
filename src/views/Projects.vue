@@ -1,13 +1,16 @@
 <template>
   <div class="row">
     <div class="col-12 d-flex ower">
-      <div v-for="(item, index) in projects" :key="'in'+index" class="p-1">
-        <h6 class="text-center bg-light p-1 rounded-lg m-0 elem">{{item.title}}</h6>
+      <div v-for="(proj, index) in projects" :key="'in'+index" class="p-1">
+        <h6
+          class="text-center bg-light p-1 rounded-lg m-0 elem"
+          @dblclick.prevent="editItem({id:proj.id, type: proj.type})"
+        >{{proj.title}}</h6>
         <ListTasks
           :tasks="tasks"
-          :idprojects="item.id"
-          :idsphers="item.idsphers"
-          :idnapravs="item.idnapravs"
+          :idprojects="proj.id"
+          :idsphers="proj.idsphers"
+          :idnapravs="proj.idnapravs"
           @edit-item="editItem"
         />
       </div>
@@ -46,7 +49,11 @@ export default {
   },
   methods: {
     editItem({ id, type }) {
-      this.item = this.tasks.find(item => item.id === id)
+      if (type === 'tasks') {
+        this.item = this.tasks.find(item => item.id === id)
+      } else {
+        this.item = this.projects.find(item => item.id === id)
+      }
       $('#exampleModal').modal('show')
     }
   }
