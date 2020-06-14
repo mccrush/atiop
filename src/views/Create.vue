@@ -106,6 +106,9 @@ export default {
           this.idprojects = ''
           localStorage.setItem('idprojects', '')
           break
+        case 'projects':
+          localStorage.setItem('color', '#ffffff')
+          break
         default:
       }
     }

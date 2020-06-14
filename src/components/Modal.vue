@@ -90,7 +90,7 @@ export default {
       title: '',
       active: '',
       date: '',
-      color: '#f2f2f2',
+      color: '#ffffff',
       type: '',
       error: false
     }

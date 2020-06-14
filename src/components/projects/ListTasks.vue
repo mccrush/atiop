@@ -24,7 +24,7 @@
       <!-- <button type="submit" class="btn btn-sm btn-block btn-light">Add</button> -->
     </form>
     <div v-if="arhivsTask.length">
-      <hr />
+      <hr class="m-2" />
       <ul class="list-group mt-1">
         <li
           v-for="(item, index) in arhivsTask"
@@ -85,7 +85,7 @@ export default {
           idprojects: this.idprojects,
           active: true,
           position: 1, // По умолчанию в начало списка
-          color: '#f2f2f2', // Должен назначаться родителем
+          color: '#ffffff', // Должен назначаться родителем
           date: this.getDateNow()
         }
         this.title = ''
