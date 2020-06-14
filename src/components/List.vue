@@ -33,6 +33,8 @@
 </template>
 
 <script>
+//import getDateNow from '@/scripts/getDateNow'
+
 export default {
   props: {
     list: {
@@ -66,13 +68,38 @@ export default {
           type: this.type,
           idsphers: this.idsphers,
           idnapravs: this.idnapravs,
-          idprojects: this.idprojects
+          idprojects: this.idprojects,
+          status: 'active', // done, arhive
+          position: 1, // По умолчанию в начало списка
+          color: '#f2f2f2', // Должен назначаться родителем
+          date: this.getDateNow()
         }
         this.title = ''
         this.$emit('add-item', item)
       } else {
         this.error = true
       }
+    },
+    getDateNow() {
+      return (
+        new Date().getFullYear() +
+        '-' +
+        (new Date().getMonth() + 1 > 9
+          ? new Date().getMonth() + 1
+          : '0' + (new Date().getMonth() + 1)) +
+        '-' +
+        (new Date().getDate() > 9
+          ? new Date().getDate()
+          : '0' + new Date().getDate()) +
+        'T' +
+        (new Date().getHours() > 9
+          ? new Date().getHours()
+          : '0' + new Date().getHours()) +
+        ':' +
+        (new Date().getMinutes() > 9
+          ? new Date().getMinutes()
+          : '0' + new Date().getMinutes())
+      )
     }
   }
 }
