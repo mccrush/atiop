@@ -1,5 +1,5 @@
 <template>
-  <div class="col-2 p-1">
+  <div class="col-12 p-1 ower d-flex">
     <ul v-if="sphers.length" class="list-group list-group-flush list-group-horizontal mt-3">
       <li
         v-for="(item, index) in sphers"
@@ -38,3 +38,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.ower {
+  overflow: auto;
+  min-height: 500px;
+}
+</style>

@@ -6,7 +6,7 @@
         :key="'in'+index"
         class="list-group-item justify-content-between align-items-center cursor-pointer p-2 pl-3"
       >
-        <span>{{item.title}}</span>
+        <small>{{item.title}}</small>
       </li>
     </ul>
     <p v-else class="li">

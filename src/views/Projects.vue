@@ -1,8 +1,10 @@
 <template>
   <div class="row">
-    <div v-for="(item, index) in projects" :key="'in'+index" class="col-2 p-1">
-      <h5 class="text-center bg-light p-1 rounded-lg m-0">{{item.title}}</h5>
-      <ListTasks :tasks="tasks" :idprojects="item.id" />
+    <div class="col-12 d-flex ower">
+      <div v-for="(item, index) in projects" :key="'in'+index" class="w150 p-1">
+        <h6 class="text-center bg-light p-1 rounded-lg m-0">{{item.title}}</h6>
+        <ListTasks :tasks="tasks" :idprojects="item.id" />
+      </div>
     </div>
   </div>
 </template>
@@ -21,14 +23,22 @@ export default {
     },
     tasks() {
       return this.$store.getters.tasks
+    },
+    displayProjects() {
+      return this.projects.filter(proj => proj.childs > 0)
     }
   }
 }
 </script>
 
 <style scoped>
-li {
-  min-width: 120px;
+.ower {
+  overflow: auto;
+  min-height: 500px;
+}
+
+.w150 {
+  min-width: 150px;
 }
 </style>
  
