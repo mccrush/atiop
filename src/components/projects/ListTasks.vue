@@ -55,8 +55,7 @@ export default {
           type: 'tasks',
           idsphers: this.idsphers,
           idnapravs: this.idnapravs,
-          idprojects: this.idprojects,
-          idetaps: this.idetaps
+          idprojects: this.idprojects
         }
         this.title = ''
         //this.$emit('add-item', item)
@@ -69,12 +68,6 @@ export default {
 </script>
 
 <style scoped>
-/* li,
-p.li {
-  width: 150px;
-  min-width: 150px;
-} */
-
 .w150 {
   width: 150px;
 }

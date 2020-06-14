@@ -8,7 +8,6 @@ export default new Vuex.Store({
     sphers: JSON.parse(localStorage.getItem('sphers') || '[]'),
     napravs: JSON.parse(localStorage.getItem('napravs') || '[]'),
     projects: JSON.parse(localStorage.getItem('projects') || '[]'),
-    etaps: JSON.parse(localStorage.getItem('etaps') || '[]'),
     tasks: JSON.parse(localStorage.getItem('tasks') || '[]'),
   },
   mutations: {
@@ -35,7 +34,6 @@ export default new Vuex.Store({
     sphers: state => state.sphers,
     napravs: state => state.napravs,
     projects: state => state.projects,
-    etaps: state => state.etaps,
     tasks: state => state.tasks,
   }
 })

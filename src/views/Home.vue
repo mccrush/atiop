@@ -28,22 +28,10 @@
     />
     <List
       v-if="idprojects"
-      :list="displayEtaps"
-      :idsphers="idsphers"
-      :idnapravs="idnapravs"
-      :idprojects="idprojects"
-      type="etaps"
-      @add-item="addItem"
-      @remove-item="removeItem"
-      @select-item="selectItem"
-    />
-    <List
-      v-if="idetaps"
       :list="displayTasks"
       :idsphers="idsphers"
       :idnapravs="idnapravs"
       :idprojects="idprojects"
-      :idetaps="idetaps"
       type="tasks"
       @add-item="addItem"
       @remove-item="removeItem"
@@ -65,7 +53,6 @@ export default {
       idsphers: '',
       idnapravs: '',
       idprojects: '',
-      idetaps: '',
       idtasks: ''
     }
   },
@@ -73,7 +60,6 @@ export default {
     this.idsphers = localStorage.getItem('idsphers') || ''
     this.idnapravs = localStorage.getItem('idnapravs') || ''
     this.idprojects = localStorage.getItem('idprojects') || ''
-    this.idetaps = localStorage.getItem('idetaps') || ''
   },
   computed: {
     sphers() {
@@ -84,9 +70,6 @@ export default {
     },
     projects() {
       return this.$store.getters.projects
-    },
-    etaps() {
-      return this.$store.getters.etaps
     },
     tasks() {
       return this.$store.getters.tasks
@@ -109,21 +92,12 @@ export default {
         }
       })
     },
-    displayEtaps() {
-      return this.etaps.filter(item => {
+    displayTasks() {
+      return this.tasks.filter(item => {
         if (!this.idprojects) {
           return false
         } else {
           return item.idprojects === this.idprojects
-        }
-      })
-    },
-    displayTasks() {
-      return this.tasks.filter(item => {
-        if (!this.idetaps) {
-          return false
-        } else {
-          return item.idetaps === this.idetaps
         }
       })
     }
@@ -142,20 +116,12 @@ export default {
         case 'sphers':
           this.idnapravs = ''
           this.idprojects = ''
-          this.idetaps = ''
           localStorage.setItem('idnapravs', '')
           localStorage.setItem('idprojects', '')
-          localStorage.setItem('idetaps', '')
           break
         case 'napravs':
           this.idprojects = ''
-          this.idetaps = ''
           localStorage.setItem('idprojects', '')
-          localStorage.setItem('idetaps', '')
-          break
-        case 'projects':
-          this.idetaps = ''
-          localStorage.setItem('idetaps', '')
           break
         default:
       }

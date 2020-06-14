@@ -49,9 +49,6 @@ export default {
     },
     idprojects: {
       defauit: ''
-    },
-    idetaps: {
-      defauit: ''
     }
   },
   data() {
@@ -59,11 +56,6 @@ export default {
       title: '',
       error: false
     }
-  },
-  mounted() {
-    let elem = this.$refs.itemli
-    //elem.onclick = alert('click')
-    //console.log(elem)
   },
   methods: {
     addItem() {
@@ -74,8 +66,7 @@ export default {
           type: this.type,
           idsphers: this.idsphers,
           idnapravs: this.idnapravs,
-          idprojects: this.idprojects,
-          idetaps: this.idetaps
+          idprojects: this.idprojects
         }
         this.title = ''
         this.$emit('add-item', item)

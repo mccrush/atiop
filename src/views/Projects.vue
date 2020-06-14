@@ -25,6 +25,7 @@ export default {
       return this.$store.getters.tasks
     },
     displayProjects() {
+      // Додумать, чтоб не выводить пустые проекты. И надо ли так делать
       return this.projects.filter(proj => proj.childs > 0)
     }
   }
