@@ -1,10 +1,10 @@
 <template>
-  <div class="col-12 p-1 ower d-flex">
-    <ul v-if="sphers.length" class="list-group list-group-flush list-group-horizontal mt-3">
+  <div class="col-12 p-1 ower">
+    <ul v-if="sphers.length" class="list-group list-group-horizontal mt-2">
       <li
         v-for="(item, index) in sphers"
         :key="'in'+index"
-        class="list-group-item p-0 pl-1 pr-1 justify-content-between align-items-center cursor-pointer border-0"
+        class="list-group-item justify-content-between align-items-center border-0 p-0 ml-1 mr-1 cursor-pointer"
       >
         <h5
           class="text-center bg-light p-1 rounded-lg m-0 elem"
