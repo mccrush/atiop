@@ -8,7 +8,7 @@
     aria-hidden="true"
   >
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
+      <div class="modal-content border-0 shadow">
         <!-- <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -26,29 +26,18 @@
             />
             <div class="row">
               <div class="col-8 mt-2">
-                <div class="form-group">
-                  <label for="date">
-                    <small>Срок выполнения</small>
-                  </label>
-                  <input
-                    type="datetime-local"
-                    id="date"
-                    class="form-control form-control-sm"
-                    v-model="date"
-                  />
-                </div>
+                <input
+                  type="datetime-local"
+                  id="date"
+                  class="form-control form-control-sm"
+                  v-model="date"
+                />
               </div>
               <div class="col-4 mt-2">
                 <button
-                  class="btn btn-block btn-sm"
-                  :class="classDone"
-                  @click="changeStatus('done')"
-                >{{this.status === 'done' ? 'Завершена' : 'Завершить'}}</button>
-                <button
-                  class="btn btn-block btn-sm"
-                  :class="classArhive"
-                  @click="changeStatus('arhive')"
-                >{{this.status === 'arhive' ? 'В архиве' : 'В архив'}}</button>
+                  class="btn btn-block btn-sm btn-light"
+                  @click="active = !active"
+                >{{active ? 'Архивировать' : 'Восстановить'}}</button>
                 <button
                   class="btn btn-block btn-sm btn-outline-danger"
                   @click="removeItem({id: item.id, type: item.type})"
@@ -58,16 +47,15 @@
             <hr />
 
             <div class="row">
-              <div class="col-3"></div>
-              <div class="col-3"></div>
-              <div class="col-3">
+              <div class="col-4"></div>
+              <div class="col-4">
                 <button
                   type="button"
                   class="btn btn-sm btn-block btn-light"
                   data-dismiss="modal"
                 >Отмена</button>
               </div>
-              <div class="col-3">
+              <div class="col-4">
                 <button type="submit" class="btn btn-sm btn-block btn-success">Сохранить</button>
               </div>
             </div>
@@ -92,11 +80,9 @@ export default {
   data() {
     return {
       title: '',
-      status: '',
+      active: '',
       date: '',
-      error: false,
-      classDone: 'btn-outline-success',
-      classArhive: 'btn-outline-secondary'
+      error: false
     }
   },
   methods: {
@@ -105,37 +91,20 @@ export default {
         const item = {
           title: this.title.trim(),
           id: this.item.id,
-          status: this.status, // done, arhive
+          active: this.active, // done, arhive
           date: this.date
         }
         //this.$store.dispatch('updateItem', item)
       } else {
         this.error = true
       }
-    },
-    changeStatus(status) {
-      this.status = status
-      if (status === 'done') {
-        this.classDone = 'btn-success'
-        this.classArhive = 'btn-outline-secondary'
-      } else {
-        this.classArhive = 'btn-secondary'
-        this.classDone = 'btn-outline-success'
-      }
     }
   },
   watch: {
     item() {
       this.title = this.item.title
-      this.status = this.item.status
+      this.active = this.item.active
       this.date = this.item.date
-
-      this.classDone =
-        this.item.status === 'done' ? 'btn-success' : 'btn-outline-success'
-      this.classArhive =
-        this.item.status === 'arhive'
-          ? 'btn-secondary'
-          : 'btn-outline-secondary'
     }
   }
 }

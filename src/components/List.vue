@@ -66,7 +66,7 @@ export default {
           idsphers: this.idsphers,
           idnapravs: this.idnapravs,
           idprojects: this.idprojects,
-          status: 'active', // done, arhive
+          active: true,
           position: 1, // По умолчанию в начало списка
           color: '#f2f2f2', // Должен назначаться родителем
           date: this.getDateNow()
