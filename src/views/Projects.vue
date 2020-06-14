@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="col-12 d-flex ower">
-      <div v-for="(item, index) in projects" :key="'in'+index" class="w150 p-1">
+      <div v-for="(item, index) in projects" :key="'in'+index" class="p-1">
         <h6 class="text-center bg-light p-1 rounded-lg m-0">{{item.title}}</h6>
         <ListTasks :tasks="tasks" :idprojects="item.id" />
       </div>
@@ -38,7 +38,7 @@ export default {
 }
 
 .w150 {
-  min-width: 150px;
+  width: 150px;
 }
 </style>
  
