@@ -20,7 +20,10 @@
         ref="itemli"
       >
         <small>{{index + 1}} {{item.title}}</small>
-        <button class="btn btn-sm btn-light p-0 pl-2 pr-2" @click.stop="removeItem">&times;</button>
+        <button
+          class="btn btn-sm btn-light p-0 pl-2 pr-2"
+          @click.stop="removeItem({id: item.id, type: item.type})"
+        >&times;</button>
       </li>
     </ul>
     <p v-else>

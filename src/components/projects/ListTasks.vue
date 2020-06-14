@@ -23,6 +23,19 @@
       />
       <!-- <button type="submit" class="btn btn-sm btn-block btn-light">Add</button> -->
     </form>
+    <div v-if="arhivsTask.length">
+      <hr />
+      <ul class="list-group mt-1">
+        <li
+          v-for="(item, index) in arhivsTask"
+          :key="'in'+index"
+          class="list-group-item justify-content-between align-items-center cursor-pointer p-1 pl-2 bg-light"
+          @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
+        >
+          <small class="elem">{{item.title}}</small>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -51,6 +64,9 @@ export default {
   computed: {
     displayTasks() {
       return this.tasks.filter(item => item.idprojects === this.idprojects)
+    },
+    arhivsTask() {
+      return this.displayTasks.filter(item => item.active)
     }
   },
   methods: {

@@ -102,6 +102,9 @@ export default {
       } else {
         this.error = true
       }
+    },
+    removeItem({ id, type }) {
+      this.$store.dispatch('removeItem', { id, type })
     }
   },
   watch: {
