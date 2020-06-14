@@ -71,6 +71,8 @@
 </template>
 
 <script>
+import $ from 'jquery'
+
 export default {
   props: {
     item: {
@@ -91,10 +93,12 @@ export default {
         const item = {
           title: this.title.trim(),
           id: this.item.id,
+          type: this.item.type,
           active: this.active, // done, arhive
           date: this.date
         }
-        //this.$store.dispatch('updateItem', item)
+        this.$store.dispatch('updateItem', item)
+        $('#exampleModal').modal('hide')
       } else {
         this.error = true
       }

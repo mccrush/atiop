@@ -19,8 +19,14 @@ export default new Vuex.Store({
       state[type] = state[type].filter(item => item.id !== id)
       localStorage.setItem(type, JSON.stringify(state[type]))
     },
-    updateItem(state, item) {
+    updateItem(state, { id, title, type, active, date }) {
+      const items = state[type].concat()
+      const index = items.findIndex(el => el.id === id)
+      let el = items[index]
+      items[index] = { ...el, title, type, active, date }
 
+      state[type] = items
+      localStorage.setItem(type, JSON.stringify(state[type]))
     }
   },
   actions: {
