@@ -8,6 +8,7 @@
       >
         <h5
           class="text-center bg-light p-1 rounded-lg m-0 elem"
+          :style="'background:'+item.color+' !important'"
           @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
         >{{item.title}}</h5>
         <div class="row">
@@ -15,6 +16,7 @@
             :napravs="napravs"
             :projects="projects"
             :idsphers="item.id"
+            :color="item.color"
             @edit-item="editItem"
           />
         </div>

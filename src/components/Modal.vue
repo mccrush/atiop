@@ -32,6 +32,12 @@
                   class="form-control form-control-sm"
                   v-model="date"
                 />
+                <input
+                  v-if="type === 'sphers'"
+                  type="color"
+                  class="form-control form-control-sm mt-2"
+                  v-model="color"
+                />
               </div>
               <div class="col-4 mt-2">
                 <button
@@ -84,6 +90,8 @@ export default {
       title: '',
       active: '',
       date: '',
+      color: '#f2f2f2',
+      type: '',
       error: false
     }
   },
@@ -95,7 +103,8 @@ export default {
           id: this.item.id,
           type: this.item.type,
           active: this.active, // done, arhive
-          date: this.date
+          date: this.date,
+          color: this.color
         }
         this.$store.dispatch('updateItem', item)
         $('#exampleModal').modal('hide')
@@ -112,6 +121,8 @@ export default {
       this.title = this.item.title
       this.active = this.item.active
       this.date = this.item.date
+      this.type = this.item.type
+      this.color = this.item.color
     }
   }
 }

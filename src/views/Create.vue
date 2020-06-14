@@ -91,9 +91,10 @@ export default {
     }
   },
   methods: {
-    selectItem({ id, type }) {
+    selectItem({ id, type, color }) {
       this['id' + type] = id
       localStorage.setItem('id' + type, id)
+      localStorage.setItem('color', color)
       switch (type) {
         case 'sphers':
           this.idnapravs = ''

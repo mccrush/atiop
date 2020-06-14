@@ -8,10 +8,11 @@
       >
         <h6
           class="text-center bg-light rounded-lg p-2 elem"
+          :style="'background:'+color+' !important'"
           @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
         >{{item.title}}</h6>
         <div class="row">
-          <ListProj :projects="projects" :idnapravs="item.id" @edit-item="editItem" />
+          <ListProj :projects="projects" :idnapravs="item.id" @edit-item="editItem" :color="color" />
         </div>
       </li>
     </ul>
@@ -36,6 +37,9 @@ export default {
       type: Array
     },
     idsphers: {
+      type: String
+    },
+    color: {
       type: String
     }
   },

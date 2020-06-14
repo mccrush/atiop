@@ -6,7 +6,10 @@
         :key="'in'+index"
         class="list-group-item justify-content-between align-items-center border-0 p-0 ml-1 mr-1 cursor-pointer"
       >
-        <h6 class="text-center bg-light rounded-lg p-2 elem">
+        <h6
+          class="text-center bg-light rounded-lg p-2 elem"
+          :style="'background:'+color+' !important'"
+        >
           <small
             @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
           >{{item.title}}</small>
@@ -26,6 +29,9 @@ export default {
       type: Array
     },
     idnapravs: {
+      type: String
+    },
+    color: {
       type: String
     }
   },

@@ -63,10 +63,14 @@ export default {
   },
   computed: {
     displayTasks() {
-      return this.tasks.filter(item => item.idprojects === this.idprojects)
+      return this.tasks.filter(
+        item => item.idprojects === this.idprojects && item.active
+      )
     },
     arhivsTask() {
-      return this.displayTasks.filter(item => item.active)
+      return this.tasks.filter(
+        item => item.idprojects === this.idprojects && !item.active
+      )
     }
   },
   methods: {

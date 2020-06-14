@@ -1,16 +1,17 @@
 <template>
   <div class="row">
     <div class="col-12 d-flex ower">
-      <div v-for="(proj, index) in projects" :key="'in'+index" class="p-1">
+      <div v-for="(item, index) in projects" :key="'in'+index" class="p-1">
         <h6
           class="text-center bg-light p-1 rounded-lg m-0 elem"
-          @dblclick.prevent="editItem({id:proj.id, type: proj.type})"
-        >{{proj.title}}</h6>
+          :style="'background:'+item.color+' !important'"
+          @dblclick.prevent="editItem({id:item.id, type: item.type})"
+        >{{item.title}}</h6>
         <ListTasks
           :tasks="tasks"
-          :idprojects="proj.id"
-          :idsphers="proj.idsphers"
-          :idnapravs="proj.idnapravs"
+          :idprojects="item.id"
+          :idsphers="item.idsphers"
+          :idnapravs="item.idnapravs"
           @edit-item="editItem"
         />
       </div>

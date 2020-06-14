@@ -9,14 +9,15 @@
         v-model="title"
         @focus="error = false"
       />
-      <button type="submit" class="btn btn-sm btn-block btn-light">Add</button>
+      <!-- <button type="submit" class="btn btn-sm btn-block btn-light">Add</button> -->
     </form>
-    <ul v-if="list.length" class="list-group mt-3">
+    <ul v-if="list.length" class="list-group mt-1">
       <li
         v-for="(item, index) in list"
         :key="'in'+index"
         class="list-group-item p-2 pl-3 d-flex justify-content-between align-items-center cursor-pointer"
-        @click="$emit('select-item', {id: item.id, type: item.type})"
+        :style="'background:'+item.color+' !important'"
+        @click="$emit('select-item', {id: item.id, type: item.type, color: item.color})"
         ref="itemli"
       >
         <small>{{index + 1}} {{item.title}}</small>
@@ -26,9 +27,6 @@
         >&times;</button>
       </li>
     </ul>
-    <p v-else>
-      <small>Список пуст</small>
-    </p>
   </div>
 </template>
 
@@ -71,7 +69,7 @@ export default {
           idprojects: this.idprojects,
           active: true,
           position: 1, // По умолчанию в начало списка
-          color: '#f2f2f2', // Должен назначаться родителем
+          color: localStorage.getItem('color') || '#ffffff', // Должен назначаться родителем
           date: this.getDateNow()
         }
         this.title = ''
