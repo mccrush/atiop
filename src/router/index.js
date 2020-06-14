@@ -12,7 +12,7 @@ export default new Router({
     },
     {
       path: '/create',
-      component: () => import('../views/Home.vue')
+      component: () => import('../views/Create.vue')
     },
     {
       path: '/general',

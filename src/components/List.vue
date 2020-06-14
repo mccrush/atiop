@@ -20,10 +20,7 @@
         ref="itemli"
       >
         <small>{{index + 1}} {{item.title}}</small>
-        <button
-          class="btn btn-sm btn-light p-0 pl-2 pr-2"
-          @click.stop="$emit('remove-item', {id: item.id, type: item.type})"
-        >&times;</button>
+        <button class="btn btn-sm btn-light p-0 pl-2 pr-2" @click.stop="removeItem">&times;</button>
       </li>
     </ul>
     <p v-else>
@@ -75,10 +72,13 @@ export default {
           date: this.getDateNow()
         }
         this.title = ''
-        this.$emit('add-item', item)
+        this.$store.dispatch('addItem', item)
       } else {
         this.error = true
       }
+    },
+    removeItem({ id, type }) {
+      this.$store.dispatch('removeItem', { id, type })
     },
     getDateNow() {
       return (

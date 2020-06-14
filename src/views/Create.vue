@@ -1,19 +1,11 @@
 <template>
   <div class="row">
-    <List
-      :list="sphers"
-      type="sphers"
-      @add-item="addItem"
-      @remove-item="removeItem"
-      @select-item="selectItem"
-    />
+    <List :list="sphers" type="sphers" @select-item="selectItem" />
     <List
       v-if="idsphers"
       :list="dispalyNapravs"
       :idsphers="idsphers"
       type="napravs"
-      @add-item="addItem"
-      @remove-item="removeItem"
       @select-item="selectItem"
     />
     <List
@@ -22,8 +14,6 @@
       :idsphers="idsphers"
       :idnapravs="idnapravs"
       type="projects"
-      @add-item="addItem"
-      @remove-item="removeItem"
       @select-item="selectItem"
     />
     <List
@@ -33,8 +23,6 @@
       :idnapravs="idnapravs"
       :idprojects="idprojects"
       type="tasks"
-      @add-item="addItem"
-      @remove-item="removeItem"
       @select-item="selectItem"
     />
   </div>
@@ -103,12 +91,6 @@ export default {
     }
   },
   methods: {
-    addItem(item) {
-      this.$store.dispatch('addItem', item)
-    },
-    removeItem({ id, type }) {
-      this.$store.dispatch('removeItem', { id, type })
-    },
     selectItem({ id, type }) {
       this['id' + type] = id
       localStorage.setItem('id' + type, id)

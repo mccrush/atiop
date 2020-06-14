@@ -5,6 +5,7 @@
         v-for="(item, index) in displayTasks"
         :key="'in'+index"
         class="list-group-item justify-content-between align-items-center cursor-pointer p-1 pl-2"
+        @dblclick="$emit('edit-item', {id: item.id, type: item.type})"
       >
         <small>{{item.title}}</small>
       </li>
@@ -33,6 +34,12 @@ export default {
     },
     idprojects: {
       type: String
+    },
+    idsphers: {
+      type: String
+    },
+    idnapravs: {
+      type: String
     }
   },
   data() {
@@ -55,13 +62,38 @@ export default {
           type: 'tasks',
           idsphers: this.idsphers,
           idnapravs: this.idnapravs,
-          idprojects: this.idprojects
+          idprojects: this.idprojects,
+          status: 'active', // done, arhive
+          position: 1, // По умолчанию в начало списка
+          color: '#f2f2f2', // Должен назначаться родителем
+          date: this.getDateNow()
         }
         this.title = ''
-        //this.$emit('add-item', item)
+        this.$store.dispatch('addItem', item)
       } else {
         this.error = true
       }
+    },
+    getDateNow() {
+      return (
+        new Date().getFullYear() +
+        '-' +
+        (new Date().getMonth() + 1 > 9
+          ? new Date().getMonth() + 1
+          : '0' + (new Date().getMonth() + 1)) +
+        '-' +
+        (new Date().getDate() > 9
+          ? new Date().getDate()
+          : '0' + new Date().getDate()) +
+        'T' +
+        (new Date().getHours() > 9
+          ? new Date().getHours()
+          : '0' + new Date().getHours()) +
+        ':' +
+        (new Date().getMinutes() > 9
+          ? new Date().getMinutes()
+          : '0' + new Date().getMinutes())
+      )
     }
   }
 }
