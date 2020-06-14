@@ -6,9 +6,12 @@
         :key="'in'+index"
         class="list-group-item p-0 pl-1 pr-1 justify-content-between align-items-center cursor-pointer border-0"
       >
-        <h6 class="text-center bg-light p-1 rounded-lg">{{item.title}}</h6>
+        <h6
+          class="text-center bg-light p-1 rounded-lg elem"
+          @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
+        >{{item.title}}</h6>
         <div class="row">
-          <ListProj :projects="projects" :idnapravs="item.id" />
+          <ListProj :projects="projects" :idnapravs="item.id" @edit-item="editItem" />
         </div>
       </li>
     </ul>
@@ -40,6 +43,17 @@ export default {
     displayNaprav() {
       return this.napravs.filter(item => item.idsphers === this.idsphers)
     }
+  },
+  methods: {
+    editItem({ id, type }) {
+      this.$emit('edit-item', { id, type })
+    }
   }
 }
 </script>
+
+<style scoped>
+li {
+  min-width: 120px;
+}
+</style>

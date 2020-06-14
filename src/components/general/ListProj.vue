@@ -1,17 +1,17 @@
 <template>
   <div class="col-2">
-    <ul v-if="displayProj.length" class="list-group list-group-horizontal mt-3">
+    <ul v-if="displayProj.length" class="list-group list-group-horizontal list-group-flush mt-3">
       <li
         v-for="(item, index) in displayProj"
         :key="'in'+index"
-        class="list-group-item p-0 pl-1 pr-1 justify-content-between align-items-center cursor-pointer"
+        class="list-group-item p-0 pl-1 pr-1 justify-content-between align-items-center cursor-pointer elem text-center bg-light border-0 ml-1 mr-1"
       >
-        <small>{{item.title}}</small>
+        <small @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})">{{item.title}}</small>
       </li>
     </ul>
-    <p v-else class="li">
+    <!-- <p v-else class="li">
       <small>Список пуст</small>
-    </p>
+    </p>-->
   </div>
 </template>
 
