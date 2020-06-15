@@ -17,8 +17,8 @@
         :key="'in'+index"
         class="list-group-item p-2 pl-3 d-flex justify-content-between align-items-center cursor-pointer"
         :style="'background:'+color+' !important'"
+        :class="{'bor-left-red': new Date(item.date) - new Date() < 2}"
         @click="$emit('select-item', {id: item.id, type: item.type, color: item.color})"
-        ref="itemli"
       >
         <small>{{index + 1}} {{item.title}}</small>
         <button
@@ -112,5 +112,9 @@ export default {
 <style scoped>
 .cursor-pointer {
   cursor: pointer;
+}
+
+.bor-left-red {
+  background: #f5c6cb;
 }
 </style>
