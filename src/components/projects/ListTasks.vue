@@ -1,11 +1,11 @@
 <template>
-  <div class="w150">
+  <div class="w170">
     <ul v-if="sortTasks.length" class="list-group mt-1">
       <li
         v-for="(item, index) in sortTasks"
         :key="'in'+index"
         class="list-group-item d-flex justify-content-between align-items-center cursor-pointer p-2 pl-2"
-        :class="{'bor-left-red': new Date(item.date) - new Date() <= 2}"
+        :class="{'bg-red': new Date(item.date) - new Date() <= 2}"
         @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
       >
         <small class="align-self-center elem">{{item.title}}</small>
@@ -137,18 +137,18 @@ export default {
 </script>
 
 <style scoped>
-.w150 {
-  width: 150px;
-}
-
-.bor-left-red {
-  background: #f5c6cb;
+.w170 {
+  width: 170px;
 }
 
 .btn-deleted {
   position: absolute;
   right: 0;
   top: 0;
+}
+
+.bg-red {
+  background: #ffe2e2;
 }
 
 li.list-group-item > .btn {

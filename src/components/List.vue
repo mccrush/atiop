@@ -1,5 +1,5 @@
 <template>
-  <div class="col-2 p-1">
+  <div class="col-3 p-1">
     <h5 class="text-center mt-2">{{type}}</h5>
     <form @submit.prevent="addItem">
       <input

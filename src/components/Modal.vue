@@ -32,12 +32,7 @@
                   class="form-control form-control-sm"
                   v-model="date"
                 />
-                <input
-                  v-if="type === 'sphers'"
-                  type="color"
-                  class="form-control form-control-sm mt-2"
-                  v-model="color"
-                />
+                <input type="color" class="form-control form-control-sm mt-2" v-model="color" />
               </div>
               <div class="col-4 mt-2">
                 <button

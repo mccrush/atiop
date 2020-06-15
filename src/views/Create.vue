@@ -19,7 +19,7 @@
       @select-item="selectItem"
     />
     <div>
-      <h5 class="text-center mt-2">tasks</h5>
+      <h5 v-if="idprojects" class="text-center mt-2">tasks</h5>
       <ListTasks
         v-if="idprojects"
         :tasks="tasks"
