@@ -1,11 +1,11 @@
 <template>
   <div class="w150">
-    <ul v-if="displayTasks.length" class="list-group mt-1">
+    <ul v-if="sortTasks.length" class="list-group mt-1">
       <li
-        v-for="(item, index) in displayTasks"
+        v-for="(item, index) in sortTasks"
         :key="'in'+index"
         class="list-group-item d-flex justify-content-between align-items-center cursor-pointer p-2 pl-2"
-        :class="{'bor-left-red': new Date(item.date) - new Date() < 2}"
+        :class="{'bor-left-red': new Date(item.date) - new Date() <= 2}"
         @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
       >
         <small class="align-self-center elem">{{item.title}}</small>
@@ -73,6 +73,15 @@ export default {
       return this.tasks.filter(
         item => item.idprojects === this.idprojects && !item.active
       )
+    },
+    sortTasks() {
+      return this.displayTasks.sort((a, b) => {
+        if (this.settings.sortBy === 'position') {
+          return a.position - b.position
+        } else if (this.settings.sortBy === 'date') {
+          return new Date(a.date) - new Date(b.date)
+        }
+      })
     },
     settings() {
       return this.$store.getters.settings
