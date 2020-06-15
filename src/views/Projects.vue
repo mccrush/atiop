@@ -3,7 +3,7 @@
     <div class="col-12 d-flex ower">
       <div v-for="(item, index) in projects" :key="'in'+index" class="p-1">
         <h6
-          class="text-center bg-light p-1 rounded-lg m-0 elem"
+          class="text-center bg-light p-1 rounded m-0 elem"
           :style="'background:'+item.color+' !important'"
           @dblclick.prevent="editItem({id:item.id, type: item.type})"
         >{{item.title}}</h6>

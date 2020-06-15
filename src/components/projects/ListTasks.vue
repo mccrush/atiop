@@ -6,6 +6,7 @@
         :key="'in'+index"
         class="list-group-item justify-content-between align-items-center cursor-pointer p-1 pl-2"
         @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
+        :class="{'bor-left-red': new Date(item.date) - new Date() < 2}"
       >
         <small class="elem">{{item.title}}</small>
       </li>
@@ -74,6 +75,9 @@ export default {
     }
   },
   methods: {
+    deadline(date) {
+      console.log('elem is load. date:', date)
+    },
     addItem() {
       if (this.title.trim()) {
         const item = {
@@ -102,9 +106,9 @@ export default {
           ? new Date().getMonth() + 1
           : '0' + (new Date().getMonth() + 1)) +
         '-' +
-        (new Date().getDate() > 9
-          ? new Date().getDate()
-          : '0' + new Date().getDate()) +
+        (new Date().getDate() + 2 > 9
+          ? new Date().getDate() + 2
+          : '0' + new Date().getDate() + 2) +
         'T' +
         (new Date().getHours() > 9
           ? new Date().getHours()
@@ -122,5 +126,9 @@ export default {
 <style scoped>
 .w150 {
   width: 150px;
+}
+
+.bor-left-red {
+  background: #f5c6cb;
 }
 </style>
