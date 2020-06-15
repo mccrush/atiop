@@ -5,6 +5,7 @@
       v-if="idsphers"
       :list="dispalyNapravs"
       :idsphers="idsphers"
+      :color="color"
       type="napravs"
       @select-item="selectItem"
     />
@@ -13,6 +14,7 @@
       :list="displayProjects"
       :idsphers="idsphers"
       :idnapravs="idnapravs"
+      :color="color"
       type="projects"
       @select-item="selectItem"
     />
@@ -41,7 +43,8 @@ export default {
       idsphers: '',
       idnapravs: '',
       idprojects: '',
-      idtasks: ''
+      idtasks: '',
+      color: '#ffffff'
     }
   },
   mounted() {
@@ -94,20 +97,21 @@ export default {
     selectItem({ id, type, color }) {
       this['id' + type] = id
       localStorage.setItem('id' + type, id)
-      localStorage.setItem('color', color)
       switch (type) {
         case 'sphers':
+          this.color = color
           this.idnapravs = ''
           this.idprojects = ''
           localStorage.setItem('idnapravs', '')
           localStorage.setItem('idprojects', '')
           break
         case 'napravs':
+          this.color = '#ffffff'
           this.idprojects = ''
           localStorage.setItem('idprojects', '')
           break
         case 'projects':
-          localStorage.setItem('color', '#ffffff')
+          this.color = '#ffffff'
           break
         default:
       }

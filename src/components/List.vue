@@ -16,7 +16,7 @@
         v-for="(item, index) in list"
         :key="'in'+index"
         class="list-group-item p-2 pl-3 d-flex justify-content-between align-items-center cursor-pointer"
-        :style="'background:'+item.color+' !important'"
+        :style="'background:'+color+' !important'"
         @click="$emit('select-item', {id: item.id, type: item.type, color: item.color})"
         ref="itemli"
       >
@@ -49,6 +49,9 @@ export default {
     },
     idprojects: {
       defauit: ''
+    },
+    color: {
+      type: String
     }
   },
   data() {
@@ -69,7 +72,7 @@ export default {
           idprojects: this.idprojects,
           active: true,
           position: 1, // По умолчанию в начало списка
-          color: localStorage.getItem('color') || '#ffffff', // Должен назначаться родителем
+          color: '#ffffff',
           date: this.getDateNow()
         }
         this.title = ''
