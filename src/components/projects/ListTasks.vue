@@ -25,7 +25,7 @@
       />
       <!-- <button type="submit" class="btn btn-sm btn-block btn-light">Add</button> -->
     </form>
-    <div v-if="arhivsTask.length">
+    <div v-if="settings.showArhived && arhivsTask.length">
       <hr class="m-2" />
       <ul class="list-group mt-1">
         <li
@@ -73,6 +73,9 @@ export default {
       return this.tasks.filter(
         item => item.idprojects === this.idprojects && !item.active
       )
+    },
+    settings() {
+      return this.$store.getters.settings
     }
   },
   methods: {
