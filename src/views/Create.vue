@@ -18,25 +18,34 @@
       type="projects"
       @select-item="selectItem"
     />
-    <List
-      v-if="idprojects"
-      :list="displayTasks"
-      :idsphers="idsphers"
-      :idnapravs="idnapravs"
-      :idprojects="idprojects"
-      type="tasks"
-      @select-item="selectItem"
-    />
+    <div>
+      <h5 class="text-center mt-2">tasks</h5>
+      <ListTasks
+        v-if="idprojects"
+        :tasks="tasks"
+        :idsphers="idsphers"
+        :idnapravs="idnapravs"
+        :idprojects="idprojects"
+        @edit-item="editItem"
+      />
+    </div>
+
+    <Modal :item="item" />
   </div>
 </template>
 
 <script>
+import $ from 'jquery'
 import List from '@/components/List'
+import ListTasks from '@/components/projects/ListTasks'
+import Modal from '@/components/Modal'
 
 export default {
   name: 'Home',
   components: {
-    List
+    List,
+    ListTasks,
+    Modal
   },
   data() {
     return {
@@ -44,7 +53,8 @@ export default {
       idnapravs: '',
       idprojects: '',
       idtasks: '',
-      color: '#ffffff'
+      color: '#ffffff',
+      item: null
     }
   },
   mounted() {
@@ -115,7 +125,21 @@ export default {
           break
         default:
       }
+    },
+    editItem({ id, type }) {
+      if (type === 'tasks') {
+        this.item = this.tasks.find(item => item.id === id)
+      } else {
+        this.item = this.projects.find(item => item.id === id)
+      }
+      $('#exampleModal').modal('show')
     }
   }
 }
 </script>
+
+<style>
+.elem {
+  user-select: none;
+}
+</style>
