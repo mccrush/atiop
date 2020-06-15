@@ -9,6 +9,7 @@ export default new Vuex.Store({
     napravs: JSON.parse(localStorage.getItem('napravs') || '[]'),
     projects: JSON.parse(localStorage.getItem('projects') || '[]'),
     tasks: JSON.parse(localStorage.getItem('tasks') || '[]'),
+    settings: JSON.parse(localStorage.getItem('settings')) || { showArhived: false, sortBy: 'date' }
   },
   mutations: {
     addItem(state, item) {
@@ -27,6 +28,10 @@ export default new Vuex.Store({
 
       state[type] = items
       localStorage.setItem(type, JSON.stringify(state[type]))
+    },
+    updateSettings(state, { showArhived, sortBy }) {
+      state.settings = { showArhived, sortBy }
+      localStorage.setItem('settings', JSON.stringify(state.settings))
     }
   },
   actions: {
@@ -38,6 +43,9 @@ export default new Vuex.Store({
     },
     updateItem({ commit }, item) {
       commit('updateItem', item)
+    },
+    updateSettings({ commit }, { showArhived, sortBy }) {
+      commit('updateSettings', { showArhived, sortBy })
     }
   },
   modules: {
@@ -47,5 +55,6 @@ export default new Vuex.Store({
     napravs: state => state.napravs,
     projects: state => state.projects,
     tasks: state => state.tasks,
+    settings: state => state.settings
   }
 })
