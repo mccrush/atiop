@@ -5,7 +5,7 @@
         v-for="(item, index) in sortTasks"
         :key="'in'+index"
         class="list-group-item d-flex justify-content-between align-items-center cursor-pointer p-2 pl-2"
-        :class="{'bg-red': new Date(item.date) - new Date() <= 2}"
+        :class="{'bg-red': Math.ceil(Math.abs(new Date(item.date).getTime() - new Date().getTime()) / (1000 * 3600 * 24))  <= 2}"
         @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
       >
         <small class="align-self-center elem">{{item.title}}</small>
