@@ -8,7 +8,9 @@
         :class="{'bg-red': Math.ceil(Math.abs(new Date(item.date).getTime() - new Date().getTime()) / (1000 * 3600 * 24))  <= 2}"
         @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
       >
-        <small class="align-self-center elem">{{item.title}}</small>
+        <small
+          class="align-self-center elem"
+        >{{settings.sortBy === 'position' ? index + 1 : ''}} {{item.title}}</small>
         <!-- <button
           class="btn btn-sm btn-light p-0 pl-2 pr-2 align-self-start btn-deleted"
           @click.stop="removeItem({id: item.id, type: item.type})"
