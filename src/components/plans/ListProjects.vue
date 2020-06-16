@@ -5,6 +5,7 @@
         v-for="(item, index) in displayProjects"
         :key="'pj'+index"
         class="list-group-item border rounded p-0 pl-2 mt-1"
+        :style="'background:'+item.color+' !important'"
         @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
       >
         <small class="elem">{{item.title}}</small>
