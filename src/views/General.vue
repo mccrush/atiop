@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row h-100">
     <ListSpher :sphers="sphers" :napravs="napravs" :projects="projects" @edit-item="editItem" />
     <Modal :item="item" />
   </div>
@@ -49,5 +49,10 @@ export default {
 <style>
 .elem {
   user-select: none;
+}
+
+.ower {
+  overflow: auto;
+  margin-bottom: 59px;
 }
 </style>

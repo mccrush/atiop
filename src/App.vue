@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="h-100">
     <Navbar />
-    <div class="container-fluid">
+    <div class="container-fluid h-100">
       <router-view />
     </div>
     <Settings />

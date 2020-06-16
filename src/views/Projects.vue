@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row h-100">
     <div class="col-12 d-flex ower">
       <div v-for="(item, index) in projects" :key="'in'+index" class="p-1">
         <h6
@@ -64,7 +64,7 @@ export default {
 <style>
 .ower {
   overflow: auto;
-  min-height: 500px;
+  margin-bottom: 59px;
 }
 
 .w150 {

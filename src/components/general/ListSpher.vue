@@ -55,8 +55,4 @@ export default {
 </script>
 
 <style scoped>
-.ower {
-  overflow: auto;
-  min-height: 500px;
-}
 </style>
