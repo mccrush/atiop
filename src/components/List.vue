@@ -1,16 +1,6 @@
 <template>
   <div class="col-3 p-1">
     <h5 class="text-center mt-2">{{type}}</h5>
-    <form @submit.prevent="addItem">
-      <input
-        type="text"
-        class="form-control form-control-sm"
-        :class="{'border-danger': error}"
-        v-model="title"
-        @focus="error = false"
-      />
-      <!-- <button type="submit" class="btn btn-sm btn-block btn-light">Add</button> -->
-    </form>
     <ul v-if="list.length" class="list-group mt-1">
       <li
         v-for="(item, index) in list"
@@ -27,12 +17,20 @@
         >&times;</button>
       </li>
     </ul>
+    <form @submit.prevent="addItem">
+      <input
+        type="text"
+        class="form-control form-control-sm"
+        :class="{'border-danger': error}"
+        v-model="title"
+        @focus="error = false"
+      />
+      <!-- <button type="submit" class="btn btn-sm btn-block btn-light">Add</button> -->
+    </form>
   </div>
 </template>
 
 <script>
-//import getDateNow from '@/scripts/getDateNow'
-
 export default {
   props: {
     list: {
