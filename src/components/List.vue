@@ -17,7 +17,7 @@
         >&times;</button>
       </li>
     </ul>
-    <form @submit.prevent="addItem">
+    <form @submit.prevent="addItem" class="mt-1">
       <input
         type="text"
         class="form-control form-control-sm"

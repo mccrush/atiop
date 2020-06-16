@@ -1,24 +1,77 @@
 <template>
   <div class="row">
-    <ListPlan />
+    <div class="col-12">
+      <div class="row p-1">
+        <div v-for="(month, index) in months" :key="'pl'+index" class="col-2 p-1">
+          <div class="shadow-sm p-1">
+            <div class="d-flex justify-content-between p-1 bg-light rounded elem">
+              <h6 class="m-0 p-0">{{month.name}}</h6>
+              <span class="badge badge-dark">{{month.num}}</span>
+            </div>
+
+            <ListProjects :projects="projects" :monthNumber="month.num" @edit-item="editItem" />
+          </div>
+        </div>
+      </div>
+      <Modal :item="item" />
+    </div>
   </div>
 </template>
 
 <script>
-import ListPlan from '@/components/plans/ListPlan'
+import $ from 'jquery'
+import ListProjects from '@/components/plans/ListProjects'
+import Modal from '@/components/Modal'
 
 export default {
   components: {
-    ListPlan
+    ListProjects,
+    Modal
   },
   data() {
     return {
-      monthNumber: null
+      item: null,
+      months: [],
+      monthNames: [
+        { name: 'Январь', num: '01' },
+        { name: 'Февраль', num: '02' },
+        { name: 'Март', num: '03' },
+        { name: 'Апрель', num: '04' },
+        { name: 'Май', num: '05' },
+        { name: 'Июнь', num: '06' },
+        { name: 'Июль', num: '07' },
+        { name: 'Август', num: '08' },
+        { name: 'Сентябрь', num: '09' },
+        { name: 'Октябрь', num: '10' },
+        { name: 'Ноябрь', num: '11' },
+        { name: 'Декабрь', num: '12' }
+      ]
     }
   },
   mounted() {
-    this.monthNumber = new Date().getMonth()
-    //console.log(typeof this.monthNumber)
+    let num = new Date().getMonth()
+    for (let i = 0; i < 12; i++) {
+      this.months.push(this.monthNames[num])
+      num++
+      if (num > 11) num = 0
+    }
+  },
+  computed: {
+    projects() {
+      return this.$store.getters.projects
+    }
+  },
+  methods: {
+    editItem({ id, type }) {
+      this.item = this.projects.find(item => item.id === id)
+      $('#exampleModal').modal('show')
+    }
   }
 }
 </script>
+
+<style>
+.elem {
+  user-select: none;
+}
+</style>

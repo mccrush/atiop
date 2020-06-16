@@ -1,12 +1,13 @@
 <template>
-  <div class="h120">
+  <div class="h150">
     <ul class="list-group list-group-flush">
       <li
-        v-for="(proj, index) in displayProjects"
+        v-for="(item, index) in displayProjects"
         :key="'pj'+index"
         class="list-group-item border rounded p-0 pl-2 mt-1"
+        @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
       >
-        <small>{{proj.title}}</small>
+        <small class="elem">{{item.title}}</small>
       </li>
     </ul>
   </div>
@@ -14,11 +15,8 @@
 
 <script>
 export default {
-  props: ['monthNumber'],
+  props: ['projects', 'monthNumber'],
   computed: {
-    projects() {
-      return this.$store.getters.projects
-    },
     displayProjects() {
       return this.projects.filter(
         item => new Date(item.date).getMonth() + 1 === +this.monthNumber
@@ -29,8 +27,8 @@ export default {
 </script>
 
 <style scoped>
-.h120 {
-  height: 120px;
+.h150 {
+  height: 150px;
   overflow-y: auto;
 }
 </style>

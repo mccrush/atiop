@@ -30,15 +30,16 @@
         <li class="nav-item">
           <router-link to="/general" class="nav-link">General</router-link>
         </li>
-        <li class="nav-item">
-          <router-link to="/create" class="nav-link">Create</router-link>
-        </li>
+
         <li class="nav-item">
           <router-link to="/plans" class="nav-link">Plans</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/about" class="nav-link">About</router-link>
+          <router-link to="/create" class="nav-link">Create</router-link>
         </li>
+        <!-- <li class="nav-item">
+          <router-link to="/about" class="nav-link">About</router-link>
+        </li>-->
       </ul>
     </div>
   </nav>
