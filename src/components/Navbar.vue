@@ -34,6 +34,9 @@
           <router-link to="/create" class="nav-link">Create</router-link>
         </li>
         <li class="nav-item">
+          <router-link to="/calend" class="nav-link">Calend</router-link>
+        </li>
+        <li class="nav-item">
           <router-link to="/about" class="nav-link">About</router-link>
         </li>
       </ul>

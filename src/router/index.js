@@ -19,6 +19,10 @@ export default new Router({
       component: () => import('../views/General.vue')
     },
     {
+      path: '/calend',
+      component: () => import('../views/Calend.vue')
+    },
+    {
       path: '/about',
       component: () => import('../views/About.vue')
     }
