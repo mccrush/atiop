@@ -1,20 +1,35 @@
 <template>
-  <div class="row h-100">
-    <div class="col-12 d-flex ower">
-      <div v-for="(item, index) in projects" :key="'in'+index" class="p-1">
-        <h6
-          class="text-center bg-light p-2 rounded m-0 elem"
-          @dblclick.prevent="editItem({id:item.id, type: item.type})"
-        >{{item.title}}</h6>
-        <ListTasks
-          :tasks="tasks"
-          :idnapravs="item.idnapravs"
-          :idprojects="item.id"
-          @edit-item="editItem"
-        />
+  <div class="h-100">
+    <div class="row">
+      <div class="col-12 p-2 border-bottom d-flex align-content-center">
+        <h6 class="m-1">Направление:</h6>
+        <select
+          class="form-control form-control-sm ml-2 w150"
+          v-model="filter"
+          @change="saveFilter"
+        >
+          <option value selected>Все</option>
+          <option v-for="item in napravs" :key="'nap'+item.id" :value="item.id">{{item.title}}</option>
+        </select>
       </div>
     </div>
-    <Modal :item="item" />
+    <div class="row h-100">
+      <div class="col-12 d-flex ower">
+        <div v-for="(item, index) in displayProjects" :key="'in'+index" class="p-1">
+          <h6
+            class="text-center bg-light p-2 rounded m-0 elem"
+            @dblclick.prevent="editItem({id:item.id, type: item.type})"
+          >{{item.title}}</h6>
+          <ListTasks
+            :tasks="tasks"
+            :idnapravs="item.idnapravs"
+            :idprojects="item.id"
+            @edit-item="editItem"
+          />
+        </div>
+      </div>
+      <Modal :item="item" />
+    </div>
   </div>
 </template>
 
@@ -31,10 +46,14 @@ export default {
   props: {},
   data() {
     return {
-      item: null
+      item: null,
+      filter: ''
     }
   },
   computed: {
+    napravs() {
+      return this.$store.getters.napravs
+    },
     projects() {
       return this.$store.getters.projects
     },
@@ -42,8 +61,11 @@ export default {
       return this.$store.getters.tasks
     },
     displayProjects() {
-      // Додумать, чтоб не выводить пустые проекты. И надо ли так делать
-      return this.projects.filter(proj => proj.childs > 0)
+      if (this.filter) {
+        return this.projects.filter(proj => proj.idnapravs === this.filter)
+      } else {
+        return this.projects
+      }
     }
   },
   mounted() {
@@ -73,6 +95,9 @@ export default {
       const walk = x - startX
       slider.scrollLeft = scrollLeft - walk
     })
+
+    // Filter
+    this.filter = localStorage.getItem('filter') || ''
   },
   methods: {
     editItem({ id, type }) {
@@ -82,6 +107,9 @@ export default {
         this.item = this.projects.find(item => item.id === id)
       }
       $('#exampleModal').modal('show')
+    },
+    saveFilter() {
+      localStorage.setItem('filter', this.filter)
     }
   }
 }
