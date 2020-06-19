@@ -4,7 +4,6 @@
       <div v-for="(item, index) in projects" :key="'in'+index" class="p-1">
         <h6
           class="text-center bg-light p-2 rounded m-0 elem"
-          :style="'background:'+item.color+' !important'"
           @dblclick.prevent="editItem({id:item.id, type: item.type})"
         >{{item.title}}</h6>
         <ListTasks
