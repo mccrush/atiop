@@ -33,7 +33,7 @@
                   v-model="date"
                 />
                 <!-- <input type="color" class="form-control form-control-sm mt-2" v-model="color" /> -->
-                <div class="d-flex mt-1">
+                <div v-if="item.type === 'projects'" class="d-flex mt-1">
                   <div
                     v-for="(scolor, index) in colors"
                     :key="'cb'+index"

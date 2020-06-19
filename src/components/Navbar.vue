@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom">
-    <a class="navbar-brand" href="#">
+    <router-link class="navbar-brand" to="/" tag="a">
       <img
         src="img/icons/favicon-32x32.png"
         width="32"
@@ -9,7 +9,7 @@
         alt="ATIOP"
       />
       ATIOP
-    </a>
+    </router-link>
     <button
       class="navbar-toggler"
       type="button"

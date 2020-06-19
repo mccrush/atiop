@@ -1,7 +1,7 @@
 <template>
   <div class="settings bg-white shadow-sm p-3 pt-3" :class="{'width-0': !show}">
-    <div class="button-close">
-      <h2 class="m-0 pb-2 pl-3 pr-3" @click="show = !show">&equiv;</h2>
+    <div class="button-close bg-white">
+      <h2 class="m-0 pt-2 pb-2 pl-3 pr-3" @click="show = !show">&equiv;</h2>
     </div>
 
     <h5 class="text-center">Настройки</h5>
@@ -97,7 +97,7 @@ export default {
 .button-close {
   cursor: pointer;
   position: absolute;
-  left: -56px;
+  left: -54px;
   top: 0;
 }
 </style>
