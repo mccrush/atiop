@@ -6,14 +6,11 @@
         :key="'in'+index"
         class="list-group-item justify-content-between align-items-center border-0 p-0 ml-1 mr-1 cursor-pointer"
       >
-        <h6
-          class="text-center bg-light rounded-lg p-2 elem"
-          :style="'background:'+color+' !important'"
-        >
+        <h5 class="text-center bg-light rounded p-2 elem">
           <small
             @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
           >{{item.title}}</small>
-        </h6>
+        </h5>
       </li>
     </ul>
     <!-- <p v-else class="li">
@@ -44,7 +41,7 @@ export default {
 </script>
 
 <style scoped>
-h6 {
+h5 {
   min-width: 150px;
 }
 </style>
