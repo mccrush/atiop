@@ -37,18 +37,25 @@
         <li class="nav-item">
           <router-link to="/create" class="nav-link">Create</router-link>
         </li>
-        <li>
-          <button
-            v-if="user"
-            class="nav-link d-none d-sm-inline btn btn-sm btn-light border text-muted"
-            title="Выйти"
-            @click="logOut"
-          >Выйти</button>
-        </li>
         <!-- <li class="nav-item">
           <router-link to="/about" class="nav-link">About</router-link>
         </li>-->
       </ul>
+      <form @submit.prevent="logOut" class="form-inline mr-5">
+        <button
+          v-if="user"
+          class="d-sm-inline btn btn-sm btn-light border text-muted"
+          title="Выйти"
+          type="submit"
+        >Выйти</button>
+        <router-link
+          v-else
+          tag="button"
+          class="d-sm-inline btn btn-sm btn-light border text-muted"
+          title="Войти"
+          to="/login"
+        >Войти</router-link>
+      </form>
     </div>
   </nav>
 </template>

@@ -17,16 +17,18 @@ export default {
     }
   },
   actions: {
-    logIn({ commit }) {
+    logIn({ commit }, { email, password }) {
+      console.log('e: ', email, "p: ", password);
+
       auth
-        .signInWithEmailAndPassword(this.email, this.password)
+        .signInWithEmailAndPassword(email, password)
         .then(() => {
           commit('logIn')
         })
         .catch(function (error) {
           var errorCode = error.code;
           var errorMessage = error.message;
-          console.log("Login: errors:", errorCode, "& ", errorMessage);
+          console.error("Login: errors:", errorCode, "& ", errorMessage);
         });
     },
     logOut({ commit }) {
