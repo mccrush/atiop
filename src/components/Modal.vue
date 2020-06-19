@@ -32,7 +32,17 @@
                   class="form-control form-control-sm"
                   v-model="date"
                 />
-                <input type="color" class="form-control form-control-sm mt-2" v-model="color" />
+                <!-- <input type="color" class="form-control form-control-sm mt-2" v-model="color" /> -->
+                <div class="d-flex mt-1">
+                  <div
+                    v-for="(scolor, index) in colors"
+                    :key="'cb'+index"
+                    class="m-1 p-1 rounded shadow-sm colorblock"
+                    :style="'background:'+ scolor"
+                    :class="{'rounded-circle': color === scolor}"
+                    @click="color = scolor"
+                  ></div>
+                </div>
               </div>
               <div class="col-4 mt-2">
                 <button
@@ -87,7 +97,20 @@ export default {
       date: '',
       color: '#ffffff',
       type: '',
-      error: false
+      error: false,
+      colors: [
+        '#ffffffff',
+        '#e2e2dfff',
+        '#d2d2cfff',
+        '#e2cfc4ff',
+        '#f7d9c4ff',
+        '#faedcbff',
+        '#c9e4deff',
+        '#c6def1ff',
+        '#dbcdf0ff',
+        '#f2c6deff',
+        '#f9c6c9ff'
+      ]
     }
   },
   methods: {
@@ -122,3 +145,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.colorblock {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+</style>
