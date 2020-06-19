@@ -49,13 +49,10 @@ export default {
     tasks: {
       type: Array
     },
-    idprojects: {
-      type: String
-    },
-    idsphers: {
-      type: String
-    },
     idnapravs: {
+      type: String
+    },
+    idprojects: {
       type: String
     }
   },
@@ -96,12 +93,11 @@ export default {
           title: this.title.trim(),
           id: Date.now().toString(),
           type: 'tasks',
-          idsphers: this.idsphers,
           idnapravs: this.idnapravs,
           idprojects: this.idprojects,
           active: true,
-          position: 1, // По умолчанию в начало списка
-          color: '#ffffff', // Должен назначаться родителем
+          position: this.tasks.length + 1, // По умолчанию в конец списка
+          color: '#ffffff', // У задач нет цвета
           date: this.getDateNow()
         }
         this.title = ''

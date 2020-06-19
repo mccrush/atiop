@@ -9,9 +9,8 @@
         >{{item.title}}</h6>
         <ListTasks
           :tasks="tasks"
-          :idprojects="item.id"
-          :idsphers="item.idsphers"
           :idnapravs="item.idnapravs"
+          :idprojects="item.id"
           @edit-item="editItem"
         />
       </div>

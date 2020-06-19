@@ -1,14 +1,6 @@
 <template>
   <div class="row">
-    <List :list="sphers" type="sphers" @select-item="selectItem" />
-    <List
-      v-if="idsphers"
-      :list="dispalyNapravs"
-      :idsphers="idsphers"
-      :color="color"
-      type="napravs"
-      @select-item="selectItem"
-    />
+    <List :list="napravs" type="napravs" @select-item="selectItem" />
     <List
       v-if="idnapravs"
       :list="displayProjects"
@@ -49,7 +41,6 @@ export default {
   },
   data() {
     return {
-      idsphers: '',
       idnapravs: '',
       idprojects: '',
       idtasks: '',
@@ -58,14 +49,10 @@ export default {
     }
   },
   mounted() {
-    this.idsphers = localStorage.getItem('idsphers') || ''
     this.idnapravs = localStorage.getItem('idnapravs') || ''
     this.idprojects = localStorage.getItem('idprojects') || ''
   },
   computed: {
-    sphers() {
-      return this.$store.getters.sphers
-    },
     napravs() {
       return this.$store.getters.napravs
     },
@@ -74,15 +61,6 @@ export default {
     },
     tasks() {
       return this.$store.getters.tasks
-    },
-    dispalyNapravs() {
-      return this.napravs.filter(item => {
-        if (!this.idsphers) {
-          return false
-        } else {
-          return item.idsphers === this.idsphers
-        }
-      })
     },
     displayProjects() {
       return this.projects.filter(item => {
@@ -108,13 +86,6 @@ export default {
       this['id' + type] = id
       localStorage.setItem('id' + type, id)
       switch (type) {
-        case 'sphers':
-          this.color = color
-          this.idnapravs = ''
-          this.idprojects = ''
-          localStorage.setItem('idnapravs', '')
-          localStorage.setItem('idprojects', '')
-          break
         case 'napravs':
           this.color = '#ffffff'
           this.idprojects = ''

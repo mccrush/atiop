@@ -39,9 +39,6 @@ export default {
     type: {
       type: String
     },
-    idsphers: {
-      defauit: ''
-    },
     idnapravs: {
       defauit: ''
     },
@@ -65,7 +62,6 @@ export default {
           title: this.title.trim(),
           id: Date.now().toString(),
           type: this.type,
-          idsphers: this.idsphers,
           idnapravs: this.idnapravs,
           idprojects: this.idprojects,
           active: true,

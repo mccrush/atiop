@@ -5,7 +5,6 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    sphers: JSON.parse(localStorage.getItem('sphers') || '[]'),
     napravs: JSON.parse(localStorage.getItem('napravs') || '[]'),
     projects: JSON.parse(localStorage.getItem('projects') || '[]'),
     tasks: JSON.parse(localStorage.getItem('tasks') || '[]'),
@@ -51,7 +50,6 @@ export default new Vuex.Store({
   modules: {
   },
   getters: {
-    sphers: state => state.sphers,
     napravs: state => state.napravs,
     projects: state => state.projects,
     tasks: state => state.tasks,

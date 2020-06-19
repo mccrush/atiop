@@ -1,18 +1,23 @@
 <template>
   <div class="col-2">
-    <ul v-if="displayNaprav.length" class="list-group list-group-horizontal mt-3">
+    <ul v-if="napravs.length" class="list-group list-group-horizontal mt-3">
       <li
-        v-for="(item, index) in displayNaprav"
+        v-for="(item, index) in napravs"
         :key="'in'+index"
         class="list-group-item justify-content-between align-items-center border-0 p-0 ml-1 mr-1 cursor-pointer"
       >
         <h6
           class="text-center bg-light rounded-lg p-2 elem"
-          :style="'background:'+color+' !important'"
+          :style="'background:'+item.color+' !important'"
           @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
         >{{item.title}}</h6>
         <div class="row">
-          <ListProj :projects="projects" :idnapravs="item.id" @edit-item="editItem" :color="color" />
+          <ListProj
+            :projects="projects"
+            :idnapravs="item.id"
+            @edit-item="editItem"
+            :color="item.color"
+          />
         </div>
       </li>
     </ul>
@@ -35,17 +40,6 @@ export default {
     },
     projects: {
       type: Array
-    },
-    idsphers: {
-      type: String
-    },
-    color: {
-      type: String
-    }
-  },
-  computed: {
-    displayNaprav() {
-      return this.napravs.filter(item => item.idsphers === this.idsphers)
     }
   },
   methods: {

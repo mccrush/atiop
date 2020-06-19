@@ -1,18 +1,18 @@
 <template>
   <div class="row h-100">
-    <ListSpher :sphers="sphers" :napravs="napravs" :projects="projects" @edit-item="editItem" />
+    <ListNaprav :napravs="napravs" :projects="projects" @edit-item="editItem" />
     <Modal :item="item" />
   </div>
 </template>
 
 <script>
 import $ from 'jquery'
-import ListSpher from '@/components/general/ListSpher'
+import ListNaprav from '@/components/general/ListNaprav'
 import Modal from '@/components/Modal'
 
 export default {
   components: {
-    ListSpher,
+    ListNaprav,
     Modal
   },
   data() {
@@ -21,9 +21,6 @@ export default {
     }
   },
   computed: {
-    sphers() {
-      return this.$store.getters.sphers
-    },
     napravs() {
       return this.$store.getters.napravs
     },
@@ -35,11 +32,9 @@ export default {
     editItem({ id, type }) {
       if (type === 'projects') {
         this.item = this.projects.find(item => item.id === id)
-      } else if (type === 'napravs') {
+      } else (type === 'napravs') {
         this.item = this.napravs.find(item => item.id === id)
-      } else {
-        this.item = this.sphers.find(item => item.id === id)
-      }
+      } 
       $('#exampleModal').modal('show')
     }
   }
