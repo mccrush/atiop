@@ -65,7 +65,7 @@ export default {
           idnapravs: this.idnapravs,
           idprojects: this.idprojects,
           active: true,
-          position: 1, // По умолчанию в начало списка
+          position: this.list.length + 1, // По умолчанию в конец списка
           color: '#ffffff',
           date: this.getDateNow()
         }

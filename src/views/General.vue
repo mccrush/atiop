@@ -32,9 +32,9 @@ export default {
     editItem({ id, type }) {
       if (type === 'projects') {
         this.item = this.projects.find(item => item.id === id)
-      } else (type === 'napravs') {
+      } else {
         this.item = this.napravs.find(item => item.id === id)
-      } 
+      }
       $('#exampleModal').modal('show')
     }
   }
