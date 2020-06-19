@@ -30,7 +30,7 @@ export const auth = firebase.auth();
 
 Vue.config.productionTip = false
 
-let app = "";
+let app
 firebase.auth().onAuthStateChanged((user) => {
   if (!app) {
     app = new Vue({
@@ -39,7 +39,7 @@ firebase.auth().onAuthStateChanged((user) => {
       render: h => h(App)
     }).$mount('#app')
   }
-  if (user) {
-    store.dispatch("logIn");
-  }
+  // if (user) {
+  //   store.dispatch("logIn", { email: user.email, password: user.password });
+  // }
 })

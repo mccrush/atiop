@@ -18,8 +18,6 @@ export default {
   },
   actions: {
     logIn({ commit }, { email, password }) {
-      console.log('e: ', email, "p: ", password);
-
       auth
         .signInWithEmailAndPassword(email, password)
         .then(() => {
