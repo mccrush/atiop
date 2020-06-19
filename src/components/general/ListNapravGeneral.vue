@@ -11,7 +11,7 @@
           @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
         >{{item.title}}</h5>
         <div class="row">
-          <ListProj
+          <ListProjGeneral
             :projects="projects"
             :idnapravs="item.id"
             @edit-item="editItem"
@@ -27,11 +27,11 @@
 </template>
 
 <script>
-import ListProj from '@/components/general/ListProj'
+import ListProjGeneral from '@/components/general/ListProjGeneral'
 
 export default {
   components: {
-    ListProj
+    ListProjGeneral
   },
   props: {
     napravs: {

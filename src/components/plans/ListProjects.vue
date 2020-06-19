@@ -1,5 +1,5 @@
 <template>
-  <div class="h150">
+  <div class="h150 p-1">
     <ul class="list-group list-group-flush">
       <li
         v-for="(item, index) in displayProjects"

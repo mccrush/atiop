@@ -1,18 +1,18 @@
 <template>
   <div class="row h-100">
-    <ListNaprav :napravs="napravs" :projects="projects" @edit-item="editItem" />
+    <ListNapravGeneral :napravs="napravs" :projects="projects" @edit-item="editItem" />
     <Modal :item="item" />
   </div>
 </template>
 
 <script>
 import $ from 'jquery'
-import ListNaprav from '@/components/general/ListNaprav'
+import ListNapravGeneral from '@/components/general/ListNapravGeneral'
 import Modal from '@/components/Modal'
 
 export default {
   components: {
-    ListNaprav,
+    ListNapravGeneral,
     Modal
   },
   data() {
