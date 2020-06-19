@@ -5,12 +5,15 @@
         v-for="(item, index) in sortTasks"
         :key="'in'+index"
         class="list-group-item d-flex justify-content-between align-items-center cursor-pointer p-2 pl-2"
-        :class="{'bg-red': Math.ceil(Math.abs(new Date(item.date).getTime() - new Date().getTime()) / (1000 * 3600 * 24))  <= 2}"
         @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
       >
         <small
           class="align-self-center elem"
         >{{settings.sortBy === 'position' ? index + 1 : ''}} {{item.title}}</small>
+        <div
+          class="align-self-start rounded-sm position-absolute"
+          :class="{' deadline': Math.ceil(Math.abs(new Date(item.date).getTime() - new Date().getTime()) / (1000 * 3600 * 24))  <= 2}"
+        ></div>
         <!-- <button
           class="btn btn-sm btn-light p-0 pl-2 pr-2 align-self-start btn-deleted"
           @click.stop="removeItem({id: item.id, type: item.type})"
@@ -145,8 +148,14 @@ export default {
   top: 0;
 }
 
-.bg-red {
-  background: #ffe2e2;
+.deadline {
+  width: 8px;
+  height: 8px;
+  /* background: #f9c6c9ff; */
+  background: #fb7d86;
+  top: 4px;
+  right: 4px;
+  opacity: 0.8;
 }
 
 li.list-group-item > .btn {
