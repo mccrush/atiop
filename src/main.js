@@ -39,7 +39,7 @@ firebase.auth().onAuthStateChanged((user) => {
       render: h => h(App)
     }).$mount('#app')
   }
-  // if (user) {
-  //   store.dispatch("logIn", { email: user.email, password: user.password });
-  // }
+  if (user) {
+    store.commit("logIn");
+  }
 })
