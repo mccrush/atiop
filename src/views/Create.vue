@@ -4,9 +4,7 @@
     <List
       v-if="idnapravs"
       :list="displayProjects"
-      :idsphers="idsphers"
       :idnapravs="idnapravs"
-      :color="color"
       type="projects"
       @select-item="selectItem"
     />
@@ -15,7 +13,6 @@
       <ListTasks
         v-if="idprojects"
         :tasks="tasks"
-        :idsphers="idsphers"
         :idnapravs="idnapravs"
         :idprojects="idprojects"
         @edit-item="editItem"
@@ -33,7 +30,7 @@ import ListTasks from '@/components/projects/ListTasks'
 import Modal from '@/components/Modal'
 
 export default {
-  name: 'Home',
+  name: 'Create',
   components: {
     List,
     ListTasks,
@@ -82,17 +79,13 @@ export default {
     }
   },
   methods: {
-    selectItem({ id, type, color }) {
+    selectItem({ id, type }) {
       this['id' + type] = id
       localStorage.setItem('id' + type, id)
       switch (type) {
         case 'napravs':
-          this.color = '#ffffff'
           this.idprojects = ''
           localStorage.setItem('idprojects', '')
-          break
-        case 'projects':
-          this.color = '#ffffff'
           break
         default:
       }

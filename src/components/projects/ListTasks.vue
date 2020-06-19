@@ -97,7 +97,7 @@ export default {
           idprojects: this.idprojects,
           active: true,
           position: this.tasks.length + 1, // По умолчанию в конец списка
-          color: '#ffffff', // У задач нет цвета
+          color: '', // У задач нет цвета
           date: this.getDateNow()
         }
         this.title = ''

@@ -6,9 +6,9 @@
         v-for="(item, index) in list"
         :key="'in'+index"
         class="list-group-item p-2 pl-3 d-flex justify-content-between align-items-center cursor-pointer"
-        :style="'background:'+color+' !important'"
+        :style="{'background': item.color ? item.color+'!important' : '#f8f9fa!important'}"
         :class="{'bor-left-red': new Date(item.date) - new Date() < 2}"
-        @click="$emit('select-item', {id: item.id, type: item.type, color: item.color})"
+        @click="$emit('select-item', {id: item.id, type: item.type})"
       >
         <small>{{index + 1}} {{item.title}}</small>
         <button
@@ -44,9 +44,6 @@ export default {
     },
     idprojects: {
       defauit: ''
-    },
-    color: {
-      type: String
     }
   },
   data() {
@@ -66,7 +63,7 @@ export default {
           idprojects: this.idprojects,
           active: true,
           position: this.list.length + 1, // По умолчанию в конец списка
-          color: '#ffffff',
+          color: '',
           date: this.getDateNow()
         }
         this.title = ''
