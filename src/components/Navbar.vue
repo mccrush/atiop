@@ -25,21 +25,21 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <router-link to="/" class="nav-link">Projects</router-link>
+          <router-link to="/" class="nav-link">Проекты</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/general" class="nav-link">General</router-link>
+          <router-link to="/general" class="nav-link">Обзор</router-link>
         </li>
 
         <li class="nav-item">
-          <router-link to="/plans" class="nav-link">Plans</router-link>
+          <router-link to="/plans" class="nav-link">Планы</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/create" class="nav-link">Create</router-link>
+          <router-link to="/create" class="nav-link">Создать</router-link>
         </li>
-        <!-- <li class="nav-item">
-          <router-link to="/about" class="nav-link">About</router-link>
-        </li>-->
+        <li class="nav-item">
+          <router-link to="/about" class="nav-link">О приложении</router-link>
+        </li>
       </ul>
       <form @submit.prevent="logOut" class="form-inline mr-5">
         <button
@@ -51,7 +51,7 @@
         <router-link
           v-else
           tag="button"
-          class="d-sm-inline btn btn-sm btn-light border text-muted"
+          class="d-sm-inline btn btn-sm btn-success"
           title="Войти"
           to="/login"
         >Войти</router-link>
