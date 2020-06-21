@@ -17,6 +17,14 @@ export default {
     }
   },
   actions: {
+    regist({ commit }, { email, password }) {
+      auth.createUserWithEmailAndPassword(email, password).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.error("regist: errors:", errorCode, "& ", errorMessage);
+      });
+    },
     logIn({ commit }, { email, password }) {
       auth
         .signInWithEmailAndPassword(email, password)
@@ -36,7 +44,7 @@ export default {
           commit('logOut')
         })
         .catch(function (error) {
-          console.error(error);
+          console.error("logOut: errors:", error);
         });
     }
   },

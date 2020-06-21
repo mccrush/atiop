@@ -50,16 +50,21 @@ export default {
     }
   },
   mounted() {
-    console.log('this.$route.hash:', this.$route.hash)
-
     this.mod = this.$route.hash ? this.$route.hash : '#in'
   },
   methods: {
     login() {
-      this.$store.dispatch('logIn', {
-        email: this.email,
-        password: this.password
-      })
+      if (this.mod === '#in') {
+        this.$store.dispatch('logIn', {
+          email: this.email,
+          password: this.password
+        })
+      } else {
+        this.$store.dispatch('regist', {
+          email: this.email,
+          password: this.password
+        })
+      }
       this.$router.push('/')
     }
   }
