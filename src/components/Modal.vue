@@ -32,16 +32,17 @@
                   class="form-control form-control-sm"
                   v-model="date"
                 />
-                <!-- <input type="color" class="form-control form-control-sm mt-2" v-model="color" /> -->
-                <div v-if="item.type === 'projects'" class="d-flex mt-1">
-                  <div
-                    v-for="(scolor, index) in colors"
-                    :key="'cb'+index"
-                    class="m-1 p-1 rounded shadow-sm colorblock"
-                    :style="'background:'+ scolor"
-                    :class="{'rounded-circle': color === scolor}"
-                    @click="color = scolor"
-                  ></div>
+                <div v-if="item">
+                  <div v-if="item.type === 'projects'" class="d-flex mt-1">
+                    <div
+                      v-for="(scolor, index) in colors"
+                      :key="'cb'+index"
+                      class="m-1 p-1 rounded shadow-sm colorblock"
+                      :style="'background:'+ scolor"
+                      :class="{'rounded-circle': color === scolor}"
+                      @click="color = scolor"
+                    ></div>
+                  </div>
                 </div>
               </div>
               <div class="col-4 mt-2">
@@ -72,10 +73,6 @@
             </div>
           </form>
         </div>
-        <!-- <div class="modal-footer">
-          <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Отмена</button>
-          <button type="button" class="btn btn-sm btn-success">Сохранить</button>
-        </div>-->
       </div>
     </div>
   </div>
@@ -120,7 +117,7 @@ export default {
           title: this.title.trim(),
           id: this.item.id,
           type: this.item.type,
-          active: this.active, // done, arhive
+          active: this.active,
           date: this.date,
           color: this.color
         }
