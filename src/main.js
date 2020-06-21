@@ -30,6 +30,8 @@ export const auth = firebase.auth();
 
 Vue.config.productionTip = false
 
+//store.dispatch('getItems')
+
 let app
 firebase.auth().onAuthStateChanged((user) => {
   if (!app) {

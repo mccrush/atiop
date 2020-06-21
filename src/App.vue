@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { auth } from '@/main.js'
 import Navbar from '@/components/Navbar'
 import Settings from '@/components/Settings'
 
@@ -16,6 +17,13 @@ export default {
   components: {
     Navbar,
     Settings
+  },
+  mounted() {
+    if (auth.currentUser) {
+      this.$store.dispatch('getItems')
+    } else {
+      this.$router.push('/about')
+    }
   }
 }
 </script>

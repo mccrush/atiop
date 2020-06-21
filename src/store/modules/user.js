@@ -1,4 +1,5 @@
 import { auth } from "@/main.js";
+import { db } from "@/main.js";
 
 export default {
   state: {
@@ -18,7 +19,23 @@ export default {
   },
   actions: {
     regist({ commit }, { email, password }) {
-      auth.createUserWithEmailAndPassword(email, password).catch(function (error) {
+      auth.createUserWithEmailAndPassword(email, password).then(() => {
+        // Add new user in userc collections
+        db.collection("users").doc(auth.currentUser.uid).set({
+          napravs: [],
+          projects: [],
+          tasks: []
+        }).then(function () {
+          // const ref = db.collection("users").doc(auth.currentUser.uid)
+          // ref.collection("napravs").doc().set([])
+          // ref.collection("projects").doc().set([])
+          // ref.collection("tasks").doc().set([])
+          //console.log("Коллекции успешно созданы");
+        })
+          .catch(function (error) {
+            console.error("Ошибка при создании коллекций: ", error);
+          });
+      }).catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
