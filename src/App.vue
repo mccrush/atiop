@@ -20,7 +20,9 @@ export default {
   },
   mounted() {
     if (auth.currentUser) {
-      this.$store.dispatch('getItems')
+      this.$store.dispatch('getItems', 'napravs')
+      this.$store.dispatch('getItems', 'projects')
+      this.$store.dispatch('getItems', 'tasks')
     } else {
       this.$router.push('/about')
     }

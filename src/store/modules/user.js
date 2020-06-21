@@ -21,15 +21,11 @@ export default {
     regist({ commit }, { email, password }) {
       auth.createUserWithEmailAndPassword(email, password).then(() => {
         // Add new user in userc collections
-        db.collection("users").doc(auth.currentUser.uid).set({
-          napravs: [],
-          projects: [],
-          tasks: []
-        }).then(function () {
-          // const ref = db.collection("users").doc(auth.currentUser.uid)
-          // ref.collection("napravs").doc().set([])
-          // ref.collection("projects").doc().set([])
-          // ref.collection("tasks").doc().set([])
+        db.collection("users").doc(auth.currentUser.uid).set({}).then(function () {
+          const ref = db.collection("users").doc(auth.currentUser.uid)
+          ref.collection("napravs").doc().set({})
+          ref.collection("projects").doc().set({})
+          ref.collection("tasks").doc().set({})
           //console.log("Коллекции успешно созданы");
         })
           .catch(function (error) {

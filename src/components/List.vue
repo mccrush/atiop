@@ -59,8 +59,8 @@ export default {
           title: this.title.trim(),
           id: Date.now().toString(),
           type: this.type,
-          idnapravs: this.idnapravs,
-          idprojects: this.idprojects,
+          idnapravs: this.idnapravs || '',
+          idprojects: this.idprojects || '',
           active: true,
           position: this.list.length + 1, // По умолчанию в конец списка
           color: '',
