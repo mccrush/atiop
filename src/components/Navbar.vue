@@ -42,6 +42,7 @@
         </li>
       </ul>
       <form @submit.prevent="logOut" class="form-inline mr-5">
+        <span v-if="user" class="text-muted mr-3">{{'@'+ user.email.split('@')[0]}}</span>
         <button
           v-if="user"
           class="d-sm-inline btn btn-sm btn-light border text-muted"
