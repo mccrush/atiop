@@ -65,7 +65,13 @@ export default {
       })
     },
     removeItem({ commit }, { id, type }) {
-      commit('removeItem', { id, type })
+      db.collection("users").doc(auth.currentUser.uid).collection(type).doc(id).delete().then(function () {
+        console.log("removeItem, Document successfully deleted!");
+        commit('removeItem', { id, type })
+      }).catch(function (error) {
+        console.error("removeItem, Error removing document: ", error);
+      });
+
     },
     updateItem({ commit }, item) {
       commit('updateItem', item)
