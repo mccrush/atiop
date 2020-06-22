@@ -24,9 +24,9 @@ export default {
         const datenow = Date.now().toString()
         db.collection("users").doc(auth.currentUser.uid).set({}).then(function () {
           const ref = db.collection("users").doc(auth.currentUser.uid)
-          ref.collection("napravs").doc(datenow).set({ id: datenow, title: 'Пример направления' })
-          ref.collection("projects").doc(datenow).set({ id: datenow, title: 'Пример проекта', idnapravs: datenow })
-          ref.collection("tasks").doc(datenow).set({ id: datenow, title: 'Пример задачи', idnapravs: datenow, idprojects: datenow })
+          ref.collection("napravs").doc(datenow).set({ id: datenow, type: 'napravs', title: 'Пример направления' })
+          ref.collection("projects").doc(datenow).set({ id: datenow, type: 'projects', title: 'Пример проекта', idnapravs: datenow })
+          ref.collection("tasks").doc(datenow).set({ id: datenow, type: 'tasks', title: 'Пример задачи', idnapravs: datenow, idprojects: datenow })
           //console.log("Коллекции успешно созданы");
         })
           .catch(function (error) {
