@@ -56,7 +56,7 @@ export default {
       });
     },
     addItem({ commit }, item) {
-      let ref = db.collection("users").doc(auth.currentUser.uid)
+      const ref = db.collection("users").doc(auth.currentUser.uid)
       ref.collection(item.type).doc(item.id).set(item).then(() => {
         console.log('addItem, Элемент добавлен:', item);
         commit('addItem', item)
@@ -71,16 +71,23 @@ export default {
       }).catch(function (error) {
         console.error("removeItem, Error removing document: ", error);
       });
-
     },
-    updateItem({ commit }, item) {
-      commit('updateItem', item)
+    updateItem({ commit }, { id, title, type, active, date, color }) {
+      const ref = db.collection("users").doc(auth.currentUser.uid)
+      const el = ref.collection(type).doc(id).get().then(doc => doc.data())
+      return ref.collection(type).doc(id).update({ ...el, title, type, active, date, color })
+        .then(function () {
+          console.log("updateItem, Document successfully updated!");
+          commit('updateItem', { id, title, type, active, date, color })
+        })
+        .catch(function (error) {
+          // The document probably doesn't exist.
+          console.error("updateItem, Error updating document: ", error);
+        });
     },
     updateSettings({ commit }, { showArhived, sortBy }) {
       commit('updateSettings', { showArhived, sortBy })
     }
-  },
-  modules: {
   },
   getters: {
     napravs: state => state.napravs,
