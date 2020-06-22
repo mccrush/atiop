@@ -2,7 +2,11 @@
   <div class="row">
     <div class="col-12">
       <div class="row p-1">
-        <div v-for="(month, index) in months" :key="'pl'+index" class="col-md-3 col-lg-2 p-1">
+        <div
+          v-for="(month, index) in months"
+          :key="'pl'+index"
+          class="col-sm-6 col-md-3 col-lg-2 p-1"
+        >
           <div class="shadow-sm pl-0 pt-0 pr-0 pb-1">
             <div class="d-flex justify-content-between p-2 bg-light elem">
               <h6 class="m-0 p-0">{{month.name}}</h6>
