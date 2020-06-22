@@ -21,11 +21,12 @@ export default {
     regist({ commit }, { email, password }) {
       auth.createUserWithEmailAndPassword(email, password).then(() => {
         // Add new user in userc collections
+        const datenow = Date.now().toString()
         db.collection("users").doc(auth.currentUser.uid).set({}).then(function () {
           const ref = db.collection("users").doc(auth.currentUser.uid)
-          ref.collection("napravs").doc().set({})
-          ref.collection("projects").doc().set({})
-          ref.collection("tasks").doc().set({})
+          ref.collection("napravs").doc(datenow).set({ id: datenow, title: 'Пример направления' })
+          ref.collection("projects").doc(datenow).set({ id: datenow, title: 'Пример проекта', idnapravs: datenow })
+          ref.collection("tasks").doc(datenow).set({ id: datenow, title: 'Пример задачи', idnapravs: datenow, idprojects: datenow })
           //console.log("Коллекции успешно созданы");
         })
           .catch(function (error) {

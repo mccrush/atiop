@@ -48,6 +48,7 @@ export default {
   mounted() {
     this.idnapravs = localStorage.getItem('idnapravs') || ''
     this.idprojects = localStorage.getItem('idprojects') || ''
+    //console.log('uid:', auth.currentUser.uid);
   },
   computed: {
     napravs() {

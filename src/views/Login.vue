@@ -64,6 +64,11 @@ export default {
           email: this.email,
           password: this.password
         })
+        // .then(() => {
+        //   this.$store.dispatch('getItems', 'napravs')
+        //   this.$store.dispatch('getItems', 'projects')
+        //   this.$store.dispatch('getItems', 'tasks')
+        // })
       }
       this.$router.push('/')
     }
