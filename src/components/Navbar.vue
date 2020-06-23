@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom">
+  <nav class="navbar navbar-expand-md fixed-top navbar-light bg-white border-bottom">
     <router-link class="navbar-brand" to="/" tag="a">
       <img
         src="img/icons/favicon-32x32.png"

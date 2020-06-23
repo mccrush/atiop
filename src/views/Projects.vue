@@ -118,8 +118,8 @@ export default {
 
 <style>
 .ower {
-  overflow: auto;
-  margin-bottom: 59px;
+  overflow-x: auto;
+  /* margin-bottom: 59px; */
 }
 
 .w150 {

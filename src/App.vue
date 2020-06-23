@@ -1,7 +1,7 @@
 <template>
-  <div class="h-100">
+  <div>
     <Navbar />
-    <div class="container-fluid h-100">
+    <div class="container-fluid">
       <router-view />
     </div>
     <Settings />
@@ -30,4 +30,7 @@ export default {
 }
 </script>
 <style>
+.container-fluid {
+  margin-top: 59px;
+}
 </style>
