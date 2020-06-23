@@ -27,6 +27,7 @@
             <div class="row">
               <div class="col-8 mt-2">
                 <input
+                  v-if="item && item.type !== 'napravs'"
                   type="datetime-local"
                   id="date"
                   class="form-control form-control-sm"

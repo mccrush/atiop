@@ -38,11 +38,11 @@
           <router-link to="/create" class="nav-link">Создать</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/about" class="nav-link">О приложении</router-link>
+          <router-link to="/about" class="nav-link">Справка</router-link>
         </li>
       </ul>
       <form @submit.prevent="logOut" class="form-inline mr-5">
-        <span v-if="user" class="text-muted mr-3">{{'@'+ user.email.split('@')[0]}}</span>
+        <span v-if="user" class="text-muted small mr-3">{{'@'+ user.email.split('@')[0]}}</span>
         <button
           v-if="user"
           class="d-sm-inline btn btn-sm btn-light border text-muted"
@@ -72,6 +72,7 @@ export default {
   methods: {
     logOut() {
       this.$store.dispatch('logOut')
+      this.$router.push('/about')
     }
   }
 }
