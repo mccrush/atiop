@@ -34,8 +34,4 @@ export default {
   }
 }
 </script>
-<style>
-/* .container-fluid {
-  margin-top: 59px;
-} */
-</style>
+
