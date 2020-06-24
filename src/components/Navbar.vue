@@ -42,9 +42,9 @@
         </li>
       </ul>
       <form @submit.prevent="logOut" class="form-inline mr-5">
-        <span v-if="user" class="text-muted small mr-3">{{'@'+ user.email.split('@')[0]}}</span>
+        <span v-if="user.uid" class="text-muted small mr-3">{{'@'+ user.email.split('@')[0]}}</span>
         <button
-          v-if="user"
+          v-if="user.uid"
           class="d-sm-inline btn btn-sm btn-light border text-muted"
           title="Выйти"
           type="submit"
@@ -70,9 +70,9 @@ export default {
     }
   },
   methods: {
-    logOut() {
-      this.$store.dispatch('logOut')
-      //this.$router.push('/about')
+    async logOut() {
+      await this.$store.dispatch('logOut')
+      this.$router.push('/about')
     }
   }
 }

@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-12 col-sm-6 col-md-4 col-xl-4 text-left">
       <form @submit.prevent="login" class="mt-5 mb-3 p-3 shadow-sm">
-        <h4 class="text-center mb-3">{{mod === '#in' ? 'Авторизация' : 'Регистрация'}}</h4>
+        <h4 class="text-center mt-2 mb-4">{{mod === '#in' ? 'Авторизация' : 'Регистрация'}}</h4>
         <label for="email">Email</label>
         <br />
         <input type="text" class="form-control" id="email" v-model="email" />
@@ -58,33 +58,31 @@ export default {
     this.mod = this.$route.hash ? this.$route.hash : '#in'
   },
   methods: {
-    login() {
-      if (this.mod === '#in') {
-        this.$store.dispatch('logIn', {
-          email: this.email,
-          password: this.password
-        })
-      } else {
-        this.$store.dispatch('regist', {
-          email: this.email,
-          password: this.password
-        })
-        // .then(() => {
-        //   this.$store.dispatch('getItems', 'napravs')
-        //   this.$store.dispatch('getItems', 'projects')
-        //   this.$store.dispatch('getItems', 'tasks')
-        // })
+    async login() {
+      const formData = {
+        email: this.email,
+        password: this.password
       }
-    }
-  },
-  watch: {
-    user(oldUser, newUser) {
-      console.log('login newuser:', newUser)
 
-      if (newUser) {
-        this.$router.push('/')
+      if (this.mod === '#in') {
+        try {
+          await this.$store.dispatch('logIn', formData)
+        } catch {}
+      } else {
+        try {
+          await this.$store.dispatch('regist', formData)
+        } catch (err) {}
       }
     }
   }
+  // watch: {
+  //   user(oldUser, newUser) {
+  //     console.log('login newuser:', newUser)
+
+  //     if (newUser) {
+  //       this.$router.push('/')
+  //     }
+  //   }
+  // }
 }
 </script>
