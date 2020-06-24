@@ -1,7 +1,7 @@
 <template>
   <div class="row justify-content-center">
     <div class="col-12 col-sm-6 col-md-4 col-xl-4 text-left">
-      <form @submit.prevent="login" class="mt-5 p-3 shadow-sm">
+      <form @submit.prevent="login" class="mt-5 mb-3 p-3 shadow-sm">
         <h4 class="text-center mb-3">{{mod === '#in' ? 'Авторизация' : 'Регистрация'}}</h4>
         <label for="email">Email</label>
         <br />
@@ -79,6 +79,8 @@ export default {
   },
   watch: {
     user(oldUser, newUser) {
+      console.log('login newuser:', newUser)
+
       if (newUser) {
         this.$router.push('/')
       }

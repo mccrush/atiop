@@ -3,15 +3,18 @@ import { db } from "@/main.js";
 
 export default {
   state: {
-    user: null
+    // user: null
+    user: { uid: '', email: '' }
   },
   mutations: {
-    logIn(state) {
-      state.user = {
-        uid: auth.currentUser.uid,
-        email: auth.currentUser.email,
-        name: auth.currentUser.name,
-      }
+    logIn(state, user) {
+      // state.user = {
+      //   uid: auth.currentUser.uid,
+      //   email: auth.currentUser.email,
+      //   name: auth.currentUser.name,
+      // }
+      state.user.uid = user.uid
+      state.user.email = user.email
     },
     logOut(state) {
       state.user = null;
@@ -42,8 +45,8 @@ export default {
     logIn({ commit }, { email, password }) {
       auth
         .signInWithEmailAndPassword(email, password)
-        .then(() => {
-          commit('logIn')
+        .then((user) => {
+          commit('logIn', user)
         })
         .catch(function (error) {
           var errorCode = error.code;

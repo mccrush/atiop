@@ -34,6 +34,8 @@ Vue.config.productionTip = false
 
 let app
 firebase.auth().onAuthStateChanged((user) => {
+  console.log('user in main:', user);
+
   if (!app) {
     app = new Vue({
       router,
@@ -42,6 +44,6 @@ firebase.auth().onAuthStateChanged((user) => {
     }).$mount('#app')
   }
   if (user) {
-    store.commit("logIn");
+    store.commit("logIn", user);
   }
 })

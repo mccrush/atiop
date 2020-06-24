@@ -24,6 +24,8 @@ export default {
     }
   },
   mounted() {
+    console.log('user in app:', this.user)
+
     if (this.user) {
       this.$store.dispatch('getItems', 'napravs')
       this.$store.dispatch('getItems', 'projects')
