@@ -11,33 +11,33 @@ const router = new Router({
       path: '/',
       component: () => import('../views/Projects.vue'),
       // ВКЛЮЧИТЬ на продакшине
-      // meta: {
-      //   requiresAuth: true
-      // }
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/create',
       component: () => import('../views/Create.vue'),
       // ВКЛЮЧИТЬ на продакшине
-      // meta: {
-      //   requiresAuth: true
-      // }
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/general',
       component: () => import('../views/General.vue'),
       // ВКЛЮЧИТЬ на продакшине
-      // meta: {
-      //   requiresAuth: true
-      // }
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/plans',
       component: () => import('../views/Plans.vue'),
       // ВКЛЮЧИТЬ на продакшине
-      // meta: {
-      //   requiresAuth: true
-      // }
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/about',
@@ -72,7 +72,7 @@ router.beforeEach((to, from, next) => {
     if (currentUser) {
       next()
     } else {
-      next('/login')
+      next('login')
     }
   } else {
     next()
