@@ -1,6 +1,6 @@
 <template>
-  <div class="row" ref="row">
-    <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4 m-auto">
+  <div class="row shadow-sm">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4 m-auto h-100">
       <h3 class="mt-4 text-center">ATIOP</h3>
       <p class="text-center text-muted small">
         Версия
@@ -14,21 +14,37 @@
       <div class="d-flex justify-content-center">
         <ul class="list-group list-group-horizontal">
           <li class="list-group-item">
-            <a href="#desc" class="btn btn-sm btn-light rounded-0">Описание</a>
+            <a
+              @click.stop="scrollTo('desc')"
+              href="#desc"
+              class="btn btn-sm btn-light rounded-0"
+            >Описание</a>
           </li>
           <li class="list-group-item">
-            <a href="#pages" class="btn btn-sm btn-light rounded-0">Страницы</a>
+            <a
+              @click.stop="scrollTo('pages')"
+              href="#pages"
+              class="btn btn-sm btn-light rounded-0"
+            >Страницы</a>
           </li>
           <li class="list-group-item">
-            <a href="#props" class="btn btn-sm btn-light rounded-0">Свойства</a>
+            <a
+              @click.stop="scrollTo('props')"
+              href="#props"
+              class="btn btn-sm btn-light rounded-0"
+            >Свойства</a>
           </li>
           <li class="list-group-item">
-            <a href="#contacts" class="btn btn-sm btn-light rounded-0">Контакты</a>
+            <a
+              @click.stop="scrollTo('contacts')"
+              href="#contacts"
+              class="btn btn-sm btn-light rounded-0"
+            >Контакты</a>
           </li>
         </ul>
       </div>
 
-      <h5 class="mt-4" id="desc" :class="{'text-primary': $route.hash === '#desc'}">Описание</h5>
+      <h5 class="mt-4" ref="desc" :class="{'text-primary': $route.hash === '#desc'}">Описание</h5>
       <p>
         ATIOP — сервис управления задачами. Название сервиса — это аббревиатура английских слов
         <strong>A</strong>ll
@@ -54,7 +70,7 @@
 
       <h5
         class="mt-4"
-        id="pages"
+        ref="pages"
         :class="{'text-primary': $route.hash === '#pages'}"
       >Назначение страниц</h5>
       <p>На странице &laquo;Проекты&raquo;, представлены списки задач существующих проектов. Можно отфильтровать проекты по направлениям для удобства работы.</p>
@@ -64,16 +80,45 @@
 
       <h5
         class="mt-4"
-        id="props"
+        ref="props"
         :class="{'text-primary': $route.hash === '#props'}"
-      >Свойства и методы</h5>
-      <p>По всем вопросам и предложениям пишите на почту mccrush2027@gmail.com</p>
+      >Свойства объектов</h5>
+      <table class="table">
+        <tr>
+          <td></td>
+          <td class="text-center">Направление</td>
+          <td class="text-center">Проект</td>
+          <td class="text-center">Задача</td>
+        </tr>
+        <tr>
+          <td>Заголовок</td>
+          <td class="text-center">+</td>
+          <td class="text-center">+</td>
+          <td class="text-center">+</td>
+        </tr>
+        <tr>
+          <td>Дедлайн</td>
+          <td class="text-center"></td>
+          <td class="text-center">+</td>
+          <td class="text-center">+</td>
+        </tr>
+        <tr>
+          <td>Цвет</td>
+          <td class="text-center"></td>
+          <td class="text-center">+</td>
+          <td class="text-center"></td>
+        </tr>
+      </table>
 
-      <h5 class="mt-4" id="contacts" :class="{'text-primary': $route.hash === '#contacts'}">Контакты</h5>
+      <h5
+        class="mt-4"
+        ref="contacts"
+        :class="{'text-primary': $route.hash === '#contacts'}"
+      >Контакты</h5>
       <p>По всем вопросам и предложениям пишите на почту mccrush2027@gmail.com</p>
       <button
         class="totop btn btn-light text-center text-muted shadow-sm mb-4 p-0 pl-3 pr-3 pb-1"
-        @click="scrollTop"
+        @click.prevent="scrollTop"
       >
         <span>&wedge;</span>
       </button>
@@ -84,21 +129,17 @@
 <script>
 export default {
   methods: {
+    scrollTo(ref) {
+      this.$refs[ref].scrollIntoView({ behavior: 'smooth' })
+    },
     scrollTop() {
-      //window.scrollTo({ top: -59, behavior: 'smooth' })
-      this.$refs.row.scrollTo({ top: 0, behavior: 'smooth' })
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }
 }
 </script>
 
 <style scoped>
-.row {
-  overflow-y: auto;
-  /* height: fit-content; */
-  max-height: 450px;
-}
-
 li {
   padding: 0;
 }
@@ -112,7 +153,7 @@ li > a {
   position: absolute;
   bottom: 0;
   right: 0;
-  margin-right: -50px;
+  margin-right: -80px;
   font-size: 1.5rem;
   font-weight: bold;
 }

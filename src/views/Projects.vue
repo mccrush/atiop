@@ -117,11 +117,6 @@ export default {
 </script>
 
 <style>
-.ower {
-  overflow-x: auto;
-  /* margin-bottom: 59px; */
-}
-
 .w150 {
   width: 150px;
 }

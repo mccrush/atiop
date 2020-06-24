@@ -52,7 +52,15 @@ const router = new Router({
       name: 'login',
       component: () => import('../views/Login.vue')
     },
-  ]
+  ],
+  // scrollBehavior(to, from, savedPosition) {
+  //   if (to.hash) {
+  //     return {
+  //       selector: to.hash,
+  //       //offset: { y: 250 }
+  //     }
+  //   }
+  // }
 })
 
 router.beforeEach((to, from, next) => {

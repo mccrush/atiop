@@ -30,7 +30,7 @@ export default {
 }
 </script>
 <style>
-.container-fluid {
+/* .container-fluid {
   margin-top: 59px;
-}
+} */
 </style>
