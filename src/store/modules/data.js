@@ -18,7 +18,7 @@ export default {
   mutations: {
     getItems(state, { type, items = [] }) {
       state[type] = items
-      console.log('state[', type, '] = ', items);
+      //console.log('state[', type, '] = ', items);
     },
     addItem(state, item) {
       state[item.type].push(item)

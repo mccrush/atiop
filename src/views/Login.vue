@@ -49,6 +49,11 @@ export default {
       mod: '#in'
     }
   },
+  computed: {
+    user() {
+      return this.$store.getters.user
+    }
+  },
   mounted() {
     this.mod = this.$route.hash ? this.$route.hash : '#in'
   },
@@ -70,7 +75,13 @@ export default {
         //   this.$store.dispatch('getItems', 'tasks')
         // })
       }
-      this.$router.push('/')
+    }
+  },
+  watch: {
+    user(oldUser, newUser) {
+      if (newUser) {
+        this.$router.push('/')
+      }
     }
   }
 }

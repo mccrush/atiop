@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { auth } from '@/main.js'
+//import { auth } from '@/main.js'
 import Navbar from '@/components/Navbar'
 import Settings from '@/components/Settings'
 
@@ -18,8 +18,13 @@ export default {
     Navbar,
     Settings
   },
+  computed: {
+    user() {
+      return this.$store.getters.user
+    }
+  },
   mounted() {
-    if (auth.currentUser) {
+    if (this.user) {
       this.$store.dispatch('getItems', 'napravs')
       this.$store.dispatch('getItems', 'projects')
       this.$store.dispatch('getItems', 'tasks')
