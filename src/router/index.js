@@ -9,6 +9,7 @@ const router = new Router({
   routes: [
     {
       path: '/',
+      name: 'projects',
       component: () => import('../views/Projects.vue'),
       // ВКЛЮЧИТЬ на продакшине
       meta: {
@@ -17,6 +18,7 @@ const router = new Router({
     },
     {
       path: '/create',
+      name: 'create',
       component: () => import('../views/Create.vue'),
       // ВКЛЮЧИТЬ на продакшине
       meta: {
@@ -25,6 +27,7 @@ const router = new Router({
     },
     {
       path: '/general',
+      name: 'general',
       component: () => import('../views/General.vue'),
       // ВКЛЮЧИТЬ на продакшине
       meta: {
@@ -33,6 +36,7 @@ const router = new Router({
     },
     {
       path: '/plans',
+      name: 'plans',
       component: () => import('../views/Plans.vue'),
       // ВКЛЮЧИТЬ на продакшине
       meta: {
@@ -41,11 +45,8 @@ const router = new Router({
     },
     {
       path: '/about',
+      name: 'about',
       component: () => import('../views/About.vue'),
-      // ВКЛЮЧИТЬ на продакшине
-      // meta: {
-      //   requiresAuth: true
-      // }
     },
     {
       path: '/login',
@@ -53,14 +54,6 @@ const router = new Router({
       component: () => import('../views/Login.vue')
     },
   ],
-  // scrollBehavior(to, from, savedPosition) {
-  //   if (to.hash) {
-  //     return {
-  //       selector: to.hash,
-  //       //offset: { y: 250 }
-  //     }
-  //   }
-  // }
 })
 
 router.beforeEach((to, from, next) => {
@@ -72,7 +65,7 @@ router.beforeEach((to, from, next) => {
     if (currentUser) {
       next()
     } else {
-      next('login')
+      next('about')
     }
   } else {
     next()

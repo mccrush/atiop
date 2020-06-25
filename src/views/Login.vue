@@ -67,22 +67,15 @@ export default {
       if (this.mod === '#in') {
         try {
           await this.$store.dispatch('logIn', formData)
-        } catch {}
+          this.$router.push('/')
+        } catch (err) {}
       } else {
         try {
           await this.$store.dispatch('regist', formData)
+          this.$router.push('/')
         } catch (err) {}
       }
     }
   }
-  // watch: {
-  //   user(oldUser, newUser) {
-  //     console.log('login newuser:', newUser)
-
-  //     if (newUser) {
-  //       this.$router.push('/')
-  //     }
-  //   }
-  // }
 }
 </script>
