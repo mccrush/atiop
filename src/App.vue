@@ -1,10 +1,10 @@
 <template>
   <div>
-    <Navbar />
+    <Navbar @show-settings="showSettings = !showSettings" />
     <div class="container-fluid">
       <router-view />
     </div>
-    <Settings />
+    <Settings class="formset" :class="{'right-0' : showSettings }" />
   </div>
 </template>
 
@@ -20,7 +20,8 @@ export default {
   },
   data() {
     return {
-      user: auth.currentUser
+      user: auth.currentUser,
+      showSettings: false
     }
   },
   mounted() {
@@ -39,3 +40,17 @@ export default {
 }
 </script>
 
+
+<style scoped>
+.formset {
+  width: 200px;
+  position: absolute;
+  top: 59px;
+  right: -200px;
+  transition: 0.5s;
+}
+
+.right-0 {
+  right: 0;
+}
+</style>

@@ -1,9 +1,5 @@
 <template>
-  <div class="settings bg-white shadow-sm p-3 pt-3" :class="{'width-0': !show}">
-    <div class="button-close bg-white">
-      <h2 class="m-0 pt-2 pb-2 pl-3 pr-3" @click="show = !show">&equiv;</h2>
-    </div>
-
+  <div class="bg-white shadow-sm p-3 pt-3">
     <h5 class="text-center">Настройки</h5>
     <div class="form-group form-check mt-3 mb-2">
       <input
@@ -55,7 +51,6 @@
 export default {
   data() {
     return {
-      show: false,
       showArhived: null,
       sortBy: ''
     }
@@ -79,25 +74,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.settings {
-  width: 200px;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  right: 0px;
-  transition: 0.5s;
-}
-
-.width-0 {
-  right: -200px;
-}
-
-.button-close {
-  cursor: pointer;
-  position: absolute;
-  left: -54px;
-  top: 0;
-}
-</style>

@@ -41,7 +41,7 @@
           <router-link to="/about" class="nav-link">Справка</router-link>
         </li>
       </ul>
-      <form @submit.prevent="logOut" class="form-inline mr-5">
+      <form @submit.prevent="logOut" class="form-inline mr-2">
         <span v-if="user" class="text-muted small mr-3">{{'@'+ user.email.split('@')[0]}}</span>
         <button
           v-if="user"
@@ -56,6 +56,15 @@
           title="Войти"
           to="/login"
         >Войти</router-link>
+        <button class="btn btn-sm p-0 ml-4">
+          <img
+            src="img/navbar/settings_24px.png"
+            width="24"
+            height="24"
+            alt="Настройки"
+            @click.prevent="$emit('show-settings')"
+          />
+        </button>
       </form>
     </div>
   </nav>
