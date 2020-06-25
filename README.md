@@ -1,5 +1,5 @@
 # ATIOP
-Версия 0.2.0-beta
+Версия [0.2.0-beta](https://github.com/mccrush/atiop/releases)
 
 Ссылка: [atiop.ru](https://atiop.ru/).
 
