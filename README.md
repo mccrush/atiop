@@ -1,19 +1,6 @@
-# atiop
+# ATIOP
+Версия 0.2.0-beta
+Ссылка: [atiop.ru](https://atiop.ru/).
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Описание
+ATIOP — сервис управления задачами. Название сервиса — это аббревиатура английских слов All Task In One Place (все задачи в одном месте). Одна из основных идей — структура представления задач: направление деятельности ⇒ проект ⇒ задача.

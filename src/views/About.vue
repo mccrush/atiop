@@ -8,7 +8,7 @@
           href="https://github.com/mccrush/atiop/releases/"
           target="_blank"
           title="Страница на Github"
-        >1.0.0</a>
+        >0.2.0-beta</a>
       </p>
 
       <div class="d-flex justify-content-center">
