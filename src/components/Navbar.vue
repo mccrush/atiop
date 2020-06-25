@@ -56,14 +56,8 @@
           title="Войти"
           to="/login"
         >Войти</router-link>
-        <button class="btn btn-sm p-0 ml-4">
-          <img
-            src="img/navbar/settings_24px.png"
-            width="24"
-            height="24"
-            alt="Настройки"
-            @click.prevent="$emit('show-settings')"
-          />
+        <button class="btn btn-sm p-0 ml-4" @click.prevent="$emit('show-settings')">
+          <img src="img/navbar/settings_24px.png" width="24" height="24" alt="Настройки" />
         </button>
       </form>
     </div>

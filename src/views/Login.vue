@@ -1,14 +1,31 @@
 <template>
   <div class="row justify-content-center">
     <div class="col-12 col-sm-6 col-md-4 col-xl-4 text-left">
-      <form @submit.prevent="login" class="mt-5 mb-3 p-3 shadow-sm">
+      <form @submit.prevent="login" class="mt-5 mb-3 p-3 shadow-sm ml-auto mr-auto max-width">
         <h4 class="text-center mt-2 mb-4">{{mod === '#in' ? 'Авторизация' : 'Регистрация'}}</h4>
         <label for="email">Email</label>
         <br />
         <input type="text" class="form-control" id="email" v-model="email" />
         <br />
         <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" v-model="password" />
+        <div class="input-group">
+          <input
+            :type="passType ? 'password' : 'text'"
+            class="form-control"
+            id="password"
+            v-model="password"
+            ref="pass"
+          />
+          <div class="input-group-append">
+            <button
+              class="btn btn-light p-0 pl-2 pr-2 border"
+              type="button"
+              @click="passType = !passType"
+            >
+              <img src="img/login/eye_24px.png" width="24" height="24" alt="Показать пароль" />
+            </button>
+          </div>
+        </div>
         <br />
         <button
           class="btn btn-success btn-block"
@@ -46,7 +63,8 @@ export default {
     return {
       email: '',
       password: '',
-      mod: this.$route.hash || '#in'
+      mod: this.$route.hash || '#in',
+      passType: true
     }
   },
   mounted() {
@@ -80,3 +98,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.max-width {
+  max-width: 300px;
+}
+</style>
