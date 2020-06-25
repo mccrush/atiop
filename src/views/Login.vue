@@ -46,16 +46,11 @@ export default {
     return {
       email: '',
       password: '',
-      mod: '#in'
-    }
-  },
-  computed: {
-    user() {
-      return this.$store.getters.user
+      mod: this.$route.hash || '#in'
     }
   },
   mounted() {
-    this.mod = this.$route.hash ? this.$route.hash : '#in'
+    //this.mod = this.$route.hash ? this.$route.hash : '#in'
   },
   methods: {
     async login() {
@@ -67,11 +62,17 @@ export default {
       if (this.mod === '#in') {
         try {
           await this.$store.dispatch('logIn', formData)
+
           this.$router.push('/')
         } catch (err) {}
       } else {
         try {
           await this.$store.dispatch('regist', formData)
+          if (auth.currentUser) {
+            this.$store.dispatch('getItems', 'napravs')
+            this.$store.dispatch('getItems', 'projects')
+            this.$store.dispatch('getItems', 'tasks')
+          }
           this.$router.push('/')
         } catch (err) {}
       }

@@ -23,9 +23,9 @@ export default {
   actions: {
     async regist({ commit, dispatch }, { email, password }) {
       try {
-        const uid = auth.currentUser.uid
         const datenow = Date.now().toString()
         await auth.createUserWithEmailAndPassword(email, password)
+        const uid = auth.currentUser.uid
         await db.collection("users").doc(uid).set({})
 
         const ref = db.collection("users").doc(uid)
@@ -51,6 +51,8 @@ export default {
         //   console.error("regist: errors:", errorCode, "& ", errorMessage);
         // });
       } catch (err) {
+        console.log('registr err:', err);
+
         // Передать ошибку в шину
       }
     },
@@ -59,6 +61,7 @@ export default {
         await auth.signInWithEmailAndPassword(email, password)
       } catch (err) {
         // Передать сообщение об ошибке в шину
+        console.log('logIn err:', err);
         throw err
       }
     },
