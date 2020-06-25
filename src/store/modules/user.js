@@ -4,21 +4,21 @@ import { db } from "@/main.js";
 export default {
   state: {
     // user: null
-    user: { uid: '', email: '' }
+    // user: { uid: '', email: '' }
   },
   mutations: {
-    logIn(state, user) {
-      // state.user = {
-      //   uid: auth.currentUser.uid,
-      //   email: auth.currentUser.email,
-      //   name: auth.currentUser.name,
-      // }
-      state.user.uid = user.uid
-      state.user.email = user.email
-    },
-    logOut(state) {
-      state.user = null;
-    }
+    // logIn(state, user) {
+    //   // state.user = {
+    //   //   uid: auth.currentUser.uid,
+    //   //   email: auth.currentUser.email,
+    //   //   name: auth.currentUser.name,
+    //   // }
+    //   state.user.uid = user.uid
+    //   state.user.email = user.email
+    // },
+    // logOut(state) {
+    //   state.user = null;
+    // }
   },
   actions: {
     async regist({ commit, dispatch }, { email, password }) {
@@ -70,6 +70,6 @@ export default {
     }
   },
   getters: {
-    user: state => state.user
+    //user: state => state.user
   }
 }
