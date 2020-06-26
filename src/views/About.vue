@@ -13,7 +13,7 @@
       </p>
 
       <div class="row">
-        <div class="col-12 col-sm-3 col-md-3 mt-2 mb-4">
+        <div class="col-12 col-sm-3 col-md-3 mt-3 mb-4">
           <div class="list-group list-group-flush">
             <a href="#description" class="list-group-item list-group-item-action p-1 pl-2">Описание</a>
 
@@ -22,7 +22,7 @@
             <a href="#props" class="list-group-item list-group-item-action p-1 pl-2">Свойства</a>
           </div>
         </div>
-        <div class="col-12 col-sm-9 col-md-9">
+        <div class="col-12 col-sm-9 col-md-9 mt-3">
           <component :is="component" />
         </div>
       </div>
