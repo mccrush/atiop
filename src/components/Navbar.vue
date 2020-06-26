@@ -25,17 +25,37 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <router-link to="/" class="nav-link">Проекты</router-link>
+          <router-link
+            to="/"
+            class="nav-link"
+            :class="{'disabled': !user}"
+            :aria-disabled="user ? 'true': 'false'"
+          >Проекты</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/general" class="nav-link">Обзор</router-link>
+          <router-link
+            to="/general"
+            class="nav-link"
+            :class="{'disabled': !user}"
+            :aria-disabled="user ? 'true': 'false'"
+          >Обзор</router-link>
         </li>
 
         <li class="nav-item">
-          <router-link to="/plans" class="nav-link">Планы</router-link>
+          <router-link
+            to="/plans"
+            class="nav-link"
+            :class="{'disabled': !user}"
+            :aria-disabled="user ? 'true': 'false'"
+          >Планы</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/create" class="nav-link">Создать</router-link>
+          <router-link
+            to="/create"
+            class="nav-link"
+            :class="{'disabled': !user}"
+            :aria-disabled="user ? 'true': 'false'"
+          >Создать</router-link>
         </li>
         <li class="nav-item">
           <router-link to="/about" class="nav-link">Справка</router-link>
