@@ -13,6 +13,18 @@
         <small>Показывать архивные</small>
       </label>
     </div>
+    <div class="form-group form-check mt-3 mb-2">
+      <input
+        type="checkbox"
+        class="form-check-input"
+        id="arhived"
+        v-model="showEmpty"
+        @change="saveChanges"
+      />
+      <label for="arhived" class="form-check-label">
+        <small>Показывать проекты без задач</small>
+      </label>
+    </div>
     <div class="form-group">
       <small>Способ сортировки</small>
       <div class="form-check">
@@ -52,13 +64,15 @@ export default {
   data() {
     return {
       showArhived: null,
+      showEmpty: null,
       sortBy: ''
     }
   },
   methods: {
     saveChanges() {
-      this.$store.dispatch('updateSettings', {
+      this.$store.commit('updateSettings', {
         showArhived: this.showArhived,
+        showEmpty: this.showEmpty,
         sortBy: this.sortBy
       })
     }
@@ -70,6 +84,7 @@ export default {
   },
   mounted() {
     this.showArhived = this.settings.showArhived
+    this.showEmpty = this.settings.showEmpty
     this.sortBy = this.settings.sortBy
   }
 }

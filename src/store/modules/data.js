@@ -7,7 +7,7 @@ export default {
     napravs: [],
     projects: [],
     tasks: [],
-    settings: JSON.parse(localStorage.getItem('settings')) || { showArhived: false, sortBy: 'date' }
+    settings: JSON.parse(localStorage.getItem('settings')) || { showArhived: false, showEmpty: true, sortBy: 'date' }
   },
   mutations: {
     getItems(state, { type, items = [] }) {
@@ -26,8 +26,8 @@ export default {
       items[index] = { ...el, title, type, active, date, color }
       state[type] = items
     },
-    updateSettings(state, { showArhived, sortBy }) {
-      state.settings = { showArhived, sortBy }
+    updateSettings(state, { showArhived, showEmpty, sortBy }) {
+      state.settings = { showArhived, showEmpty, sortBy }
       localStorage.setItem('settings', JSON.stringify(state.settings))
     }
   },
@@ -72,9 +72,9 @@ export default {
           console.error("updateItem, Error updating document: ", error);
         });
     },
-    updateSettings({ commit }, { showArhived, sortBy }) {
-      commit('updateSettings', { showArhived, sortBy })
-    }
+    // updateSettings({ commit }, { showArhived, showEmpty, sortBy }) {
+    //   commit('updateSettings', { showArhived, showEmpty, sortBy })
+    // }
   },
   getters: {
     napravs: state => state.napravs,
