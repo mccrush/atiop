@@ -47,7 +47,9 @@ export default {
       ref.collection(item.type).doc(item.id).set(item).then(() => {
         console.log('addItem, Элемент добавлен:', item);
         commit('addItem', item)
-        dispatch('updateProjectLength', { id: item.idprojects, whatdo: 'add' })
+        if (item.type === 'tasks') {
+          dispatch('updateProjectLength', { id: item.idprojects, whatdo: 'add' })
+        }
       }).catch(err => {
         console.log('addItem, Ошибка при добавлении документа:', err);
       })

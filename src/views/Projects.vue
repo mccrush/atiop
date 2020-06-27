@@ -20,7 +20,7 @@
             class="text-center bg-light p-2 rounded m-0 elem"
             :style="{'background': item.color ? item.color+'!important' : '#f8f9fa'}"
             @dblclick.prevent="editItem({id:item.id, type: item.type})"
-          >{{item.title}} [{{item.length}}]</h6>
+          >{{item.title}}</h6>
           <ListTasks
             :tasks="tasks"
             :idnapravs="item.idnapravs"

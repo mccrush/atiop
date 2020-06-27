@@ -62,6 +62,7 @@ export default {
           type: this.type,
           idnapravs: this.idnapravs || '',
           idprojects: this.idprojects || '',
+          length: 0,
           active: true,
           position: this.list.length + 1, // По умолчанию в конец списка
           color: '',

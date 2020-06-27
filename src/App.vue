@@ -37,7 +37,7 @@ export default {
     }
   },
   mounted() {
-    console.log('user in app:', this.user)
+    //console.log('user in app:', this.user)
 
     auth.onAuthStateChanged(user => {
       this.user = user

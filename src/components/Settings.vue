@@ -17,11 +17,11 @@
       <input
         type="checkbox"
         class="form-check-input"
-        id="arhived"
+        id="empty"
         v-model="showEmpty"
         @change="saveChanges"
       />
-      <label for="arhived" class="form-check-label">
+      <label for="empty" class="form-check-label">
         <small>Показывать проекты без задач</small>
       </label>
     </div>
