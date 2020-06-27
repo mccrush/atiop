@@ -2,12 +2,8 @@ import { auth } from "@/main.js";
 import { db } from "@/main.js";
 
 export default {
-  state: {
-  },
-  mutations: {
-  },
   actions: {
-    async regist({ commit, dispatch }, { email, password }) {
+    async regist({ commit }, { email, password }) {
       try {
         const datenow = Date.now().toString()
         await auth.createUserWithEmailAndPassword(email, password)
@@ -19,8 +15,7 @@ export default {
         await ref.collection("projects").doc(datenow).set({ id: datenow, type: 'projects', title: 'Пример проекта', idnapravs: datenow })
         await ref.collection("tasks").doc(datenow).set({ id: datenow, type: 'tasks', title: 'Пример задачи', idnapravs: datenow, idprojects: datenow })
       } catch (err) {
-        console.log('registr err:', err);
-        // Передать ошибку в шину
+        // Передать сообщение об ошибке в шину
         throw err
       }
     },
@@ -29,15 +24,11 @@ export default {
         await auth.signInWithEmailAndPassword(email, password)
       } catch (err) {
         // Передать сообщение об ошибке в шину
-        console.log('logIn err:', err);
         throw err
       }
     },
     async logOut() {
       await auth.signOut()
     }
-  },
-  getters: {
-    //user: state => state.user
   }
 }

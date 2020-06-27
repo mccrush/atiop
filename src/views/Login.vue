@@ -3,19 +3,30 @@
     <div class="col-12 col-sm-6 col-md-4 col-xl-4 text-left">
       <form @submit.prevent="login" class="mt-5 mb-3 p-3 shadow-sm ml-auto mr-auto max-width">
         <h4 class="text-center mt-2 mb-4">{{mod === '#in' ? 'Авторизация' : 'Регистрация'}}</h4>
-        <label for="email">Email</label>
+        <label for="email">Почта</label>
         <br />
-        <input type="text" class="form-control" id="email" v-model="email" />
+        <input
+          type="text"
+          class="form-control"
+          id="email"
+          required
+          v-model="email"
+          placeholder="example@mail.ru"
+        />
         <br />
-        <label for="password">Password</label>
+        <label for="password">Пароль</label>
         <div class="input-group">
           <input
             :type="passType ? 'password' : 'text'"
             class="form-control"
             id="password"
+            required
             v-model="password"
             ref="pass"
+            maxlength="20"
+            :placeholder="mod === '#reg' ? 'От 6 до 20 символов' : ''"
           />
+
           <div class="input-group-append">
             <button
               class="btn btn-light p-0 pl-2 pr-2 border"
@@ -96,6 +107,11 @@ export default {
           } else if (err.code === 'auth/wrong-password') {
             this.$store.commit('addMessage', {
               text: 'Неверный пароль!',
+              type: 'bg-danger'
+            })
+          } else if (err.code === 'auth/user-not-found') {
+            this.$store.commit('addMessage', {
+              text: 'Пользователь с такой почтой не найден',
               type: 'bg-danger'
             })
           } else {

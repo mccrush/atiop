@@ -13,7 +13,7 @@
         :class="message.type"
       />
     </transition>
-    <button class="btn btn-light" @click="showMs">Show</button>
+    <!-- <button class="btn btn-light" @click="showMs">Show</button> -->
   </div>
 </template>
 
@@ -41,7 +41,6 @@ export default {
 
     auth.onAuthStateChanged(user => {
       this.user = user
-
       if (this.user) {
         this.$store.dispatch('getItems', 'napravs')
         this.$store.dispatch('getItems', 'projects')
@@ -55,12 +54,12 @@ export default {
     }
   },
   methods: {
-    showMs() {
-      this.$store.commit('addMessage', {
-        text: 'What you wont?',
-        type: 'bg-warning'
-      })
-    }
+    // showMs() {
+    //   this.$store.commit('addMessage', {
+    //     text: 'What you wont?',
+    //     type: 'bg-warning'
+    //   })
+    // }
   },
   watch: {
     message() {
