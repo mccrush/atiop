@@ -53,7 +53,7 @@
                 >{{active ? 'Архивировать' : 'Восстановить'}}</button>
                 <button
                   class="btn btn-block btn-sm btn-outline-danger"
-                  @click="removeItem({id: item.id, type: item.type})"
+                  @click.prevent="removeItem({id: item.id, type: item.type})"
                 >Удалить</button>
               </div>
             </div>
@@ -132,6 +132,7 @@ export default {
     removeItem({ id, type }) {
       // Сделать асинхронной и выводить сообщения об ошибках
       this.$store.dispatch('removeItem', { id, type })
+      $('#exampleModal').modal('hide')
     }
   },
   watch: {
