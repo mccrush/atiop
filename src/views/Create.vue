@@ -36,7 +36,8 @@ export default {
   components: {
     List,
     ListTasks,
-    Modal
+    Modal,
+    vueHeadful
   },
   data() {
     return {

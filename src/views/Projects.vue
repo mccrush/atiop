@@ -45,7 +45,8 @@ import Modal from '@/components/Modal'
 export default {
   components: {
     ListTasks,
-    Modal
+    Modal,
+    vueHeadful
   },
   props: {},
   data() {

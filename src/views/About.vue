@@ -48,7 +48,8 @@ export default {
   components: {
     Description,
     Pages,
-    Props
+    Props,
+    vueHeadful
   },
   mounted() {},
   computed: {

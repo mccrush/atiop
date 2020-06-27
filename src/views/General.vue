@@ -15,7 +15,8 @@ import Modal from '@/components/Modal'
 export default {
   components: {
     ListNapravGeneral,
-    Modal
+    Modal,
+    vueHeadful
   },
   data() {
     return {

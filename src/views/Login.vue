@@ -75,6 +75,9 @@ import { auth } from '@/main.js'
 import vueHeadful from 'vue-headful'
 
 export default {
+  components: {
+    vueHeadful
+  },
   data() {
     return {
       email: '',

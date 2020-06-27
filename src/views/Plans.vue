@@ -35,7 +35,8 @@ import Modal from '@/components/Modal'
 export default {
   components: {
     ListProjects,
-    Modal
+    Modal,
+    vueHeadful
   },
   data() {
     return {
