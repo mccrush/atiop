@@ -42,11 +42,12 @@ export default {
         commit('getItems', { type, items })
       });
     },
-    addItem({ commit }, item) {
+    addItem({ commit, dispatch }, item) {
       const ref = db.collection("users").doc(auth.currentUser.uid)
       ref.collection(item.type).doc(item.id).set(item).then(() => {
         console.log('addItem, Элемент добавлен:', item);
         commit('addItem', item)
+        dispatch('updateProjectLength', { id: item.idprojects, whatdo: 'add' })
       }).catch(err => {
         console.log('addItem, Ошибка при добавлении документа:', err);
       })
@@ -72,9 +73,15 @@ export default {
           console.error("updateItem, Error updating document: ", error);
         });
     },
-    // updateSettings({ commit }, { showArhived, showEmpty, sortBy }) {
-    //   commit('updateSettings', { showArhived, showEmpty, sortBy })
-    // }
+    async updateProjectLength({ commit, dispatch }, { id, whatdo }) {
+      const ref = db.collection("users").doc(auth.currentUser.uid).collection('projects').doc(id)
+      const doc = await ref.get()
+      let length = doc.data().length
+      if (whatdo === 'add') { length++ }
+      else { length-- }
+      await ref.update({ ...doc.data(), length })
+      dispatch('getItems', 'projects')
+    }
   },
   getters: {
     napravs: state => state.napravs,

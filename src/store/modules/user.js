@@ -12,7 +12,7 @@ export default {
 
         const ref = db.collection("users").doc(uid)
         await ref.collection("napravs").doc(datenow).set({ id: datenow, type: 'napravs', title: 'Пример направления' })
-        await ref.collection("projects").doc(datenow).set({ id: datenow, type: 'projects', title: 'Пример проекта', idnapravs: datenow })
+        await ref.collection("projects").doc(datenow).set({ id: datenow, type: 'projects', title: 'Пример проекта', idnapravs: datenow, length: 0 })
         await ref.collection("tasks").doc(datenow).set({ id: datenow, type: 'tasks', title: 'Пример задачи', idnapravs: datenow, idprojects: datenow })
       } catch (err) {
         // Передать сообщение об ошибке в шину
