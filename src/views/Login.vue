@@ -11,7 +11,7 @@
           id="email"
           required
           v-model="email"
-          placeholder="example@mail.ru"
+          :placeholder="mod === '#reg' ? 'example@mail.ru' : ''"
         />
         <br />
         <label for="password">Пароль</label>
@@ -77,9 +77,6 @@ export default {
       mod: this.$route.hash || '#in',
       passType: true
     }
-  },
-  mounted() {
-    //this.mod = this.$route.hash ? this.$route.hash : '#in'
   },
   methods: {
     async login() {

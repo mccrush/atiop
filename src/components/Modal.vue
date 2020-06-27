@@ -113,6 +113,7 @@ export default {
   },
   methods: {
     saveItem() {
+      // Сделать асинхронной и выводить сообщения об ошибках
       if (this.title.trim()) {
         const item = {
           title: this.title.trim(),
@@ -129,6 +130,7 @@ export default {
       }
     },
     removeItem({ id, type }) {
+      // Сделать асинхронной и выводить сообщения об ошибках
       this.$store.dispatch('removeItem', { id, type })
     }
   },

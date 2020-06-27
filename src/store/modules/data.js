@@ -3,12 +3,6 @@ import { auth } from "@/main.js";
 import { db } from "@/main.js";
 
 export default {
-  // state: {
-  //   napravs: JSON.parse(localStorage.getItem('napravs') || '[]'),
-  //   projects: JSON.parse(localStorage.getItem('projects') || '[]'),
-  //   tasks: JSON.parse(localStorage.getItem('tasks') || '[]'),
-  //   settings: JSON.parse(localStorage.getItem('settings')) || { showArhived: false, sortBy: 'date' }
-  // },
   state: {
     napravs: [],
     projects: [],
@@ -18,26 +12,19 @@ export default {
   mutations: {
     getItems(state, { type, items = [] }) {
       state[type] = items
-      //console.log('state[', type, '] = ', items);
     },
     addItem(state, item) {
       state[item.type].push(item)
-
-      //localStorage.setItem(item.type, JSON.stringify(state[item.type]))
-      //console.log('user id:', auth.currentUser.uid);
     },
     removeItem(state, { id, type }) {
       state[type] = state[type].filter(item => item.id !== id)
-      localStorage.setItem(type, JSON.stringify(state[type]))
     },
     updateItem(state, { id, title, type, active, date, color }) {
       const items = state[type].concat()
       const index = items.findIndex(el => el.id === id)
       let el = items[index]
       items[index] = { ...el, title, type, active, date, color }
-
       state[type] = items
-      localStorage.setItem(type, JSON.stringify(state[type]))
     },
     updateSettings(state, { showArhived, sortBy }) {
       state.settings = { showArhived, sortBy }
