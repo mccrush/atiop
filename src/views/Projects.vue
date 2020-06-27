@@ -63,10 +63,23 @@ export default {
     },
     displayProjects() {
       if (this.filter) {
-        return this.projects.filter(proj => proj.idnapravs === this.filter)
+        if (this.settings.showEmpty) {
+          this.projects.filter(proj => proj.idnapravs === this.filter)
+        } else {
+          return this.projects.filter(
+            proj => proj.idnapravs === this.filter && proj.length > 0
+          )
+        }
       } else {
-        return this.projects
+        if (this.settings.showEmpty) {
+          return this.projects
+        } else {
+          return this.projects.filter(proj => proj.length > 0)
+        }
       }
+    },
+    settings() {
+      return this.$store.getters.settings
     }
   },
   mounted() {
