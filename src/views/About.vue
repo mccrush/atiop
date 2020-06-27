@@ -1,5 +1,6 @@
 <template>
   <div class="row shadow-sm">
+    <vue-headful title="ATIOP Справка" description="ATIOP — сервис управления задачами" />
     <div class="col-12 col-md-10 col-lg-8 col-xl-6 m-auto h-100">
       <h3 class="mt-4 text-center">ATIOP</h3>
       <p class="text-center text-muted small">
@@ -38,6 +39,7 @@
 </template>
 
 <script>
+import vueHeadful from 'vue-headful'
 import Description from '@/views/about/Description'
 import Pages from '@/views/about/Pages'
 import Props from '@/views/about/Props'

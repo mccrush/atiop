@@ -1,5 +1,9 @@
 <template>
   <div class="row">
+    <vue-headful
+      title="ATIOP Календарь планирования"
+      description="ATIOP — сервис управления задачами"
+    />
     <div class="col-12">
       <div class="row p-1">
         <div
@@ -24,6 +28,7 @@
 
 <script>
 import $ from 'jquery'
+import vueHeadful from 'vue-headful'
 import ListProjects from '@/components/plans/ListProjects'
 import Modal from '@/components/Modal'
 

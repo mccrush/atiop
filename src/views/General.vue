@@ -1,5 +1,6 @@
 <template>
   <div class="row h-100">
+    <vue-headful title="ATIOP Обзор проектов" description="ATIOP — сервис управления задачами" />
     <ListNapravGeneral :napravs="napravs" :projects="projects" @edit-item="editItem" />
     <Modal :item="item" />
   </div>
@@ -7,6 +8,7 @@
 
 <script>
 import $ from 'jquery'
+import vueHeadful from 'vue-headful'
 import ListNapravGeneral from '@/components/general/ListNapravGeneral'
 import Modal from '@/components/Modal'
 

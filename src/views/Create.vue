@@ -1,5 +1,6 @@
 <template>
   <div class="row">
+    <vue-headful title="ATIOP Создание объектов" description="ATIOP — сервис управления задачами" />
     <List :list="napravs" type="napravs" @select-item="selectItem" />
     <List
       v-if="idnapravs"
@@ -25,6 +26,7 @@
 
 <script>
 import $ from 'jquery'
+import vueHeadful from 'vue-headful'
 import List from '@/components/List'
 import ListTasks from '@/components/projects/ListTasks'
 import Modal from '@/components/Modal'

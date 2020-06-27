@@ -1,5 +1,9 @@
 <template>
   <div class="row justify-content-center">
+    <vue-headful
+      title="ATIOP Авторизация / регистрация"
+      description="ATIOP — сервис управления задачами"
+    />
     <div class="col-12 col-sm-6 col-md-4 col-xl-4 text-left">
       <form @submit.prevent="login" class="mt-5 mb-3 p-3 shadow-sm ml-auto mr-auto max-width">
         <h4 class="text-center mt-2 mb-4">{{mod === '#in' ? 'Авторизация' : 'Регистрация'}}</h4>
@@ -68,6 +72,7 @@
 
 <script>
 import { auth } from '@/main.js'
+import vueHeadful from 'vue-headful'
 
 export default {
   data() {

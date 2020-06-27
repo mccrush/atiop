@@ -1,5 +1,6 @@
 <template>
   <div class="h-100">
+    <vue-headful title="ATIOP Проекты" description="ATIOP — сервис управления задачами" />
     <div class="row">
       <div class="col-12 p-2 border-bottom d-flex align-content-center">
         <h6 class="m-1">Направление:</h6>
@@ -37,6 +38,7 @@
 
 <script>
 import $ from 'jquery'
+import vueHeadful from 'vue-headful'
 import ListTasks from '@/components/projects/ListTasks'
 import Modal from '@/components/Modal'
 
