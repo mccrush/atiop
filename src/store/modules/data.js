@@ -58,6 +58,9 @@ export default {
       db.collection("users").doc(auth.currentUser.uid).collection(type).doc(id).delete().then(function () {
         console.log("removeItem, Document successfully deleted!");
         commit('removeItem', { id, type })
+        if (type === 'tasks') {
+          dispatch('updateProjectLength', { id, whatdo: 'add' })
+        }
       }).catch(function (error) {
         console.error("removeItem, Error removing document: ", error);
       });
