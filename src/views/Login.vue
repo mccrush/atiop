@@ -82,7 +82,29 @@ export default {
           await this.$store.dispatch('logIn', formData)
 
           this.$router.push('/')
-        } catch (err) {}
+        } catch (err) {
+          if (err.code === 'auth/invalid-email') {
+            this.$store.commit('addMessage', {
+              text: 'Некорректный адрес почты!',
+              type: 'bg-danger'
+            })
+          } else if (err.code === 'auth/invalid-password') {
+            this.$store.commit('addMessage', {
+              text: 'Некорректный пароль!',
+              type: 'bg-danger'
+            })
+          } else if (err.code === 'auth/wrong-password') {
+            this.$store.commit('addMessage', {
+              text: 'Неверный пароль!',
+              type: 'bg-danger'
+            })
+          } else {
+            this.$store.commit('addMessage', {
+              text: 'Ошибка: ' + err.code,
+              type: 'bg-danger'
+            })
+          }
+        }
       } else {
         try {
           await this.$store.dispatch('regist', formData)
@@ -92,7 +114,29 @@ export default {
             this.$store.dispatch('getItems', 'tasks')
           }
           this.$router.push('/')
-        } catch (err) {}
+        } catch (err) {
+          if (err.code === 'auth/invalid-email') {
+            this.$store.commit('addMessage', {
+              text: 'Некорректный адрес почты!',
+              type: 'bg-danger'
+            })
+          } else if (err.code === 'auth/email-already-exists') {
+            this.$store.commit('addMessage', {
+              text: 'Пользователь с такой почтой уже существует',
+              type: 'bg-danger'
+            })
+          } else if (err.code === 'auth/weak-password') {
+            this.$store.commit('addMessage', {
+              text: 'Некорректный пароль',
+              type: 'bg-danger'
+            })
+          } else {
+            this.$store.commit('addMessage', {
+              text: 'Ошибка: ' + err.code,
+              type: 'bg-danger'
+            })
+          }
+        }
       }
     }
   }
