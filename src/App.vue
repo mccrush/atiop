@@ -13,7 +13,6 @@
         :class="message.type"
       />
     </transition>
-    <!-- <button class="btn btn-light" @click="showMs">Show</button> -->
   </div>
 </template>
 
@@ -52,14 +51,6 @@ export default {
     message() {
       return this.$store.getters.getMessage
     }
-  },
-  methods: {
-    // showMs() {
-    //   this.$store.commit('addMessage', {
-    //     text: 'What you wont?',
-    //     type: 'bg-warning'
-    //   })
-    // }
   },
   watch: {
     message() {
