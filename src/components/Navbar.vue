@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom">
     <router-link class="navbar-brand" to="/" tag="a">
       <img
-        src="img/icons/favicon-32x32.png"
+        src="img/icons/favicon-30x30.png"
         width="30"
         height="30"
         class="d-inline-block align-top"
