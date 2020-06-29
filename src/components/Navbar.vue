@@ -3,8 +3,8 @@
     <router-link class="navbar-brand" to="/" tag="a">
       <img
         src="img/icons/favicon-32x32.png"
-        width="32"
-        height="32"
+        width="30"
+        height="30"
         class="d-inline-block align-top"
         alt="ATIOP"
       />
