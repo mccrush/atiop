@@ -14,10 +14,10 @@
           class="align-self-start rounded-sm position-absolute"
           :class="{' deadline': Math.ceil(Math.abs(new Date(item.date).getTime() - new Date().getTime()) / (1000 * 3600 * 24))  <= 2}"
         ></div>
-        <!-- <button
-          class="btn btn-sm btn-light p-0 pl-2 pr-2 align-self-start btn-deleted"
-          @click.stop="removeItem({id: item.id, type: item.type})"
-        >&times;</button>-->
+        <div
+          @click.prevent="toArhive({id: item.id, type: item.type})"
+          class="to-arhiv position-absolute bg-light"
+        ></div>
       </li>
     </ul>
     <form @submit.prevent="addItem" class="mt-1">
@@ -109,8 +109,8 @@ export default {
         this.error = true
       }
     },
-    removeItem({ id, type }) {
-      this.$store.dispatch('removeItem', { id, type })
+    toArhive({ id, type }) {
+      this.$store.dispatch('toArhive', { id, type })
     },
     getDateNow() {
       return (
@@ -152,17 +152,34 @@ export default {
   width: 8px;
   height: 8px;
   /* background: #f9c6c9ff; */
-  background: #fb7d86;
+  /* background: #fb7d86; */
+  background: #dc3545;
   top: 4px;
   right: 4px;
   opacity: 0.8;
 }
 
-li.list-group-item > .btn {
+.to-arhiv {
+  top: 2px;
+  right: 2px;
+  width: 24px;
+  height: 24px;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: 0.5s;
+  background: url('/img/task/box_24px.png') center center no-repeat;
+}
+
+.to-arhiv:hover {
+  opacity: 1;
+}
+
+li.list-group-item > .to-arhiv {
   display: none;
 }
 
-li.list-group-item:hover > .btn {
+li.list-group-item:hover > .to-arhiv {
   display: block;
 }
 </style>

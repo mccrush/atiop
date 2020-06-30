@@ -86,6 +86,9 @@ export default {
       else { length-- }
       await ref.update({ ...doc.data(), length })
       dispatch('getItems', 'projects')
+    },
+    async toArhive({ commit, dispatch }, { id, type }) {
+
     }
   },
   getters: {
