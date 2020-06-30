@@ -87,8 +87,12 @@ export default {
       await ref.update({ ...doc.data(), length })
       dispatch('getItems', 'projects')
     },
-    async toArhive({ commit, dispatch }, { id, type }) {
-
+    async updateArhivValue({ commit, dispatch }, { id, type }) {
+      const ref = db.collection("users").doc(auth.currentUser.uid).collection(type).doc(id)
+      const doc = await ref.get()
+      let active = !doc.data().active
+      await ref.update({ ...doc.data(), active })
+      dispatch('getItems', type)
     }
   },
   getters: {

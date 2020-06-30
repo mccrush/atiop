@@ -15,7 +15,7 @@
           :class="{' deadline': Math.ceil(Math.abs(new Date(item.date).getTime() - new Date().getTime()) / (1000 * 3600 * 24))  <= 2}"
         ></div>
         <div
-          @click.prevent="toArhive({id: item.id, type: item.type})"
+          @click.prevent="updateArhivValue({id: item.id, type: item.type})"
           class="to-arhiv position-absolute bg-light"
         ></div>
       </li>
@@ -109,8 +109,8 @@ export default {
         this.error = true
       }
     },
-    toArhive({ id, type }) {
-      this.$store.dispatch('toArhive', { id, type })
+    updateArhivValue({ id, type }) {
+      this.$store.dispatch('updateArhivValue', { id, type })
     },
     getDateNow() {
       return (
