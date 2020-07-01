@@ -86,6 +86,11 @@ export default {
       passType: true
     }
   },
+  beforeMount() {
+    if (auth.currentUser) {
+      this.$router.push('/')
+    }
+  },
   methods: {
     async login() {
       const formData = {
