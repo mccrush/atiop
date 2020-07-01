@@ -77,7 +77,7 @@
           to="/login"
         >Войти</router-link>
         <button class="btn btn-sm p-0 ml-4" @click.prevent="$emit('show-settings')">
-          <img src="img/navbar/settings_24px.png" width="24" height="24" alt="Настройки" />
+          <img src="img/navbar/settings_24px_1.png" width="24" height="24" alt="Настройки" />
         </button>
       </form>
     </div>

@@ -37,7 +37,7 @@
               type="button"
               @click="passType = !passType"
             >
-              <img src="img/login/eye_24px.png" width="24" height="24" alt="Показать пароль" />
+              <img src="img/login/eye_24px_1.png" width="24" height="24" alt="Показать пароль" />
             </button>
           </div>
         </div>
