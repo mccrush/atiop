@@ -3,7 +3,7 @@
     <Navbar @show-settings="showSettings = !showSettings" />
     <div class="container-fluid">
       <router-view v-if="!loading" />
-      <Loading v-if="loading" />
+      <Loading v-else />
     </div>
     <Settings class="formset" :class="{'right-0' : showSettings }" />
     <transition name="slide-fade">
