@@ -124,7 +124,7 @@ export default {
         '-' +
         (new Date().getDate() + 3 > 9
           ? new Date().getDate() + 3
-          : '0' + new Date().getDate() + 3) +
+          : '0' + (new Date().getDate() + 3)) +
         'T' +
         (new Date().getHours() > 9
           ? new Date().getHours()

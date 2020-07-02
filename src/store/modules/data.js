@@ -79,8 +79,6 @@ export default {
         });
     },
     async updateProjectLength({ commit, dispatch }, { id, whatdo }) {
-      console.log('idproj:', id, ' whatdo:', whatdo);
-
       const ref = db.collection("users").doc(auth.currentUser.uid).collection('projects').doc(id)
       const doc = await ref.get()
       let length = doc.data().length
