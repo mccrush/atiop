@@ -18,19 +18,19 @@
       <div class="col-12 d-flex ower">
         <div v-for="(item, index) in displayProjects" :key="'in'+index" class="p-1">
           <h6
-            class="text-center bg-light p-2 rounded m-0 elem"
+            class="text-center bg-light p-2 rounded m-0 elem d-flex flex-row align-items-stretch"
             :style="{'background': item.color ? item.color+'!important' : '#f8f9fa'}"
             @dblclick.prevent="editItem({id:item.id, type: item.type})"
             :title="'Count: '+ item.length"
           >
-            {{item.title}}
+            <div class="w-100">{{item.title}}</div>
             <router-link
               :to="'/project/'+item.id"
-              tag="img"
-              src="@/assets/icons/chevron-right.svg"
-              width="24"
-              height="24"
-            ></router-link>
+              tag="a"
+              class="flex-shrink-1 align-self-stretch pl-1 pr-1"
+            >
+              <img src="@/assets/icons/folder-symlink.svg" width="16" height="16" alt />
+            </router-link>
           </h6>
           <ListTasks
             :tasks="tasks"
@@ -149,6 +149,10 @@ export default {
 
 .elem {
   user-select: none;
+}
+
+.link-proj {
+  right: 4px;
 }
 </style>
  
