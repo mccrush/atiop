@@ -19,11 +19,11 @@ export default {
     removeItem(state, { id, type }) {
       state[type] = state[type].filter(item => item.id !== id)
     },
-    updateItem(state, { id, title, type, active, date, color }) {
+    updateItem(state, { id, title, type, status, date, color }) {
       const items = state[type].concat()
       const index = items.findIndex(el => el.id === id)
       let el = items[index]
-      items[index] = { ...el, title, type, active, date, color }
+      items[index] = { ...el, title, type, status, date, color }
       state[type] = items
     },
     updateSettings(state, { showArhived, showEmpty, sortBy }) {
@@ -65,13 +65,13 @@ export default {
         console.error("removeItem, Error removing document: ", error);
       });
     },
-    updateItem({ commit }, { id, title, type, active, date, color }) {
+    updateItem({ commit }, { id, title, type, status, date, color }) {
       const ref = db.collection("users").doc(auth.currentUser.uid)
       const el = ref.collection(type).doc(id).get().then(doc => doc.data())
-      return ref.collection(type).doc(id).update({ ...el, title, type, active, date, color })
+      return ref.collection(type).doc(id).update({ ...el, title, type, status, date, color })
         .then(function () {
           console.log("updateItem, Document successfully updated!");
-          commit('updateItem', { id, title, type, active, date, color })
+          commit('updateItem', { id, title, type, status, date, color })
         })
         .catch(function (error) {
           // The document probably doesn't exist.
@@ -87,11 +87,11 @@ export default {
       await ref.update({ ...doc.data(), length })
       dispatch('getItems', 'projects')
     },
-    async updateArhivValue({ commit, dispatch }, { id, type }) {
+    async changeStatusToDone({ commit, dispatch }, { id, type }) {
       const ref = db.collection("users").doc(auth.currentUser.uid).collection(type).doc(id)
       const doc = await ref.get()
-      let active = !doc.data().active
-      await ref.update({ ...doc.data(), active })
+      let status = 'done'
+      await ref.update({ ...doc.data(), status })
       dispatch('getItems', type)
     }
   },

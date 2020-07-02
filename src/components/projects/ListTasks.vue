@@ -15,7 +15,7 @@
           :class="{' deadline': Math.ceil(Math.abs(new Date(item.date).getTime() - new Date().getTime()) / (1000 * 3600 * 24))  <= 2}"
         ></div>
         <div
-          @click.prevent="updateArhivValue({id: item.id, type: item.type})"
+          @click.prevent="changeStatusToDone({id: item.id, type: item.type})"
           class="to-arhiv position-absolute bg-light"
         ></div>
       </li>
@@ -68,12 +68,14 @@ export default {
   computed: {
     displayTasks() {
       return this.tasks.filter(
-        item => item.idprojects === this.idprojects && item.active
+        item =>
+          item.idprojects === this.idprojects &&
+          (item.status === 'todo' || item.status === 'work')
       )
     },
     arhivsTask() {
       return this.tasks.filter(
-        item => item.idprojects === this.idprojects && !item.active
+        item => item.idprojects === this.idprojects && item.status === 'done'
       )
     },
     sortTasks() {
@@ -98,7 +100,7 @@ export default {
           type: 'tasks',
           idnapravs: this.idnapravs,
           idprojects: this.idprojects,
-          active: true,
+          status: 'todo',
           position: this.tasks.length + 1, // По умолчанию в конец списка
           color: '', // У задач нет цвета
           date: this.getDateNow()
@@ -109,8 +111,8 @@ export default {
         this.error = true
       }
     },
-    updateArhivValue({ id, type }) {
-      this.$store.dispatch('updateArhivValue', { id, type })
+    changeStatusToDone({ id, type }) {
+      this.$store.dispatch('changeStatusToDone', { id, type })
     },
     getDateNow() {
       return (

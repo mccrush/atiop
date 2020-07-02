@@ -63,7 +63,7 @@ export default {
           idnapravs: this.idnapravs || '',
           idprojects: this.idprojects || '',
           length: 0,
-          active: true,
+          status: 'todo',
           position: this.list.length + 1, // По умолчанию в конец списка
           color: '',
           date: this.getDateNow()

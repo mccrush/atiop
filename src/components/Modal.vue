@@ -47,12 +47,17 @@
                 </div>
               </div>
               <div class="col-4 mt-2">
-                <button
+                <select v-model="status" class="form-control form-control-sm">
+                  <option value="todo">К выполнению</option>
+                  <option value="work">В работе</option>
+                  <option value="done">Завершена</option>
+                </select>
+                <!-- <button
                   class="btn btn-block btn-sm btn-light"
                   @click="active = !active"
-                >{{active ? 'Архивировать' : 'Восстановить'}}</button>
+                >{{active ? 'Архивировать' : 'Восстановить'}}</button>-->
                 <button
-                  class="btn btn-block btn-sm btn-outline-danger"
+                  class="btn btn-block btn-sm btn-outline-danger mt-2"
                   @click.prevent="removeItem({id: item.id, type: item.type})"
                 >Удалить</button>
               </div>
@@ -91,7 +96,7 @@ export default {
   data() {
     return {
       title: '',
-      active: '',
+      status: '',
       date: '',
       color: '#ffffff',
       type: '',
@@ -119,7 +124,7 @@ export default {
           title: this.title.trim(),
           id: this.item.id,
           type: this.item.type,
-          active: this.active,
+          status: this.status,
           date: this.date,
           color: this.color
         }
@@ -138,7 +143,7 @@ export default {
   watch: {
     item() {
       this.title = this.item.title
-      this.active = this.item.active
+      this.status = this.item.status
       this.date = this.item.date
       this.type = this.item.type
       this.color = this.item.color
