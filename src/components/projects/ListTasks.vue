@@ -15,6 +15,10 @@
           :class="{' deadline': Math.ceil(Math.abs(new Date(item.date).getTime() - new Date().getTime()) / (1000 * 3600 * 24))  <= 2}"
         ></div>
         <div
+          class="align-self-start rounded-sm position-absolute"
+          :class="{' work': item.status === 'work'}"
+        ></div>
+        <div
           @click.prevent="changeStatusToDone({id: item.id, type: item.type})"
           class="to-arhiv position-absolute bg-light"
         ></div>
@@ -153,12 +157,19 @@ export default {
 .deadline {
   width: 8px;
   height: 8px;
-  /* background: #f9c6c9ff; */
-  /* background: #fb7d86; */
   background: #dc3545;
   top: 4px;
   right: 4px;
-  opacity: 0.8;
+  z-index: 2;
+}
+
+.work {
+  width: 8px;
+  height: 8px;
+  background: #007bff;
+  top: 4px;
+  right: 4px;
+  z-index: 1;
 }
 
 .to-arhiv {
@@ -171,6 +182,7 @@ export default {
   opacity: 0.7;
   transition: 0.5s;
   background: url('/img/task/box_24px.png') center center no-repeat;
+  z-index: 3;
 }
 
 .to-arhiv:hover {
