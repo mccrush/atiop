@@ -150,9 +150,5 @@ export default {
 .elem {
   user-select: none;
 }
-
-.link-proj {
-  right: 4px;
-}
 </style>
  

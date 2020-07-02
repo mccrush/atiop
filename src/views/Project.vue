@@ -1,34 +1,19 @@
 <template>
   <div class="h-100">
     <vue-headful title="ATIOP Проект" description="ATIOP — сервис управления задачами" />
-    <div class="row">
-      <div class="col-12 p-2 border-bottom d-flex align-content-center">
-        <h6 class="m-1">Направление:</h6>
-        <select
-          class="form-control form-control-sm ml-2 w150"
-          v-model="filter"
-          @change="saveFilter"
-        >
-          <option value selected>Все</option>
-          <option v-for="item in napravs" :key="'nap'+item.id" :value="item.id">{{item.title}}</option>
-        </select>
-      </div>
-    </div>
     <div class="row h-100">
       <div class="col-12 d-flex ower">
-        <div v-for="(item, index) in displayProjects" :key="'in'+index" class="p-1">
-          <h6
-            class="text-center bg-light p-2 rounded m-0 elem"
-            :style="{'background': item.color ? item.color+'!important' : '#f8f9fa'}"
-            @dblclick.prevent="editItem({id:item.id, type: item.type})"
-            :title="'Count: '+ item.length"
-          >{{item.title}}</h6>
-          <ListTasks
-            :tasks="tasks"
-            :idnapravs="item.idnapravs"
-            :idprojects="item.id"
-            @edit-item="editItem"
-          />
+        <div class="p-1">
+          <h6 class="text-center bg-light p-2 rounded m-0">К выполнению</h6>
+          <ListTasks :tasks="tasks" idnapravs="q" :idprojects="idprojects" @edit-item="editItem" />
+        </div>
+        <div class="p-1">
+          <h6 class="text-center bg-light p-2 rounded m-0">В работе</h6>
+          <ListTasks :tasks="tasks" idnapravs="q" :idprojects="idprojects" @edit-item="editItem" />
+        </div>
+        <div class="p-1">
+          <h6 class="text-center bg-light p-2 rounded m-0">Завершенные</h6>
+          <ListTasks :tasks="tasks" idnapravs="q" :idprojects="idprojects" @edit-item="editItem" />
         </div>
       </div>
       <Modal :item="item" />
@@ -52,7 +37,8 @@ export default {
   data() {
     return {
       item: null,
-      filter: ''
+      filter: '',
+      idprojects: this.$route.params.id
     }
   },
   computed: {
@@ -87,6 +73,8 @@ export default {
     }
   },
   mounted() {
+    console.log('this.$route.props.id:', this.$route.params.id)
+
     const slider = document.querySelector('.ower')
     let isDown = false
     let startX

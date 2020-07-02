@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom">
     <router-link class="navbar-brand" to="/" tag="a">
       <img
-        src="img/icons/favicon-30x30.png"
+        src="/img/icons/favicon-30x30.png"
         width="30"
         height="30"
         class="d-inline-block align-top"
@@ -76,8 +76,8 @@
           title="Войти"
           to="/login"
         >Войти</router-link>
-        <button class="btn btn-sm p-0 ml-3" @click.prevent="$emit('show-settings')">
-          <img src="img/navbar/settings_24px_1.png" width="24" height="24" alt="Настройки" />
+        <button class="btn btn-sm p-0 ml-3 opacity-06" @click.prevent="$emit('show-settings')">
+          <img src="@/assets/icons/gear.svg" width="24" height="24" alt="Настройки" />
         </button>
       </form>
     </div>
@@ -110,4 +110,7 @@ export default {
 
 
 <style scoped>
+.opacity-06 {
+  opacity: 0.6;
+}
 </style>
