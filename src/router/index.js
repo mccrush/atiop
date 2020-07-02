@@ -17,6 +17,15 @@ const router = new Router({
       }
     },
     {
+      path: '/project/:id',
+      name: 'project',
+      component: () => import('../views/Project.vue'),
+      // ВКЛЮЧИТЬ на продакшине
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: '/create',
       name: 'create',
       component: () => import('../views/Create.vue'),

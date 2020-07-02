@@ -142,8 +142,6 @@ export default {
   },
   watch: {
     item() {
-      console.log('this.item.date:', this.item.date)
-
       this.title = this.item.title
       this.status = this.item.status
       this.date = this.item.date

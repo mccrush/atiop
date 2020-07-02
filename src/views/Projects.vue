@@ -22,7 +22,16 @@
             :style="{'background': item.color ? item.color+'!important' : '#f8f9fa'}"
             @dblclick.prevent="editItem({id:item.id, type: item.type})"
             :title="'Count: '+ item.length"
-          >{{item.title}}</h6>
+          >
+            {{item.title}}
+            <router-link
+              :to="'/project/'+item.id"
+              tag="img"
+              src="@/assets/icons/chevron-right.svg"
+              width="24"
+              height="24"
+            ></router-link>
+          </h6>
           <ListTasks
             :tasks="tasks"
             :idnapravs="item.idnapravs"
