@@ -27,7 +27,7 @@
             <router-link
               :to="'/project/'+item.id"
               tag="a"
-              class="flex-shrink-1 align-self-stretch pl-1 pr-1"
+              class="flex-shrink-1 align-self-stretch pl-1 pr-1 opacity-06"
             >
               <img src="@/assets/icons/folder-symlink.svg" width="16" height="16" alt />
             </router-link>
@@ -149,6 +149,10 @@ export default {
 
 .elem {
   user-select: none;
+}
+
+.opacity-06 {
+  opacity: 0.6;
 }
 </style>
  

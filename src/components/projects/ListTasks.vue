@@ -1,5 +1,5 @@
 <template>
-  <div class="w190">
+  <div class="w220">
     <ul v-if="sortTasks.length" class="list-group mt-1">
       <li
         v-for="(item, index) in sortTasks"
@@ -140,8 +140,8 @@ export default {
 </script>
 
 <style scoped>
-.w190 {
-  width: 190px;
+.w220 {
+  width: 220px;
 }
 
 .btn-deleted {

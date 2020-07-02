@@ -122,8 +122,8 @@ export default {
 </script>
 
 <style>
-.w150 {
-  width: 150px;
+.w170 {
+  width: 170px;
 }
 
 .elem {
