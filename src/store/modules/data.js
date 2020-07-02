@@ -54,12 +54,12 @@ export default {
         console.log('addItem, Ошибка при добавлении документа:', err);
       })
     },
-    removeItem({ commit }, { id, type }) {
+    removeItem({ commit, dispatch }, { id, type, idproj }) {
       db.collection("users").doc(auth.currentUser.uid).collection(type).doc(id).delete().then(function () {
         console.log("removeItem, Document successfully deleted!");
         commit('removeItem', { id, type })
         if (type === 'tasks') {
-          dispatch('updateProjectLength', { id, whatdo: 'add' })
+          dispatch('updateProjectLength', { id: idproj, whatdo: 'remove' })
         }
       }).catch(function (error) {
         console.error("removeItem, Error removing document: ", error);
@@ -79,6 +79,8 @@ export default {
         });
     },
     async updateProjectLength({ commit, dispatch }, { id, whatdo }) {
+      console.log('idproj:', id, ' whatdo:', whatdo);
+
       const ref = db.collection("users").doc(auth.currentUser.uid).collection('projects').doc(id)
       const doc = await ref.get()
       let length = doc.data().length
