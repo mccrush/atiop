@@ -19,11 +19,11 @@ export default {
     removeItem(state, { id, type }) {
       state[type] = state[type].filter(item => item.id !== id)
     },
-    updateItem(state, { id, title, type, status, date, color }) {
+    updateItem(state, { id, title, desc, type, status, date, color }) {
       const items = state[type].concat()
       const index = items.findIndex(el => el.id === id)
       let el = items[index]
-      items[index] = { ...el, title, type, status, date, color }
+      items[index] = { ...el, title, desc, type, status, date, color }
       state[type] = items
     },
     updateSettings(state, { showArhived, showEmpty, sortBy }) {
@@ -65,13 +65,13 @@ export default {
         console.error("removeItem, Error removing document: ", error);
       });
     },
-    updateItem({ commit }, { id, title, type, status, date, color }) {
+    updateItem({ commit }, { id, title, desc, type, status, date, color }) {
       const ref = db.collection("users").doc(auth.currentUser.uid)
       const el = ref.collection(type).doc(id).get().then(doc => doc.data())
       return ref.collection(type).doc(id).update({ ...el, title, type, status, date, color })
         .then(function () {
           console.log("updateItem, Document successfully updated!");
-          commit('updateItem', { id, title, type, status, date, color })
+          commit('updateItem', { id, title, desc, type, status, date, color })
         })
         .catch(function (error) {
           // The document probably doesn't exist.

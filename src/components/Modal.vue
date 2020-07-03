@@ -19,20 +19,19 @@
           <form @submit.prevent="saveItem">
             <input
               type="text"
-              class="form-control"
+              class="form-control form-control-sm"
               :class="{'border-danger': error}"
               @focus="error = false"
               v-model="title"
             />
             <div class="row">
-              <div class="col-8 mt-2">
-                <input
-                  v-if="item && item.type !== 'napravs'"
-                  type="datetime-local"
-                  id="date"
-                  class="form-control form-control-sm"
-                  v-model="date"
-                />
+              <div class="col-8 mt-2 pr-0">
+                <textarea
+                  class="form-control h-100"
+                  placeholder="Подробное описание"
+                  v-model="desc"
+                ></textarea>
+
                 <div v-if="item">
                   <div v-if="item.type === 'projects'" class="d-flex mt-1">
                     <div
@@ -47,25 +46,30 @@
                 </div>
               </div>
               <div class="col-4 mt-2">
-                <select v-model="status" class="form-control form-control-sm">
+                <input
+                  v-if="item && item.type !== 'napravs'"
+                  type="datetime-local"
+                  id="date"
+                  class="form-control form-control-sm"
+                  v-model="date"
+                />
+
+                <select v-model="status" class="form-control form-control-sm mt-2">
                   <option value="todo">К выполнению</option>
                   <option value="work">В работе</option>
                   <option value="done">Завершена</option>
                 </select>
-                <!-- <button
-                  class="btn btn-block btn-sm btn-light"
-                  @click="active = !active"
-                >{{active ? 'Архивировать' : 'Восстановить'}}</button>-->
-                <button
-                  class="btn btn-block btn-sm btn-outline-danger mt-2"
-                  @click.prevent="removeItem({id: item.id, type: item.type, idproj: item.idprojects})"
-                >Удалить</button>
               </div>
             </div>
             <hr />
 
             <div class="row">
-              <div class="col-4"></div>
+              <div class="col-4">
+                <button
+                  class="btn btn-block btn-sm btn-outline-danger"
+                  @click.prevent="removeItem({id: item.id, type: item.type, idproj: item.idprojects})"
+                >Удалить</button>
+              </div>
               <div class="col-4">
                 <button
                   type="button"
@@ -96,6 +100,7 @@ export default {
   data() {
     return {
       title: '',
+      desc: '',
       status: '',
       date: '',
       color: '#ffffff',
@@ -122,6 +127,7 @@ export default {
       if (this.title.trim()) {
         const item = {
           title: this.title.trim(),
+          desc: this.desc.trim(),
           id: this.item.id,
           type: this.item.type,
           status: this.status,
@@ -143,6 +149,7 @@ export default {
   watch: {
     item() {
       this.title = this.item.title
+      this.desc = this.item.desc
       this.status = this.item.status
       this.date = this.item.date
       this.type = this.item.type
