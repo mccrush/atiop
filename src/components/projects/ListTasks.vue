@@ -4,8 +4,9 @@
       <li
         v-for="(item, index) in sortTasks"
         :key="'in'+index"
-        class="list-group-item d-flex justify-content-between align-items-center cursor-pointer p-2 pl-2"
+        class="list-group-item d-flex justify-content-between align-items-center cursor-pointer p-2 pl-2 w220"
         @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
+        @dragstart="function () {return false}"
       >
         <small
           class="align-self-center elem"
@@ -98,6 +99,36 @@ export default {
     }
   },
   methods: {
+    drag(event) {
+      let elem = event.target
+      elem.style.cursor = 'grabbing'
+
+      let shiftX = event.clientX - elem.getBoundingClientRect().left
+      let shiftY = event.clientY - elem.getBoundingClientRect().top
+
+      elem.style.position = 'absolute'
+      elem.style.zIndex = 1000
+      document.body.append(elem)
+
+      moveItem(event.pageX, event.pageY)
+
+      function moveItem(pageX, pageY) {
+        elem.style.left = pageX - shiftX + 'px'
+        elem.style.top = pageY - shiftY + 'px'
+      }
+
+      function onMouseMove(event) {
+        moveItem(event.pageX, event.pageY)
+      }
+
+      document.addEventListener('mousemove', onMouseMove)
+
+      elem.onmouseup = function() {
+        document.removeEventListener('mousemove', onMouseMove)
+        elem.onmouseup = null
+        elem.style.cursor = 'default'
+      }
+    },
     addItem() {
       if (this.title.trim()) {
         const item = {
