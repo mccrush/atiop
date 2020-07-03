@@ -24,7 +24,7 @@
         ></div>
       </li>
     </ul>
-    <form @submit.prevent="addItem" class="mt-1">
+    <form v-if="!hideform" @submit.prevent="addItem" class="mt-1">
       <input
         type="text"
         class="form-control form-control-sm"
@@ -34,6 +34,7 @@
       />
       <!-- <button type="submit" class="btn btn-sm btn-block btn-light">Add</button> -->
     </form>
+
     <div v-if="settings.showArhived && arhivsTask.length">
       <hr class="m-2" />
       <ul class="list-group mt-1">
@@ -61,7 +62,8 @@ export default {
     },
     idprojects: {
       type: String
-    }
+    },
+    hideform: {}
   },
   data() {
     return {
@@ -160,7 +162,7 @@ export default {
   background: #dc3545;
   top: 4px;
   right: 4px;
-  z-index: 2;
+  z-index: 1;
 }
 
 .work {
@@ -169,7 +171,7 @@ export default {
   background: #007bff;
   top: 4px;
   right: 4px;
-  z-index: 1;
+  z-index: 2;
 }
 
 .to-arhiv {

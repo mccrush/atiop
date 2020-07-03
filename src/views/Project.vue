@@ -5,15 +5,31 @@
       <div class="col-12 d-flex ower">
         <div class="p-1">
           <h6 class="text-center bg-light p-2 rounded m-0">К выполнению</h6>
-          <ListTasks :tasks="tasks" idnapravs="q" :idprojects="idprojects" @edit-item="editItem" />
+          <ListTasks
+            :tasks="tasksTodo"
+            idnapravs="q"
+            :idprojects="idprojects"
+            @edit-item="editItem"
+          />
         </div>
         <div class="p-1">
           <h6 class="text-center bg-light p-2 rounded m-0">В работе</h6>
-          <ListTasks :tasks="tasks" idnapravs="q" :idprojects="idprojects" @edit-item="editItem" />
+          <ListTasks
+            :tasks="tasksWork"
+            idnapravs="q"
+            :idprojects="idprojects"
+            @edit-item="editItem"
+          />
         </div>
         <div class="p-1">
           <h6 class="text-center bg-light p-2 rounded m-0">Завершенные</h6>
-          <ListTasks :tasks="tasks" idnapravs="q" :idprojects="idprojects" @edit-item="editItem" />
+          <ListTasks
+            :tasks="tasksDone"
+            idnapravs="q"
+            :idprojects="idprojects"
+            hideform="true"
+            @edit-item="editItem"
+          />
         </div>
       </div>
       <Modal :item="item" />
@@ -50,6 +66,15 @@ export default {
     },
     tasks() {
       return this.$store.getters.tasks
+    },
+    tasksTodo() {
+      return this.tasks.filter(task => task.status === 'todo')
+    },
+    tasksWork() {
+      return this.tasks.filter(task => task.status === 'work')
+    },
+    tasksDone() {
+      return this.tasks.filter(task => task.status === 'done')
     },
     displayProjects() {
       if (this.filter) {
