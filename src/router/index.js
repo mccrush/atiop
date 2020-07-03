@@ -53,6 +53,14 @@ const router = new Router({
       }
     },
     {
+      path: '/user',
+      name: 'user',
+      component: () => import('../views/User.vue'),
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: '/about',
       name: 'about',
       component: () => import('../views/About.vue'),
