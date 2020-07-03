@@ -1,12 +1,13 @@
 <template>
   <div class="w220">
-    <ul v-if="sortTasks.length" class="list-group mt-1">
+    <ul v-if="sortTasks.length" class="list-group mt-1" ref="dragzona">
       <li
         v-for="(item, index) in sortTasks"
         :key="'in'+index"
         class="list-group-item d-flex justify-content-between align-items-center cursor-pointer p-2 pl-2 w220"
         @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
-        @dragstart="function () {return false}"
+        draggable="true"
+        ref="dragelem"
       >
         <small
           class="align-self-center elem"
@@ -98,7 +99,34 @@ export default {
       return this.$store.getters.settings
     }
   },
+  mounted() {
+    this.draDrop()
+  },
   methods: {
+    draDrop() {
+      let coordX, coordY
+
+      const dragEl = this.$refs.dragelem
+      const dragZona = this.$refs.dragzona
+      console.log('dragEl:', dragEl)
+      console.log('dragZona:', dragZona)
+
+      dragEl.addEventListener('dragstart', e => {
+        console.log('dragstart')
+
+        e.dataTransfer.setData('text/html', 'dragstart')
+        coordX = e.offsetX
+        coordY = e.offsetY
+      })
+
+      dragZona.addEventListener('dragover', e => {
+        e.preventDefault()
+      })
+
+      dragZona.addEventListener('drop', e => {
+        console.log('Над списком')
+      })
+    },
     drag(event) {
       let elem = event.target
       elem.style.cursor = 'grabbing'
