@@ -2,7 +2,7 @@
   <div class>
     <ul
       v-if="sortTasks.length"
-      class="list-grou m-0 p-2"
+      class="list-grou m-0 pl-2 pr-2"
       @drop="dropItem($event)"
       @dragover.prevent
       @dragenter.self="$event.target.classList.add('bg-light', 'pt-4')"
@@ -107,6 +107,7 @@ export default {
       if (this.title.trim()) {
         const item = {
           title: this.title.trim(),
+          desc: '',
           id: Date.now().toString(),
           type: 'tasks',
           idnapravs: this.idnapravs,

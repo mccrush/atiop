@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-12 p-2 border-bottom d-flex align-content-center height-31">
         <h6 class="m-1">Направление:</h6>
-        <Loading v-if="!napravs" />
+        <Loading v-if="napravs && !napravs.length" />
         <select
           v-else
           class="form-control form-control-sm ml-2 w150"
@@ -22,14 +22,15 @@
           class="form-control form-control-sm border-0 bg-light ml-2 w250"
           placeholder="Создать проект"
         />
+        <Loading v-if="creating" />
       </div>
     </div>
     <div class="row h-100">
-      <Loading v-if="!displayProjects" />
+      <Loading v-if="displayProjects && !displayProjects.length" />
       <div v-else class="col-12 d-flex ower">
-        <div v-for="(item, index) in displayProjects" :key="'in'+index" class="mt-2 w250">
+        <div v-for="(item, index) in displayProjects" :key="'in'+index" class="mt-2 mr-3 w250">
           <h6
-            class="text-center bg-light p-2 rounded m-0 elem d-flex flex-row align-items-stretch"
+            class="text-center bg-light p-2 rounded m-0 mb-2 elem d-flex flex-row align-items-stretch"
             :style="{'background': item.color ? item.color+'!important' : '#f8f9fa'}"
             @dblclick.prevent="editItem({id:item.id, type: item.type})"
             :title="'Count: '+ item.length"
@@ -83,7 +84,10 @@ export default {
     return {
       item: null,
       filter: localStorage.getItem('filter') || '',
-      title: ''
+      title: '',
+      type: 'projects',
+      list: { length: 0 },
+      creating: false
     }
   },
   computed: {
@@ -160,6 +164,39 @@ export default {
     //this.filter = localStorage.getItem('filter') || ''
   },
   methods: {
+    async addItem() {
+      try {
+        if (this.title.trim()) {
+          this.creating = true
+          const item = {
+            title: this.title.trim(),
+            desc: '',
+            id: Date.now().toString(),
+            type: this.type,
+            idnapravs: this.filter || '',
+            idprojects: this.idprojects || '',
+            length: 0,
+            status: 'todo',
+            position: this.list.length + 1,
+            color: '',
+            date: this.getDateNow()
+          }
+
+          await this.$store.dispatch('addItem', item)
+        } else {
+          this.error = true
+        }
+      } catch (err) {
+        console.log('Ошибка:', err.message)
+        this.$store.commit('addMessage', {
+          text: 'Ошибка: ' + err.code,
+          type: 'bg-danger'
+        })
+      } finally {
+        this.title = ''
+        this.creating = false
+      }
+    },
     editItem({ id, type }) {
       if (type === 'tasks') {
         this.item = this.tasks.find(item => item.id === id)
@@ -170,6 +207,27 @@ export default {
     },
     saveFilter() {
       localStorage.setItem('filter', this.filter)
+    },
+    getDateNow() {
+      return (
+        new Date().getFullYear() +
+        '-' +
+        (new Date().getMonth() + 1 > 9
+          ? new Date().getMonth() + 1
+          : '0' + (new Date().getMonth() + 1)) +
+        '-' +
+        (new Date().getDate() + 3 > 9
+          ? new Date().getDate() + 3
+          : '0' + (new Date().getDate() + 3)) +
+        'T' +
+        (new Date().getHours() > 9
+          ? new Date().getHours()
+          : '0' + new Date().getHours()) +
+        ':' +
+        (new Date().getMinutes() > 9
+          ? new Date().getMinutes()
+          : '0' + new Date().getMinutes())
+      )
     }
   }
 }
