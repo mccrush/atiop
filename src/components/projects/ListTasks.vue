@@ -3,18 +3,19 @@
     <ul
       v-if="sortTasks.length"
       class="list-grou m-0 p-2"
-      @drop="moveTask($event)"
+      @drop="dropItem($event)"
       @dragover.prevent
-      @dragenter.self="$event.target.classList.add('bg-light')"
-      @dragleave.self="$event.target.classList.remove('bg-light')"
+      @dragenter.self="$event.target.classList.add('bg-light', 'pt-4')"
+      @dragleave.self="$event.target.classList.remove('bg-light', 'pt-4')"
     >
       <li
         v-for="(item, index) in sortTasks"
         :key="'in'+index"
         class="list-group-item d-flex justify-content-between align-items-center cursor-pointer border rounded mb-2 p-2 pl-2"
+        :class="{' bg-light': item.status === 'done'}"
         draggable
         @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
-        @dragstart="picupTask($event, item.id)"
+        @dragstart="dragItem($event, item.id)"
         @dragenter.prevent
       >
         <small
@@ -22,13 +23,14 @@
         >{{settings.sortBy === 'position' ? index + 1 : ''}} {{item.title}}</small>
         <div
           class="align-self-start rounded-sm position-absolute"
-          :class="{' deadline': Math.ceil(Math.abs(new Date(item.date).getTime() - new Date().getTime()) / (1000 * 3600 * 24))  <= 2}"
+          :class="{' deadline': Math.ceil(Math.abs(new Date(item.date).getTime() - new Date().getTime()) / (1000 * 3600 * 24))  <= 2 && item.status != 'done'}"
         ></div>
         <div
           class="align-self-start rounded-sm position-absolute"
-          :class="{' work': item.status === 'work'}"
+          :class="{' work': item.status === 'work' && status != 'work'}"
         ></div>
         <div
+          v-if="item.status != 'done'"
           @click.prevent="changeStatusToDone({id: item.id, type: item.type})"
           class="to-arhiv position-absolute bg-light"
         ></div>
@@ -42,21 +44,7 @@
         v-model="title"
         @focus="error = false"
       />
-      <!-- <button type="submit" class="btn btn-sm btn-block btn-light">Add</button> -->
     </form>
-
-    <!-- <div v-if="settings.showArhived && arhivsTask.length">
-      <ul class="list-group p-2">
-        <li
-          v-for="(item, index) in arhivsTask"
-          :key="'in'+index"
-          class="list-group-item d-flex justify-content-between align-items-center cursor-pointer border rounded mb-2 p-2 pl-2"
-          @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
-        >
-          <small class="elem">{{item.title}}</small>
-        </li>
-      </ul>
-    </div>-->
   </div>
 </template>
 
@@ -99,15 +87,15 @@ export default {
     }
   },
   methods: {
-    picupTask(e, id) {
+    dragItem(e, id) {
       e.dataTransfer.setData('text/html', 'dragstart')
       e.dataTransfer.effectAllowed = 'move'
       e.dataTransfer.dropEffect = 'move'
       e.target.style = 'cursor: draggable'
       e.dataTransfer.setData('task-index', id)
     },
-    moveTask(e) {
-      e.target.classList.remove('bg-light')
+    dropItem(e) {
+      e.target.classList.remove('bg-light', 'pt-4')
       const id = e.dataTransfer.getData('task-index')
       this.$store.dispatch('changeStatus', {
         id,
@@ -115,68 +103,6 @@ export default {
         status: this.status
       })
     },
-    // draDrop() {
-    //   const dragEl = document.querySelector('.dragelem')
-    //   const dragZona = document.querySelector('.dragzona')
-
-    //   let coordX, coordY
-
-    //   dragEl.addEventListener('dragstart', e => {
-    //     console.log('dragstart')
-    //     e.dataTransfer.setData('text/html', 'dragstart')
-    //     coordX = e.offsetX
-    //     coordY = e.offsetY
-    //   })
-
-    //   dragZona.addEventListener('dragenter', e => {
-    //     console.log('Зашел на список')
-    //     dragZona.style.border = '1px solid red'
-    //   })
-
-    //   dragZona.addEventListener('dragleave', e => {
-    //     console.log('Ушел со списка')
-    //     dragZona.style.border = 'none'
-    //   })
-
-    //   dragZona.addEventListener('dragover', e => {
-    //     e.preventDefault()
-    //   })
-
-    //   dragZona.addEventListener('drop', e => {
-    //     console.log('Опущен над списком')
-    //     dragZona.style.border = 'none'
-    //   })
-    // },
-    // drag(event) {
-    //   let elem = event.target
-    //   elem.style.cursor = 'grabbing'
-
-    //   let shiftX = event.clientX - elem.getBoundingClientRect().left
-    //   let shiftY = event.clientY - elem.getBoundingClientRect().top
-
-    //   elem.style.position = 'absolute'
-    //   elem.style.zIndex = 1000
-    //   document.body.append(elem)
-
-    //   moveItem(event.pageX, event.pageY)
-
-    //   function moveItem(pageX, pageY) {
-    //     elem.style.left = pageX - shiftX + 'px'
-    //     elem.style.top = pageY - shiftY + 'px'
-    //   }
-
-    //   function onMouseMove(event) {
-    //     moveItem(event.pageX, event.pageY)
-    //   }
-
-    //   document.addEventListener('mousemove', onMouseMove)
-
-    //   elem.onmouseup = function() {
-    //     document.removeEventListener('mousemove', onMouseMove)
-    //     elem.onmouseup = null
-    //     elem.style.cursor = 'default'
-    //   }
-    // },
     addItem() {
       if (this.title.trim()) {
         const item = {
@@ -225,16 +151,6 @@ export default {
 </script>
 
 <style scoped>
-.w220 {
-  width: 220px;
-}
-
-.btn-deleted {
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
 .deadline {
   width: 8px;
   height: 8px;
@@ -260,7 +176,7 @@ export default {
   height: 24px;
   border-radius: 0.25rem;
   cursor: pointer;
-  opacity: 0.7;
+  opacity: 0.4;
   transition: 0.5s;
   background: url('/img/task/box_24px.png') center center no-repeat;
   z-index: 3;
