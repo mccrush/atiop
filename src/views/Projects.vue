@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-12 p-2 border-bottom d-flex align-content-center height-31">
         <h6 class="m-1">Направление:</h6>
-        <Loading v-if="loading" />
+        <Loading v-if="!napravs.length" />
         <select
           v-else
           class="form-control form-control-sm ml-2 w150"
@@ -17,8 +17,8 @@
       </div>
     </div>
     <div class="row h-100">
-      <Loading v-if="loading" />
-      <div v-if="!loading" class="col-12 d-flex ower">
+      <Loading v-if="!displayProjects.length" />
+      <div v-else class="col-12 d-flex ower">
         <div v-for="(item, index) in displayProjects" :key="'in'+index" class="p-1">
           <h6
             class="text-center bg-light p-2 rounded m-0 elem d-flex flex-row align-items-stretch"
@@ -49,8 +49,6 @@
 </template>
 
 <script>
-//import $ from 'jquery'
-import { auth } from '@/main.js'
 import vueHeadful from 'vue-headful'
 import ListTasks from '@/components/projects/ListTasks'
 import Modal from '@/components/Modal'
@@ -66,7 +64,7 @@ export default {
   props: {},
   data() {
     return {
-      loading: true,
+      loading: false,
       item: null,
       filter: ''
     }
@@ -103,23 +101,6 @@ export default {
     }
   },
   async mounted() {
-    if (auth.currentUser) {
-      try {
-        await this.$store.dispatch('getItems', 'napravs')
-        await this.$store.dispatch('getItems', 'projects')
-        await this.$store.dispatch('getItems', 'tasks')
-      } catch (err) {
-        console.log(err.message)
-      } finally {
-        this.loading = false
-      }
-    } else {
-      this.$store.commit('addMessage', {
-        text: 'Вы не авторизованы',
-        type: 'bg-warning'
-      })
-    }
-
     // Горизонтальная прокрутка мышкой
     function scrollMouse() {
       const slider = document.querySelector('.ower')

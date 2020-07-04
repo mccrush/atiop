@@ -43,7 +43,9 @@ firebase.auth().onAuthStateChanged((user) => {
       render: h => h(App)
     }).$mount('#app')
   }
-  // if (user) {
-  //   store.commit("logIn", user);
-  // }
+  if (user) {
+    store.dispatch('getItems', 'napravs')
+    store.dispatch('getItems', 'projects')
+    store.dispatch('getItems', 'tasks')
+  }
 })

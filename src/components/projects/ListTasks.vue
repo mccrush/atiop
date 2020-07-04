@@ -1,10 +1,10 @@
 <template>
-  <div class="w220">
+  <div class>
     <ul v-if="sortTasks.length" class="list-group mt-1" ref="dragzona">
       <li
         v-for="(item, index) in sortTasks"
         :key="'in'+index"
-        class="list-group-item d-flex justify-content-between align-items-center cursor-pointer p-2 pl-2 w220"
+        class="list-group-item d-flex justify-content-between align-items-center cursor-pointer p-2 pl-2"
         @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
         draggable="true"
         ref="dragelem"

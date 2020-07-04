@@ -3,27 +3,33 @@
     <vue-headful title="ATIOP Проект" description="ATIOP — сервис управления задачами" />
     <div class="row h-100">
       <div class="col-12 d-flex ower">
-        <div class="p-1">
+        <div class="p-1 w220">
           <h6 class="text-center bg-light p-2 rounded m-0">К выполнению</h6>
+          <Loading v-if="!tasks.length" />
           <ListTasks
+            v-else
             :tasks="tasksTodo"
             idnapravs="q"
             :idprojects="idprojects"
             @edit-item="editItem"
           />
         </div>
-        <div class="p-1">
+        <div class="p-1 w220">
           <h6 class="text-center bg-light p-2 rounded m-0">В работе</h6>
+          <Loading v-if="!tasks.length" />
           <ListTasks
+            v-else
             :tasks="tasksWork"
             idnapravs="q"
             :idprojects="idprojects"
             @edit-item="editItem"
           />
         </div>
-        <div class="p-1">
+        <div class="p-1 w220">
           <h6 class="text-center bg-light p-2 rounded m-0">Завершенные</h6>
+          <Loading v-if="!tasks.length" />
           <ListTasks
+            v-else
             :tasks="tasksDone"
             idnapravs="q"
             :idprojects="idprojects"
@@ -38,15 +44,17 @@
 </template>
 
 <script>
-import $ from 'jquery'
+//import $ from 'jquery'
 import vueHeadful from 'vue-headful'
 import ListTasks from '@/components/projects/ListTasks'
 import Modal from '@/components/Modal'
+import Loading from '@/components/Loading'
 
 export default {
   components: {
     ListTasks,
     Modal,
+    Loading,
     vueHeadful
   },
   props: {},
@@ -149,6 +157,10 @@ export default {
 <style>
 .w170 {
   width: 170px;
+}
+
+.w220 {
+  width: 220px;
 }
 
 .elem {
