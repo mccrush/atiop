@@ -64,7 +64,7 @@
       <form @submit.prevent="logOut" class="form-inline">
         <div v-if="user" class="dropdown">
           <button
-            class="btn btn-sm dropdown-toggle"
+            class="btn btn-sm dropdown-toggle text-muted"
             type="button"
             id="userData"
             data-toggle="dropdown"
