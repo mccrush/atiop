@@ -1,13 +1,19 @@
 <template>
   <div class>
-    <ul v-if="sortTasks.length" class="list-group mt-1 dragzona" ref="dragzona">
+    <ul
+      v-if="sortTasks.length"
+      class="list-group mt-1"
+      @drop="moveTask($event)"
+      @dragover.prevent
+      @dragenter.prevent
+    >
       <li
         v-for="(item, index) in sortTasks"
         :key="'in'+index"
-        class="list-group-item d-flex justify-content-between align-items-center cursor-pointer p-2 pl-2 dragelem"
+        class="list-group-item d-flex justify-content-between align-items-center cursor-pointer p-2 pl-2"
+        draggable
         @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
-        draggable="true"
-        ref="dragelem"
+        @dragstart="picupTask($event, item.id)"
       >
         <small
           class="align-self-center elem"
@@ -65,7 +71,8 @@ export default {
     idprojects: {
       type: String
     },
-    hideform: {}
+    hideform: {},
+    status: {}
   },
   data() {
     return {
@@ -99,51 +106,53 @@ export default {
       return this.$store.getters.settings
     }
   },
-  mounted() {
-    this.draDrop()
-  },
   methods: {
-    draDrop() {
-      // const dragEl = this.$refs.dragelem
-      // const dragZona = this.$refs.dragzona
+    picupTask(e, id) {
+      e.dataTransfer.effectAllowed = 'move'
+      e.dataTransfer.dropEffect = 'move'
 
-      const dragEl = document.querySelector('.dragelem')
-      const dragZona = document.querySelector('.dragzona')
-
-      //if (dragEl && dragZona) {
-      let coordX, coordY
-      // console.log('dragEl:', dragEl)
-      // console.log('dragZona:', dragZona)
-
-      dragEl.addEventListener('dragstart', e => {
-        console.log('dragstart')
-
-        e.dataTransfer.setData('text/html', 'dragstart')
-        coordX = e.offsetX
-        coordY = e.offsetY
-      })
-
-      dragZona.addEventListener('dragenter', e => {
-        console.log('Зашел на список')
-        dragZona.style.border = '1px solid red'
-      })
-
-      dragZona.addEventListener('dragleave', e => {
-        console.log('Ушел со списка')
-        dragZona.style.border = 'none'
-      })
-
-      dragZona.addEventListener('dragover', e => {
-        e.preventDefault()
-        //console.log('Находится над списком')
-      })
-
-      dragZona.addEventListener('drop', e => {
-        console.log('Опущен над списком')
-        dragZona.style.border = 'none'
-      })
-      //}
+      e.dataTransfer.setData('task-index', id)
     },
+    moveTask(e) {
+      const id = e.dataTransfer.getData('task-index')
+      this.$store.dispatch('changeStatus', {
+        id,
+        type: 'tasks',
+        status: this.status
+      })
+    },
+    // draDrop() {
+    //   const dragEl = document.querySelector('.dragelem')
+    //   const dragZona = document.querySelector('.dragzona')
+
+    //   let coordX, coordY
+
+    //   dragEl.addEventListener('dragstart', e => {
+    //     console.log('dragstart')
+    //     e.dataTransfer.setData('text/html', 'dragstart')
+    //     coordX = e.offsetX
+    //     coordY = e.offsetY
+    //   })
+
+    //   dragZona.addEventListener('dragenter', e => {
+    //     console.log('Зашел на список')
+    //     dragZona.style.border = '1px solid red'
+    //   })
+
+    //   dragZona.addEventListener('dragleave', e => {
+    //     console.log('Ушел со списка')
+    //     dragZona.style.border = 'none'
+    //   })
+
+    //   dragZona.addEventListener('dragover', e => {
+    //     e.preventDefault()
+    //   })
+
+    //   dragZona.addEventListener('drop', e => {
+    //     console.log('Опущен над списком')
+    //     dragZona.style.border = 'none'
+    //   })
+    // },
     // drag(event) {
     //   let elem = event.target
     //   elem.style.cursor = 'grabbing'
@@ -194,7 +203,7 @@ export default {
       }
     },
     changeStatusToDone({ id, type }) {
-      this.$store.dispatch('changeStatusToDone', { id, type })
+      this.$store.dispatch('changeStatus', { id, type, status: 'done' })
     },
     getDateNow() {
       return (

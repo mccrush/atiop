@@ -91,10 +91,10 @@ export default {
       await ref.update({ ...doc.data(), length })
       dispatch('getItems', 'projects')
     },
-    async changeStatusToDone({ commit, dispatch }, { id, type }) {
+    async changeStatus({ commit, dispatch }, { id, type, status }) {
       const ref = db.collection("users").doc(auth.currentUser.uid).collection(type).doc(id)
       const doc = await ref.get()
-      let status = 'done'
+      //let status = 'done'
       await ref.update({ ...doc.data(), status })
       dispatch('getItems', type)
     }

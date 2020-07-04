@@ -11,6 +11,7 @@
             :tasks="tasksTodo"
             idnapravs="q"
             :idprojects="idprojects"
+            status="todo"
             @edit-item="editItem"
           />
         </div>
@@ -22,6 +23,7 @@
             :tasks="tasksWork"
             idnapravs="q"
             :idprojects="idprojects"
+            status="work"
             @edit-item="editItem"
           />
         </div>
@@ -34,6 +36,7 @@
             idnapravs="q"
             :idprojects="idprojects"
             hideform="true"
+            status="done"
             @edit-item="editItem"
           />
         </div>
