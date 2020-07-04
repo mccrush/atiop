@@ -36,9 +36,17 @@
             </router-link>
           </h6>
           <ListTasks
-            :tasks="tasks"
+            :tasks="tasksTodoWork"
             :idnapravs="item.idnapravs"
             :idprojects="item.id"
+            @edit-item="editItem"
+          />
+          <ListTasks
+            v-if="settings.showArhived"
+            :tasks="tasksDone"
+            :idnapravs="item.idnapravs"
+            :idprojects="item.id"
+            hideform="true"
             @edit-item="editItem"
           />
         </div>
@@ -79,6 +87,14 @@ export default {
     },
     tasks() {
       return this.$store.getters.tasks
+    },
+    tasksTodoWork() {
+      return this.tasks.filter(
+        task => task.status === 'todo' || task.status === 'work'
+      )
+    },
+    tasksDone() {
+      return this.tasks.filter(task => task.status === 'done')
     },
     displayProjects() {
       if (this.filter) {

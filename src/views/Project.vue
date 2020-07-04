@@ -23,6 +23,7 @@
             :tasks="tasksWork"
             idnapravs="q"
             :idprojects="idprojects"
+            hideform="true"
             status="work"
             @edit-item="editItem"
           />

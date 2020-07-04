@@ -45,8 +45,7 @@
       <!-- <button type="submit" class="btn btn-sm btn-block btn-light">Add</button> -->
     </form>
 
-    <div v-if="settings.showArhived && arhivsTask.length">
-      <!-- <hr class="m-2" /> -->
+    <!-- <div v-if="settings.showArhived && arhivsTask.length">
       <ul class="list-group p-2">
         <li
           v-for="(item, index) in arhivsTask"
@@ -57,7 +56,7 @@
           <small class="elem">{{item.title}}</small>
         </li>
       </ul>
-    </div>
+    </div>-->
   </div>
 </template>
 
@@ -84,16 +83,7 @@ export default {
   },
   computed: {
     displayTasks() {
-      return this.tasks.filter(
-        item =>
-          item.idprojects === this.idprojects &&
-          (item.status === 'todo' || item.status === 'work')
-      )
-    },
-    arhivsTask() {
-      return this.tasks.filter(
-        item => item.idprojects === this.idprojects && item.status === 'done'
-      )
+      return this.tasks.filter(item => item.idprojects === this.idprojects)
     },
     sortTasks() {
       return this.displayTasks.sort((a, b) => {
