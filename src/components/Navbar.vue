@@ -49,14 +49,14 @@
             :aria-disabled="user ? 'true': 'false'"
           >Планы</router-link>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <router-link
             to="/create"
             class="nav-link"
             :class="{'disabled': !user}"
             :aria-disabled="user ? 'true': 'false'"
           >Создать</router-link>
-        </li>
+        </li>-->
         <li class="nav-item">
           <router-link to="/about" class="nav-link">Справка</router-link>
         </li>

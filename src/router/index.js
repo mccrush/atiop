@@ -25,15 +25,15 @@ const router = new Router({
         requiresAuth: true
       }
     },
-    {
-      path: '/create',
-      name: 'create',
-      component: () => import('../views/Create.vue'),
-      // ВКЛЮЧИТЬ на продакшине
-      meta: {
-        requiresAuth: true
-      }
-    },
+    // {
+    //   path: '/create',
+    //   name: 'create',
+    //   component: () => import('../views/Create.vue'),
+    //   // ВКЛЮЧИТЬ на продакшине
+    //   meta: {
+    //     requiresAuth: true
+    //   }
+    // },
     {
       path: '/general',
       name: 'general',
