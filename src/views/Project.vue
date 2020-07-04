@@ -4,7 +4,7 @@
     <div class="row h-100">
       <div class="col-12 d-flex ower pt-2">
         <div class="w220 mr-2">
-          <h6 class="text-center pt-2 rounded m-0">К выполнению</h6>
+          <h6 class="text-center pt-2 rounded m-0 mb-2">К выполнению</h6>
           <Loading v-if="!tasks.length" />
           <ListTasks
             v-else
@@ -16,7 +16,7 @@
           />
         </div>
         <div class="w220 mr-2">
-          <h6 class="text-center pt-2 rounded m-0">В работе</h6>
+          <h6 class="text-center pt-2 rounded m-0 mb-2">В работе</h6>
           <Loading v-if="!tasks.length" />
           <ListTasks
             v-else
@@ -29,7 +29,7 @@
           />
         </div>
         <div class="w220">
-          <h6 class="text-center pt-2 rounded m-0">Завершенные</h6>
+          <h6 class="text-center pt-2 rounded m-0 mb-2">Завершенные</h6>
           <Loading v-if="!tasks.length" />
           <ListTasks
             v-else

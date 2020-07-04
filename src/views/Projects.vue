@@ -15,19 +15,31 @@
           <option v-for="item in napravs" :key="'nap'+item.id" :value="item.id">{{item.title}}</option>
         </select>
         <input
+          type="text"
+          v-model="titleN"
+          @keypress.enter="addItem('napravs')"
+          class="form-control form-control-sm border-0 bg-light ml-2 w250"
+          placeholder="Создать направление"
+        />
+        <input
           v-if="filter"
           type="text"
-          v-model="title"
-          @keypress.enter="addItem"
+          v-model="titleP"
+          @keypress.enter="addItem('projects')"
           class="form-control form-control-sm border-0 bg-light ml-2 w250"
+          :class="{'border-danger': error}"
           placeholder="Создать проект"
         />
         <Loading v-if="creating" />
       </div>
     </div>
     <div class="row h-100">
-      <Loading v-if="displayProjects && !displayProjects.length" />
-      <div v-else class="col-12 d-flex ower">
+      <h6
+        v-if="displayProjects && displayProjects.length === 0"
+        class="ml-3 mt-2"
+        @show="error = true"
+      >В данном направлении проектов еще нет</h6>
+      <div v-else-if="displayProjects && displayProjects.length > 0" class="col-12 d-flex ower">
         <div v-for="(item, index) in displayProjects" :key="'in'+index" class="mt-2 mr-3 w250">
           <h6
             class="text-center bg-light p-2 rounded m-0 mb-2 elem d-flex flex-row align-items-stretch"
@@ -60,6 +72,7 @@
           />
         </div>
       </div>
+      <Loading v-else />
       <Modal :item="item" />
     </div>
   </div>
@@ -84,10 +97,10 @@ export default {
     return {
       item: null,
       filter: localStorage.getItem('filter') || '',
-      title: '',
-      type: 'projects',
-      list: { length: 0 },
-      creating: false
+      titleN: '',
+      titleP: '',
+      creating: false,
+      error: false
     }
   },
   computed: {
@@ -164,20 +177,30 @@ export default {
     //this.filter = localStorage.getItem('filter') || ''
   },
   methods: {
-    async addItem() {
+    async addItem(type) {
       try {
-        if (this.title.trim()) {
+        if (this.titleN.trim() || this.titleP.trim()) {
           this.creating = true
           const item = {
-            title: this.title.trim(),
+            title:
+              type === 'napravs'
+                ? this.titleN
+                : type === 'projects'
+                ? this.titleP
+                : this.title,
             desc: '',
             id: Date.now().toString(),
-            type: this.type,
-            idnapravs: this.filter || '',
+            type: type,
+            idnapravs:
+              type === 'projects'
+                ? this.filter
+                : type === 'tasks'
+                ? this.idnapravs
+                : '',
             idprojects: this.idprojects || '',
             length: 0,
             status: 'todo',
-            position: this.list.length + 1,
+            position: this.list ? this.list.length + 1 : 1,
             color: '',
             date: this.getDateNow()
           }
@@ -193,7 +216,8 @@ export default {
           type: 'bg-danger'
         })
       } finally {
-        this.title = ''
+        this.titleN = ''
+        this.titleP = ''
         this.creating = false
       }
     },
