@@ -2,9 +2,9 @@
   <div class="h-100">
     <vue-headful title="ATIOP Проект" description="ATIOP — сервис управления задачами" />
     <div class="row h-100">
-      <div class="col-12 d-flex ower">
-        <div class="p-1 w220">
-          <h6 class="text-center bg-light p-2 rounded m-0">К выполнению</h6>
+      <div class="col-12 d-flex ower pt-2">
+        <div class="w220 mr-2">
+          <h6 class="text-center pt-2 rounded m-0">К выполнению</h6>
           <Loading v-if="!tasks.length" />
           <ListTasks
             v-else
@@ -15,8 +15,8 @@
             @edit-item="editItem"
           />
         </div>
-        <div class="p-1 w220">
-          <h6 class="text-center bg-light p-2 rounded m-0">В работе</h6>
+        <div class="w220 mr-2">
+          <h6 class="text-center pt-2 rounded m-0">В работе</h6>
           <Loading v-if="!tasks.length" />
           <ListTasks
             v-else
@@ -27,8 +27,8 @@
             @edit-item="editItem"
           />
         </div>
-        <div class="p-1 w220">
-          <h6 class="text-center bg-light p-2 rounded m-0">Завершенные</h6>
+        <div class="w220">
+          <h6 class="text-center pt-2 rounded m-0">Завершенные</h6>
           <Loading v-if="!tasks.length" />
           <ListTasks
             v-else
@@ -161,7 +161,7 @@ export default {
 }
 
 .w220 {
-  width: 220px;
+  width: 250px;
 }
 
 .elem {

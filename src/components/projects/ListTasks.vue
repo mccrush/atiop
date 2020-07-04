@@ -2,7 +2,7 @@
   <div class>
     <ul
       v-if="sortTasks.length"
-      class="list-group mt-1 p-2"
+      class="list-grou m-0 p-2"
       @drop="moveTask($event)"
       @dragover.prevent
       @dragenter.self="$event.target.classList.add('bg-light')"
@@ -11,7 +11,7 @@
       <li
         v-for="(item, index) in sortTasks"
         :key="'in'+index"
-        class="list-group-item d-flex justify-content-between align-items-center cursor-pointer p-2 pl-2"
+        class="list-group-item d-flex justify-content-between align-items-center cursor-pointer border rounded mb-2 p-2 pl-2"
         draggable
         @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
         @dragstart="picupTask($event, item.id)"
@@ -34,10 +34,10 @@
         ></div>
       </li>
     </ul>
-    <form v-if="!hideform" @submit.prevent="addItem" class="mt-1">
+    <form v-if="!hideform" @submit.prevent="addItem" class="mt-0 mb-2 pl-2 pr-2">
       <input
         type="text"
-        class="form-control form-control-sm"
+        class="form-control form-control-sm border-0 bg-light"
         :class="{'border-danger': error}"
         v-model="title"
         @focus="error = false"
@@ -46,12 +46,12 @@
     </form>
 
     <div v-if="settings.showArhived && arhivsTask.length">
-      <hr class="m-2" />
-      <ul class="list-group mt-1">
+      <!-- <hr class="m-2" /> -->
+      <ul class="list-group p-2">
         <li
           v-for="(item, index) in arhivsTask"
           :key="'in'+index"
-          class="list-group-item justify-content-between align-items-center cursor-pointer p-1 pl-2 bg-light"
+          class="list-group-item d-flex justify-content-between align-items-center cursor-pointer border rounded mb-2 p-2 pl-2"
           @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
         >
           <small class="elem">{{item.title}}</small>
@@ -110,8 +110,10 @@ export default {
   },
   methods: {
     picupTask(e, id) {
+      e.dataTransfer.setData('text/html', 'dragstart')
       e.dataTransfer.effectAllowed = 'move'
       e.dataTransfer.dropEffect = 'move'
+      e.target.style = 'cursor: draggable'
       e.dataTransfer.setData('task-index', id)
     },
     moveTask(e) {

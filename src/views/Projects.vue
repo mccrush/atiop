@@ -19,7 +19,7 @@
     <div class="row h-100">
       <Loading v-if="!displayProjects.length" />
       <div v-else class="col-12 d-flex ower">
-        <div v-for="(item, index) in displayProjects" :key="'in'+index" class="p-1">
+        <div v-for="(item, index) in displayProjects" :key="'in'+index" class="p-1 w250">
           <h6
             class="text-center bg-light p-2 rounded m-0 elem d-flex flex-row align-items-stretch"
             :style="{'background': item.color ? item.color+'!important' : '#f8f9fa'}"
@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import $ from 'jquery'
 import vueHeadful from 'vue-headful'
 import ListTasks from '@/components/projects/ListTasks'
 import Modal from '@/components/Modal'
@@ -153,6 +154,10 @@ export default {
 <style>
 .w150 {
   width: 150px;
+}
+
+.w250 {
+  width: 230px;
 }
 
 .height-31 {
