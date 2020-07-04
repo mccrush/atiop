@@ -51,9 +51,10 @@
             <router-link
               :to="'/project/'+item.id"
               tag="a"
+              title="В проект"
               class="flex-shrink-1 align-self-stretch pl-1 pr-1 opacity-06"
             >
-              <img src="@/assets/icons/folder-symlink.svg" width="16" height="16" alt />
+              <img src="@/assets/icons/box-arrow-in-right.svg" width="16" height="16" alt />
             </router-link>
           </h6>
           <ListTasks
@@ -275,7 +276,11 @@ export default {
 }
 
 .opacity-06 {
-  opacity: 0.6;
+  opacity: 0.5;
+}
+
+input.w250::placeholder {
+  color: rgba(73, 80, 87, 0.3);
 }
 </style>
  

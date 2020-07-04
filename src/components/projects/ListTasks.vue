@@ -41,6 +41,7 @@
         type="text"
         class="form-control form-control-sm border-0 bg-light"
         :class="{'border-danger': error}"
+        placeholder="Добавить"
         v-model="title"
         @focus="error = false"
       />
@@ -193,5 +194,9 @@ li.list-group-item > .to-arhiv {
 
 li.list-group-item:hover > .to-arhiv {
   display: block;
+}
+
+input::placeholder {
+  color: rgba(73, 80, 87, 0.3);
 }
 </style>
