@@ -2,7 +2,9 @@
   <div class="overflow-hidden">
     <Navbar @show-settings="showSettings = !showSettings" />
     <div class="container-fluid">
-      <router-view />
+      <transition name="component-fade" mode="out-in">
+        <router-view />
+      </transition>
     </div>
     <Settings class="formset" :class="{'right-0' : showSettings }" />
     <transition name="slide-fade">
@@ -89,6 +91,15 @@ export default {
 .slide-fade-enter, .slide-fade-leave-to
 /* .slide-fade-leave-active до версии 2.1.8 */ {
   transform: translateX(10px);
+  opacity: 0;
+}
+
+.component-fade-enter-active,
+.component-fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.component-fade-enter, .component-fade-leave-to
+/* .component-fade-leave-active до версии 2.1.8 */ {
   opacity: 0;
 }
 </style>
