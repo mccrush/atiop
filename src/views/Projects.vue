@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-12 p-2 border-bottom d-flex align-content-center height-31">
         <h6 class="m-1">Направление:</h6>
-        <Loading v-if="!napravs.length" />
+        <Loading v-if="!napravs" />
         <select
           v-else
           class="form-control form-control-sm ml-2 w150"
@@ -14,12 +14,20 @@
           <option value selected>Все</option>
           <option v-for="item in napravs" :key="'nap'+item.id" :value="item.id">{{item.title}}</option>
         </select>
+        <input
+          v-if="filter"
+          type="text"
+          v-model="title"
+          @keypress.enter="addItem"
+          class="form-control form-control-sm border-0 bg-light ml-2 w250"
+          placeholder="Создать проект"
+        />
       </div>
     </div>
     <div class="row h-100">
-      <Loading v-if="!displayProjects.length" />
+      <Loading v-if="!displayProjects" />
       <div v-else class="col-12 d-flex ower">
-        <div v-for="(item, index) in displayProjects" :key="'in'+index" class="p-1 w250">
+        <div v-for="(item, index) in displayProjects" :key="'in'+index" class="mt-2 w250">
           <h6
             class="text-center bg-light p-2 rounded m-0 elem d-flex flex-row align-items-stretch"
             :style="{'background': item.color ? item.color+'!important' : '#f8f9fa'}"
@@ -73,9 +81,9 @@ export default {
   props: {},
   data() {
     return {
-      loading: false,
       item: null,
-      filter: ''
+      filter: localStorage.getItem('filter') || '',
+      title: ''
     }
   },
   computed: {
@@ -99,7 +107,7 @@ export default {
     displayProjects() {
       if (this.filter) {
         if (this.settings.showEmpty) {
-          this.projects.filter(proj => proj.idnapravs === this.filter)
+          return this.projects.filter(proj => proj.idnapravs === this.filter)
         } else {
           return this.projects.filter(
             proj => proj.idnapravs === this.filter && proj.length > 0
@@ -149,7 +157,7 @@ export default {
     }
 
     // Filter
-    this.filter = localStorage.getItem('filter') || ''
+    //this.filter = localStorage.getItem('filter') || ''
   },
   methods: {
     editItem({ id, type }) {
