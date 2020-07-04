@@ -44,7 +44,6 @@
 </template>
 
 <script>
-//import $ from 'jquery'
 import vueHeadful from 'vue-headful'
 import ListTasks from '@/components/projects/ListTasks'
 import Modal from '@/components/Modal'
@@ -106,8 +105,6 @@ export default {
     }
   },
   mounted() {
-    console.log('this.$route.props.id:', this.$route.params.id)
-
     const slider = document.querySelector('.ower')
     let isDown = false
     let startX

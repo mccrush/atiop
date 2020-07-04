@@ -1,10 +1,10 @@
 <template>
   <div class>
-    <ul v-if="sortTasks.length" class="list-group mt-1" ref="dragzona">
+    <ul v-if="sortTasks.length" class="list-group mt-1 dragzona" ref="dragzona">
       <li
         v-for="(item, index) in sortTasks"
         :key="'in'+index"
-        class="list-group-item d-flex justify-content-between align-items-center cursor-pointer p-2 pl-2"
+        class="list-group-item d-flex justify-content-between align-items-center cursor-pointer p-2 pl-2 dragelem"
         @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
         draggable="true"
         ref="dragelem"
@@ -104,12 +104,16 @@ export default {
   },
   methods: {
     draDrop() {
-      let coordX, coordY
+      // const dragEl = this.$refs.dragelem
+      // const dragZona = this.$refs.dragzona
 
-      const dragEl = this.$refs.dragelem
-      const dragZona = this.$refs.dragzona
-      console.log('dragEl:', dragEl)
-      console.log('dragZona:', dragZona)
+      const dragEl = document.querySelector('.dragelem')
+      const dragZona = document.querySelector('.dragzona')
+
+      //if (dragEl && dragZona) {
+      let coordX, coordY
+      // console.log('dragEl:', dragEl)
+      // console.log('dragZona:', dragZona)
 
       dragEl.addEventListener('dragstart', e => {
         console.log('dragstart')
@@ -119,44 +123,57 @@ export default {
         coordY = e.offsetY
       })
 
+      dragZona.addEventListener('dragenter', e => {
+        console.log('Зашел на список')
+        dragZona.style.border = '1px solid red'
+      })
+
+      dragZona.addEventListener('dragleave', e => {
+        console.log('Ушел со списка')
+        dragZona.style.border = 'none'
+      })
+
       dragZona.addEventListener('dragover', e => {
         e.preventDefault()
+        //console.log('Находится над списком')
       })
 
       dragZona.addEventListener('drop', e => {
-        console.log('Над списком')
+        console.log('Опущен над списком')
+        dragZona.style.border = 'none'
       })
+      //}
     },
-    drag(event) {
-      let elem = event.target
-      elem.style.cursor = 'grabbing'
+    // drag(event) {
+    //   let elem = event.target
+    //   elem.style.cursor = 'grabbing'
 
-      let shiftX = event.clientX - elem.getBoundingClientRect().left
-      let shiftY = event.clientY - elem.getBoundingClientRect().top
+    //   let shiftX = event.clientX - elem.getBoundingClientRect().left
+    //   let shiftY = event.clientY - elem.getBoundingClientRect().top
 
-      elem.style.position = 'absolute'
-      elem.style.zIndex = 1000
-      document.body.append(elem)
+    //   elem.style.position = 'absolute'
+    //   elem.style.zIndex = 1000
+    //   document.body.append(elem)
 
-      moveItem(event.pageX, event.pageY)
+    //   moveItem(event.pageX, event.pageY)
 
-      function moveItem(pageX, pageY) {
-        elem.style.left = pageX - shiftX + 'px'
-        elem.style.top = pageY - shiftY + 'px'
-      }
+    //   function moveItem(pageX, pageY) {
+    //     elem.style.left = pageX - shiftX + 'px'
+    //     elem.style.top = pageY - shiftY + 'px'
+    //   }
 
-      function onMouseMove(event) {
-        moveItem(event.pageX, event.pageY)
-      }
+    //   function onMouseMove(event) {
+    //     moveItem(event.pageX, event.pageY)
+    //   }
 
-      document.addEventListener('mousemove', onMouseMove)
+    //   document.addEventListener('mousemove', onMouseMove)
 
-      elem.onmouseup = function() {
-        document.removeEventListener('mousemove', onMouseMove)
-        elem.onmouseup = null
-        elem.style.cursor = 'default'
-      }
-    },
+    //   elem.onmouseup = function() {
+    //     document.removeEventListener('mousemove', onMouseMove)
+    //     elem.onmouseup = null
+    //     elem.style.cursor = 'default'
+    //   }
+    // },
     addItem() {
       if (this.title.trim()) {
         const item = {
