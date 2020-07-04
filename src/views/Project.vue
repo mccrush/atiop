@@ -47,6 +47,7 @@
 </template>
 
 <script>
+import $ from 'jquery'
 import vueHeadful from 'vue-headful'
 import ListTasks from '@/components/projects/ListTasks'
 import Modal from '@/components/Modal'

@@ -127,7 +127,7 @@ export default {
       if (this.title.trim()) {
         const item = {
           title: this.title.trim(),
-          desc: this.desc.trim(),
+          desc: this.desc,
           id: this.item.id,
           type: this.item.type,
           status: this.status,

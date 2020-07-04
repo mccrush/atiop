@@ -2,10 +2,11 @@
   <div class>
     <ul
       v-if="sortTasks.length"
-      class="list-group mt-1"
+      class="list-group mt-1 p-2"
       @drop="moveTask($event)"
       @dragover.prevent
-      @dragenter.prevent
+      @dragenter.self="$event.target.classList.add('bg-light')"
+      @dragleave.self="$event.target.classList.remove('bg-light')"
     >
       <li
         v-for="(item, index) in sortTasks"
@@ -14,6 +15,7 @@
         draggable
         @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
         @dragstart="picupTask($event, item.id)"
+        @dragenter.prevent
       >
         <small
           class="align-self-center elem"
@@ -110,10 +112,10 @@ export default {
     picupTask(e, id) {
       e.dataTransfer.effectAllowed = 'move'
       e.dataTransfer.dropEffect = 'move'
-
       e.dataTransfer.setData('task-index', id)
     },
     moveTask(e) {
+      e.target.classList.remove('bg-light')
       const id = e.dataTransfer.getData('task-index')
       this.$store.dispatch('changeStatus', {
         id,
