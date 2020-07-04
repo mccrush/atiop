@@ -62,11 +62,9 @@
         </li>
       </ul>
       <form @submit.prevent="logOut" class="form-inline">
-        <!-- <span v-if="user" class="text-muted small mr-3">{{'@'+ user.email.split('@')[0]}}</span> -->
-
         <div v-if="user" class="dropdown">
           <button
-            class="btn btn-sm btn-light dropdown-toggle"
+            class="btn btn-sm dropdown-toggle"
             type="button"
             id="userData"
             data-toggle="dropdown"
@@ -78,13 +76,6 @@
             <button class="dropdown-item btn-link" type="submit" href="#">Выйти</button>
           </div>
         </div>
-
-        <!-- <button
-          v-if="user"
-          class="d-sm-inline btn btn-sm btn-light border text-muted"
-          title="Выйти"
-          type="submit"
-        >Выйти</button>-->
         <router-link
           v-else
           tag="button"
