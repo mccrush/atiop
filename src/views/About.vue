@@ -9,7 +9,7 @@
           href="https://github.com/mccrush/atiop/releases/"
           target="_blank"
           title="Страница на Github"
-        >0.3.0-beta</a>
+        >0.4.0-alpha</a>
         <br />По всем вопросам: mccrush2027@gmail.com
       </p>
 
