@@ -2,8 +2,7 @@
   <div class="overflow-hidden">
     <Navbar @show-settings="showSettings = !showSettings" />
     <div class="container-fluid">
-      <router-view v-if="!loading" />
-      <Loading v-else />
+      <router-view />
     </div>
     <Settings class="formset" :class="{'right-0' : showSettings }" />
     <transition name="slide-fade">
@@ -18,39 +17,28 @@
 </template>
 
 <script>
-import { auth } from '@/main.js'
 import Navbar from '@/components/Navbar'
 import Settings from '@/components/Settings'
 import Message from '@/components/Message'
-import Loading from '@/components/Loading'
 
 export default {
   components: {
     Navbar,
     Settings,
-    Message,
-    Loading
+    Message
   },
   data() {
     return {
-      user: auth.currentUser,
+      //user: auth.currentUser,
       showSettings: false,
-      showMessage: false,
-      loading: true
+      showMessage: false
     }
   },
-  mounted() {
+  async mounted() {
     //console.log('user in app:', this.user)
-
-    auth.onAuthStateChanged(user => {
-      this.user = user
-      if (this.user) {
-        this.$store.dispatch('getItems', 'napravs')
-        this.$store.dispatch('getItems', 'projects')
-        this.$store.dispatch('getItems', 'tasks')
-        this.loading = false
-      }
-    })
+    // auth.onAuthStateChanged(user => {
+    //   this.user = user
+    // })
   },
   computed: {
     message() {

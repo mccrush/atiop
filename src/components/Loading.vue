@@ -1,9 +1,13 @@
 <template>
-  <div class="row">
+  <div>
+    <img src="/img/ajax-loader.gif" alt="Loading data" class="pl-3" />
+  </div>
+
+  <!-- <div class="row">
     <div class="col-12 pt-4 d-flex justify-content-center">
       <div class="lds-dual-ring"></div>
     </div>
-  </div>
+  </div>-->
 </template>
 
 <style scoped>

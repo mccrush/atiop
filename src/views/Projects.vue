@@ -2,9 +2,11 @@
   <div class="h-100">
     <vue-headful title="ATIOP Проекты" description="ATIOP — сервис управления задачами" />
     <div class="row">
-      <div class="col-12 p-2 border-bottom d-flex align-content-center">
+      <div class="col-12 p-2 border-bottom d-flex align-content-center height-31">
         <h6 class="m-1">Направление:</h6>
+        <Loading v-if="loading" />
         <select
+          v-else
           class="form-control form-control-sm ml-2 w150"
           v-model="filter"
           @change="saveFilter"
@@ -15,7 +17,8 @@
       </div>
     </div>
     <div class="row h-100">
-      <div class="col-12 d-flex ower">
+      <Loading v-if="loading" />
+      <div v-if="!loading" class="col-12 d-flex ower">
         <div v-for="(item, index) in displayProjects" :key="'in'+index" class="p-1">
           <h6
             class="text-center bg-light p-2 rounded m-0 elem d-flex flex-row align-items-stretch"
@@ -46,20 +49,24 @@
 </template>
 
 <script>
-import $ from 'jquery'
+//import $ from 'jquery'
+import { auth } from '@/main.js'
 import vueHeadful from 'vue-headful'
 import ListTasks from '@/components/projects/ListTasks'
 import Modal from '@/components/Modal'
+import Loading from '@/components/Loading'
 
 export default {
   components: {
     ListTasks,
     Modal,
+    Loading,
     vueHeadful
   },
   props: {},
   data() {
     return {
+      loading: true,
       item: null,
       filter: ''
     }
@@ -95,33 +102,53 @@ export default {
       return this.$store.getters.settings
     }
   },
-  mounted() {
-    const slider = document.querySelector('.ower')
-    let isDown = false
-    let startX
-    let scrollLeft
+  async mounted() {
+    if (auth.currentUser) {
+      try {
+        await this.$store.dispatch('getItems', 'napravs')
+        await this.$store.dispatch('getItems', 'projects')
+        await this.$store.dispatch('getItems', 'tasks')
+      } catch (err) {
+        console.log(err.message)
+      } finally {
+        this.loading = false
+      }
+    } else {
+      this.$store.commit('addMessage', {
+        text: 'Вы не авторизованы',
+        type: 'bg-warning'
+      })
+    }
 
-    slider.addEventListener('mousedown', e => {
-      isDown = true
-      slider.classList.add('active')
-      startX = e.pageX - slider.offsetLeft
-      scrollLeft = slider.scrollLeft
-    })
-    slider.addEventListener('mouseleave', () => {
-      isDown = false
-      slider.classList.remove('active')
-    })
-    slider.addEventListener('mouseup', () => {
-      isDown = false
-      slider.classList.remove('active')
-    })
-    slider.addEventListener('mousemove', e => {
-      if (!isDown) return
-      e.preventDefault()
-      const x = e.pageX - slider.offsetLeft
-      const walk = x - startX
-      slider.scrollLeft = scrollLeft - walk
-    })
+    // Горизонтальная прокрутка мышкой
+    function scrollMouse() {
+      const slider = document.querySelector('.ower')
+      let isDown = false
+      let startX
+      let scrollLeft
+
+      slider.addEventListener('mousedown', e => {
+        isDown = true
+        slider.classList.add('active')
+        startX = e.pageX - slider.offsetLeft
+        scrollLeft = slider.scrollLeft
+      })
+      slider.addEventListener('mouseleave', () => {
+        isDown = false
+        slider.classList.remove('active')
+      })
+      slider.addEventListener('mouseup', () => {
+        isDown = false
+        slider.classList.remove('active')
+      })
+      slider.addEventListener('mousemove', e => {
+        if (!isDown) return
+        e.preventDefault()
+        const x = e.pageX - slider.offsetLeft
+        const walk = x - startX
+        slider.scrollLeft = scrollLeft - walk
+      })
+    }
 
     // Filter
     this.filter = localStorage.getItem('filter') || ''
@@ -145,6 +172,10 @@ export default {
 <style>
 .w150 {
   width: 150px;
+}
+
+.height-31 {
+  height: 48px;
 }
 
 .elem {

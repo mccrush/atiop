@@ -32,15 +32,19 @@ export default {
     }
   },
   actions: {
-    getItems({ commit }, type) {
+    async getItems({ commit }, type) {
       let items = []
-      const ref = db.collection("users").doc(auth.currentUser.uid)
-      ref.collection(type).get().then(function (querySnapshot) {
+      try {
+        const ref = db.collection("users").doc(auth.currentUser.uid).collection(type)
+        const querySnapshot = await ref.get()
         querySnapshot.forEach(function (doc) {
           items.push(doc.data())
         });
-        commit('getItems', { type, items })
-      });
+      } catch (err) { throw err } finally { commit('getItems', { type, items }) }
+
+
+
+
     },
     addItem({ commit, dispatch }, item) {
       const ref = db.collection("users").doc(auth.currentUser.uid)
