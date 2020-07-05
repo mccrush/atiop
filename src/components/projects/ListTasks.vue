@@ -10,7 +10,7 @@
       <li
         v-for="(item, index) in sortTasks"
         :key="'in'+index"
-        class="list-group-item d-flex justify-content-between align-items-center cursor-pointer border rounded mb-2 p-2 pl-2"
+        class="list-group-item d-flex justify-content-between align-items-center cursor-pointer border rounded mb-2 p-2"
         :class="{' bg-light': item.status === 'done'}"
         draggable
         @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
@@ -18,14 +18,14 @@
         @dragenter.prevent
       >
         <small
-          class="align-self-center elem"
+          class="align-self-center elem ml-1"
         >{{settings.sortBy === 'position' ? index + 1 : ''}} {{item.title}}</small>
         <div
-          class="align-self-start rounded-sm position-absolute"
+          class="align-self-start position-absolute rounded-left h-100 label"
           :class="{' deadline': Math.ceil(Math.abs(new Date(item.date).getTime() - new Date().getTime()) / (1000 * 3600 * 24))  <= 2 && item.status != 'done'}"
         ></div>
         <div
-          class="align-self-start rounded-sm position-absolute"
+          class="align-self-start rounded-sm position-absolute rounded-left h-100 label"
           :class="{' work': item.status === 'work' && status != 'work'}"
         ></div>
         <div
@@ -155,21 +155,19 @@ export default {
 </script>
 
 <style scoped>
+.label {
+  width: 2px;
+  top: 0;
+  left: 0;
+}
+
 .deadline {
-  width: 8px;
-  height: 8px;
   background: #dc3545;
-  top: 4px;
-  right: 4px;
   z-index: 1;
 }
 
 .work {
-  width: 8px;
-  height: 8px;
   background: #007bff;
-  top: 4px;
-  right: 4px;
   z-index: 2;
 }
 

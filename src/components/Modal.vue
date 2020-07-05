@@ -107,7 +107,7 @@ export default {
       type: '',
       error: false,
       colors: [
-        '#ffffffff',
+        '#f8f9fa',
         '#e2e2dfff',
         '#d2d2cfff',
         '#e2cfc4ff',
