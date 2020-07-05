@@ -37,7 +37,22 @@
               type="button"
               @click="passType = !passType"
             >
-              <img src="img/login/eye_24px_1.png" width="24" height="24" alt="Показать пароль" />
+              <img
+                v-if="passType"
+                src="@/assets/icons/eye-slash.svg"
+                width="24"
+                height="24"
+                alt="Показать пароль"
+                class="opacity-06"
+              />
+              <img
+                v-else
+                src="@/assets/icons/eye.svg"
+                width="24"
+                height="24"
+                alt="Показать пароль"
+                class="opacity-06"
+              />
             </button>
           </div>
         </div>
@@ -172,5 +187,9 @@ export default {
 <style scoped>
 .max-width {
   max-width: 300px;
+}
+
+.opacity-06 {
+  opacity: 0.6;
 }
 </style>
