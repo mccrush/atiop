@@ -1,12 +1,11 @@
 <template>
   <div class>
     <ul
-      v-if="sortTasks.length"
-      class="list-grou m-0 pl-2 pr-2"
-      @drop="dropItem($event)"
+      class="list-grou m-0 pl-2 pr-2 minheight-42"
+      @drop.prevent="dropItem($event)"
       @dragover.prevent
-      @dragenter.self="$event.target.classList.add('bg-light', 'pt-4')"
-      @dragleave.self="$event.target.classList.remove('bg-light', 'pt-4')"
+      @dragenter.self="$event.target.classList.add('bg-light')"
+      @dragleave.self="$event.target.classList.remove('bg-light')"
     >
       <li
         v-for="(item, index) in sortTasks"
@@ -96,7 +95,10 @@ export default {
       e.dataTransfer.setData('task-index', id)
     },
     dropItem(e) {
-      e.target.classList.remove('bg-light', 'pt-4')
+      //console.log('e.target.tag:', e)
+      if (e.localName === 'ul') {
+        e.target.classList.remove('bg-light')
+      }
       const id = e.dataTransfer.getData('task-index')
       this.$store.dispatch('changeStatus', {
         id,
@@ -169,6 +171,10 @@ export default {
   top: 4px;
   right: 4px;
   z-index: 2;
+}
+
+.minheight-42 {
+  min-height: 42px;
 }
 
 .to-arhiv {
