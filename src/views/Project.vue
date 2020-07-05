@@ -9,7 +9,7 @@
           <ListTasks
             v-else
             :tasks="tasksTodo"
-            idnapravs="q"
+            :idnapravs="idnapravs"
             :idprojects="idprojects"
             status="todo"
             @edit-item="editItem"
@@ -21,7 +21,7 @@
           <ListTasks
             v-else
             :tasks="tasksWork"
-            idnapravs="q"
+            :idnapravs="idnapravs"
             :idprojects="idprojects"
             hideform="true"
             status="work"
@@ -34,7 +34,7 @@
           <ListTasks
             v-else
             :tasks="tasksDone"
-            idnapravs="q"
+            :idnapravs="idnapravs"
             :idprojects="idprojects"
             hideform="true"
             status="done"
@@ -76,6 +76,9 @@ export default {
     projects() {
       return this.$store.getters.projects
     },
+    idnapravs() {
+      return this.projects.find(proj => proj.id === this.idprojects).idnapravs
+    },
     tasks() {
       return this.$store.getters.tasks
     },
@@ -87,23 +90,6 @@ export default {
     },
     tasksDone() {
       return this.tasks.filter(task => task.status === 'done')
-    },
-    displayProjects() {
-      if (this.filter) {
-        if (this.settings.showEmpty) {
-          this.projects.filter(proj => proj.idnapravs === this.filter)
-        } else {
-          return this.projects.filter(
-            proj => proj.idnapravs === this.filter && proj.length > 0
-          )
-        }
-      } else {
-        if (this.settings.showEmpty) {
-          return this.projects
-        } else {
-          return this.projects.filter(proj => proj.length > 0)
-        }
-      }
     },
     settings() {
       return this.$store.getters.settings
