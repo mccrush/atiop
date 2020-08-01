@@ -21,7 +21,8 @@ const firebaseConfig = {
   projectId: "atiop-8c255",
   storageBucket: "atiop-8c255.appspot.com",
   messagingSenderId: "880500583039",
-  appId: "1:880500583039:web:c0439e9a7b8c970f"
+  appId: "1:880500583039:web:c0439e9a7b8c970f",
+  measurementId: "G-3L9681ZJ5C"
 };
 
 firebase.initializeApp(firebaseConfig);
