@@ -279,8 +279,8 @@ export default {
   opacity: 0.5;
 }
 
-input.w250::placeholder {
-  color: rgba(73, 80, 87, 0.3);
-}
+/* input.w250::placeholder {
+  color: #ced4da;
+} */
 </style>
  

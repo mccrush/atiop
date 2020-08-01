@@ -200,7 +200,7 @@ li.list-group-item:hover > .to-arhiv {
   display: block;
 }
 
-input::placeholder {
+/* input::placeholder {
   color: rgba(73, 80, 87, 0.3);
-}
+} */
 </style>
