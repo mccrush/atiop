@@ -9,7 +9,7 @@
           href="https://github.com/mccrush/atiop/releases/"
           target="_blank"
           title="Страница на Github"
-        >0.4.0-alpha</a>
+        >0.4.1-alpha</a>
         <br />По всем вопросам: mccrush2027@gmail.com
       </p>
 
@@ -49,13 +49,13 @@ export default {
     Description,
     Pages,
     Props,
-    vueHeadful
+    vueHeadful,
   },
   mounted() {},
   computed: {
     component() {
       return this.$route.hash.split('#')[1] || 'description'
-    }
+    },
   },
   methods: {
     // scrollTo(ref) {
@@ -64,7 +64,7 @@ export default {
     // scrollTop() {
     //   window.scrollTo({ top: 0, behavior: 'smooth' })
     // }
-  }
+  },
 }
 </script>
 
