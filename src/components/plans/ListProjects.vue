@@ -4,7 +4,7 @@
       <li
         v-for="(item, index) in displayProjects"
         :key="'pj'+index"
-        class="list-group-item rounded-sm border-bottom-0 p-0 pl-2 mt-1"
+        class="list-group-item rounded-sm border p-0 pl-2 mt-1"
         :style="{'background': item.color ? item.color+'!important' : '#f8f9fa!important'}"
         @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
       >
@@ -20,10 +20,10 @@ export default {
   computed: {
     displayProjects() {
       return this.projects.filter(
-        item => new Date(item.date).getMonth() + 1 === +this.monthNumber
+        (item) => new Date(item.date).getMonth() + 1 === +this.monthNumber
       )
-    }
-  }
+    },
+  },
 }
 </script>
 
