@@ -94,8 +94,8 @@ import $ from 'jquery'
 export default {
   props: {
     item: {
-      type: Object
-    }
+      type: Object,
+    },
   },
   data() {
     return {
@@ -107,8 +107,9 @@ export default {
       type: '',
       error: false,
       colors: [
+        '#ffffff',
         '#f8f9fa',
-        '#e2e2dfff',
+        // '#e2e2dfff',
         '#d2d2cfff',
         '#e2cfc4ff',
         '#f7d9c4ff',
@@ -117,8 +118,8 @@ export default {
         '#c6def1ff',
         '#dbcdf0ff',
         '#f2c6deff',
-        '#f9c6c9ff'
-      ]
+        '#f9c6c9ff',
+      ],
     }
   },
   methods: {
@@ -132,7 +133,7 @@ export default {
           type: this.item.type,
           status: this.status,
           date: this.date,
-          color: this.color
+          color: this.color,
         }
         this.$store.dispatch('updateItem', item)
         $('#exampleModal').modal('hide')
@@ -144,7 +145,7 @@ export default {
       // Сделать асинхронной и выводить сообщения об ошибках
       this.$store.dispatch('removeItem', { id, type, idproj })
       $('#exampleModal').modal('hide')
-    }
+    },
   },
   watch: {
     item() {
@@ -154,8 +155,8 @@ export default {
       this.date = this.item.date
       this.type = this.item.type
       this.color = this.item.color
-    }
-  }
+    },
+  },
 }
 </script>
 
