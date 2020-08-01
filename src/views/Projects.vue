@@ -42,8 +42,8 @@
       <div v-else-if="displayProjects && displayProjects.length > 0" class="col-12 d-flex ower">
         <div v-for="(item, index) in displayProjects" :key="'in'+index" class="mt-2 mr-3 w250">
           <h6
-            class="text-center bg-light p-2 rounded m-0 mb-2 elem d-flex flex-row align-items-stretch"
-            :style="{'background': item.color ? item.color+'!important' : '#f8f9fa'}"
+            class="text-center p-2 rounded m-0 mb-2 elem d-flex flex-row align-items-stretch"
+            :style="{'background': item.color ? item.color+'!important' : '#fff'}"
             @dblclick.prevent="editItem({id:item.id, type: item.type})"
             :title="'Count: '+ item.length"
           >
@@ -91,7 +91,7 @@ export default {
     ListTasks,
     Modal,
     Loading,
-    vueHeadful
+    vueHeadful,
   },
   props: {},
   data() {
@@ -101,7 +101,7 @@ export default {
       titleN: '',
       titleP: '',
       creating: false,
-      error: false
+      error: false,
     }
   },
   computed: {
@@ -116,32 +116,32 @@ export default {
     },
     tasksTodoWork() {
       return this.tasks.filter(
-        task => task.status === 'todo' || task.status === 'work'
+        (task) => task.status === 'todo' || task.status === 'work'
       )
     },
     tasksDone() {
-      return this.tasks.filter(task => task.status === 'done')
+      return this.tasks.filter((task) => task.status === 'done')
     },
     displayProjects() {
       if (this.filter) {
         if (this.settings.showEmpty) {
-          return this.projects.filter(proj => proj.idnapravs === this.filter)
+          return this.projects.filter((proj) => proj.idnapravs === this.filter)
         } else {
           return this.projects.filter(
-            proj => proj.idnapravs === this.filter && proj.length > 0
+            (proj) => proj.idnapravs === this.filter && proj.length > 0
           )
         }
       } else {
         if (this.settings.showEmpty) {
           return this.projects
         } else {
-          return this.projects.filter(proj => proj.length > 0)
+          return this.projects.filter((proj) => proj.length > 0)
         }
       }
     },
     settings() {
       return this.$store.getters.settings
-    }
+    },
   },
   async mounted() {
     // Горизонтальная прокрутка мышкой
@@ -151,7 +151,7 @@ export default {
       let startX
       let scrollLeft
 
-      slider.addEventListener('mousedown', e => {
+      slider.addEventListener('mousedown', (e) => {
         isDown = true
         slider.classList.add('active')
         startX = e.pageX - slider.offsetLeft
@@ -165,7 +165,7 @@ export default {
         isDown = false
         slider.classList.remove('active')
       })
-      slider.addEventListener('mousemove', e => {
+      slider.addEventListener('mousemove', (e) => {
         if (!isDown) return
         e.preventDefault()
         const x = e.pageX - slider.offsetLeft
@@ -203,7 +203,7 @@ export default {
             status: 'todo',
             position: this.list ? this.list.length + 1 : 1,
             color: '',
-            date: this.getDateNow()
+            date: this.getDateNow(),
           }
 
           await this.$store.dispatch('addItem', item)
@@ -214,7 +214,7 @@ export default {
         console.log('Ошибка:', err.message)
         this.$store.commit('addMessage', {
           text: 'Ошибка: ' + err.code,
-          type: 'bg-danger'
+          type: 'bg-danger',
         })
       } finally {
         this.titleN = ''
@@ -224,9 +224,9 @@ export default {
     },
     editItem({ id, type }) {
       if (type === 'tasks') {
-        this.item = this.tasks.find(item => item.id === id)
+        this.item = this.tasks.find((item) => item.id === id)
       } else {
-        this.item = this.projects.find(item => item.id === id)
+        this.item = this.projects.find((item) => item.id === id)
       }
       $('#exampleModal').modal('show')
     },
@@ -253,8 +253,8 @@ export default {
           ? new Date().getMinutes()
           : '0' + new Date().getMinutes())
       )
-    }
-  }
+    },
+  },
 }
 </script>
 

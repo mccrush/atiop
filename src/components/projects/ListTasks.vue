@@ -10,7 +10,7 @@
       <li
         v-for="(item, index) in sortTasks"
         :key="'in'+index"
-        class="list-group-item d-flex justify-content-between align-items-center cursor-pointer border rounded mb-2 p-2"
+        class="list-group-item d-flex justify-content-between align-items-center cursor-pointer border-0 rounded mb-2 p-2 shadow-sm"
         :class="{' bg-light': item.status === 'done'}"
         draggable
         @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
@@ -52,26 +52,26 @@
 export default {
   props: {
     tasks: {
-      type: Array
+      type: Array,
     },
     idnapravs: {
-      type: String
+      type: String,
     },
     idprojects: {
-      type: String
+      type: String,
     },
     hideform: {},
-    status: {}
+    status: {},
   },
   data() {
     return {
       title: '',
-      error: false
+      error: false,
     }
   },
   computed: {
     displayTasks() {
-      return this.tasks.filter(item => item.idprojects === this.idprojects)
+      return this.tasks.filter((item) => item.idprojects === this.idprojects)
     },
     sortTasks() {
       return this.displayTasks.sort((a, b) => {
@@ -84,7 +84,7 @@ export default {
     },
     settings() {
       return this.$store.getters.settings
-    }
+    },
   },
   methods: {
     dragItem(e, id) {
@@ -103,7 +103,7 @@ export default {
       this.$store.dispatch('changeStatus', {
         id,
         type: 'tasks',
-        status: this.status
+        status: this.status,
       })
     },
     addItem() {
@@ -118,7 +118,7 @@ export default {
           status: 'todo',
           position: this.tasks.length + 1, // По умолчанию в конец списка
           color: '', // У задач нет цвета
-          date: this.getDateNow()
+          date: this.getDateNow(),
         }
         this.title = ''
         this.$store.dispatch('addItem', item)
@@ -149,8 +149,8 @@ export default {
           ? new Date().getMinutes()
           : '0' + new Date().getMinutes())
       )
-    }
-  }
+    },
+  },
 }
 </script>
 
