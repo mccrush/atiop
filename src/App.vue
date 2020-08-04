@@ -27,25 +27,20 @@ export default {
   components: {
     Navbar,
     Settings,
-    Message
+    Message,
   },
   data() {
     return {
       //user: auth.currentUser,
       showSettings: false,
-      showMessage: false
+      showMessage: false,
     }
   },
-  async mounted() {
-    //console.log('user in app:', this.user)
-    // auth.onAuthStateChanged(user => {
-    //   this.user = user
-    // })
-  },
+  async mounted() {},
   computed: {
     message() {
       return this.$store.getters.getMessage
-    }
+    },
   },
   watch: {
     message() {
@@ -55,8 +50,8 @@ export default {
           this.showMessage = false
         }, 3000)
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
