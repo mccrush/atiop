@@ -11,6 +11,15 @@ const router = createRouter({
   routes: [
     {
       path: '/',
+      name: 'all',
+      component: () => import('../views/AllTasks.vue'),
+      // ВКЛЮЧИТЬ на продакшине
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/projects',
       name: 'projects',
       component: () => import('../views/Projects.vue'),
       // ВКЛЮЧИТЬ на продакшине

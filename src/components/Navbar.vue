@@ -31,6 +31,14 @@
               class="nav-link"
               :class="{'disabled': !user}"
               :aria-disabled="user ? 'true': 'false'"
+            >Все</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link
+              to="/projects"
+              class="nav-link"
+              :class="{'disabled': !user}"
+              :aria-disabled="user ? 'true': 'false'"
             >Проекты</router-link>
           </li>
           <li class="nav-item">
