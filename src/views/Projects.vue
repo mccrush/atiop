@@ -80,7 +80,7 @@
 </template>
 
 <script>
-import $ from 'jquery'
+import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
 import vueHeadful from 'vue-headful'
 import ListTasks from '@/components/projects/ListTasks'
 import Modal from '@/components/Modal'
@@ -228,7 +228,8 @@ export default {
       } else {
         this.item = this.projects.find((item) => item.id === id)
       }
-      $('#exampleModal').modal('show')
+      let myModal = new bootstrap.Modal(document.getElementById('exampleModal'))
+      myModal.show()
     },
     saveFilter() {
       localStorage.setItem('filter', this.filter)

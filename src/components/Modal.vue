@@ -89,7 +89,7 @@
 </template>
 
 <script>
-import $ from 'jquery'
+import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
 
 export default {
   props: {
@@ -136,7 +136,10 @@ export default {
           color: this.color,
         }
         this.$store.dispatch('updateItem', item)
-        $('#exampleModal').modal('hide')
+        let myModal = new bootstrap.Modal(
+          document.getElementById('exampleModal')
+        )
+        myModal.hide()
       } else {
         this.error = true
       }
@@ -144,7 +147,8 @@ export default {
     removeItem({ id, type, idproj }) {
       // Сделать асинхронной и выводить сообщения об ошибках
       this.$store.dispatch('removeItem', { id, type, idproj })
-      $('#exampleModal').modal('hide')
+      let myModal = new bootstrap.Modal(document.getElementById('exampleModal'))
+      myModal.hide()
     },
   },
   watch: {

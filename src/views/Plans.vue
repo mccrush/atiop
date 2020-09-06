@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import $ from 'jquery'
+import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
 import vueHeadful from 'vue-headful'
 import ListProjects from '@/components/plans/ListProjects'
 import Modal from '@/components/Modal'
@@ -74,7 +74,8 @@ export default {
   methods: {
     editItem({ id, type }) {
       this.item = this.projects.find((item) => item.id === id)
-      $('#exampleModal').modal('show')
+      let myModal = new bootstrap.Modal(document.getElementById('exampleModal'))
+      myModal.show()
     },
   },
 }

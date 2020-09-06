@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import $ from 'jquery'
+import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
 import vueHeadful from 'vue-headful'
 import ListTasks from '@/components/projects/ListTasks'
 import Modal from '@/components/Modal'
@@ -59,14 +59,14 @@ export default {
     ListTasks,
     Modal,
     Loading,
-    vueHeadful
+    vueHeadful,
   },
   props: {},
   data() {
     return {
       item: null,
       filter: '',
-      idprojects: this.$route.params.id
+      idprojects: this.$route.params.id,
     }
   },
   computed: {
@@ -77,23 +77,23 @@ export default {
       return this.$store.getters.projects
     },
     idnapravs() {
-      return this.projects.find(proj => proj.id === this.idprojects).idnapravs
+      return this.projects.find((proj) => proj.id === this.idprojects).idnapravs
     },
     tasks() {
       return this.$store.getters.tasks
     },
     tasksTodo() {
-      return this.tasks.filter(task => task.status === 'todo')
+      return this.tasks.filter((task) => task.status === 'todo')
     },
     tasksWork() {
-      return this.tasks.filter(task => task.status === 'work')
+      return this.tasks.filter((task) => task.status === 'work')
     },
     tasksDone() {
-      return this.tasks.filter(task => task.status === 'done')
+      return this.tasks.filter((task) => task.status === 'done')
     },
     settings() {
       return this.$store.getters.settings
-    }
+    },
   },
   mounted() {
     const slider = document.querySelector('.ower')
@@ -101,7 +101,7 @@ export default {
     let startX
     let scrollLeft
 
-    slider.addEventListener('mousedown', e => {
+    slider.addEventListener('mousedown', (e) => {
       isDown = true
       slider.classList.add('active')
       startX = e.pageX - slider.offsetLeft
@@ -115,7 +115,7 @@ export default {
       isDown = false
       slider.classList.remove('active')
     })
-    slider.addEventListener('mousemove', e => {
+    slider.addEventListener('mousemove', (e) => {
       if (!isDown) return
       e.preventDefault()
       const x = e.pageX - slider.offsetLeft
@@ -129,16 +129,17 @@ export default {
   methods: {
     editItem({ id, type }) {
       if (type === 'tasks') {
-        this.item = this.tasks.find(item => item.id === id)
+        this.item = this.tasks.find((item) => item.id === id)
       } else {
-        this.item = this.projects.find(item => item.id === id)
+        this.item = this.projects.find((item) => item.id === id)
       }
-      $('#exampleModal').modal('show')
+      let myModal = new bootstrap.Modal(document.getElementById('exampleModal'))
+      myModal.show()
     },
     saveFilter() {
       localStorage.setItem('filter', this.filter)
-    }
-  }
+    },
+  },
 }
 </script>
 

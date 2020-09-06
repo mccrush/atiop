@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import $ from 'jquery'
+import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
 import vueHeadful from 'vue-headful'
 import ListNapravGeneral from '@/components/general/ListNapravGeneral'
 import Modal from '@/components/Modal'
@@ -16,11 +16,11 @@ export default {
   components: {
     ListNapravGeneral,
     Modal,
-    vueHeadful
+    vueHeadful,
   },
   data() {
     return {
-      item: null
+      item: null,
     }
   },
   computed: {
@@ -29,18 +29,19 @@ export default {
     },
     projects() {
       return this.$store.getters.projects
-    }
+    },
   },
   methods: {
     editItem({ id, type }) {
       if (type === 'projects') {
-        this.item = this.projects.find(item => item.id === id)
+        this.item = this.projects.find((item) => item.id === id)
       } else {
-        this.item = this.napravs.find(item => item.id === id)
+        this.item = this.napravs.find((item) => item.id === id)
       }
-      $('#exampleModal').modal('show')
-    }
-  }
+      let myModal = new bootstrap.Modal(document.getElementById('exampleModal'))
+      myModal.show()
+    },
+  },
 }
 </script>
 
