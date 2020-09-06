@@ -1,11 +1,13 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+//import Vue from 'vue'
+//import Router from 'vue-router'
+
+import { createRouter, createWebHistory } from 'vue-router'
 import { auth } from "@/main.js";
 
-Vue.use(Router)
+//Vue.use(Router)
 
-const router = new Router({
-  mode: 'history',
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
   routes: [
     {
       path: '/',
