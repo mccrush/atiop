@@ -14,7 +14,7 @@
           <div class="shadow-sm pl-0 pt-0 pr-0 pb-1">
             <div class="d-flex justify-content-between p-2 bg-light elem">
               <h6 class="m-0 p-0">{{month.name}}</h6>
-              <span class="badge badge-dark">{{month.num}}</span>
+              <span class="badge bg-dark">{{month.num}}</span>
             </div>
 
             <ListProjects :projects="projects" :monthNumber="month.num" @edit-item="editItem" />
@@ -36,7 +36,7 @@ export default {
   components: {
     ListProjects,
     Modal,
-    vueHeadful
+    vueHeadful,
   },
   data() {
     return {
@@ -54,8 +54,8 @@ export default {
         { name: 'Сентябрь', num: '09' },
         { name: 'Октябрь', num: '10' },
         { name: 'Ноябрь', num: '11' },
-        { name: 'Декабрь', num: '12' }
-      ]
+        { name: 'Декабрь', num: '12' },
+      ],
     }
   },
   mounted() {
@@ -69,14 +69,14 @@ export default {
   computed: {
     projects() {
       return this.$store.getters.projects
-    }
+    },
   },
   methods: {
     editItem({ id, type }) {
-      this.item = this.projects.find(item => item.id === id)
+      this.item = this.projects.find((item) => item.id === id)
       $('#exampleModal').modal('show')
-    }
-  }
+    },
+  },
 }
 </script>
 
