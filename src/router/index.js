@@ -37,9 +37,9 @@ const router = createRouter({
       }
     },
     {
-      path: '/plans',
-      name: 'plans',
-      component: () => import('../views/Plans.vue'),
+      path: '/calendar',
+      name: 'calendar',
+      component: () => import('../views/Calendar.vue'),
       // ВКЛЮЧИТЬ на продакшине
       meta: {
         requiresAuth: true

@@ -44,7 +44,7 @@
 
           <li class="nav-item">
             <router-link
-              to="/plans"
+              to="/calendar"
               class="nav-link"
               :class="{'disabled': !user}"
               :aria-disabled="user ? 'true': 'false'"
