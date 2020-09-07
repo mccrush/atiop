@@ -13,7 +13,7 @@ export default {
 
 <style scoped>
 .task {
-  width: 256px;
+  width: 192px;
   user-select: none;
   cursor: default;
 }

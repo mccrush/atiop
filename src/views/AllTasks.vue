@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row">
-      <div class="col-12 p-2 border-bottom d-flex align-content-center height-31">
+      <div class="col-12 p-2 border-bottom d-flex align-content-center">
         <input
           type="text"
           v-model="title"
@@ -11,7 +11,7 @@
         />
       </div>
     </div>
-    <div class="d-flex flex-row">
+    <div class="d-flex flex-row flex-wrap">
       <Task v-for="task in tasks" :key="task.id" :task="task" @edit-item="editItem" />
       <Modal :item="item" />
     </div>
