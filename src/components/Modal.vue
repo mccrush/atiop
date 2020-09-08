@@ -75,11 +75,11 @@
                 </select>
               </div>
               <div class="col-4">
-                <select v-model="projectId" class="form-control form-control-sm mt-2">
+                <select v-model="projectId" class="form-control form-control-sm mt-2" :disabled="!napravId">
                   <option value selected>Проект</option>
                   <option
-                    v-for="item in projects"
-                    :key="'nap'+item.id"
+                    v-for="item in projectsFilter"
+                    :key="'pro'+item.id"
                     :value="item.id"
                   >{{item.title}}</option>
                 </select>
@@ -152,6 +152,16 @@ export default {
         '#f2c6deff',
         '#f9c6c9ff',
       ],
+    }
+  },
+  computed: {
+    projectsFilter() {
+      if(this.napravId) {
+        return this.projects.filter(item => item.napravId === this.napravId)
+      } else {
+        return this.projects
+      }
+      
     }
   },
   methods: {
