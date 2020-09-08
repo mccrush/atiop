@@ -1,12 +1,15 @@
 <template>
   <div>
-    <div class="row">
-      <div class="col-12 p-2 border-bottom d-flex align-content-center">
+    <div class="row p-0 border-bottom">
+      <div class="col-3 p-2">---</div>
+      <div class="col-3 p-2">---</div>
+      <div class="col-3 p-2">---</div>
+      <div class="col-3 p-2">
         <input
           type="text"
           v-model="title"
           @keypress.enter="addItem('napravs')"
-          class="form-control form-control-sm border-0 bg-light ml-2 w250"
+          class="form-control form-control-sm border-0 bg-light"
           placeholder="Добавить задачу"
         />
       </div>
