@@ -32,7 +32,10 @@
           v-if="item.status != 'done'"
           @click.prevent="changeStatusToDone({id: item.id, type: item.type})"
           class="to-arhiv position-absolute bg-light"
-        ></div>
+          title="В архив"
+        >
+          <img src="@/assets/icons/check-circle.svg" width="20" height="20" alt="В архив" />
+        </div>
       </li>
     </ul>
     <form v-if="!hideform" @submit.prevent="addItem" class="mt-0 mb-2 pl-2 pr-2">
@@ -184,7 +187,6 @@ export default {
   cursor: pointer;
   opacity: 0.4;
   transition: 0.5s;
-  background: url('/img/task/box_24px.png') center center no-repeat;
   z-index: 3;
 }
 
