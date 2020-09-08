@@ -41,11 +41,8 @@ export default {
           items.push(doc.data())
         });
       } catch (err) { throw err } finally { commit('getItems', { type, items }) }
-
-
-
-
     },
+
     addItem({ commit, dispatch }, item) {
       const ref = db.collection("users").doc(auth.currentUser.uid)
       ref.collection(item.type).doc(item.id).set(item).then(() => {
@@ -59,13 +56,15 @@ export default {
         console.log('addItem, Ошибка при добавлении документа:', err);
       })
     },
+
     removeItem({ commit, dispatch }, { id, type, idproj }) {
       db.collection("users").doc(auth.currentUser.uid).collection(type).doc(id).delete().then(function () {
         console.log("removeItem, Document successfully deleted!");
         commit('removeItem', { id, type })
-        if (type === 'tasks') {
-          dispatch('updateProjectLength', { id: idproj, whatdo: 'remove' })
-        }
+        // Вообще это надо, но пока не используется
+        // if (type === 'tasks') {
+        //   dispatch('updateProjectLength', { id: idproj, whatdo: 'remove' })
+        // }
       }).catch(function (error) {
         console.error("removeItem, Error removing document: ", error);
       });
