@@ -16,7 +16,7 @@
           </button>
         </div>-->
         <div class="modal-body">
-          <form @submit.prevent="saveItem">
+          <form @submit.prevent="updateItem">
             <input
               type="text"
               class="form-control form-control-sm"
@@ -101,7 +101,7 @@
                 >Отмена</button>
               </div>
               <div class="col-4">
-                <button type="submit" class="btn btn-sm btn-block btn-success">Сохранить</button>
+                <button type="submit" class="btn btn-sm btn-block btn-warning">Обновить</button>
               </div>
             </div>
           </form>
@@ -149,7 +149,7 @@ export default {
     }
   },
   methods: {
-    saveItem() {
+    updateItem() {
       // Сделать асинхронной и выводить сообщения об ошибках
       if (this.title.trim()) {
         const item = {
