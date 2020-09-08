@@ -61,6 +61,21 @@
                 </select>
               </div>
             </div>
+            <div class="row">
+              <div class="col-4">
+                <select v-model="naprav" class="form-control form-control-sm mt-2">
+                  <option value selected>Направление</option>
+                  <option value="---">---</option>
+                </select>
+              </div>
+              <div class="col-4">
+                <select v-model="project" class="form-control form-control-sm mt-2">
+                  <option value selected>Проект</option>
+                  <option value="---">---</option>
+                </select>
+              </div>
+              <div class="col-4">---</div>
+            </div>
             <hr />
 
             <div class="row">
@@ -103,6 +118,8 @@ export default {
       desc: '',
       status: '',
       date: '',
+      naprav: '',
+      project: '',
       color: '#ffffff',
       type: '',
       error: false,

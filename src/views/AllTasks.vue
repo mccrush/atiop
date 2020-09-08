@@ -1,10 +1,19 @@
 <template>
   <div>
     <div class="row p-0 border-bottom">
-      <div class="col-3 p-2">---</div>
-      <div class="col-3 p-2">---</div>
-      <div class="col-3 p-2">---</div>
-      <div class="col-3 p-2">
+      <div class="col-2 p-2">
+        <select class="form-control form-control-sm" v-model="filterType" @change="saveFilterType">
+          <option value selected>Фильтр</option>
+          <option value="naprav">По направлениям</option>
+          <option value="proj">По проектам</option>
+          <option value="date">С датами</option>
+          <option value="deadline">С дедлайнами</option>
+        </select>
+      </div>
+      <div class="col-2 p-2">---</div>
+      <div class="col-2 p-2">---</div>
+      <div class="col-2 p-2">---</div>
+      <div class="col-4 p-2">
         <input
           type="text"
           v-model="title"
@@ -33,6 +42,8 @@ export default {
   },
   data() {
     return {
+      filterType: localStorage.getItem('filterType') || '',
+      filterId: localStorage.getItem('filterId') || '',
       item: null,
       title: '',
     }
@@ -40,6 +51,12 @@ export default {
   computed: {
     tasks() {
       return this.$store.getters.tasks
+    },
+    napravs() {
+      return this.$store.getters.napravs
+    },
+    projects() {
+      return this.$store.getters.projects
     },
   },
   methods: {
@@ -71,6 +88,9 @@ export default {
       } else {
         this.error = true
       }
+    },
+    saveFilterType() {
+      localStorage.setItem('filterType', this.filterType)
     },
   },
 }
