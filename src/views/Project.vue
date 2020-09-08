@@ -42,7 +42,7 @@
           />
         </div>
       </div>
-      <Modal :item="item" />
+      <Modal :item="item" :napravs="napravs" :projects="projects" />
     </div>
   </div>
 </template>

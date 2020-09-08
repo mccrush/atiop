@@ -74,7 +74,7 @@
         </div>
       </div>
       <Loading v-else />
-      <Modal :item="item" />
+      <Modal :item="item" :napravs="napravs" :projects="projects" />
     </div>
   </div>
 </template>
