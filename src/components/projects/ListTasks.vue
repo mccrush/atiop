@@ -34,7 +34,7 @@
           class="to-arhiv position-absolute bg-light"
           title="В архив"
         >
-          <img src="@/assets/icons/check-circle.svg" width="20" height="20" alt="В архив" />
+          <img src="@/assets/icons/check2-circle.svg" width="20" height="20" alt="В архив" />
         </div>
       </li>
     </ul>
