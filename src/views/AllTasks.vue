@@ -16,14 +16,14 @@
           class="form-control form-control-sm"
           v-model="filterValue"
           @change="saveFilterValue"
-          :disabled="!filterType"
+          :disabled="!filterType || filterType === 'date' || filterType === 'deadline'"
         >
           <option value selected>Значение</option>
-          <!-- <option v-for="item in filter" :key="'pro'+item.id" :value="item.id">{{item.title}}</option> -->
-
-          <option value="todo">Новые</option>
-          <option value="work">В работе</option>
-          <option value="done">Завершенные</option>
+          <option
+            v-for="item in filterValueArr"
+            :key="'pro'+item.id"
+            :value="item.id"
+          >{{item.title}}</option>
         </select>
       </div>
       <div class="col-2 p-2">---</div>
@@ -64,6 +64,21 @@ export default {
     }
   },
   computed: {
+    filterValueArr() {
+      switch (this.filterType) {
+        case 'status':
+          return this.status
+          break
+        case 'napravId':
+          return this.napravs
+          break
+        case 'projectId':
+          return this.projects
+          break
+        default:
+          return []
+      }
+    },
     status() {
       return this.$store.getters.status
     },
@@ -89,7 +104,6 @@ export default {
     napravs() {
       return this.$store.getters.napravs
     },
-    napravsFilter() {},
     projects() {
       return this.$store.getters.projects
     },
@@ -125,6 +139,8 @@ export default {
     },
     saveFilterType() {
       localStorage.setItem('filterType', this.filterType)
+      this.filterValue = ''
+      this.saveFilterValue()
     },
     saveFilterValue() {
       localStorage.setItem('filterValue', this.filterValue)

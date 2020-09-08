@@ -8,7 +8,7 @@ export default {
     projects: [],
     tasks: [],
     settings: JSON.parse(localStorage.getItem('settings')) || { showArhived: false, showEmpty: true, sortBy: 'date' },
-    status: [{ type: 'todo', title: 'Новые' }, { type: 'work', title: 'В работе' }, { type: 'done', title: 'Завершенные' }]
+    status: [{ id: 'todo', title: 'Новые' }, { id: 'work', title: 'В работе' }, { id: 'done', title: 'Завершенные' }]
   },
   mutations: {
     getItems(state, { type, items = [] }) {

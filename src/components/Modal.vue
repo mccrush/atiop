@@ -92,8 +92,8 @@
                 <select v-model="status" class="form-control form-control-sm mt-2">
                   <option
                     v-for="item in statusArr"
-                    :key="'sta'+item.type"
-                    :value="item.type"
+                    :key="'sta'+item.id"
+                    :value="item.id"
                   >{{item.title}}</option>
                 </select>
               </div>
