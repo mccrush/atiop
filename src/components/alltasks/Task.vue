@@ -8,6 +8,14 @@
     <hr class="m-1" />
     <span class="badge bg-info mr-1">{{task.idnapravs}}</span>
     <span class="badge bg-secondary mr-1">{{task.idprojects}}</span>
+    <span
+      class="badge bg-warning mr-1"
+      v-if="task.date"
+    >{{new Date(task.date).toLocaleDateString()}}</span>
+    <span
+      class="badge bg-danger mr-1"
+      v-if="task.deadline"
+    >{{new Date(task.deadline).toLocaleDateString()}}</span>
     <hr class="m-1" />
     <button class="btn btn-sm btn-light border" @click="changeStatus">Done</button>
   </div>

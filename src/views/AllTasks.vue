@@ -61,11 +61,7 @@ export default {
   },
   methods: {
     editItem({ id, type }) {
-      if (type === 'tasks') {
-        this.item = this.tasks.find((item) => item.id === id)
-      } else {
-        this.item = this.projects.find((item) => item.id === id)
-      }
+      this.item = this.tasks.find((item) => item.id === id)
       let myModal = new bootstrap.Modal(document.getElementById('exampleModal'))
       myModal.show()
     },
@@ -76,12 +72,15 @@ export default {
           desc: '',
           id: Date.now().toString(),
           type: 'tasks',
-          idnapravs: '',
-          idprojects: '',
+          napravId: '',
+          napravTitle: '',
+          projectId: '',
+          projectTitle: '',
           status: 'todo',
           position: this.tasks.length + 1, // По умолчанию в конец списка
           color: '', // У задач нет цвета
           date: '',
+          deadline: '',
         }
         this.title = ''
         this.$store.dispatch('addItem', item)

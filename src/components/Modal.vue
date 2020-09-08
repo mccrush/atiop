@@ -54,11 +54,13 @@
                   v-model="date"
                 />
 
-                <select v-model="status" class="form-control form-control-sm mt-2">
-                  <option value="todo">К выполнению</option>
-                  <option value="work">В работе</option>
-                  <option value="done">Завершена</option>
-                </select>
+                <input
+                  v-if="item && item.type !== 'napravs'"
+                  type="datetime-local"
+                  id="deadline"
+                  class="form-control form-control-sm"
+                  v-model="deadline"
+                />
               </div>
             </div>
             <div class="row">
@@ -74,7 +76,13 @@
                   <option value="---">---</option>
                 </select>
               </div>
-              <div class="col-4">---</div>
+              <div class="col-4">
+                <select v-model="status" class="form-control form-control-sm mt-2">
+                  <option value="todo">К выполнению</option>
+                  <option value="work">В работе</option>
+                  <option value="done">Завершена</option>
+                </select>
+              </div>
             </div>
             <hr />
 
@@ -118,6 +126,7 @@ export default {
       desc: '',
       status: '',
       date: '',
+      deadline: '',
       naprav: '',
       project: '',
       color: '#ffffff',
@@ -150,6 +159,7 @@ export default {
           type: this.item.type,
           status: this.status,
           date: this.date,
+          deadline: this.deadline,
           color: this.color,
         }
         this.$store.dispatch('updateItem', item)
@@ -174,6 +184,7 @@ export default {
       this.desc = this.item.desc
       this.status = this.item.status
       this.date = this.item.date
+      this.deadline = this.item.deadline
       this.type = this.item.type
       this.color = this.item.color
     },
