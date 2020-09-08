@@ -4,7 +4,11 @@
     :class="{' bg-light': task.status === 'done', ' border border-warning': task.status === 'work'}"
     @dblclick.prevent="$emit('edit-item', {id: task.id, type: task.type})"
   >
-    {{task.title}}
+    <span class="small">{{task.title}}</span>
+    <hr class="m-1" />
+    <span class="badge bg-secondary mr-1">Naprav</span>
+    <span class="badge bg-secondary mr-1">Proj</span>
+    <hr class="m-1" />
     <button class="btn btn-sm btn-light border" @click="changeStatus">Done</button>
   </div>
 </template>
