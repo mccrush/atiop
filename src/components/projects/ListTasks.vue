@@ -170,7 +170,7 @@ export default {
 }
 
 .work {
-  background: #007bff;
+  background: #ffc107;
   z-index: 2;
 }
 
