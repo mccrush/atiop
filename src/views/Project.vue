@@ -9,8 +9,8 @@
           <ListTasks
             v-else
             :tasks="tasksTodo"
-            :idnapravs="idnapravs"
-            :idprojects="idprojects"
+            :napravId="napravId"
+            :projectId="projectId"
             status="todo"
             @edit-item="editItem"
           />
@@ -21,8 +21,8 @@
           <ListTasks
             v-else
             :tasks="tasksWork"
-            :idnapravs="idnapravs"
-            :idprojects="idprojects"
+            :napravId="napravId"
+            :projectId="projectId"
             hideform="true"
             status="work"
             @edit-item="editItem"
@@ -34,8 +34,8 @@
           <ListTasks
             v-else
             :tasks="tasksDone"
-            :idnapravs="idnapravs"
-            :idprojects="idprojects"
+            :napravId="napravId"
+            :projectId="projectId"
             hideform="true"
             status="done"
             @edit-item="editItem"
@@ -66,7 +66,7 @@ export default {
     return {
       item: null,
       filter: '',
-      idprojects: this.$route.params.id,
+      projectId: this.$route.params.id,
     }
   },
   computed: {
@@ -76,8 +76,8 @@ export default {
     projects() {
       return this.$store.getters.projects
     },
-    idnapravs() {
-      return this.projects.find((proj) => proj.id === this.idprojects).idnapravs
+    napravId() {
+      return this.projects.find((proj) => proj.id === this.projectId).napravId
     },
     tasks() {
       return this.$store.getters.tasks

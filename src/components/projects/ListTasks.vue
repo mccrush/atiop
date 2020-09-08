@@ -54,10 +54,10 @@ export default {
     tasks: {
       type: Array,
     },
-    idnapravs: {
+    napravId: {
       type: String,
     },
-    idprojects: {
+    projectId: {
       type: String,
     },
     hideform: {},
@@ -71,7 +71,7 @@ export default {
   },
   computed: {
     displayTasks() {
-      return this.tasks.filter((item) => item.idprojects === this.idprojects)
+      return this.tasks.filter((item) => item.projectId === this.projectId)
     },
     sortTasks() {
       return this.displayTasks.sort((a, b) => {
@@ -113,8 +113,8 @@ export default {
           desc: '',
           id: Date.now().toString(),
           type: 'tasks',
-          idnapravs: this.idnapravs,
-          idprojects: this.idprojects,
+          napravId: this.napravId,
+          projectId: this.projectId,
           status: 'todo',
           position: this.tasks.length + 1, // По умолчанию в конец списка
           color: '', // У задач нет цвета

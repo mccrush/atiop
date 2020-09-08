@@ -59,15 +59,15 @@
           </h6>
           <ListTasks
             :tasks="tasksTodoWork"
-            :idnapravs="item.idnapravs"
-            :idprojects="item.id"
+            :napravId="item.napravId"
+            :projectId="item.id"
             @edit-item="editItem"
           />
           <ListTasks
             v-if="settings.showArhived"
             :tasks="tasksDone"
-            :idnapravs="item.idnapravs"
-            :idprojects="item.id"
+            :napravId="item.napravId"
+            :projectId="item.id"
             hideform="true"
             @edit-item="editItem"
           />
@@ -125,10 +125,10 @@ export default {
     displayProjects() {
       if (this.filter) {
         if (this.settings.showEmpty) {
-          return this.projects.filter((proj) => proj.idnapravs === this.filter)
+          return this.projects.filter((proj) => proj.napravId === this.filter)
         } else {
           return this.projects.filter(
-            (proj) => proj.idnapravs === this.filter && proj.length > 0
+            (proj) => proj.napravId === this.filter && proj.length > 0
           )
         }
       } else {
@@ -192,13 +192,13 @@ export default {
             desc: '',
             id: Date.now().toString(),
             type: type,
-            idnapravs:
+            napravId:
               type === 'projects'
                 ? this.filter
                 : type === 'tasks'
-                ? this.idnapravs
+                ? this.napravId
                 : '',
-            idprojects: this.idprojects || '',
+            projectId: this.projectId || '',
             length: 0,
             status: 'todo',
             position: this.list ? this.list.length + 1 : 1,
