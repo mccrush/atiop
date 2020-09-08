@@ -75,7 +75,11 @@
                 </select>
               </div>
               <div class="col-4">
-                <select v-model="projectId" class="form-control form-control-sm mt-2" :disabled="!napravId">
+                <select
+                  v-model="projectId"
+                  class="form-control form-control-sm mt-2"
+                  :disabled="!napravId"
+                >
                   <option value selected>Проект</option>
                   <option
                     v-for="item in projectsFilter"
@@ -86,9 +90,11 @@
               </div>
               <div class="col-4">
                 <select v-model="status" class="form-control form-control-sm mt-2">
-                  <option value="todo">К выполнению</option>
-                  <option value="work">В работе</option>
-                  <option value="done">Завершена</option>
+                  <option
+                    v-for="item in statusArr"
+                    :key="'sta'+item.type"
+                    :value="item.type"
+                  >{{item.title}}</option>
                 </select>
               </div>
             </div>
@@ -155,14 +161,16 @@ export default {
     }
   },
   computed: {
+    statusArr() {
+      return this.$store.getters.status
+    },
     projectsFilter() {
-      if(this.napravId) {
-        return this.projects.filter(item => item.napravId === this.napravId)
+      if (this.napravId) {
+        return this.projects.filter((item) => item.napravId === this.napravId)
       } else {
         return this.projects
       }
-      
-    }
+    },
   },
   methods: {
     updateItem() {

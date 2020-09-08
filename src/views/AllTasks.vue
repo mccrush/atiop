@@ -18,7 +18,9 @@
           @change="saveFilterValue"
           :disabled="!filterType"
         >
-          <option value selected>Статус</option>
+          <option value selected>Значение</option>
+          <!-- <option v-for="item in filter" :key="'pro'+item.id" :value="item.id">{{item.title}}</option> -->
+
           <option value="todo">Новые</option>
           <option value="work">В работе</option>
           <option value="done">Завершенные</option>
@@ -62,6 +64,9 @@ export default {
     }
   },
   computed: {
+    status() {
+      return this.$store.getters.status
+    },
     tasks() {
       return this.$store.getters.tasks
     },
@@ -84,6 +89,7 @@ export default {
     napravs() {
       return this.$store.getters.napravs
     },
+    napravsFilter() {},
     projects() {
       return this.$store.getters.projects
     },
