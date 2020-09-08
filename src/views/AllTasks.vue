@@ -38,7 +38,7 @@
     </div>
     <div class="d-flex flex-row flex-wrap">
       <Task v-for="task in tasksFilterValue" :key="task.id" :task="task" @edit-item="editItem" />
-      <Modal :item="item" />
+      <Modal :item="item" :napravs="napravs" :projects="projects" />
     </div>
   </div>
 </template>

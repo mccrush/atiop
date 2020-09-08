@@ -50,7 +50,7 @@
                   v-if="item && item.type !== 'napravs'"
                   type="datetime-local"
                   id="date"
-                  class="form-control form-control-sm"
+                  class="form-control form-control-sm border-warning"
                   v-model="date"
                 />
 
@@ -58,22 +58,30 @@
                   v-if="item && item.type !== 'napravs'"
                   type="datetime-local"
                   id="deadline"
-                  class="form-control form-control-sm"
+                  class="form-control form-control-sm border-danger"
                   v-model="deadline"
                 />
               </div>
             </div>
             <div class="row">
               <div class="col-4">
-                <select v-model="naprav" class="form-control form-control-sm mt-2">
+                <select v-model="napravId" class="form-control form-control-sm mt-2">
                   <option value selected>Направление</option>
-                  <option value="---">---</option>
+                  <option
+                    v-for="item in napravs"
+                    :key="'nap'+item.id"
+                    :value="item.id"
+                  >{{item.title}}</option>
                 </select>
               </div>
               <div class="col-4">
-                <select v-model="project" class="form-control form-control-sm mt-2">
+                <select v-model="projectId" class="form-control form-control-sm mt-2">
                   <option value selected>Проект</option>
-                  <option value="---">---</option>
+                  <option
+                    v-for="item in projects"
+                    :key="'nap'+item.id"
+                    :value="item.id"
+                  >{{item.title}}</option>
                 </select>
               </div>
               <div class="col-4">
@@ -115,11 +123,7 @@
 import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
 
 export default {
-  props: {
-    item: {
-      type: Object,
-    },
-  },
+  props: ['item', 'napravs', 'projects'],
   data() {
     return {
       title: '',
@@ -127,8 +131,10 @@ export default {
       status: '',
       date: '',
       deadline: '',
-      naprav: '',
-      project: '',
+      napravId: '',
+      napravTitle: '',
+      projectId: '',
+      projectTitle: '',
       color: '#ffffff',
       type: '',
       error: false,
@@ -161,6 +167,12 @@ export default {
           date: this.date,
           deadline: this.deadline,
           color: this.color,
+          napravId: this.napravId,
+          napravTitle: this.napravs.find((item) => item.id === this.napravId)
+            .title,
+          projectId: this.projectId,
+          projectTitle: this.projects.find((item) => item.id === this.projectId)
+            .title,
         }
         this.$store.dispatch('updateItem', item)
         let myModal = new bootstrap.Modal(
@@ -187,6 +199,10 @@ export default {
       this.deadline = this.item.deadline
       this.type = this.item.type
       this.color = this.item.color
+      this.napravId = this.item.napravId
+      this.napravTitle = this.item.napravTitle
+      this.projectId = this.item.projectId
+      this.projectTitle = this.item.projectTitle
     },
   },
 }
