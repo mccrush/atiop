@@ -6,8 +6,8 @@
   >
     <span class="small">{{task.title}}</span>
     <hr class="m-1" />
-    <span class="badge bg-info mr-1">{{task.idnapravs}}</span>
-    <span class="badge bg-secondary mr-1">{{task.idprojects}}</span>
+    <span class="badge bg-info mr-1">{{task.napravTitle}}</span>
+    <span class="badge bg-secondary mr-1">{{task.projectTitle}}</span>
     <span
       class="badge bg-warning mr-1"
       v-if="task.date"

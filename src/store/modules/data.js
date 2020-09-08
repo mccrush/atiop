@@ -46,7 +46,7 @@ export default {
     addItem({ commit, dispatch }, item) {
       const ref = db.collection("users").doc(auth.currentUser.uid)
       ref.collection(item.type).doc(item.id).set(item).then(() => {
-        console.log('addItem, Элемент добавлен:', item);
+        console.log('addItem, Элемент добавлен:');
         commit('addItem', item)
         // Вообще это надо, но только для проектов
         // if (item.type === 'tasks') {

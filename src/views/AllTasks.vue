@@ -5,7 +5,7 @@
         <select class="form-control form-control-sm" v-model="filterType" @change="saveFilterType">
           <option value selected>Фильтр</option>
           <option value="naprav">По направлениям</option>
-          <option value="proj">По проектам</option>
+          <option value="project">По проектам</option>
           <option value="date">С датами</option>
           <option value="deadline">С дедлайнами</option>
         </select>
@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="d-flex flex-row flex-wrap">
-      <Task v-for="task in tasks" :key="task.id" :task="task" @edit-item="editItem" />
+      <Task v-for="task in tasksFilter" :key="task.id" :task="task" @edit-item="editItem" />
       <Modal :item="item" />
     </div>
   </div>
@@ -51,6 +51,13 @@ export default {
   computed: {
     tasks() {
       return this.$store.getters.tasks
+    },
+    tasksFilter() {
+      if (this.filterType !== '') {
+        return this.tasks.filter((task) => task[this.filterType])
+      } else {
+        return this.tasks
+      }
     },
     napravs() {
       return this.$store.getters.napravs
