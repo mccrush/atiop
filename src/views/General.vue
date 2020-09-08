@@ -2,7 +2,7 @@
   <div class="row h-100">
     <vue-headful title="ATIOP Обзор проектов" description="ATIOP — сервис управления задачами" />
     <ListNapravGeneral :napravs="napravs" :projects="projects" @edit-item="editItem" />
-    <Modal :item="item" />
+    <Modal :item="item" :napravs="napravs" :projects="projects" />
   </div>
 </template>
 

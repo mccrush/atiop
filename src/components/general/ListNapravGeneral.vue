@@ -13,7 +13,7 @@
         <div class="row">
           <ListProjGeneral
             :projects="projects"
-            :idnapravs="item.id"
+            :napravId="item.id"
             @edit-item="editItem"
             :color="item.color"
           />
@@ -31,21 +31,14 @@ import ListProjGeneral from '@/components/general/ListProjGeneral'
 
 export default {
   components: {
-    ListProjGeneral
+    ListProjGeneral,
   },
-  props: {
-    napravs: {
-      type: Array
-    },
-    projects: {
-      type: Array
-    }
-  },
+  props: ['napravs', 'projects'],
   methods: {
     editItem({ id, type }) {
       this.$emit('edit-item', { id, type })
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -21,22 +21,12 @@
 
 <script>
 export default {
-  props: {
-    projects: {
-      type: Array
-    },
-    idnapravs: {
-      type: String
-    },
-    color: {
-      type: String
-    }
-  },
+  props: ['projects', 'napravId', 'color'],
   computed: {
     displayProj() {
-      return this.projects.filter(item => item.idnapravs === this.idnapravs)
-    }
-  }
+      return this.projects.filter((item) => item.napravId === this.napravId)
+    },
+  },
 }
 </script>
 
