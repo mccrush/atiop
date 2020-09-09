@@ -6,6 +6,7 @@
   >
     <span class="small">{{task.title}}</span>
     <hr class="m-1" />
+    <span class="badge bg-dark mr-1">{{task.position}}</span>
     <span class="badge bg-info mr-1">{{task.napravTitle}}</span>
     <span class="badge bg-secondary mr-1">{{task.projectTitle}}</span>
     <span

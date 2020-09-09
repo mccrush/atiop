@@ -39,7 +39,7 @@
       </div>
     </div>
     <div class="d-flex flex-row flex-wrap">
-      <Task v-for="task in tasksFilterValue" :key="task.id" :task="task" @edit-item="editItem" />
+      <Task v-for="task in sortTasks" :key="task.id" :task="task" @edit-item="editItem" />
       <Modal :item="item" :napravs="napravs" :projects="projects" />
     </div>
   </div>
@@ -118,6 +118,17 @@ export default {
     },
     settings() {
       return this.$store.getters.settings
+    },
+    sortTasks() {
+      return this.tasksFilterValue.sort((a, b) => {
+        if (this.settings.sortBy === 'position') {
+          return a.position - b.position
+        } else if (this.settings.sortBy === 'date') {
+          return new Date(a.date) - new Date(b.date)
+        } else if (this.settings.sortBy === 'deadline') {
+          return new Date(a.deadline) - new Date(b.deadline)
+        }
+      })
     },
   },
   methods: {
