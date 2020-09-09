@@ -6,16 +6,16 @@
   >
     <span class="small">{{task.title}}</span>
     <hr class="m-1" />
-    <span class="badge bg-dark mr-1">{{task.position}}</span>
-    <span class="badge bg-info mr-1">{{task.napravTitle}}</span>
-    <span class="badge bg-secondary mr-1">{{task.projectTitle}}</span>
+    <span v-if="settings.showPosition" class="badge bg-light text-dark mr-1">{{task.position}}</span>
+    <span v-if="settings.showNaprav" class="badge bg-info mr-1">{{task.napravTitle}}</span>
+    <span v-if="settings.showProject" class="badge bg-secondary mr-1">{{task.projectTitle}}</span>
     <span
       class="badge bg-warning mr-1"
-      v-if="task.date"
+      v-if="task.date && settings.showDate"
     >{{new Date(task.date).toLocaleDateString()}}</span>
     <span
       class="badge bg-danger mr-1"
-      v-if="task.deadline"
+      v-if="task.deadline && settings.showDeadline"
     >{{new Date(task.deadline).toLocaleDateString()}}</span>
     <hr class="m-1" />
     <button class="btn btn-sm btn-light border" @click="changeStatus">Done</button>
@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  props: ['task'],
+  props: ['task', 'settings'],
   methods: {
     changeStatus() {
       this.$store.dispatch('changeStatus', {

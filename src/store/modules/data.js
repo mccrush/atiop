@@ -7,7 +7,7 @@ export default {
     napravs: [],
     projects: [],
     tasks: [],
-    settings: JSON.parse(localStorage.getItem('settings')) || { showArhived: false, showEmpty: true, sortBy: 'date' },
+    settings: JSON.parse(localStorage.getItem('settings')) || { showArhived: false, showEmpty: true, showPosition: false, showDate: false, showDeadline: false, showNaprav: false, showProject: false, sortBy: 'date' },
     status: [{ id: 'todo', title: 'Новые' }, { id: 'work', title: 'В работе' }, { id: 'done', title: 'Завершенные' }]
   },
   mutations: {
@@ -27,8 +27,8 @@ export default {
       items[index] = { ...el, title, desc, type, position, status, date, deadline, color, napravId, napravTitle, projectId, projectTitle }
       state[type] = items
     },
-    updateSettings(state, { showArhived, showEmpty, sortBy }) {
-      state.settings = { showArhived, showEmpty, sortBy }
+    updateSettings(state, { showArhived, showEmpty, showPosition, showDate, showDeadline, showNaprav, showProject, sortBy }) {
+      state.settings = { showArhived, showEmpty, showPosition, showDate, showDeadline, showNaprav, showProject, sortBy }
       localStorage.setItem('settings', JSON.stringify(state.settings))
     }
   },

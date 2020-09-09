@@ -1,7 +1,8 @@
 <template>
   <div class="bg-white shadow-sm p-3 pt-3">
     <h5 class="text-center">Настройки</h5>
-    <div class="form-group form-check mt-3 mb-2">
+    <small>Показывать</small>
+    <div class="form-group form-check mb-1">
       <input
         type="checkbox"
         class="form-check-input"
@@ -10,10 +11,10 @@
         @change="saveChanges"
       />
       <label for="arhived" class="form-check-label">
-        <small>Показывать архивные</small>
+        <small>Архивные</small>
       </label>
     </div>
-    <div class="form-group form-check mt-3 mb-2">
+    <div class="form-group form-check mb-1">
       <input
         type="checkbox"
         class="form-check-input"
@@ -22,9 +23,75 @@
         @change="saveChanges"
       />
       <label for="empty" class="form-check-label">
-        <small>Показывать проекты без задач</small>
+        <small>Проекты без задач</small>
       </label>
     </div>
+
+    <div class="form-group form-check mb-1">
+      <input
+        type="checkbox"
+        class="form-check-input"
+        id="poeition"
+        v-model="showPosition"
+        @change="saveChanges"
+      />
+      <label for="poeition" class="form-check-label">
+        <small>Позицию</small>
+      </label>
+    </div>
+
+    <div class="form-group form-check mb-1">
+      <input
+        type="checkbox"
+        class="form-check-input"
+        id="date"
+        v-model="showDate"
+        @change="saveChanges"
+      />
+      <label for="date" class="form-check-label">
+        <small>Дату</small>
+      </label>
+    </div>
+
+    <div class="form-group form-check mb-1">
+      <input
+        type="checkbox"
+        class="form-check-input"
+        id="deadline"
+        v-model="showDeadline"
+        @change="saveChanges"
+      />
+      <label for="deadline" class="form-check-label">
+        <small>Дедлайн</small>
+      </label>
+    </div>
+
+    <div class="form-group form-check mb-1">
+      <input
+        type="checkbox"
+        class="form-check-input"
+        id="naprav"
+        v-model="showNaprav"
+        @change="saveChanges"
+      />
+      <label for="naprav" class="form-check-label">
+        <small>Направление</small>
+      </label>
+    </div>
+
+    <div class="form-group form-check mb-2">
+      <input
+        type="checkbox"
+        class="form-check-input"
+        id="project"
+        v-model="showProject"
+        @change="saveChanges"
+      />
+      <label for="project" class="form-check-label">
+        <small>Проект</small>
+      </label>
+    </div>
+
     <div class="form-group">
       <small>Способ сортировки</small>
       <div class="form-check">
@@ -66,7 +133,7 @@
           @change="saveChanges"
         />
         <label class="form-check-label" for="exampleRadios3">
-          <small>По порядку</small>
+          <small>По позиции</small>
         </label>
       </div>
     </div>
@@ -79,6 +146,11 @@ export default {
     return {
       showArhived: null,
       showEmpty: null,
+      showPosition: null,
+      showDate: null,
+      showDeadline: null,
+      showNaprav: null,
+      showProject: null,
       sortBy: '',
     }
   },
@@ -87,6 +159,11 @@ export default {
       this.$store.commit('updateSettings', {
         showArhived: this.showArhived,
         showEmpty: this.showEmpty,
+        showPosition: this.showPosition,
+        showDate: this.showDate,
+        showDeadline: this.showDeadline,
+        showNaprav: this.showNaprav,
+        showProject: this.showProject,
         sortBy: this.sortBy,
       })
     },
@@ -100,6 +177,17 @@ export default {
     this.showArhived = this.settings.showArhived
     this.showEmpty = this.settings.showEmpty
     this.sortBy = this.settings.sortBy
+    this.showPosition = this.settings.showPosition
+    this.showDate = this.settings.showDate
+    this.showDeadline = this.settings.showDeadline
+    this.showNaprav = this.settings.showNaprav
+    this.showProject = this.settings.showProject
   },
 }
 </script>
+
+<style scoped>
+.form-check-label {
+  line-height: 1.2;
+}
+</style>
