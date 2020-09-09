@@ -40,6 +40,7 @@ export default {
 <style scoped>
 .task {
   width: 192px;
+  line-height: 1.2;
   user-select: none;
   cursor: default;
 }
