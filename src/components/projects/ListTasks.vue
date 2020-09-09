@@ -55,7 +55,15 @@
 import createTask from '@/scripts/createTask'
 
 export default {
-  props: ['tasks', 'napravId', 'projectId', 'hideform', 'status'],
+  props: [
+    'tasks',
+    'napravId',
+    'projectId',
+    'napravs',
+    'projects',
+    'hideform',
+    'status',
+  ],
   data() {
     return {
       title: '',
@@ -101,11 +109,19 @@ export default {
     },
     addItem() {
       if (this.title.trim()) {
+        const napravTitle = this.napravs.find(
+          (item) => item.id === this.napravId
+        ).title
+        const projectTitle = this.projects.find(
+          (item) => item.id === this.projectId
+        ).title
         const item = createTask(
           this.title.trim(),
           this.napravId,
           this.projectId,
-          this.tasks.length
+          this.tasks.length,
+          napravTitle,
+          projectTitle
         )
         this.title = ''
         this.$store.dispatch('addItem', item)

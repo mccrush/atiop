@@ -61,6 +61,8 @@
             :tasks="tasksTodoWork"
             :napravId="item.napravId"
             :projectId="item.id"
+            :napravs="napravs"
+            :projects="projects"
             @edit-item="editItem"
           />
           <ListTasks
@@ -68,6 +70,8 @@
             :tasks="tasksDone"
             :napravId="item.napravId"
             :projectId="item.id"
+            :napravs="napravs"
+            :projects="projects"
             hideform="true"
             @edit-item="editItem"
           />
