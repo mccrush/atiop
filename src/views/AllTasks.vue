@@ -53,6 +53,7 @@
 
 <script>
 import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
+import createTask from '@/scripts/createTask'
 import Task from '@/components/alltasks/Task'
 import Modal from '@/components/Modal'
 
@@ -67,6 +68,8 @@ export default {
       filterValue: localStorage.getItem('filterValue') || '',
       item: null,
       title: '',
+      napravId: '1',
+      projectId: '1',
     }
   },
   computed: {
@@ -145,21 +148,12 @@ export default {
     },
     addItem() {
       if (this.title.trim()) {
-        const item = {
-          title: this.title.trim(),
-          desc: '',
-          id: Date.now().toString(),
-          type: 'tasks',
-          napravId: '1',
-          napravTitle: 'Без направления',
-          projectId: '1',
-          projectTitle: 'Без проекта',
-          status: 'todo',
-          position: this.tasks.length + 1, // По умолчанию в конец списка
-          color: '', // У задач нет цвета
-          date: '',
-          deadline: '',
-        }
+        const item = createTask(
+          this.title.trim(),
+          this.napravId,
+          this.projectId,
+          this.tasks.length
+        )
         this.title = ''
         this.$store.dispatch('addItem', item)
       } else {

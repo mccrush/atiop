@@ -52,20 +52,10 @@
 </template>
 
 <script>
+import createTask from '@/scripts/createTask'
+
 export default {
-  props: {
-    tasks: {
-      type: Array,
-    },
-    napravId: {
-      type: String,
-    },
-    projectId: {
-      type: String,
-    },
-    hideform: {},
-    status: {},
-  },
+  props: ['tasks', 'napravId', 'projectId', 'hideform', 'status'],
   data() {
     return {
       title: '',
@@ -111,18 +101,12 @@ export default {
     },
     addItem() {
       if (this.title.trim()) {
-        const item = {
-          title: this.title.trim(),
-          desc: '',
-          id: Date.now().toString(),
-          type: 'tasks',
-          napravId: this.napravId,
-          projectId: this.projectId,
-          status: 'todo',
-          position: this.tasks.length + 1, // По умолчанию в конец списка
-          color: '', // У задач нет цвета
-          date: this.getDateNow(),
-        }
+        const item = createTask(
+          this.title.trim(),
+          this.napravId,
+          this.projectId,
+          this.tasks.length
+        )
         this.title = ''
         this.$store.dispatch('addItem', item)
       } else {
@@ -131,27 +115,6 @@ export default {
     },
     changeStatusToDone({ id, type }) {
       this.$store.dispatch('changeStatus', { id, type, status: 'done' })
-    },
-    getDateNow() {
-      return (
-        new Date().getFullYear() +
-        '-' +
-        (new Date().getMonth() + 1 > 9
-          ? new Date().getMonth() + 1
-          : '0' + (new Date().getMonth() + 1)) +
-        '-' +
-        (new Date().getDate() + 3 > 9
-          ? new Date().getDate() + 3
-          : '0' + (new Date().getDate() + 3)) +
-        'T' +
-        (new Date().getHours() > 9
-          ? new Date().getHours()
-          : '0' + new Date().getHours()) +
-        ':' +
-        (new Date().getMinutes() > 9
-          ? new Date().getMinutes()
-          : '0' + new Date().getMinutes())
-      )
     },
   },
 }
