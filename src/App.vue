@@ -60,7 +60,7 @@ export default {
 .formset {
   width: 200px;
   position: absolute;
-  top: 59px;
+  top: 57px;
   right: -200px;
   transition: 0.5s;
 }
