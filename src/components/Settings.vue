@@ -46,12 +46,26 @@
           class="form-check-input"
           type="radio"
           id="exampleRadios2"
+          value="deadline"
+          :checked="sortBy == 'deadline'"
+          v-model="sortBy"
+          @change="saveChanges"
+        />
+        <label class="form-check-label" for="exampleRadios2">
+          <small>По дедлайну</small>
+        </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="exampleRadios3"
           value="position"
           :checked="sortBy == 'position'"
           v-model="sortBy"
           @change="saveChanges"
         />
-        <label class="form-check-label" for="exampleRadios2">
+        <label class="form-check-label" for="exampleRadios3">
           <small>По порядку</small>
         </label>
       </div>
@@ -65,7 +79,7 @@ export default {
     return {
       showArhived: null,
       showEmpty: null,
-      sortBy: ''
+      sortBy: '',
     }
   },
   methods: {
@@ -73,19 +87,19 @@ export default {
       this.$store.commit('updateSettings', {
         showArhived: this.showArhived,
         showEmpty: this.showEmpty,
-        sortBy: this.sortBy
+        sortBy: this.sortBy,
       })
-    }
+    },
   },
   computed: {
     settings() {
       return this.$store.getters.settings
-    }
+    },
   },
   mounted() {
     this.showArhived = this.settings.showArhived
     this.showEmpty = this.settings.showEmpty
     this.sortBy = this.settings.sortBy
-  }
+  },
 }
 </script>
