@@ -85,11 +85,20 @@ export default {
     tasks() {
       return this.$store.getters.tasks
     },
+    tasksTodoWork() {
+      if (this.settings.showArhived) {
+        return this.tasks
+      } else {
+        return this.tasks.filter(
+          (task) => task.status === 'todo' || task.status === 'work'
+        )
+      }
+    },
     tasksFilterType() {
       if (this.filterType) {
-        return this.tasks.filter((task) => task[this.filterType])
+        return this.tasksTodoWork.filter((task) => task[this.filterType])
       } else {
-        return this.tasks
+        return this.tasksTodoWork
       }
     },
     tasksFilterValue() {
@@ -106,6 +115,9 @@ export default {
     },
     projects() {
       return this.$store.getters.projects
+    },
+    settings() {
+      return this.$store.getters.settings
     },
   },
   methods: {
