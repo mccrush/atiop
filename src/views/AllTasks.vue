@@ -144,10 +144,10 @@ export default {
           desc: '',
           id: Date.now().toString(),
           type: 'tasks',
-          napravId: '',
-          napravTitle: '',
-          projectId: '',
-          projectTitle: '',
+          napravId: '1',
+          napravTitle: 'Без направления',
+          projectId: '1',
+          projectTitle: 'Без проекта',
           status: 'todo',
           position: this.tasks.length + 1, // По умолчанию в конец списка
           color: '', // У задач нет цвета

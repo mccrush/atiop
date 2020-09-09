@@ -9,12 +9,6 @@
   >
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content border-0 shadow">
-        <!-- <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>-->
         <div class="modal-body">
           <form @submit.prevent="updateItem">
             <input
@@ -22,10 +16,79 @@
               class="form-control form-control-sm"
               :class="{'border-danger': error}"
               @focus="error = false"
-              v-model="title"
+              v-model.trim="title"
             />
+            <div class="row mt-2">
+              <div class="col-4">
+                <input
+                  v-if="item && item.type !== 'napravs'"
+                  type="datetime-local"
+                  id="date"
+                  class="form-control form-control-sm border-warning"
+                  v-model="date"
+                />
+              </div>
+              <div class="col-4">
+                <input
+                  v-if="item && item.type !== 'napravs'"
+                  type="datetime-local"
+                  id="deadline"
+                  class="form-control form-control-sm border-danger"
+                  v-model="deadline"
+                />
+              </div>
+              <div class="col-4">
+                <select v-model="status" class="form-control form-control-sm">
+                  <option
+                    v-for="item in statusArr"
+                    :key="'sta'+item.id"
+                    :value="item.id"
+                  >{{item.title}}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row mt-2">
+              <div class="col-4">
+                <select v-model="napravId" class="form-control form-control-sm">
+                  <option value selected>Направление</option>
+                  <option
+                    v-for="item in napravs"
+                    :key="'nap'+item.id"
+                    :value="item.id"
+                  >{{item.title}}</option>
+                </select>
+              </div>
+              <div class="col-4">
+                <select
+                  v-model="projectId"
+                  class="form-control form-control-sm"
+                  :disabled="!napravId"
+                >
+                  <option value selected>Проект</option>
+                  <option
+                    v-for="item in projectsFilter"
+                    :key="'pro'+item.id"
+                    :value="item.id"
+                  >{{item.title}}</option>
+                </select>
+              </div>
+              <div class="col-4">
+                <input
+                  v-if="item"
+                  type="number"
+                  max="999"
+                  min="0"
+                  step="1"
+                  id="position"
+                  class="form-control form-control-sm"
+                  v-model.number="position"
+                />
+              </div>
+            </div>
+
             <div class="row">
-              <div class="col-8 mt-2 pr-0">
+              <div class="col-12 mt-2">
                 <textarea
                   class="form-control h-100"
                   placeholder="Подробное описание"
@@ -44,58 +107,6 @@
                     ></div>
                   </div>
                 </div>
-              </div>
-              <div class="col-4 mt-2">
-                <input
-                  v-if="item && item.type !== 'napravs'"
-                  type="datetime-local"
-                  id="date"
-                  class="form-control form-control-sm border-warning"
-                  v-model="date"
-                />
-
-                <input
-                  v-if="item && item.type !== 'napravs'"
-                  type="datetime-local"
-                  id="deadline"
-                  class="form-control form-control-sm border-danger"
-                  v-model="deadline"
-                />
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-4">
-                <select v-model="napravId" class="form-control form-control-sm mt-2">
-                  <option value selected>Направление</option>
-                  <option
-                    v-for="item in napravs"
-                    :key="'nap'+item.id"
-                    :value="item.id"
-                  >{{item.title}}</option>
-                </select>
-              </div>
-              <div class="col-4">
-                <select
-                  v-model="projectId"
-                  class="form-control form-control-sm mt-2"
-                  :disabled="!napravId"
-                >
-                  <option value selected>Проект</option>
-                  <option
-                    v-for="item in projectsFilter"
-                    :key="'pro'+item.id"
-                    :value="item.id"
-                  >{{item.title}}</option>
-                </select>
-              </div>
-              <div class="col-4">
-                <select v-model="status" class="form-control form-control-sm mt-2">
-                  <option
-                    v-for="item in statusArr"
-                    :key="'sta'+item.id"
-                    :value="item.id"
-                  >{{item.title}}</option>
-                </select>
               </div>
             </div>
             <hr />
@@ -143,6 +154,7 @@ export default {
       projectTitle: '',
       color: '#ffffff',
       type: '',
+      position: 0,
       error: false,
       colors: [
         '#ffffff',
@@ -181,6 +193,7 @@ export default {
           desc: this.desc,
           id: this.item.id,
           type: this.item.type,
+          position: +this.position,
           status: this.status,
           date: this.date,
           deadline: this.deadline,
@@ -216,6 +229,7 @@ export default {
       this.date = this.item.date
       this.deadline = this.item.deadline
       this.type = this.item.type
+      this.position = +this.item.position
       this.color = this.item.color
       this.napravId = this.item.napravId
       this.napravTitle = this.item.napravTitle

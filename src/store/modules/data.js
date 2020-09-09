@@ -20,11 +20,11 @@ export default {
     removeItem(state, { id, type }) {
       state[type] = state[type].filter(item => item.id !== id)
     },
-    updateItem(state, { id, title, desc, type, status, date, deadline, color, napravId, napravTitle, projectId, projectTitle }) {
+    updateItem(state, { id, title, desc, type, position, status, date, deadline, color, napravId, napravTitle, projectId, projectTitle }) {
       const items = state[type].concat()
       const index = items.findIndex(el => el.id === id)
       let el = items[index]
-      items[index] = { ...el, title, desc, type, status, date, deadline, color, napravId, napravTitle, projectId, projectTitle }
+      items[index] = { ...el, title, desc, type, position, status, date, deadline, color, napravId, napravTitle, projectId, projectTitle }
       state[type] = items
     },
     updateSettings(state, { showArhived, showEmpty, sortBy }) {
@@ -70,13 +70,13 @@ export default {
         console.error("removeItem, Error removing document: ", error);
       });
     },
-    updateItem({ commit }, { id, title, desc, type, status, date, deadline, color, napravId, napravTitle, projectId, projectTitle }) {
+    updateItem({ commit }, { id, title, desc, type, position, status, date, deadline, color, napravId, napravTitle, projectId, projectTitle }) {
       const ref = db.collection("users").doc(auth.currentUser.uid)
       const el = ref.collection(type).doc(id).get().then(doc => doc.data())
-      return ref.collection(type).doc(id).update({ ...el, title, type, status, date, deadline, color, napravId, napravTitle, projectId, projectTitle })
+      return ref.collection(type).doc(id).update({ ...el, title, type, position, status, date, deadline, color, napravId, napravTitle, projectId, projectTitle })
         .then(function () {
           console.log("updateItem, Document successfully updated!");
-          commit('updateItem', { id, title, desc, type, status, date, deadline, color, napravId, napravTitle, projectId, projectTitle })
+          commit('updateItem', { id, title, desc, type, position, status, date, deadline, color, napravId, napravTitle, projectId, projectTitle })
         })
         .catch(function (error) {
           // The document probably doesn't exist.
