@@ -16,7 +16,7 @@
         </select>
         <input
           type="text"
-          v-model="titleN"
+          v-model.trim="titleN"
           @keypress.enter="addItem('napravs')"
           class="form-control form-control-sm border-0 bg-light ml-2 w250"
           placeholder="Создать направление"
@@ -24,7 +24,7 @@
         <input
           v-if="filter"
           type="text"
-          v-model="titleP"
+          v-model.trim="titleP"
           @keypress.enter="addItem('projects')"
           class="form-control form-control-sm border-0 bg-light ml-2 w250"
           :class="{'border-danger': error}"
@@ -85,6 +85,7 @@
 
 <script>
 import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
+import createTask from '@/scripts/createTask'
 import vueHeadful from 'vue-headful'
 import ListTasks from '@/components/projects/ListTasks'
 import Modal from '@/components/Modal'
@@ -177,38 +178,32 @@ export default {
         slider.scrollLeft = scrollLeft - walk
       })
     }
-
-    // Filter
-    //this.filter = localStorage.getItem('filter') || ''
   },
   methods: {
     async addItem(type) {
       try {
         if (this.titleN.trim() || this.titleP.trim()) {
           this.creating = true
-          const item = {
-            title:
-              type === 'napravs'
-                ? this.titleN
-                : type === 'projects'
-                ? this.titleP
-                : this.title,
-            desc: '',
-            id: Date.now().toString(),
-            type: type,
-            napravId:
-              type === 'projects'
-                ? this.filter
-                : type === 'tasks'
-                ? this.napravId
-                : '',
-            projectId: this.projectId || '',
-            length: 0,
-            status: 'todo',
-            position: this.list ? this.list.length + 1 : 1,
-            color: '',
-            date: this.getDateNow(),
-          }
+          const title =
+            type === 'napravs'
+              ? this.titleN
+              : type === 'projects'
+              ? this.titleP
+              : this.title
+          const napravId =
+            type === 'projects'
+              ? this.filter
+              : type === 'tasks'
+              ? this.napravId
+              : ''
+
+          const item = createTask(
+            title,
+            type,
+            napravId,
+            this.projectId,
+            this.tasks.length
+          )
 
           await this.$store.dispatch('addItem', item)
         } else {

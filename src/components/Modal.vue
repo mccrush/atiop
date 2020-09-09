@@ -188,6 +188,20 @@ export default {
     updateItem() {
       // Сделать асинхронной и выводить сообщения об ошибках
       if (this.title.trim()) {
+        const napravTitle = this.napravs.find(
+          (item) => item.id === this.napravId
+        )
+          ? this.napravs.find((item) => item.id === this.napravId).title
+          : ''
+
+        const projectTitle = this.projects.find(
+          (item) => item.id === this.projectId
+        )
+          ? this.projects.find((item) => item.id === this.projectId).title
+          : ''
+
+        console.log('navT:', napravTitle, 'projT', projectTitle)
+
         const item = {
           title: this.title.trim(),
           desc: this.desc,
@@ -196,14 +210,12 @@ export default {
           position: +this.position,
           status: this.status,
           date: this.date,
-          deadline: this.deadline,
+          deadline: this.deadline || '',
           color: this.color,
           napravId: this.napravId,
-          napravTitle: this.napravs.find((item) => item.id === this.napravId)
-            .title,
+          napravTitle: napravTitle,
           projectId: this.projectId,
-          projectTitle: this.projects.find((item) => item.id === this.projectId)
-            .title,
+          projectTitle: projectTitle,
         }
         this.$store.dispatch('updateItem', item)
         let myModal = new bootstrap.Modal(

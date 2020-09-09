@@ -44,7 +44,7 @@
         class="form-control form-control-sm border-0 bg-light"
         :class="{'border-danger': error}"
         placeholder="Добавить"
-        v-model="title"
+        v-model.trim="title"
         @focus="error = false"
       />
     </form>
@@ -108,15 +108,17 @@ export default {
       })
     },
     addItem() {
-      if (this.title.trim()) {
+      if (this.title) {
         const napravTitle = this.napravs.find(
           (item) => item.id === this.napravId
         ).title
         const projectTitle = this.projects.find(
           (item) => item.id === this.projectId
         ).title
+        const type = 'tasks'
         const item = createTask(
-          this.title.trim(),
+          this.title,
+          type,
           this.napravId,
           this.projectId,
           this.tasks.length,

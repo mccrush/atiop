@@ -31,7 +31,7 @@
       <div class="col-4 p-2">
         <input
           type="text"
-          v-model="title"
+          v-model.trim="title"
           @keypress.enter="addItem('napravs')"
           class="form-control form-control-sm border-0 bg-light"
           placeholder="Добавить задачу"
@@ -147,9 +147,11 @@ export default {
       myModal.show()
     },
     addItem() {
-      if (this.title.trim()) {
+      if (this.title) {
+        const type = 'tasks'
         const item = createTask(
-          this.title.trim(),
+          this.title,
+          type,
           this.napravId,
           this.projectId,
           this.tasks.length

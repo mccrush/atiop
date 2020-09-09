@@ -1,10 +1,10 @@
-export default (title, napravId, projectId, length, napravTitle = '',
+export default (title, type = 'tasks', napravId = '1', projectId = '1', length = '0', napravTitle = '',
   projectTitle = '') => {
   const item = {
     title,
     desc: '',
     id: Date.now().toString(),
-    type: 'tasks',
+    type,
     napravId,
     napravTitle,
     projectId,
