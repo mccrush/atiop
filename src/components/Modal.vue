@@ -200,8 +200,6 @@ export default {
           ? this.projects.find((item) => item.id === this.projectId).title
           : ''
 
-        console.log('navT:', napravTitle, 'projT', projectTitle)
-
         const item = {
           title: this.title.trim(),
           desc: this.desc,
