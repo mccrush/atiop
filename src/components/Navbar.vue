@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom">
     <div class="container-fluid">
-      <router-link class="navbar-brand" to="/" tag="a">
+      <span class="navbar-brand" to="/" tag="a">
         <img
           src="/img/icons/favicon-30x30.png"
           width="30"
@@ -10,7 +10,7 @@
           alt="ATIOP"
         />
         ATIOP
-      </router-link>
+      </span>
       <button
         class="navbar-toggler mr-5"
         type="button"
@@ -129,5 +129,11 @@ export default {
 <style scoped>
 .opacity-06 {
   opacity: 0.6;
+}
+
+a.router-link-active {
+  color: #ffc107 !important;
+  /* font-weight: bold; */
+  /* border-bottom: 2px solid #ffc107; */
 }
 </style>
