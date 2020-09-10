@@ -31,7 +31,7 @@
               class="nav-link"
               :class="{'disabled': !user}"
               :aria-disabled="user ? 'true': 'false'"
-            >Все</router-link>
+            >Задачи</router-link>
           </li>
           <li class="nav-item">
             <router-link
@@ -47,7 +47,7 @@
               class="nav-link"
               :class="{'disabled': !user}"
               :aria-disabled="user ? 'true': 'false'"
-            >Граф</router-link>
+            >Направ</router-link>
           </li>
 
           <li class="nav-item">
