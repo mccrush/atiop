@@ -1,12 +1,26 @@
 <template>
   <div class="row h-100">
     <vue-headful title="ATIOP Обзор проектов" description="ATIOP — сервис управления задачами" />
-    <div class="row p-0 border-bottom">
-      <div class="col-12">
-        Всего направлений:
-        <span class="badge bg-info mr-1">{{napravs.length}}</span> , проектов:
-        <span class="badge bg-secondary mr-1">{{projects.length}}</span> , задач:
-        <span class="badge bg-warning mr-1">{{tasks.length}}</span>
+    <div class="col-12">
+      <div class="row p-0 border-bottom">
+        <div class="col-2 p-2">
+          <button class="btn btn-sm btn-light btn-block">
+            Направлений
+            <span class="badge bg-info ml-2">{{napravs.length}}</span>
+          </button>
+        </div>
+        <div class="col-2 p-2">
+          <button class="btn btn-sm btn-light btn-block">
+            Проектов
+            <span class="badge bg-secondary ml-2">{{projects.length}}</span>
+          </button>
+        </div>
+        <div class="col-2 p-2">
+          <button class="btn btn-sm btn-light btn-block">
+            Задач
+            <span class="badge bg-warning ml-2">{{tasks.length}}</span>
+          </button>
+        </div>
       </div>
     </div>
     <ListNapravGeneral :napravs="napravs" :projects="projects" @edit-item="editItem" />
