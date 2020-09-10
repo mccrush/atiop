@@ -32,8 +32,8 @@
         <div v-for="month in months" :key="'pl'+month.id" class="col-sm-6 col-md-3 col-lg-2 p-1">
           <div class="shadow-sm pl-0 pt-0 pr-0 pb-1">
             <div class="d-flex justify-content-between p-2 bg-light elem">
-              <h6 class="m-0 p-0">{{month.title}}</h6>
-              <span class="badge bg-dark">{{month.id}}</span>
+              <h6 class="m-0 p-0 text-secondary">{{month.title}}</h6>
+              <span class="badge bg-secondary">{{month.id}}</span>
             </div>
 
             <ListProjects :projects="projects" :monthNumber="month.id" @edit-item="editItem" />
