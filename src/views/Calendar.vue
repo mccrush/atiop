@@ -29,6 +29,7 @@
 <script>
 import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
 import vueHeadful from 'vue-headful'
+import getMonths from '@/scripts/getMonths'
 import ListProjects from '@/components/plans/ListProjects'
 import Modal from '@/components/Modal'
 
@@ -42,20 +43,7 @@ export default {
     return {
       item: null,
       months: [],
-      monthNames: [
-        { name: 'Январь', num: '01' },
-        { name: 'Февраль', num: '02' },
-        { name: 'Март', num: '03' },
-        { name: 'Апрель', num: '04' },
-        { name: 'Май', num: '05' },
-        { name: 'Июнь', num: '06' },
-        { name: 'Июль', num: '07' },
-        { name: 'Август', num: '08' },
-        { name: 'Сентябрь', num: '09' },
-        { name: 'Октябрь', num: '10' },
-        { name: 'Ноябрь', num: '11' },
-        { name: 'Декабрь', num: '12' },
-      ],
+      monthNames: getMonths,
     }
   },
   mounted() {
