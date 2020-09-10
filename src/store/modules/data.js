@@ -105,6 +105,9 @@ export default {
     projects: state => state.projects,
     tasks: state => state.tasks,
     settings: state => state.settings,
-    status: state => state.status
+    status: state => state.status,
+    nepravsLength: state => state.napravs.length,
+    projectsLength: state => state.projects.length,
+    tasksLength: state => state.tasks.length
   }
 }

@@ -1,6 +1,14 @@
 <template>
   <div class="row h-100">
     <vue-headful title="ATIOP Обзор проектов" description="ATIOP — сервис управления задачами" />
+    <div class="row p-0 border-bottom">
+      <div class="col-12">
+        Всего направлений:
+        <span class="badge bg-info mr-1">{{napravs.length}}</span> , проектов:
+        <span class="badge bg-secondary mr-1">{{projects.length}}</span> , задач:
+        <span class="badge bg-warning mr-1">{{tasks.length}}</span>
+      </div>
+    </div>
     <ListNapravGeneral :napravs="napravs" :projects="projects" @edit-item="editItem" />
     <Modal :item="item" :napravs="napravs" :projects="projects" />
   </div>
@@ -28,6 +36,9 @@ export default {
       return this.$store.getters.napravs
     },
     projects() {
+      return this.$store.getters.projects
+    },
+    tasks() {
       return this.$store.getters.projects
     },
   },

@@ -1,32 +1,31 @@
 <template>
   <div class="h-100">
     <vue-headful title="ATIOP Проекты" description="ATIOP — сервис управления задачами" />
-    <div class="row">
-      <div class="col-12 p-2 border-bottom d-flex align-content-center height-31">
-        <h6 class="m-1">Направление:</h6>
+    <div class="row p-0 border-bottom">
+      <!-- <h6 class="m-1">Направление:</h6> -->
+      <div class="col-2 p-2">
         <Loading v-if="napravs && !napravs.length" />
-        <select
-          v-else
-          class="form-control form-control-sm ml-2 w150"
-          v-model="filter"
-          @change="saveFilter"
-        >
-          <option value selected>Все</option>
+        <select v-else class="form-control form-control-sm" v-model="filter" @change="saveFilter">
+          <option value selected>Все направления</option>
           <option v-for="item in napravs" :key="'nap'+item.id" :value="item.id">{{item.title}}</option>
         </select>
+      </div>
+      <div class="col-3 p-2">
         <input
           type="text"
           v-model.trim="titleN"
           @keypress.enter="addItem('napravs')"
-          class="form-control form-control-sm border-0 bg-light ml-2 w250"
+          class="form-control form-control-sm border-0 bg-light"
           placeholder="Создать направление"
         />
+      </div>
+      <div class="col-3 p-2">
         <input
           v-if="filter"
           type="text"
           v-model.trim="titleP"
           @keypress.enter="addItem('projects')"
-          class="form-control form-control-sm border-0 bg-light ml-2 w250"
+          class="form-control form-control-sm border-0 bg-light"
           :class="{'border-danger': error}"
           placeholder="Создать проект"
         />
@@ -265,10 +264,6 @@ export default {
 
 .w250 {
   width: 230px;
-}
-
-.height-31 {
-  height: 48px;
 }
 
 .elem {

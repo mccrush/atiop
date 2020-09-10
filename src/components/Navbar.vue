@@ -47,7 +47,7 @@
               class="nav-link"
               :class="{'disabled': !user}"
               :aria-disabled="user ? 'true': 'false'"
-            >Древо</router-link>
+            >Граф</router-link>
           </li>
 
           <li class="nav-item">
