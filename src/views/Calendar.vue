@@ -4,7 +4,30 @@
       title="ATIOP Календарь планирования"
       description="ATIOP — сервис управления задачами"
     />
+
     <div class="col-12">
+      <div class="row p-0 border-bottom">
+        <div class="col-1 p-2">
+          <button class="btn btn-sm btn-block btn-light">Месяц</button>
+        </div>
+        <div class="col-1 p-2">
+          <select class="form-control form-control-sm">
+            <option value selected>Сентябрь</option>
+            <option value="status">Октябрь</option>
+            <option value="napravId">Ноябрь</option>
+          </select>
+        </div>
+        <div class="col-1 p-2">
+          <button class="btn btn-sm btn-block btn-light">Год</button>
+        </div>
+        <div class="col-1 p-2">
+          <select class="form-control form-control-sm">
+            <option value selected>2020</option>
+            <option value="status">2021</option>
+            <option value="napravId">2022</option>
+          </select>
+        </div>
+      </div>
       <div class="row p-1">
         <div v-for="month in months" :key="'pl'+month.id" class="col-sm-6 col-md-3 col-lg-2 p-1">
           <div class="shadow-sm pl-0 pt-0 pr-0 pb-1">
