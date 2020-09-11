@@ -22,6 +22,9 @@
         </div>
         <div class="col-1 p-2">
           <select class="form-control form-control-sm">
+            <option value selected>2017</option>
+            <option value="status">2018</option>
+            <option value="napravId">2019</option>
             <option value selected>2020</option>
             <option value="status">2021</option>
             <option value="napravId">2022</option>
