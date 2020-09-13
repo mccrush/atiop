@@ -6,19 +6,19 @@
         <div class="col-2 p-2">
           <button class="btn btn-sm btn-light btn-block">
             Направлений
-            <span class="badge bg-info ml-2">{{napravs.length}}</span>
+            <span class="badge bg-info">{{napravs.length}}</span>
           </button>
         </div>
         <div class="col-2 p-2">
           <button class="btn btn-sm btn-light btn-block">
             Проектов
-            <span class="badge bg-secondary ml-2">{{projects.length}}</span>
+            <span class="badge bg-secondary">{{projects.length}}</span>
           </button>
         </div>
         <div class="col-2 p-2">
           <button class="btn btn-sm btn-light btn-block">
             Задач
-            <span class="badge bg-warning ml-2">{{tasks.length}}</span>
+            <span class="badge bg-warning">{{tasks.length}}</span>
           </button>
         </div>
       </div>
@@ -53,7 +53,7 @@ export default {
       return this.$store.getters.projects
     },
     tasks() {
-      return this.$store.getters.projects
+      return this.$store.getters.tasks
     },
   },
   methods: {
