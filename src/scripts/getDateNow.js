@@ -5,9 +5,9 @@ export default
     ? new Date().getMonth() + 1
     : '0' + (new Date().getMonth() + 1)) +
   '-' +
-  (new Date().getDate() + 3 > 9
-    ? new Date().getDate() + 3
-    : '0' + (new Date().getDate() + 3)) +
+  (new Date().getDate() > 9
+    ? new Date().getDate()
+    : '0' + (new Date().getDate())) +
   'T' +
   (new Date().getHours() > 9
     ? new Date().getHours()

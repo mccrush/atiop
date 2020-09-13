@@ -17,6 +17,9 @@
       class="badge bg-danger mr-1"
       v-if="task.deadline && settings.showDeadline"
     >{{new Date(task.deadline).toLocaleDateString()}}</span>
+    <span
+      class="badge bg-dark mr-1" 
+    >{{new Date(task.dateCreate).toLocaleDateString()}}</span>
     <hr class="m-1" />
     <button class="btn btn-sm btn-light border" @click="changeStatus">Done</button>
   </div>
