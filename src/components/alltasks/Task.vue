@@ -18,14 +18,17 @@
       v-if="task.deadline && settings.showDeadline"
     >{{new Date(task.deadline).toLocaleDateString()}}</span>
     <span
-      class="badge bg-dark mr-1" 
-    >{{new Date(task.dateCreate).toLocaleDateString()}}</span>
+      class="badge bg-dark mr-1"
+      v-if="task.status === 'done'"
+    >{{new Date(task.dateCreate).toLocaleDateString()}} - {{new Date(task.dateDone).toLocaleDateString()}}</span>
     <hr class="m-1" />
     <button class="btn btn-sm btn-light border" @click="changeStatus">Done</button>
   </div>
 </template>
 
 <script>
+import getDateNow from '@/scripts/getDateNow'
+
 export default {
   props: ['task', 'settings'],
   methods: {
@@ -34,6 +37,7 @@ export default {
         id: this.task.id,
         type: this.task.type,
         status: 'done',
+        dateDone: getDateNow,
       })
     },
   },

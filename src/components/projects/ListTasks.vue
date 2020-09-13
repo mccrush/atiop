@@ -53,6 +53,7 @@
 
 <script>
 import createTask from '@/scripts/createTask'
+import getDateNow from '@/scripts/getDateNow'
 
 export default {
   props: [
@@ -132,7 +133,12 @@ export default {
       }
     },
     changeStatusToDone({ id, type }) {
-      this.$store.dispatch('changeStatus', { id, type, status: 'done' })
+      this.$store.dispatch('changeStatus', {
+        id,
+        type,
+        status: 'done',
+        dateDone: getDateNow,
+      })
     },
   },
 }
