@@ -88,7 +88,7 @@
           <router-link
             v-else
             tag="button"
-            class="d-sm-inline btn btn-sm btn-success"
+            class="d-sm-inline btn btn-sm btn-success login"
             title="Войти"
             to="/login"
           >Войти</router-link>
@@ -133,6 +133,11 @@ export default {
 
 a.router-link-active {
   color: #ffc107 !important;
+  /* font-weight: bold; */
+  /* border-bottom: 2px solid #ffc107; */
+}
+a.router-link-active.login {
+  color: #fff !important;
   /* font-weight: bold; */
   /* border-bottom: 2px solid #ffc107; */
 }

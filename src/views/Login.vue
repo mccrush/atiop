@@ -30,31 +30,28 @@
             maxlength="20"
             :placeholder="mod === '#reg' ? 'От 6 до 20 символов' : ''"
           />
-
-          <div class="input-group-append">
-            <button
-              class="btn btn-light p-0 pl-2 pr-2 border"
-              type="button"
-              @click="passType = !passType"
-            >
-              <img
-                v-if="passType"
-                src="@/assets/icons/eye-slash.svg"
-                width="24"
-                height="24"
-                alt="Показать пароль"
-                class="opacity-06"
-              />
-              <img
-                v-else
-                src="@/assets/icons/eye.svg"
-                width="24"
-                height="24"
-                alt="Показать пароль"
-                class="opacity-06"
-              />
-            </button>
-          </div>
+          <button
+            class="btn btn-light p-0 pl-2 pr-2 border"
+            type="button"
+            @click="passType = !passType"
+          >
+            <img
+              v-if="passType"
+              src="@/assets/icons/eye-slash.svg"
+              width="24"
+              height="24"
+              alt="Показать пароль"
+              class="opacity-06"
+            />
+            <img
+              v-else
+              src="@/assets/icons/eye.svg"
+              width="24"
+              height="24"
+              alt="Показать пароль"
+              class="opacity-06"
+            />
+          </button>
         </div>
         <br />
         <button
@@ -91,14 +88,14 @@ import vueHeadful from 'vue-headful'
 
 export default {
   components: {
-    vueHeadful
+    vueHeadful,
   },
   data() {
     return {
       email: '',
       password: '',
       mod: this.$route.hash || '#in',
-      passType: true
+      passType: true,
     }
   },
   beforeMount() {
@@ -110,7 +107,7 @@ export default {
     async login() {
       const formData = {
         email: this.email,
-        password: this.password
+        password: this.password,
       }
 
       if (this.mod === '#in') {
@@ -122,27 +119,27 @@ export default {
           if (err.code === 'auth/invalid-email') {
             this.$store.commit('addMessage', {
               text: 'Некорректный адрес почты!',
-              type: 'bg-danger'
+              type: 'bg-danger',
             })
           } else if (err.code === 'auth/invalid-password') {
             this.$store.commit('addMessage', {
               text: 'Некорректный пароль!',
-              type: 'bg-danger'
+              type: 'bg-danger',
             })
           } else if (err.code === 'auth/wrong-password') {
             this.$store.commit('addMessage', {
               text: 'Неверный пароль!',
-              type: 'bg-danger'
+              type: 'bg-danger',
             })
           } else if (err.code === 'auth/user-not-found') {
             this.$store.commit('addMessage', {
               text: 'Пользователь с такой почтой не найден',
-              type: 'bg-danger'
+              type: 'bg-danger',
             })
           } else {
             this.$store.commit('addMessage', {
               text: 'Ошибка: ' + err.code,
-              type: 'bg-danger'
+              type: 'bg-danger',
             })
           }
         }
@@ -159,28 +156,28 @@ export default {
           if (err.code === 'auth/invalid-email') {
             this.$store.commit('addMessage', {
               text: 'Некорректный адрес почты!',
-              type: 'bg-danger'
+              type: 'bg-danger',
             })
           } else if (err.code === 'auth/email-already-exists') {
             this.$store.commit('addMessage', {
               text: 'Пользователь с такой почтой уже существует',
-              type: 'bg-danger'
+              type: 'bg-danger',
             })
           } else if (err.code === 'auth/weak-password') {
             this.$store.commit('addMessage', {
               text: 'Некорректный пароль',
-              type: 'bg-danger'
+              type: 'bg-danger',
             })
           } else {
             this.$store.commit('addMessage', {
               text: 'Ошибка: ' + err.code,
-              type: 'bg-danger'
+              type: 'bg-danger',
             })
           }
         }
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
