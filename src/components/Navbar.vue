@@ -77,7 +77,6 @@
               type="button"
               id="userData"
               data-toggle="dropdown"
-              aria-haspopup="true"
               aria-expanded="false"
             >{{'@'+ user.email.split('@')[0]}}</button>
             <div class="dropdown-menu" aria-labelledby="userData">
