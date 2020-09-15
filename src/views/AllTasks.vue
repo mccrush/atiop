@@ -68,8 +68,8 @@ export default {
       filterValue: localStorage.getItem('filterValue') || '',
       item: null,
       title: '',
-      napravId: '1',
-      projectId: '1',
+      napravId: '',
+      projectId: '',
     }
   },
   computed: {

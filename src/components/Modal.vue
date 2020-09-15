@@ -115,7 +115,7 @@
               <div class="col-4">
                 <button
                   class="btn btn-block btn-sm btn-outline-danger"
-                  @click.prevent="removeItem({id: item.id, type: item.type, idproj: item.idprojects})"
+                  @click.prevent="removeItem({id: item.id, type: item.type, idproj: item.projectId})"
                 >Удалить</button>
               </div>
               <div class="col-4">
@@ -187,21 +187,26 @@ export default {
   methods: {
     updateItem() {
       // Сделать асинхронной и выводить сообщения об ошибках
-      if (this.title.trim()) {
-        const napravTitle = this.napravs.find(
-          (item) => item.id === this.napravId
-        )
-          ? this.napravs.find((item) => item.id === this.napravId).title
-          : ''
+      if (this.title) {
+        let napravTitle
+        if (this.napravId) {
+          napravTitle = this.napravs.find((item) => item.id === this.napravId)
+            .title
+        } else {
+          napravTitle = 'Без направления'
+        }
 
-        const projectTitle = this.projects.find(
-          (item) => item.id === this.projectId
-        )
-          ? this.projects.find((item) => item.id === this.projectId).title
-          : ''
+        let projectTitle
+        if (this.projectId) {
+          projectTitle = this.projects.find(
+            (item) => item.id === this.projectId
+          ).title
+        } else {
+          projectTitle = 'Без проекта'
+        }
 
         const item = {
-          title: this.title.trim(),
+          title: this.title,
           desc: this.desc,
           id: this.item.id,
           type: this.item.type,
@@ -215,6 +220,7 @@ export default {
           projectId: this.projectId,
           projectTitle: projectTitle,
         }
+
         this.$store.dispatch('updateItem', item)
         let myModal = new bootstrap.Modal(
           document.getElementById('exampleModal')

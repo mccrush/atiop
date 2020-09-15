@@ -7,8 +7,14 @@
     <span class="small">{{task.title}}</span>
     <hr class="m-1" />
     <span v-if="settings.showPosition" class="badge bg-light text-dark mr-1">{{task.position}}</span>
-    <span v-if="settings.showNaprav" class="badge bg-info mr-1">{{task.napravTitle}}</span>
-    <span v-if="settings.showProject" class="badge bg-secondary mr-1">{{task.projectTitle}}</span>
+    <span
+      v-if="settings.showNaprav"
+      class="badge bg-info mr-1"
+    >{{task.napravTitle || 'Без направления'}}</span>
+    <span
+      v-if="settings.showProject"
+      class="badge bg-secondary mr-1"
+    >{{task.projectTitle || 'Без проекта'}}</span>
     <span
       class="badge bg-warning mr-1"
       v-if="task.date && settings.showDate"

@@ -63,6 +63,7 @@ export default {
         console.log("removeItem, Document successfully deleted!");
         commit('removeItem', { id, type })
         // Вообще это надо, но пока не используется
+        // удалять всех детей родителя
         // if (type === 'tasks') {
         //   dispatch('updateProjectLength', { id: idproj, whatdo: 'remove' })
         // }

@@ -1,5 +1,5 @@
 import getDateNow from './getDateNow'
-export default (title, type = 'tasks', napravId = '1', projectId = '1', length = '0', napravTitle = '',
+export default (title, type = 'tasks', napravId = '', projectId = '', length = '0', napravTitle = '',
   projectTitle = '') => {
   const item = {
     title,
