@@ -10,7 +10,7 @@
       <li
         v-for="(item, index) in sortTasks"
         :key="'in'+index"
-        class="list-group-item d-flex justify-content-between align-items-center cursor-pointer border-0 rounded mb-2 p-2 shadow-sm"
+        class="list-group-item d-flex justify-content-between align-items-center cursor-pointer border rounded mb-2 p-2"
         :class="{' bg-light': item.status === 'done'}"
         draggable
         @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
