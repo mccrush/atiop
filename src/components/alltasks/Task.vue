@@ -15,7 +15,7 @@
       v-if="settings.showProject"
       class="badge bg-secondary mr-1"
     >{{task.projectTitle || 'Без проекта'}}</span>
-    <span v-if="!settings.showPrice" class="badge bg-warning mr-1">{{task.price}}</span>
+    <span v-if="settings.showPrice" class="badge bg-warning mr-1">{{task.price}}</span>
     <span
       class="badge bg-warning mr-1"
       v-if="task.date && settings.showDate"

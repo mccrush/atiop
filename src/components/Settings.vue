@@ -92,6 +92,19 @@
       </label>
     </div>
 
+    <div class="form-group form-check mb-2">
+      <input
+        type="checkbox"
+        class="form-check-input"
+        id="price"
+        v-model="showPrice"
+        @change="saveChanges"
+      />
+      <label for="price" class="form-check-label">
+        <small>Цену</small>
+      </label>
+    </div>
+
     <div class="form-group">
       <small>Способ сортировки</small>
       <div class="form-check">
@@ -151,6 +164,7 @@ export default {
       showDeadline: null,
       showNaprav: null,
       showProject: null,
+      showPrice: null,
       sortBy: '',
     }
   },
@@ -164,6 +178,7 @@ export default {
         showDeadline: this.showDeadline,
         showNaprav: this.showNaprav,
         showProject: this.showProject,
+        showPrice: this.showPrice,
         sortBy: this.sortBy,
       })
     },
@@ -182,6 +197,7 @@ export default {
     this.showDeadline = this.settings.showDeadline
     this.showNaprav = this.settings.showNaprav
     this.showProject = this.settings.showProject
+    this.showPrice = this.settings.showPrice
   },
 }
 </script>
