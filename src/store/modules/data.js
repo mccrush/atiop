@@ -33,6 +33,14 @@ export default {
     }
   },
   actions: {
+    // Возможно, лучше использовать как инструмент администратора
+    async addNewField({ commit }, id) {
+      try {
+        const ref = db.collection("users").doc(auth.currentUser.uid).collection('tasks').doc(id)
+        const res = await ref.set({ price: 0 }, { merge: true })
+        console.log('New field Add');
+      } catch (err) { throw err }
+    },
     async getItems({ commit }, type) {
       let items = []
       try {

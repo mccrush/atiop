@@ -26,7 +26,10 @@
           >{{item.title}}</option>
         </select>
       </div>
-      <div class="col-2 p-2">---</div>
+      <div class="col-2 p-2">
+        <!-- <button class="btn btn-dark btn-sm btn-block" @click="addNewField">Add new field</button> -->
+        ---
+      </div>
       <div class="col-2 p-2">---</div>
       <div class="col-4 p-2">
         <input
@@ -141,6 +144,11 @@ export default {
     },
   },
   methods: {
+    addNewField() {
+      this.tasks.forEach((item) => {
+        this.$store.dispatch('addNewField', item.id)
+      })
+    },
     editItem({ id, type }) {
       this.item = this.tasks.find((item) => item.id === id)
       let myModal = new bootstrap.Modal(document.getElementById('exampleModal'))

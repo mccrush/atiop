@@ -17,6 +17,7 @@ export default (title, type = 'tasks', napravId = '', projectId = '', length = '
     dateCreate: getDateNow,
     dateDone: '',
     deadline: '',
+    price: 0
   }
   return item
 }
