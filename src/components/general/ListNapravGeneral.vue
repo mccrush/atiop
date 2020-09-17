@@ -1,10 +1,10 @@
 <template>
-  <div class="col-2">
-    <ul v-if="napravs.length" class="list-group list-group-horizontal mt-3">
+  <div class="row overflow-auto row-naprav">
+    <ul v-if="napravs.length" class="list-group list-group-horizontal mt-3 width-none">
       <li
         v-for="(item, index) in napravs"
         :key="'in'+index"
-        class="list-group-item justify-content-between align-items-center border-0 p-0 ml-1 mr-1 cursor-pointer"
+        class="list-group-item justify-content-between align-items-center border-0 p-0 ml-1 mr-1 cursor-pointer d-inline-block naprav"
       >
         <h5
           class="text-center bg-light rounded p-2 elem"
@@ -45,5 +45,17 @@ export default {
 <style scoped>
 h5 {
   min-width: 150px;
+}
+
+.row-naprav {
+  height: calc(100vh - 105px) !important;
+}
+.naprav {
+  vertical-align: top;
+}
+
+.width-none {
+  width: auto !important;
+  max-width: none !important;
 }
 </style>
