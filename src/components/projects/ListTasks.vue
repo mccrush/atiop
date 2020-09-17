@@ -11,7 +11,7 @@
         v-for="(item, index) in sortTasks"
         :key="'in'+index"
         class="list-group-item border rounded-sm mb-2 p-2 task"
-        :class="{' bg-light': item.status === 'done'}"
+        :class="{' bg-light': item.status === 'done', 'border-warning': item.status === 'work' && status != 'work'}"
         draggable
         @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
         @dragstart="dragItem($event, item.id)"
@@ -23,10 +23,6 @@
         <div
           class="align-self-start position-absolute rounded-left h-100 label"
           :class="{' deadline': Math.ceil(Math.abs(new Date(item.date).getTime() - new Date().getTime()) / (1000 * 3600 * 24))  <= 2 && item.status != 'done'}"
-        ></div>
-        <div
-          class="align-self-start rounded-sm position-absolute rounded-left h-100 label"
-          :class="{' work': item.status === 'work' && status != 'work'}"
         ></div>
         <hr class="m-1" />
         <hr class="m-1" />
@@ -161,11 +157,6 @@ export default {
   z-index: 1;
 }
 
-.work {
-  background: #ffc107;
-  z-index: 2;
-}
-
 .minheight-42 {
   min-height: 42px;
 }
@@ -193,8 +184,4 @@ li.list-group-item > .to-arhiv {
 li.list-group-item:hover > .to-arhiv {
   display: block;
 }
-
-/* input::placeholder {
-  color: rgba(73, 80, 87, 0.3);
-} */
 </style>
