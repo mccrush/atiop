@@ -184,7 +184,7 @@ export default {
   methods: {
     async addItem(type) {
       try {
-        if (this.titleN.trim() || this.titleP.trim()) {
+        if (this.titleN || this.titleP) {
           this.creating = true
           const title =
             type === 'napravs'
@@ -234,27 +234,6 @@ export default {
     },
     saveFilter() {
       localStorage.setItem('filter', this.filter)
-    },
-    getDateNow() {
-      return (
-        new Date().getFullYear() +
-        '-' +
-        (new Date().getMonth() + 1 > 9
-          ? new Date().getMonth() + 1
-          : '0' + (new Date().getMonth() + 1)) +
-        '-' +
-        (new Date().getDate() + 3 > 9
-          ? new Date().getDate() + 3
-          : '0' + (new Date().getDate() + 3)) +
-        'T' +
-        (new Date().getHours() > 9
-          ? new Date().getHours()
-          : '0' + new Date().getHours()) +
-        ':' +
-        (new Date().getMinutes() > 9
-          ? new Date().getMinutes()
-          : '0' + new Date().getMinutes())
-      )
     },
   },
 }
