@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white shadow-sm p-3 pt-3">
+  <div class="bg-white shadow-sm p-3 pt-3 settings">
     <h5 class="text-center">Настройки</h5>
     <small>Показывать</small>
     <div class="form-group form-check mb-1">
@@ -217,6 +217,10 @@ export default {
 </script>
 
 <style scoped>
+.settings {
+  z-index: 99;
+}
+
 .form-check-label {
   line-height: 1.2;
 }
