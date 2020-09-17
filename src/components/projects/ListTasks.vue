@@ -1,7 +1,7 @@
 <template>
   <div class>
     <ul
-      class="list-grou m-0 pl-2 pr-2 minheight-42"
+      class="list-grou m-0 pl-2 pr-2"
       @drop.prevent="dropItem($event)"
       @dragover.prevent
       @dragenter.self="$event.target.classList.add('bg-light')"
@@ -10,7 +10,7 @@
       <li
         v-for="(item, index) in sortTasks"
         :key="'in'+index"
-        class="list-group-item d-flex justify-content-between align-items-center cursor-pointer border rounded mb-2 p-2"
+        class="list-group-item d-flex justify-content-between align-items-center cursor-pointer border rounded-sm mb-2 p-2"
         :class="{' bg-light': item.status === 'done'}"
         draggable
         @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"

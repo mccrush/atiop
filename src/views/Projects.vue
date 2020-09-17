@@ -1,5 +1,5 @@
 <template>
-  <div class="h-100">
+  <div class>
     <vue-headful title="ATIOP Проекты" description="ATIOP — сервис управления задачами" />
     <div class="row p-0 border-bottom">
       <!-- <h6 class="m-1">Направление:</h6> -->
@@ -32,14 +32,19 @@
         <Loading v-if="creating" />
       </div>
     </div>
-    <div class="row h-100">
+    <div class="row overflow-auto row-project">
       <h6
         v-if="displayProjects && displayProjects.length === 0"
         class="ml-3 mt-2"
         @show="error = true"
       >В данном направлении проектов еще нет</h6>
-      <div v-else-if="displayProjects && displayProjects.length > 0" class="col-12 d-flex ower">
-        <div v-for="(item, index) in displayProjects" :key="'in'+index" class="mt-2 mr-3 w250">
+
+      <div v-else-if="displayProjects && displayProjects.length > 0" class="width-none">
+        <div
+          v-for="(item, index) in displayProjects"
+          :key="'in'+index"
+          class="mt-2 mr-2 border rounded-sm d-inline-block project"
+        >
           <h6
             class="text-center p-2 rounded m-0 mb-2 elem d-flex flex-row align-items-stretch"
             :style="{'background': item.color ? item.color+'!important' : '#fff'}"
@@ -76,6 +81,7 @@
           />
         </div>
       </div>
+
       <Loading v-else />
       <Modal :item="item" :napravs="napravs" :projects="projects" />
     </div>
@@ -258,12 +264,12 @@ export default {
 </script>
 
 <style>
-.w150 {
-  width: 150px;
+.row-project {
+  height: calc(100vh - 105px) !important;
 }
-
-.w250 {
-  width: 230px;
+.project {
+  width: 210px;
+  vertical-align: top;
 }
 
 .elem {
@@ -274,6 +280,10 @@ export default {
   opacity: 0.5;
 }
 
+.width-none {
+  width: auto !important;
+  max-width: none !important;
+}
 /* input.w250::placeholder {
   color: #ced4da;
 } */

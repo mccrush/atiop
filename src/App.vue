@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-hidden">
+  <div class>
     <Navbar @show-settings="showSettings = !showSettings" />
     <div class="container-fluid">
       <transition name="component-fade" mode="out-in">
