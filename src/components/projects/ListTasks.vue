@@ -10,7 +10,7 @@
       <li
         v-for="(item, index) in sortTasks"
         :key="'in'+index"
-        class="list-group-item d-flex justify-content-between align-items-center cursor-pointer border rounded-sm mb-2 p-2"
+        class="list-group-item border rounded-sm mb-2 p-2 task"
         :class="{' bg-light': item.status === 'done'}"
         draggable
         @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
@@ -18,7 +18,7 @@
         @dragenter.prevent
       >
         <small
-          class="align-self-center elem ml-1"
+          class="align-self-center elem"
         >{{settings.sortBy === 'position' ? index + 1 : ''}} {{item.title}}</small>
         <div
           class="align-self-start position-absolute rounded-left h-100 label"
@@ -28,14 +28,20 @@
           class="align-self-start rounded-sm position-absolute rounded-left h-100 label"
           :class="{' work': item.status === 'work' && status != 'work'}"
         ></div>
-        <div
+        <!-- <div
           v-if="item.status != 'done'"
           @click.prevent="changeStatusToDone({id: item.id, type: item.type})"
           class="to-arhiv position-absolute bg-light"
           title="В архив"
         >
           <img src="@/assets/icons/check2-circle.svg" width="20" height="20" alt="В архив" />
-        </div>
+        </div>-->
+        <hr class="m-1" />
+        <hr class="m-1" />
+        <button
+          class="btn btn-sm btn-light border p-0 pl-2 pr-2"
+          @click="changeStatusToDone({id: item.id, type: item.type})"
+        >Done</button>
       </li>
     </ul>
     <form v-if="!hideform" @submit.prevent="addItem" class="mt-0 mb-2 pl-2 pr-2">
@@ -145,6 +151,13 @@ export default {
 </script>
 
 <style scoped>
+.task {
+  width: 192px;
+  line-height: 1.2;
+  user-select: none;
+  cursor: default;
+}
+
 .label {
   width: 2px;
   top: 0;

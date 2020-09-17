@@ -29,7 +29,7 @@
       v-if="task.status === 'done'"
     >{{new Date(task.dateCreate).toLocaleDateString()}} - {{new Date(task.dateDone).toLocaleDateString()}}</span>
     <hr class="m-1" />
-    <button class="btn btn-sm btn-light border" @click="changeStatus">Done</button>
+    <button class="btn btn-sm btn-light border p-0 pl-2 pr-2" @click="changeStatus">Done</button>
   </div>
 </template>
 
