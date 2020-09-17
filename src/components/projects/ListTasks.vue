@@ -28,14 +28,6 @@
           class="align-self-start rounded-sm position-absolute rounded-left h-100 label"
           :class="{' work': item.status === 'work' && status != 'work'}"
         ></div>
-        <!-- <div
-          v-if="item.status != 'done'"
-          @click.prevent="changeStatusToDone({id: item.id, type: item.type})"
-          class="to-arhiv position-absolute bg-light"
-          title="В архив"
-        >
-          <img src="@/assets/icons/check2-circle.svg" width="20" height="20" alt="В архив" />
-        </div>-->
         <hr class="m-1" />
         <hr class="m-1" />
         <button

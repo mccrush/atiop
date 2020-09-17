@@ -49,17 +49,14 @@
             class="text-center p-2 rounded m-0 mb-2 elem d-flex flex-row align-items-stretch"
             :style="{'background': item.color ? item.color+'!important' : '#fff'}"
             @dblclick.prevent="editItem({id:item.id, type: item.type})"
-            :title="'Count: '+ item.length"
           >
             <div class="w-100">{{item.title}}</div>
             <router-link
               :to="'/project/'+item.id"
-              tag="a"
+              tag="button"
               title="В проект"
-              class="flex-shrink-1 align-self-stretch pl-1 pr-1 opacity-06"
-            >
-              <img src="@/assets/icons/box-arrow-in-right.svg" width="16" height="16" alt />
-            </router-link>
+              class="btn btn-sm btn-light border p-0 pl-2 pr-2"
+            >In</router-link>
           </h6>
           <ListTasks
             :tasks="tasksTodoWork"
