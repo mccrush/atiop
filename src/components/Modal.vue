@@ -99,25 +99,24 @@
               </div>
             </div>
 
-            <div class="row">
-              <div class="col-12 mt-2">
-                <textarea
+            <div v-if="item" class="row">
+              <!-- Возможно сделать описание опциональным -->
+              <div class="col-12">
+                <!-- <textarea
                   class="form-control h-100"
                   placeholder="Подробное описание"
                   v-model="desc"
-                ></textarea>
+                ></textarea>-->
 
-                <div v-if="item">
-                  <div v-if="item.type === 'projects'" class="d-flex mt-1">
-                    <div
-                      v-for="(scolor, index) in colors"
-                      :key="'cb'+index"
-                      class="m-1 p-1 rounded shadow-sm colorblock"
-                      :style="'background:'+ scolor"
-                      :class="{'rounded-circle': color === scolor}"
-                      @click="color = scolor"
-                    ></div>
-                  </div>
+                <div v-if="item.type === 'projects'" class="d-flex justify-content-between mt-2">
+                  <div
+                    v-for="(scolor, index) in colors"
+                    :key="'cb'+index"
+                    class="m-1 p-1 rounded shadow-sm colorblock"
+                    :style="'background:'+ scolor"
+                    :class="{'rounded-circle': color === scolor}"
+                    @click="color = scolor"
+                  ></div>
                 </div>
               </div>
             </div>
@@ -273,7 +272,7 @@ export default {
 
 <style scoped>
 .colorblock {
-  width: 20px;
+  width: 32px;
   height: 20px;
   cursor: pointer;
 }
