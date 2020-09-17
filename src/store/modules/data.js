@@ -117,6 +117,7 @@ export default {
     status: state => state.status,
     nepravsLength: state => state.napravs.length,
     projectsLength: state => state.projects.length,
-    tasksLength: state => state.tasks.length
+    tasksLength: state => state.tasks.length,
+    projectLengthById: state => id => state.tasks.filter(task => task.projectId === id).length
   }
 }

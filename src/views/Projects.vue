@@ -135,14 +135,18 @@ export default {
           return this.projects.filter((proj) => proj.napravId === this.filter)
         } else {
           return this.projects.filter(
-            (proj) => proj.napravId === this.filter && proj.length > 0
+            (proj) =>
+              proj.napravId === this.filter &&
+              this.$store.getters.projectLengthById(proj.id) > 0
           )
         }
       } else {
         if (this.settings.showEmpty) {
           return this.projects
         } else {
-          return this.projects.filter((proj) => proj.length > 0)
+          return this.projects.filter(
+            (proj) => this.$store.getters.projectLengthById(proj.id) > 0
+          )
         }
       }
     },
