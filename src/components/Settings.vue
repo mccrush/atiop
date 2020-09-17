@@ -149,6 +149,20 @@
           <small>По позиции</small>
         </label>
       </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="exampleRadios4"
+          value="price"
+          :checked="sortBy == 'price'"
+          v-model="sortBy"
+          @change="saveChanges"
+        />
+        <label class="form-check-label" for="exampleRadios4">
+          <small>По цене</small>
+        </label>
+      </div>
     </div>
   </div>
 </template>

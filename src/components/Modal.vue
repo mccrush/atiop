@@ -73,7 +73,7 @@
                   >{{item.title}}</option>
                 </select>
               </div>
-              <div class="col-4">
+              <div class="col-2">
                 <input
                   v-if="item"
                   type="number"
@@ -83,6 +83,18 @@
                   id="position"
                   class="form-control form-control-sm"
                   v-model.number="position"
+                />
+              </div>
+              <div class="col-2 pl-0">
+                <input
+                  v-if="item"
+                  type="number"
+                  max="99999"
+                  min="0"
+                  step="100"
+                  id="price"
+                  class="form-control form-control-sm"
+                  v-model.number="price"
                 />
               </div>
             </div>
@@ -155,6 +167,7 @@ export default {
       color: '#ffffff',
       type: '',
       position: 0,
+      price: 0,
       error: false,
       colors: [
         '#ffffff',
@@ -219,6 +232,7 @@ export default {
           napravTitle: napravTitle,
           projectId: this.projectId,
           projectTitle: projectTitle,
+          price: +this.price,
         }
 
         this.$store.dispatch('updateItem', item)
@@ -251,6 +265,7 @@ export default {
       this.napravTitle = this.item.napravTitle
       this.projectId = this.item.projectId
       this.projectTitle = this.item.projectTitle
+      this.price = +this.item.price
     },
   },
 }

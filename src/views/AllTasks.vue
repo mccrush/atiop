@@ -9,6 +9,7 @@
           <option value="projectId">С проектами</option>
           <option value="date">С датами</option>
           <option value="deadline">С дедлайнами</option>
+          <option value="price">С ценой</option>
         </select>
       </div>
       <div class="col-2 p-2">
@@ -16,7 +17,7 @@
           class="form-control form-control-sm"
           v-model="filterValue"
           @change="saveFilterValue"
-          :disabled="!filterType || filterType === 'date' || filterType === 'deadline'"
+          :disabled="!filterType || filterType === 'date' || filterType === 'deadline' || filterType === 'price'"
         >
           <option value selected>Значение</option>
           <option
@@ -139,6 +140,8 @@ export default {
           return new Date(a.date) - new Date(b.date)
         } else if (this.settings.sortBy === 'deadline') {
           return new Date(a.deadline) - new Date(b.deadline)
+        } else if (this.settings.sortBy === 'price') {
+          return a.price - b.price
         }
       })
     },
