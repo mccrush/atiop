@@ -49,7 +49,7 @@ export default {
       return this.tasks.filter((task) => task.projectId === this.projectId)
     },
     tasksTodoWork() {
-      if (this.settings.showArhived) {
+      if (this.settings.showArhived || this.status === 'done') {
         return this.taskProjectId
       } else {
         return this.taskProjectId.filter(
