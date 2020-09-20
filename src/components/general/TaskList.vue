@@ -1,7 +1,7 @@
 <template>
   <div class="task-list">
     <Task
-      v-for="task in taskProjectId"
+      v-for="task in tasksTodoWork"
       :key="task.id"
       :task="task"
       @edit-item="editItem"
@@ -47,6 +47,15 @@ export default {
     },
     taskProjectId() {
       return this.tasks.filter((task) => task.projectId === this.projectId)
+    },
+    tasksTodoWork() {
+      if (this.settings.showArhived) {
+        return this.taskProjectId
+      } else {
+        return this.taskProjectId.filter(
+          (task) => task.status === 'todo' || task.status === 'work'
+        )
+      }
     },
     napravs() {
       return this.$store.getters.napravs
