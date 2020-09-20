@@ -1,7 +1,7 @@
 <template>
   <div
     class="task align-self-start border rounded-sm pt-1 pb-1 pl-2 pr-2 m-2"
-    :class="{' bg-light': task.status === 'done', ' border border-warning': task.status === 'work'}"
+    :class="{' bg-light': task.status === 'done', ' border border-warning': task.status === 'work', 'bg-danger': Math.ceil(Math.abs(new Date(task.deadline).getTime() - new Date().getTime()) / (1000 * 3600 * 24))  <= 2 && task.status != 'done'}"
     @dblclick.prevent="$emit('edit-item', {id: task.id, type: task.type})"
   >
     <span class="small">{{task.title}}</span>

@@ -60,8 +60,10 @@ export default {
     editItem({ id, type }) {
       if (type === 'projects') {
         this.item = this.projects.find((item) => item.id === id)
-      } else {
+      } else if (type === 'napravs') {
         this.item = this.napravs.find((item) => item.id === id)
+      } else {
+        this.item = this.tasks.find((item) => item.id === id)
       }
       let myModal = new bootstrap.Modal(document.getElementById('exampleModal'))
       myModal.show()

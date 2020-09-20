@@ -22,7 +22,7 @@
         >{{settings.sortBy === 'position' ? index + 1 : ''}} {{item.title}}</small>
         <div
           class="align-self-start position-absolute rounded-left h-100 label"
-          :class="{' deadline': Math.ceil(Math.abs(new Date(item.date).getTime() - new Date().getTime()) / (1000 * 3600 * 24))  <= 2 && item.status != 'done'}"
+          :class="{' bg-danger': Math.ceil(Math.abs(new Date(item.deadline).getTime() - new Date().getTime()) / (1000 * 3600 * 24))  <= 2 && item.status != 'done'}"
         ></div>
         <hr class="m-1" />
         <hr class="m-1" />
@@ -37,7 +37,7 @@
         type="text"
         class="form-control form-control-sm border-0 bg-light"
         :class="{'border-danger': error}"
-        placeholder="Добавить"
+        placeholder="Добавить задачу"
         v-model.trim="title"
         @focus="error = false"
       />

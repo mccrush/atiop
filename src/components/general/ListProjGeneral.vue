@@ -11,7 +11,7 @@
           :style="{'background': item.color ? item.color+'!important' : '#f8f9fa!important'}"
           @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
         >{{item.title}}</h6>
-        <TaskList :projectId="item.id" />
+        <TaskList :napravId="napravId" :projectId="item.id" @edit-item="editItem" />
       </li>
     </ul>
     <!-- <p v-else class="li">
@@ -31,6 +31,11 @@ export default {
   computed: {
     displayProj() {
       return this.projects.filter((item) => item.napravId === this.napravId)
+    },
+  },
+  methods: {
+    editItem({ id, type }) {
+      this.$emit('edit-item', { id, type })
     },
   },
 }
