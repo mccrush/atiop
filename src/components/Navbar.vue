@@ -70,19 +70,25 @@
             <router-link to="/about" class="nav-link">Справка</router-link>
           </li>
         </ul>
-        <form @submit.prevent="logOut" class="form-inline">
+        <div>
           <div v-if="user" class="d-inline-block dropdown">
+            <!-- <button
+                class="btn btn-sm dropdown-toggle text-muted"
+                type="button"
+                id="userData"
+                data-toggle="dropdown"
+                aria-expanded="false"
+            >{{'@'+ user.email.split('@')[0]}}</button>-->
+            <!-- <div class="dropdown-menu" aria-labelledby="userData">
+                <router-link to="/user" class="dropdown-item">Профиль</router-link>
+                <button class="dropdown-item btn-link" @click.prevent="logOut">Выйти</button>
+            </div>-->
+
             <button
-              class="btn btn-sm dropdown-toggle text-muted"
-              type="button"
-              id="userData"
-              data-toggle="dropdown"
-              aria-expanded="false"
-            >{{'@'+ user.email.split('@')[0]}}</button>
-            <div class="dropdown-menu" aria-labelledby="userData">
-              <router-link to="/user" class="dropdown-item">Профиль</router-link>
-              <button class="dropdown-item btn-link" type="submit" href="#">Выйти</button>
-            </div>
+              class="btn btn-sm btn-light"
+              :title="'Вы вошли как @' + userName"
+              @click.prevent="logOut"
+            >Выйти</button>
           </div>
           <router-link
             v-else
@@ -94,7 +100,7 @@
           <button class="btn btn-sm p-0 ml-3 opacity-06" @click.prevent="$emit('show-settings')">
             <img src="@/assets/icons/gear.svg" width="24" height="24" alt="Настройки" />
           </button>
-        </form>
+        </div>
       </div>
     </div>
   </nav>
@@ -108,12 +114,14 @@ export default {
   data() {
     return {
       user: auth.currentUser,
+      userName: '',
     }
   },
   mounted() {
     auth.onAuthStateChanged((user) => {
       this.user = user
     })
+    this.userName = this.user.email.split('@')[0]
   },
   methods: {
     async logOut() {
