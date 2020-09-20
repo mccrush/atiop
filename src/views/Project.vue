@@ -3,7 +3,7 @@
     <vue-headful title="ATIOP Проект" description="ATIOP — сервис управления задачами" />
     <div class="row h-100">
       <div class="col-12 d-flex ower pt-2">
-        <div class="w220 mr-2">
+        <div class="mr-2 project">
           <h6 class="text-center pt-2 rounded m-0 mb-2">К выполнению</h6>
           <!-- <Loading v-if="!tasks.length" /> -->
           <TaskList
@@ -13,7 +13,7 @@
             @edit-item="editItem"
           />
         </div>
-        <div class="w220 mr-2">
+        <div class="mr-2 project">
           <h6 class="text-center pt-2 rounded m-0 mb-2">В работе</h6>
           <!-- <Loading v-if="!tasks.length" /> -->
           <TaskList
@@ -23,7 +23,7 @@
             @edit-item="editItem"
           />
         </div>
-        <div class="w220">
+        <div class="project">
           <h6 class="text-center pt-2 rounded m-0 mb-2">Завершенные</h6>
           <!-- <Loading v-if="!tasks.length" /> -->
           <TaskList
@@ -127,6 +127,11 @@ export default {
 </script>
 
 <style>
+.project {
+  width: 210px;
+  vertical-align: top;
+}
+
 .w170 {
   width: 170px;
 }
