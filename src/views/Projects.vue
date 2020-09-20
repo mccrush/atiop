@@ -43,7 +43,7 @@
         <div
           v-for="(item, index) in displayProjects"
           :key="'in'+index"
-          class="mt-2 mr-2 border rounded-sm d-inline-block project"
+          class="mt-2 mr-2 rounded-sm d-inline-block project"
         >
           <h6
             class="text-center p-2 rounded m-0 mb-2 elem d-flex flex-row align-items-stretch"
