@@ -8,6 +8,7 @@
       :settings="settings"
     />
     <input
+      v-if="status !== 'work' && status !== 'done'"
       type="text"
       class="form-control form-control-sm border-0 bg-light ml-2 mb-2 add-task"
       :class="{'border-danger': error}"
