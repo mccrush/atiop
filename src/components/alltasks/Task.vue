@@ -24,12 +24,16 @@
       class="badge bg-danger mr-1"
       v-if="task.deadline && settings.showDeadline"
     >{{new Date(task.deadline).toLocaleDateString()}}</span>
-    <span
+    <!-- <span
       class="badge bg-dark mr-1"
       v-if="task.status === 'done'"
-    >{{new Date(task.dateCreate).toLocaleDateString()}} - {{new Date(task.dateDone).toLocaleDateString()}}</span>
+    >{{new Date(task.dateCreate).toLocaleDateString()}} - {{new Date(task.dateDone).toLocaleDateString()}}</span>-->
     <hr class="m-1" />
-    <button class="btn btn-sm btn-light border p-0 pl-2 pr-2" @click="changeStatus">Done</button>
+    <button
+      v-if="task.status !== 'done'"
+      class="btn btn-sm btn-light border p-0 pl-2 pr-2"
+      @click="changeStatus"
+    >Done</button>
   </div>
 </template>
 
