@@ -5,44 +5,30 @@
       <div class="col-12 d-flex ower pt-2">
         <div class="w220 mr-2">
           <h6 class="text-center pt-2 rounded m-0 mb-2">К выполнению</h6>
-          <Loading v-if="!tasks.length" />
-          <ListTasks
-            v-else
-            :tasks="tasksTodo"
+          <!-- <Loading v-if="!tasks.length" /> -->
+          <TaskList
             :napravId="napravId"
             :projectId="projectId"
-            :napravs="napravs"
-            :projects="projects"
             status="todo"
             @edit-item="editItem"
           />
         </div>
         <div class="w220 mr-2">
           <h6 class="text-center pt-2 rounded m-0 mb-2">В работе</h6>
-          <Loading v-if="!tasks.length" />
-          <ListTasks
-            v-else
-            :tasks="tasksWork"
+          <!-- <Loading v-if="!tasks.length" /> -->
+          <TaskList
             :napravId="napravId"
             :projectId="projectId"
-            :napravs="napravs"
-            :projects="projects"
-            hideform="true"
             status="work"
             @edit-item="editItem"
           />
         </div>
         <div class="w220">
           <h6 class="text-center pt-2 rounded m-0 mb-2">Завершенные</h6>
-          <Loading v-if="!tasks.length" />
-          <ListTasks
-            v-else
-            :tasks="tasksDone"
+          <!-- <Loading v-if="!tasks.length" /> -->
+          <TaskList
             :napravId="napravId"
             :projectId="projectId"
-            :napravs="napravs"
-            :projects="projects"
-            hideform="true"
             status="done"
             @edit-item="editItem"
           />
@@ -56,16 +42,16 @@
 <script>
 import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
 import vueHeadful from 'vue-headful'
-import ListTasks from '@/components/projects/ListTasks'
 import Modal from '@/components/Modal'
 import Loading from '@/components/Loading'
+import TaskList from '@/components/general/TaskList'
 
 export default {
   components: {
-    ListTasks,
     Modal,
     Loading,
     vueHeadful,
+    TaskList,
   },
   props: {},
   data() {
@@ -87,15 +73,6 @@ export default {
     },
     tasks() {
       return this.$store.getters.tasks
-    },
-    tasksTodo() {
-      return this.tasks.filter((task) => task.status === 'todo')
-    },
-    tasksWork() {
-      return this.tasks.filter((task) => task.status === 'work')
-    },
-    tasksDone() {
-      return this.tasks.filter((task) => task.status === 'done')
     },
     settings() {
       return this.$store.getters.settings

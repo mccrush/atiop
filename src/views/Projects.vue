@@ -58,24 +58,7 @@
               class="btn btn-sm btn-light border p-0 pl-2 pr-2"
             >In</router-link>
           </h6>
-          <ListTasks
-            :tasks="tasksTodoWork"
-            :napravId="item.napravId"
-            :projectId="item.id"
-            :napravs="napravs"
-            :projects="projects"
-            @edit-item="editItem"
-          />
-          <ListTasks
-            v-if="settings.showArhived"
-            :tasks="tasksDone"
-            :napravId="item.napravId"
-            :projectId="item.id"
-            :napravs="napravs"
-            :projects="projects"
-            hideform="true"
-            @edit-item="editItem"
-          />
+          <TaskList :napravId="item.napravId" :projectId="item.id" @edit-item="editItem" />
         </div>
       </div>
 
@@ -89,16 +72,16 @@
 import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
 import createTask from '@/scripts/createTask'
 import vueHeadful from 'vue-headful'
-import ListTasks from '@/components/projects/ListTasks'
 import Modal from '@/components/Modal'
 import Loading from '@/components/Loading'
+import TaskList from '@/components/general/TaskList'
 
 export default {
   components: {
-    ListTasks,
     Modal,
     Loading,
     vueHeadful,
+    TaskList,
   },
   props: {},
   data() {
@@ -120,14 +103,6 @@ export default {
     },
     tasks() {
       return this.$store.getters.tasks
-    },
-    tasksTodoWork() {
-      return this.tasks.filter(
-        (task) => task.status === 'todo' || task.status === 'work'
-      )
-    },
-    tasksDone() {
-      return this.tasks.filter((task) => task.status === 'done')
     },
     displayProjects() {
       if (this.filter) {

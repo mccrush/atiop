@@ -9,7 +9,7 @@
     />
     <input
       type="text"
-      class="form-control form-control-sm border-0 bg-light ml-2 add-task"
+      class="form-control form-control-sm border-0 bg-light ml-2 mb-2 add-task"
       :class="{'border-danger': error}"
       placeholder="Добавить задачу"
       v-model.trim="title"
@@ -27,7 +27,7 @@ export default {
   components: {
     Task,
   },
-  props: ['napravId', 'projectId'],
+  props: ['napravId', 'projectId', 'status'],
   date() {
     return {
       title: '',
@@ -36,7 +36,13 @@ export default {
   },
   computed: {
     tasks() {
-      return this.$store.getters.tasks
+      if (this.status) {
+        return this.$store.getters.tasks.filter(
+          (task) => task.status === this.status
+        )
+      } else {
+        return this.$store.getters.tasks
+      }
     },
     taskProjectId() {
       return this.tasks.filter((task) => task.projectId === this.projectId)
