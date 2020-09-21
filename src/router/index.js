@@ -37,9 +37,9 @@ const router = createRouter({
       }
     },
     {
-      path: '/general',
-      name: 'general',
-      component: () => import('../views/General.vue'),
+      path: '/napravs',
+      name: 'napravs',
+      component: () => import('../views/Napravs.vue'),
       // ВКЛЮЧИТЬ на продакшине
       meta: {
         requiresAuth: true

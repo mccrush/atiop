@@ -43,11 +43,11 @@
           </li>
           <li class="nav-item">
             <router-link
-              to="/general"
+              to="/napravs"
               class="nav-link"
               :class="{'disabled': !user}"
               :aria-disabled="user ? 'true': 'false'"
-            >Направ</router-link>
+            >Направс</router-link>
           </li>
 
           <li class="nav-item">
