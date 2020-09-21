@@ -10,8 +10,9 @@
       <div class="col-12 d-flex ower pt-2">
         <div class="mr-2 project">
           <h6 class="text-center pt-2 rounded m-0 mb-2">К выполнению</h6>
-          <!-- <Loading v-if="!tasks.length" /> -->
+          <Loading v-if="!projects.length" />
           <TaskList
+            v-else
             :napravId="napravId"
             :projectId="projectId"
             status="todo"
@@ -20,8 +21,9 @@
         </div>
         <div class="mr-2 project">
           <h6 class="text-center pt-2 rounded m-0 mb-2">В работе</h6>
-          <!-- <Loading v-if="!tasks.length" /> -->
+          <Loading v-if="!projects.length" />
           <TaskList
+            v-else
             :napravId="napravId"
             :projectId="projectId"
             status="work"
@@ -30,8 +32,9 @@
         </div>
         <div class="project">
           <h6 class="text-center pt-2 rounded m-0 mb-2">Завершенные</h6>
-          <!-- <Loading v-if="!tasks.length" /> -->
+          <Loading v-if="!projects.length" />
           <TaskList
+            v-else
             :napravId="napravId"
             :projectId="projectId"
             status="done"
