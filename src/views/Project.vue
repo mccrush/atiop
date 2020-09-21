@@ -1,6 +1,11 @@
 <template>
   <div class="h-100">
     <vue-headful title="ATIOP Проект" description="ATIOP — сервис управления задачами" />
+    <div class="row p-0 border-bottom">
+      <div class="col-3 p-2">
+        <input type="text" class="form-control form-control-sm border-0 bg-light" placeholder="---" />
+      </div>
+    </div>
     <div class="row h-100">
       <div class="col-12 d-flex ower pt-2">
         <div class="mr-2 project">
