@@ -8,10 +8,24 @@
       >
         <h6
           class="text-center bg-light rounded p-2 elem"
-          :style="{'background': item.color ? item.color+'!important' : '#f8f9fa!important'}"
-          @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
-        >{{item.title}}</h6>
-        <TaskList :napravId="napravId" :projectId="item.id" @edit-item="editItem" />
+          :style="{
+            background: item.color
+              ? item.color + '!important'
+              : '#f8f9fa!important',
+          }"
+          @dblclick.prevent="
+            $emit('edit-item', { id: item.id, type: item.type })
+          "
+        >
+          {{ item.title }}
+        </h6>
+        <div class="rounded-sm border">
+          <TaskList
+            :napravId="napravId"
+            :projectId="item.id"
+            @edit-item="editItem"
+          />
+        </div>
       </li>
     </ul>
     <!-- <p v-else class="li">

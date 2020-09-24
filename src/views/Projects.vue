@@ -1,13 +1,27 @@
 <template>
   <div class>
-    <vue-headful title="ATIOP Проекты" description="ATIOP — сервис управления задачами" />
+    <vue-headful
+      title="ATIOP Проекты"
+      description="ATIOP — сервис управления задачами"
+    />
     <div class="row p-0 border-bottom">
       <!-- <h6 class="m-1">Направление:</h6> -->
       <div class="col-2 p-2">
         <Loading v-if="napravs && !napravs.length" />
-        <select v-else class="form-control form-control-sm" v-model="filter" @change="saveFilter">
+        <select
+          v-else
+          class="form-control form-control-sm"
+          v-model="filter"
+          @change="saveFilter"
+        >
           <option value selected>Все направления</option>
-          <option v-for="item in napravs" :key="'nap'+item.id" :value="item.id">{{item.title}}</option>
+          <option
+            v-for="item in napravs"
+            :key="'nap' + item.id"
+            :value="item.id"
+          >
+            {{ item.title }}
+          </option>
         </select>
       </div>
       <div class="col-3 p-2">
@@ -26,7 +40,7 @@
           v-model.trim="titleP"
           @keypress.enter="addItem('projects')"
           class="form-control form-control-sm border-0 bg-light"
-          :class="{'border-danger': error}"
+          :class="{ 'border-danger': error }"
           placeholder="Создать проект"
         />
         <Loading v-if="creating" />
@@ -37,28 +51,40 @@
         v-if="displayProjects && displayProjects.length === 0"
         class="ml-3 mt-2"
         @show="error = true"
-      >В данном направлении проектов еще нет</h6>
+      >
+        В данном направлении проектов еще нет
+      </h6>
 
-      <div v-else-if="displayProjects && displayProjects.length > 0" class="width-none">
+      <div
+        v-else-if="displayProjects && displayProjects.length > 0"
+        class="width-none"
+      >
         <div
           v-for="(item, index) in displayProjects"
-          :key="'in'+index"
-          class="mt-2 mr-2 rounded-sm d-inline-block project"
+          :key="'in' + index"
+          class="mt-2 mr-2 rounded-sm d-inline-block border project"
         >
           <h6
             class="text-center p-2 rounded m-0 mb-2 elem d-flex flex-row align-items-stretch"
-            :style="{'background': item.color ? item.color+'!important' : '#fff'}"
-            @dblclick.prevent="editItem({id:item.id, type: item.type})"
+            :style="{
+              background: item.color ? item.color + '!important' : '#fff',
+            }"
+            @dblclick.prevent="editItem({ id: item.id, type: item.type })"
           >
-            <div class="w-100">{{item.title}}</div>
+            <div class="w-100">{{ item.title }}</div>
             <router-link
-              :to="'/project/'+item.id"
+              :to="'/project/' + item.id"
               tag="button"
               title="В проект"
               class="btn btn-sm btn-light border p-0 pl-2 pr-2"
-            >In</router-link>
+              >In</router-link
+            >
           </h6>
-          <TaskList :napravId="item.napravId" :projectId="item.id" @edit-item="editItem" />
+          <TaskList
+            :napravId="item.napravId"
+            :projectId="item.id"
+            @edit-item="editItem"
+          />
         </div>
       </div>
 
