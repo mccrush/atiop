@@ -8,12 +8,12 @@
         Math.ceil(
           Math.abs(new Date(task.date).getTime() - new Date().getTime()) /
             (1000 * 3600 * 24)
-        ) <= 1 && task.status != 'done',
+        ) <= 1 && task.status !== 'done',
       'border-danger':
         Math.ceil(
           (new Date(task.deadline).getTime() - new Date().getTime()) /
             (1000 * 3600 * 24)
-        ) <= 1 && task.status != 'done',
+        ) <= 1 && task.status !== 'done',
     }"
     @dblclick.prevent="$emit('edit-item', { id: task.id, type: task.type })"
   >
