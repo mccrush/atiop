@@ -1,7 +1,7 @@
 <template>
   <div class="task-list">
     <Task
-      v-for="task in tasksTodoWork"
+      v-for="task in sortTasks"
       :key="task.id"
       :task="task"
       @edit-item="editItem"
@@ -11,7 +11,7 @@
       v-if="status !== 'work' && status !== 'done'"
       type="text"
       class="form-control form-control-sm border-0 bg-light ml-2 mb-2 add-task"
-      :class="{'border-danger': error}"
+      :class="{ 'border-danger': error }"
       placeholder="Добавить задачу"
       v-model.trim="title"
       @focus="error = false"
@@ -65,6 +65,19 @@ export default {
     },
     settings() {
       return this.$store.getters.settings
+    },
+    sortTasks() {
+      return this.tasksTodoWork.sort((a, b) => {
+        if (this.settings.sortBy === 'position') {
+          return a.position - b.position
+        } else if (this.settings.sortBy === 'date') {
+          return new Date(a.date) - new Date(b.date)
+        } else if (this.settings.sortBy === 'deadline') {
+          return new Date(a.deadline) - new Date(b.deadline)
+        } else if (this.settings.sortBy === 'price') {
+          return a.price - b.price
+        }
+      })
     },
   },
   methods: {
