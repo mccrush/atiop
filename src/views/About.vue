@@ -19,24 +19,39 @@
 
       <div class="row">
         <div class="col-12 col-sm-3 col-md-3 mt-3 mb-4">
-          <div class="list-group list-group-flush">
+          <div class="list-group">
             <a
               href="#description"
-              class="list-group-item list-group-item-action p-1 pl-2"
+              class="list-group-item list-group-item-action small p-1 pl-2"
+              :class="{ 'bg-light': myHash === '#description' }"
               >Описание</a
             >
 
             <a
               href="#pages"
-              class="list-group-item list-group-item-action p-1 pl-2"
+              class="list-group-item list-group-item-action small p-1 pl-2"
+              :class="{ 'bg-light': myHash === '#pages' }"
               >Страницы</a
             >
 
             <a
+              href="#filter"
+              class="list-group-item list-group-item-action small p-1 pl-2"
+              :class="{ 'bg-light': myHash === '#filter' }"
+              >Фильтр Задач</a
+            >
+            <a
+              href="#status"
+              class="list-group-item list-group-item-action small p-1 pl-2"
+              :class="{ 'bg-light': myHash === '#status' }"
+              >Статус Задач</a
+            >
+
+            <!-- <a
               href="#props"
               class="list-group-item list-group-item-action p-1 pl-2"
               >Свойства</a
-            >
+            > -->
           </div>
         </div>
         <div class="col-12 col-sm-9 col-md-9 mt-3">
@@ -58,29 +73,34 @@
 import vueHeadful from 'vue-headful'
 import Description from '@/views/about/Description'
 import Pages from '@/views/about/Pages'
-import Props from '@/views/about/Props'
+import Filter from '@/views/about/Filter'
+import Status from '@/views/about/Status'
 
 export default {
   components: {
+    vueHeadful,
     Description,
     Pages,
-    Props,
-    vueHeadful,
+    Filter,
+    Status,
   },
-  mounted() {},
+  date() {
+    return {
+      actPage: false,
+    }
+  },
+  mounted() {
+    console.log('hash:', this.$route.hash)
+  },
   computed: {
     component() {
       return this.$route.hash.split('#')[1] || 'description'
     },
+    myHash() {
+      return this.$route.hash
+    },
   },
-  methods: {
-    // scrollTo(ref) {
-    //   this.$refs[ref].scrollIntoView({ behavior: 'smooth' })
-    // },
-    // scrollTop() {
-    //   window.scrollTo({ top: 0, behavior: 'smooth' })
-    // }
-  },
+  methods: {},
 }
 </script>
 
