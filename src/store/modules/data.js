@@ -35,6 +35,7 @@ export default {
     },
     updateSettingsShow(state, { name }) {
       const maps = {
+        showArhived: 'showArhived',
         napravId: 'showNaprav',
         projectId: 'showProject',
         date: 'showDate',

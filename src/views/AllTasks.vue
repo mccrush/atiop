@@ -192,17 +192,24 @@ export default {
       }
     },
     saveFilterType() {
+      if (this.filterTypeModel !== 'status') {
+        this.$store.commit('updateSettingsShow', { name: this.filterTypeModel })
+      }
+
       this.$store.commit('updateFilter', {
         filterType: this.filterTypeModel,
         filterValue: '',
       })
       this.filterValueModel = ''
       this.saveFilterValue()
-      if (this.filterTypeModel && this.filterValueModel !== 'status') {
-        this.$store.commit('updateSettingsShow', { name: this.filterTypeModel })
-      }
     },
     saveFilterValue() {
+      if (
+        this.filterTypeModel === 'status' &&
+        this.filterValueModel === 'done'
+      ) {
+        this.$store.commit('updateSettingsShow', { name: 'showArhived' })
+      }
       this.$store.commit('updateFilter', {
         filterType: this.filterTypeModel,
         filterValue: this.filterValueModel,
