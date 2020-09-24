@@ -8,7 +8,9 @@ export default {
     projects: [],
     tasks: [],
     settings: JSON.parse(localStorage.getItem('settings')) || { showArhived: false, showEmpty: true, showPosition: false, showDate: false, showDeadline: false, showNaprav: false, showProject: false, showPrice: false, sortBy: 'date' },
-    status: [{ id: 'todo', title: 'Новые' }, { id: 'work', title: 'В работе' }, { id: 'done', title: 'Завершенные' }]
+    status: [{ id: 'todo', title: 'Новые' }, { id: 'work', title: 'В работе' }, { id: 'done', title: 'Завершенные' }],
+    filterType: localStorage.getItem('filterType') || '',
+    filterValue: localStorage.getItem('filterValue') || ''
   },
   mutations: {
     getItems(state, { type, items = [] }) {
@@ -42,6 +44,13 @@ export default {
 
       state.settings = { ...state.settings, [maps[name]]: true }
       localStorage.setItem('settings', JSON.stringify(state.settings))
+    },
+    updateFilter(state, { filterType, filterValue }) {
+      state.filterType = filterType
+      state.filterValue = filterValue
+
+      localStorage.setItem('filterType', filterType)
+      localStorage.setItem('filterValue', filterValue)
     }
   },
   actions: {
@@ -130,6 +139,8 @@ export default {
     nepravsLength: state => state.napravs.length,
     projectsLength: state => state.projects.length,
     tasksLength: state => state.tasks.length,
-    projectLengthById: state => id => state.tasks.filter(task => task.projectId === id).length
+    projectLengthById: state => id => state.tasks.filter(task => task.projectId === id).length,
+    filterType: state => state.filterType,
+    filterValue: state => state.filterValue,
   }
 }

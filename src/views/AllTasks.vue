@@ -4,7 +4,7 @@
       <div class="col-2 p-2">
         <select
           class="form-control form-control-sm"
-          v-model="filterType"
+          v-model="filterTypeModel"
           @change="saveFilterType"
         >
           <option value selected>Без фильтра</option>
@@ -19,7 +19,7 @@
       <div class="col-2 p-2">
         <select
           class="form-control form-control-sm"
-          v-model="filterValue"
+          v-model="filterValueModel"
           @change="saveFilterValue"
           :disabled="
             !filterType ||
@@ -28,7 +28,7 @@
             filterType === 'price'
           "
         >
-          <option value selected>Значение</option>
+          <option value selected>Без значения</option>
           <option
             v-for="item in filterValueArr"
             :key="'pro' + item.id"
@@ -79,8 +79,8 @@ export default {
   },
   data() {
     return {
-      filterType: localStorage.getItem('filterType') || '',
-      filterValue: localStorage.getItem('filterValue') || '',
+      filterTypeModel: localStorage.getItem('filterType') || '',
+      filterValueModel: localStorage.getItem('filterValue') || '',
       item: null,
       title: '',
       napravId: '',
@@ -119,16 +119,16 @@ export default {
       }
     },
     tasksFilterType() {
-      if (this.filterType) {
-        return this.tasksTodoWork.filter((task) => task[this.filterType])
+      if (this.filterTypeModel) {
+        return this.tasksTodoWork.filter((task) => task[this.filterTypeModel])
       } else {
         return this.tasksTodoWork
       }
     },
     tasksFilterValue() {
-      if (this.filterType && this.filterValue) {
+      if (this.filterTypeModel && this.filterValueModel) {
         return this.tasksFilterType.filter(
-          (task) => task[this.filterType] === this.filterValue
+          (task) => task[this.filterTypeModel] === this.filterValueModel
         )
       } else {
         return this.tasksFilterType
@@ -155,6 +155,12 @@ export default {
           return a.price - b.price
         }
       })
+    },
+    filterType() {
+      return this.$store.getters.filterType
+    },
+    filterValue() {
+      return this.$store.getters.filterValue
     },
   },
   methods: {
@@ -186,22 +192,29 @@ export default {
       }
     },
     saveFilterType() {
-      localStorage.setItem('filterType', this.filterType)
-      this.filterValue = ''
+      this.$store.commit('updateFilter', {
+        filterType: this.filterTypeModel,
+        filterValue: '',
+      })
+      this.filterValueModel = ''
       this.saveFilterValue()
-      if (this.filterType && this.filterType !== 'status') {
-        //this.saveSettings()
-        this.$store.commit('updateSettingsShow', { name: this.filterType })
+      if (this.filterTypeModel && this.filterValueModel !== 'status') {
+        this.$store.commit('updateSettingsShow', { name: this.filterTypeModel })
       }
     },
     saveFilterValue() {
-      localStorage.setItem('filterValue', this.filterValue)
-    },
-    saveSettings() {
-      this.$store.commit('updateSettings', {
-        ...this.settings,
-        [this.filterType]: true,
+      this.$store.commit('updateFilter', {
+        filterType: this.filterTypeModel,
+        filterValue: this.filterValueModel,
       })
+    },
+  },
+  watch: {
+    filterType() {
+      this.filterTypeModel = this.filterType
+    },
+    filterValue() {
+      this.filterValueModel = this.filterValue
     },
   },
 }

@@ -22,12 +22,22 @@
     <span v-if="settings.showPosition" class="badge bg-light text-dark mr-1">{{
       task.position
     }}</span>
-    <span v-if="settings.showNaprav" class="badge bg-info mr-1">{{
-      task.napravTitle || 'Без направления'
-    }}</span>
-    <span v-if="settings.showProject" class="badge bg-secondary mr-1">{{
-      task.projectTitle || 'Без проекта'
-    }}</span>
+    <span
+      v-if="settings.showNaprav"
+      @click="
+        filterBadget({ filterType: 'napravId', filterValue: task.napravId })
+      "
+      class="badge bg-info mr-1"
+      >{{ task.napravTitle || 'Без направления' }}</span
+    >
+    <span
+      v-if="settings.showProject"
+      @click="
+        filterBadget({ filterType: 'projectId', filterValue: task.projectId })
+      "
+      class="badge bg-secondary mr-1"
+      >{{ task.projectTitle || 'Без проекта' }}</span
+    >
     <span
       v-if="settings.showPrice && task.price"
       class="badge bg-success mr-1"
@@ -84,6 +94,9 @@ export default {
         status,
         dateDone: getDateNow,
       })
+    },
+    filterBadget({ filterType, filterValue }) {
+      this.$store.commit('updateFilter', { filterType, filterValue })
     },
   },
 }
