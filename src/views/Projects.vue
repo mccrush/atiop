@@ -65,21 +65,22 @@
           class="mt-2 mr-2 rounded-sm d-inline-block border project"
         >
           <h6
-            class="text-center p-2 rounded m-0 mb-2 elem d-flex flex-row align-items-stretch"
+            class="text-center pt-3 pr-2 rounded m-0 d-flex flex-row align-items-stretch elem"
             :style="{
               background: item.color ? item.color + '!important' : '#fff',
             }"
             @dblclick.prevent="editItem({ id: item.id, type: item.type })"
           >
-            <div class="w-100">{{ item.title }}</div>
+            <div class="w-100 pl-4">{{ item.title }}</div>
             <router-link
               :to="'/project/' + item.id"
               tag="button"
               title="В проект"
-              class="btn btn-sm btn-light border p-0 pl-2 pr-2"
+              class="btn btn-sm btn-light p-0 pl-2 pr-2 m-0"
               >In</router-link
             >
           </h6>
+
           <TaskList
             :napravId="item.napravId"
             :projectId="item.id"
