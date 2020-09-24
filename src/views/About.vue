@@ -1,6 +1,9 @@
 <template>
   <div class="row shadow-sm">
-    <vue-headful title="ATIOP Справка" description="ATIOP — сервис управления задачами" />
+    <vue-headful
+      title="ATIOP Справка"
+      description="ATIOP — сервис управления задачами"
+    />
     <div class="col-12 col-md-10 col-lg-8 col-xl-6 m-auto h-100">
       <h3 class="mt-4 text-center">ATIOP</h3>
       <p class="text-center text-muted small">
@@ -9,18 +12,31 @@
           href="https://github.com/mccrush/atiop/releases/"
           target="_blank"
           title="Страница на Github"
-        >0.5.0-alpha</a>
+          >0.5.1-alpha</a
+        >
         <br />По всем вопросам: mccrush2027@gmail.com
       </p>
 
       <div class="row">
         <div class="col-12 col-sm-3 col-md-3 mt-3 mb-4">
           <div class="list-group list-group-flush">
-            <a href="#description" class="list-group-item list-group-item-action p-1 pl-2">Описание</a>
+            <a
+              href="#description"
+              class="list-group-item list-group-item-action p-1 pl-2"
+              >Описание</a
+            >
 
-            <a href="#pages" class="list-group-item list-group-item-action p-1 pl-2">Страницы</a>
+            <a
+              href="#pages"
+              class="list-group-item list-group-item-action p-1 pl-2"
+              >Страницы</a
+            >
 
-            <a href="#props" class="list-group-item list-group-item-action p-1 pl-2">Свойства</a>
+            <a
+              href="#props"
+              class="list-group-item list-group-item-action p-1 pl-2"
+              >Свойства</a
+            >
           </div>
         </div>
         <div class="col-12 col-sm-9 col-md-9 mt-3">

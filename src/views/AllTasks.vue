@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row p-0 border-bottom">
-      <div class="col-2 p-2">
+      <div class="col-2 col-xxl-1 p-2">
         <select
           class="form-control form-control-sm"
           v-model="filterTypeModel"
@@ -16,7 +16,7 @@
           <option value="price">С ценой</option>
         </select>
       </div>
-      <div class="col-2 p-2">
+      <div class="col-2 col-xxl-1 p-2">
         <select
           class="form-control form-control-sm"
           v-model="filterValueModel"
@@ -38,12 +38,12 @@
           </option>
         </select>
       </div>
-      <div class="col-2 p-2">
+      <div class="col-2 col-xxl-3 p-2">
         <!-- <button class="btn btn-dark btn-sm btn-block" @click="addNewField">Add new field</button> -->
         ---
       </div>
-      <div class="col-2 p-2">---</div>
-      <div class="col-4 p-2">
+      <div class="col-2 col-xxl-4 p-2">---</div>
+      <div class="col-4 col-xxl-3 p-2">
         <input
           type="text"
           v-model.trim="title"

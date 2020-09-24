@@ -6,7 +6,7 @@
     />
     <div class="row p-0 border-bottom">
       <!-- <h6 class="m-1">Направление:</h6> -->
-      <div class="col-2 p-2">
+      <div class="col-2 col-xxl-1 p-2">
         <Loading v-if="napravs && !napravs.length" />
         <select
           v-else
@@ -24,7 +24,7 @@
           </option>
         </select>
       </div>
-      <div class="col-3 p-2">
+      <div class="col-3 col-xxl-2 p-2">
         <input
           type="text"
           v-model.trim="titleN"
@@ -33,7 +33,7 @@
           placeholder="Создать направление"
         />
       </div>
-      <div class="col-3 p-2">
+      <div class="col-3 col-xxl-2 p-2">
         <input
           v-if="filter"
           type="text"

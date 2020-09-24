@@ -1,29 +1,36 @@
 <template>
   <div class>
-    <vue-headful title="ATIOP Обзор проектов" description="ATIOP — сервис управления задачами" />
+    <vue-headful
+      title="ATIOP Обзор проектов"
+      description="ATIOP — сервис управления задачами"
+    />
 
     <div class="row p-0 border-bottom">
-      <div class="col-2 p-2">
+      <div class="col-2 col-xxl-2 p-2">
         <button class="btn btn-sm btn-light btn-block">
           Направлений
-          <span class="badge bg-info">{{napravs.length}}</span>
+          <span class="badge bg-info">{{ napravs.length }}</span>
         </button>
       </div>
-      <div class="col-2 p-2">
+      <div class="col-2 col-xxl-2 p-2">
         <button class="btn btn-sm btn-light btn-block">
           Проектов
-          <span class="badge bg-secondary">{{projects.length}}</span>
+          <span class="badge bg-secondary">{{ projects.length }}</span>
         </button>
       </div>
-      <div class="col-2 p-2">
+      <div class="col-2 col-xxl-2 p-2">
         <button class="btn btn-sm btn-light btn-block">
           Задач
-          <span class="badge bg-warning">{{tasks.length}}</span>
+          <span class="badge bg-warning">{{ tasks.length }}</span>
         </button>
       </div>
     </div>
 
-    <ListNapravGeneral :napravs="napravs" :projects="projects" @edit-item="editItem" />
+    <ListNapravGeneral
+      :napravs="napravs"
+      :projects="projects"
+      @edit-item="editItem"
+    />
     <Modal :item="item" :napravs="napravs" :projects="projects" />
   </div>
 </template>
