@@ -2,8 +2,9 @@
   <div
     class="task align-self-start border rounded-sm pt-1 pb-1 pl-2 pr-2 m-2"
     :class="{
+      ' bg-white': task.status === 'todo' || task.status === 'work',
       ' bg-light': task.status === 'done',
-      ' border border-warning': task.status === 'work',
+      ' border-warning': task.status === 'work',
       'border-warning':
         Math.ceil(
           Math.abs(new Date(task.date).getTime() - new Date().getTime()) /

@@ -14,12 +14,12 @@
             <input
               type="text"
               class="form-control form-control-sm"
-              :class="{'border-danger': error}"
+              :class="{ 'border-danger': error }"
               @focus="error = false"
               v-model.trim="title"
             />
             <div class="row mt-2">
-              <div class="col-4">
+              <div class="col-4 pr-0">
                 <input
                   v-if="item && item.type !== 'napravs'"
                   type="datetime-local"
@@ -28,7 +28,7 @@
                   v-model="date"
                 />
               </div>
-              <div class="col-4">
+              <div class="col-4 pr-0">
                 <input
                   v-if="item && item.type !== 'napravs'"
                   type="datetime-local"
@@ -41,25 +41,29 @@
                 <select v-model="status" class="form-control form-control-sm">
                   <option
                     v-for="item in statusArr"
-                    :key="'sta'+item.id"
+                    :key="'sta' + item.id"
                     :value="item.id"
-                  >{{item.title}}</option>
+                  >
+                    {{ item.title }}
+                  </option>
                 </select>
               </div>
             </div>
 
             <div class="row mt-2">
-              <div class="col-4">
+              <div class="col-4 pr-0">
                 <select v-model="napravId" class="form-control form-control-sm">
                   <option value selected>Направление</option>
                   <option
                     v-for="item in napravs"
-                    :key="'nap'+item.id"
+                    :key="'nap' + item.id"
                     :value="item.id"
-                  >{{item.title}}</option>
+                  >
+                    {{ item.title }}
+                  </option>
                 </select>
               </div>
-              <div class="col-4">
+              <div class="col-4 pr-0">
                 <select
                   v-model="projectId"
                   class="form-control form-control-sm"
@@ -68,16 +72,18 @@
                   <option value selected>Проект</option>
                   <option
                     v-for="item in projectsFilter"
-                    :key="'pro'+item.id"
+                    :key="'pro' + item.id"
                     :value="item.id"
-                  >{{item.title}}</option>
+                  >
+                    {{ item.title }}
+                  </option>
                 </select>
               </div>
               <div class="col-2">
                 <input
                   v-if="item"
                   type="number"
-                  max="999"
+                  max="99"
                   min="0"
                   step="1"
                   id="position"
@@ -108,13 +114,16 @@
                   v-model="desc"
                 ></textarea>-->
 
-                <div v-if="item.type === 'projects'" class="d-flex justify-content-between mt-2">
+                <div
+                  v-if="item.type === 'projects'"
+                  class="d-flex justify-content-between mt-2"
+                >
                   <div
                     v-for="(scolor, index) in colors"
-                    :key="'cb'+index"
+                    :key="'cb' + index"
                     class="m-1 p-1 rounded shadow-sm colorblock"
-                    :style="'background:'+ scolor"
-                    :class="{'rounded-circle': color === scolor}"
+                    :style="'background:' + scolor"
+                    :class="{ 'rounded-circle': color === scolor }"
                     @click="color = scolor"
                   ></div>
                 </div>
@@ -123,21 +132,33 @@
             <hr />
 
             <div class="row">
-              <div class="col-4">
+              <div class="col-4 pr-0">
                 <button
                   class="btn btn-block btn-sm btn-outline-danger"
-                  @click.prevent="removeItem({id: item.id, type: item.type, idproj: item.projectId})"
-                >Удалить</button>
+                  @click.prevent="
+                    removeItem({
+                      id: item.id,
+                      type: item.type,
+                      idproj: item.projectId,
+                    })
+                  "
+                >
+                  Удалить
+                </button>
               </div>
-              <div class="col-4">
+              <div class="col-4 pr-0">
                 <button
                   type="button"
                   class="btn btn-sm btn-block btn-light"
                   data-dismiss="modal"
-                >Отмена</button>
+                >
+                  Отмена
+                </button>
               </div>
               <div class="col-4">
-                <button type="submit" class="btn btn-sm btn-block btn-warning">Обновить</button>
+                <button type="submit" class="btn btn-sm btn-block btn-warning">
+                  Обновить
+                </button>
               </div>
             </div>
           </form>

@@ -63,12 +63,12 @@
           v-for="(item, index) in displayProjects"
           :key="'in' + index"
           class="mt-2 mr-2 rounded-sm d-inline-block border project"
+          :style="{
+            background: item.color ? item.color + '!important' : '#fff',
+          }"
         >
           <h6
             class="text-center pt-3 pr-2 rounded m-0 d-flex flex-row align-items-stretch elem"
-            :style="{
-              background: item.color ? item.color + '!important' : '#fff',
-            }"
             @dblclick.prevent="editItem({ id: item.id, type: item.type })"
           >
             <div class="w-100 pl-4">{{ item.title }}</div>
