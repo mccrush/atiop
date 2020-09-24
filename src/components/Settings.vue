@@ -169,19 +169,6 @@
 
 <script>
 export default {
-  // data() {
-  //   return {
-  //     showArhived: this.settings.showArhived,
-  //     showEmpty: this.settings.showEmpty,
-  //     showPosition: this.settings.showPosition,
-  //     showDate: this.settings.showDate,
-  //     showDeadline: this.settings.showDeadline,
-  //     showNaprav: this.settings.showNaprav,
-  //     showProject: this.settings.showProject,
-  //     showPrice: this.settings.showPrice,
-  //     sortBy: this.settings.sortBy,
-  //   }
-  // },
   data() {
     return {
       showArhived: null,
@@ -196,19 +183,7 @@ export default {
     }
   },
   computed: {
-    // ...mapState({
-    //   showArhived: (state) => state.settings.showArhived,
-    //   showEmpty: (state) => state.settings.showEmpty,
-    //   showPosition: (state) => state.settings.showPosition,
-    //   showDate: (state) => state.settings.showDate,
-    //   showDeadline: (state) => state.settings.showDeadline,
-    //   showNaprav: (state) => state.settings.showNaprav,
-    //   showProject: (state) => state.settings.showProject,
-    //   showPrice: (state) => state.settings.showPrice,
-    //   sortBy: (state) => state.settings.sortBy,
-    // }),
     settings() {
-      //console.log('Settings Update in computed')
       return this.$store.getters.settings
     },
   },
@@ -244,7 +219,6 @@ export default {
   },
   watch: {
     settings() {
-      //console.log('Settings Update in watch')
       this.updateValue()
     },
   },
