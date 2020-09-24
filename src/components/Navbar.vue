@@ -29,43 +29,39 @@
             <router-link
               to="/"
               class="nav-link"
-              :class="{'disabled': !user}"
-              :aria-disabled="user ? 'true': 'false'"
-            >Задачи</router-link>
+              :class="{ disabled: !user }"
+              :aria-disabled="user ? 'true' : 'false'"
+              >Задачи</router-link
+            >
           </li>
           <li class="nav-item">
             <router-link
               to="/projects"
               class="nav-link"
-              :class="{'disabled': !user}"
-              :aria-disabled="user ? 'true': 'false'"
-            >Проекты</router-link>
+              :class="{ disabled: !user }"
+              :aria-disabled="user ? 'true' : 'false'"
+              >Проекты</router-link
+            >
           </li>
           <li class="nav-item">
             <router-link
               to="/napravs"
               class="nav-link"
-              :class="{'disabled': !user}"
-              :aria-disabled="user ? 'true': 'false'"
-            >Направс</router-link>
+              :class="{ disabled: !user }"
+              :aria-disabled="user ? 'true' : 'false'"
+              >Направс</router-link
+            >
           </li>
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <router-link
               to="/calendar"
               class="nav-link"
               :class="{'disabled': !user}"
               :aria-disabled="user ? 'true': 'false'"
             >Календарь</router-link>
-          </li>
-          <!-- <li class="nav-item">
-          <router-link
-            to="/create"
-            class="nav-link"
-            :class="{'disabled': !user}"
-            :aria-disabled="user ? 'true': 'false'"
-          >Создать</router-link>
-          </li>-->
+          </li> -->
+
           <li class="nav-item">
             <router-link to="/about" class="nav-link">Справка</router-link>
           </li>
@@ -88,7 +84,9 @@
               class="btn btn-sm btn-light"
               :title="'Вы вошли как @' + userName"
               @click.prevent="logOut"
-            >Выйти</button>
+            >
+              Выйти
+            </button>
           </div>
           <router-link
             v-else
@@ -96,9 +94,18 @@
             class="d-sm-inline btn btn-sm btn-success login"
             title="Войти"
             to="/login"
-          >Войти</router-link>
-          <button class="btn btn-sm p-0 ml-3 opacity-06" @click.prevent="$emit('show-settings')">
-            <img src="@/assets/icons/gear.svg" width="24" height="24" alt="Настройки" />
+            >Войти</router-link
+          >
+          <button
+            class="btn btn-sm p-0 ml-3 opacity-06"
+            @click.prevent="$emit('show-settings')"
+          >
+            <img
+              src="@/assets/icons/gear.svg"
+              width="24"
+              height="24"
+              alt="Настройки"
+            />
           </button>
         </div>
       </div>
