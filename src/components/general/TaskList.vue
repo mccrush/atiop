@@ -8,10 +8,10 @@
       :settings="settings"
     />
     <input
-      v-if="status !== 'work' && status !== 'done'"
+      v-if="status !== 'done'"
       type="text"
       class="form-control form-control-sm border-0 bg-light ml-2 mb-2 add-task"
-      :class="{ 'border-danger': error }"
+      :class="{ 'border-danger': error, 'mt-2': !sortTasks.length }"
       placeholder="Добавить задачу"
       v-model.trim="title"
       @focus="error = false"
