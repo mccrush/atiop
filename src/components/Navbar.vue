@@ -81,7 +81,7 @@
             </div>-->
 
             <button
-              class="btn btn-sm btn-light"
+              class="btn btn-sm btn-light border"
               :title="'Вы вошли как @' + userName"
               @click.prevent="logOut"
             >

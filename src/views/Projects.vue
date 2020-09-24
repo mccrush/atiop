@@ -76,7 +76,7 @@
               :to="'/project/' + item.id"
               tag="button"
               title="В проект"
-              class="btn btn-sm btn-light p-0 pl-2 pr-2 m-0"
+              class="btn btn-sm btn-light border p-0 pl-2 pr-2 m-0"
               >In</router-link
             >
           </h6>
