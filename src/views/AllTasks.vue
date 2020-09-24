@@ -2,7 +2,11 @@
   <div>
     <div class="row p-0 border-bottom">
       <div class="col-2 p-2">
-        <select class="form-control form-control-sm" v-model="filterType" @change="saveFilterType">
+        <select
+          class="form-control form-control-sm"
+          v-model="filterType"
+          @change="saveFilterType"
+        >
           <option value selected>Без фильтра</option>
           <option value="status">По статусу</option>
           <option value="napravId">С направлениями</option>
@@ -17,14 +21,21 @@
           class="form-control form-control-sm"
           v-model="filterValue"
           @change="saveFilterValue"
-          :disabled="!filterType || filterType === 'date' || filterType === 'deadline' || filterType === 'price'"
+          :disabled="
+            !filterType ||
+            filterType === 'date' ||
+            filterType === 'deadline' ||
+            filterType === 'price'
+          "
         >
           <option value selected>Значение</option>
           <option
             v-for="item in filterValueArr"
-            :key="'pro'+item.id"
+            :key="'pro' + item.id"
             :value="item.id"
-          >{{item.title}}</option>
+          >
+            {{ item.title }}
+          </option>
         </select>
       </div>
       <div class="col-2 p-2">
@@ -178,9 +189,19 @@ export default {
       localStorage.setItem('filterType', this.filterType)
       this.filterValue = ''
       this.saveFilterValue()
+      if (this.filterType && this.filterType !== 'status') {
+        //this.saveSettings()
+        this.$store.commit('updateSettingsShow', { name: this.filterType })
+      }
     },
     saveFilterValue() {
       localStorage.setItem('filterValue', this.filterValue)
+    },
+    saveSettings() {
+      this.$store.commit('updateSettings', {
+        ...this.settings,
+        [this.filterType]: true,
+      })
     },
   },
 }

@@ -30,6 +30,18 @@ export default {
     updateSettings(state, { showArhived, showEmpty, showPosition, showDate, showDeadline, showNaprav, showProject, showPrice, sortBy }) {
       state.settings = { showArhived, showEmpty, showPosition, showDate, showDeadline, showNaprav, showProject, showPrice, sortBy }
       localStorage.setItem('settings', JSON.stringify(state.settings))
+    },
+    updateSettingsShow(state, { name }) {
+      const maps = {
+        napravId: 'showNaprav',
+        projectId: 'showProject',
+        date: 'showDate',
+        deadline: 'showDeadline',
+        price: 'showPrice'
+      }
+
+      state.settings = { ...state.settings, [maps[name]]: true }
+      localStorage.setItem('settings', JSON.stringify(state.settings))
     }
   },
   actions: {
