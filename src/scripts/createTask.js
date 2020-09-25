@@ -15,6 +15,7 @@ export default (title, type = 'tasks', napravId = '', projectId = '', length = '
     color: '', // У задач нет цвета
     date: '',
     dateCreate: getDateNow,
+    dateStart: '',
     dateDone: '',
     deadline: '',
     price: 0

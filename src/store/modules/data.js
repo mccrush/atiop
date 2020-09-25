@@ -101,13 +101,13 @@ export default {
         console.error("removeItem, Error removing document: ", error);
       });
     },
-    updateItem({ commit }, { id, title, desc, type, position, status, date, deadline, color, napravId, napravTitle, projectId, projectTitle, price }) {
+    updateItem({ commit }, item) {
       const ref = db.collection("users").doc(auth.currentUser.uid)
       const el = ref.collection(type).doc(id).get().then(doc => doc.data())
-      return ref.collection(type).doc(id).update({ ...el, title, type, position, status, date, deadline, color, napravId, napravTitle, projectId, projectTitle, price })
+      return ref.collection(type).doc(id).update({ ...el, title: item.title, type: item.type, position: item.position, status: item.status, date: item.date, deadline: item.deadline, color: item.color, napravId: item.napravId, napravTitle: item.napravTitle, projectId: item.projectId, projectTitle: item.projectTitle, price: item.price })
         .then(function () {
           console.log("updateItem, Document successfully updated!");
-          commit('updateItem', { id, title, desc, type, position, status, date, deadline, color, napravId, napravTitle, projectId, projectTitle, price })
+          commit('updateItem', item)
         })
         .catch(function (error) {
           // The document probably doesn't exist.
@@ -123,11 +123,11 @@ export default {
       await ref.update({ ...doc.data(), length })
       dispatch('getItems', 'projects')
     },
-    async changeStatus({ commit, dispatch }, { id, type, status, dateDone }) {
+    async changeStatus({ commit, dispatch }, { id, type, status, dateStart, dateDone }) {
       const ref = db.collection("users").doc(auth.currentUser.uid).collection(type).doc(id)
       const doc = await ref.get()
       //let status = 'done'
-      await ref.update({ ...doc.data(), status, dateDone })
+      await ref.update({ ...doc.data(), status, dateStart, dateDone })
       dispatch('getItems', type)
     }
   },

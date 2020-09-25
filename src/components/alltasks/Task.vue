@@ -89,12 +89,25 @@ export default {
   props: ['task', 'settings'],
   methods: {
     changeStatus(status) {
-      this.$store.dispatch('changeStatus', {
-        id: this.task.id,
-        type: this.task.type,
-        status,
-        dateDone: getDateNow,
-      })
+      if (status === 'work') {
+        this.$store.dispatch('changeStatus', {
+          id: this.task.id,
+          type: this.task.type,
+          status,
+          dateStart: getDateNow,
+          dateDone: '',
+        })
+      } else if (status === 'done') {
+        this.$store.dispatch('changeStatus', {
+          id: this.task.id,
+          type: this.task.type,
+          status,
+          dateStart: this.task.dateStart,
+          dateDone: getDateNow,
+        })
+      } else {
+        console.log('Task: Ошибка при смене статуса')
+      }
     },
     filterBadget({ filterType, filterValue }) {
       this.$store.commit('updateFilter', { filterType, filterValue })

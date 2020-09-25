@@ -38,7 +38,11 @@
                 />
               </div>
               <div class="col-4">
-                <select v-model="status" class="form-control form-control-sm">
+                <select
+                  v-model="status"
+                  @change="changeStatus"
+                  class="form-control form-control-sm"
+                >
                   <option
                     v-for="item in statusArr"
                     :key="'sta' + item.id"
@@ -170,6 +174,7 @@
 
 <script>
 import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
+import getDateNow from '@/scripts/getDateNow'
 
 export default {
   props: ['item', 'napravs', 'projects'],
@@ -268,6 +273,15 @@ export default {
       this.$store.dispatch('removeItem', { id, type, idproj })
       let myModal = new bootstrap.Modal(document.getElementById('exampleModal'))
       myModal.hide()
+    },
+    changeStatus() {
+      this.$store.dispatch('changeStatus', {
+        id: this.item.id,
+        type: this.item.type,
+        status: this.status,
+        dateStart: this.status === 'work' ? getDateNow : this.item.dateStart,
+        dateDone: this.status === 'done' ? getDateNow : '',
+      })
     },
   },
   watch: {
