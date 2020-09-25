@@ -5,8 +5,13 @@
       description="ATIOP — сервис управления задачами"
     />
     <div class="col-12 col-sm-6 col-md-4 col-xl-4 text-left">
-      <form @submit.prevent="login" class="mt-5 mb-3 p-3 shadow-sm ml-auto mr-auto max-width">
-        <h4 class="text-center mt-2 mb-4">{{mod === '#in' ? 'Авторизация' : 'Регистрация'}}</h4>
+      <form
+        @submit.prevent="login"
+        class="mt-5 mb-3 p-3 shadow-sm ml-auto mr-auto max-width"
+      >
+        <h4 class="text-center mt-2 mb-4">
+          {{ mod === '#in' ? 'Авторизация' : 'Регистрация' }}
+        </h4>
         <label for="email">Почта</label>
         <br />
         <input
@@ -54,10 +59,9 @@
           </button>
         </div>
         <br />
-        <button
-          class="btn btn-success btn-block"
-          type="submit"
-        >{{mod === '#in' ? 'Войти' : 'Заргегистрироваться'}}</button>
+        <button class="btn btn-success btn-block" type="submit">
+          {{ mod === '#in' ? 'Войти' : 'Заргегистрироваться' }}
+        </button>
 
         <p class="text-center m-0 mt-2">
           <small class="text-center">
@@ -68,13 +72,15 @@
               href="#in"
               title="Авторизоваться"
               @click="mod = '#in'"
-            >авторизоваться</a>
+              >авторизоваться</a
+            >
             <a
               v-if="mod === '#in'"
               href="#reg"
               title="Зарегистрироваться"
               @click="mod = '#reg'"
-            >зарегистрироваться</a>
+              >зарегистрироваться</a
+            >
           </small>
         </p>
       </form>
@@ -146,12 +152,12 @@ export default {
       } else {
         try {
           await this.$store.dispatch('regist', formData)
+          this.$router.push('/')
           if (auth.currentUser) {
             this.$store.dispatch('getItems', 'napravs')
             this.$store.dispatch('getItems', 'projects')
             this.$store.dispatch('getItems', 'tasks')
           }
-          this.$router.push('/')
         } catch (err) {
           if (err.code === 'auth/invalid-email') {
             this.$store.commit('addMessage', {

@@ -1,5 +1,6 @@
 import { auth } from "@/main.js";
 import { db } from "@/main.js";
+import createTask from '@/scripts/createTask'
 
 export default {
   actions: {
@@ -8,12 +9,22 @@ export default {
         const datenow = Date.now().toString()
         await auth.createUserWithEmailAndPassword(email, password)
         const uid = auth.currentUser.uid
-        await db.collection("users").doc(uid).set({})
+        await db.collection("users").doc(uid).set({
+          email,
+          status: 'free',
+          dateCreate: datenow
+        })
 
         const ref = db.collection("users").doc(uid)
-        await ref.collection("napravs").doc(datenow).set({ id: datenow, type: 'napravs', title: 'Пример направления' })
-        await ref.collection("projects").doc(datenow).set({ id: datenow, type: 'projects', title: 'Пример проекта', idnapravs: datenow, length: 0 })
-        await ref.collection("tasks").doc(datenow).set({ id: datenow, type: 'tasks', title: 'Пример задачи', idnapravs: datenow, idprojects: datenow })
+        await ref.collection("napravs").doc(datenow).set(createTask(
+          'Пример направления', 'napravs', '', '', 0
+        ))
+        await ref.collection("projects").doc(datenow).set(createTask(
+          'Пример проекта', 'projects', datenow, '', 0
+        ))
+        await ref.collection("tasks").doc(datenow).set(createTask(
+          'Пример задачи', 'tasks', datenow, datenow, 0
+        ))
       } catch (err) {
         // Передать сообщение об ошибке в шину
         throw err
