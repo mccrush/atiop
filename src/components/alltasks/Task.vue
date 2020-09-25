@@ -52,11 +52,11 @@
       v-if="task.deadline && settings.showDeadline"
       >{{ new Date(task.deadline).toLocaleDateString() }}</span
     >
-    <span class="badge bg-dark mr-1"
+    <!-- <span class="badge bg-dark mr-1"
       >{{ new Date(task.dateCreate).toLocaleDateString() }} -
       {{ new Date(task.dateStart).toLocaleDateString() }} -
       {{ new Date(task.dateDone).toLocaleDateString() }}</span
-    >
+    > -->
     <hr class="m-1" />
     <div
       v-if="task.status !== 'done'"
