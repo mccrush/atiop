@@ -14,7 +14,7 @@
     <hr />
     <div class="d-flex justify-content-between mb-4">
       <a href="#filter" class="">&laquo;&laquo; Фильтр Задач</a>
-      <a href="#" class=""></a>
+      <a href="#redact" class="">Редактирование &raquo;&raquo;</a>
     </div>
   </div>
 </template>

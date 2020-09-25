@@ -23,7 +23,9 @@
             <a
               href="#description"
               class="list-group-item list-group-item-action small p-1 pl-2"
-              :class="{ 'bg-light': myHash === '#description' }"
+              :class="{
+                'bg-light': myHash === '#description' || myHash === '',
+              }"
               >Описание</a
             >
 
@@ -45,6 +47,12 @@
               class="list-group-item list-group-item-action small p-1 pl-2"
               :class="{ 'bg-light': myHash === '#status' }"
               >Статус Задач</a
+            >
+            <a
+              href="#redact"
+              class="list-group-item list-group-item-action small p-1 pl-2"
+              :class="{ 'bg-light': myHash === '#redact' }"
+              >Редактирование</a
             >
 
             <!-- <a
@@ -75,6 +83,7 @@ import Description from '@/views/about/Description'
 import Pages from '@/views/about/Pages'
 import Filter from '@/views/about/Filter'
 import Status from '@/views/about/Status'
+import Redact from '@/views/about/Redact'
 
 export default {
   components: {
@@ -83,6 +92,7 @@ export default {
     Pages,
     Filter,
     Status,
+    Redact,
   },
   date() {
     return {
