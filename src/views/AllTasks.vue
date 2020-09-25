@@ -162,13 +162,17 @@ export default {
       return this.$store.getters.filterValue
     },
   },
+  // Использовать в Админских целях для добавления новых свойств задачам
+  // mounted() {
+  //   this.addNewField()
+  // },
   methods: {
     // Испльзуется в админских целях, для добавления новых свойств уже существующих задач
-    addNewField() {
-      this.tasks.forEach((item) => {
-        this.$store.dispatch('addNewField', item.id)
-      })
-    },
+    // addNewField() {
+    //   this.tasks.forEach((item) => {
+    //     this.$store.dispatch('addNewField', item.id)
+    //   })
+    // },
     editItem({ id, type }) {
       this.item = this.tasks.find((item) => item.id === id)
       let myModal = new bootstrap.Modal(document.getElementById('exampleModal'))

@@ -59,8 +59,8 @@ export default {
     async addNewField({ commit }, id) {
       try {
         const ref = db.collection("users").doc(auth.currentUser.uid).collection('tasks').doc(id)
-        const res = await ref.set({ price: 0 }, { merge: true })
-        console.log('New field Add');
+        const res = await ref.set({ dateStart: '' }, { merge: true })
+        console.log('New field dateStart Add');
       } catch (err) { throw err }
     },
     async getItems({ commit }, type) {
