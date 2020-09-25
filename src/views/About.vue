@@ -100,7 +100,7 @@ export default {
     }
   },
   mounted() {
-    console.log('hash:', this.$route.hash)
+    //console.log('hash:', this.$route.hash)
   },
   computed: {
     component() {
