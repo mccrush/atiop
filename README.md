@@ -22,4 +22,4 @@
       действия необходимо выполнить?
     </p>
 
-Более подробное описание в приложении <a href="https://atiop.ru/" target="_blank" title="Перейти в приложение">atiop.ru</a>
+Более подробное описание в приложении <a href="https://atiop.ru/about" target="_blank" title="Перейти в приложение">atiop.ru</a>
