@@ -75,7 +75,6 @@ export default {
     },
 
     addItem({ commit, dispatch }, item) {
-      console.log('Came item:', item);
       const ref = db.collection("users").doc(auth.currentUser.uid)
       ref.collection(item.type).doc(item.id).set(item).then(() => {
         console.log('addItem, Элемент добавлен:');
@@ -104,8 +103,8 @@ export default {
     },
     updateItem({ commit }, item) {
       const ref = db.collection("users").doc(auth.currentUser.uid)
-      const el = ref.collection(type).doc(id).get().then(doc => doc.data())
-      return ref.collection(type).doc(id).update({ ...el, title: item.title, type: item.type, position: item.position, status: item.status, date: item.date, deadline: item.deadline, color: item.color, napravId: item.napravId, napravTitle: item.napravTitle, projectId: item.projectId, projectTitle: item.projectTitle, price: item.price })
+      const el = ref.collection(item.type).doc(item.id).get().then(doc => doc.data())
+      return ref.collection(item.type).doc(item.id).update({ ...el, title: item.title, type: item.type, position: item.position, status: item.status, date: item.date, deadline: item.deadline, color: item.color, napravId: item.napravId, napravTitle: item.napravTitle, projectId: item.projectId, projectTitle: item.projectTitle, price: item.price })
         .then(function () {
           console.log("updateItem, Document successfully updated!");
           commit('updateItem', item)
