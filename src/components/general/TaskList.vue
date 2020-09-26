@@ -90,8 +90,9 @@ export default {
           (item) => item.id === this.projectId
         ).title
         const type = 'tasks'
+
         const item = createTask(
-          null,
+          Date.now().toString(),
           this.title,
           type,
           this.napravId,

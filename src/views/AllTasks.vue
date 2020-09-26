@@ -181,8 +181,9 @@ export default {
     addItem() {
       if (this.title) {
         const type = 'tasks'
+
         const item = createTask(
-          null,
+          Date.now().toString(),
           this.title,
           type,
           this.napravId,

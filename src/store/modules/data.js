@@ -75,6 +75,7 @@ export default {
     },
 
     addItem({ commit, dispatch }, item) {
+      console.log('Came item:', item);
       const ref = db.collection("users").doc(auth.currentUser.uid)
       ref.collection(item.type).doc(item.id).set(item).then(() => {
         console.log('addItem, Элемент добавлен:');
