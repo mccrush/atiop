@@ -91,6 +91,7 @@ export default {
         ).title
         const type = 'tasks'
         const item = createTask(
+          null,
           this.title,
           type,
           this.napravId,

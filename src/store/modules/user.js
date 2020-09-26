@@ -17,13 +17,13 @@ export default {
 
         const ref = db.collection("users").doc(uid)
         await ref.collection("napravs").doc(datenow).set(createTask(
-          'Пример направления', 'napravs', '', '', 0
+          datenow, 'Пример направления', 'napravs', '', '', 0, 'Пример направления', 'Пример проекта'
         ))
         await ref.collection("projects").doc(datenow).set(createTask(
-          'Пример проекта', 'projects', datenow, '', 0
+          datenow, 'Пример проекта', 'projects', datenow, '', 0, 'Пример направления', 'Пример проекта'
         ))
         await ref.collection("tasks").doc(datenow).set(createTask(
-          'Пример задачи', 'tasks', datenow, datenow, 0
+          datenow, 'Пример задачи', 'tasks', datenow, datenow, 0, 'Пример направления', 'Пример проекта'
         ))
       } catch (err) {
         // Передать сообщение об ошибке в шину
