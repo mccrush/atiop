@@ -53,6 +53,7 @@
       </div>
     </div>
     <div class="d-flex flex-row flex-wrap">
+      <Loading v-if="sortTasks && !sortTasks.length" />
       <Task
         v-for="task in sortTasks"
         :key="task.id"
@@ -70,11 +71,13 @@ import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
 import createTask from '@/scripts/createTask'
 import Task from '@/components/alltasks/Task'
 import Modal from '@/components/Modal'
+import Loading from '@/components/Loading'
 
 export default {
   components: {
     Task,
     Modal,
+    Loading,
   },
   data() {
     return {
