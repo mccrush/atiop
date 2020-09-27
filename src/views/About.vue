@@ -15,6 +15,12 @@
           >0.5.2-alpha</a
         >
         <br />По всем вопросам: mccrush2027@gmail.com
+        <br />Поддержать проект на <a
+          href="https://www.patreon.com/mccrush"
+          target="_blank"
+          title="Поддержать проект на Patreon"
+          >Patreon</a
+        >
       </p>
 
       <div class="row">
