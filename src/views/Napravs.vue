@@ -7,19 +7,19 @@
 
     <div class="row p-0 border-bottom">
       <div class="col-2 col-xxl-2 p-2">
-        <button class="btn btn-sm btn-light btn-block">
+        <button class="btn btn-sm btn-light btn-block" disabled>
           Направлений
           <span class="badge bg-info">{{ napravs.length }}</span>
         </button>
       </div>
       <div class="col-2 col-xxl-2 p-2">
-        <button class="btn btn-sm btn-light btn-block">
+        <button class="btn btn-sm btn-light btn-block" disabled>
           Проектов
           <span class="badge bg-secondary">{{ projects.length }}</span>
         </button>
       </div>
       <div class="col-2 col-xxl-2 p-2">
-        <button class="btn btn-sm btn-light btn-block">
+        <button class="btn btn-sm btn-light btn-block" disabled>
           Задач
           <span class="badge bg-warning">{{ tasks.length }}</span>
         </button>
