@@ -21,7 +21,7 @@
             <div class="row mt-2">
               <div class="col-4 pr-0">
                 <input
-                  v-if="item && item.type !== 'napravs'"
+                  :disabled="item && item.type === 'napravs'"
                   type="datetime-local"
                   id="date"
                   class="form-control form-control-sm border-warning"
@@ -30,7 +30,7 @@
               </div>
               <div class="col-4 pr-0">
                 <input
-                  v-if="item && item.type !== 'napravs'"
+                  :disabled="item && item.type === 'napravs'"
                   type="datetime-local"
                   id="deadline"
                   class="form-control form-control-sm border-danger"
@@ -41,6 +41,10 @@
                 <select
                   v-model="status"
                   @change="changeStatus"
+                  :disabled="
+                    item &&
+                    (item.type === 'napravs' || item.type === 'projects')
+                  "
                   class="form-control form-control-sm"
                 >
                   <option
@@ -56,7 +60,11 @@
 
             <div class="row mt-2">
               <div class="col-4 pr-0">
-                <select v-model="napravId" class="form-control form-control-sm">
+                <select
+                  v-model="napravId"
+                  :disabled="item && item.type === 'napravs'"
+                  class="form-control form-control-sm"
+                >
                   <option value selected>Направление</option>
                   <option
                     v-for="item in napravs"
@@ -71,7 +79,11 @@
                 <select
                   v-model="projectId"
                   class="form-control form-control-sm"
-                  :disabled="!napravId"
+                  :disabled="
+                    !napravId ||
+                    item.type === 'napravs' ||
+                    item.type === 'projects'
+                  "
                 >
                   <option value selected>Проект</option>
                   <option
@@ -105,6 +117,9 @@
                   id="price"
                   class="form-control form-control-sm"
                   v-model.number="price"
+                  :disabled="
+                    item.type === 'napravs' || item.type === 'projects'
+                  "
                 />
               </div>
             </div>
