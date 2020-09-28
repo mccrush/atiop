@@ -19,12 +19,8 @@
         >
           {{ item.title }}
         </h6>
-        <div class="rounded-sm border">
-          <TaskList
-            :napravId="napravId"
-            :projectId="item.id"
-            @edit-item="editItem"
-          />
+        <div class="">
+          <TaskStat :napravId="napravId" :projectId="item.id" />
         </div>
       </li>
     </ul>
@@ -35,21 +31,16 @@
 </template>
 
 <script>
-import TaskList from '@/components/general/TaskList'
+import TaskStat from '@/components/general/TaskStat'
 
 export default {
   components: {
-    TaskList,
+    TaskStat,
   },
   props: ['projects', 'napravId', 'color'],
   computed: {
     displayProj() {
       return this.projects.filter((item) => item.napravId === this.napravId)
-    },
-  },
-  methods: {
-    editItem({ id, type }) {
-      this.$emit('edit-item', { id, type })
     },
   },
 }
