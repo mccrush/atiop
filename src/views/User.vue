@@ -1,8 +1,59 @@
 <template>
-  <div class="row">
-    <div class="col-12">
-      <h4>Настройки профиля</h4>
-      <p>Сраница в разработке</p>
+  <div>
+    <vue-headful
+      title="ATIOP Пользователь"
+      description="ATIOP — сервис управления задачами"
+    />
+    <div class="row p-0 border-bottom">
+      <div class="col-2 col-xxl-2 p-2">
+        <button class="btn btn-sm btn-light btn-block" disabled>---</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <ul class="list-group mt-2">
+          <li
+            class="list-group-item d-flex justify-content-between align-items-cente"
+          >
+            Email
+            <strong>{{ user.email }}</strong>
+          </li>
+          <li
+            class="list-group-item d-flex justify-content-between align-items-cente"
+          >
+            Дата регистрации
+            <strong>{{
+              new Date(user.metadata.creationTime).toLocaleDateString()
+            }}</strong>
+          </li>
+          <li
+            class="list-group-item d-flex justify-content-between align-items-cente"
+          >
+            <button class="btn btn-sm btn-outline-danger">
+              Удалить аккаунт
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
+
+<script>
+import { auth } from '@/main.js'
+import vueHeadful from 'vue-headful'
+
+export default {
+  components: {
+    vueHeadful,
+  },
+  data() {
+    return {
+      user: auth.currentUser,
+    }
+  },
+  methods: {
+    removeUser() {},
+  },
+}
+</script>

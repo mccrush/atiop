@@ -1,6 +1,10 @@
 <template>
   <div class="bg-white shadow-sm p-3 pt-3 settings">
     <h5 class="text-center">Настройки</h5>
+    <router-link to="/user" class="btn btn-sm btn-light border p-0 pl-1 pr-1"
+      >Аккаунт</router-link
+    >
+    <hr class="mt-2 mb-1" />
     <small>Показывать</small>
     <div class="form-group form-check mb-1">
       <input

@@ -1,5 +1,9 @@
 <template>
   <div>
+    <vue-headful
+      title="ATIOP Пользователь"
+      description="ATIOP — сервис управления задачами"
+    />
     <div class="row p-0 border-bottom">
       <div class="col-2 col-xxl-1 p-2">
         <select
@@ -72,12 +76,14 @@ import createTask from '@/scripts/createTask'
 import Task from '@/components/alltasks/Task'
 import Modal from '@/components/Modal'
 import Loading from '@/components/Loading'
+import vueHeadful from 'vue-headful'
 
 export default {
   components: {
     Task,
     Modal,
     Loading,
+    vueHeadful,
   },
   data() {
     return {
