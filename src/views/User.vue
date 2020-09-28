@@ -29,7 +29,7 @@
           <li
             class="list-group-item d-flex justify-content-between align-items-cente"
           >
-            <button class="btn btn-sm btn-outline-danger">
+            <button @click="removeUser" class="btn btn-sm btn-outline-danger">
               Удалить аккаунт
             </button>
           </li>
@@ -53,7 +53,15 @@ export default {
     }
   },
   methods: {
-    removeUser() {},
+    removeUser() {
+      if (
+        confirm(
+          'При удалении аккаунта, также будут удалены и все задачи. Действительно удалить аккаунт?'
+        )
+      ) {
+        console.log('Аккаунт удален')
+      }
+    },
   },
 }
 </script>
