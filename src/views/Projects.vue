@@ -206,6 +206,7 @@ export default {
               : ''
 
           const item = createTask(
+            Date.now().toString(),
             title,
             type,
             napravId,
