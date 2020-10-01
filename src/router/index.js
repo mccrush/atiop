@@ -37,9 +37,9 @@ const router = createRouter({
       }
     },
     {
-      path: '/napravs',
-      name: 'napravs',
-      component: () => import('../views/Napravs.vue'),
+      path: '/review',
+      name: 'review',
+      component: () => import('../views/Review.vue'),
       // ВКЛЮЧИТЬ на продакшине
       meta: {
         requiresAuth: true
