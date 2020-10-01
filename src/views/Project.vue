@@ -5,14 +5,18 @@
       description="ATIOP — сервис управления задачами"
     />
     <div class="row p-0 border-bottom">
-      <div class="col-3 p-2">
-        <input
-          type="text"
-          class="form-control form-control-sm border-0 bg-light"
-          placeholder="---"
-        />
+      <div class="col-3 col-xl-2 p-2">
+        <div
+          class="btn-group btn-group-sm w-100"
+          role="group"
+          aria-label="Basic example"
+        >
+          <button type="button" class="btn btn-light active">Канбан</button>
+          <button type="button" class="btn btn-light disabled">Список</button>
+        </div>
       </div>
     </div>
+    <!-- Либо Канбан, либо список-таблица -->
     <div class="row h-100">
       <div class="d-flex align-items-start pt-2 ower">
         <div class="mr-2 rounded-sm border project">
