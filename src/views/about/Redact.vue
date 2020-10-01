@@ -9,9 +9,19 @@
     <!-- <p>Задачи со статусом &laquo;В работе&raquo;, имеют желтую рамку.</p> -->
     <!-- <p>&laquo;Планы&raquo; представляют собой календарь месяцев на ближайший год. Если номер месяца дедлайна проекта совпадает с номером представленного месяца, то проект отображается именно в этом месяце.</p> -->
     <hr />
-    <div class="d-flex justify-content-between mb-4">
-      <a href="#status" class="">&laquo;&laquo; Статус Задач</a>
-      <a href="#" class=""></a>
-    </div>
+    <Paginator
+      :prev="{ href: 'status', title: 'Статус Задач' }"
+      :next="{ href: '', title: '' }"
+    />
   </div>
 </template>
+
+<script>
+import Paginator from '@/components/Paginator'
+
+export default {
+  components: {
+    Paginator,
+  },
+}
+</script>

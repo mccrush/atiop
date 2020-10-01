@@ -12,9 +12,19 @@
     <p>Задачи со статусом &laquo;В работе&raquo;, имеют желтую рамку.</p>
     <!-- <p>&laquo;Планы&raquo; представляют собой календарь месяцев на ближайший год. Если номер месяца дедлайна проекта совпадает с номером представленного месяца, то проект отображается именно в этом месяце.</p> -->
     <hr />
-    <div class="d-flex justify-content-between mb-4">
-      <a href="#filter" class="">&laquo;&laquo; Фильтр Задач</a>
-      <a href="#redact" class="">Редактирование &raquo;&raquo;</a>
-    </div>
+    <Paginator
+      :prev="{ href: 'filter', title: 'Фильтр Задач' }"
+      :next="{ href: 'redact', title: 'Редактирование' }"
+    />
   </div>
 </template>
+
+<script>
+import Paginator from '@/components/Paginator'
+
+export default {
+  components: {
+    Paginator,
+  },
+}
+</script>

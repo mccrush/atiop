@@ -34,9 +34,19 @@
       >.
     </p>
     <hr />
-    <div class="d-flex justify-content-between mb-4">
-      <a href="#" class=""></a>
-      <a href="#pages" class="">Страницы &raquo;&raquo;</a>
-    </div>
+    <Paginator
+      :prev="{ href: '', title: '' }"
+      :next="{ href: 'pages', title: 'Страницы' }"
+    />
   </div>
 </template>
+
+<script>
+import Paginator from '@/components/Paginator'
+
+export default {
+  components: {
+    Paginator,
+  },
+}
+</script>

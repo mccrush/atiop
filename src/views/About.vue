@@ -14,8 +14,8 @@
           title="Страница на Github"
           >0.5.2-alpha</a
         >
-        <br />По всем вопросам: mccrush2027@gmail.com
-        <br />Поддержать проект на <a
+        <br />По всем вопросам: mccrush2027@gmail.com <br />Поддержать проект на
+        <a
           href="https://www.patreon.com/mccrush"
           target="_blank"
           title="Поддержать проект на Patreon"
@@ -128,13 +128,5 @@ export default {
 li > a {
   text-decoration: none;
   color: #212529;
-}
-
-.totop {
-  position: fixed;
-  bottom: 8px;
-  right: 32px;
-  font-size: 1.5rem;
-  font-weight: bold;
 }
 </style>

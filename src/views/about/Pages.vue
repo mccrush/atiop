@@ -23,9 +23,20 @@
     </p>
     <!-- <p>&laquo;Планы&raquo; представляют собой календарь месяцев на ближайший год. Если номер месяца дедлайна проекта совпадает с номером представленного месяца, то проект отображается именно в этом месяце.</p> -->
     <hr />
-    <div class="d-flex justify-content-between mb-4">
-      <a href="#description" class="">&laquo;&laquo; Описание</a>
-      <a href="#filter" class="">Фильтр Задач &raquo;&raquo;</a>
-    </div>
+    <Paginator
+      :prev="{ href: 'description', title: 'Описание' }"
+      :next="{ href: 'filter', title: 'Фильтр Задач' }"
+    />
   </div>
 </template>
+
+<script>
+import Paginator from '@/components/Paginator'
+
+export default {
+  components: {
+    Paginator,
+  },
+}
+</script>
+
