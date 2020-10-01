@@ -29,7 +29,10 @@
           <li
             class="list-group-item d-flex justify-content-between align-items-cente"
           >
-            <button @click="removeUser" class="btn btn-sm btn-outline-danger">
+            <button
+              @click="removeUser"
+              class="btn btn-sm btn-outline-danger disabled p-0 pl-1 pr-2"
+            >
               Удалить аккаунт
             </button>
           </li>
