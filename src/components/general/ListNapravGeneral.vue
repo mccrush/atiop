@@ -1,15 +1,22 @@
 <template>
   <div class="row overflow-auto row-naprav">
-    <ul v-if="napravs.length" class="list-group list-group-horizontal mt-3 width-none">
+    <ul
+      v-if="napravs.length"
+      class="list-group list-group-horizontal mt-3 width-none"
+    >
       <li
         v-for="(item, index) in napravs"
-        :key="'in'+index"
+        :key="'in' + index"
         class="list-group-item justify-content-between align-items-center border-0 p-0 ml-1 mr-1 cursor-pointer d-inline-block naprav"
       >
         <h5
-          class="text-center bg-light rounded p-2 elem"
-          @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
-        >{{item.title}}</h5>
+          class="text-center bg-light rounded p-2 my-no-select"
+          @dblclick.prevent="
+            $emit('edit-item', { id: item.id, type: item.type })
+          "
+        >
+          {{ item.title }}
+        </h5>
         <div class="row">
           <ListProjGeneral
             :projects="projects"

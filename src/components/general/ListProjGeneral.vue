@@ -1,13 +1,13 @@
 <template>
-  <div class="col-2">
-    <ul v-if="displayProj.length" class="list-group list-group-horizontal mt-2">
+  <div class="col-12">
+    <ul v-if="displayProj.length" class="list-group list-group-horizontal">
       <li
         v-for="item in displayProj"
         :key="item.id"
         class="list-group-item justify-content-between align-items-center border-0 p-0 ml-1 mr-1 cursor-pointer"
       >
         <h6
-          class="text-center bg-light rounded p-2 elem"
+          class="text-center bg-light rounded p-2 d-flex flex-row align-items-start my-no-select"
           :style="{
             background: item.color
               ? item.color + '!important'
@@ -17,7 +17,16 @@
             $emit('edit-item', { id: item.id, type: item.type })
           "
         >
-          {{ item.title }}
+          <div class="w-100 pl-4 mr-1">
+            {{ item.title }}
+          </div>
+          <router-link
+            :to="'/project/' + item.id"
+            tag="button"
+            title="В проект"
+            class="btn btn-sm btn-light border p-0 pl-2 pr-2 m-0"
+            >In</router-link
+          >
         </h6>
         <div class="">
           <TaskStat :napravId="napravId" :projectId="item.id" />
@@ -48,6 +57,6 @@ export default {
 
 <style scoped>
 h6 {
-  min-width: 170px;
+  width: 192px;
 }
 </style>

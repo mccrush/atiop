@@ -68,7 +68,7 @@
           }"
         >
           <h6
-            class="text-center pt-3 pr-2 rounded m-0 d-flex flex-row align-items-stretch elem"
+            class="text-center pt-3 pr-2 rounded m-0 d-flex flex-row align-items-start my-no-select"
             @dblclick.prevent="editItem({ id: item.id, type: item.type })"
           >
             <div class="w-100 pl-4">{{ item.title }}</div>
@@ -255,7 +255,7 @@ export default {
   vertical-align: top;
 }
 
-.elem {
+.my-no-select {
   user-select: none;
 }
 

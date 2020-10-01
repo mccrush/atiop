@@ -80,7 +80,7 @@ export default {
 </script>
 
 <style>
-.elem {
+.my-no-select {
   user-select: none;
 }
 
