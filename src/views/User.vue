@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-6">
+      <div class="col-6 col-xl-4">
         <ul class="list-group mt-2">
           <li
             class="list-group-item d-flex justify-content-between align-items-cente"
@@ -29,6 +29,18 @@
           <li
             class="list-group-item d-flex justify-content-between align-items-cente"
           >
+            <button
+              @click="removeUser"
+              class="btn btn-sm btn-light border disabled p-0 pl-1 pr-2"
+            >
+              Изменить Email
+            </button>
+            <button
+              @click="removeUser"
+              class="btn btn-sm btn-light border disabled p-0 pl-1 pr-2"
+            >
+              Обновить пароль
+            </button>
             <button
               @click="removeUser"
               class="btn btn-sm btn-outline-danger disabled p-0 pl-1 pr-2"
