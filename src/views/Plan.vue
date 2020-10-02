@@ -15,21 +15,56 @@
     <div class="row overflow-auto my-row-project">
       <div class="my-width-none">
         <div class="mt-2 mr-2 rounded-sm d-inline-block border my-project">
-          <h6 class="text-center pt-3 pr-2 m-0">1</h6>
+          <h6 class="text-center pt-3 pr-2 m-0">План дня</h6>
+          <TaskList napravId="" projectId="" @edit-item="editItem" />
         </div>
         <div class="mt-2 mr-2 rounded-sm d-inline-block border my-project">
-          <h6 class="text-center pt-3 pr-2 m-0">2</h6>
+          <h6 class="text-center pt-3 pr-2 m-0">Сегодня</h6>
         </div>
         <div class="mt-2 mr-2 rounded-sm d-inline-block border my-project">
-          <h6 class="text-center pt-3 pr-2 m-0">3</h6>
+          <h6 class="text-center pt-3 pr-2 m-0">Следующая</h6>
         </div>
       </div>
     </div>
+
+    <Modal :item="item" :napravs="napravs" :projects="projects" />
   </div>
 </template>
 
 <script>
-export default {}
+import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
+import TaskList from '@/components/general/TaskList'
+import Modal from '@/components/Modal'
+
+export default {
+  components: {
+    TaskList,
+    Modal,
+  },
+  data() {
+    return {
+      item: null,
+    }
+  },
+  computed: {
+    napravs() {
+      return this.$store.getters.napravs
+    },
+    projects() {
+      return this.$store.getters.projects
+    },
+    tasks() {
+      return this.$store.getters.tasks
+    },
+  },
+  methods: {
+    editItem({ id, type }) {
+      this.item = this.tasks.find((item) => item.id === id)
+      let myModal = new bootstrap.Modal(document.getElementById('exampleModal'))
+      myModal.show()
+    },
+  },
+}
 </script>
 
 <style scoped>

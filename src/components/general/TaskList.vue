@@ -46,7 +46,11 @@ export default {
       }
     },
     taskProjectId() {
-      return this.tasks.filter((task) => task.projectId === this.projectId)
+      if (this.projectId) {
+        return this.tasks.filter((task) => task.projectId === this.projectId)
+      } else {
+        return this.tasks
+      }
     },
     tasksTodoWork() {
       if (this.settings.showArhived || this.status === 'done') {
