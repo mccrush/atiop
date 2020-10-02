@@ -7,22 +7,29 @@
 
     <div class="row p-0 border-bottom">
       <div class="col-2 col-xxl-2 p-2">
-        <button class="btn btn-sm btn-light btn-block" disabled>
+        <div class="bg-white border rounded-sm text-center small w-100 p-1">
           Направлений
-          <span class="badge bg-info">{{ napravs.length }}</span>
-        </button>
+          <span class="badge bg-info ml-1">{{ napravs.length }}</span>
+        </div>
       </div>
       <div class="col-2 col-xxl-2 p-2">
-        <button class="btn btn-sm btn-light btn-block" disabled>
+        <div class="bg-white border rounded-sm text-center small w-100 p-1">
           Проектов
-          <span class="badge bg-secondary">{{ projects.length }}</span>
-        </button>
+          <span class="badge bg-secondary ml-1">{{ projects.length }}</span>
+        </div>
       </div>
-      <div class="col-2 col-xxl-2 p-2">
-        <button class="btn btn-sm btn-light btn-block" disabled>
+      <div class="col-3 col-xxl-3 p-2">
+        <div class="bg-white border rounded-sm text-center small w-100 p-1">
           Задач
-          <span class="badge bg-warning">{{ tasks.length }}</span>
-        </button>
+          <span class="badge bg-light text-dark ml-1 mr-1">{{
+            tasksTodo.length
+          }}</span>
+          <span class="badge bg-warning mr-1">{{ tasksWork.length }}</span>
+          <span class="badge bg-secondary mr-1">{{ tasksDone.length }}</span>
+          <span class="badge bg-light text-dark"
+            ><strong>{{ tasks.length }}</strong></span
+          >
+        </div>
       </div>
     </div>
 
@@ -61,6 +68,15 @@ export default {
     },
     tasks() {
       return this.$store.getters.tasks
+    },
+    tasksTodo() {
+      return this.tasks.filter((task) => task.status === 'todo')
+    },
+    tasksWork() {
+      return this.tasks.filter((task) => task.status === 'work')
+    },
+    tasksDone() {
+      return this.tasks.filter((task) => task.status === 'done')
     },
   },
   methods: {
