@@ -4,8 +4,8 @@
       title="ATIOP Проекты"
       description="ATIOP — сервис управления задачами"
     />
+    <!-- Строка фильтров -->
     <div class="row p-0 border-bottom">
-      <!-- <h6 class="m-1">Направление:</h6> -->
       <div class="col-2 col-xxl-1 p-2">
         <Loading v-if="napravs && !napravs.length" />
         <select
@@ -46,6 +46,8 @@
         <Loading v-if="creating" />
       </div>
     </div>
+    <!-- Конец Строка фильтров -->
+
     <div class="row overflow-auto row-project">
       <h6
         v-if="displayProjects && displayProjects.length === 0"
