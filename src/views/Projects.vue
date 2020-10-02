@@ -48,7 +48,7 @@
     </div>
     <!-- Конец Строка фильтров -->
 
-    <div class="row overflow-auto row-project">
+    <div class="row overflow-auto my-row-project">
       <h6
         v-if="displayProjects && displayProjects.length === 0"
         class="ml-3 mt-2"
@@ -59,12 +59,12 @@
 
       <div
         v-else-if="displayProjects && displayProjects.length > 0"
-        class="width-none"
+        class="my-width-none"
       >
         <div
           v-for="(item, index) in displayProjects"
           :key="'in' + index"
-          class="mt-2 mr-2 rounded-sm d-inline-block border project"
+          class="mt-2 mr-2 rounded-sm d-inline-block border my-project"
           :style="{
             background: item.color ? item.color + '!important' : '#fff',
           }"
@@ -249,10 +249,10 @@ export default {
 </script>
 
 <style>
-.row-project {
+.my-row-project {
   height: calc(100vh - 105px) !important;
 }
-.project {
+.my-project {
   width: 210px;
   vertical-align: top;
 }
@@ -261,11 +261,11 @@ export default {
   user-select: none;
 }
 
-.opacity-06 {
+.my-opacity-05 {
   opacity: 0.5;
 }
 
-.width-none {
+.my-width-none {
   width: auto !important;
   max-width: none !important;
 }
