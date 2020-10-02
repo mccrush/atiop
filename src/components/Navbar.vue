@@ -43,7 +43,7 @@
               >Проекты</router-link
             >
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <router-link
               to="/plan"
               class="nav-link"
@@ -51,7 +51,7 @@
               :aria-disabled="user ? 'true' : 'false'"
               >План</router-link
             >
-          </li>
+          </li> -->
           <li class="nav-item">
             <router-link
               to="/review"
