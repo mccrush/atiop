@@ -16,13 +16,15 @@
       <div class="my-width-none">
         <div class="mt-2 mr-2 rounded-sm d-inline-block border my-project">
           <h6 class="text-center pt-3 pr-2 m-0">План дня</h6>
-          <TaskList napravId="" projectId="" @edit-item="editItem" />
+          <br />---
         </div>
         <div class="mt-2 mr-2 rounded-sm d-inline-block border my-project">
           <h6 class="text-center pt-3 pr-2 m-0">Сегодня</h6>
+          <TaskListDay @edit-item="editItem" />
         </div>
         <div class="mt-2 mr-2 rounded-sm d-inline-block border my-project">
-          <h6 class="text-center pt-3 pr-2 m-0">Следующая</h6>
+          <h6 class="text-center pt-3 pr-2 m-0">Неделя</h6>
+          <TaskListMonth @edit-item="editItem" />
         </div>
       </div>
     </div>
@@ -34,11 +36,15 @@
 <script>
 import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
 import TaskList from '@/components/general/TaskList'
+import TaskListDay from '@/components/plan/TaskListDay'
+import TaskListMonth from '@/components/plan/TaskListMonth'
 import Modal from '@/components/Modal'
 
 export default {
   components: {
     TaskList,
+    TaskListDay,
+    TaskListMonth,
     Modal,
   },
   data() {

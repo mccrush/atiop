@@ -8,7 +8,9 @@
     <div class="col-12">
       <div class="row p-0 border-bottom">
         <div class="col-3 p-2">
-          <button class="btn btn-sm btn-light rounded-sm float-left w-25">День</button>
+          <button class="btn btn-sm btn-light rounded-sm float-left w-25">
+            День
+          </button>
           <input
             type="datetime-local"
             id="day"
@@ -23,7 +25,9 @@
           </select>-->
         </div>
         <div class="col-2 p-2">
-          <button class="btn btn-sm btn-light rounded-sm float-left w-50">Неделя</button>
+          <button class="btn btn-sm btn-light rounded-sm float-left w-50">
+            Неделя
+          </button>
           <select class="form-control form-control-sm rounded-sm w-50">
             <option value selected>Первая</option>
             <option value="status">Вторая</option>
@@ -41,7 +45,9 @@
         </div>
         <div class="col-2 p-2">
           <!-- Активный способ представления с жетой рамкой -->
-          <button class="btn btn-sm btn-light border-warning float-left w-50">Год</button>
+          <button class="btn btn-sm btn-light border-warning float-left w-50">
+            Год
+          </button>
           <select class="form-control form-control-sm w-50">
             <option value selected>2017</option>
             <option value="status">2018</option>
@@ -53,14 +59,22 @@
         </div>
       </div>
       <div class="row p-1">
-        <div v-for="month in months" :key="'pl'+month.id" class="col-sm-6 col-md-3 col-lg-2 p-1">
+        <div
+          v-for="month in months"
+          :key="'pl' + month.id"
+          class="col-sm-6 col-md-3 col-lg-2 p-1"
+        >
           <div class="shadow-sm pl-0 pt-0 pr-0 pb-1">
             <div class="d-flex justify-content-between p-2 bg-light elem">
-              <h6 class="m-0 p-0 text-secondary">{{month.title}}</h6>
-              <span class="badge bg-secondary">{{month.id}}</span>
+              <h6 class="m-0 p-0 text-secondary">{{ month.title }}</h6>
+              <span class="badge bg-secondary">{{ month.id }}</span>
             </div>
 
-            <ListProjects :projects="projects" :monthNumber="month.id" @edit-item="editItem" />
+            <ListProjects
+              :projects="projects"
+              :monthNumber="month.id"
+              @edit-item="editItem"
+            />
           </div>
         </div>
       </div>
@@ -73,7 +87,7 @@
 import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
 import vueHeadful from 'vue-headful'
 import getMonths from '@/scripts/getMonths'
-import ListProjects from '@/components/plans/ListProjects'
+import ListProjects from '@/components/calendar/ListProjects'
 import Modal from '@/components/Modal'
 
 export default {
