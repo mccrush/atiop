@@ -87,8 +87,8 @@ export default {
   },
   data() {
     return {
-      filterTypeModel: localStorage.getItem('filterType') || '',
-      filterValueModel: localStorage.getItem('filterValue') || '',
+      filterTypeModel: localStorage.getItem('at-filterType') || '',
+      filterValueModel: localStorage.getItem('at-filterValue') || '',
       item: null,
       title: '',
       napravId: '',

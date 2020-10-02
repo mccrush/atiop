@@ -126,7 +126,7 @@ export default {
     })
 
     // Filter
-    this.filter = localStorage.getItem('filter') || ''
+    this.filter = localStorage.getItem('at-filter') || ''
   },
   methods: {
     editItem({ id, type }) {
@@ -139,7 +139,7 @@ export default {
       myModal.show()
     },
     saveFilter() {
-      localStorage.setItem('filter', this.filter)
+      localStorage.setItem('at-filter', this.filter)
     },
   },
 }

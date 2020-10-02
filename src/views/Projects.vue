@@ -114,7 +114,7 @@ export default {
   data() {
     return {
       item: null,
-      filter: localStorage.getItem('filter') || '',
+      filter: localStorage.getItem('at-filter') || '',
       titleN: '',
       titleP: '',
       creating: false,
@@ -240,7 +240,7 @@ export default {
       myModal.show()
     },
     saveFilter() {
-      localStorage.setItem('filter', this.filter)
+      localStorage.setItem('at-filter', this.filter)
     },
   },
 }

@@ -40,9 +40,9 @@ export default {
     },
     async logOut() {
       await auth.signOut()
-      localStorage.removeItem('settings')
-      localStorage.removeItem('filterType')
-      localStorage.removeItem('filterValue')
+      localStorage.removeItem('at-settings')
+      localStorage.removeItem('at-filterType')
+      localStorage.removeItem('at-filterValue')
     }
   }
 }
