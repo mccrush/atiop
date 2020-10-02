@@ -45,6 +45,15 @@
           </li>
           <li class="nav-item">
             <router-link
+              to="/plan"
+              class="nav-link"
+              :class="{ disabled: !user }"
+              :aria-disabled="user ? 'true' : 'false'"
+              >План</router-link
+            >
+          </li>
+          <li class="nav-item">
+            <router-link
               to="/review"
               class="nav-link"
               :class="{ disabled: !user }"

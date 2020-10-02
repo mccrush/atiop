@@ -28,9 +28,9 @@ const router = createRouter({
       }
     },
     {
-      path: '/project/:id',
-      name: 'project',
-      component: () => import('../views/Project.vue'),
+      path: '/plan',
+      name: 'plan',
+      component: () => import('../views/Plan.vue'),
       // ВКЛЮЧИТЬ на продакшине
       meta: {
         requiresAuth: true
@@ -45,6 +45,16 @@ const router = createRouter({
         requiresAuth: true
       }
     },
+    {
+      path: '/project/:id',
+      name: 'project',
+      component: () => import('../views/Project.vue'),
+      // ВКЛЮЧИТЬ на продакшине
+      meta: {
+        requiresAuth: true
+      }
+    },
+
     {
       path: '/calendar',
       name: 'calendar',
