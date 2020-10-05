@@ -78,22 +78,23 @@
           </div>
         </div>
       </div>
-      <Modal :item="item" :napravs="napravs" :projects="projects" />
+      <Modal2 :item="item" :napravs="napravs" :projects="projects" />
     </div>
   </div>
 </template>
 
 <script>
+import { Modal } from 'bootstrap'
 import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
 import vueHeadful from 'vue-headful'
 import getMonths from '@/scripts/getMonths'
 import ListProjects from '@/components/calendar/ListProjects'
-import Modal from '@/components/Modal'
+import Modal2 from '@/components/Modal'
 
 export default {
   components: {
     ListProjects,
-    Modal,
+    Modal2,
     vueHeadful,
   },
   data() {
@@ -123,7 +124,7 @@ export default {
   methods: {
     editItem({ id, type }) {
       this.item = this.projects.find((item) => item.id === id)
-      let myModal = new bootstrap.Modal(document.getElementById('exampleModal'))
+      let myModal = new Modal(document.getElementById('exampleModal'))
       myModal.show()
     },
   },

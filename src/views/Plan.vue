@@ -29,23 +29,24 @@
       </div>
     </div>
 
-    <Modal :item="item" :napravs="napravs" :projects="projects" />
+    <Modal2 :item="item" :napravs="napravs" :projects="projects" />
   </div>
 </template>
 
 <script>
-import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
+import { Modal } from 'bootstrap'
+//import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
 import TaskList from '@/components/general/TaskList'
 import TaskListDay from '@/components/plan/TaskListDay'
 import TaskListMonth from '@/components/plan/TaskListMonth'
-import Modal from '@/components/Modal'
+import Modal2 from '@/components/Modal'
 
 export default {
   components: {
     TaskList,
     TaskListDay,
     TaskListMonth,
-    Modal,
+    Modal2,
   },
   data() {
     return {
@@ -66,7 +67,7 @@ export default {
   methods: {
     editItem({ id, type }) {
       this.item = this.tasks.find((item) => item.id === id)
-      let myModal = new bootstrap.Modal(document.getElementById('exampleModal'))
+      let myModal = new Modal(document.getElementById('exampleModal'))
       myModal.show()
     },
   },

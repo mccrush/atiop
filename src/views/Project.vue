@@ -53,21 +53,22 @@
           />
         </div>
       </div>
-      <Modal :item="item" :napravs="napravs" :projects="projects" />
+      <Modal2 :item="item" :napravs="napravs" :projects="projects" />
     </div>
   </div>
 </template>
 
 <script>
-import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
+import { Modal } from 'bootstrap'
+//import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
 import vueHeadful from 'vue-headful'
-import Modal from '@/components/Modal'
+import Modal2 from '@/components/Modal'
 import Loading from '@/components/Loading'
 import TaskList from '@/components/general/TaskList'
 
 export default {
   components: {
-    Modal,
+    Modal2,
     Loading,
     vueHeadful,
     TaskList,
@@ -135,7 +136,7 @@ export default {
       } else {
         this.item = this.projects.find((item) => item.id === id)
       }
-      let myModal = new bootstrap.Modal(document.getElementById('exampleModal'))
+      let myModal = new Modal(document.getElementById('exampleModal'))
       myModal.show()
     },
     saveFilter() {

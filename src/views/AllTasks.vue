@@ -65,23 +65,24 @@
         @edit-item="editItem"
         :settings="settings"
       />
-      <Modal :item="item" :napravs="napravs" :projects="projects" />
+      <Modal2 :item="item" :napravs="napravs" :projects="projects" />
     </div>
   </div>
 </template>
 
 <script>
-import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
+import { Modal } from 'bootstrap'
+//import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
 import createTask from '@/scripts/createTask'
 import Task from '@/components/alltasks/Task'
-import Modal from '@/components/Modal'
+import Modal2 from '@/components/Modal'
 import Loading from '@/components/Loading'
 import vueHeadful from 'vue-headful'
 
 export default {
   components: {
     Task,
-    Modal,
+    Modal2,
     Loading,
     vueHeadful,
   },
@@ -184,7 +185,7 @@ export default {
     // },
     editItem({ id, type }) {
       this.item = this.tasks.find((item) => item.id === id)
-      let myModal = new bootstrap.Modal(document.getElementById('exampleModal'))
+      let myModal = new Modal(document.getElementById('exampleModal'))
       myModal.show()
     },
     addItem() {

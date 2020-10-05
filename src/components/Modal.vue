@@ -188,7 +188,8 @@
 </template>
 
 <script>
-import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
+import { Modal } from 'bootstrap'
+//import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
 import getDateNow from '@/scripts/getDateNow'
 
 export default {
@@ -275,9 +276,7 @@ export default {
         }
 
         this.$store.dispatch('updateItem', item)
-        let myModal = new bootstrap.Modal(
-          document.getElementById('exampleModal')
-        )
+        let myModal = new Modal(document.getElementById('exampleModal'))
         myModal.hide()
       } else {
         this.error = true
@@ -286,7 +285,7 @@ export default {
     removeItem({ id, type, idproj }) {
       // Сделать асинхронной и выводить сообщения об ошибках
       this.$store.dispatch('removeItem', { id, type, idproj })
-      let myModal = new bootstrap.Modal(document.getElementById('exampleModal'))
+      let myModal = new Modal(document.getElementById('exampleModal'))
       myModal.hide()
     },
     changeStatus() {
