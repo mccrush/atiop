@@ -23,3 +23,15 @@
     </p>
 
 Более подробное описание в приложении <a href="https://atiop.ru/about" target="_blank" title="Перейти в приложение">atiop.ru</a>
+<hr>
+<p align="center">
+   <a href="https://v5.getbootstrap.com/">
+    <img src="https://flat.badgen.net/badge/bootstrap/5.0.0-alpha2/7952B3" alt="Bootstrap version" target="_blank">
+  </a>
+  <a href="https://v3.vuejs.org/">
+    <img src="https://flat.badgen.net/badge/vue.js/3.0.0/41B883" alt="Vue.js version" target="_blank">
+  </a>
+  <a href="https://github.com/mccrush/atiop/blob/master/LICENSE">
+    <img src="https://flat.badgen.net/github/license/micromatch/micromatch" alt="LICENSE" target="_blank">
+  </a>
+</p>
