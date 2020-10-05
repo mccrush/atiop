@@ -34,4 +34,7 @@
   <a href="https://github.com/mccrush/atiop/blob/master/LICENSE">
     <img src="https://flat.badgen.net/github/license/micromatch/micromatch" alt="LICENSE" target="_blank">
   </a>
+  <a href="https://patreon.com/mccrush">
+    <img src="https://flat.badgen.net/badge/become/a%20patron/F96854" alt="Sponsor this project" target="_blank">
+  </a>
 </p>
