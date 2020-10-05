@@ -18,7 +18,7 @@
           <span class="badge bg-secondary ml-1">{{ projects.length }}</span>
         </div>
       </div>
-      <div class="col-3 col-xxl-3 p-2">
+      <div class="col-3 col-xxl-2 p-2">
         <div class="bg-white border rounded-sm text-center small w-100 p-1">
           Задач
           <span class="badge bg-light text-dark ml-1 mr-1">{{
