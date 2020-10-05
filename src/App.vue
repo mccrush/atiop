@@ -6,7 +6,7 @@
         <router-view />
       </transition>
     </div>
-    <Settings class="formset" :class="{'right-0' : showSettings }" />
+    <Settings class="formset" :class="{ 'right-0': showSettings }" />
     <transition name="slide-fade">
       <Message
         v-if="showMessage"
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import 'bootstrap/dist/css/bootstrap.min.css'
 import Navbar from '@/components/Navbar'
 import Settings from '@/components/Settings'
 import Message from '@/components/Message'

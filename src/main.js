@@ -5,9 +5,6 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 
-import 'bootstrap'
-import 'bootstrap/dist/css/bootstrap.min.css'
-
 import * as firebase from "firebase/app";
 
 import "firebase/auth";
@@ -32,15 +29,8 @@ export const auth = firebase.auth();
 
 let app
 firebase.auth().onAuthStateChanged((user) => {
-  //console.log('user in main:', user);
 
   if (!app) {
-    // app = new Vue({
-    //   router,
-    //   store,
-    //   render: h => h(App)
-    // }).$mount('#app')
-
     app = createApp(App).use(store).use(router).mount('#app')
   }
   if (user) {
