@@ -72,7 +72,6 @@
 
 <script>
 import { Modal } from 'bootstrap'
-//import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
 import createTask from '@/scripts/createTask'
 import Task from '@/components/alltasks/Task'
 import Modal2 from '@/components/Modal'

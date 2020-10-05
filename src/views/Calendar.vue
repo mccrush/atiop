@@ -85,7 +85,6 @@
 
 <script>
 import { Modal } from 'bootstrap'
-import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
 import vueHeadful from 'vue-headful'
 import getMonths from '@/scripts/getMonths'
 import ListProjects from '@/components/calendar/ListProjects'

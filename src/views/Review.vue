@@ -44,7 +44,6 @@
 
 <script>
 import { Modal } from 'bootstrap'
-//import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
 import vueHeadful from 'vue-headful'
 import ListNapravGeneral from '@/components/general/ListNapravGeneral'
 import Modal2 from '@/components/Modal'

@@ -60,7 +60,6 @@
 
 <script>
 import { Modal } from 'bootstrap'
-//import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
 import vueHeadful from 'vue-headful'
 import Modal2 from '@/components/Modal'
 import Loading from '@/components/Loading'

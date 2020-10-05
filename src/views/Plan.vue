@@ -35,7 +35,6 @@
 
 <script>
 import { Modal } from 'bootstrap'
-//import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
 import TaskList from '@/components/general/TaskList'
 import TaskListDay from '@/components/plan/TaskListDay'
 import TaskListMonth from '@/components/plan/TaskListMonth'

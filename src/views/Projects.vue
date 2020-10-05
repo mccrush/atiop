@@ -99,7 +99,6 @@
 
 <script>
 import { Modal } from 'bootstrap'
-//import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
 import createTask from '@/scripts/createTask'
 import vueHeadful from 'vue-headful'
 import Modal2 from '@/components/Modal'
