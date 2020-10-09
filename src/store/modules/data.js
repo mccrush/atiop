@@ -1,6 +1,6 @@
 
-import { auth } from "@/main.js";
-import { db } from "@/main.js";
+import { auth } from "@/firebase.js";
+import { db } from "@/firebase.js";
 
 export default {
   state: {

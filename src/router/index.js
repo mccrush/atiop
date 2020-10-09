@@ -2,7 +2,7 @@
 //import Router from 'vue-router'
 
 import { createRouter, createWebHistory } from 'vue-router'
-import { auth } from "@/main.js";
+import { auth } from "@/firebase.js";
 
 //Vue.use(Router)
 

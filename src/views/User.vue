@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import { auth } from '@/main.js'
+import { auth } from '@/firebase.js'
 import vueHeadful from 'vue-headful'
 
 export default {
