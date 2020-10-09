@@ -2,7 +2,7 @@
   <div class="col-12">
     <ul v-if="displayProj.length" class="list-group list-group-horizontal">
       <li
-        v-for="item in displayProj"
+        v-for="item in sortDisplayProjects"
         :key="item.id"
         class="list-group-item justify-content-between align-items-center border-0 p-0 ml-1 mr-1 cursor-pointer"
       >
@@ -50,6 +50,11 @@ export default {
   computed: {
     displayProj() {
       return this.projects.filter((item) => item.napravId === this.napravId)
+    },
+    sortDisplayProjects() {
+      return this.displayProj.sort((a, b) => {
+        return a.position - b.position
+      })
     },
   },
 }
