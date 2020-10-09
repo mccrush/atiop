@@ -50,7 +50,7 @@
 
     <div class="row overflow-auto my-row-project">
       <h6
-        v-if="displayProjects && displayProjects.length === 0"
+        v-if="sortDisplayProjects && sortDisplayProjects.length === 0"
         class="ml-3 mt-2"
         @show="error = true"
       >
@@ -58,11 +58,11 @@
       </h6>
 
       <div
-        v-else-if="displayProjects && displayProjects.length > 0"
+        v-else-if="sortDisplayProjects && sortDisplayProjects.length > 0"
         class="my-width-none"
       >
         <div
-          v-for="(item, index) in displayProjects"
+          v-for="(item, index) in sortDisplayProjects"
           :key="'in' + index"
           class="mt-2 mr-2 rounded-sm d-inline-block border my-project"
           :style="{
@@ -153,6 +153,11 @@ export default {
           )
         }
       }
+    },
+    sortDisplayProjects() {
+      return this.displayProjects.sort((a, b) => {
+        return a.position - b.position
+      })
     },
     settings() {
       return this.$store.getters.settings
