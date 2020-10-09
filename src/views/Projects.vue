@@ -116,11 +116,16 @@ export default {
   data() {
     return {
       item: null,
-      filter: localStorage.getItem('at-filter') || '',
+      filter:
+        this.$route.query.naprav || localStorage.getItem('at-filter') || '',
       titleN: '',
       titleP: '',
       creating: false,
       error: false,
+    }
+  },
+  created() {
+    if (this.filter) {
     }
   },
   computed: {
@@ -247,6 +252,7 @@ export default {
       myModal.show()
     },
     saveFilter() {
+      this.$router.push({ path: 'projects', query: { naprav: this.filter } })
       localStorage.setItem('at-filter', this.filter)
     },
   },
