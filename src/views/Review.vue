@@ -34,7 +34,7 @@
     </div>
 
     <ListNapravGeneral
-      :napravs="napravs"
+      :napravs="sortNapravs"
       :projects="projects"
       @edit-item="editItem"
     />
@@ -62,6 +62,11 @@ export default {
   computed: {
     napravs() {
       return this.$store.getters.napravs
+    },
+    sortNapravs() {
+      return this.napravs.sort((a, b) => {
+        return a.position - b.position
+      })
     },
     projects() {
       return this.$store.getters.projects
