@@ -26,27 +26,33 @@
               new Date(user.metadata.creationTime).toLocaleDateString()
             }}</strong>
           </li>
-          <li
-            class="list-group-item d-flex justify-content-between align-items-cente"
-          >
-            <button
-              @click="removeUser"
-              class="btn btn-sm btn-light border disabled p-0 pl-1 pr-2"
-            >
-              Изменить Email
-            </button>
-            <button
-              @click="removeUser"
-              class="btn btn-sm btn-light border disabled p-0 pl-1 pr-2"
-            >
-              Обновить пароль
-            </button>
-            <button
-              @click="removeUser"
-              class="btn btn-sm btn-outline-danger disabled p-0 pl-1 pr-2"
-            >
-              Удалить аккаунт
-            </button>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-4">
+                <button
+                  @click="removeUser"
+                  class="btn btn-sm btn-block btn-light border disabled"
+                >
+                  Изменить Email
+                </button>
+              </div>
+              <div class="col-4">
+                <button
+                  @click="removeUser"
+                  class="btn btn-sm btn-block btn-light border disabled"
+                >
+                  Обновить пароль
+                </button>
+              </div>
+              <div class="col-4">
+                <button
+                  @click="removeUser"
+                  class="btn btn-sm btn-block btn-outline-danger disabled"
+                >
+                  Удалить аккаунт
+                </button>
+              </div>
+            </div>
           </li>
         </ul>
       </div>
