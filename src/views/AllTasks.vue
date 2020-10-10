@@ -123,8 +123,8 @@ export default {
     tasks() {
       if (this.searchQuery) {
         return this.$store.getters.tasks.filter(
-          (task) =>
-            task.title.toUpperCase().indexOf(this.searchQuery.toUpperCase()) !=
+          (item) =>
+            item.title.toUpperCase().indexOf(this.searchQuery.toUpperCase()) !=
             -1
         )
       } else {
