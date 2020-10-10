@@ -122,4 +122,33 @@ export default {
 .add-task {
   width: 192px;
 }
+
+.task-list {
+  max-height: calc(100vh - 178px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 0.2rem;
+  margin-top: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 0.2rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a9a9a9;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #787878;
+}
 </style>

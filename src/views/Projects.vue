@@ -282,8 +282,10 @@ export default {
   height: calc(100vh - 105px) !important;
 }
 .my-project {
-  width: 210px;
+  width: 210px; /* 226 for scroll */
   vertical-align: top;
+  max-height: calc(100vh - 135px);
+  overflow-y: hidden;
 }
 
 .my-no-select {
