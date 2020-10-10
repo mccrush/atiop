@@ -45,6 +45,15 @@
         />
         <Loading v-if="creating" />
       </div>
+      <div class="d-none d-xxl-block col-xxl-5 p-2"></div>
+      <div class="col-4 col-xxl-2 p-2">
+        <input
+          type="search"
+          v-model.trim="searchQuery"
+          class="form-control form-control-sm border-0 bg-light"
+          placeholder="Поиск по проектам"
+        />
+      </div>
     </div>
     <!-- Конец Строка фильтров -->
 
@@ -122,6 +131,7 @@ export default {
       titleP: '',
       creating: false,
       error: false,
+      searchQuery: '',
     }
   },
   created() {
@@ -133,7 +143,15 @@ export default {
       return this.$store.getters.napravs
     },
     projects() {
-      return this.$store.getters.projects
+      if (this.searchQuery) {
+        return this.$store.getters.projects.filter(
+          (item) =>
+            item.title.toUpperCase().indexOf(this.searchQuery.toUpperCase()) !=
+            -1
+        )
+      } else {
+        return this.$store.getters.projects
+      }
     },
     tasks() {
       return this.$store.getters.tasks
