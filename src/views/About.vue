@@ -13,13 +13,26 @@
           target="_blank"
           title="Страница на Github"
           >0.5.2-alpha</a
-        >
-        <br />По всем вопросам: mccrush2027@gmail.com <br />Поддержать проект на
-        <a
+        >, email: mccrush2027@gmail.com <br />
+        <!-- <a
           href="https://www.patreon.com/mccrush"
           target="_blank"
           title="Поддержать проект на Patreon"
           >Patreon</a
+        > -->
+        <a
+          href="https://www.patreon.com/mccrush"
+          title="Поддержать проект на Patreon"
+          target="_blank"
+          class="btn btn-sm btn-outline-danger p-0 pl-2 pr-2 mr-2"
+          >Поддержать на Patreon</a
+        >
+        <a
+          href="https://github.com/mccrush/atiop"
+          title="Fork me on Github"
+          target="_blank"
+          class="btn btn-sm btn-outline-dark p-0 pl-2 pr-2"
+          >Fork me on Github</a
         >
       </p>
 
