@@ -12,7 +12,7 @@
           href="https://github.com/mccrush/atiop/releases/"
           target="_blank"
           title="Страница на Github"
-          >0.5.2-alpha</a
+          >0.5.3-alpha</a
         >, email: mccrush2027@gmail.com <br />
         <!-- <a
           href="https://www.patreon.com/mccrush"
