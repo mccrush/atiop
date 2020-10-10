@@ -42,17 +42,22 @@
           </option>
         </select>
       </div>
-      <div class="col-2 col-xxl-3 p-2">
-        <!-- <button class="btn btn-dark btn-sm btn-block" @click="addNewField">Add new field</button> -->
-      </div>
-      <div class="col-2 col-xxl-4 p-2"></div>
-      <div class="col-4 col-xxl-3 p-2">
+      <div class="col-4 col-xxl-2 p-2">
         <input
           type="text"
           v-model.trim="title"
           @keypress.enter="addItem('napravs')"
           class="form-control form-control-sm border-0 bg-light"
           placeholder="Добавить задачу"
+        />
+      </div>
+      <div class="d-none d-xxl-block col-xxl-6 p-2"></div>
+      <div class="col-4 col-xxl-2 p-2">
+        <input
+          type="search"
+          v-model.trim="searchQuery"
+          class="form-control form-control-sm border-0 bg-light"
+          placeholder="Поиск по задачам"
         />
       </div>
     </div>
@@ -93,6 +98,7 @@ export default {
       title: '',
       napravId: '',
       projectId: '',
+      searchQuery: '',
     }
   },
   computed: {
@@ -115,7 +121,15 @@ export default {
       return this.$store.getters.status
     },
     tasks() {
-      return this.$store.getters.tasks
+      if (this.searchQuery) {
+        return this.$store.getters.tasks.filter(
+          (task) =>
+            task.title.toUpperCase().indexOf(this.searchQuery.toUpperCase()) !=
+            -1
+        )
+      } else {
+        return this.$store.getters.tasks
+      }
     },
     tasksTodoWork() {
       if (this.settings.showArhived) {
