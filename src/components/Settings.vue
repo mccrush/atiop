@@ -167,6 +167,24 @@
           <small>По цене</small>
         </label>
       </div>
+      <div class="btn-group btn-block" role="group" aria-label="Basic example">
+        <button
+          type="button"
+          class="btn btn-sm btn-light border p-0 pl-1 pr-1 w-50"
+          :class="{ active: sortTo === 'up' }"
+          @click="saveChanges('up')"
+        >
+          Возраст
+        </button>
+        <button
+          type="button"
+          class="btn btn-sm btn-light border p-0 pl-1 pr-1 w-50"
+          :class="{ active: sortTo === 'down' }"
+          @click="saveChanges('down')"
+        >
+          Убыван
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -184,6 +202,7 @@ export default {
       showProject: null,
       showPrice: null,
       sortBy: '',
+      sortTo: 'up',
     }
   },
   computed: {
@@ -196,7 +215,8 @@ export default {
     this.updateValue()
   },
   methods: {
-    saveChanges() {
+    saveChanges(sortTo) {
+      this.sortTo = sortTo
       this.$store.commit('updateSettings', {
         showArhived: this.showArhived,
         showEmpty: this.showEmpty,
@@ -207,12 +227,14 @@ export default {
         showProject: this.showProject,
         showPrice: this.showPrice,
         sortBy: this.sortBy,
+        sortTo: this.sortTo,
       })
     },
     updateValue() {
       this.showArhived = this.settings.showArhived
       this.showEmpty = this.settings.showEmpty
       this.sortBy = this.settings.sortBy
+      this.sortTo = this.settings.sortTo
       this.showPosition = this.settings.showPosition
       this.showDate = this.settings.showDate
       this.showDeadline = this.settings.showDeadline
