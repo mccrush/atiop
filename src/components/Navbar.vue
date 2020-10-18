@@ -124,6 +124,7 @@
 
 <script>
 import { auth } from '@/firebase.js'
+import { Collapse } from 'bootstrap'
 
 export default {
   name: 'navbar',
