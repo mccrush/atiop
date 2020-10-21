@@ -1,7 +1,10 @@
 <template>
   <div class>
-    <Navbar @show-settings="showSettings = !showSettings" />
-    <div class="container-fluid">
+    <Navbar
+      @show-settings="showSettings = !showSettings"
+      @hide-settings="showSettings = false"
+    />
+    <div class="container-fluid" @click.prevent="showSettings = false">
       <transition name="component-fade" mode="out-in">
         <router-view />
       </transition>
