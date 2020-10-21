@@ -171,16 +171,16 @@
         <button
           type="button"
           class="btn btn-sm btn-light border p-0 pl-1 pr-1 w-50"
-          :class="{ active: sortTo === 'up' }"
-          @click="saveChanges('up')"
+          :class="{ active: sortUp }"
+          @click="saveChanges(true)"
         >
           Возраст
         </button>
         <button
           type="button"
           class="btn btn-sm btn-light border p-0 pl-1 pr-1 w-50"
-          :class="{ active: sortTo === 'down' }"
-          @click="saveChanges('down')"
+          :class="{ active: !sortUp }"
+          @click="saveChanges(false)"
         >
           Убыван
         </button>
@@ -202,7 +202,7 @@ export default {
       showProject: null,
       showPrice: null,
       sortBy: '',
-      sortTo: 'up',
+      sortUp: true,
     }
   },
   computed: {
@@ -215,8 +215,8 @@ export default {
     this.updateValue()
   },
   methods: {
-    saveChanges(sortTo) {
-      this.sortTo = sortTo
+    saveChanges(sortUp) {
+      this.sortUp = sortUp
       this.$store.commit('updateSettings', {
         showArhived: this.showArhived,
         showEmpty: this.showEmpty,
@@ -227,14 +227,14 @@ export default {
         showProject: this.showProject,
         showPrice: this.showPrice,
         sortBy: this.sortBy,
-        sortTo: this.sortTo,
+        sortUp: this.sortUp,
       })
     },
     updateValue() {
       this.showArhived = this.settings.showArhived
       this.showEmpty = this.settings.showEmpty
       this.sortBy = this.settings.sortBy
-      this.sortTo = this.settings.sortTo
+      this.sortUp = this.settings.sortUp
       this.showPosition = this.settings.showPosition
       this.showDate = this.settings.showDate
       this.showDeadline = this.settings.showDeadline

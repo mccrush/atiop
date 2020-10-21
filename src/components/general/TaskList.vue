@@ -72,7 +72,7 @@ export default {
     },
     sortTasks() {
       return this.tasksTodoWork.sort((a, b) => {
-        if (this.settings.sortTo === 'up') {
+        if (this.settings.sortUp) {
           if (this.settings.sortBy === 'position') {
             return a.position - b.position
           } else if (this.settings.sortBy === 'date') {
