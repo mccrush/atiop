@@ -64,4 +64,14 @@ export default {
 h6 {
   width: 192px;
 }
+
+.btn-light {
+  background-color: #fff;
+  color: #dee2e6;
+}
+
+.btn-light:hover {
+  background-color: #e2e6ea;
+  color: #212529;
+}
 </style>

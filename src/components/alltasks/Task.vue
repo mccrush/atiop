@@ -124,4 +124,18 @@ export default {
   user-select: none;
   cursor: default;
 }
+
+.btn-light {
+  background-color: #fff;
+  color: #dee2e6;
+}
+
+.btn-light:hover {
+  background-color: #e2e6ea;
+  color: #212529;
+}
+
+hr {
+  background-color: #dee2e6;
+}
 </style>
