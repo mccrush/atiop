@@ -7,7 +7,7 @@
         class="list-group-item justify-content-between align-items-center border-0 p-0 ms-1 me-1 cursor-pointer"
       >
         <h6
-          class="text-center bg-light rounded p-2 d-flex flex-row align-items-start my-no-select"
+          class="text-center bg-light rounded-1 p-2 d-flex flex-row align-items-start my-no-select"
           :style="{
             background: item.color
               ? item.color + '!important'

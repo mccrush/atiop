@@ -10,7 +10,7 @@
         class="list-group-item justify-content-between align-items-center border-0 p-0 ms-1 me-1 cursor-pointer d-inline-block naprav"
       >
         <h5
-          class="text-center bg-light rounded p-2 my-no-select"
+          class="text-center bg-light rounded-1 p-2 my-no-select"
           @dblclick.prevent="
             $emit('edit-item', { id: item.id, type: item.type })
           "
