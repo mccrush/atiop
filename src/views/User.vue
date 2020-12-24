@@ -73,9 +73,6 @@ export default {
       user: auth.currentUser,
     }
   },
-  created() {
-    console.log('this.user = ', this.user)
-  },
   methods: {
     removeUser() {
       if (
