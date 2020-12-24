@@ -19,7 +19,7 @@
               v-model.trim="title"
             />
             <div class="row mt-2">
-              <div class="col-4 pr-0">
+              <div class="col-4 pe-0">
                 <input
                   :disabled="item && item.type === 'napravs'"
                   type="datetime-local"
@@ -28,7 +28,7 @@
                   v-model="date"
                 />
               </div>
-              <div class="col-4 pr-0">
+              <div class="col-4 pe-0">
                 <input
                   :disabled="item && item.type === 'napravs'"
                   type="datetime-local"
@@ -59,7 +59,7 @@
             </div>
 
             <div class="row mt-2">
-              <div class="col-4 pr-0">
+              <div class="col-4 pe-0">
                 <select
                   v-model="napravId"
                   :disabled="item && item.type === 'napravs'"
@@ -75,7 +75,7 @@
                   </option>
                 </select>
               </div>
-              <div class="col-4 pr-0">
+              <div class="col-4 pe-0">
                 <select
                   v-model="projectId"
                   class="form-control form-control-sm"
@@ -107,7 +107,7 @@
                   v-model.number="position"
                 />
               </div>
-              <div class="col-2 pl-0">
+              <div class="col-2 ps-0">
                 <input
                   v-if="item"
                   type="number"
@@ -151,7 +151,7 @@
             <hr />
 
             <div class="row">
-              <div class="col-4 pr-0">
+              <div class="col-4 pe-0">
                 <button
                   class="btn btn-block btn-sm btn-outline-danger"
                   @click.prevent="
@@ -165,7 +165,7 @@
                   Удалить
                 </button>
               </div>
-              <div class="col-4 pr-0">
+              <div class="col-4 pe-0">
                 <button
                   type="button"
                   class="btn btn-sm btn-block btn-light"

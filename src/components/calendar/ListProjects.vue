@@ -3,12 +3,16 @@
     <ul class="list-group list-group-flush">
       <li
         v-for="item in displayProjects"
-        :key="'pj'+item.id"
-        class="list-group-item rounded-sm border p-0 pl-2 mt-1"
-        :style="{'background': item.color ? item.color+'!important' : '#f8f9fa!important'}"
-        @dblclick.prevent="$emit('edit-item', {id: item.id, type: item.type})"
+        :key="'pj' + item.id"
+        class="list-group-item rounded-sm border p-0 ps-2 mt-1"
+        :style="{
+          background: item.color
+            ? item.color + '!important'
+            : '#f8f9fa!important',
+        }"
+        @dblclick.prevent="$emit('edit-item', { id: item.id, type: item.type })"
       >
-        <small class="elem">{{item.title}}</small>
+        <small class="elem">{{ item.title }}</small>
       </li>
     </ul>
   </div>

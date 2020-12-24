@@ -1,7 +1,7 @@
 <template>
   <div class="bg-white shadow-sm p-3 pt-3 settings">
     <h5 class="text-center">Настройки</h5>
-    <router-link to="/user" class="btn btn-sm btn-light border p-0 pl-1 pr-1"
+    <router-link to="/user" class="btn btn-sm btn-light border p-0 ps-1 pe-1"
       >Аккаунт</router-link
     >
     <hr class="mt-2 mb-1" />
@@ -170,7 +170,7 @@
       <div class="btn-group btn-block" role="group" aria-label="Basic example">
         <button
           type="button"
-          class="btn btn-sm btn-light border p-0 pl-1 pr-1 w-50"
+          class="btn btn-sm btn-light border p-0 ps-1 pe-1 w-50"
           :class="{ active: sortUp }"
           @click="saveChanges(true)"
         >
@@ -178,7 +178,7 @@
         </button>
         <button
           type="button"
-          class="btn btn-sm btn-light border p-0 pl-1 pr-1 w-50"
+          class="btn btn-sm btn-light border p-0 ps-1 pe-1 w-50"
           :class="{ active: !sortUp }"
           @click="saveChanges(false)"
         >

@@ -20,7 +20,7 @@
   >
     <span class="small">{{ task.title }}</span>
     <hr class="m-1" />
-    <span v-if="settings.showPosition" class="badge bg-light text-dark mr-1">{{
+    <span v-if="settings.showPosition" class="badge bg-light text-dark me-1">{{
       task.position
     }}</span>
     <span
@@ -28,7 +28,7 @@
       @click="
         filterBadget({ filterType: 'napravId', filterValue: task.napravId })
       "
-      class="badge bg-info mr-1"
+      class="badge bg-info me-1"
       >{{ task.napravTitle || 'Без направления' }}</span
     >
     <span
@@ -36,19 +36,19 @@
       @click="
         filterBadget({ filterType: 'projectId', filterValue: task.projectId })
       "
-      class="badge bg-secondary mr-1"
+      class="badge bg-secondary me-1"
       >{{ task.projectTitle || 'Без проекта' }}</span
     >
     <span
       v-if="settings.showPrice && task.price"
-      class="badge bg-success mr-1"
+      class="badge bg-success me-1"
       >{{ task.price }}</span
     >
-    <span class="badge bg-warning mr-1" v-if="task.date && settings.showDate">{{
+    <span class="badge bg-warning me-1" v-if="task.date && settings.showDate">{{
       new Date(task.date).toLocaleDateString()
     }}</span>
     <span
-      class="badge bg-danger mr-1"
+      class="badge bg-danger me-1"
       v-if="task.deadline && settings.showDeadline"
       >{{ new Date(task.deadline).toLocaleDateString() }}</span
     >
@@ -67,14 +67,14 @@
       <button
         v-if="task.status === 'todo'"
         type="button"
-        class="btn btn-sm btn-light border p-0 pl-2 pr-2 w-50"
+        class="btn btn-sm btn-light border p-0 ps-2 pe-2 w-50"
         @click="changeStatus('work')"
       >
         To work
       </button>
       <button
         type="button"
-        class="btn btn-sm btn-light border p-0 pl-2 pr-2 w-50"
+        class="btn btn-sm btn-light border p-0 ps-2 pe-2 w-50"
         @click="changeStatus('done')"
       >
         Done

@@ -12,7 +12,7 @@
         ATIOP
       </span>
       <button
-        class="navbar-toggler mr-5"
+        class="navbar-toggler me-5"
         type="button"
         data-toggle="collapse"
         data-target="#navbarSupportedContent"
@@ -106,7 +106,7 @@
             >Войти</router-link
           >
           <button
-            class="btn btn-sm p-0 ml-3 opacity-06"
+            class="btn btn-sm p-0 me-1 opacity-06"
             @click.prevent="$emit('show-settings')"
           >
             <img

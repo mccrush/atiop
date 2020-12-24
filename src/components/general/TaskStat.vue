@@ -1,25 +1,25 @@
 <template>
   <ul class="list-group small">
     <li
-      class="list-group-item d-flex justify-content-between align-items-center p-0 pt-1 pl-2 pr-2 border-bottom-0"
+      class="list-group-item d-flex justify-content-between align-items-center p-0 pt-1 ps-2 pe-2 border-bottom-0"
     >
       Новых
       <span class="badge bg-light text-dark">{{ lengthTodo }}</span>
     </li>
     <li
-      class="list-group-item d-flex justify-content-between align-items-center p-0 pt-1 pl-2 pr-2 border-bottom-0"
+      class="list-group-item d-flex justify-content-between align-items-center p-0 pt-1 ps-2 pe-2 border-bottom-0"
     >
       В работе
       <span class="badge bg-warning">{{ lengthWork }}</span>
     </li>
     <li
-      class="list-group-item d-flex justify-content-between align-items-center p-1 pl-2 pr-2"
+      class="list-group-item d-flex justify-content-between align-items-center p-1 ps-2 pe-2"
     >
       Завершенных
       <span class="badge bg-secondary">{{ lengthDone }}</span>
     </li>
     <li
-      class="list-group-item d-flex justify-content-between align-items-center p-1 pl-2 pr-2"
+      class="list-group-item d-flex justify-content-between align-items-center p-1 ps-2 pe-2"
     >
       Всего
       <span class="badge bg-light text-dark"

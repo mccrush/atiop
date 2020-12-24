@@ -4,7 +4,7 @@
       <li
         v-for="item in sortDisplayProjects"
         :key="item.id"
-        class="list-group-item justify-content-between align-items-center border-0 p-0 ml-1 mr-1 cursor-pointer"
+        class="list-group-item justify-content-between align-items-center border-0 p-0 ms-1 me-1 cursor-pointer"
       >
         <h6
           class="text-center bg-light rounded p-2 d-flex flex-row align-items-start my-no-select"
@@ -17,14 +17,14 @@
             $emit('edit-item', { id: item.id, type: item.type })
           "
         >
-          <div class="w-100 pl-4 mr-1">
+          <div class="w-100 ps-4 me-1">
             {{ item.title }}
           </div>
           <router-link
             :to="'/project/' + item.id"
             tag="button"
             title="В проект"
-            class="btn btn-sm btn-light border p-0 pl-2 pr-2 m-0"
+            class="btn btn-sm btn-light border p-0 ps-2 pe-2 m-0"
             >In</router-link
           >
         </h6>
