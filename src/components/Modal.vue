@@ -10,7 +10,7 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content border-0 shadow">
         <div class="modal-body">
-          <form @submit.prevent="updateItem">
+          <form>
             <input
               type="text"
               class="form-control form-control-sm"
@@ -153,7 +153,7 @@
             <div class="row">
               <div class="col-4 pe-0">
                 <button
-                  class="btn btn-block btn-sm btn-outline-danger"
+                  class="btn btn-sm btn-outline-danger w-100"
                   @click.prevent="
                     removeItem({
                       id: item.id,
@@ -168,14 +168,18 @@
               <div class="col-4 pe-0">
                 <button
                   type="button"
-                  class="btn btn-sm btn-block btn-light"
+                  class="btn btn-sm btn-light w-100"
                   data-dismiss="modal"
                 >
                   Отмена
                 </button>
               </div>
               <div class="col-4">
-                <button type="submit" class="btn btn-sm btn-block btn-warning">
+                <button
+                  type="button"
+                  @click="updateItem"
+                  class="btn btn-sm btn-warning w-100"
+                >
                   Обновить
                 </button>
               </div>

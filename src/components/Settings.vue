@@ -167,7 +167,7 @@
           <small>По цене</small>
         </label>
       </div>
-      <div class="btn-group btn-block" role="group" aria-label="Basic example">
+      <div class="btn-group w-100" role="group" aria-label="Basic example">
         <button
           type="button"
           class="btn btn-sm btn-light border p-0 ps-1 pe-1 w-50"
