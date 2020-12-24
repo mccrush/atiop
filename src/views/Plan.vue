@@ -14,16 +14,16 @@
 
     <div class="row overflow-auto my-row-project">
       <div class="my-width-none">
-        <div class="mt-2 mr-2 rounded-sm d-inline-block border my-project">
-          <h6 class="text-center pt-3 pr-2 m-0">План дня</h6>
+        <div class="mt-2 me-2 rounded-sm d-inline-block border my-project">
+          <h6 class="text-center pt-3 pe-2 m-0">План дня</h6>
           <br />---
         </div>
-        <div class="mt-2 mr-2 rounded-sm d-inline-block border my-project">
-          <h6 class="text-center pt-3 pr-2 m-0">Сегодня</h6>
+        <div class="mt-2 me-2 rounded-sm d-inline-block border my-project">
+          <h6 class="text-center pt-3 pe-2 m-0">Сегодня</h6>
           <TaskListDay @edit-item="editItem" />
         </div>
-        <div class="mt-2 mr-2 rounded-sm d-inline-block border my-project">
-          <h6 class="text-center pt-3 pr-2 m-0">Неделя</h6>
+        <div class="mt-2 me-2 rounded-sm d-inline-block border my-project">
+          <h6 class="text-center pt-3 pe-2 m-0">Неделя</h6>
           <TaskListMonth @edit-item="editItem" />
         </div>
       </div>

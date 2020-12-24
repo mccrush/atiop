@@ -9,23 +9,23 @@
       <div class="col-2 col-xxl-2 p-2">
         <div class="bg-white border rounded-sm text-center small w-100 p-1">
           Направлений
-          <span class="badge bg-info ml-1">{{ napravs.length }}</span>
+          <span class="badge bg-info ms-1">{{ napravs.length }}</span>
         </div>
       </div>
       <div class="col-2 col-xxl-2 p-2">
         <div class="bg-white border rounded-sm text-center small w-100 p-1">
           Проектов
-          <span class="badge bg-secondary ml-1">{{ projects.length }}</span>
+          <span class="badge bg-secondary ms-1">{{ projects.length }}</span>
         </div>
       </div>
       <div class="col-3 col-xxl-2 p-2">
         <div class="bg-white border rounded-sm text-center small w-100 p-1">
           Задач
-          <span class="badge bg-light text-dark ml-1 mr-1">{{
+          <span class="badge bg-light text-dark ms-1 me-1">{{
             tasksTodo.length
           }}</span>
-          <span class="badge bg-warning mr-1">{{ tasksWork.length }}</span>
-          <span class="badge bg-secondary mr-1">{{ tasksDone.length }}</span>
+          <span class="badge bg-warning me-1">{{ tasksWork.length }}</span>
+          <span class="badge bg-secondary me-1">{{ tasksDone.length }}</span>
           <span class="badge bg-light text-dark"
             ><strong>{{ tasks.length }}</strong></span
           >

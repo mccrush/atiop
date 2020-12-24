@@ -24,14 +24,14 @@
           href="https://www.patreon.com/mccrush"
           title="Поддержать проект на Patreon"
           target="_blank"
-          class="btn btn-sm btn-outline-danger p-0 pl-2 pr-2 mr-2"
+          class="btn btn-sm btn-outline-danger p-0 ps-2 pe-2 me-2"
           >Поддержать на Patreon</a
         >
         <a
           href="https://github.com/mccrush/atiop"
           title="Fork me on Github"
           target="_blank"
-          class="btn btn-sm btn-outline-dark p-0 pl-2 pr-2"
+          class="btn btn-sm btn-outline-dark p-0 ps-2 pe-2"
           >Fork me on Github</a
         >
       </p>
@@ -41,7 +41,7 @@
           <div class="list-group">
             <a
               href="#description"
-              class="list-group-item list-group-item-action small p-1 pl-2"
+              class="list-group-item list-group-item-action small p-1 ps-2"
               :class="{
                 'bg-light': myHash === '#description' || myHash === '',
               }"
@@ -50,26 +50,26 @@
 
             <a
               href="#pages"
-              class="list-group-item list-group-item-action small p-1 pl-2"
+              class="list-group-item list-group-item-action small p-1 ps-2"
               :class="{ 'bg-light': myHash === '#pages' }"
               >Страницы</a
             >
 
             <a
               href="#filter"
-              class="list-group-item list-group-item-action small p-1 pl-2"
+              class="list-group-item list-group-item-action small p-1 ps-2"
               :class="{ 'bg-light': myHash === '#filter' }"
               >Фильтр Задач</a
             >
             <a
               href="#status"
-              class="list-group-item list-group-item-action small p-1 pl-2"
+              class="list-group-item list-group-item-action small p-1 ps-2"
               :class="{ 'bg-light': myHash === '#status' }"
               >Статус Задач</a
             >
             <a
               href="#redact"
-              class="list-group-item list-group-item-action small p-1 pl-2"
+              class="list-group-item list-group-item-action small p-1 ps-2"
               :class="{ 'bg-light': myHash === '#redact' }"
               >Редактирование</a
             >

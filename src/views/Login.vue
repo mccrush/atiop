@@ -5,7 +5,7 @@
       description="ATIOP — сервис управления задачами"
     />
     <div class="col-12 col-sm-6 col-md-4 col-xl-4 text-left">
-      <form class="mt-5 mb-3 p-3 shadow-sm ml-auto mr-auto max-width">
+      <form class="mt-5 mb-3 p-3 shadow-sm ms-auto me-auto max-width">
         <h4 class="text-center mt-2 mb-4">
           {{ mod === '#in' ? 'Авторизация' : 'Регистрация' }}
         </h4>
@@ -33,7 +33,7 @@
             :placeholder="mod === '#reg' ? 'От 6 до 20 символов' : ''"
           />
           <button
-            class="btn btn-light p-0 pl-2 pr-2 border"
+            class="btn btn-light p-0 ps-2 pe-2 border"
             type="button"
             @click="passType = !passType"
           >

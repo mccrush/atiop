@@ -19,7 +19,7 @@
     <!-- Либо Канбан, либо список-таблица -->
     <div class="row h-100">
       <div class="d-flex align-items-start pt-2 ower">
-        <div class="mr-2 rounded-sm border project">
+        <div class="me-2 rounded-sm border project">
           <h6 class="text-center pt-3 pb-1 m-0 mb-2">К выполнению</h6>
           <Loading v-if="!projects.length" />
           <TaskList
@@ -30,7 +30,7 @@
             @edit-item="editItem"
           />
         </div>
-        <div class="mr-2 rounded-sm border project">
+        <div class="me-2 rounded-sm border project">
           <h6 class="text-center pt-3 pb-1 m-0 mb-2">В работе</h6>
           <Loading v-if="!projects.length" />
           <TaskList

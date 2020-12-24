@@ -60,7 +60,7 @@
     <div class="row overflow-auto my-row-project">
       <h6
         v-if="sortDisplayProjects && sortDisplayProjects.length === 0"
-        class="ml-3 mt-2"
+        class="ms-3 mt-2"
         @show="error = true"
       >
         В данном направлении проектов еще нет
@@ -73,21 +73,21 @@
         <div
           v-for="(item, index) in sortDisplayProjects"
           :key="'in' + index"
-          class="mt-2 mr-2 rounded-sm d-inline-block border my-project"
+          class="mt-2 me-2 rounded-sm d-inline-block border my-project"
           :style="{
             background: item.color ? item.color + '!important' : '#fff',
           }"
         >
           <h6
-            class="text-center pt-3 pr-2 rounded m-0 d-flex flex-row align-items-start my-no-select"
+            class="text-center pt-3 pe-2 rounded m-0 d-flex flex-row align-items-start my-no-select"
             @dblclick.prevent="editItem({ id: item.id, type: item.type })"
           >
-            <div class="w-100 pl-4">{{ item.title }}</div>
+            <div class="w-100 ps-4">{{ item.title }}</div>
             <router-link
               :to="'/project/' + item.id"
               tag="button"
               title="В проект"
-              class="btn btn-sm btn-light border p-0 pl-2 pr-2 m-0"
+              class="btn btn-sm btn-light border p-0 ps-2 pe-2 m-0"
               >In</router-link
             >
           </h6>
