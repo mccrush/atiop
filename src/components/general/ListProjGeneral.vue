@@ -66,7 +66,7 @@ h6 {
 }
 
 .btn-light {
-  background-color: #fff;
+  background-color: #f8f9fa;
   color: #dee2e6;
 }
 

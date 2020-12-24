@@ -303,5 +303,15 @@ export default {
 /* input.w250::placeholder {
   color: #ced4da;
 } */
+
+.btn-light {
+  background-color: #fff;
+  color: #dee2e6;
+}
+
+.btn-light:hover {
+  background-color: #e2e6ea;
+  color: #212529;
+}
 </style>
  
