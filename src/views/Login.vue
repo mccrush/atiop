@@ -5,10 +5,7 @@
       description="ATIOP — сервис управления задачами"
     />
     <div class="col-12 col-sm-6 col-md-4 col-xl-4 text-left">
-      <form
-        @submit.prevent="login"
-        class="mt-5 mb-3 p-3 shadow-sm ml-auto mr-auto max-width"
-      >
+      <form class="mt-5 mb-3 p-3 shadow-sm ml-auto mr-auto max-width">
         <h4 class="text-center mt-2 mb-4">
           {{ mod === '#in' ? 'Авторизация' : 'Регистрация' }}
         </h4>
@@ -59,7 +56,7 @@
           </button>
         </div>
         <br />
-        <button class="btn btn-success btn-block" type="submit">
+        <button class="btn btn-success btn-block" type="submit" @click="login">
           {{ mod === '#in' ? 'Войти' : 'Заргегистрироваться' }}
         </button>
 
