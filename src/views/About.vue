@@ -82,7 +82,7 @@
           </div>
         </div>
         <div class="col-12 col-sm-9 col-md-9 mt-3">
-          <component :is="component" />
+          <component :is="component1" />
         </div>
       </div>
 
@@ -98,6 +98,7 @@
 
 <script>
 import vueHeadful from 'vue-headful'
+//import { Pagination } from 'bootstrap'
 import Description from '@/views/about/Description'
 import Pages from '@/views/about/Pages'
 import Filter from '@/views/about/Filter'
@@ -122,7 +123,8 @@ export default {
     //console.log('hash:', this.$route.hash)
   },
   computed: {
-    component() {
+    component1() {
+      console.log('this.$route.hash = ', this.$route.hash)
       return this.$route.hash.split('#')[1] || 'description'
     },
     myHash() {

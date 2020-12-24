@@ -100,7 +100,7 @@
           <router-link
             v-else
             tag="button"
-            class="d-sm-inline btn btn-sm btn-success login"
+            class="d-sm-inline btn btn-sm btn-success me-2 login"
             title="Войти"
             to="/login"
             >Войти</router-link

@@ -31,7 +31,7 @@
               <div class="col-4">
                 <button
                   @click="removeUser"
-                  class="btn btn-sm btn-block btn-light border disabled"
+                  class="btn btn-sm btn-light border disabled w-100"
                 >
                   Изменить Email
                 </button>
@@ -39,7 +39,7 @@
               <div class="col-4">
                 <button
                   @click="removeUser"
-                  class="btn btn-sm btn-block btn-light border disabled"
+                  class="btn btn-sm btn-light border disabled w-100"
                 >
                   Обновить пароль
                 </button>
@@ -47,7 +47,7 @@
               <div class="col-4">
                 <button
                   @click="removeUser"
-                  class="btn btn-sm btn-block btn-outline-danger disabled"
+                  class="btn btn-sm btn-outline-danger disabled w-100"
                 >
                   Удалить аккаунт
                 </button>
@@ -72,6 +72,9 @@ export default {
     return {
       user: auth.currentUser,
     }
+  },
+  created() {
+    console.log('this.user = ', this.user)
   },
   methods: {
     removeUser() {

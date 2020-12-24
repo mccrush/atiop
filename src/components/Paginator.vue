@@ -3,7 +3,7 @@
     <ul class="pagination">
       <li
         v-if="prev.href"
-        class="page-item w-50 text-left"
+        class="page-item text-start w-50"
         :class="{ 'w-100': !next.href }"
       >
         <a class="page-link" :href="'#' + prev.href"
@@ -12,7 +12,7 @@
       </li>
       <li
         v-if="next.href"
-        class="page-item w-50 text-right"
+        class="page-item text-end w-50"
         :class="{ 'w-100': !prev.href }"
       >
         <a class="page-link" :href="'#' + next.href"
