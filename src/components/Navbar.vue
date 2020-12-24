@@ -24,7 +24,7 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto" @click.prevent="$emit('hide-settings')">
+        <ul class="navbar-nav me-auto" @click.prevent="$emit('hide-settings')">
           <li class="nav-item">
             <router-link
               to="/"
@@ -76,7 +76,7 @@
           </li>
         </ul>
         <div>
-          <div v-if="user" class="d-inline-block dropdown">
+          <div v-if="user" class="d-inline-block me-2">
             <!-- <button
                 class="btn btn-sm dropdown-toggle text-muted"
                 type="button"
@@ -166,5 +166,15 @@ a.router-link-active.login {
   color: #fff !important;
   /* font-weight: bold; */
   /* border-bottom: 2px solid #ffc107; */
+}
+
+.btn-light {
+  background-color: #fff;
+  color: #dee2e6;
+}
+
+.btn-light:hover {
+  background-color: #e2e6ea;
+  color: #212529;
 }
 </style>

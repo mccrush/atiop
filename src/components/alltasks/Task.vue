@@ -1,6 +1,6 @@
 <template>
   <div
-    class="task align-self-start border rounded-sm pt-1 pb-1 pl-2 pr-2 m-2"
+    class="task align-self-start border rounded-sm pt-1 pb-1 ps-2 pe-2 m-2"
     :class="{
       ' bg-white': task.status === 'todo' || task.status === 'work',
       ' bg-light': task.status === 'done',
@@ -60,7 +60,7 @@
     <hr class="m-1" />
     <div
       v-if="task.status !== 'done'"
-      class="btn-group btn-block"
+      class="btn-group w-100"
       role="group"
       aria-label="Basic example"
     >

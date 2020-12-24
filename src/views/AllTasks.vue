@@ -10,7 +10,6 @@
           class="form-control form-control-sm"
           v-model="filterTypeModel"
           @change="saveFilterType"
-          aria-labelledby="dropdownMenuButton"
         >
           <option value selected>Без фильтра</option>
           <option value="status">По статусу</option>
