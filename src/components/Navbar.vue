@@ -138,7 +138,9 @@ export default {
     auth.onAuthStateChanged((user) => {
       this.user = user
     })
-    this.userName = this.user.email.split('@')[0]
+    if (this.user) {
+      this.userName = this.user.email.split('@')[0]
+    }
   },
   methods: {
     async logOut() {
