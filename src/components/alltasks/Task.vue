@@ -1,6 +1,6 @@
 <template>
   <div
-    class="task align-self-start border rounded-sm pt-1 pb-1 ps-2 pe-2 m-2"
+    class="task align-self-start border rounded-1 pt-1 pb-1 ps-2 pe-2 m-2"
     :class="{
       ' bg-white': task.status === 'todo' || task.status === 'work',
       ' bg-light': task.status === 'done',

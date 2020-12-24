@@ -73,7 +73,7 @@
         <div
           v-for="(item, index) in sortDisplayProjects"
           :key="'in' + index"
-          class="mt-2 me-2 rounded-sm d-inline-block border my-project"
+          class="mt-2 me-2 rounded-1 d-inline-block border my-project"
           :style="{
             background: item.color ? item.color + '!important' : '#fff',
           }"

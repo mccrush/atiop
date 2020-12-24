@@ -7,19 +7,19 @@
 
     <div class="row p-0 border-bottom">
       <div class="col-2 col-xxl-2 p-2">
-        <div class="bg-white border rounded-sm text-center small w-100 p-1">
+        <div class="bg-white border rounded-1 text-center small w-100 p-1">
           Направлений
           <span class="badge bg-info ms-1">{{ napravs.length }}</span>
         </div>
       </div>
       <div class="col-2 col-xxl-2 p-2">
-        <div class="bg-white border rounded-sm text-center small w-100 p-1">
+        <div class="bg-white border rounded-1 text-center small w-100 p-1">
           Проектов
           <span class="badge bg-secondary ms-1">{{ projects.length }}</span>
         </div>
       </div>
       <div class="col-3 col-xxl-2 p-2">
-        <div class="bg-white border rounded-sm text-center small w-100 p-1">
+        <div class="bg-white border rounded-1 text-center small w-100 p-1">
           Задач
           <span class="badge bg-light text-dark ms-1 me-1">{{
             tasksTodo.length
