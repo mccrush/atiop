@@ -1,5 +1,5 @@
 # ATIOP
-Версия [0.5.3-alpha](https://github.com/mccrush/atiop/releases)
+Версия [0.6.0-alpha](https://github.com/mccrush/atiop/releases)
 
 <img src="https://repository-images.githubusercontent.com/201769959/42f52b00-ff33-11ea-929d-76fccf26bcf9" alt="ATIOP — сервис управления задачами">
 
