@@ -18,9 +18,9 @@
           class="form-control form-control-sm border-warning"
         />
       </div>
-      <div class="col-3 col-xxl-1 p-2"></div>
+      <div class="col-3 col-xxl-6 p-2"></div>
       <div
-        class="col-2 btn-group btn-group-sm p-2"
+        class="col-2 col-xxl-1 btn-group btn-group-sm p-2"
         role="group"
         aria-label="Basic example"
       >
