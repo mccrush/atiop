@@ -277,7 +277,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .my-row-project {
   height: calc(100vh - 105px) !important;
 }

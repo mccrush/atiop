@@ -18,14 +18,30 @@
           class="form-control form-control-sm border-warning"
         />
       </div>
-      <div class="col-2 col-xxl-1 p-2"></div>
+      <div class="col-3 col-xxl-1 p-2"></div>
       <div
-        class="col-3 btn-group btn-group-sm p-2"
+        class="col-2 btn-group btn-group-sm p-2"
         role="group"
         aria-label="Basic example"
       >
-        <button type="button" class="btn btn-light active">Канбан</button>
-        <button type="button" class="btn btn-light disabled">Список</button>
+        <button type="button" class="btn btn-light p-0 w-auto">
+          <img
+            src="@/assets/icons/layout-three-columns.svg"
+            width="24"
+            height="24"
+            alt="Канбан"
+            class="opacity-06"
+          />
+        </button>
+        <button type="button" class="btn btn-light disabled p-0 w-auto">
+          <img
+            src="@/assets/icons/grid-3x3.svg"
+            width="24"
+            height="24"
+            alt="Таблица"
+            class="opacity-06"
+          />
+        </button>
       </div>
     </div>
     <!-- Либо Канбан, либо список-таблица -->
@@ -173,6 +189,10 @@ export default {
 
 .elem {
   user-select: none;
+}
+
+.opacity-06 {
+  opacity: 0.6;
 }
 </style>
  
