@@ -5,15 +5,27 @@
       description="ATIOP — сервис управления задачами"
     />
     <div class="row p-0 border-bottom">
-      <div class="col-3 col-xl-2 p-2">
-        <div
-          class="btn-group btn-group-sm w-100"
-          role="group"
-          aria-label="Basic example"
-        >
-          <button type="button" class="btn btn-light active">Канбан</button>
-          <button type="button" class="btn btn-light disabled">Список</button>
-        </div>
+      <div class="col-4 col-xxl-3 p-2">
+        <input
+          type="text"
+          class="form-control form-control-sm border-0 bg-white"
+          placeholder="Название проекта"
+        />
+      </div>
+      <div class="col-3 col-xxl-2 p-2">
+        <input
+          type="datetime-local"
+          class="form-control form-control-sm border-warning"
+        />
+      </div>
+      <div class="col-2 col-xxl-1 p-2"></div>
+      <div
+        class="col-3 btn-group btn-group-sm p-2"
+        role="group"
+        aria-label="Basic example"
+      >
+        <button type="button" class="btn btn-light active">Канбан</button>
+        <button type="button" class="btn btn-light disabled">Список</button>
       </div>
     </div>
     <!-- Либо Канбан, либо список-таблица -->

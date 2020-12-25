@@ -7,7 +7,7 @@
     <div class="row p-0 border-bottom">
       <div class="col-2 col-xxl-1 p-2">
         <select
-          class="form-control form-control-sm"
+          class="form-select form-select-sm"
           v-model="filterTypeModel"
           @change="saveFilterType"
         >
@@ -22,7 +22,7 @@
       </div>
       <div class="col-2 col-xxl-1 p-2">
         <select
-          class="form-control form-control-sm"
+          class="form-select form-select-sm"
           v-model="filterValueModel"
           @change="saveFilterValue"
           :disabled="
