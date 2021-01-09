@@ -1,8 +1,6 @@
 # ATIOP
-Версия [0.6.0-alpha](https://github.com/mccrush/atiop/releases)
-
+<br>
 <img src="https://repository-images.githubusercontent.com/201769959/42f52b00-ff33-11ea-929d-76fccf26bcf9" alt="ATIOP — сервис управления задачами">
-
 
 
 <p>
@@ -24,6 +22,7 @@
 
 Более подробное описание в приложении <a href="https://atiop.ru/about" target="_blank" title="Перейти в приложение">atiop.ru</a>
 <hr>
+
 <p align="center">
    <a href="https://v5.getbootstrap.com/">
     <img src="https://flat.badgen.net/badge/bootstrap/5.0.0-alpha2/7952B3" alt="Bootstrap version" target="_blank">
