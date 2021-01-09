@@ -45,7 +45,7 @@
                     item &&
                     (item.type === 'napravs' || item.type === 'projects')
                   "
-                  class="form-control form-control-sm"
+                  class="form-select form-select-sm"
                 >
                   <option
                     v-for="item in statusArr"
@@ -63,7 +63,7 @@
                 <select
                   v-model="napravId"
                   :disabled="item && item.type === 'napravs'"
-                  class="form-control form-control-sm"
+                  class="form-select form-select-sm"
                 >
                   <option value selected>Направление</option>
                   <option
@@ -78,7 +78,7 @@
               <div class="col-4 pe-0">
                 <select
                   v-model="projectId"
-                  class="form-control form-control-sm"
+                  class="form-select form-select-sm"
                   :disabled="
                     !napravId ||
                     item.type === 'napravs' ||
