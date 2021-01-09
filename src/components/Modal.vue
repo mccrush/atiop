@@ -10,206 +10,219 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content border-0 shadow">
         <div class="modal-body">
-          <form>
-            <input
-              type="text"
-              class="form-control form-control-sm"
-              :class="{ 'border-danger': error }"
-              @focus="error = false"
-              v-model.trim="title"
-            />
-            <div class="row mt-2">
-              <div class="col-4 pe-0">
-                <div class="form-floating">
-                  <input
-                    :disabled="item && item.type === 'napravs'"
-                    type="datetime-local"
-                    id="date"
-                    class="form-control form-control-sm border-warning"
-                    v-model="date"
-                  />
-                  <label for="date">Выполнение</label>
-                </div>
+          <div class="row">
+            <div class="col-10">
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                :class="{ 'border-danger': error }"
+                @focus="error = false"
+                v-model.trim="title"
+              />
+            </div>
+            <div class="col-2 ps-0">
+              <input
+                type="number"
+                max="180"
+                min="0"
+                step="5"
+                class="form-control form-control-sm"
+                v-model.trim="time"
+              />
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-4 pe-0">
+              <div class="form-floating">
+                <input
+                  :disabled="item && item.type === 'napravs'"
+                  type="datetime-local"
+                  id="date"
+                  class="form-control form-control-sm border-warning"
+                  v-model="date"
+                />
+                <label for="date">Выполнение</label>
               </div>
-              <div class="col-4 pe-0">
-                <div class="form-floating">
-                  <input
-                    :disabled="item && item.type === 'napravs'"
-                    type="datetime-local"
-                    id="deadline"
-                    class="form-control form-control-sm border-danger"
-                    v-model="deadline"
-                  />
-                  <label for="deadline">Сдача</label>
-                </div>
+            </div>
+            <div class="col-4 pe-0">
+              <div class="form-floating">
+                <input
+                  :disabled="item && item.type === 'napravs'"
+                  type="datetime-local"
+                  id="deadline"
+                  class="form-control form-control-sm border-danger"
+                  v-model="deadline"
+                />
+                <label for="deadline">Сдача</label>
               </div>
-              <div class="col-4">
-                <div class="form-floating">
-                  <select
-                    v-model="status"
-                    @change="changeStatus"
-                    :disabled="
-                      item &&
-                      (item.type === 'napravs' || item.type === 'projects')
-                    "
-                    class="form-select form-select-sm"
-                    id="statusSelect"
+            </div>
+            <div class="col-4">
+              <div class="form-floating">
+                <select
+                  v-model="status"
+                  @change="changeStatus"
+                  :disabled="
+                    item &&
+                    (item.type === 'napravs' || item.type === 'projects')
+                  "
+                  class="form-select form-select-sm"
+                  id="statusSelect"
+                >
+                  <option
+                    v-for="item in statusArr"
+                    :key="'sta' + item.id"
+                    :value="item.id"
                   >
-                    <option
-                      v-for="item in statusArr"
-                      :key="'sta' + item.id"
-                      :value="item.id"
-                    >
-                      {{ item.title }}
-                    </option>
-                  </select>
-                  <label for="statusSelect">Статус</label>
-                </div>
+                    {{ item.title }}
+                  </option>
+                </select>
+                <label for="statusSelect">Статус</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-4 pe-0">
+              <div class="form-floating">
+                <select
+                  v-model="napravId"
+                  :disabled="item && item.type === 'napravs'"
+                  class="form-select form-select-sm"
+                  id="napravSelect"
+                >
+                  <option value selected>Направление</option>
+                  <option
+                    v-for="item in napravs"
+                    :key="'nap' + item.id"
+                    :value="item.id"
+                  >
+                    {{ item.title }}
+                  </option>
+                </select>
+                <label for="napravSelect">Направление</label>
               </div>
             </div>
 
-            <div class="row mt-2">
-              <div class="col-4 pe-0">
-                <div class="form-floating">
-                  <select
-                    v-model="napravId"
-                    :disabled="item && item.type === 'napravs'"
-                    class="form-select form-select-sm"
-                    id="napravSelect"
+            <div class="col-4 pe-0">
+              <div class="form-floating">
+                <select
+                  v-model="projectId"
+                  class="form-select form-select-sm"
+                  :disabled="
+                    !napravId ||
+                    item.type === 'napravs' ||
+                    item.type === 'projects'
+                  "
+                  id="projectSelect"
+                >
+                  <option value selected>Проект</option>
+                  <option
+                    v-for="item in projectsFilter"
+                    :key="'pro' + item.id"
+                    :value="item.id"
                   >
-                    <option value selected>Направление</option>
-                    <option
-                      v-for="item in napravs"
-                      :key="'nap' + item.id"
-                      :value="item.id"
-                    >
-                      {{ item.title }}
-                    </option>
-                  </select>
-                  <label for="napravSelect">Направление</label>
-                </div>
-              </div>
-
-              <div class="col-4 pe-0">
-                <div class="form-floating">
-                  <select
-                    v-model="projectId"
-                    class="form-select form-select-sm"
-                    :disabled="
-                      !napravId ||
-                      item.type === 'napravs' ||
-                      item.type === 'projects'
-                    "
-                    id="projectSelect"
-                  >
-                    <option value selected>Проект</option>
-                    <option
-                      v-for="item in projectsFilter"
-                      :key="'pro' + item.id"
-                      :value="item.id"
-                    >
-                      {{ item.title }}
-                    </option>
-                  </select>
-                  <label for="projectSelect">Проект</label>
-                </div>
-              </div>
-              <div class="col-2">
-                <div class="form-floating">
-                  <input
-                    v-if="item"
-                    type="number"
-                    max="99"
-                    min="0"
-                    step="1"
-                    id="position"
-                    class="form-control form-control-sm"
-                    v-model.number="position"
-                  />
-                  <label for="position">#</label>
-                </div>
-              </div>
-              <div class="col-2 ps-0">
-                <div class="form-floating">
-                  <input
-                    v-if="item"
-                    type="number"
-                    max="99999"
-                    min="0"
-                    step="100"
-                    id="price"
-                    class="form-control form-control-sm"
-                    v-model.number="price"
-                    :disabled="
-                      item.type === 'napravs' || item.type === 'projects'
-                    "
-                  />
-                  <label for="price">Цена</label>
-                </div>
+                    {{ item.title }}
+                  </option>
+                </select>
+                <label for="projectSelect">Проект</label>
               </div>
             </div>
+            <div class="col-2">
+              <div class="form-floating">
+                <input
+                  v-if="item"
+                  type="number"
+                  max="99"
+                  min="0"
+                  step="1"
+                  id="position"
+                  class="form-control form-control-sm"
+                  v-model.number="position"
+                />
+                <label for="position">#</label>
+              </div>
+            </div>
+            <div class="col-2 ps-0">
+              <div class="form-floating">
+                <input
+                  v-if="item"
+                  type="number"
+                  max="99999"
+                  min="0"
+                  step="100"
+                  id="price"
+                  class="form-control form-control-sm"
+                  v-model.number="price"
+                  :disabled="
+                    item.type === 'napravs' || item.type === 'projects'
+                  "
+                />
+                <label for="price">Цена</label>
+              </div>
+            </div>
+          </div>
 
-            <div v-if="item" class="row">
-              <!-- Возможно сделать описание опциональным -->
-              <div class="col-12">
-                <!-- <textarea
+          <div v-if="item" class="row">
+            <!-- Возможно сделать описание опциональным -->
+            <div class="col-12">
+              <!-- <textarea
                   class="form-control h-100"
                   placeholder="Подробное описание"
                   v-model="desc"
                 ></textarea>-->
 
+              <div
+                v-if="item.type === 'projects'"
+                class="d-flex justify-content-between mt-2"
+              >
                 <div
-                  v-if="item.type === 'projects'"
-                  class="d-flex justify-content-between mt-2"
-                >
-                  <div
-                    v-for="(scolor, index) in colors"
-                    :key="'cb' + index"
-                    class="m-1 p-1 rounded shadow-sm colorblock"
-                    :style="'background:' + scolor"
-                    :class="{ 'rounded-circle': color === scolor }"
-                    @click="color = scolor"
-                  ></div>
-                </div>
+                  v-for="(scolor, index) in colors"
+                  :key="'cb' + index"
+                  class="m-1 p-1 rounded shadow-sm colorblock"
+                  :style="'background:' + scolor"
+                  :class="{ 'rounded-circle': color === scolor }"
+                  @click="color = scolor"
+                ></div>
               </div>
             </div>
-            <hr />
+          </div>
+          <hr />
 
-            <div class="row">
-              <div class="col-4 pe-0">
-                <button
-                  class="btn btn-sm btn-outline-danger w-100"
-                  @click.prevent="
-                    removeItem({
-                      id: item.id,
-                      type: item.type,
-                      idproj: item.projectId,
-                    })
-                  "
-                >
-                  Удалить
-                </button>
-              </div>
-              <div class="col-4 pe-0">
-                <button
-                  type="button"
-                  class="btn btn-sm btn-light w-100"
-                  data-dismiss="modal"
-                >
-                  Отмена
-                </button>
-              </div>
-              <div class="col-4">
-                <button
-                  type="button"
-                  @click="updateItem"
-                  class="btn btn-sm btn-warning w-100"
-                >
-                  Обновить
-                </button>
-              </div>
+          <div class="row">
+            <div class="col-4 pe-0">
+              <button
+                class="btn btn-sm btn-outline-danger w-100"
+                @click.prevent="
+                  removeItem({
+                    id: item.id,
+                    type: item.type,
+                    idproj: item.projectId,
+                  })
+                "
+              >
+                Удалить
+              </button>
             </div>
-          </form>
+            <div class="col-4 pe-0">
+              <button
+                type="button"
+                class="btn btn-sm btn-light w-100"
+                data-dismiss="modal"
+              >
+                Отмена
+              </button>
+            </div>
+            <div class="col-4">
+              <button
+                type="button"
+                @click="updateItem"
+                class="btn btn-sm btn-warning w-100"
+              >
+                Обновить
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -238,6 +251,7 @@ export default {
       type: '',
       position: 0,
       price: 0,
+      time: 0,
       error: false,
       colors: [
         '',
@@ -302,6 +316,7 @@ export default {
           projectId: this.projectId,
           projectTitle: projectTitle,
           price: +this.price,
+          time: this.time,
         }
 
         this.$store.dispatch('updateItem', item)
@@ -342,6 +357,7 @@ export default {
       this.projectId = this.item.projectId
       this.projectTitle = this.item.projectTitle
       this.price = +this.item.price
+      this.time = +this.item.time
     },
   },
 }

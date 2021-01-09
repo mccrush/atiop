@@ -22,11 +22,11 @@ export default {
     removeItem(state, { id, type }) {
       state[type] = state[type].filter(item => item.id !== id)
     },
-    updateItem(state, { id, title, desc, type, position, status, date, deadline, color, napravId, napravTitle, projectId, projectTitle, price }) {
+    updateItem(state, { id, title, desc, type, position, status, date, deadline, color, napravId, napravTitle, projectId, projectTitle, price, time }) {
       const items = state[type].concat()
       const index = items.findIndex(el => el.id === id)
       let el = items[index]
-      items[index] = { ...el, title, desc, type, position, status, date, deadline, color, napravId, napravTitle, projectId, projectTitle, price }
+      items[index] = { ...el, title, desc, type, position, status, date, deadline, color, napravId, napravTitle, projectId, projectTitle, price, time }
       state[type] = items
     },
     updateSettings(state, { showArhived, showEmpty, showPosition, showDate, showDeadline, showNaprav, showProject, showPrice, sortBy, sortUp }) {
@@ -55,11 +55,12 @@ export default {
     }
   },
   actions: {
+    // Добавление нового свойста задаче
     // Возможно, лучше использовать как инструмент администратора
     async addNewField({ commit }, id) {
       try {
         const ref = db.collection("users").doc(auth.currentUser.uid).collection('tasks').doc(id)
-        const res = await ref.set({ dateStart: '' }, { merge: true })
+        const res = await ref.set({ time: 0 }, { merge: true })
         console.log('New field dateStart Add');
       } catch (err) { throw err }
     },
@@ -104,7 +105,7 @@ export default {
     updateItem({ commit }, item) {
       const ref = db.collection("users").doc(auth.currentUser.uid)
       const el = ref.collection(item.type).doc(item.id).get().then(doc => doc.data())
-      return ref.collection(item.type).doc(item.id).update({ ...el, title: item.title, type: item.type, position: item.position, status: item.status, date: item.date, deadline: item.deadline, color: item.color, napravId: item.napravId, napravTitle: item.napravTitle, projectId: item.projectId, projectTitle: item.projectTitle, price: item.price })
+      return ref.collection(item.type).doc(item.id).update({ ...el, title: item.title, type: item.type, position: item.position, status: item.status, date: item.date, deadline: item.deadline, color: item.color, napravId: item.napravId, napravTitle: item.napravTitle, projectId: item.projectId, projectTitle: item.projectTitle, price: item.price, time: item.time })
         .then(function () {
           console.log("updateItem, Document successfully updated!");
           commit('updateItem', item)
