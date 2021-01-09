@@ -20,107 +20,132 @@
             />
             <div class="row mt-2">
               <div class="col-4 pe-0">
-                <input
-                  :disabled="item && item.type === 'napravs'"
-                  type="datetime-local"
-                  id="date"
-                  class="form-control form-control-sm border-warning"
-                  v-model="date"
-                />
+                <div class="form-floating">
+                  <input
+                    :disabled="item && item.type === 'napravs'"
+                    type="datetime-local"
+                    id="date"
+                    class="form-control form-control-sm border-warning"
+                    v-model="date"
+                  />
+                  <label for="date">Выполнение</label>
+                </div>
               </div>
               <div class="col-4 pe-0">
-                <input
-                  :disabled="item && item.type === 'napravs'"
-                  type="datetime-local"
-                  id="deadline"
-                  class="form-control form-control-sm border-danger"
-                  v-model="deadline"
-                />
+                <div class="form-floating">
+                  <input
+                    :disabled="item && item.type === 'napravs'"
+                    type="datetime-local"
+                    id="deadline"
+                    class="form-control form-control-sm border-danger"
+                    v-model="deadline"
+                  />
+                  <label for="deadline">Сдача</label>
+                </div>
               </div>
               <div class="col-4">
-                <select
-                  v-model="status"
-                  @change="changeStatus"
-                  :disabled="
-                    item &&
-                    (item.type === 'napravs' || item.type === 'projects')
-                  "
-                  class="form-select form-select-sm"
-                >
-                  <option
-                    v-for="item in statusArr"
-                    :key="'sta' + item.id"
-                    :value="item.id"
+                <div class="form-floating">
+                  <select
+                    v-model="status"
+                    @change="changeStatus"
+                    :disabled="
+                      item &&
+                      (item.type === 'napravs' || item.type === 'projects')
+                    "
+                    class="form-select form-select-sm"
+                    id="statusSelect"
                   >
-                    {{ item.title }}
-                  </option>
-                </select>
+                    <option
+                      v-for="item in statusArr"
+                      :key="'sta' + item.id"
+                      :value="item.id"
+                    >
+                      {{ item.title }}
+                    </option>
+                  </select>
+                  <label for="statusSelect">Статус</label>
+                </div>
               </div>
             </div>
 
             <div class="row mt-2">
               <div class="col-4 pe-0">
-                <select
-                  v-model="napravId"
-                  :disabled="item && item.type === 'napravs'"
-                  class="form-select form-select-sm"
-                >
-                  <option value selected>Направление</option>
-                  <option
-                    v-for="item in napravs"
-                    :key="'nap' + item.id"
-                    :value="item.id"
+                <div class="form-floating">
+                  <select
+                    v-model="napravId"
+                    :disabled="item && item.type === 'napravs'"
+                    class="form-select form-select-sm"
+                    id="napravSelect"
                   >
-                    {{ item.title }}
-                  </option>
-                </select>
+                    <option value selected>Направление</option>
+                    <option
+                      v-for="item in napravs"
+                      :key="'nap' + item.id"
+                      :value="item.id"
+                    >
+                      {{ item.title }}
+                    </option>
+                  </select>
+                  <label for="napravSelect">Направление</label>
+                </div>
               </div>
+
               <div class="col-4 pe-0">
-                <select
-                  v-model="projectId"
-                  class="form-select form-select-sm"
-                  :disabled="
-                    !napravId ||
-                    item.type === 'napravs' ||
-                    item.type === 'projects'
-                  "
-                >
-                  <option value selected>Проект</option>
-                  <option
-                    v-for="item in projectsFilter"
-                    :key="'pro' + item.id"
-                    :value="item.id"
+                <div class="form-floating">
+                  <select
+                    v-model="projectId"
+                    class="form-select form-select-sm"
+                    :disabled="
+                      !napravId ||
+                      item.type === 'napravs' ||
+                      item.type === 'projects'
+                    "
+                    id="projectSelect"
                   >
-                    {{ item.title }}
-                  </option>
-                </select>
+                    <option value selected>Проект</option>
+                    <option
+                      v-for="item in projectsFilter"
+                      :key="'pro' + item.id"
+                      :value="item.id"
+                    >
+                      {{ item.title }}
+                    </option>
+                  </select>
+                  <label for="projectSelect">Проект</label>
+                </div>
               </div>
               <div class="col-2">
-                <input
-                  v-if="item"
-                  type="number"
-                  max="99"
-                  min="0"
-                  step="1"
-                  id="position"
-                  class="form-control form-control-sm"
-                  v-model.number="position"
-                />
+                <div class="form-floating">
+                  <input
+                    v-if="item"
+                    type="number"
+                    max="99"
+                    min="0"
+                    step="1"
+                    id="position"
+                    class="form-control form-control-sm"
+                    v-model.number="position"
+                  />
+                  <label for="position">#</label>
+                </div>
               </div>
               <div class="col-2 ps-0">
-                <input
-                  v-if="item"
-                  type="number"
-                  max="99999"
-                  min="0"
-                  step="100"
-                  id="price"
-                  class="form-control form-control-sm"
-                  v-model.number="price"
-                  :disabled="
-                    item.type === 'napravs' || item.type === 'projects'
-                  "
-                />
+                <div class="form-floating">
+                  <input
+                    v-if="item"
+                    type="number"
+                    max="99999"
+                    min="0"
+                    step="100"
+                    id="price"
+                    class="form-control form-control-sm"
+                    v-model.number="price"
+                    :disabled="
+                      item.type === 'napravs' || item.type === 'projects'
+                    "
+                  />
+                  <label for="price">Цена</label>
+                </div>
               </div>
             </div>
 
@@ -323,6 +348,13 @@ export default {
 </script>
 
 <style scoped>
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: 640px;
+    margin: 1.75rem auto;
+  }
+}
+
 .colorblock {
   width: 32px;
   height: 20px;
