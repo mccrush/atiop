@@ -5,9 +5,11 @@
       @hide-settings="showSettings = false"
     />
     <div class="container-fluid" @click.prevent="showSettings = false">
-      <transition name="component-fade" mode="out-in">
-        <router-view />
-      </transition>
+      <router-view v-slot="{ Component }">
+        <transition name="component-fade" mode="out-in">
+          <component :is="Component" />
+        </transition>
+      </router-view>
     </div>
     <Settings class="formset" :class="{ 'right-0': showSettings }" />
     <transition name="slide-fade">
