@@ -44,6 +44,9 @@
       class="badge bg-success me-1"
       >{{ task.price }}</span
     >
+    <span v-if="settings.showTime && task.time" class="badge bg-dark me-1">{{
+      task.time
+    }}</span>
     <span class="badge bg-warning me-1" v-if="task.date && settings.showDate">{{
       new Date(task.date).toLocaleDateString()
     }}</span>

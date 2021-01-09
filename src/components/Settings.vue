@@ -109,6 +109,19 @@
       </label>
     </div>
 
+    <div class="form-group form-check mb-2">
+      <input
+        type="checkbox"
+        class="form-check-input"
+        id="time"
+        v-model="showTime"
+        @change="saveChanges"
+      />
+      <label for="time" class="form-check-label">
+        <small>Время</small>
+      </label>
+    </div>
+
     <div class="form-group">
       <small>Способ сортировки</small>
       <div class="form-check">
@@ -201,6 +214,7 @@ export default {
       showNaprav: null,
       showProject: null,
       showPrice: null,
+      showTime: null,
       sortBy: '',
       sortUp: true,
     }
@@ -226,6 +240,7 @@ export default {
         showNaprav: this.showNaprav,
         showProject: this.showProject,
         showPrice: this.showPrice,
+        showTime: this.showTime,
         sortBy: this.sortBy,
         sortUp: this.sortUp,
       })
@@ -241,6 +256,7 @@ export default {
       this.showNaprav = this.settings.showNaprav
       this.showProject = this.settings.showProject
       this.showPrice = this.settings.showPrice
+      this.showTime = this.settings.showTime
     },
   },
   watch: {
