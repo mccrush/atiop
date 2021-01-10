@@ -85,6 +85,21 @@
         Done
       </button>
     </div>
+    <div v-else>
+      <button
+        type="button"
+        class="btn btn-sm btn-light border p-0 ps-2 pe-2 w-100"
+        @click.prevent="
+          removeItem({
+            id: task.id,
+            type: task.type,
+            idproj: task.projectId,
+          })
+        "
+      >
+        Remove
+      </button>
+    </div>
   </div>
 </template>
 
@@ -117,6 +132,10 @@ export default {
     },
     filterBadget({ filterType, filterValue }) {
       this.$store.commit('updateFilter', { filterType, filterValue })
+    },
+    removeItem({ id, type, idproj }) {
+      // Сделать асинхронной и выводить сообщения об ошибках
+      this.$store.dispatch('removeItem', { id, type, idproj })
     },
   },
 }
