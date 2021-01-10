@@ -20,7 +20,7 @@
   >
     <span class="small">{{ task.title }}</span>
     <hr class="m-1" />
-    <span v-if="settings.showPosition" class="badge bg-light text-dark me-1">{{
+    <span v-if="settings.showPosition" class="badge bg-dark me-1">{{
       task.position
     }}</span>
     <span
@@ -44,9 +44,11 @@
       class="badge bg-success me-1"
       >{{ task.price }}</span
     >
-    <span v-if="settings.showTime && task.time" class="badge bg-dark me-1">{{
-      task.time
-    }}</span>
+    <span
+      v-if="settings.showTime && task.time"
+      class="badge bg-light text-dark me-1"
+      >{{ task.time }} мин</span
+    >
     <span class="badge bg-warning me-1" v-if="task.date && settings.showDate">{{
       new Date(task.date).toLocaleDateString()
     }}</span>

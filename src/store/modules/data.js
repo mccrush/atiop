@@ -7,7 +7,7 @@ export default {
     napravs: [],
     projects: [],
     tasks: [],
-    settings: JSON.parse(localStorage.getItem('at-settings')) || { showArhived: false, showEmpty: true, showPosition: false, showDate: false, showDeadline: false, showNaprav: false, showProject: false, showPrice: false, sortBy: 'date', sortUp: true },
+    settings: JSON.parse(localStorage.getItem('at-settings')) || { showArhived: false, showEmpty: true, showPosition: false, showDate: false, showDeadline: false, showNaprav: false, showProject: false, showPrice: false, showTime: false, sortBy: 'date', sortUp: true },
     status: [{ id: 'todo', title: 'Новые' }, { id: 'work', title: 'В работе' }, { id: 'done', title: 'Завершенные' }],
     filterType: localStorage.getItem('at-filterType') || '',
     filterValue: localStorage.getItem('at-filterValue') || ''
@@ -29,8 +29,8 @@ export default {
       items[index] = { ...el, title, desc, type, position, status, date, deadline, color, napravId, napravTitle, projectId, projectTitle, price, time }
       state[type] = items
     },
-    updateSettings(state, { showArhived, showEmpty, showPosition, showDate, showDeadline, showNaprav, showProject, showPrice, sortBy, sortUp }) {
-      state.settings = { showArhived, showEmpty, showPosition, showDate, showDeadline, showNaprav, showProject, showPrice, sortBy, sortUp }
+    updateSettings(state, { showArhived, showEmpty, showPosition, showDate, showDeadline, showNaprav, showProject, showPrice, showTime, sortBy, sortUp }) {
+      state.settings = { showArhived, showEmpty, showPosition, showDate, showDeadline, showNaprav, showProject, showPrice, showTime, sortBy, sortUp }
       localStorage.setItem('at-settings', JSON.stringify(state.settings))
     },
     updateSettingsShow(state, { name }) {
@@ -40,7 +40,8 @@ export default {
         projectId: 'showProject',
         date: 'showDate',
         deadline: 'showDeadline',
-        price: 'showPrice'
+        price: 'showPrice',
+        time: 'showTime'
       }
 
       state.settings = { ...state.settings, [maps[name]]: true }
