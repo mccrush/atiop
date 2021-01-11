@@ -57,6 +57,17 @@
         </ul>
       </div>
     </div>
+    <div class="row">
+      <div class="col-6 col-xl-4">
+        <div class="card mt-3 p-2">
+          <button class="btn btn-light" @click="sendMessage">
+            Send message
+          </button>
+          <hr class="m-2" />
+          Ответ сервера: {{ answer }}
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -71,6 +82,7 @@ export default {
   data() {
     return {
       user: auth.currentUser,
+      answer: '',
     }
   },
   methods: {
@@ -81,6 +93,34 @@ export default {
         )
       ) {
         console.log('Аккаунт удален. Шутка)')
+      }
+    },
+    async sendMessage() {
+      const url = 'http://yolior.ru/res_add.php'
+      const data = {
+        name: 'Иванович',
+        mail: 'ivanko@mail.ru',
+        text: 'Крутой текст даже без даже',
+      }
+      try {
+        const response = await fetch(url, {
+          method: 'POST', // *GET, POST, PUT, DELETE, etc.
+          mode: 'no-cors', // no-cors, *cors, same-origin
+          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+          credentials: 'same-origin', // include, *same-origin, omit
+          headers: {
+            //'Content-Type': 'application/json'
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          redirect: 'follow', // manual, *follow, error
+          referrerPolicy: 'no-referrer', // no-referrer, *client
+          body: data, // body data type must match "Content-Type" header
+        })
+
+        const content = await response.text()
+        console.log('Получен ответ сервера: ', content)
+      } catch (err) {
+        console.log('Ошибка в catch: ', err)
       }
     },
   },
