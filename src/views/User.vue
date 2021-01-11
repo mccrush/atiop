@@ -96,7 +96,7 @@ export default {
       }
     },
     async sendMessage() {
-      const url = 'http://yolior.ru/res_add.php'
+      const url = 'http://yolior.ru/mail/res_add.php'
       const data = {
         name: 'Иванович',
         mail: 'ivanko@mail.ru',
