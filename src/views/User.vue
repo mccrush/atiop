@@ -138,17 +138,17 @@ export default {
       try {
         const response = await fetch(url, {
           method: 'POST', // *GET, POST, PUT, DELETE, etc.
-          mode: 'no-cors', // no-cors, *cors, same-origin
-          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-          credentials: 'same-origin', // include, *same-origin, omit
+          mode: 'cors', // no-cors, *cors, same-origin
+          //cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+          //credentials: 'same-origin', // include, *same-origin, omit
           headers: {
             //'Content-Type': 'application/json'
-            'Content-Type': 'form/multipart;charset=utf-8',
+            'Content-Type': 'multipart/form-data;charset=utf-8',
             //'Content-Type': 'application/x-www-form-urlencoded',
             //'Content-Type': 'application/json;charset=utf-8',
           },
-          redirect: 'follow', // manual, *follow, error
-          referrerPolicy: 'no-referrer', // no-referrer, *client
+          //redirect: 'follow', // manual, *follow, error
+          //referrerPolicy: 'no-referrer', // no-referrer, *client
           body: dataFromForm, // body data type must match "Content-Type" header
         })
 
