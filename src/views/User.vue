@@ -60,9 +60,40 @@
     <div class="row">
       <div class="col-6 col-xl-4">
         <div class="card mt-3 p-2">
-          <button class="btn btn-light" @click="sendMessage">
-            Send message
-          </button>
+          <div class="row">
+            <div class="col-6">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Имя"
+                v-model="name"
+              />
+            </div>
+            <div class="col-6 ps-0">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Телефон или почта"
+                v-model="mail"
+              />
+            </div>
+            <div class="col-12">
+              <textarea
+                v-model="text"
+                rows="5"
+                class="form-control w-100 mt-2"
+              ></textarea>
+            </div>
+            <div class="col-6 pt-2">
+              <button class="btn btn-light border w-100">Очистить</button>
+            </div>
+            <div class="col-6 pt-2 ps-0">
+              <button class="btn btn-primary w-100" @click="sendMessage">
+                Send message
+              </button>
+            </div>
+          </div>
+
           <hr class="m-2" />
           Ответ сервера: {{ answer }}
         </div>
@@ -83,6 +114,9 @@ export default {
     return {
       user: auth.currentUser,
       answer: '',
+      name: 'Superman',
+      mail: 'trest@mail.ru',
+      text: 'Some amazing text',
     }
   },
   methods: {
@@ -97,15 +131,10 @@ export default {
     },
     async sendMessage() {
       const url = 'https://yolior.ru/mail/res_add.php'
-      // const data = {
-      //   name: 'Иванович',
-      //   mail: 'ivanko@mail.ru',
-      //   text: 'Крутой текст даже без даже',
-      // }
       const dataFromForm = new FormData()
-      dataFromForm.append('name', 'Иванович')
-      dataFromForm.append('mail', 'ivanko@mail.ru')
-      dataFromForm.append('text', 'Крутой текст даже без даже')
+      dataFromForm.append('name', this.name)
+      dataFromForm.append('mail', this.mail)
+      dataFromForm.append('text', this.text)
       try {
         const response = await fetch(url, {
           method: 'POST', // *GET, POST, PUT, DELETE, etc.
