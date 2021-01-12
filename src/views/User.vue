@@ -96,12 +96,16 @@ export default {
       }
     },
     async sendMessage() {
-      const url = 'http://yolior.ru/mail/res_add.php'
-      const data = {
-        name: 'Иванович',
-        mail: 'ivanko@mail.ru',
-        text: 'Крутой текст даже без даже',
-      }
+      const url = 'https://yolior.ru/mail/res_add.php'
+      // const data = {
+      //   name: 'Иванович',
+      //   mail: 'ivanko@mail.ru',
+      //   text: 'Крутой текст даже без даже',
+      // }
+      const dataFromForm = new FormData()
+      dataFromForm.append('name', 'Иванович')
+      dataFromForm.append('mail', 'ivanko@mail.ru')
+      dataFromForm.append('text', 'Крутой текст даже без даже')
       try {
         const response = await fetch(url, {
           method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -110,15 +114,18 @@ export default {
           credentials: 'same-origin', // include, *same-origin, omit
           headers: {
             //'Content-Type': 'application/json'
-            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Type': 'form/multipart;charset=utf-8',
+            //'Content-Type': 'application/x-www-form-urlencoded',
+            //'Content-Type': 'application/json;charset=utf-8',
           },
           redirect: 'follow', // manual, *follow, error
           referrerPolicy: 'no-referrer', // no-referrer, *client
-          body: data, // body data type must match "Content-Type" header
+          body: dataFromForm, // body data type must match "Content-Type" header
         })
 
-        const content = await response.text()
-        console.log('Получен ответ сервера: ', content)
+        //const content = await response.text()
+        this.answer = await response.text()
+        console.log('Получен ответ сервера: ', this.answer)
       } catch (err) {
         console.log('Ошибка в catch: ', err)
       }
