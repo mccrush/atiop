@@ -95,7 +95,10 @@
           </div>
 
           <hr class="m-2" />
-          Ответ сервера: {{ answer }}
+          Ответ сервера:
+          {{
+            answer == 'Success' ? 'Письмо успешно отправлено' : 'Где-то ошибка'
+          }}
         </div>
       </div>
     </div>
@@ -131,10 +134,20 @@ export default {
     },
     async sendMessage() {
       const url = 'https://yolior.ru/mail/res_add.php'
-      const dataFromForm = new FormData()
-      dataFromForm.append('name', this.name)
-      dataFromForm.append('mail', this.mail)
-      dataFromForm.append('text', this.text)
+      // const dataFromForm = new FormData()
+      // dataFromForm.append('name', this.name)
+      // dataFromForm.append('mail', this.mail)
+      // dataFromForm.append('text', this.text)
+
+      const dataFromForm = {
+        name: this.name,
+        mail: this.mail,
+        text: this.text,
+      }
+      // console.log(
+      //   'JSON.stringify(dataFromForm) = ',
+      //   JSON.stringify(dataFromForm)
+      // )
       try {
         const response = await fetch(url, {
           method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -143,13 +156,14 @@ export default {
           //credentials: 'same-origin', // include, *same-origin, omit
           headers: {
             //'Content-Type': 'application/json'
-            'Content-Type': 'multipart/form-data;charset=utf-8',
+            //'Content-Type': 'multipart/form-data', // Нет данных
+            //'Content-Type': 'form/multipart',
             //'Content-Type': 'application/x-www-form-urlencoded',
-            //'Content-Type': 'application/json;charset=utf-8',
+            'Content-Type': 'application/json;charset=utf-8',
           },
           //redirect: 'follow', // manual, *follow, error
           //referrerPolicy: 'no-referrer', // no-referrer, *client
-          body: dataFromForm, // body data type must match "Content-Type" header
+          body: JSON.stringify(dataFromForm), // body data type must match "Content-Type" header
         })
 
         //const content = await response.text()
