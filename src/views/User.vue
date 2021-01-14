@@ -57,7 +57,7 @@
         </ul>
       </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-6 col-xl-4">
         <div class="card mt-3 p-2">
           <div class="row">
@@ -101,7 +101,7 @@
           }}
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -133,40 +133,25 @@ export default {
       }
     },
     async sendMessage() {
-      const url = 'https://yolior.ru/mail/res_add.php'
-      // const dataFromForm = new FormData()
-      // dataFromForm.append('name', this.name)
-      // dataFromForm.append('mail', this.mail)
-      // dataFromForm.append('text', this.text)
+      const url = 'https://yolior.ru/mail/res_add..php'
 
       const dataFromForm = {
         name: this.name,
         mail: this.mail,
         text: this.text,
       }
-      // console.log(
-      //   'JSON.stringify(dataFromForm) = ',
-      //   JSON.stringify(dataFromForm)
-      // )
+
       try {
         const response = await fetch(url, {
           method: 'POST', // *GET, POST, PUT, DELETE, etc.
           mode: 'cors', // no-cors, *cors, same-origin
-          //cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-          //credentials: 'same-origin', // include, *same-origin, omit
+
           headers: {
-            //'Content-Type': 'application/json'
-            //'Content-Type': 'multipart/form-data', // Нет данных
-            //'Content-Type': 'form/multipart',
-            //'Content-Type': 'application/x-www-form-urlencoded',
             'Content-Type': 'application/json;charset=utf-8',
           },
-          //redirect: 'follow', // manual, *follow, error
-          //referrerPolicy: 'no-referrer', // no-referrer, *client
           body: JSON.stringify(dataFromForm), // body data type must match "Content-Type" header
         })
 
-        //const content = await response.text()
         this.answer = await response.text()
         console.log('Получен ответ сервера: ', this.answer)
       } catch (err) {
