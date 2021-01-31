@@ -30,7 +30,8 @@
             !filterType ||
             filterType === 'date' ||
             filterType === 'deadline' ||
-            filterType === 'price'
+            filterType === 'price' ||
+            filterType === 'time'
           "
         >
           <option value selected>Без значения</option>
