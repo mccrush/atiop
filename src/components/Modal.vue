@@ -21,14 +21,20 @@
               />
             </div>
             <div class="col-2 ps-0">
-              <input
-                type="number"
-                max="180"
-                min="0"
-                step="5"
-                class="form-control form-control-sm"
-                v-model.trim="time"
-              />
+              <div class="input-group input-group-sm">
+                <input
+                  type="number"
+                  max="360"
+                  min="0"
+                  step="5"
+                  class="form-control form-control-sm"
+                  aria-describedby="for-time"
+                  v-model.trim="time"
+                />
+                <span class="input-group-text ps-1 pe-1" id="for-time"
+                  >мин.</span
+                >
+              </div>
             </div>
           </div>
 
