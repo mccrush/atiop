@@ -56,7 +56,7 @@
           </button>
         </div>
         <br />
-        <button class="btn btn-success btn-block" type="submit" @click="login">
+        <button class="btn btn-success w-100" type="submit" @click="login">
           {{ mod === '#in' ? 'Войти' : 'Заргегистрироваться' }}
         </button>
 

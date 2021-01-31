@@ -1,6 +1,7 @@
 <template>
-  <div class>
+  <div>
     <Navbar
+      v-if="$route.path !== '/about'"
       @show-settings="showSettings = !showSettings"
       @hide-settings="showSettings = false"
     />
@@ -42,7 +43,9 @@ export default {
       showMessage: false,
     }
   },
-  async mounted() {},
+  mounted() {
+    console.log('rt:', this.$route.path)
+  },
   computed: {
     message() {
       return this.$store.getters.getMessage

@@ -1,16 +1,15 @@
 <template>
   <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom">
     <div class="container-fluid">
-      <span class="navbar-brand" to="/" tag="a">
+      <router-link class="navbar-brand" to="/about" tag="a">
         <img
-          src="/img/icons/favicon-30x30.png"
-          width="30"
-          height="30"
-          class="d-inline-block align-top"
+          src="/img/icons/logo_7.svg"
+          height="26"
+          class="d-inline-block mb-1"
           alt="ATIOP"
         />
         ATIOP
-      </span>
+      </router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -72,12 +71,15 @@
             >Календарь</router-link>
           </li> -->
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <router-link to="/about" class="nav-link">Справка</router-link>
-          </li>
+          </li> -->
         </ul>
         <div>
-          <div v-if="user" class="d-inline-block me-2">
+          <div
+            v-if="user && $route.path !== '/login'"
+            class="d-inline-block me-2"
+          >
             <!-- <button
                 class="btn btn-sm dropdown-toggle text-muted"
                 type="button"
@@ -107,6 +109,7 @@
             >Войти</router-link
           >
           <button
+            v-if="$route.path !== '/login'"
             class="btn btn-sm p-0 me-1 opacity-06"
             @click.prevent="$emit('show-settings')"
           >
