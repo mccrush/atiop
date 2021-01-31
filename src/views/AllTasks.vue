@@ -177,6 +177,8 @@ export default {
             return new Date(a.deadline) - new Date(b.deadline)
           } else if (this.settings.sortBy === 'price') {
             return a.price - b.price
+          } else if (this.settings.sortBy === 'time') {
+            return a.time - b.time
           }
         } else {
           if (this.settings.sortBy === 'position') {
@@ -187,6 +189,8 @@ export default {
             return new Date(b.deadline) - new Date(a.deadline)
           } else if (this.settings.sortBy === 'price') {
             return b.price - a.price
+          } else if (this.settings.sortBy === 'time') {
+            return b.time - a.time
           }
         }
       })
