@@ -6,6 +6,7 @@
     role="dialog"
     aria-labelledby="exampleModalLabel"
     aria-hidden="true"
+    ref="myModal"
   >
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content border-0 shadow">
@@ -156,7 +157,7 @@
                   type="number"
                   max="99999"
                   min="0"
-                  step="100"
+                  step="50"
                   id="price"
                   class="form-control form-control-sm"
                   v-model.number="price"
@@ -199,6 +200,7 @@
             <div class="col-4 pe-0">
               <button
                 class="btn btn-sm btn-outline-danger w-100"
+                data-bs-dismiss="modal"
                 @click.prevent="
                   removeItem({
                     id: item.id,
@@ -214,7 +216,7 @@
               <button
                 type="button"
                 class="btn btn-sm btn-light w-100"
-                data-dismiss="modal"
+                data-bs-dismiss="modal"
               >
                 Отмена
               </button>
@@ -224,8 +226,9 @@
                 type="button"
                 @click="updateItem"
                 class="btn btn-sm btn-warning w-100"
+                data-bs-dismiss="modal"
               >
-                Обновить
+                Сохранить
               </button>
             </div>
           </div>
@@ -236,8 +239,7 @@
 </template>
 
 <script>
-import { Modal } from 'bootstrap'
-//import bootstrap from 'bootstrap/dist/js/bootstrap.min.js'
+//import { Modal } from 'bootstrap'
 import getDateNow from '@/scripts/getDateNow'
 
 export default {
@@ -326,8 +328,10 @@ export default {
         }
 
         this.$store.dispatch('updateItem', item)
-        let myModal = new Modal(document.getElementById('exampleModal'))
-        myModal.hide()
+        //let myModal = new Modal(document.getElementById('exampleModal'))
+        //let myModal = new Modal(this.$refs.myModal)
+        //console.log('myModal:', myModal)
+        //myModal.hide()
       } else {
         this.error = true
       }
@@ -335,8 +339,8 @@ export default {
     removeItem({ id, type, idproj }) {
       // Сделать асинхронной и выводить сообщения об ошибках
       this.$store.dispatch('removeItem', { id, type, idproj })
-      let myModal = new Modal(document.getElementById('exampleModal'))
-      myModal.hide()
+      //let myModal = new Modal(document.getElementById('exampleModal'))
+      //myModal.hide()
     },
     changeStatus() {
       this.$store.dispatch('changeStatus', {
