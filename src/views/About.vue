@@ -6,7 +6,7 @@
           <h1 class="mb-0">
             <img
               class="mb-3"
-              src="/img/about/logo_7_w.svg"
+              src="/img/about/logo_8_w.svg"
               alt="Структура организации задач"
               height="74"
             />
@@ -14,7 +14,7 @@
           </h1>
           <p class="desc">сервис управления задачами</p>
         </div>
-        <div class="col-6 mt-5 pe-4 border-end border-white">
+        <div class="col-8 mt-5 pe-4 border-end border-white">
           <p>
             Основой принципа организации задач, является структура: направление
             — проект — задачи
@@ -26,18 +26,18 @@
             width="100%"
           />
         </div>
-        <div v-if="!user" class="col-6 mt-5 ps-4">
+        <div v-if="!user" class="col-4 mt-5 ps-4">
           <router-link to="login#in" class="btn btn-lg btn-light w-100"
-            >Войти</router-link
+            ><small>Войти</small></router-link
           >
           <p class="text-center mt-3">или</p>
           <router-link to="login#reg" class="btn btn-lg btn-light w-100"
-            >Зарегистрироваться</router-link
+            ><small>Зарегистрироваться</small></router-link
           >
         </div>
-        <div v-else class="col-6 mt-5 ps-4">
+        <div v-else class="col-4 mt-5 ps-4">
           <router-link to="/" class="btn btn-lg btn-light w-100"
-            >Открыть приложение</router-link
+            ><small>Открыть приложение</small></router-link
           >
         </div>
       </div>
@@ -57,7 +57,7 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&display=swap');
 
 .main {
   /* height: calc(100vh - 60px); */
@@ -72,7 +72,7 @@ export default {
 h1 {
   text-align: center;
   font-size: 6rem;
-  font-weight: 400;
+  font-weight: 500;
   /* line-height: 1; */
 }
 
