@@ -18,6 +18,7 @@
           <option value="date">С датами</option>
           <option value="deadline">С дедлайнами</option>
           <option value="price">С ценой</option>
+          <option value="time">С временем</option>
         </select>
       </div>
       <div class="col-2 col-xxl-1 p-2">
