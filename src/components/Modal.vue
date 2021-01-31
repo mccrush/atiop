@@ -316,7 +316,7 @@ export default {
           projectId: this.projectId,
           projectTitle: projectTitle,
           price: +this.price,
-          time: this.time,
+          time: +this.time,
         }
 
         this.$store.dispatch('updateItem', item)

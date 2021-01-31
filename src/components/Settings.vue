@@ -30,7 +30,8 @@
         <small>Проекты без задач</small>
       </label>
     </div>
-
+    <hr class="mt-2 mb-1" />
+    <small>Показывать метки</small>
     <div class="form-group form-check mb-1">
       <input
         type="checkbox"
@@ -178,6 +179,20 @@
         />
         <label class="form-check-label" for="exampleRadios4">
           <small>По цене</small>
+        </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="exampleRadios5"
+          value="time"
+          :checked="sortBy == 'time'"
+          v-model="sortBy"
+          @change="saveChanges"
+        />
+        <label class="form-check-label" for="exampleRadios5">
+          <small>По времени</small>
         </label>
       </div>
       <div class="btn-group w-100" role="group" aria-label="Basic example">
