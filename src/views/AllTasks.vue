@@ -173,7 +173,7 @@ export default {
           if (this.settings.sortBy === 'position') {
             return a.position - b.position
           } else if (this.settings.sortBy === 'date') {
-            return new Date(a.date) - new Date(b.date)
+            return new Date(a.dateCreate) - new Date(b.dateCreate)
           } else if (this.settings.sortBy === 'deadline') {
             return new Date(a.deadline) - new Date(b.deadline)
           } else if (this.settings.sortBy === 'price') {
@@ -185,7 +185,7 @@ export default {
           if (this.settings.sortBy === 'position') {
             return b.position - a.position
           } else if (this.settings.sortBy === 'date') {
-            return new Date(b.date) - new Date(a.date)
+            return new Date(b.dateCreate) - new Date(a.dateCreate)
           } else if (this.settings.sortBy === 'deadline') {
             return new Date(b.deadline) - new Date(a.deadline)
           } else if (this.settings.sortBy === 'price') {

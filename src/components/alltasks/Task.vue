@@ -62,6 +62,7 @@
       {{ new Date(task.dateStart).toLocaleDateString() }} -
       {{ new Date(task.dateDone).toLocaleDateString() }}</span
     > -->
+    <!-- <span>{{ new Date(task.dateCreate) }}</span> -->
     <hr class="m-1" />
     <div
       v-if="task.status !== 'done'"
