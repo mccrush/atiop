@@ -1,6 +1,6 @@
 
-import { auth } from "@/firebase.js";
-import { db } from "@/firebase.js";
+import { auth } from '@/firebase.js'
+import { db } from '@/firebase.js'
 
 export default {
   state: {
@@ -60,64 +60,66 @@ export default {
     // Возможно, лучше использовать как инструмент администратора
     async addNewField({ commit }, id) {
       try {
-        const ref = db.collection("users").doc(auth.currentUser.uid).collection('tasks').doc(id)
+        const ref = db.collection('users').doc(auth.currentUser.uid).collection('tasks').doc(id)
         const res = await ref.set({ time: 0 }, { merge: true })
-        console.log('New field dateStart Add');
+        console.log('New field dateStart Add')
       } catch (err) { throw err }
     },
     async getItems({ commit }, type) {
       let items = []
       try {
-        const ref = db.collection("users").doc(auth.currentUser.uid).collection(type)
+        const ref = db.collection('users').doc(auth.currentUser.uid).collection(type)
         const querySnapshot = await ref.get()
         querySnapshot.forEach(function (doc) {
           items.push(doc.data())
-        });
-      } catch (err) { throw err } finally { commit('getItems', { type, items }) }
+        })
+
+        commit('getItems', { type, items })
+      } catch (error) { throw error }
     },
 
     addItem({ commit, dispatch }, item) {
-      const ref = db.collection("users").doc(auth.currentUser.uid)
+      const ref = db.collection('users').doc(auth.currentUser.uid)
       ref.collection(item.type).doc(item.id).set(item).then(() => {
-        console.log('addItem, Элемент добавлен:');
+        console.log('addItem, Элемент добавлен:')
         commit('addItem', item)
         // Вообще это надо, но только для проектов
         // if (item.type === 'tasks') {
         //   dispatch('updateProjectLength', { id: item.idprojects, whatdo: 'add' })
         // }
-      }).catch(err => {
-        console.log('addItem, Ошибка при добавлении документа:', err);
+      }).catch(error => {
+        console.log('addItem, Ошибка при добавлении документа:', error);
       })
     },
 
     removeItem({ commit, dispatch }, { id, type, idproj }) {
-      db.collection("users").doc(auth.currentUser.uid).collection(type).doc(id).delete().then(function () {
-        console.log("removeItem, Document successfully deleted!");
+      db.collection('users').doc(auth.currentUser.uid).collection(type).doc(id).delete().then(function () {
+        console.log('removeItem, Document successfully deleted!')
         commit('removeItem', { id, type })
         // Вообще это надо, но пока не используется
         // удалять всех детей родителя
         // if (type === 'tasks') {
         //   dispatch('updateProjectLength', { id: idproj, whatdo: 'remove' })
         // }
-      }).catch(function (error) {
-        console.error("removeItem, Error removing document: ", error);
+      }).catch(error => {
+        console.error('removeItem, Error removing document: ', error)
       });
     },
     updateItem({ commit }, item) {
-      const ref = db.collection("users").doc(auth.currentUser.uid)
+      const ref = db.collection('users').doc(auth.currentUser.uid)
       const el = ref.collection(item.type).doc(item.id).get().then(doc => doc.data())
       return ref.collection(item.type).doc(item.id).update({ ...el, title: item.title, type: item.type, position: item.position, status: item.status, date: item.date, deadline: item.deadline, color: item.color, napravId: item.napravId, napravTitle: item.napravTitle, projectId: item.projectId, projectTitle: item.projectTitle, price: item.price, time: item.time })
         .then(function () {
-          console.log("updateItem, Document successfully updated!");
+          console.log('updateItem, Document successfully updated!')
           commit('updateItem', item)
         })
-        .catch(function (error) {
+        .catch(error => {
           // The document probably doesn't exist.
-          console.error("updateItem, Error updating document: ", error);
+          console.error('updateItem, Error updating document: ', error);
         });
     },
     async updateProjectLength({ commit, dispatch }, { id, whatdo }) {
-      const ref = db.collection("users").doc(auth.currentUser.uid).collection('projects').doc(id)
+      const ref = db.collection('users').doc(auth.currentUser.uid).collection('projects').doc(id)
       const doc = await ref.get()
       let length = doc.data().length
       if (whatdo === 'add') { length++ }
@@ -126,7 +128,7 @@ export default {
       dispatch('getItems', 'projects')
     },
     async changeStatus({ commit, dispatch }, { id, type, status, dateStart, dateDone }) {
-      const ref = db.collection("users").doc(auth.currentUser.uid).collection(type).doc(id)
+      const ref = db.collection('users').doc(auth.currentUser.uid).collection(type).doc(id)
       const doc = await ref.get()
       //let status = 'done'
       await ref.update({ ...doc.data(), status, dateStart, dateDone })
