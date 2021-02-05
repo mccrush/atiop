@@ -44,7 +44,7 @@ export default {
     }
   },
   mounted() {
-    console.log('rt:', this.$route.path)
+    // console.log('rt:', this.$route.path)
   },
   computed: {
     message() {
