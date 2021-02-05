@@ -36,7 +36,7 @@
           >
         </div>
         <div v-else class="col-4 mt-5 ps-4">
-          <router-link to="/" class="btn btn-lg btn-light w-100"
+          <router-link to="/projects" class="btn btn-lg btn-light w-100"
             ><small>Открыть приложение</small></router-link
           >
         </div>
