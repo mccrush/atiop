@@ -34,11 +34,15 @@
           <router-link to="login#reg" class="btn btn-lg btn-light w-100"
             ><small>Зарегистрироваться</small></router-link
           >
+          <hr class="mb-2" />
+          <span class="small">Версия {{ version }}</span>
         </div>
         <div v-else class="col-4 mt-5 ps-4">
           <router-link to="/projects" class="btn btn-lg btn-light w-100"
             ><small>Открыть приложение</small></router-link
           >
+          <hr class="mb-2" />
+          <span class="small">Версия {{ version }}</span>
         </div>
       </div>
     </div>
@@ -51,6 +55,7 @@ export default {
   data() {
     return {
       user: auth.currentUser,
+      version: '0.8.1',
     }
   },
 }
