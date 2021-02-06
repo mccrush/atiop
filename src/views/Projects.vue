@@ -279,7 +279,7 @@ export default {
 
 <style scoped>
 .my-row-project {
-  height: calc(100vh - 105px) !important;
+  height: calc(100vh - 108px) !important;
 }
 .my-project {
   width: 210px; /* 226 for scroll */
