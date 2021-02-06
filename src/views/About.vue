@@ -55,7 +55,7 @@ export default {
   data() {
     return {
       user: auth.currentUser,
-      version: '0.8.1',
+      version: '0.8.2',
     }
   },
 }
