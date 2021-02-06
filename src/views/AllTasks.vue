@@ -80,6 +80,7 @@
 <script>
 import { Modal } from 'bootstrap'
 import createTask from '@/scripts/createTask'
+import sortMethod from '@/scripts/sortMethod'
 import Task from '@/components/task/Task'
 import Modal2 from '@/components/additional/Modal'
 import Loading from '@/components/additional/Loading'
@@ -168,33 +169,11 @@ export default {
       return this.$store.getters.settings
     },
     sortTasks() {
-      return this.tasksFilterValue.sort((a, b) => {
-        if (this.settings.sortUp) {
-          if (this.settings.sortBy === 'position') {
-            return a.position - b.position
-          } else if (this.settings.sortBy === 'date') {
-            return new Date(a.dateCreate) - new Date(b.dateCreate)
-          } else if (this.settings.sortBy === 'deadline') {
-            return new Date(a.deadline) - new Date(b.deadline)
-          } else if (this.settings.sortBy === 'price') {
-            return a.price - b.price
-          } else if (this.settings.sortBy === 'time') {
-            return a.time - b.time
-          }
-        } else {
-          if (this.settings.sortBy === 'position') {
-            return b.position - a.position
-          } else if (this.settings.sortBy === 'date') {
-            return new Date(b.dateCreate) - new Date(a.dateCreate)
-          } else if (this.settings.sortBy === 'deadline') {
-            return new Date(b.deadline) - new Date(a.deadline)
-          } else if (this.settings.sortBy === 'price') {
-            return b.price - a.price
-          } else if (this.settings.sortBy === 'time') {
-            return b.time - a.time
-          }
-        }
-      })
+      return sortMethod(
+        this.tasksFilterValue,
+        this.settings.sortUp,
+        this.settings.sortBy
+      )
     },
     filterType() {
       return this.$store.getters.filterType
