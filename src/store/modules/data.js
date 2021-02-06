@@ -145,6 +145,7 @@ export default {
     projectsLength: state => state.projects.length,
     tasksLength: state => state.tasks.length,
     projectLengthById: state => id => state.tasks.filter(task => task.projectId === id).length,
+    projectLengthActiveTask: state => id => state.tasks.filter(task => task.projectId === id && task.status !== 'done').length,
     filterType: state => state.filterType,
     filterValue: state => state.filterValue,
   }

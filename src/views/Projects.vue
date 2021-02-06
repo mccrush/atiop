@@ -164,7 +164,7 @@ export default {
           return this.projects.filter(
             (proj) =>
               proj.napravId === this.filter &&
-              this.$store.getters.projectLengthById(proj.id) > 0
+              this.$store.getters.projectLengthActiveTask(proj.id) > 0
           )
         }
       } else {
@@ -172,7 +172,7 @@ export default {
           return this.projects
         } else {
           return this.projects.filter(
-            (proj) => this.$store.getters.projectLengthById(proj.id) > 0
+            (proj) => this.$store.getters.projectLengthActiveTask(proj.id) > 0
           )
         }
       }
