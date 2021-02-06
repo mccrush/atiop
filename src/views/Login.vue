@@ -103,7 +103,7 @@ export default {
   },
   beforeMount() {
     if (auth.currentUser) {
-      this.$router.push('/')
+      this.$router.push('/projects')
     }
   },
   methods: {
@@ -117,7 +117,7 @@ export default {
         try {
           await this.$store.dispatch('logIn', formData)
 
-          this.$router.push('/')
+          this.$router.push('/projects')
         } catch (err) {
           if (err.code === 'auth/invalid-email') {
             this.$store.commit('addMessage', {
@@ -149,7 +149,7 @@ export default {
       } else {
         try {
           await this.$store.dispatch('regist', formData)
-          this.$router.push('/')
+          this.$router.push('/projects')
           if (auth.currentUser) {
             this.$store.dispatch('getItems', 'napravs')
             this.$store.dispatch('getItems', 'projects')
