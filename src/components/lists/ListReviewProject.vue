@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import TaskStat from '@/components/general/TaskStat'
+import TaskStat from '@/components/task/TaskStat'
 
 export default {
   components: {

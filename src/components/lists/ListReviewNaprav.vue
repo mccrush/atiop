@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import ListProjGeneral from '@/components/general/ListProjGeneral'
+import ListProjGeneral from '@/components/lists/ListReviewProject'
 
 export default {
   components: {

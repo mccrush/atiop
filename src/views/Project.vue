@@ -91,7 +91,7 @@ import { Modal } from 'bootstrap'
 import vueHeadful from 'vue-headful'
 import Modal2 from '@/components/additional/Modal'
 import Loading from '@/components/additional/Loading'
-import TaskList from '@/components/general/TaskList'
+import TaskList from '@/components/lists/ListProjectsTask'
 
 export default {
   components: {
