@@ -15,7 +15,7 @@
         @change="saveChanges"
       />
       <label for="arhived" class="form-check-label">
-        <small>Завершенные</small>
+        <small>Завершенные задачи</small>
       </label>
     </div>
     <div class="form-group form-check mb-1">
