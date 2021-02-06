@@ -81,8 +81,8 @@
 import { Modal } from 'bootstrap'
 import createTask from '@/scripts/createTask'
 import Task from '@/components/alltasks/Task'
-import Modal2 from '@/components/Modal'
-import Loading from '@/components/Loading'
+import Modal2 from '@/components/additional/Modal'
+import Loading from '@/components/additional/Loading'
 import vueHeadful from 'vue-headful'
 
 export default {

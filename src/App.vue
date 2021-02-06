@@ -26,9 +26,9 @@
 
 <script>
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Navbar from '@/components/Navbar'
-import Settings from '@/components/Settings'
-import Message from '@/components/Message'
+import Navbar from '@/components/interface/Navbar'
+import Settings from '@/components/additional/Settings'
+import Message from '@/components/additional/Message'
 
 export default {
   components: {

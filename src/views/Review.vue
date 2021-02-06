@@ -46,7 +46,7 @@
 import { Modal } from 'bootstrap'
 import vueHeadful from 'vue-headful'
 import ListNapravGeneral from '@/components/general/ListNapravGeneral'
-import Modal2 from '@/components/Modal'
+import Modal2 from '@/components/additional/Modal'
 
 export default {
   components: {

@@ -110,8 +110,8 @@
 import { Modal } from 'bootstrap'
 import createTask from '@/scripts/createTask'
 import vueHeadful from 'vue-headful'
-import Modal2 from '@/components/Modal'
-import Loading from '@/components/Loading'
+import Modal2 from '@/components/additional/Modal'
+import Loading from '@/components/additional/Loading'
 import TaskList from '@/components/general/TaskList'
 
 export default {
