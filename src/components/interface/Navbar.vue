@@ -70,27 +70,12 @@
               :aria-disabled="user ? 'true': 'false'"
             >Календарь</router-link>
           </li> -->
-
-          <!-- <li class="nav-item">
-            <router-link to="/about" class="nav-link">Справка</router-link>
-          </li> -->
         </ul>
         <div>
-          <div
+          <!-- <div
             v-if="user && $route.path !== '/login'"
             class="d-inline-block me-2"
           >
-            <!-- <button
-                class="btn btn-sm dropdown-toggle text-muted"
-                type="button"
-                id="userData"
-                data-toggle="dropdown"
-                aria-expanded="false"
-            >{{'@'+ user.email.split('@')[0]}}</button>-->
-            <!-- <div class="dropdown-menu" aria-labelledby="userData">
-                <router-link to="/user" class="dropdown-item">Профиль</router-link>
-                <button class="dropdown-item btn-link" @click.prevent="logOut">Выйти</button>
-            </div>-->
 
             <button
               class="btn btn-sm btn-light border"
@@ -99,19 +84,20 @@
             >
               Выйти
             </button>
-          </div>
-          <router-link
-            v-else
+          </div> -->
+          <!-- <router-link
+            v-if="!user && $route.path !== '/login'"
             tag="button"
             class="d-sm-inline btn btn-sm btn-success me-2 login"
             title="Войти"
             to="/login"
             >Войти</router-link
-          >
+          > -->
           <button
             v-if="$route.path !== '/login'"
-            class="btn btn-sm p-0 me-1 opacity-06"
+            class="btn btn-sm p-0 me-1 opacity-04"
             @click.prevent="$emit('show-settings')"
+            title="Настройки"
           >
             <img
               src="@/assets/icons/gear.svg"
@@ -128,7 +114,7 @@
 
 <script>
 import { auth } from '@/firebase.js'
-import { Collapse } from 'bootstrap'
+//import { Collapse } from 'bootstrap'
 
 export default {
   name: 'navbar',
@@ -142,23 +128,23 @@ export default {
     auth.onAuthStateChanged((user) => {
       this.user = user
     })
-    if (this.user) {
-      this.userName = this.user.email.split('@')[0]
-    }
+    // if (this.user) {
+    //   this.userName = this.user.email.split('@')[0]
+    // }
   },
-  methods: {
-    async logOut() {
-      await this.$store.dispatch('logOut')
-      this.$router.push('/login#in')
-    },
-  },
+  // methods: {
+  //   async logOut() {
+  //     await this.$store.dispatch('logOut')
+  //     this.$router.push('/login#in')
+  //   },
+  // },
 }
 </script>
 
 
 <style scoped>
-.opacity-06 {
-  opacity: 0.6;
+.opacity-04 {
+  opacity: 0.4;
 }
 
 a.router-link-active {

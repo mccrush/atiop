@@ -1,9 +1,19 @@
 <template>
   <div class="bg-white shadow-sm p-3 pt-3 settings">
     <h5 class="text-center">Настройки</h5>
-    <router-link to="/user" class="btn btn-sm btn-light border p-0 ps-1 pe-1"
+    <router-link
+      to="/user"
+      class="btn btn-sm btn-light border p-0 ps-2 pe-2 me-2"
+      title="Настройки аккаунта"
       >Аккаунт</router-link
     >
+    <button
+      @click.prevent="logOut"
+      class="btn btn-sm btn-light border p-0 ps-3 pe-3"
+      title="Выйти из системы"
+    >
+      Выйти
+    </button>
     <hr class="mt-2 mb-1" />
     <small>Показывать</small>
     <div class="form-group form-check mb-1">
@@ -244,6 +254,10 @@ export default {
     this.updateValue()
   },
   methods: {
+    async logOut() {
+      await this.$store.dispatch('logOut')
+      this.$router.push('/login#in')
+    },
     saveChanges(sortUp) {
       this.sortUp = sortUp
       this.$store.commit('updateSettings', {
