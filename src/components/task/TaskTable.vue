@@ -1,6 +1,22 @@
 <template>
   <li
-    class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+    class="list-group-item list-group-item-action d-flex justify-content-between align-items-center border rounded-2 mb-2"
+    :class="{
+      ' bg-white': task.status === 'todo' || task.status === 'work',
+      ' bg-light': task.status === 'done',
+      ' border-warning': task.status === 'work',
+      'border-warning':
+        Math.ceil(
+          Math.abs(new Date(task.date).getTime() - new Date().getTime()) /
+            (1000 * 3600 * 24)
+        ) <= 1 && task.status !== 'done',
+      'border-danger':
+        Math.ceil(
+          (new Date(task.deadline).getTime() - new Date().getTime()) /
+            (1000 * 3600 * 24)
+        ) <= 1 && task.status !== 'done',
+    }"
+    @dblclick.prevent="$emit('edit-item', { id: task.id, type: task.type })"
   >
     <span>{{ task.title }}</span>
     <span class="w-25">

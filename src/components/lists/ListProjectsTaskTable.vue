@@ -9,7 +9,7 @@
         :settings="settings"
       />
       <li
-        class="list-group-item d-flex justify-content-between align-items-center"
+        class="list-group-item d-flex justify-content-between align-items-center border rounded-2"
       >
         <input
           v-if="status !== 'done'"
@@ -121,7 +121,7 @@ export default {
 
 <style scoped>
 .add-task {
-  width: 192px;
+  width: 256px;
 }
 
 .task-list {
