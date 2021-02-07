@@ -65,7 +65,7 @@ export default {
 </script>
 
 
-<style scoped>
+<style>
 .formset {
   width: 200px;
   position: absolute;
@@ -84,6 +84,11 @@ export default {
   top: 72px;
   right: 16px;
   padding: 8px 16px;
+}
+
+.btn:focus {
+  outline: 0 !important;
+  box-shadow: none !important;
 }
 
 .slide-fade-enter-active {
