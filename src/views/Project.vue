@@ -35,22 +35,32 @@
         role="group"
         aria-label="Basic example"
       >
-        <button type="button" class="btn btn-light p-0 w-auto">
+        <button
+          @click="changeViewType('col')"
+          type="button"
+          class="btn btn-light p-0 pb-1 w-auto"
+          :class="{ active: viewType === 'col' }"
+        >
           <img
             src="@/assets/icons/layout-three-columns.svg"
-            width="24"
-            height="24"
+            width="18"
+            height="18"
             alt="Канбан"
-            class="opacity-06"
+            class="opacity-04"
           />
         </button>
-        <button type="button" class="btn btn-light disabled p-0 w-auto">
+        <button
+          @click="changeViewType('table')"
+          type="button"
+          class="btn btn-light p-0 pb-1 w-auto"
+          :class="{ active: viewType === 'table' }"
+        >
           <img
             src="@/assets/icons/grid-3x3.svg"
-            width="24"
-            height="24"
+            width="18"
+            height="18"
             alt="Таблица"
-            class="opacity-06"
+            class="opacity-04"
           />
         </button>
       </div>
@@ -115,6 +125,7 @@ export default {
     return {
       item: null,
       filter: localStorage.getItem('project-filter') || '',
+      viewType: localStorage.getItem('at-viewtype') || 'col',
     }
   },
   beforeMount() {
@@ -165,6 +176,10 @@ export default {
       this.$router.push({ path: this.filter })
       localStorage.setItem('project-filter', this.filter)
     },
+    changeViewType(type) {
+      this.viewType = type
+      localStorage.setItem('at-viewtype', type)
+    },
   },
 }
 </script>
@@ -187,8 +202,13 @@ export default {
   user-select: none;
 }
 
-.opacity-06 {
-  opacity: 0.6;
+.opacity-04 {
+  opacity: 0.4;
+}
+
+.btn-light.active {
+  background-color: #dee2e6;
+  border-color: #dee2e6;
 }
 </style>
  
