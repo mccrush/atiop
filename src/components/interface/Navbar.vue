@@ -5,7 +5,7 @@
         <img
           src="/img/icons/logo_7.svg"
           height="26"
-          class="d-inline-block mb-1"
+          class="d-inline-block mb-1 me-1"
           alt="ATIOP"
         />
         ATIOP
