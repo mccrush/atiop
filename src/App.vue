@@ -69,7 +69,7 @@ export default {
 .formset {
   width: 200px;
   position: absolute;
-  top: 57px;
+  top: 60px;
   right: -200px;
   transition: 0.5s;
 }
@@ -92,8 +92,8 @@ export default {
 .slide-fade-leave-active {
   transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
-.slide-fade-enter-from, .slide-fade-leave-to
-/* .slide-fade-leave-active до версии 2.1.8 */ {
+.slide-fade-enter-from,
+.slide-fade-leave-to {
   transform: translateX(10px);
   opacity: 0;
 }
@@ -102,8 +102,8 @@ export default {
 .component-fade-leave-active {
   transition: opacity 0.3s ease;
 }
-.component-fade-enter, .component-fade-leave-to
-/* .component-fade-leave-active до версии 2.1.8 */ {
+.component-fade-enter,
+.component-fade-leave-to {
   opacity: 0;
 }
 </style>
