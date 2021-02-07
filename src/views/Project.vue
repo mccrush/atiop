@@ -66,7 +66,7 @@
       </div>
     </div>
     <!-- Либо Канбан, либо список-таблица -->
-    <div class="row h-100">
+    <div v-if="viewType === 'col'" class="row h-100">
       <div class="d-flex align-items-start pt-2 ower">
         <div class="me-2 rounded-1 border project">
           <h6 class="text-center pt-3 pb-1 m-0 mb-2">К выполнению</h6>
@@ -104,6 +104,18 @@
       </div>
       <Modal2 :item="item" :napravs="napravs" :projects="projects" />
     </div>
+    <div v-else-if="viewType === 'table'" class="row h-100">
+      <div class="col-12">
+        <Loading v-if="!projects.length" />
+        <TaskListTable
+          v-else
+          :napravId="napravId"
+          :projectId="projectId"
+          status=""
+          @edit-item="editItem"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -113,6 +125,7 @@ import vueHeadful from 'vue-headful'
 import Modal2 from '@/components/additional/Modal'
 import Loading from '@/components/additional/Loading'
 import TaskList from '@/components/lists/ListProjectsTask'
+import TaskListTable from '@/components/lists/ListProjectsTaskTable'
 
 export default {
   components: {
@@ -120,6 +133,7 @@ export default {
     Loading,
     vueHeadful,
     TaskList,
+    TaskListTable,
   },
   data() {
     return {
