@@ -100,7 +100,7 @@
             title="Настройки"
           >
             <img
-              src="@/assets/icons/gear.svg"
+              src="/img/icons_tool/gear.svg"
               width="24"
               height="24"
               alt="Настройки"

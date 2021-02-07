@@ -33,7 +33,7 @@
       <div
         class="col-2 col-xxl-1 btn-group btn-group-sm p-2"
         role="group"
-        aria-label="Basic example"
+        aria-label="Group icons"
       >
         <button
           @click="changeViewType('col')"
@@ -42,9 +42,9 @@
           :class="{ active: viewType === 'col' }"
         >
           <img
-            src="@/assets/icons/layout-three-columns.svg"
-            width="18"
-            height="18"
+            src="/img/icons_tool/kanban.svg"
+            width="16"
+            height="16"
             alt="Канбан"
             class="opacity-04"
           />
@@ -56,9 +56,9 @@
           :class="{ active: viewType === 'table' }"
         >
           <img
-            src="@/assets/icons/grid-3x3.svg"
-            width="18"
-            height="18"
+            src="/img/icons_tool/list-check.svg"
+            width="16"
+            height="16"
             alt="Таблица"
             class="opacity-04"
           />
