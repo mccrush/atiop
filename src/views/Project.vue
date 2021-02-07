@@ -27,7 +27,7 @@
       </div>
 
       <div class="col-3 col-xxl-2 p-2">
-        <input type="datetime-local" class="form-control form-control-sm" />
+        <!-- <input type="datetime-local" class="form-control form-control-sm" /> -->
       </div>
       <div class="col-5 col-xxl-8 p-2"></div>
       <div
