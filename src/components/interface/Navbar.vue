@@ -62,6 +62,16 @@
             >
           </li>
 
+          <li class="nav-item">
+            <router-link
+              to="/item?nap=4444&proj=5555"
+              class="nav-link"
+              :class="{ disabled: !user }"
+              :aria-disabled="user ? 'true' : 'false'"
+              >Items</router-link
+            >
+          </li>
+
           <!-- <li class="nav-item">
             <router-link
               to="/calendar"

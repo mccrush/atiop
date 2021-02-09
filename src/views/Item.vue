@@ -2,40 +2,104 @@
   <div>
     <!-- Filter -->
     <div class="row border-bottom p-0">
-      <div class="col-1">
-        <select name="naprav">
-          <option value="all">Все</option>
+      <div class="col-2 p-2">
+        <select
+          class="form-select form-select-sm"
+          v-model="filterNaprav"
+          @change="saveFilterNaprav"
+        >
+          <option value selected>Все</option>
+          <option
+            v-for="naprav in napravs"
+            :key="'nap' + naprav.id"
+            :value="naprav.id"
+          >
+            {{ naprav.title }}
+          </option>
         </select>
       </div>
-      <div class="col-1">
-        <select name="project">
-          <option value="all">Все</option>
+      <div class="col-2 p-2">
+        <select
+          class="form-select form-select-sm"
+          v-model="filterProject"
+          @change="saveFilterProject"
+        >
+          <option value selected>Все</option>
+          <option
+            v-for="project in projects"
+            :key="'nap' + project.id"
+            :value="project.id"
+          >
+            {{ project.title }}
+          </option>
         </select>
       </div>
     </div>
     <!-- Lists -->
-    <div class="row overflow-auto my-row-project">
-      <List v-for="list in lists" :key="'list'+list.id" :list="list">
+    <Loading v-if="!lists.length" />
+    <div v-else class="row overflow-auto my-row-project">
+      <List v-for="list in lists" :key="'list' + list.id" :list="list" />
     </div>
   </div>
 </template>
 
 <script>
 import List from '@/components/item/List'
+import Loading from '@/components/additional/Loading'
 
 export default {
   components: {
     List,
+    Loading,
   },
   data() {
     return {
-      lists: [
-        { id: 1, title: 'list 1' },
-        { id: 2, title: 'list 2' },
-        { id: 3, title: 'list 3' },
-        { id: 4, title: 'list 4' },
-      ],
+      filterNaprav: localStorage.getItem('at-filterNaprav') || '',
+      filterProject: localStorage.getItem('at-filterProject') || '',
     }
+  },
+  computed: {
+    napravs() {
+      return this.$store.getters.napravs
+    },
+    projects() {
+      if (this.$route.query.nap) {
+        return this.$store.getters.projects.filter(
+          (proj) => proj.napravId === this.$route.query.nap
+        )
+      } else {
+        return this.$store.getters.projects
+      }
+    },
+    tasks() {
+      return this.$store.getters.tasks
+    },
+    lists() {
+      if (this.$route.query.nap && this.$route.query.proj) {
+        return [
+          { id: 1, title: 'list of proj 1' },
+          { id: 2, title: 'list of proj 2' },
+          { id: 3, title: 'list of proj 3' },
+          { id: 4, title: 'list of proj 4' },
+        ]
+      } else if (this.$route.query.nap) {
+        return this.projects
+      } else {
+        return this.napravs
+      }
+    },
+  },
+  methods: {
+    saveFilterNaprav() {
+      this.$router.push({ query: { nap: this.filterNaprav } })
+      localStorage.setItem('at-filterNaprav', this.filterNaprav)
+    },
+    saveFilterProject() {
+      this.$router.push({
+        query: { nap: this.filterNaprav, proj: this.filterProject },
+      })
+      localStorage.setItem('at-filterProject', this.filterProject)
+    },
   },
 }
 </script>

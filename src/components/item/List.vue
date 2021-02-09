@@ -1,5 +1,5 @@
 <template>
-  <div class="col-2 border me-2">
+  <div class="col-3 border">
     <h3>{{ list.title }}</h3>
   </div>
 </template>
