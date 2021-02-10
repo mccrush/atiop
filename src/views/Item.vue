@@ -21,6 +21,7 @@
       <div class="col-2 p-2">
         <select
           class="form-select form-select-sm"
+          :disabled="!filterNaprav"
           v-model="filterProject"
           @change="saveFilterProject"
         >
@@ -38,9 +39,21 @@
         <input
           type="text"
           class="form-control form-control-sm border-0 bg-light"
-          @keypress.enter="addItem"
-          v-model.trim="itemTitle"
+          @focus="itemTitleProject = ''"
+          @keypress.enter="addItem('napravs')"
+          v-model.trim="itemTitleNaprav"
           placeholder="Создать направление"
+        />
+      </div>
+      <div class="col-3 p-2">
+        <input
+          v-if="filterNaprav"
+          type="text"
+          class="form-control form-control-sm border-0 bg-light"
+          @focus="itemTitleNaprav = ''"
+          @keypress.enter="addItem('projects')"
+          v-model.trim="itemTitleProject"
+          placeholder="Создать проект"
         />
       </div>
     </div>
@@ -67,7 +80,8 @@ export default {
     return {
       filterNaprav: localStorage.getItem('at-filterNaprav') || '',
       filterProject: localStorage.getItem('at-filterProject') || '',
-      itemTitle: '',
+      itemTitleNaprav: '',
+      itemTitleProject: '',
     }
   },
   computed: {
@@ -105,6 +119,8 @@ export default {
     saveFilterNaprav() {
       this.$router.push({ query: { nap: this.filterNaprav } })
       localStorage.setItem('at-filterNaprav', this.filterNaprav)
+      this.filterProject = ''
+      localStorage.setItem('at-filterProject', this.filterProject)
     },
     saveFilterProject() {
       this.$router.push({
@@ -114,16 +130,18 @@ export default {
     },
     async addItem() {
       try {
-        if (this.itemTitle) {
-          const item = createItem(
-            Date.now().toString(),
-            this.itemTitle,
-            'napravs'
-          )
+        if (this.itemTitleNaprav || this.itemTitleProject) {
+          const title = this.itemTitleNaprav
+            ? this.itemTitleNaprav
+            : this.itemTitleProject
+          const type = this.itemTitleNaprav ? 'napravs' : 'projects'
+          const napravId = this.itemTitleProject ? this.filterNaprav : ''
+          const item = createItem(Date.now().toString(), title, type, napravId)
 
           this.$store.commit('addItem2', item)
           //await this.$store.dispatch('addItem2', item)
-          this.itemTitle = ''
+          this.itemTitleNaprav = ''
+          this.itemTitleProject = ''
         } else {
           alert('Невозможно создать Направление без заголоака')
         }
