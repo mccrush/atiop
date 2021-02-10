@@ -34,6 +34,14 @@
           </option>
         </select>
       </div>
+      <div class="col-2 p-2">
+        <input
+          type="text"
+          class="form-control"
+          @keypress.enter="addItem"
+          v-model.trim="itemTitle"
+        />
+      </div>
     </div>
     <!-- Lists -->
     <Loading v-if="!lists.length" />
@@ -44,6 +52,7 @@
 </template>
 
 <script>
+import createItem from '@/scripts/createItem'
 import List from '@/components/item/List'
 import Loading from '@/components/additional/Loading'
 
@@ -56,6 +65,7 @@ export default {
     return {
       filterNaprav: localStorage.getItem('at-filterNaprav') || '',
       filterProject: localStorage.getItem('at-filterProject') || '',
+      itemTitle: '',
     }
   },
   computed: {
@@ -99,6 +109,23 @@ export default {
         query: { nap: this.filterNaprav, proj: this.filterProject },
       })
       localStorage.setItem('at-filterProject', this.filterProject)
+    },
+    async addItem() {
+      try {
+        if (this.itemTitle) {
+          const item = createItem(
+            Date.now().toString(),
+            this.itemTitle,
+            'naprav'
+          )
+
+          this.itemTitle = ''
+        } else {
+          alert('Невозможно создать Направление без заголоака')
+        }
+      } catch (error) {
+        console.log('Ошибка при создании Item: Item.vue = ', error)
+      }
     },
   },
 }
