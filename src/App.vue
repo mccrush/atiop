@@ -17,7 +17,6 @@
       <Message
         v-if="showMessage"
         :message="message.text"
-        class="mess shadow-sm rounded text-white"
         :class="message.type"
       />
     </transition>
@@ -76,14 +75,6 @@ export default {
 
 .right-0 {
   right: 0;
-}
-
-.mess {
-  position: fixed;
-  width: 250px;
-  top: 72px;
-  right: 16px;
-  padding: 8px 16px;
 }
 
 .btn:focus {
