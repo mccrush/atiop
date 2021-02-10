@@ -44,7 +44,8 @@
       </div>
     </div>
     <!-- Lists -->
-    <Loading v-if="!lists.length" />
+    <!-- <Loading v-if="!lists.length" /> -->
+    <div v-if="!lists.length">Список элементов пуст</div>
     <div v-else class="row overflow-auto my-row-project">
       <List v-for="list in lists" :key="'list' + list.id" :list="list" />
     </div>
@@ -70,19 +71,19 @@ export default {
   },
   computed: {
     napravs() {
-      return this.$store.getters.napravs
+      return this.$store.getters.napravs2
     },
     projects() {
       if (this.$route.query.nap) {
-        return this.$store.getters.projects.filter(
+        return this.$store.getters.projects2.filter(
           (proj) => proj.napravId === this.$route.query.nap
         )
       } else {
-        return this.$store.getters.projects
+        return this.$store.getters.projects2
       }
     },
     tasks() {
-      return this.$store.getters.tasks
+      return this.$store.getters.tasks2
     },
     lists() {
       if (this.$route.query.nap && this.$route.query.proj) {
@@ -119,6 +120,8 @@ export default {
             'naprav'
           )
 
+          this.$store.commit('addItem2', item)
+          //await this.$store.dispatch('addItem2', item)
           this.itemTitle = ''
         } else {
           alert('Невозможно создать Направление без заголоака')
