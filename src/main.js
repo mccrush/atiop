@@ -16,5 +16,6 @@ auth.onAuthStateChanged((user) => {
     store.dispatch('getItems', 'napravs')
     store.dispatch('getItems', 'projects')
     store.dispatch('getItems', 'tasks')
+    store.dispatch('getItems2')
   }
 })

@@ -3,7 +3,9 @@
     <!-- Filter -->
     <div class="row border-bottom p-0">
       <div class="col-2 col-xl-1 p-2">
+        <Loading v-if="!napravs.length" />
         <select
+          v-else
           class="form-select form-select-sm"
           v-model="filterNaprav"
           @change="saveFilterNaprav"
