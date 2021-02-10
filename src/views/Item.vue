@@ -34,19 +34,20 @@
           </option>
         </select>
       </div>
-      <div class="col-2 p-2">
+      <div class="col-3 p-2">
         <input
           type="text"
-          class="form-control"
+          class="form-control form-control-sm border-0 bg-light"
           @keypress.enter="addItem"
           v-model.trim="itemTitle"
+          placeholder="Создать направление"
         />
       </div>
     </div>
     <!-- Lists -->
     <!-- <Loading v-if="!lists.length" /> -->
-    <div v-if="!lists.length">Список элементов пуст</div>
-    <div v-else class="row overflow-auto my-row-project">
+    <!-- <div v-if="!lists.length">Список элементов пуст</div> -->
+    <div class="row overflow-auto my-row-project">
       <List v-for="list in lists" :key="'list' + list.id" :list="list" />
     </div>
   </div>
@@ -117,7 +118,7 @@ export default {
           const item = createItem(
             Date.now().toString(),
             this.itemTitle,
-            'naprav'
+            'napravs'
           )
 
           this.$store.commit('addItem2', item)
