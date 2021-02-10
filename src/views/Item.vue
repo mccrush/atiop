@@ -2,7 +2,7 @@
   <div>
     <!-- Filter -->
     <div class="row border-bottom p-0">
-      <div class="col-2 p-2">
+      <div class="col-2 col-xl-1 p-2">
         <select
           class="form-select form-select-sm"
           v-model="filterNaprav"
@@ -18,7 +18,7 @@
           </option>
         </select>
       </div>
-      <div class="col-2 p-2">
+      <div class="col-2 col-xl-1 p-2">
         <select
           class="form-select form-select-sm"
           :disabled="!filterNaprav"
@@ -35,7 +35,7 @@
           </option>
         </select>
       </div>
-      <div class="col-3 p-2">
+      <div class="col-3 col-xl-2 p-2">
         <input
           type="text"
           class="form-control form-control-sm border-0 bg-light"
@@ -45,7 +45,7 @@
           placeholder="Создать направление"
         />
       </div>
-      <div class="col-3 p-2">
+      <div class="col-3 col-xl-2 p-2">
         <input
           v-if="filterNaprav"
           type="text"
@@ -55,6 +55,9 @@
           v-model.trim="itemTitleProject"
           placeholder="Создать проект"
         />
+      </div>
+      <div class="col-2 col-xl-6 text-end">
+        <Loading v-if="loading" />
       </div>
     </div>
     <!-- Lists -->
@@ -82,6 +85,7 @@ export default {
       filterProject: localStorage.getItem('at-filterProject') || '',
       itemTitleNaprav: '',
       itemTitleProject: '',
+      loading: false,
     }
   },
   computed: {
@@ -139,13 +143,32 @@ export default {
           const item = createItem(Date.now().toString(), title, type, napravId)
 
           this.$store.commit('addItem2', item)
-          //await this.$store.dispatch('addItem2', item)
+
+          this.loading = true
+          const res = await this.$store.dispatch('addItem2', item)
+          if (res) {
+            this.loading = false
+            this.$store.commit('addMessage', {
+              text: 'Данные успешно добавлены',
+              type: 'bg-success',
+            })
+          } else {
+            this.$store.commit('addMessage', {
+              text: 'Ошибка при добавлении данных 01',
+              type: 'bg-danger',
+            })
+          }
+
           this.itemTitleNaprav = ''
           this.itemTitleProject = ''
         } else {
           alert('Невозможно создать Направление без заголоака')
         }
       } catch (error) {
+        this.$store.commit('addMessage', {
+          text: 'Ошибка при добавлении данных',
+          type: 'bg-danger',
+        })
         console.log('Ошибка при создании Item: Item.vue = ', error)
       }
     },
