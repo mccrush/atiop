@@ -4,23 +4,10 @@
     <div class="row border-bottom p-0">
       <div class="col-2 col-xl-1 p-2">
         <Loading v-if="!napravs.length" />
-        <FilterSelect
-          v-else
-          :items="napravs"
-          :type="'nap'"
-          :disabl="false"
-          :oldfilter="filterNaprav"
-          @save-filter="saveFilter"
-        />
+        <FilterSelect v-else :items="napravs" :type="'nap'" />
       </div>
       <div class="col-2 col-xl-1 p-2">
-        <FilterSelect
-          :items="projects"
-          :type="'proj'"
-          :disabl="!filterNaprav"
-          :oldfilter="filterProject"
-          @save-filter="saveFilter"
-        />
+        <FilterSelect :items="projects" :type="'proj'" />
       </div>
       <div class="col-3 col-xl-2 p-2">
         <input
@@ -34,7 +21,7 @@
       </div>
       <div class="col-3 col-xl-2 p-2">
         <input
-          v-if="filterNaprav"
+          v-if="$route.query.nap"
           type="text"
           class="form-control form-control-sm border-0 bg-light"
           @focus="itemTitleNaprav = ''"
@@ -70,8 +57,6 @@ export default {
   },
   data() {
     return {
-      filterNaprav: localStorage.getItem('at-filterNaprav') || '',
-      filterProject: localStorage.getItem('at-filterProject') || '',
       itemTitleNaprav: '',
       itemTitleProject: '',
       loading: false,
@@ -109,21 +94,6 @@ export default {
     },
   },
   methods: {
-    saveFilter({ type, filter }) {
-      if (type === 'nap') {
-        this.filterNaprav = filter
-        this.$router.push({ query: { nap: filter } })
-        localStorage.setItem('at-filterNaprav', filter)
-        this.filterProject = ''
-        localStorage.setItem('at-filterProject', '')
-      } else {
-        this.filterProject = filter
-        this.$router.push({
-          query: { nap: this.filterNaprav, proj: filter },
-        })
-        localStorage.setItem('at-filterProject', filter)
-      }
-    },
     async addItem() {
       try {
         if (this.itemTitleNaprav || this.itemTitleProject) {
@@ -131,7 +101,7 @@ export default {
             ? this.itemTitleNaprav
             : this.itemTitleProject
           const type = this.itemTitleNaprav ? 'napravs' : 'projects'
-          const napravId = this.itemTitleProject ? this.filterNaprav : ''
+          const napravId = this.itemTitleProject ? this.$route.query.nap : ''
           const item = createItem(Date.now().toString(), title, type, napravId)
 
           this.$store.commit('addItem2', item)
