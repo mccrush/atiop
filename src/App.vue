@@ -77,7 +77,8 @@ export default {
   right: 0;
 }
 
-.btn:focus {
+.btn:focus,
+.form-control:focus {
   outline: 0 !important;
   box-shadow: none !important;
 }
