@@ -1,7 +1,8 @@
 <template>
   <div class="col-3 col-xl-2 border">
     <h3>{{ list.title }}</h3>
-    <AddItem :type="'tasks'" />
+
+    <AddItem v-if="list.type === 'lists'" :type="'tasks'" />
   </div>
 </template>
 
@@ -13,6 +14,13 @@ export default {
     AddItem,
   },
   props: ['list'],
+  // computed: {
+  //   projectId() {
+  //     if (this.list.type === 'projects') {
+  //       return this.list.id
+  //     }
+  //   },
+  // },
 }
 </script>
 
