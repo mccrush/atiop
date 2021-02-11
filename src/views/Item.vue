@@ -4,38 +4,23 @@
     <div class="row border-bottom p-0">
       <div class="col-2 col-xl-1 p-2">
         <Loading v-if="!napravs.length" />
-        <select
+        <FilterSelect
           v-else
-          class="form-select form-select-sm"
-          v-model="filterNaprav"
-          @change="saveFilterNaprav"
-        >
-          <option value selected>Все</option>
-          <option
-            v-for="naprav in napravs"
-            :key="'nap' + naprav.id"
-            :value="naprav.id"
-          >
-            {{ naprav.title }}
-          </option>
-        </select>
+          :items="napravs"
+          :type="'nap'"
+          :disabl="false"
+          :oldfilter="filterNaprav"
+          @save-filter="saveFilter"
+        />
       </div>
       <div class="col-2 col-xl-1 p-2">
-        <select
-          class="form-select form-select-sm"
-          :disabled="!filterNaprav"
-          v-model="filterProject"
-          @change="saveFilterProject"
-        >
-          <option value selected>Все</option>
-          <option
-            v-for="project in projects"
-            :key="'nap' + project.id"
-            :value="project.id"
-          >
-            {{ project.title }}
-          </option>
-        </select>
+        <FilterSelect
+          :items="projects"
+          :type="'proj'"
+          :disabl="!filterNaprav"
+          :oldfilter="filterProject"
+          @save-filter="saveFilter"
+        />
       </div>
       <div class="col-3 col-xl-2 p-2">
         <input
@@ -74,11 +59,13 @@
 <script>
 import createItem from '@/scripts/createItem'
 import List from '@/components/item/List'
+import FilterSelect from '@/components/item/FilterSelect'
 import Loading from '@/components/additional/Loading'
 
 export default {
   components: {
     List,
+    FilterSelect,
     Loading,
   },
   data() {
@@ -122,17 +109,20 @@ export default {
     },
   },
   methods: {
-    saveFilterNaprav() {
-      this.$router.push({ query: { nap: this.filterNaprav } })
-      localStorage.setItem('at-filterNaprav', this.filterNaprav)
-      this.filterProject = ''
-      localStorage.setItem('at-filterProject', this.filterProject)
-    },
-    saveFilterProject() {
-      this.$router.push({
-        query: { nap: this.filterNaprav, proj: this.filterProject },
-      })
-      localStorage.setItem('at-filterProject', this.filterProject)
+    saveFilter({ type, filter }) {
+      if (type === 'nap') {
+        this.filterNaprav = filter
+        this.$router.push({ query: { nap: filter } })
+        localStorage.setItem('at-filterNaprav', filter)
+        this.filterProject = ''
+        localStorage.setItem('at-filterProject', '')
+      } else {
+        this.filterProject = filter
+        this.$router.push({
+          query: { nap: this.filterNaprav, proj: filter },
+        })
+        localStorage.setItem('at-filterProject', filter)
+      }
     },
     async addItem() {
       try {
