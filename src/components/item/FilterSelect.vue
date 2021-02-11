@@ -24,7 +24,9 @@ export default {
   data() {
     return {
       filter:
-        this.type === 'nap' ? this.$route.query.nap : this.$route.query.proj,
+        this.type === 'nap'
+          ? this.$route.query.nap
+          : this.$route.query.proj || '',
     }
   },
   methods: {
