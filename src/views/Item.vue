@@ -18,6 +18,9 @@
       <div class="col-2 col-xl-2 p-2">
         <AddItem v-if="$route.query.nap" :type="'projects'" />
       </div>
+      <div class="col-2 col-xl-2 p-2">
+        <AddItem v-if="$route.query.proj" :type="'lists'" />
+      </div>
       <!-- <div class="col-1 col-xl-6 text-end">
         <Loading v-if="loading" />
       </div> -->
@@ -62,9 +65,6 @@ export default {
         return this.$store.getters.projects2
       }
     },
-    tasks() {
-      return this.$store.getters.tasks2
-    },
     lists() {
       if (this.$route.query.nap && this.$route.query.proj) {
         return this.$store.getters.lists2.filter(
@@ -75,6 +75,9 @@ export default {
       } else {
         return this.napravs
       }
+    },
+    tasks() {
+      return this.$store.getters.tasks2
     },
   },
 }

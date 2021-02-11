@@ -2,7 +2,8 @@
   <select
     class="form-select form-select-sm"
     :disabled="
-      (!$route.query.nap && type === 'proj') ||
+      (!$route.query.nap && (type === 'proj' || type === 'list')) ||
+      (!$route.query.proj && type === 'list') ||
       (type === 'proj' && !items.length) ||
       (type === 'list' && !items.length)
     "

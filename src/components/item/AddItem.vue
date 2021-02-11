@@ -22,7 +22,13 @@ export default {
   },
   computed: {
     placeholder() {
-      return this.type === 'napravs' ? 'Создать направление' : 'Создать проект'
+      if (this.type === 'napravs') {
+        return 'Создать направление'
+      } else if (this.type === 'projects') {
+        return 'Создать проект'
+      } else {
+        return 'Добавить список'
+      }
     },
   },
   methods: {
@@ -30,11 +36,15 @@ export default {
       try {
         if (this.itemTitle) {
           const napravId = this.$route.query.nap || ''
+          const projectId = this.$route.query.proj || ''
+          const listId = localStorage.getItem('at-filterList') || ''
           const item = createItem(
             Date.now().toString(),
             this.itemTitle,
             this.type,
-            napravId
+            napravId,
+            projectId,
+            listId
           )
 
           this.$store.commit('addItem2', item)
