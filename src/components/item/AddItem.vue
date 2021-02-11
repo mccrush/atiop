@@ -54,8 +54,7 @@ export default {
             })
           }
 
-          this.itemTitleNaprav = ''
-          this.itemTitleProject = ''
+          this.itemTitle = ''
         } else {
           alert('Невозможно создать елемент без заголоака')
         }

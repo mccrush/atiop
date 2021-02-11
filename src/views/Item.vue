@@ -11,26 +11,9 @@
       </div>
       <div class="col-3 col-xl-2 p-2">
         <AddItem :type="'napravs'" />
-        <!-- <input
-          type="text"
-          class="form-control form-control-sm border-0 bg-light"
-          @focus="itemTitleProject = ''"
-          @keypress.enter="addItem('napravs')"
-          v-model.trim="itemTitleNaprav"
-          placeholder="Создать направление"
-        /> -->
       </div>
       <div class="col-3 col-xl-2 p-2">
         <AddItem v-if="$route.query.nap" :type="'projects'" />
-        <!-- <input
-          v-if="$route.query.nap"
-          type="text"
-          class="form-control form-control-sm border-0 bg-light"
-          @focus="itemTitleNaprav = ''"
-          @keypress.enter="addItem('projects')"
-          v-model.trim="itemTitleProject"
-          placeholder="Создать проект"
-        /> -->
       </div>
       <div class="col-2 col-xl-6 text-end">
         <Loading v-if="loading" />
