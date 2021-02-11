@@ -28,8 +28,10 @@
     <!-- Lists -->
     <!-- <Loading v-if="!lists.length" /> -->
     <!-- <div v-if="!lists.length">Список элементов пуст</div> -->
-    <div class="row overflow-auto my-row-project">
-      <List v-for="list in lists" :key="'list' + list.id" :list="list" />
+    <div class="my-row-project row overflow-auto">
+      <div class="my-width-none">
+        <List v-for="list in lists" :key="'list' + list.id" :list="list" />
+      </div>
     </div>
   </div>
 </template>
@@ -86,6 +88,11 @@ export default {
 <style scoped>
 .my-row-project {
   height: calc(100vh - 108px) !important;
-  background-color: coral;
+  /* background-color: coral; */
+}
+
+.my-width-none {
+  width: auto !important;
+  max-width: none !important;
 }
 </style>
