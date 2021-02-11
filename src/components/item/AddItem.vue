@@ -26,8 +26,10 @@ export default {
         return 'Создать направление'
       } else if (this.type === 'projects') {
         return 'Создать проект'
-      } else {
+      } else if (this.type === 'lists') {
         return 'Добавить список'
+      } else {
+        return 'Добавить задачу'
       }
     },
   },
