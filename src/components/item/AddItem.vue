@@ -40,14 +40,7 @@ export default {
           const napravId = this.$route.query.nap || ''
           const projectId = this.$route.query.proj || ''
           const listId = localStorage.getItem('at-filterList') || ''
-          console.log(
-            'Before create item:napravId =',
-            napravId,
-            ', projectId= ',
-            projectId,
-            ', listId=',
-            listId
-          )
+
           const item = createItem(
             Date.now().toString(),
             this.itemTitle,
