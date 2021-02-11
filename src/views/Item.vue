@@ -10,17 +10,19 @@
         <FilterSelect :items="projects" :type="'proj'" />
       </div>
       <div class="col-3 col-xl-2 p-2">
-        <input
+        <AddItem :type="'napravs'" />
+        <!-- <input
           type="text"
           class="form-control form-control-sm border-0 bg-light"
           @focus="itemTitleProject = ''"
           @keypress.enter="addItem('napravs')"
           v-model.trim="itemTitleNaprav"
           placeholder="Создать направление"
-        />
+        /> -->
       </div>
       <div class="col-3 col-xl-2 p-2">
-        <input
+        <AddItem v-if="$route.query.nap" :type="'projects'" />
+        <!-- <input
           v-if="$route.query.nap"
           type="text"
           class="form-control form-control-sm border-0 bg-light"
@@ -28,7 +30,7 @@
           @keypress.enter="addItem('projects')"
           v-model.trim="itemTitleProject"
           placeholder="Создать проект"
-        />
+        /> -->
       </div>
       <div class="col-2 col-xl-6 text-end">
         <Loading v-if="loading" />
@@ -44,16 +46,17 @@
 </template>
 
 <script>
-import createItem from '@/scripts/createItem'
+import Loading from '@/components/additional/Loading'
 import List from '@/components/item/List'
 import FilterSelect from '@/components/item/FilterSelect'
-import Loading from '@/components/additional/Loading'
+import AddItem from '@/components/item/AddItem'
 
 export default {
   components: {
+    Loading,
     List,
     FilterSelect,
-    Loading,
+    AddItem,
   },
   data() {
     return {
@@ -90,48 +93,6 @@ export default {
         return this.projects
       } else {
         return this.napravs
-      }
-    },
-  },
-  methods: {
-    async addItem() {
-      try {
-        if (this.itemTitleNaprav || this.itemTitleProject) {
-          const title = this.itemTitleNaprav
-            ? this.itemTitleNaprav
-            : this.itemTitleProject
-          const type = this.itemTitleNaprav ? 'napravs' : 'projects'
-          const napravId = this.itemTitleProject ? this.$route.query.nap : ''
-          const item = createItem(Date.now().toString(), title, type, napravId)
-
-          this.$store.commit('addItem2', item)
-
-          this.loading = true
-          const res = await this.$store.dispatch('addItem2', item)
-          if (res) {
-            this.loading = false
-            this.$store.commit('addMessage', {
-              text: 'Данные успешно добавлены',
-              type: 'bg-success',
-            })
-          } else {
-            this.$store.commit('addMessage', {
-              text: 'Ошибка при добавлении данных 01',
-              type: 'bg-danger',
-            })
-          }
-
-          this.itemTitleNaprav = ''
-          this.itemTitleProject = ''
-        } else {
-          alert('Невозможно создать Направление без заголоака')
-        }
-      } catch (error) {
-        this.$store.commit('addMessage', {
-          text: 'Ошибка при добавлении данных',
-          type: 'bg-danger',
-        })
-        console.log('Ошибка при создании Item: Item.vue = ', error)
       }
     },
   },
