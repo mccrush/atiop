@@ -9,15 +9,18 @@
       <div class="col-2 col-xl-1 p-2">
         <FilterSelect :items="projects" :type="'proj'" />
       </div>
-      <div class="col-3 col-xl-2 p-2">
+      <div class="col-2 col-xl-1 p-2">
+        <FilterSelect :items="lists" :type="'list'" />
+      </div>
+      <div class="col-2 col-xl-2 p-2">
         <AddItem :type="'napravs'" />
       </div>
-      <div class="col-3 col-xl-2 p-2">
+      <div class="col-2 col-xl-2 p-2">
         <AddItem v-if="$route.query.nap" :type="'projects'" />
       </div>
-      <div class="col-2 col-xl-6 text-end">
+      <!-- <div class="col-1 col-xl-6 text-end">
         <Loading v-if="loading" />
-      </div>
+      </div> -->
     </div>
     <!-- Lists -->
     <!-- <Loading v-if="!lists.length" /> -->
@@ -66,12 +69,9 @@ export default {
     },
     lists() {
       if (this.$route.query.nap && this.$route.query.proj) {
-        return [
-          { id: 1, title: 'list of proj 1' },
-          { id: 2, title: 'list of proj 2' },
-          { id: 3, title: 'list of proj 3' },
-          { id: 4, title: 'list of proj 4' },
-        ]
+        return this.$store.getters.lists2.filter(
+          (list) => list.projectId === this.$route.query.proj
+        )
       } else if (this.$route.query.nap) {
         return this.projects
       } else {

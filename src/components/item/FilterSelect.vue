@@ -3,7 +3,8 @@
     class="form-select form-select-sm"
     :disabled="
       (!$route.query.nap && type === 'proj') ||
-      (type === 'proj' && !items.length)
+      (type === 'proj' && !items.length) ||
+      (type === 'list' && !items.length)
     "
     v-model="filter"
     @change="saveFilter"
@@ -26,7 +27,9 @@ export default {
       filter:
         this.type === 'nap'
           ? this.$route.query.nap || ''
-          : this.$route.query.proj || '',
+          : this.type === 'proj'
+          ? this.$route.query.proj || ''
+          : localStorage.getItem('at-filterList') || '',
     }
   },
   methods: {
@@ -36,11 +39,13 @@ export default {
         this.$router.push({ query: { nap: this.filter } })
         localStorage.setItem('at-filterNaprav', this.filter)
         localStorage.setItem('at-filterProject', '')
-      } else {
+      } else if (this.type === 'proj') {
         this.$router.push({
           query: { nap: this.$route.query.nap, proj: this.filter },
         })
         localStorage.setItem('at-filterProject', this.filter)
+      } else {
+        localStorage.setItem('at-filterList', this.filter)
       }
     },
   },
