@@ -40,11 +40,13 @@ export default {
         this.$router.push({ query: { nap: this.filter } })
         localStorage.setItem('at-filterNaprav', this.filter)
         localStorage.setItem('at-filterProject', '')
+        localStorage.setItem('at-filterList', '')
       } else if (this.type === 'proj') {
         this.$router.push({
           query: { nap: this.$route.query.nap, proj: this.filter },
         })
         localStorage.setItem('at-filterProject', this.filter)
+        localStorage.setItem('at-filterList', '')
       } else {
         localStorage.setItem('at-filterList', this.filter)
       }
