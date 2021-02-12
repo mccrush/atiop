@@ -1,7 +1,7 @@
 <template>
-  <div class="my-project d-inline-block border rounded-1 mt-2 me-2">
+  <div class="my-project d-inline-block border rounded-1 mt-2 me-2 p-2">
     <h6
-      class="my-no-select d-flex flex-row align-items-start text-center rounded m-0 mb-2 pt-3 pe-2"
+      class="my-no-select d-flex flex-row align-items-start text-center rounded mt-1 mb-2"
       @dblclick.prevent="editItem({ id: list.id, type: list.type })"
     >
       <div class="w-100 ps-4">{{ list.title }}</div>
@@ -16,9 +16,8 @@
 
     <div class="task-list">
       <Item v-for="item in items" :key="'item' + item.id" :item="item" />
+      <AddItem v-if="list.type === 'lists'" :type="'tasks'" :listId="list.id" />
     </div>
-
-    <AddItem v-if="list.type === 'lists'" :type="'tasks'" :listId="list.id" />
   </div>
 </template>
 
@@ -47,7 +46,7 @@ export default {
         return this.$store.getters.tasks2.filter(
           (task) => task.projectId === this.list.projectId
         )
-      } else if (this.list.type === 'tasks') {
+      } else if (this.list.type === 'lists') {
         return this.$store.getters.tasks2.filter(
           (task) => task.listId === this.list.id
         )
@@ -76,6 +75,16 @@ export default {
   max-height: calc(100vh - 178px);
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+.btn-light {
+  background-color: #fff;
+  color: #dee2e6;
+}
+
+.btn-light:hover {
+  background-color: #e2e6ea;
+  color: #212529;
 }
 
 ::-webkit-scrollbar {

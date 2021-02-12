@@ -1,5 +1,5 @@
 <template>
-  <div class="item align-self-start border rounded-1 pt-1 pb-1 ps-2 pe-2 m-2">
+  <div class="item align-self-start border rounded-1 pt-1 pb-1 ps-2 pe-2 mb-2">
     <span class="small">{{ item.title }}</span>
     <hr class="m-1" />
   </div>
