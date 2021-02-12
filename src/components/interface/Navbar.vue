@@ -103,6 +103,8 @@
             to="/login"
             >Войти</router-link
           > -->
+
+          <Loading2 />
           <button
             v-if="$route.path !== '/login'"
             class="btn btn-sm p-0 me-1 opacity-04"
@@ -124,10 +126,14 @@
 
 <script>
 import { auth } from '@/firebase.js'
+import Loading2 from '@/components/additional/Loading2'
 //import { Collapse } from 'bootstrap'
 
 export default {
   name: 'navbar',
+  components: {
+    Loading2,
+  },
   data() {
     return {
       user: auth.currentUser,
