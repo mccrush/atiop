@@ -14,6 +14,7 @@ import createItem from '@/scripts/createItem'
 export default {
   props: {
     type: String,
+    listId: String,
   },
   data() {
     return {
@@ -39,7 +40,8 @@ export default {
         if (this.itemTitle) {
           const napravId = this.$route.query.nap || ''
           const projectId = this.$route.query.proj || ''
-          const listId = localStorage.getItem('at-filterList') || ''
+          const listId =
+            this.listId || localStorage.getItem('at-filterList') || ''
 
           const item = createItem(
             Date.now().toString(),

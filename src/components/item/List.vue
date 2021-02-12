@@ -18,7 +18,7 @@
       <Item v-for="item in items" :key="'item' + item.id" :item="item" />
     </div>
 
-    <AddItem v-if="list.type === 'lists'" :type="'tasks'" />
+    <AddItem v-if="list.type === 'lists'" :type="'tasks'" :listId="list.id" />
   </div>
 </template>
 

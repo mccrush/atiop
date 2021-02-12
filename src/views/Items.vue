@@ -3,7 +3,7 @@
     <!-- Filter -->
     <div class="row border-bottom p-0">
       <div class="col-2 col-xl-1 p-2">
-        <Loading v-if="!napravs.length" />
+        <Loading v-if="!napravs" />
         <FilterSelect v-else :items="napravs" :type="'nap'" />
       </div>
       <div class="col-2 col-xl-1 p-2">
