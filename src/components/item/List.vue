@@ -1,7 +1,7 @@
 <template>
-  <div class="mt-2 me-2 rounded-1 d-inline-block border my-project">
+  <div class="my-project d-inline-block border rounded-1 mt-2 me-2">
     <h6
-      class="text-center pt-3 pe-2 rounded m-0 d-flex flex-row align-items-start my-no-select"
+      class="my-no-select d-flex flex-row align-items-start text-center rounded m-0 mb-2 pt-3 pe-2"
       @dblclick.prevent="editItem({ id: list.id, type: list.type })"
     >
       <div class="w-100 ps-4">{{ list.title }}</div>
