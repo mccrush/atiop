@@ -14,27 +14,40 @@
       >
     </h6>
 
-    <div class="task-list">Список элементов</div>
+    <div class="task-list">
+      <Item v-for="item in items" :key="'item' + item.id" :item="item" />
+    </div>
 
     <AddItem v-if="list.type === 'lists'" :type="'tasks'" />
   </div>
 </template>
 
 <script>
+import Item from '@/components/item/Item'
 import AddItem from '@/components/item/AddItem'
 
 export default {
   components: {
+    Item,
     AddItem,
   },
   props: ['list'],
-  // computed: {
-  //   projectId() {
-  //     if (this.list.type === 'projects') {
-  //       return this.list.id
-  //     }
-  //   },
-  // },
+  computed: {
+    // projectId() {
+    //   if (this.list.type === 'projects') {
+    //     return this.list.id
+    //   }
+    // },
+    items() {
+      if (this.list.type === 'napravs') {
+        return this.$store.getters.napravs2
+      } else if (this.list.type === 'projects') {
+        return this.$store.getters.projects2
+      } else if (this.list.type === 'tasks') {
+        return this.$store.getters.tasks2
+      }
+    },
+  },
   methods: {
     editItem() {},
   },
