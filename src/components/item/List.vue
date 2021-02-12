@@ -40,11 +40,17 @@ export default {
     // },
     items() {
       if (this.list.type === 'napravs') {
-        return this.$store.getters.napravs2
+        return this.$store.getters.projects2.filter(
+          (proj) => proj.napravId === this.list.napravId
+        )
       } else if (this.list.type === 'projects') {
-        return this.$store.getters.projects2
+        return this.$store.getters.tasks2.filter(
+          (task) => task.projectId === this.list.projectId
+        )
       } else if (this.list.type === 'tasks') {
-        return this.$store.getters.tasks2
+        return this.$store.getters.tasks2.filter(
+          (task) => task.listId === this.list.id
+        )
       }
     },
   },
