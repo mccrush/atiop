@@ -83,9 +83,9 @@ const router = createRouter({
       component: () => import('../views/Login.vue')
     },
     {
-      path: '/item',
-      name: 'item',
-      component: () => import('../views/Item.vue')
+      path: '/items',
+      name: 'items',
+      component: () => import('../views/Items.vue')
     },
     {
       path: '/:catchAll(.*)',
