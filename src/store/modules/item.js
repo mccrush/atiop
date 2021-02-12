@@ -9,8 +9,12 @@ export default {
     projects: [],
     lists: [],
     tasks: [],
+    loading2: false
   },
   mutations: {
+    changeLoading(state, value) {
+      state.loading2 = value
+    },
     addItem2(state, item) {
       state[item.type].push(item)
     },
@@ -30,6 +34,7 @@ export default {
     },
     async getItems2({ commit }) {
       try {
+        commit('changeLoading', true)
         let napravs = [], projects = [], lists = [], tasks = []
         const REF = db.collection('users').doc(auth.currentUser.uid).collection('items')
         const snapshot = await REF.get()
@@ -48,9 +53,9 @@ export default {
         commit('setItems2', { type: 'projects', items: projects })
         commit('setItems2', { type: 'lists', items: lists })
         commit('setItems2', { type: 'tasks', items: tasks })
+        commit('changeLoading', false)
         console.log('Данные с сервера переданы в State')
       } catch (error) {
-        throw error
         console.log('Ошибка item.js -> getItems2:', error)
       }
     }
@@ -60,5 +65,6 @@ export default {
     projects2: state => state.projects,
     lists2: state => state.lists,
     tasks2: state => state.tasks,
+    loading2: state => state.loading2
   }
 }

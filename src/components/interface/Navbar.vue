@@ -104,7 +104,7 @@
             >Войти</router-link
           > -->
 
-          <Loading2 />
+          <Loading2 v-if="loading2" />
           <button
             v-if="$route.path !== '/login'"
             class="btn btn-sm p-0 me-1 opacity-04"
@@ -139,6 +139,11 @@ export default {
       user: auth.currentUser,
       userName: '',
     }
+  },
+  computed: {
+    loading2() {
+      return this.$store.getters.loading2
+    },
   },
   mounted() {
     auth.onAuthStateChanged((user) => {
