@@ -14,8 +14,8 @@ export default {
 .mess {
   position: fixed;
   width: 250px;
-  top: 64px;
-  right: 8px;
+  bottom: 32px;
+  right: 16px;
   padding: 8px 16px;
 }
 </style>
