@@ -3,8 +3,7 @@
     <!-- Filter -->
     <div class="row border-bottom p-0">
       <div class="col-2 col-xl-1 p-2">
-        <Loading v-if="!napravs" />
-        <FilterSelect v-else :items="napravs" :type="'nap'" />
+        <FilterSelect :items="napravs" :type="'nap'" />
       </div>
       <div class="col-2 col-xl-1 p-2">
         <FilterSelect :items="projects" :type="'proj'" />
@@ -21,13 +20,9 @@
       <div class="col-2 col-xl-2 p-2">
         <AddItem v-if="$route.query.proj" :type="'lists'" />
       </div>
-      <!-- <div class="col-1 col-xl-6 text-end">
-        <Loading v-if="loading" />
-      </div> -->
     </div>
+
     <!-- Lists -->
-    <!-- <Loading v-if="!lists.length" /> -->
-    <!-- <div v-if="!lists.length">Список элементов пуст</div> -->
     <div class="my-row-project row overflow-auto">
       <div class="my-width-none">
         <List v-for="list in lists" :key="'list' + list.id" :list="list" />
@@ -37,14 +32,12 @@
 </template>
 
 <script>
-import Loading from '@/components/additional/Loading'
 import List from '@/components/item/List'
 import FilterSelect from '@/components/item/FilterSelect'
 import AddItem from '@/components/item/AddItem'
 
 export default {
   components: {
-    Loading,
     List,
     FilterSelect,
     AddItem,
