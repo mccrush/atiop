@@ -9,9 +9,21 @@ export default {
     projects: [],
     lists: [],
     tasks: [],
-    loading2: false
+    loading2: false,
+    nap: localStorage.getItem('at-filterNaprav') || '',
+    proj: localStorage.getItem('at-filterProject') || '',
   },
   mutations: {
+    setNap(state, nap) {
+      state.nap = nap
+      state.proj = ''
+      localStorage.setItem('at-filterNaprav', nap)
+      localStorage.setItem('at-filterProject', '')
+    },
+    setProj(state, proj) {
+      state.proj = proj
+      localStorage.setItem('at-filterProject', proj)
+    },
     changeLoading(state, value) {
       state.loading2 = value
     },
@@ -65,6 +77,8 @@ export default {
     projects2: state => state.projects,
     lists2: state => state.lists,
     tasks2: state => state.tasks,
-    loading2: state => state.loading2
+    loading2: state => state.loading2,
+    nap: state => state.nap,
+    proj: state => state.proj
   }
 }

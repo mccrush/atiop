@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Filter -->
-    <div class="row border-bottom p-0">
+    <div class="row border-bottom p-0 ps-1">
       <div class="col-2 col-xl-1 p-2">
         <FilterSelect :items="napravs" :type="'nap'" />
       </div>

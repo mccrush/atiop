@@ -27,10 +27,8 @@ export default {
     return {
       filter:
         this.type === 'nap'
-          ? this.$route.query.nap || ''
-          : this.type === 'proj'
-          ? this.$route.query.proj || ''
-          : localStorage.getItem('at-filterList') || '',
+          ? this.$store.getters.nap || ''
+          : this.$store.getters.proj || '',
     }
   },
   methods: {
@@ -42,17 +40,12 @@ export default {
         } else {
           this.$router.push({ query: '' })
         }
-        localStorage.setItem('at-filterNaprav', this.filter)
-        localStorage.setItem('at-filterProject', '')
-        localStorage.setItem('at-filterList', '')
-      } else if (this.type === 'proj') {
+        this.$store.commit('setNap', this.filter)
+      } else {
         this.$router.push({
           query: { nap: this.$route.query.nap, proj: this.filter },
         })
-        localStorage.setItem('at-filterProject', this.filter)
-        localStorage.setItem('at-filterList', '')
-      } else {
-        localStorage.setItem('at-filterList', this.filter)
+        this.$store.commit('setProj', this.filter)
       }
     },
   },

@@ -65,17 +65,12 @@ export default {
     saveFilter() {
       if (this.list.type === 'napravs') {
         this.$router.push({ query: { nap: this.list.id } })
-        localStorage.setItem('at-filterNaprav', this.list.id)
-        localStorage.setItem('at-filterProject', '')
-        localStorage.setItem('at-filterList', '')
-      } else if (this.list.type === 'projects') {
+        this.$store.commit('setNap', this.list.id)
+      } else {
         this.$router.push({
           query: { nap: this.list.napravId, proj: this.list.id },
         })
-        localStorage.setItem('at-filterProject', this.list.id)
-        localStorage.setItem('at-filterList', '')
-      } else {
-        localStorage.setItem('at-filterList', this.list.id)
+        this.$store.commit('setProj', this.list.id)
       }
     },
   },
