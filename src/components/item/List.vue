@@ -6,9 +6,8 @@
     >
       <div class="w-100 ps-4">{{ list.title }}</div>
       <router-link
-        :to="'/project/' + list.id"
+        :to="'?nap=' + list.id"
         tag="button"
-        title="В проект"
         class="btn btn-sm btn-light border p-0 ps-2 pe-2 m-0"
         >In</router-link
       >
