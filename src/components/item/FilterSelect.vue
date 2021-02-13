@@ -37,7 +37,11 @@ export default {
     saveFilter() {
       //console.log('type =', this.type, ' filter = ', this.filter)
       if (this.type === 'nap') {
-        this.$router.push({ query: { nap: this.filter } })
+        if (this.filter) {
+          this.$router.push({ query: { nap: this.filter } })
+        } else {
+          this.$router.push({ query: '' })
+        }
         localStorage.setItem('at-filterNaprav', this.filter)
         localStorage.setItem('at-filterProject', '')
         localStorage.setItem('at-filterList', '')

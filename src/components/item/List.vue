@@ -5,12 +5,13 @@
       @dblclick.prevent="editItem({ id: list.id, type: list.type })"
     >
       <div class="w-100 ps-4">{{ list.title }}</div>
-      <router-link
-        :to="'?nap=' + list.id"
+      <button
         tag="button"
         class="btn btn-sm btn-light border p-0 ps-2 pe-2 m-0"
-        >In</router-link
+        @click="saveFilter"
       >
+        In
+      </button>
     </h6>
 
     <div class="task-list">
@@ -53,7 +54,22 @@ export default {
     },
   },
   methods: {
-    editItem() {},
+    saveFilter() {
+      if (this.list.type === 'napravs') {
+        this.$router.push({ query: { nap: this.list.id } })
+        localStorage.setItem('at-filterNaprav', this.list.id)
+        localStorage.setItem('at-filterProject', '')
+        localStorage.setItem('at-filterList', '')
+      } else if (this.list.type === 'projects') {
+        this.$router.push({
+          query: { nap: this.list.napravId, proj: this.list.id },
+        })
+        localStorage.setItem('at-filterProject', this.list.id)
+        localStorage.setItem('at-filterList', '')
+      } else {
+        localStorage.setItem('at-filterList', this.list.id)
+      }
+    },
   },
 }
 </script>
