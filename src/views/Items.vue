@@ -8,9 +8,9 @@
       <div class="col-2 col-xl-1 p-2">
         <FilterSelect :items="projects" :type="'proj'" />
       </div>
-      <div class="col-2 col-xl-1 p-2">
+      <!-- <div class="col-2 col-xl-1 p-2">
         <FilterSelect :items="lists" :type="'list'" />
-      </div>
+      </div> -->
       <div class="col-2 col-xl-2 p-2">
         <AddItem :type="'napravs'" />
       </div>
