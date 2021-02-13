@@ -164,6 +164,9 @@ export default {
 
 
 <style scoped>
+.navbar-brand {
+  font-weight: 600;
+}
 .opacity-04 {
   opacity: 0.4;
 }
