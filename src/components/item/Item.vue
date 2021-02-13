@@ -4,14 +4,14 @@
     <hr class="m-1" />
     <hr class="m-1" />
     <div class="btn-group w-100" role="group">
-      <router-link
+      <button
         v-if="item.type === 'projects'"
         type="button"
         class="btn btn-sm btn-light border p-0 ps-2 pe-2 w-100"
-        :to="'?nap=' + item.napravId + '&proj=' + item.id"
+        @click="saveFilter"
       >
         In
-      </router-link>
+      </button>
     </div>
   </div>
 </template>
@@ -19,6 +19,16 @@
 <script>
 export default {
   props: ['item'],
+  methods: {
+    saveFilter() {
+      this.$router.push({
+        query: { nap: this.item.napravId, proj: this.item.id },
+      })
+      localStorage.setItem('at-filterNaprav', this.item.napravId)
+      localStorage.setItem('at-filterProject', this.item.id)
+      localStorage.setItem('at-filterList', '')
+    },
+  },
 }
 </script>
 

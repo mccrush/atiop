@@ -2,6 +2,7 @@
   <input
     type="text"
     class="form-control form-control-sm border-0 bg-light"
+    :class="{ 'mb-2': type === 'tasks' }"
     @keypress.enter="addItem"
     v-model.trim="itemTitle"
     :placeholder="placeholder"
