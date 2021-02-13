@@ -44,7 +44,7 @@ export default {
         )
       } else if (this.list.type === 'projects') {
         return this.$store.getters.tasks2.filter(
-          (task) => task.projectId === this.list.projectId
+          (task) => task.projectId === this.list.id
         )
       } else if (this.list.type === 'lists') {
         return this.$store.getters.tasks2.filter(

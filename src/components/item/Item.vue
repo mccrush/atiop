@@ -12,6 +12,22 @@
       >
         In
       </button>
+      <button
+        v-if="item.type === 'tasks' && item.status === 'todo'"
+        type="button"
+        class="btn btn-sm btn-light border p-0 ps-2 pe-2 w-50"
+        @click="changeStatus('work')"
+      >
+        To work
+      </button>
+      <button
+        v-if="item.type === 'tasks'"
+        type="button"
+        class="btn btn-sm btn-light border p-0 ps-2 pe-2 w-50"
+        @click="changeStatus('done')"
+      >
+        Done
+      </button>
     </div>
   </div>
 </template>
@@ -20,6 +36,7 @@
 export default {
   props: ['item'],
   methods: {
+    changeStatus() {},
     saveFilter() {
       this.$router.push({
         query: { nap: this.item.napravId, proj: this.item.id },
