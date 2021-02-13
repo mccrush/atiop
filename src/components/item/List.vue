@@ -1,5 +1,5 @@
 <template>
-  <div class="my-project d-inline-block border rounded-1 mt-2 me-2 p-2">
+  <div class="my-project d-inline-block border rounded-1 mt-2 me-2 p-2 pb-0">
     <h6
       class="my-no-select d-flex flex-row align-items-start text-center rounded mt-1 mb-2"
       @dblclick.prevent="editItem({ id: list.id, type: list.type })"
@@ -40,7 +40,7 @@ export default {
     items() {
       if (this.list.type === 'napravs') {
         return this.$store.getters.projects2.filter(
-          (proj) => proj.napravId === this.list.napravId
+          (proj) => proj.napravId === this.list.id
         )
       } else if (this.list.type === 'projects') {
         return this.$store.getters.tasks2.filter(
