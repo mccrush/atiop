@@ -12,6 +12,14 @@
       >
         In
       </button>
+      <!-- <div class="btn btn-sm btn-light border-0 p-0 ps-1 pe-1 m-0 ms-2">
+        <img
+          src="/img/icons_tool/three-dots-vertical.svg"
+          width="16"
+          height="16"
+          alt="Options"
+        />
+      </div> -->
     </h6>
 
     <div class="task-list">
