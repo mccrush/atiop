@@ -71,9 +71,6 @@ export default {
         return this.napravs
       }
     },
-    tasks() {
-      return this.$store.getters.tasks2
-    },
   },
 }
 </script>
@@ -81,7 +78,6 @@ export default {
 <style scoped>
 .my-row-project {
   height: calc(100vh - 108px) !important;
-  /* background-color: coral; */
 }
 
 .my-width-none {
