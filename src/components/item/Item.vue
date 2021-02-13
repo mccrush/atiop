@@ -41,9 +41,10 @@ export default {
       this.$router.push({
         query: { nap: this.item.napravId, proj: this.item.id },
       })
-      localStorage.setItem('at-filterNaprav', this.item.napravId)
-      localStorage.setItem('at-filterProject', this.item.id)
-      localStorage.setItem('at-filterList', '')
+      this.$store.commit('setNapProj', {
+        nap: this.item.napravId,
+        proj: this.item.id,
+      })
     },
   },
 }

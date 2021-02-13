@@ -24,6 +24,12 @@ export default {
       state.proj = proj
       localStorage.setItem('at-filterProject', proj)
     },
+    setNapProj(state, { nap, proj }) {
+      state.nap = nap
+      state.proj = proj
+      localStorage.setItem('at-filterNaprav', nap)
+      localStorage.setItem('at-filterProject', proj)
+    },
     changeLoading(state, value) {
       state.loading2 = value
     },
