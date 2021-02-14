@@ -3,10 +3,20 @@
     <!-- Filter -->
     <div class="row border-bottom p-0 ps-1">
       <div class="col-2 col-xl-1 p-2">
-        <FilterSelect :items="napravs" :type="'nap'" />
+        <FilterSelect
+          :items="napravs"
+          :type="'nap'"
+          :filterIn="filterNap"
+          @new-filter="updateFilterNap"
+        />
       </div>
       <div class="col-2 col-xl-1 p-2">
-        <FilterSelect :items="projects" :type="'proj'" />
+        <FilterSelect
+          :items="projects"
+          :type="'proj'"
+          :filterIn="filterProj"
+          @new-filter="updateFilterProj"
+        />
       </div>
       <!-- <div class="col-2 col-xl-1 p-2">
         <FilterSelect :items="lists" :type="'list'" />
@@ -48,46 +58,68 @@ export default {
     }
   },
   computed: {
-    nap() {
+    filterNap() {
       return this.$store.getters.nap
     },
-    proj() {
+    filterProj() {
       return this.$store.getters.proj
     },
     napravs() {
       return this.$store.getters.napravs2
     },
     projects() {
-      if (this.$route.query.nap) {
+      if (this.filterNap) {
         return this.$store.getters.projects2.filter(
-          (proj) => proj.napravId === this.$route.query.nap
+          (proj) => proj.napravId === this.filterNap
         )
       } else {
         return this.$store.getters.projects2
       }
     },
     lists() {
-      if (this.$route.query.nap && this.$route.query.proj) {
+      if (this.filterNap && this.filterProj) {
         return this.$store.getters.lists2.filter(
-          (list) => list.projectId === this.$route.query.proj
+          (list) => list.projectId === this.filterProj
         )
-      } else if (this.$route.query.nap) {
+      } else if (this.filterNap) {
         return this.projects
       } else {
         return this.napravs
       }
     },
   },
+  // Формируем URL при первой загрузке компонента
   beforeMount() {
-    if (this.nap && this.proj) {
+    if (this.filterNap && this.filterProj) {
       this.$router.push({
-        query: { nap: this.nap, proj: this.proj },
+        query: { nap: this.filterNap, proj: this.filterProj },
       })
-    } else if (this.nap) {
-      this.$router.push({ query: { nap: this.nap } })
+    } else if (this.filterNap) {
+      this.$router.push({ query: { nap: this.filterNap } })
     } else {
       this.$router.push({ query: '' })
     }
+  },
+  methods: {
+    updateFilterNap(newValNap) {
+      console.log('newFilterValueNap = ', newValNap)
+      this.$store.commit('setNap', newValNap)
+      if (newValNap) {
+        this.$router.push({ query: { nap: newValNap } })
+      } else {
+        this.$router.push({ query: '' })
+      }
+    },
+    updateFilterProj(newValProj) {
+      console.log('newFilterValueProj = ', newValProj)
+      this.$store.commit('setNapProj', {
+        nap: this.filterNap,
+        proj: newValProj,
+      })
+      this.$router.push({
+        query: { nap: this.filterNap, proj: newValProj },
+      })
+    },
   },
 }
 </script>
