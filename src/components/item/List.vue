@@ -67,13 +67,13 @@ export default {
   methods: {
     saveFilter() {
       if (this.list.type === 'napravs') {
-        this.$router.push({ query: { nap: this.list.id } })
         this.$store.commit('setNap', this.list.id)
+        this.$router.push({ query: { nap: this.list.id } })
       } else {
+        this.$store.commit('setProj', this.list.id)
         this.$router.push({
           query: { nap: this.list.napravId, proj: this.list.id },
         })
-        this.$store.commit('setProj', this.list.id)
       }
     },
   },

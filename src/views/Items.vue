@@ -102,7 +102,6 @@ export default {
   },
   methods: {
     updateFilterNap(newValNap) {
-      console.log('newFilterValueNap = ', newValNap)
       this.$store.commit('setNap', newValNap)
       if (newValNap) {
         this.$router.push({ query: { nap: newValNap } })
@@ -111,7 +110,6 @@ export default {
       }
     },
     updateFilterProj(newValProj) {
-      console.log('newFilterValueProj = ', newValProj)
       this.$store.commit('setNapProj', {
         nap: this.filterNap,
         proj: newValProj,

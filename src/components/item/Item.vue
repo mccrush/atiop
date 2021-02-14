@@ -38,12 +38,12 @@ export default {
   methods: {
     changeStatus() {},
     saveFilter() {
-      this.$router.push({
-        query: { nap: this.item.napravId, proj: this.item.id },
-      })
       this.$store.commit('setNapProj', {
         nap: this.item.napravId,
         proj: this.item.id,
+      })
+      this.$router.push({
+        query: { nap: this.item.napravId, proj: this.item.id },
       })
     },
   },
