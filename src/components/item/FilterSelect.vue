@@ -28,7 +28,7 @@ export default {
     }
   },
   watch: {
-    filterIn(oldVal, newVal) {
+    filterIn() {
       if (this.type === 'nap') {
         this.filter = this.$store.getters.nap
       } else {
