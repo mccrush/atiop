@@ -27,5 +27,14 @@ export default {
       filter: this.filterIn,
     }
   },
+  watch: {
+    filterIn(oldVal, newVal) {
+      if (this.type === 'nap') {
+        this.filter = this.$store.getters.nap
+      } else {
+        this.filter = this.$store.getters.proj
+      }
+    },
+  },
 }
 </script>
