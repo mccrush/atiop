@@ -31,6 +31,26 @@ export default {
           : this.$store.getters.proj || '',
     }
   },
+  computed: {
+    nap() {
+      return this.$store.getters.nap
+    },
+    proj() {
+      return this.$store.getters.proj
+    },
+  },
+  watch: {
+    nap(oldVal, newVal) {
+      if (this.type === 'nap') {
+        this.filter = newVal
+      } else {
+        this.filter = ''
+      }
+    },
+    proj(oldVal, newVal) {
+      this.filter = newVal
+    },
+  },
   methods: {
     saveFilter() {
       //console.log('type =', this.type, ' filter = ', this.filter)

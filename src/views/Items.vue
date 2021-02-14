@@ -48,6 +48,12 @@ export default {
     }
   },
   computed: {
+    nap() {
+      return this.$store.getters.nap
+    },
+    proj() {
+      return this.$store.getters.proj
+    },
     napravs() {
       return this.$store.getters.napravs2
     },
@@ -71,6 +77,17 @@ export default {
         return this.napravs
       }
     },
+  },
+  beforeMount() {
+    if (this.nap && this.proj) {
+      this.$router.push({
+        query: { nap: this.nap, proj: this.proj },
+      })
+    } else if (this.nap) {
+      this.$router.push({ query: { nap: this.nap } })
+    } else {
+      this.$router.push({ query: '' })
+    }
   },
 }
 </script>
