@@ -6,7 +6,7 @@
         <FilterSelect
           :items="napravs"
           :type="'nap'"
-          :filterIn="filterNap"
+          :filterIn="nap"
           @new-filter="updateFilterNap"
         />
       </div>
@@ -14,7 +14,7 @@
         <FilterSelect
           :items="projects"
           :type="'proj'"
-          :filterIn="filterProj"
+          :filterIn="proj"
           @new-filter="updateFilterProj"
         />
       </div>
@@ -58,30 +58,30 @@ export default {
     }
   },
   computed: {
-    filterNap() {
+    nap() {
       return this.$store.getters.nap
     },
-    filterProj() {
+    proj() {
       return this.$store.getters.proj
     },
     napravs() {
       return this.$store.getters.napravs2
     },
     projects() {
-      if (this.filterNap) {
+      if (this.nap) {
         return this.$store.getters.projects2.filter(
-          (proj) => proj.napravId === this.filterNap
+          (proj) => proj.napravId === this.nap
         )
       } else {
         return this.$store.getters.projects2
       }
     },
     lists() {
-      if (this.filterNap && this.filterProj) {
+      if (this.nap && this.proj) {
         return this.$store.getters.lists2.filter(
-          (list) => list.projectId === this.filterProj
+          (list) => list.projectId === this.proj
         )
-      } else if (this.filterNap) {
+      } else if (this.nap) {
         return this.projects
       } else {
         return this.napravs
@@ -90,12 +90,12 @@ export default {
   },
   // Формируем URL при первой загрузке компонента
   beforeMount() {
-    if (this.filterNap && this.filterProj) {
+    if (this.nap && this.proj) {
       this.$router.push({
-        query: { nap: this.filterNap, proj: this.filterProj },
+        query: { nap: this.nap, proj: this.proj },
       })
-    } else if (this.filterNap) {
-      this.$router.push({ query: { nap: this.filterNap } })
+    } else if (this.nap) {
+      this.$router.push({ query: { nap: this.nap } })
     } else {
       this.$router.push({ query: '' })
     }
@@ -111,11 +111,11 @@ export default {
     },
     updateFilterProj(newValProj) {
       this.$store.commit('setNapProj', {
-        nap: this.filterNap,
+        nap: this.nap,
         proj: newValProj,
       })
       this.$router.push({
-        query: { nap: this.filterNap, proj: newValProj },
+        query: { nap: this.nap, proj: newValProj },
       })
     },
   },
