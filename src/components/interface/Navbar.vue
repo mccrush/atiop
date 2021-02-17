@@ -99,7 +99,7 @@
             >
           </li>
 
-          <!-- <li class="nav-item">
+          <li class="nav-item">
             <router-link
               to="/items"
               class="nav-link"
@@ -107,7 +107,7 @@
               :aria-disabled="user ? 'true' : 'false'"
               >Items</router-link
             >
-          </li> -->
+          </li>
 
           <!-- <li class="nav-item">
             <router-link
