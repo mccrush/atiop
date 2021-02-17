@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <router-link class="d-none d-md-block navbar-brand" to="/about" tag="a">
         <img
-          src="/img/icons/logo_7.svg"
+          src="/img/icons/logo_8.svg"
           height="26"
           class="d-inline-block mb-1 me-1"
           alt="ATIOP"
@@ -26,7 +26,7 @@
 
       <router-link class="d-md-none navbar-brand me-0" to="/about" tag="a">
         <img
-          src="/img/icons/logo_7.svg"
+          src="/img/icons/logo_8.svg"
           height="26"
           class="d-inline-block mb-1 me-0"
           alt="ATIOP"
