@@ -81,29 +81,7 @@
             >Календарь</router-link>
           </li> -->
         </ul>
-        <div>
-          <!-- <div
-            v-if="user && $route.path !== '/login'"
-            class="d-inline-block me-2"
-          >
-
-            <button
-              class="btn btn-sm btn-light border"
-              :title="'Вы вошли как @' + userName"
-              @click.prevent="logOut"
-            >
-              Выйти
-            </button>
-          </div> -->
-          <!-- <router-link
-            v-if="!user && $route.path !== '/login'"
-            tag="button"
-            class="d-sm-inline btn btn-sm btn-success me-2 login"
-            title="Войти"
-            to="/login"
-            >Войти</router-link
-          > -->
-
+        <div class="d-flex align-items-center">
           <Loading2 v-if="loading2" />
           <div class="dropdown">
             <button
