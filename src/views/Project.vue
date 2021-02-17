@@ -8,7 +8,7 @@
       <!-- <div class="col-2 col-xxl-1 p-2">
         <h6 class="mt-1 ms-2">{{ napravTitle }}:</h6>
       </div> -->
-      <div class="col-12 col-sm-6 col-md-2 col-xxl-1 p-2">
+      <div class="col-9 col-sm-6 col-md-2 col-xxl-1 p-2">
         <Loading v-if="projectsByNapravs && !projectsByNapravs.length" />
         <select
           v-else
@@ -30,7 +30,7 @@
         class="d-none d-sm-block col-sm-4 col-md-8 col-xl-9 col-xxl-10 p-2"
       ></div>
       <div
-        class="col-2 col-xl-1 btn-group btn-group-sm p-2"
+        class="col-3 col-sm-2 col-xl-1 btn-group btn-group-sm p-2"
         role="group"
         aria-label="Group icons"
       >
