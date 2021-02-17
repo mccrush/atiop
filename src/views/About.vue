@@ -1,8 +1,8 @@
 <template>
-  <div class="row main justify-content-center">
+  <div class="main row justify-content-center">
     <div class="col-12 col-md-12 col-xl-8 col-xxl-6">
       <div class="row">
-        <div class="col-12 pt-5">
+        <div class="col-12 pt-5 ps-4 pe-4">
           <h1 class="mb-0">
             <img
               class="mb-3"
@@ -14,7 +14,7 @@
           </h1>
           <p class="desc">сервис управления задачами</p>
         </div>
-        <div class="col-12 col-sm-6 mt-5 col-md-8 pe-4 border-end border-white">
+        <div class="col-12 col-sm-6 mt-5 col-md-8 border-end border-white">
           <p>
             Основой принципа организации задач, является структура: направление
             — проект — задачи
@@ -26,7 +26,7 @@
             width="100%"
           />
         </div>
-        <div v-if="!user" class="col-12 col-sm-6 col-md-4 mt-5 ps-4">
+        <div v-if="!user" class="col-12 col-sm-6 col-md-4 mt-5">
           <router-link to="login#in" class="btn btn-lg btn-light w-100"
             ><small>Войти</small></router-link
           >
@@ -37,7 +37,7 @@
           <hr class="mb-2" />
           <span class="small">Версия {{ version }}</span>
         </div>
-        <div v-else class="col-4 mt-5 ps-4">
+        <div v-else class="col-12 col-sm-6 col-md-4 pb-2 mt-5">
           <router-link to="/projects" class="btn btn-lg btn-light w-100"
             ><small>Открыть приложение</small></router-link
           >
@@ -64,14 +64,17 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&display=swap');
 
+.row {
+  background-color: #ffc107;
+  background-image: linear-gradient(160deg, #ffc107 0%, #ffac07 100%);
+}
+
 .main {
   /* height: calc(100vh - 60px); */
   height: 100vh;
   font-family: 'Montserrat', sans-serif;
   color: #fff;
   font-weight: 300;
-  background-color: #ffc107;
-  background-image: linear-gradient(160deg, #ffc107 0%, #ffac07 100%);
 }
 
 h1 {
