@@ -4,9 +4,9 @@ module.exports = {
   productionSourceMap: false,
   pwa: {
     name: 'ATIOP',
-    themeColor: '#FFCB00',
+    themeColor: '#FFC107',
     manifestOptions: {
-      background_color: '#FFCB00'
+      background_color: '#FFC107'
     }
   }
 }
