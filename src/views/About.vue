@@ -1,6 +1,6 @@
 <template>
   <div class="row main justify-content-center">
-    <div class="col-12 col-md-10 col-xl-8 col-xxl-6">
+    <div class="col-12 col-md-12 col-xl-8 col-xxl-6">
       <div class="row">
         <div class="col-12 pt-5">
           <h1 class="mb-0">
@@ -14,7 +14,7 @@
           </h1>
           <p class="desc">сервис управления задачами</p>
         </div>
-        <div class="col-8 mt-5 pe-4 border-end border-white">
+        <div class="col-12 col-sm-6 mt-5 col-md-8 pe-4 border-end border-white">
           <p>
             Основой принципа организации задач, является структура: направление
             — проект — задачи
@@ -26,7 +26,7 @@
             width="100%"
           />
         </div>
-        <div v-if="!user" class="col-4 mt-5 ps-4">
+        <div v-if="!user" class="col-12 col-sm-6 col-md-4 mt-5 ps-4">
           <router-link to="login#in" class="btn btn-lg btn-light w-100"
             ><small>Войти</small></router-link
           >
