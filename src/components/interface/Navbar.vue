@@ -12,7 +12,7 @@
       </router-link>
 
       <button
-        class="opacity-04 navbar-toggler border-0 ps-0 pe-0"
+        class="opacity-06 navbar-toggler border-0 ps-0 pe-0"
         type="button"
         data-bs-toggle="collapse"
         data-bs-target="#navbarSupportedContent"
@@ -186,8 +186,13 @@ export default {
 .navbar-brand {
   font-weight: 600;
 }
+
 .opacity-04 {
   opacity: 0.4;
+}
+
+.opacity-06 {
+  opacity: 0.6;
 }
 
 a.router-link-active {
