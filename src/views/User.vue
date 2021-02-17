@@ -9,8 +9,8 @@
         <button class="btn btn-sm btn-light btn-block" disabled>---</button>
       </div>
     </div>
-    <div class="row">
-      <div class="col-6 col-xl-4">
+    <div class="my-row-project row">
+      <div class="col-12 col-md-6 col-xl-4">
         <ul class="list-group mt-2">
           <li
             class="list-group-item d-flex justify-content-between align-items-cente"
@@ -28,7 +28,7 @@
           </li>
           <li class="list-group-item">
             <div class="row">
-              <div class="col-4">
+              <div class="col-12 col-md-4">
                 <button
                   @click="removeUser"
                   class="btn btn-sm btn-light border disabled w-100"
@@ -36,18 +36,18 @@
                   Изменить Email
                 </button>
               </div>
-              <div class="col-4">
+              <div class="col-12 col-md-4">
                 <button
                   @click="removeUser"
-                  class="btn btn-sm btn-light border disabled w-100"
+                  class="btn btn-sm btn-light border disabled w-100 mt-2 mt-md-0"
                 >
                   Обновить пароль
                 </button>
               </div>
-              <div class="col-4">
+              <div class="col-12 col-md-4">
                 <button
                   @click="removeUser"
-                  class="btn btn-sm btn-outline-danger disabled w-100"
+                  class="btn btn-sm btn-outline-danger disabled w-100 mt-2 mt-md-0"
                 >
                   Удалить аккаунт
                 </button>
@@ -161,3 +161,9 @@ export default {
   },
 }
 </script>
+
+<style coped>
+.my-row-project {
+  height: calc(100vh - 108px) !important;
+}
+</style>
