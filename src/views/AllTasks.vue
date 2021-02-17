@@ -5,7 +5,7 @@
       description="ATIOP — сервис управления задачами"
     />
     <div class="row p-0 border-bottom">
-      <div class="col-2 col-xxl-1 p-2">
+      <div class="col-12 col-sm-6 col-md-2 col-xxl-1 p-2">
         <select
           class="form-select form-select-sm"
           v-model="filterTypeModel"
@@ -21,7 +21,7 @@
           <option value="time">С временем</option>
         </select>
       </div>
-      <div class="col-2 col-xxl-1 p-2">
+      <div class="col-12 col-sm-6 col-md-2 col-xxl-1 p-2">
         <select
           class="form-select form-select-sm"
           v-model="filterValueModel"
@@ -44,7 +44,7 @@
           </option>
         </select>
       </div>
-      <div class="col-4 col-xxl-2 p-2">
+      <div class="col-12 col-sm-6 col-md-4 col-xxl-2 p-2">
         <input
           type="text"
           v-model.trim="title"
@@ -54,7 +54,7 @@
         />
       </div>
       <div class="d-none d-xxl-block col-xxl-6 p-2"></div>
-      <div class="col-4 col-xxl-2 p-2">
+      <div class="col-12 col-sm-6 col-md-4 col-xxl-2 p-2">
         <input
           type="search"
           v-model.trim="searchQuery"

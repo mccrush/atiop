@@ -2,7 +2,7 @@
   <div>
     <!-- Filter -->
     <div class="row border-bottom p-0 ps-1">
-      <div class="col-2 col-xl-1 p-2">
+      <div class="col-12 col-sm-6 col-md-2 col-xl-1 p-2">
         <FilterSelect
           :items="napravs"
           :type="'nap'"
@@ -10,7 +10,7 @@
           @new-filter="updateFilterNap"
         />
       </div>
-      <div class="col-2 col-xl-1 p-2">
+      <div class="col-12 col-sm-6 col-md-2 col-xl-1 p-2">
         <FilterSelect
           :items="projects"
           :type="'proj'"
@@ -21,13 +21,13 @@
       <!-- <div class="col-2 col-xl-1 p-2">
         <FilterSelect :items="lists" :type="'list'" />
       </div> -->
-      <div class="col-2 col-xl-2 p-2">
+      <div class="col-12 col-sm-6 col-md-4 col-xl-2 p-2">
         <AddItem :type="'napravs'" />
       </div>
-      <div class="col-2 col-xl-2 p-2">
+      <div class="col-12 col-sm-6 col-md-4 col-xl-2 p-2">
         <AddItem v-if="$route.query.nap" :type="'projects'" />
       </div>
-      <div class="col-2 col-xl-2 p-2">
+      <div class="col-12 col-sm-6 col-md-4 col-xl-2 p-2">
         <AddItem v-if="$route.query.proj" :type="'lists'" />
       </div>
     </div>

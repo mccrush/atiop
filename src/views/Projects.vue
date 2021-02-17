@@ -6,7 +6,7 @@
     />
     <!-- Строка фильтров -->
     <div class="row p-0 border-bottom">
-      <div class="col-2 col-xxl-1 p-2">
+      <div class="col-12 col-sm-6 col-md-2 col-xxl-1 p-2">
         <Loading v-if="napravs && !napravs.length" />
         <select
           v-else
@@ -24,7 +24,7 @@
           </option>
         </select>
       </div>
-      <div class="col-3 col-xxl-2 p-2">
+      <div class="col-12 col-sm-6 col-md-4 col-xxl-2 p-2">
         <input
           type="text"
           v-model.trim="titleN"
@@ -33,7 +33,7 @@
           placeholder="Создать направление"
         />
       </div>
-      <div class="col-3 col-xxl-2 p-2">
+      <div class="col-12 col-sm-6 col-md-4 col-xxl-2 p-2">
         <input
           v-if="filter"
           type="text"
@@ -46,7 +46,7 @@
         <Loading v-if="creating" />
       </div>
       <div class="d-none d-xxl-block col-xxl-5 p-2"></div>
-      <div class="col-4 col-xxl-2 p-2">
+      <div class="col-12 col-sm-6 col-md-4 col-xxl-2 p-2">
         <input
           type="search"
           v-model.trim="searchQuery"
