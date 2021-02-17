@@ -60,7 +60,8 @@ export default {
 <style>
 .btn:focus,
 .form-control:focus,
-.form-select:focus {
+.form-select:focus,
+.navbar-toggler:focus {
   outline: 0 !important;
   box-shadow: none !important;
 }

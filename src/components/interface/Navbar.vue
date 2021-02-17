@@ -12,7 +12,7 @@
       </router-link>
 
       <button
-        class="navbar-toggler border-0"
+        class="opacity-04 navbar-toggler border-0 ps-0 pe-0"
         type="button"
         data-bs-toggle="collapse"
         data-bs-target="#navbarSupportedContent"
@@ -24,11 +24,11 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <router-link class="d-md-none navbar-brand" to="/about" tag="a">
+      <router-link class="d-md-none navbar-brand me-0" to="/about" tag="a">
         <img
           src="/img/icons/logo_7.svg"
           height="26"
-          class="d-inline-block mb-1 me-1"
+          class="d-inline-block mb-1 me-0"
           alt="ATIOP"
         />
       </router-link>
