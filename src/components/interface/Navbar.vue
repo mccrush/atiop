@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom">
     <div class="container-fluid">
-      <router-link class="navbar-brand" to="/about" tag="a">
+      <router-link class="d-none d-md-block navbar-brand" to="/about" tag="a">
         <img
           src="/img/icons/logo_7.svg"
           height="26"
@@ -10,8 +10,9 @@
         />
         ATIOP
       </router-link>
+
       <button
-        class="navbar-toggler"
+        class="navbar-toggler border-0"
         type="button"
         data-bs-toggle="collapse"
         data-bs-target="#navbarSupportedContent"
@@ -23,8 +24,44 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
+      <router-link class="d-md-none navbar-brand" to="/about" tag="a">
+        <img
+          src="/img/icons/logo_7.svg"
+          height="26"
+          class="d-inline-block mb-1 me-1"
+          alt="ATIOP"
+        />
+      </router-link>
+
+      <div class="d-flex d-md-none align-items-center">
+        <Loading2 v-if="loading2" />
+        <div class="dropdown">
+          <button
+            v-if="$route.path !== '/login'"
+            class="opacity-04 btn btn-sm p-0 me-1"
+            title="Настройки"
+            id="dropdownMenuSettings"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img
+              src="/img/icons_tool/gear.svg"
+              width="24"
+              height="24"
+              alt="Настройки"
+            />
+          </button>
+          <transition name="slide-fade">
+            <SettingsDrop
+              class="dropdown-menu dropdown-menu-end"
+              aria-labelledby="dropdownMenuSettings"
+            />
+          </transition>
+        </div>
+      </div>
+
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto" @click.prevent="$emit('hide-settings')">
+        <ul class="navbar-nav me-auto">
           <li class="nav-item">
             <router-link
               to="/"
@@ -81,31 +118,32 @@
             >Календарь</router-link>
           </li> -->
         </ul>
-        <div class="d-flex align-items-center">
-          <Loading2 v-if="loading2" />
-          <div class="dropdown">
-            <button
-              v-if="$route.path !== '/login'"
-              class="opacity-04 btn btn-sm p-0 me-1"
-              title="Настройки"
-              id="dropdownMenuSettings"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <img
-                src="/img/icons_tool/gear.svg"
-                width="24"
-                height="24"
-                alt="Настройки"
-              />
-            </button>
-            <transition name="slide-fade">
-              <SettingsDrop
-                class="dropdown-menu dropdown-menu-end"
-                aria-labelledby="dropdownMenuSettings"
-              />
-            </transition>
-          </div>
+      </div>
+
+      <div class="d-none d-md-flex align-items-center">
+        <Loading2 v-if="loading2" />
+        <div class="dropdown">
+          <button
+            v-if="$route.path !== '/login'"
+            class="opacity-04 btn btn-sm p-0 me-1"
+            title="Настройки"
+            id="dropdownMenuSettings"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img
+              src="/img/icons_tool/gear.svg"
+              width="24"
+              height="24"
+              alt="Настройки"
+            />
+          </button>
+          <transition name="slide-fade">
+            <SettingsDrop
+              class="dropdown-menu dropdown-menu-end"
+              aria-labelledby="dropdownMenuSettings"
+            />
+          </transition>
         </div>
       </div>
     </div>
@@ -139,16 +177,7 @@ export default {
     auth.onAuthStateChanged((user) => {
       this.user = user
     })
-    // if (this.user) {
-    //   this.userName = this.user.email.split('@')[0]
-    // }
   },
-  // methods: {
-  //   async logOut() {
-  //     await this.$store.dispatch('logOut')
-  //     this.$router.push('/login#in')
-  //   },
-  // },
 }
 </script>
 
