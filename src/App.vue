@@ -1,10 +1,6 @@
 <template>
   <div>
-    <Navbar
-      v-if="$route.path !== '/about'"
-      @show-settings="showSettings = !showSettings"
-      @hide-settings="showSettings = false"
-    />
+    <Navbar v-if="$route.path !== '/about'" />
     <div class="container-fluid" @click.prevent="showSettings = false">
       <router-view v-slot="{ Component }">
         <transition name="component-fade" mode="out-in">
@@ -12,7 +8,7 @@
         </transition>
       </router-view>
     </div>
-    <Settings class="formset" :class="{ 'right-0': showSettings }" />
+
     <transition name="slide-fade">
       <Message
         v-if="showMessage"
@@ -26,19 +22,16 @@
 <script>
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Navbar from '@/components/interface/Navbar'
-import Settings from '@/components/additional/Settings'
 import Message from '@/components/additional/Message'
 
 export default {
   components: {
     Navbar,
-    Settings,
     Message,
   },
   data() {
     return {
       //user: auth.currentUser,
-      showSettings: false,
       showMessage: false,
     }
   },
@@ -65,18 +58,6 @@ export default {
 
 
 <style>
-.formset {
-  width: 200px;
-  position: absolute;
-  top: 60px;
-  right: -200px;
-  transition: 0.5s;
-}
-
-.right-0 {
-  right: 0;
-}
-
 .btn:focus,
 .form-control:focus,
 .form-select:focus {

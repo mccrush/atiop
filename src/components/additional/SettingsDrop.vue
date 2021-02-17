@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white shadow-sm p-3 pt-3 settings">
+  <div class="width-200 bg-white border-0 shadow p-3 pt-2 mt-3">
     <h5 class="text-center">Настройки</h5>
     <router-link
       to="/user"
@@ -297,8 +297,9 @@ export default {
 </script>
 
 <style scoped>
-.settings {
-  z-index: 99;
+.width-200 {
+  width: 200px;
+  margin-right: -14px;
 }
 
 .form-check-label {

@@ -105,19 +105,29 @@
           > -->
 
           <Loading2 v-if="loading2" />
-          <button
-            v-if="$route.path !== '/login'"
-            class="btn btn-sm p-0 me-1 opacity-04"
-            @click.prevent="$emit('show-settings')"
-            title="Настройки"
-          >
-            <img
-              src="/img/icons_tool/gear.svg"
-              width="24"
-              height="24"
-              alt="Настройки"
-            />
-          </button>
+          <div class="dropdown">
+            <button
+              v-if="$route.path !== '/login'"
+              class="opacity-04 btn btn-sm p-0 me-1"
+              title="Настройки"
+              id="dropdownMenuSettings"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <img
+                src="/img/icons_tool/gear.svg"
+                width="24"
+                height="24"
+                alt="Настройки"
+              />
+            </button>
+            <transition name="slide-fade">
+              <SettingsDrop
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="dropdownMenuSettings"
+              />
+            </transition>
+          </div>
         </div>
       </div>
     </div>
@@ -126,12 +136,14 @@
 
 <script>
 import { auth } from '@/firebase.js'
+import { Dropdown } from 'bootstrap'
+import SettingsDrop from '@/components/additional/SettingsDrop'
 import Loading2 from '@/components/additional/Loading2'
-//import { Collapse } from 'bootstrap'
 
 export default {
   name: 'navbar',
   components: {
+    SettingsDrop,
     Loading2,
   },
   data() {
