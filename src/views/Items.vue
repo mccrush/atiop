@@ -21,13 +21,13 @@
       <!-- <div class="col-2 col-xl-1 p-2">
         <FilterSelect :items="lists" :type="'list'" />
       </div> -->
-      <div class="col-12 col-sm-6 col-md-4 col-xl-2 p-2">
+      <div class="col-12 col-sm-6 col-md-3 col-xl-2 p-2">
         <AddItem :type="'napravs'" />
       </div>
-      <div class="col-12 col-sm-6 col-md-4 col-xl-2 p-2">
+      <div class="col-12 col-sm-6 col-md-3 col-xl-2 p-2">
         <AddItem v-if="$route.query.nap" :type="'projects'" />
       </div>
-      <div class="col-12 col-sm-6 col-md-4 col-xl-2 p-2">
+      <div class="col-12 col-sm-6 col-md-2 col-xl-2 p-2">
         <AddItem v-if="$route.query.proj" :type="'lists'" />
       </div>
     </div>
