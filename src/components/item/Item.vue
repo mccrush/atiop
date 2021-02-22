@@ -60,7 +60,7 @@
         v-if="item.type === 'tasks' && item.status === 'todo'"
         type="button"
         class="btn btn-sm btn-light border p-0 ps-2 pe-2 w-50"
-        @click="changeStatus('work')"
+        @click="changeTaskStatus('work')"
       >
         To work
       </button>
@@ -68,7 +68,7 @@
         v-if="item.type === 'tasks'"
         type="button"
         class="btn btn-sm btn-light border p-0 ps-2 pe-2 w-50"
-        @click="changeStatus('done')"
+        @click="changeTaskStatus('done')"
       >
         Done
       </button>
@@ -77,6 +77,8 @@
 </template>
 
 <script>
+import getDateNow from '@/scripts/getDateNow'
+
 export default {
   props: ['item'],
   computed: {
@@ -85,7 +87,27 @@ export default {
     },
   },
   methods: {
-    changeStatus() {},
+    changeTaskStatus(status) {
+      if (status === 'work') {
+        this.$store.commit('changeTaskStatus2', {
+          id: this.item.id,
+          type: this.item.type,
+          status,
+          dateStart: getDateNow,
+          dateDone: '',
+        })
+      } else if (status === 'done') {
+        this.$store.commit('changeTaskStatus2', {
+          id: this.item.id,
+          type: this.item.type,
+          status,
+          dateStart: this.item.dateStart,
+          dateDone: getDateNow,
+        })
+      } else {
+        console.log('Item: Ошибка при смене статуса')
+      }
+    },
     saveFilter() {
       this.$store.commit('setNapProj', {
         nap: this.item.napravId,

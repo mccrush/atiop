@@ -1,8 +1,6 @@
 import { auth } from '@/firebase.js'
 import { db } from '@/firebase.js'
 
-
-
 export default {
   state: {
     napravs: [],
@@ -38,6 +36,13 @@ export default {
     },
     setItems2(state, { type, items = [] }) {
       state[type] = items
+    },
+    changeTaskStatus2(state, { id, status, dateStart, dateDone }) {
+      let tasks = state.tasks.concat()
+      const index = tasks.findIndex(task => task.id === id)
+      const task = tasks[index]
+      tasks[index] = { ...task, status, dateStart, dateDone }
+      state.tasks = tasks
     }
   },
   actions: {
