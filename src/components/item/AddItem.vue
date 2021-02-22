@@ -55,7 +55,7 @@ export default {
 
           this.$store.commit('addItem2', item)
 
-          this.loading = true
+          this.loading = true // Какую функцию выполняет эта строчка?
           const res = await this.$store.dispatch('addItem2', item)
           if (res) {
             this.loading = false

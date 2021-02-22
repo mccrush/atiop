@@ -46,6 +46,16 @@ export default {
     }
   },
   actions: {
+    async updateItem2({ commit, state }, id) {
+      try {
+        const task = state.tasks.find(task => task.id === id)
+        const REF = db.collection('users').doc(auth.currentUser.uid).collection('items')
+        await REF.doc(id).update(task)
+        return true
+      } catch (error) {
+        console.log('Error items.js: ', error);
+      }
+    },
     async addItem2({ commit }, item) {
       try {
         const REF = db.collection('users').doc(auth.currentUser.uid).collection('items')

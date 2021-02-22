@@ -51,7 +51,7 @@
       <button
         v-if="item.type === 'projects'"
         type="button"
-        class="btn btn-sm btn-light border p-0 ps-2 pe-2 w-100"
+        class="btn btn-sm btn-white border p-0 ps-2 pe-2 w-100"
         @click="saveFilter"
       >
         In
@@ -59,18 +59,26 @@
       <button
         v-if="item.type === 'tasks' && item.status === 'todo'"
         type="button"
-        class="btn btn-sm btn-light border p-0 ps-2 pe-2 w-50"
+        class="btn btn-sm btn-white border p-0 ps-2 pe-2 w-50"
         @click="changeTaskStatus('work')"
       >
         To work
       </button>
       <button
-        v-if="item.type === 'tasks'"
+        v-if="item.type === 'tasks' && item.status === 'work'"
         type="button"
-        class="btn btn-sm btn-light border p-0 ps-2 pe-2 w-50"
+        class="btn btn-sm btn-white border p-0 ps-2 pe-2 w-50"
         @click="changeTaskStatus('done')"
       >
         Done
+      </button>
+      <button
+        v-if="item.type === 'tasks' && item.status === 'done'"
+        type="button"
+        class="btn btn-sm btn-light border p-0 ps-2 pe-2 w-100"
+        @click.prevent="removeItem(item.id)"
+      >
+        Remove
       </button>
     </div>
   </div>
@@ -87,7 +95,7 @@ export default {
     },
   },
   methods: {
-    changeTaskStatus(status) {
+    async changeTaskStatus(status) {
       if (status === 'work') {
         this.$store.commit('changeTaskStatus2', {
           id: this.item.id,
@@ -107,6 +115,18 @@ export default {
       } else {
         console.log('Item: Ошибка при смене статуса')
       }
+      const res = await this.$store.dispatch('updateItem2', this.item.id)
+      if (res) {
+        this.$store.commit('addMessage', {
+          text: 'Данные успешно обновлены',
+          type: 'bg-success',
+        })
+      } else {
+        this.$store.commit('addMessage', {
+          text: 'При обновлении данных произошла ошибка',
+          type: 'bg-danger',
+        })
+      }
     },
     saveFilter() {
       this.$store.commit('setNapProj', {
@@ -117,6 +137,7 @@ export default {
         query: { nap: this.item.napravId, proj: this.item.id },
       })
     },
+    removeItem(id) {},
   },
 }
 </script>
@@ -129,11 +150,17 @@ export default {
   cursor: default;
 }
 
-.btn-light {
+.btn-white {
   background-color: #fff;
   color: #dee2e6;
 }
 
+.btn-light {
+  background-color: #f8f9fa;
+  color: #dee2e6;
+}
+
+.btn-white:hover,
 .btn-light:hover {
   background-color: #e2e6ea;
   color: #212529;
