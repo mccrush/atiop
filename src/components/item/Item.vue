@@ -157,7 +157,7 @@ export default {
 
 .btn-light {
   background-color: #f8f9fa;
-  color: #dee2e6;
+  color: #6c757d;
 }
 
 .btn-white:hover,
