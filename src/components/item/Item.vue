@@ -1,7 +1,51 @@
 <template>
-  <div class="item align-self-start border rounded-1 pt-1 pb-1 ps-2 pe-2 mb-2">
+  <div
+    class="item align-self-start border rounded-1 pt-1 pb-1 ps-2 pe-2 mb-2"
+    :class="{
+      ' bg-white': item.status === 'todo' || item.status === 'work',
+      ' bg-light': item.status === 'done',
+      ' border-warning': item.status === 'work',
+      'border-warning':
+        Math.ceil(
+          Math.abs(new Date(item.date).getTime() - new Date().getTime()) /
+            (1000 * 3600 * 24)
+        ) <= 1 && item.status !== 'done',
+      'border-danger':
+        Math.ceil(
+          (new Date(item.deadline).getTime() - new Date().getTime()) /
+            (1000 * 3600 * 24)
+        ) <= 1 && item.status !== 'done',
+    }"
+  >
     <span class="small">{{ item.title }}</span>
     <hr class="m-1" />
+    <span v-if="settings.showPosition" class="badge bg-dark me-1">{{
+      item.position
+    }}</span>
+    <span v-if="settings.showNaprav" class="badge bg-info me-1">{{
+      item.napravTitle || 'Без направления'
+    }}</span>
+    <span v-if="settings.showProject" class="badge bg-secondary me-1">{{
+      item.projectTitle || 'Без проекта'
+    }}</span>
+    <span
+      v-if="settings.showPrice && item.price"
+      class="badge bg-success me-1"
+      >{{ item.price }}</span
+    >
+    <span
+      v-if="settings.showTime && item.time"
+      class="badge bg-light text-dark me-1"
+      >{{ item.time }} мин</span
+    >
+    <span class="badge bg-warning me-1" v-if="item.date && settings.showDate">{{
+      new Date(item.date).toLocaleDateString()
+    }}</span>
+    <span
+      class="badge bg-danger me-1"
+      v-if="item.deadline && settings.showDeadline"
+      >{{ new Date(item.deadline).toLocaleDateString() }}</span
+    >
     <hr class="m-1" />
     <div class="btn-group w-100" role="group">
       <button
@@ -35,6 +79,11 @@
 <script>
 export default {
   props: ['item'],
+  computed: {
+    settings() {
+      return this.$store.getters.settings
+    },
+  },
   methods: {
     changeStatus() {},
     saveFilter() {
