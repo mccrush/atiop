@@ -43,23 +43,28 @@
         />
       </div>
     </div>
+    <Modal2 :item="itemForModal" :napravs="napravs" :projects="projects" />
   </div>
 </template>
 
 <script>
+import { Modal } from 'bootstrap'
 import List from '@/components/item/List'
 import FilterSelect from '@/components/item/FilterSelect'
 import AddItem from '@/components/item/AddItem'
+import Modal2 from '@/components/additional/Modal'
 
 export default {
   components: {
     List,
     FilterSelect,
     AddItem,
+    Modal2,
   },
   data() {
     return {
       loading: false,
+      itemForModal: null,
     }
   },
   computed: {
@@ -91,6 +96,9 @@ export default {
       } else {
         return this.napravs
       }
+    },
+    tasks() {
+      return this.$store.getters.tasks2
     },
   },
   // Формируем URL при первой загрузке компонента
@@ -124,7 +132,9 @@ export default {
       })
     },
     editItem({ id, type }) {
-      console.log('id:', id, 'type:', type)
+      this.itemForModal = this[type].find((item) => item.id === id)
+      let myModal = new Modal(document.getElementById('exampleModal'))
+      myModal.show()
     },
   },
 }
