@@ -6,7 +6,6 @@
     role="dialog"
     aria-labelledby="exampleModalLabel"
     aria-hidden="true"
-    ref="myModal"
   >
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content border-0 shadow">

@@ -43,7 +43,12 @@
         />
       </div>
     </div>
-    <ModalForm :item="itemForModal" :napravs="napravs" :projects="projects" />
+    <ModalForm
+      v-if="itemForModal"
+      :item="itemForModal"
+      :napravs="napravs"
+      :projects="projects"
+    />
   </div>
 </template>
 
