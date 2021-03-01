@@ -1,0 +1,318 @@
+<template>
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+    ref="myModal"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-10">
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                :class="{ 'border-danger': error }"
+                @focus="error = false"
+                v-model.trim="item.title"
+              />
+            </div>
+            <div class="col-2 ps-0">
+              <div class="input-group input-group-sm">
+                <input
+                  type="number"
+                  max="360"
+                  min="0"
+                  step="5"
+                  class="form-control form-control-sm"
+                  aria-describedby="for-time"
+                  v-model.trim="item.time"
+                />
+                <span class="input-group-text ps-1 pe-1" id="for-time"
+                  >мин.</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-4 pe-0">
+              <div class="form-floating">
+                <input
+                  :disabled="item && item.type === 'napravs'"
+                  type="datetime-local"
+                  id="date"
+                  class="form-control form-control-sm border-warning"
+                  v-model="item.date"
+                />
+                <label for="date">Выполнение</label>
+              </div>
+            </div>
+            <div class="col-4 pe-0">
+              <div class="form-floating">
+                <input
+                  :disabled="item && item.type === 'napravs'"
+                  type="datetime-local"
+                  id="deadline"
+                  class="form-control form-control-sm border-danger"
+                  v-model="item.deadline"
+                />
+                <label for="deadline">Сдача</label>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-floating">
+                <select
+                  v-model="item.status"
+                  @change="changeStatus"
+                  :disabled="
+                    item &&
+                    (item.type === 'napravs' || item.type === 'projects')
+                  "
+                  class="form-select form-select-sm"
+                  id="statusSelect"
+                >
+                  <option
+                    v-for="item in statusArr"
+                    :key="'sta' + item.id"
+                    :value="item.id"
+                  >
+                    {{ item.title }}
+                  </option>
+                </select>
+                <label for="statusSelect">Статус</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-4 pe-0">
+              <div class="form-floating">
+                <select
+                  v-model="item.napravId"
+                  :disabled="item && item.type === 'napravs'"
+                  class="form-select form-select-sm"
+                  id="napravSelect"
+                >
+                  <option value selected>Направление</option>
+                  <option
+                    v-for="item in napravs"
+                    :key="'nap' + item.id"
+                    :value="item.id"
+                  >
+                    {{ item.title }}
+                  </option>
+                </select>
+                <label for="napravSelect">Направление</label>
+              </div>
+            </div>
+
+            <div class="col-4 pe-0">
+              <div class="form-floating">
+                <select
+                  v-model="item.projectId"
+                  class="form-select form-select-sm"
+                  :disabled="
+                    !napravId ||
+                    item.type === 'napravs' ||
+                    item.type === 'projects'
+                  "
+                  id="projectSelect"
+                >
+                  <option value selected>Проект</option>
+                  <option
+                    v-for="item in projectsFilter"
+                    :key="'pro' + item.id"
+                    :value="item.id"
+                  >
+                    {{ item.title }}
+                  </option>
+                </select>
+                <label for="projectSelect">Проект</label>
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="form-floating">
+                <input
+                  v-if="item"
+                  type="number"
+                  max="99"
+                  min="0"
+                  step="1"
+                  id="position"
+                  class="form-control form-control-sm"
+                  v-model.number="item.position"
+                />
+                <label for="position">#</label>
+              </div>
+            </div>
+            <div class="col-2 ps-0">
+              <div class="form-floating">
+                <input
+                  v-if="item"
+                  type="number"
+                  max="99999"
+                  min="0"
+                  step="50"
+                  id="price"
+                  class="form-control form-control-sm"
+                  v-model.number="item.price"
+                  :disabled="
+                    item.type === 'napravs' || item.type === 'projects'
+                  "
+                />
+                <label for="price">Цена</label>
+              </div>
+            </div>
+          </div>
+
+          <div v-if="item" class="row">
+            <!-- Возможно сделать описание опциональным -->
+            <div class="col-12">
+              <!-- <textarea
+                  class="form-control h-100"
+                  placeholder="Подробное описание"
+                  v-model="item.desc"
+                ></textarea>-->
+
+              <div
+                v-if="item.type === 'projects'"
+                class="d-flex justify-content-between mt-2"
+              >
+                <div
+                  v-for="(scolor, index) in colors"
+                  :key="'cb' + index"
+                  class="m-1 p-1 rounded shadow-sm colorblock"
+                  :style="'background:' + scolor"
+                  :class="{ 'rounded-circle': color === scolor }"
+                  @click="color = scolor"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <hr />
+
+          <div class="row">
+            <div class="col-4 pe-0">
+              <button
+                class="btn btn-sm btn-outline-danger w-100"
+                data-bs-dismiss="modal"
+                @click.prevent="
+                  removeItem({
+                    id: item.id,
+                    type: item.type,
+                    idproj: item.projectId,
+                  })
+                "
+              >
+                Удалить
+              </button>
+            </div>
+            <div class="col-4 pe-0">
+              <button
+                type="button"
+                class="btn btn-sm btn-light w-100"
+                data-bs-dismiss="modal"
+              >
+                Отмена
+              </button>
+            </div>
+            <div class="col-4">
+              <button
+                type="button"
+                @click="updateItem"
+                class="btn btn-sm btn-warning w-100"
+                data-bs-dismiss="modal"
+              >
+                Сохранить
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import getDateNow from '@/scripts/getDateNow'
+
+export default {
+  props: ['item', 'napravs', 'projects'],
+  data() {
+    return {
+      error: false,
+    }
+  },
+  computed: {
+    statusArr() {
+      return this.$store.getters.status
+    },
+    projectsFilter() {
+      if (this.napravId) {
+        return this.projects.filter((item) => item.napravId === this.napravId)
+      } else {
+        return this.projects
+      }
+    },
+  },
+  methods: {
+    updateItem() {
+      // Сделать асинхронной и выводить сообщения об ошибках
+      if (this.title) {
+        if (this.napravId) {
+          this.item.napravTitle = this.napravs.find(
+            (item) => item.id === this.napravId
+          ).title
+        } else {
+          this.item.napravTitle = 'Без направления'
+        }
+
+        if (this.projectId) {
+          this.item.projectTitle = this.projects.find(
+            (item) => item.id === this.projectId
+          ).title
+        } else {
+          this.item.projectTitle = 'Без проекта'
+        }
+
+        this.$store.dispatch('updateItem', this.item)
+      } else {
+        this.error = true
+      }
+    },
+    removeItem({ id, type, idproj }) {
+      // Сделать асинхронной и выводить сообщения об ошибках
+      this.$store.dispatch('removeItem', { id, type, idproj })
+    },
+    changeStatus() {
+      this.$store.dispatch('changeStatus', {
+        id: this.item.id,
+        type: this.item.type,
+        status: this.status,
+        dateStart: this.status === 'work' ? getDateNow : this.item.dateStart,
+        dateDone: this.status === 'done' ? getDateNow : '',
+      })
+    },
+  },
+}
+</script>
+
+<style scoped>
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: 640px;
+    margin: 1.75rem auto;
+  }
+}
+
+.colorblock {
+  width: 32px;
+  height: 20px;
+  cursor: pointer;
+}
+</style>

@@ -43,7 +43,7 @@
         />
       </div>
     </div>
-    <Modal2 :item="itemForModal" :napravs="napravs" :projects="projects" />
+    <ModalForm :item="itemForModal" :napravs="napravs" :projects="projects" />
   </div>
 </template>
 
@@ -52,14 +52,14 @@ import { Modal } from 'bootstrap'
 import List from '@/components/item/List'
 import FilterSelect from '@/components/item/FilterSelect'
 import AddItem from '@/components/item/AddItem'
-import Modal2 from '@/components/additional/Modal'
+import ModalForm from '@/components/item/ModalForm'
 
 export default {
   components: {
     List,
     FilterSelect,
     AddItem,
-    Modal2,
+    ModalForm,
   },
   data() {
     return {
