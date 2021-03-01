@@ -239,7 +239,6 @@
 </template>
 
 <script>
-//import { Modal } from 'bootstrap'
 import getDateNow from '@/scripts/getDateNow'
 
 export default {
@@ -328,10 +327,6 @@ export default {
         }
 
         this.$store.dispatch('updateItem', item)
-        //let myModal = new Modal(document.getElementById('exampleModal'))
-        //let myModal = new Modal(this.$refs.myModal)
-        //console.log('myModal:', myModal)
-        //myModal.hide()
       } else {
         this.error = true
       }
@@ -339,8 +334,6 @@ export default {
     removeItem({ id, type, idproj }) {
       // Сделать асинхронной и выводить сообщения об ошибках
       this.$store.dispatch('removeItem', { id, type, idproj })
-      //let myModal = new Modal(document.getElementById('exampleModal'))
-      //myModal.hide()
     },
     changeStatus() {
       this.$store.dispatch('changeStatus', {
