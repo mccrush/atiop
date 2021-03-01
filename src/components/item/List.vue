@@ -26,7 +26,12 @@
     </h6>
 
     <div class="task-list">
-      <Item v-for="item in items" :key="'item' + item.id" :item="item" />
+      <Item
+        v-for="item in items"
+        :key="'item' + item.id"
+        :item="item"
+        @edit-item="editItem"
+      />
       <AddItem v-if="list.type === 'lists'" :type="'tasks'" :listId="list.id" />
     </div>
   </div>
@@ -75,6 +80,9 @@ export default {
           query: { nap: this.list.napravId, proj: this.list.id },
         })
       }
+    },
+    editItem({ id, type }) {
+      this.$emit('edit-item', { id, type })
     },
   },
 }

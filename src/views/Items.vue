@@ -35,7 +35,12 @@
     <!-- Lists -->
     <div class="my-row-project row overflow-auto">
       <div class="my-width-none">
-        <List v-for="list in lists" :key="'list' + list.id" :list="list" />
+        <List
+          v-for="list in lists"
+          :key="'list' + list.id"
+          :list="list"
+          @edit-item="editItem"
+        />
       </div>
     </div>
   </div>
@@ -117,6 +122,9 @@ export default {
       this.$router.push({
         query: { nap: this.nap, proj: newValProj },
       })
+    },
+    editItem({ id, type }) {
+      console.log('id:', id, 'type:', type)
     },
   },
 }

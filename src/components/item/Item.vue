@@ -16,6 +16,7 @@
             (1000 * 3600 * 24)
         ) <= 1 && item.status !== 'done',
     }"
+    @dblclick.prevent="$emit('edit-item', { id: item.id, type: item.type })"
   >
     <span class="small">{{ item.title }}</span>
     <hr class="m-1" />
