@@ -34,12 +34,26 @@ export default {
   data() {
     return {
       showMessage: false,
-      Component: 'Kanban',
     }
   },
   computed: {
     message() {
       return this.$store.getters.getMessage || ''
+    },
+    viewType() {
+      return this.$store.getters.viewType
+    },
+    viewView() {
+      return this.$store.getters.viewView
+    },
+    Component() {
+      if (this.viewView === 'kanban') {
+        return 'Kanban'
+      } else if (this.viewView === 'cards') {
+        return 'Cards'
+      } else {
+        return 'Checklist'
+      }
     },
   },
   watch: {
