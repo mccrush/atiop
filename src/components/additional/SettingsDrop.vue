@@ -299,7 +299,7 @@ export default {
 <style scoped>
 .width-200 {
   width: 200px;
-  margin-right: -14px;
+  margin-right: -12px;
 }
 
 .form-check-label {

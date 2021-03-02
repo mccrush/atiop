@@ -51,10 +51,10 @@
             />
           </button>
           <transition name="slide-fade">
-            <!-- <SettingsDrop
+            <SettingsDrop
               class="dropdown-menu dropdown-menu-end"
               aria-labelledby="dropdownMenuSettings"
-            /> -->
+            />
           </transition>
         </div>
       </div>
@@ -118,10 +118,10 @@
             />
           </button>
           <transition name="slide-fade">
-            <!-- <SettingsDrop
+            <SettingsDrop
               class="dropdown-menu dropdown-menu-end"
               aria-labelledby="dropdownMenuSettings"
-            /> -->
+            />
           </transition>
         </div>
       </div>
