@@ -1,7 +1,6 @@
 <template>
   <div>
     <Navbar />
-
     <div class="container-fluid">
       <component :is="Component" />
     </div>
@@ -18,7 +17,7 @@
 
 <script>
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Navbar from '@/components/interface/Navbar2'
+import Navbar from '@/components/interface/Navbar3'
 import Message from '@/components/additional/Message'
 import Kanban from '@/views2/Kanban'
 import Cards from '@/views2/Cards'
@@ -35,12 +34,12 @@ export default {
   data() {
     return {
       showMessage: false,
-      Component: 'Kanban',
+      Component: 'Checklist',
     }
   },
   computed: {
     message() {
-      return this.$store.getters.getMessage
+      return this.$store.getters.getMessage || ''
     },
   },
   watch: {
