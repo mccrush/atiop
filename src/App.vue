@@ -1,12 +1,9 @@
 <template>
   <div>
-    <Navbar v-if="$route.path !== '/about'" />
-    <div class="container-fluid" @click.prevent="showSettings = false">
-      <router-view v-slot="{ Component }">
-        <transition name="component-fade" mode="out-in">
-          <component :is="Component" />
-        </transition>
-      </router-view>
+    <Navbar />
+
+    <div class="container-fluid">
+      <component :is="Component" />
     </div>
 
     <transition name="slide-fade">
@@ -31,12 +28,8 @@ export default {
   },
   data() {
     return {
-      //user: auth.currentUser,
       showMessage: false,
     }
-  },
-  mounted() {
-    // console.log('rt:', this.$route.path)
   },
   computed: {
     message() {
@@ -49,7 +42,7 @@ export default {
         this.showMessage = true
         setTimeout(() => {
           this.showMessage = false
-        }, 3000)
+        }, 3600)
       }
     },
   },
