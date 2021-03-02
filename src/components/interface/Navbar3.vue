@@ -37,7 +37,7 @@
         <Loading2 v-if="loading2" />
         <div class="dropdown">
           <button
-            class="opacity-04 btn btn-sm p-0 me-1"
+            class="btn btn-sm p-0 me-1 opacity-06"
             title="Настройки"
             id="dropdownMenuSettings"
             data-bs-toggle="dropdown"
@@ -119,13 +119,13 @@
             Карточки
           </button>
           <button type="button" class="btn btn-outline-light text-secondary">
-            Чекслист
+            Чеклист
           </button>
         </div>
 
         <div class="dropdown">
           <button
-            class="opacity-04 btn btn-sm p-0 me-1"
+            class="btn btn-sm p-0 me-1 opacity-06"
             title="Настройки"
             id="dropdownMenuSettings"
             data-bs-toggle="dropdown"
@@ -173,7 +173,11 @@ export default {
   font-weight: 600;
 }
 
-.width-200 {
-  width: 200px;
+.opacity-04 {
+  opacity: 0.4;
+}
+
+.opacity-06 {
+  opacity: 0.6;
 }
 </style>

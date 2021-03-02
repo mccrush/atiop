@@ -1,5 +1,5 @@
 <template>
-  <div class="width-200 bg-white border-0 shadow p-3 pt-2 mt-3">
+  <div class="bg-white border-0 shadow p-3 pt-2 mt-2 settings-form">
     <h5 class="text-center">Настройки</h5>
     <router-link
       to="/user"
@@ -297,9 +297,12 @@ export default {
 </script>
 
 <style scoped>
-.width-200 {
-  width: 200px;
+.settings-form {
+  width: 224px;
+  height: calc(100vh - 60px);
+  max-height: 596px;
   margin-right: -12px;
+  overflow-y: auto;
 }
 
 .form-check-label {
