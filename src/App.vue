@@ -1,7 +1,7 @@
 <template>
   <div>
     <Navbar />
-    <div class="container-fluid">
+    <div class="container-fluid ps-0 pe-0">
       <component :is="Component" />
     </div>
 
@@ -34,7 +34,7 @@ export default {
   data() {
     return {
       showMessage: false,
-      Component: 'Checklist',
+      Component: 'Kanban',
     }
   },
   computed: {
