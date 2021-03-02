@@ -1,6 +1,6 @@
 <template>
   <div
-    class="item align-self-start border rounded-1 pt-1 pb-1 ps-2 pe-2 mb-2"
+    class="item align-self-start border rounded-1 pt-1 pb-1 ps-2 pe-2 ms-2 me-2 mb-2"
     :class="{
       ' bg-white': item.status === 'todo' || item.status === 'work',
       ' bg-light': item.status === 'done',
@@ -50,7 +50,7 @@
     <hr class="m-1" />
     <div class="btn-group w-100" role="group">
       <button
-        v-if="item.type === 'projects'"
+        v-if="item.type === 'napravs' || item.type === 'projects'"
         type="button"
         class="btn btn-sm btn-white border p-0 ps-2 pe-2 w-100"
         @click="saveFilter"
