@@ -13,9 +13,9 @@ auth.onAuthStateChanged((user) => {
     app = createApp(App).use(store).mount('#app')
   }
   if (user) {
-    store.dispatch('getItems', 'napravs')
-    store.dispatch('getItems', 'projects')
-    store.dispatch('getItems', 'tasks')
-    store.dispatch('getItems2')
+    // store.dispatch('getItems', 'napravs')
+    // store.dispatch('getItems', 'projects')
+    // store.dispatch('getItems', 'tasks')
+    // store.dispatch('getItems2')
   }
 })
