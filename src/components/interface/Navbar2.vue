@@ -37,7 +37,6 @@
         <Loading2 v-if="loading2" />
         <div class="dropdown">
           <button
-            v-if="$route.path !== '/login'"
             class="opacity-04 btn btn-sm p-0 me-1"
             title="Настройки"
             id="dropdownMenuSettings"
@@ -52,10 +51,10 @@
             />
           </button>
           <transition name="slide-fade">
-            <SettingsDrop
+            <!-- <SettingsDrop
               class="dropdown-menu dropdown-menu-end"
               aria-labelledby="dropdownMenuSettings"
-            />
+            /> -->
           </transition>
         </div>
       </div>
@@ -105,7 +104,6 @@
         <Loading2 v-if="loading2" />
         <div class="dropdown">
           <button
-            v-if="$route.path !== '/login'"
             class="opacity-04 btn btn-sm p-0 me-1"
             title="Настройки"
             id="dropdownMenuSettings"
@@ -120,10 +118,10 @@
             />
           </button>
           <transition name="slide-fade">
-            <SettingsDrop
+            <!-- <SettingsDrop
               class="dropdown-menu dropdown-menu-end"
               aria-labelledby="dropdownMenuSettings"
-            />
+            /> -->
           </transition>
         </div>
       </div>
@@ -134,31 +132,31 @@
 <script>
 import { auth } from '@/firebase.js'
 import { Dropdown } from 'bootstrap'
-import SettingsDrop from '@/components/additional/SettingsDrop'
-import Loading2 from '@/components/additional/Loading2'
+//import SettingsDrop from '@/components/additional/SettingsDrop'
+//import Loading2 from '@/components/additional/Loading2'
 
 export default {
   name: 'navbar',
-  components: {
-    SettingsDrop,
-    Loading2,
-  },
+  // components: {
+  //   SettingsDrop,
+  //   Loading2,
+  // },
   data() {
     return {
       user: auth.currentUser,
       userName: '',
     }
   },
-  computed: {
-    loading2() {
-      return this.$store.getters.loading2
-    },
-  },
-  mounted() {
-    auth.onAuthStateChanged((user) => {
-      this.user = user
-    })
-  },
+  // computed: {
+  //   loading2() {
+  //     return this.$store.getters.loading2
+  //   },
+  // },
+  // mounted() {
+  //   auth.onAuthStateChanged((user) => {
+  //     this.user = user
+  //   })
+  // },
 }
 </script>
 

@@ -20,9 +20,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Navbar from '@/components/interface/Navbar2'
 import Message from '@/components/additional/Message'
-import Kanban from '@/components/views2/Kanban'
-import Cards from '@/components/views2/Cards'
-import Checklist from '@/components/views2/Checklist'
+import Kanban from '@/views2/Kanban'
+import Cards from '@/views2/Cards'
+import Checklist from '@/views2/Checklist'
 
 export default {
   components: {
@@ -35,7 +35,7 @@ export default {
   data() {
     return {
       showMessage: false,
-      Component: Kanban,
+      Component: 'Kanban',
     }
   },
   computed: {
