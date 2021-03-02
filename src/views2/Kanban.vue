@@ -23,6 +23,9 @@ export default {
       return this.$store.getters.viewType
     },
     items() {
+      if (this.viewType === 'tasks') {
+        return this.$store.getters['projects2']
+      }
       return this.$store.getters[this.viewType + '2']
     },
   },

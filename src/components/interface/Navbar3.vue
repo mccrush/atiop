@@ -86,7 +86,10 @@
           <button
             type="button"
             class="btn btn-outline-light text-secondary"
-            :class="{ active: viewType === 'tasks' }"
+            :class="{
+              active: viewType === 'tasks',
+              disabled: viewView === 'kanban',
+            }"
             @click="setViewType('tasks')"
           >
             Задачи
@@ -124,7 +127,10 @@
           <button
             type="button"
             class="btn btn-outline-light text-secondary"
-            :class="{ active: viewView === 'kanban' }"
+            :class="{
+              active: viewView === 'kanban',
+              disabled: viewType === 'tasks',
+            }"
             @click="setViewView('kanban')"
           >
             Канбан
