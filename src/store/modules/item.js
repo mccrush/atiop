@@ -10,8 +10,18 @@ export default {
     loading2: false,
     nap: localStorage.getItem('at-filterNaprav') || '',
     proj: localStorage.getItem('at-filterProject') || '',
+    viewType: localStorage.getItem('at-viewType') || '',
+    viewView: localStorage.getItem('at-viewView') || '',
   },
   mutations: {
+    setViewType(state, type) {
+      state.viewType = type
+      localStorage.setItem('at-viewType', type)
+    },
+    setViewView(state, view) {
+      state.viewView = view
+      localStorage.setItem('at-viewView', view)
+    },
     setNap(state, nap) {
       state.nap = nap
       state.proj = ''
@@ -100,6 +110,8 @@ export default {
     tasks2: state => state.tasks,
     loading2: state => state.loading2,
     nap: state => state.nap,
-    proj: state => state.proj
+    proj: state => state.proj,
+    viewType: state => state.viewType,
+    viewView: state => state.viewView
   }
 }

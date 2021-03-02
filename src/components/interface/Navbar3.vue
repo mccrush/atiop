@@ -69,14 +69,26 @@
         >
           <button
             type="button"
-            class="btn btn-outline-light text-secondary active"
+            class="btn btn-outline-light text-secondary"
+            :class="{ active: viewType === 'napravs' }"
+            @click="setViewType('napravs')"
           >
             Направления
           </button>
-          <button type="button" class="btn btn-outline-light text-secondary">
+          <button
+            type="button"
+            class="btn btn-outline-light text-secondary"
+            :class="{ active: viewType === 'projects' }"
+            @click="setViewType('projects')"
+          >
             Проекты
           </button>
-          <button type="button" class="btn btn-outline-light text-secondary">
+          <button
+            type="button"
+            class="btn btn-outline-light text-secondary"
+            :class="{ active: viewType === 'tasks' }"
+            @click="setViewType('tasks')"
+          >
             Задачи
           </button>
         </div>
@@ -111,14 +123,26 @@
         >
           <button
             type="button"
-            class="btn btn-outline-light text-secondary active"
+            class="btn btn-outline-light text-secondary"
+            :class="{ active: viewView === 'kanban' }"
+            @click="setViewView('kanban')"
           >
             Канбан
           </button>
-          <button type="button" class="btn btn-outline-light text-secondary">
+          <button
+            type="button"
+            class="btn btn-outline-light text-secondary"
+            :class="{ active: viewView === 'cards' }"
+            @click="setViewView('cards')"
+          >
             Карточки
           </button>
-          <button type="button" class="btn btn-outline-light text-secondary">
+          <button
+            type="button"
+            class="btn btn-outline-light text-secondary"
+            :class="{ active: viewView === 'checklist' }"
+            @click="setViewView('checklist')"
+          >
             Чеклист
           </button>
         </div>
@@ -163,6 +187,20 @@ export default {
   computed: {
     loading2() {
       return this.$store.getters.loading2
+    },
+    viewType() {
+      return this.$store.getters.viewType
+    },
+    viewView() {
+      return this.$store.getters.viewView
+    },
+  },
+  methods: {
+    setViewType(type) {
+      this.$store.commit('setViewType', type)
+    },
+    setViewView(view) {
+      this.$store.commit('setViewView', view)
     },
   },
 }
