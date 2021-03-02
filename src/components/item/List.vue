@@ -1,7 +1,7 @@
 <template>
-  <div class="my-project d-inline-block border rounded-1 mt-2 me-2 p-2 pb-0">
+  <div class="my-project d-inline-block border rounded-1 ms-3 p-0 pb-0">
     <h6
-      class="my-no-select d-flex flex-row align-items-start text-center rounded mt-1 mb-2"
+      class="my-no-select d-flex flex-row align-items-start text-center rounded mt-2 mb-2"
       @dblclick.prevent="editItem({ id: list.id, type: list.type })"
     >
       <div class="w-100" :class="{ 'ps-4': list.type !== 'lists' }">
@@ -10,7 +10,7 @@
       <button
         v-if="list.type !== 'lists'"
         tag="button"
-        class="btn btn-sm btn-light border p-0 ps-2 pe-2 m-0"
+        class="btn btn-sm btn-light border p-0 ps-2 pe-2 m-0 me-2"
         @click="saveFilter"
       >
         In
@@ -48,11 +48,6 @@ export default {
   },
   props: ['list'],
   computed: {
-    // projectId() {
-    //   if (this.list.type === 'projects') {
-    //     return this.list.id
-    //   }
-    // },
     items() {
       if (this.list.type === 'napravs') {
         return this.$store.getters.projects2.filter(

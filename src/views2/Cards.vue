@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-xl-6 row-cols-xxl-8 align-content-start bg-warning p-3 cards"
-  >
+  <div class="row align-content-start bg-warning p-3 cards">
     <Item
       v-for="item in items"
       :key="'item' + item.id"
