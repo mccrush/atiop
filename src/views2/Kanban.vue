@@ -1,13 +1,11 @@
 <template>
-  <div class="row bg-light pt-3 kanban">
-    <div class="p-0">
-      <List
-        v-for="list in items"
-        :key="'list' + list.id"
-        :list="list"
-        @edit-item="editItem"
-      />
-    </div>
+  <div class="row bg-light pt-3 ps-2 kanban">
+    <List
+      v-for="list in items"
+      :key="'list' + list.id"
+      :list="list"
+      @edit-item="editItem"
+    />
   </div>
 </template>
 

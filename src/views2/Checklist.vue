@@ -1,50 +1,14 @@
 <template>
-  <div class="row align-content-start bg-info p-3 checklist">
-    <ul class="list-group ms-2">
-      <li class="list-group-item">
+  <div class="row bg-light pt-3 ps-3 pe-3 checklist">
+    <ul class="list-group p-0">
+      <li v-for="i in 8" :key="i + 'kk'" class="list-group-item">
         <input
           class="form-check-input me-1"
           type="checkbox"
           value=""
           aria-label="..."
         />
-        First checkbox
-      </li>
-      <li class="list-group-item">
-        <input
-          class="form-check-input me-1"
-          type="checkbox"
-          value=""
-          aria-label="..."
-        />
-        Second checkbox
-      </li>
-      <li class="list-group-item">
-        <input
-          class="form-check-input me-1"
-          type="checkbox"
-          value=""
-          aria-label="..."
-        />
-        Third checkbox
-      </li>
-      <li class="list-group-item">
-        <input
-          class="form-check-input me-1"
-          type="checkbox"
-          value=""
-          aria-label="..."
-        />
-        Fourth checkbox
-      </li>
-      <li class="list-group-item">
-        <input
-          class="form-check-input me-1"
-          type="checkbox"
-          value=""
-          aria-label="..."
-        />
-        Fifth checkbox
+        First {{ i }} checkbox
       </li>
     </ul>
   </div>
