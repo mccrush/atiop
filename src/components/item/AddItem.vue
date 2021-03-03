@@ -40,13 +40,10 @@ export default {
       try {
         if (this.itemTitle) {
           const napravId =
-            this.$store.getters.napravId ||
-            localStorage.getItem('at-napravId') ||
-            ''
+            this.$store.getters.napravId || localStorage.getItem('at-napravId')
           const projectId =
             this.$store.getters.projectId ||
-            localStorage.getItem('at-projectId') ||
-            ''
+            localStorage.getItem('at-projectId')
           const listId = this.listId || localStorage.getItem('at-listId') || ''
 
           const item = createItem(
