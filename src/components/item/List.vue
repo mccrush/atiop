@@ -46,45 +46,45 @@ import AddItem from '@/components/item/AddItem'
 export default {
   components: {
     Item,
-    AddItem,
+    AddItem
   },
   props: ['list'],
   computed: {
     items() {
       if (this.list.type === 'napravs') {
         return this.$store.getters.projects2.filter(
-          (proj) => proj.napravId === this.list.id
+          proj => proj.napravId === this.list.id
         )
       } else if (this.list.type === 'projects') {
         return this.$store.getters.tasks2.filter(
-          (task) => task.projectId === this.list.id
+          task => task.projectId === this.list.id
         )
       } else if (this.list.type === 'lists') {
         return this.$store.getters.tasks2.filter(
-          (task) => task.listId === this.list.id
+          task => task.listId === this.list.id
         )
       }
-    },
+    }
   },
   methods: {
     setId(type) {
       if (type === 'napravs') {
         this.$store.commit('setId', { id: this.list.id, typeId: 'napravId' })
         this.$store.commit('setId', { id: '', typeId: 'projectId' })
-        this.$store.commit('setId', { id: '', typeId: 'listId' })
         this.$store.commit('setViewType', 'projects')
       } else if (type === 'projects') {
+        this.$store.commit('setId', {
+          id: this.list.napravId,
+          typeId: 'napravId'
+        })
         this.$store.commit('setId', { id: this.list.id, typeId: 'projectId' })
-        this.$store.commit('setId', { id: '', typeId: 'listId' })
-        this.$store.commit('setViewType', 'lists')
-      } else {
-        this.$store.commit('setId', { id: this.list.id, typeId: 'listId' })
+        this.$store.commit('setViewType', 'projects')
       }
     },
     editItem({ id, type }) {
       this.$emit('edit-item', { id, type })
-    },
-  },
+    }
+  }
 }
 </script>
 
