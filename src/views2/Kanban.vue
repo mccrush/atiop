@@ -14,7 +14,7 @@ import List from '@/components/item/List'
 
 export default {
   components: {
-    List,
+    List
   },
   computed: {
     viewType() {
@@ -30,23 +30,23 @@ export default {
       if (this.napravId) {
         if (this.projectId) {
           return this.$store.getters.lists2.filter(
-            (item) => item.projectId === this.projectId
+            item => item.projectId === this.projectId
           )
         } else {
           return this.$store.getters.projects2.filter(
-            (item) => item.napravId === this.napravId
+            item => item.napravId === this.napravId
           )
         }
       } else {
         return this.$store.getters.napravs2
       }
-    },
+    }
   },
   methods: {
     editItem({ id, type }) {
       this.$emit('edit-item', { id, type })
-    },
-  },
+    }
+  }
 }
 </script>
 
