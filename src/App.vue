@@ -2,7 +2,7 @@
   <div>
     <Navbar />
     <div class="container-fluid">
-      <component :is="Component" />
+      <component :is="Component" @edit-item="editItem" />
     </div>
 
     <transition name="slide-fade">
@@ -12,16 +12,26 @@
         :class="message.type"
       />
     </transition>
+
+    <ModalForm
+      v-if="itemForModal"
+      :item="itemForModal"
+      :napravs="napravs"
+      :projects="projects"
+      id="exampleModal"
+    />
   </div>
 </template>
 
 <script>
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { Modal } from 'bootstrap'
 import Navbar from '@/components/interface/Navbar3'
 import Message from '@/components/additional/Message'
 import Kanban from '@/views2/Kanban'
 import Cards from '@/views2/Cards'
 import Checklist from '@/views2/Checklist'
+import ModalForm from '@/components/item/ModalForm'
 
 export default {
   components: {
@@ -30,10 +40,12 @@ export default {
     Kanban,
     Cards,
     Checklist,
+    ModalForm,
   },
   data() {
     return {
       showMessage: false,
+      itemForModal: null,
     }
   },
   computed: {
@@ -54,6 +66,22 @@ export default {
       } else {
         return 'Checklist'
       }
+    },
+    napravs() {
+      return this.$store.getters.napravs2
+    },
+    projects() {
+      return this.$store.getters.projects2
+    },
+    tasks() {
+      return this.$store.getters.tasks2
+    },
+  },
+  methods: {
+    editItem({ id, type }) {
+      this.itemForModal = this[type].find((item) => item.id === id)
+      let myModal = new Modal(document.getElementById('exampleModal'))
+      myModal.show()
     },
   },
   watch: {
