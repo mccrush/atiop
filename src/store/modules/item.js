@@ -69,8 +69,10 @@ export default {
     },
     async addItem2({ commit }, item) {
       try {
+        commit('changeLoading', true)
         const REF = db.collection('users').doc(auth.currentUser.uid).collection('items')
-        const res = await REF.doc(item.id).set(item)
+        await REF.doc(item.id).set(item)
+        commit('changeLoading', false)
         return true
       } catch (error) {
         throw error

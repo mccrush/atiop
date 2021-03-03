@@ -15,11 +15,11 @@ import createItem from '@/scripts/createItem'
 export default {
   props: {
     type: String,
-    listId: String,
+    listId: String
   },
   data() {
     return {
-      itemTitle: '',
+      itemTitle: ''
     }
   },
   computed: {
@@ -33,16 +33,21 @@ export default {
       } else {
         return 'Добавить задачу'
       }
-    },
+    }
   },
   methods: {
     async addItem() {
       try {
         if (this.itemTitle) {
-          const napravId = this.$route.query.nap || ''
-          const projectId = this.$route.query.proj || ''
-          const listId =
-            this.listId || localStorage.getItem('at-filterList') || ''
+          const napravId =
+            this.$store.getters.napravId ||
+            localStorage.getItem('at-napravId') ||
+            ''
+          const projectId =
+            this.$store.getters.projectId ||
+            localStorage.getItem('at-projectId') ||
+            ''
+          const listId = this.listId || localStorage.getItem('at-listId') || ''
 
           const item = createItem(
             Date.now().toString(),
@@ -54,19 +59,16 @@ export default {
           )
 
           this.$store.commit('addItem2', item)
-
-          this.loading = true // Какую функцию выполняет эта строчка?
           const res = await this.$store.dispatch('addItem2', item)
           if (res) {
-            this.loading = false
             this.$store.commit('addMessage', {
               text: 'Данные успешно добавлены',
-              type: 'bg-success',
+              type: 'bg-success'
             })
           } else {
             this.$store.commit('addMessage', {
               text: 'Ошибка при добавлении данных 01',
-              type: 'bg-danger',
+              type: 'bg-danger'
             })
           }
 
@@ -77,11 +79,11 @@ export default {
       } catch (error) {
         this.$store.commit('addMessage', {
           text: 'Ошибка при добавлении данных',
-          type: 'bg-danger',
+          type: 'bg-danger'
         })
         console.log('Ошибка при создании Item: Item.vue = ', error)
       }
-    },
-  },
+    }
+  }
 }
 </script>

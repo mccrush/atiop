@@ -34,7 +34,13 @@
         :item="item"
         @edit-item="editItem"
       />
-      <AddItem v-if="list.type === 'lists'" :type="'tasks'" :listId="list.id" />
+      <div class="ms-2 me-2">
+        <AddItem
+          v-if="list.type === 'lists'"
+          :type="'tasks'"
+          :listId="list.id"
+        />
+      </div>
     </div>
   </div>
 </template>
