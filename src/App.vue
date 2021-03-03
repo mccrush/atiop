@@ -14,7 +14,6 @@
     </transition>
 
     <ModalForm
-      v-if="itemForModal"
       :item="itemForModal"
       :napravs="napravs"
       :projects="projects"

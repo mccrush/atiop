@@ -12,6 +12,7 @@
           <div class="row">
             <div class="col-10">
               <input
+                v-if="item"
                 type="text"
                 class="form-control form-control-sm"
                 :class="{ 'border-danger': error }"
@@ -239,7 +240,14 @@
 import getDateNow from '@/scripts/getDateNow'
 
 export default {
-  props: ['item', 'napravs', 'projects'],
+  props: {
+    item: {
+      type: Object,
+      default: null,
+    },
+    napravs: Array,
+    projects: Array,
+  },
   data() {
     return {
       error: false,
