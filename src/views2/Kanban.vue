@@ -8,15 +8,30 @@
         @edit-item="editItem"
       />
     </div>
+    <ModalForm
+      v-if="itemForModal"
+      :item="itemForModal"
+      :napravs="napravs"
+      :projects="projects"
+      id="exampleModal"
+    />
   </div>
 </template>
 
 <script>
+import { Modal } from 'bootstrap'
 import List from '@/components/item/List'
+import ModalForm from '@/components/item/ModalForm'
 
 export default {
   components: {
     List,
+    ModalForm,
+  },
+  data() {
+    return {
+      itemForModal: null,
+    }
   },
   computed: {
     viewType() {
@@ -28,9 +43,22 @@ export default {
       }
       return this.$store.getters[this.viewType + '2']
     },
+    napravs() {
+      return this.$store.getters.napravs2
+    },
+    projects() {
+      return this.$store.getters.projects2
+    },
+    tasks() {
+      return this.$store.getters.tasks2
+    },
   },
   methods: {
-    editItem() {},
+    editItem({ id, type }) {
+      this.itemForModal = this[type].find((item) => item.id === id)
+      let myModal = new Modal(document.getElementById('exampleModal'))
+      myModal.show()
+    },
   },
 }
 </script>

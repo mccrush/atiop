@@ -56,9 +56,9 @@ export default {
     }
   },
   actions: {
-    async updateItem2({ commit, state }, id) {
+    async updateItem2({ commit, state }, { id, type }) {
       try {
-        const task = state.tasks.find(task => task.id === id)
+        const task = state[type].find(task => task.id === id)
         const REF = db.collection('users').doc(auth.currentUser.uid).collection('items')
         await REF.doc(id).update(task)
         return true

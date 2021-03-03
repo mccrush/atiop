@@ -1,7 +1,6 @@
 <template>
   <div
     class="modal fade"
-    id="exampleModal"
     tabindex="-1"
     role="dialog"
     aria-labelledby="exampleModalLabel"
@@ -21,7 +20,7 @@
               />
             </div>
             <div class="col-2 ps-0">
-              <div class="input-group input-group-sm">
+              <!-- <div class="input-group input-group-sm">
                 <input
                   type="number"
                   max="360"
@@ -34,13 +33,13 @@
                 <span class="input-group-text ps-1 pe-1" id="for-time"
                   >мин.</span
                 >
-              </div>
+              </div> -->
             </div>
           </div>
 
           <div class="row mt-2">
             <div class="col-4 pe-0">
-              <div class="form-floating">
+              <!-- <div class="form-floating">
                 <input
                   :disabled="item && item.type === 'napravs'"
                   type="datetime-local"
@@ -49,10 +48,10 @@
                   v-model="item.date"
                 />
                 <label for="date">Выполнение</label>
-              </div>
+              </div> -->
             </div>
             <div class="col-4 pe-0">
-              <div class="form-floating">
+              <!-- <div class="form-floating">
                 <input
                   :disabled="item && item.type === 'napravs'"
                   type="datetime-local"
@@ -61,10 +60,10 @@
                   v-model="item.deadline"
                 />
                 <label for="deadline">Сдача</label>
-              </div>
+              </div> -->
             </div>
             <div class="col-4">
-              <div class="form-floating">
+              <!-- <div class="form-floating">
                 <select
                   v-model="item.status"
                   @change="changeStatus"
@@ -84,13 +83,13 @@
                   </option>
                 </select>
                 <label for="statusSelect">Статус</label>
-              </div>
+              </div> -->
             </div>
           </div>
 
           <div class="row mt-2">
             <div class="col-4 pe-0">
-              <div class="form-floating">
+              <!-- <div class="form-floating">
                 <select
                   v-model="item.napravId"
                   :disabled="item && item.type === 'napravs'"
@@ -107,11 +106,11 @@
                   </option>
                 </select>
                 <label for="napravSelect">Направление</label>
-              </div>
+              </div> -->
             </div>
 
             <div class="col-4 pe-0">
-              <div class="form-floating">
+              <!-- <div class="form-floating">
                 <select
                   v-model="item.projectId"
                   class="form-select form-select-sm"
@@ -132,10 +131,10 @@
                   </option>
                 </select>
                 <label for="projectSelect">Проект</label>
-              </div>
+              </div> -->
             </div>
             <div class="col-2">
-              <div class="form-floating">
+              <!-- <div class="form-floating">
                 <input
                   v-if="item"
                   type="number"
@@ -147,10 +146,10 @@
                   v-model.number="item.position"
                 />
                 <label for="position">#</label>
-              </div>
+              </div> -->
             </div>
             <div class="col-2 ps-0">
-              <div class="form-floating">
+              <!-- <div class="form-floating">
                 <input
                   v-if="item"
                   type="number"
@@ -165,7 +164,7 @@
                   "
                 />
                 <label for="price">Цена</label>
-              </div>
+              </div> -->
             </div>
           </div>
 
@@ -178,7 +177,7 @@
                   v-model="item.desc"
                 ></textarea>-->
 
-              <div
+              <!-- <div
                 v-if="item.type === 'projects'"
                 class="d-flex justify-content-between mt-2"
               >
@@ -190,7 +189,7 @@
                   :class="{ 'rounded-circle': color === scolor }"
                   @click="color = scolor"
                 ></div>
-              </div>
+              </div> -->
             </div>
           </div>
           <hr />
@@ -247,22 +246,22 @@ export default {
       error: false,
     }
   },
-  computed: {
-    statusArr() {
-      return this.$store.getters.status
-    },
-    projectsFilter() {
-      if (this.napravId) {
-        return this.projects.filter((item) => item.napravId === this.napravId)
-      } else {
-        return this.projects
-      }
-    },
-  },
+  // computed: {
+  //   statusArr() {
+  //     return this.$store.getters.status
+  //   },
+  //   projectsFilter() {
+  //     if (this.napravId) {
+  //       return this.projects.filter((item) => item.napravId === this.napravId)
+  //     } else {
+  //       return this.projects
+  //     }
+  //   },
+  // },
   methods: {
     updateItem() {
       // Сделать асинхронной и выводить сообщения об ошибках
-      if (this.title) {
+      if (this.item.title) {
         if (this.napravId) {
           this.item.napravTitle = this.napravs.find(
             (item) => item.id === this.napravId
@@ -279,7 +278,21 @@ export default {
           this.item.projectTitle = 'Без проекта'
         }
 
-        this.$store.dispatch('updateItem', this.item)
+        const res = this.$store.dispatch('updateItem2', {
+          id: this.item.id,
+          type: this.item.type,
+        })
+        if (res) {
+          this.$store.commit('addMessage', {
+            text: 'Данные успешно обновлены',
+            type: 'bg-success',
+          })
+        } else {
+          this.$store.commit('addMessage', {
+            text: 'Ошибка при обновлении данных',
+            type: 'bg-danger',
+          })
+        }
       } else {
         this.error = true
       }
