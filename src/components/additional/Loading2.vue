@@ -7,7 +7,7 @@
   /* display: inline-block;
   width: 16px;
   height: 16px; */
-  margin-right: 24px;
+  margin-right: 18px;
 }
 .lds-dual-ring:after {
   content: ' ';

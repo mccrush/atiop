@@ -203,7 +203,6 @@
                   removeItem({
                     id: item.id,
                     type: item.type,
-                    idproj: item.projectId,
                   })
                 "
               >
@@ -297,9 +296,20 @@ export default {
         this.error = true
       }
     },
-    removeItem({ id, type, idproj }) {
-      // Сделать асинхронной и выводить сообщения об ошибках
-      this.$store.dispatch('removeItem', { id, type, idproj })
+    removeItem({ id, type }) {
+      this.$store.commit('removeItem2', { id, type })
+      const res = this.$store.dispatch('removeItem2', { id, type })
+      if (res) {
+        this.$store.commit('addMessage', {
+          text: 'Данные успешно Удалены',
+          type: 'bg-success',
+        })
+      } else {
+        this.$store.commit('addMessage', {
+          text: 'Ошибка при удалении данных',
+          type: 'bg-danger',
+        })
+      }
     },
     changeStatus() {
       this.$store.dispatch('changeStatus', {

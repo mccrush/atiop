@@ -53,9 +53,21 @@ export default {
       const task = tasks[index]
       tasks[index] = { ...task, status, dateStart, dateDone }
       state.tasks = tasks
-    }
+    },
+    removeItem2(state, { id, type }) {
+      state[type] = state[type].filter(item => item.id !== id)
+    },
   },
   actions: {
+    async removeItem2({ commit }, { id, type }) {
+      try {
+        const REF = db.collection('users').doc(auth.currentUser.uid).collection('items')
+        await REF.doc(id).delete()
+        return true
+      } catch (error) {
+        console.log('Error items.js, action removeItem2(): ', error);
+      }
+    },
     async updateItem2({ commit, state }, { id, type }) {
       try {
         const task = state[type].find(task => task.id === id)
@@ -63,7 +75,7 @@ export default {
         await REF.doc(id).update(task)
         return true
       } catch (error) {
-        console.log('Error items.js: ', error);
+        console.log('Error items.js, action updateItem2(): ', error);
       }
     },
     async addItem2({ commit }, item) {
@@ -99,7 +111,7 @@ export default {
         commit('changeLoading', false)
         console.log('Данные с сервера переданы в State')
       } catch (error) {
-        console.log('Ошибка item.js -> getItems2:', error)
+        console.log('Ошибка item.js: action getItems2():', error)
       }
     }
   },

@@ -1,6 +1,6 @@
 <template>
-  <div class="row bg-success p-3 kanban">
-    <div class="my-width-none p-0">
+  <div class="row bg-light pt-3 kanban">
+    <div class="p-0">
       <List
         v-for="list in items"
         :key="'list' + list.id"

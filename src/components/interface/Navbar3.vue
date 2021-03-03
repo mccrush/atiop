@@ -118,7 +118,7 @@
       </div>
 
       <div class="d-none d-md-flex align-items-center">
-        <!-- <Loading2 v-if="loading2" /> Надо переместить в другое место -->
+        <Loading2 v-if="loading2" />
         <div
           class="btn-group btn-group-sm me-3"
           role="group"

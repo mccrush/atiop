@@ -1,5 +1,5 @@
 <template>
-  <div class="my-project d-inline-block border rounded-1 ms-3 p-0 pb-0">
+  <div class="d-inline-block bg-white border rounded-1 p-0 ms-3 my-project">
     <h6
       class="my-no-select d-flex flex-row align-items-start text-center rounded mt-2 mb-2"
       @dblclick.prevent="editItem({ id: list.id, type: list.type })"

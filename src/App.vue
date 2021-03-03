@@ -1,7 +1,7 @@
 <template>
   <div>
     <Navbar />
-    <div class="container-fluid ps-0 pe-0">
+    <div class="container-fluid">
       <component :is="Component" />
     </div>
 
