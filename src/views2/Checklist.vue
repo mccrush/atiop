@@ -15,7 +15,13 @@
 </template>
 
 <script>
-export default {}
+export default {
+  methods: {
+    editItem({ id, type }) {
+      this.$emit('edit-item', { id, type })
+    },
+  },
+}
 </script>
 
 <style scoped>

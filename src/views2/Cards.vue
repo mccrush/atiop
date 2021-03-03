@@ -25,7 +25,9 @@ export default {
     },
   },
   methods: {
-    editItem() {},
+    editItem({ id, type }) {
+      this.$emit('edit-item', { id, type })
+    },
   },
 }
 </script>
