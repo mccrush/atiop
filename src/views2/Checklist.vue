@@ -1,14 +1,14 @@
 <template>
   <div class="row bg-light pt-3 ps-3 pe-3 checklist">
     <ul class="list-group p-0">
-      <li v-for="i in 8" :key="i + 'kk'" class="list-group-item">
+      <li v-for="i in items" :key="i + 'kk'" class="list-group-item">
         <input
-          class="form-check-input me-1"
+          class="form-check-input me-2"
           type="checkbox"
           value=""
           aria-label="..."
         />
-        First {{ i }} checkbox
+        {{ i.title }}
       </li>
     </ul>
   </div>
@@ -16,6 +16,14 @@
 
 <script>
 export default {
+  computed: {
+    viewType() {
+      return this.$store.getters.viewType
+    },
+    items() {
+      return this.$store.getters[this.viewType + '2']
+    },
+  },
   methods: {
     editItem({ id, type }) {
       this.$emit('edit-item', { id, type })
