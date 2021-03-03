@@ -1,7 +1,7 @@
 <template>
   <div class="row d-flex align-items-start bg-light pt-3 ps-2 kanban">
     <List
-      v-for="list in items"
+      v-for="list in itemsFilter"
       :key="'list' + list.id"
       :list="list"
       @edit-item="editItem"
@@ -26,19 +26,24 @@ export default {
     projectId() {
       return this.$store.getters.projectId
     },
+    lists() {
+      return this.$store.getters.lists2
+    },
     items() {
+      if (this.viewType === 'napravs') {
+        return this.$store.getters.napravs2
+      }
+      return this.$store.getters.projects2
+    },
+    itemsFilter() {
       if (this.napravId) {
         if (this.projectId) {
-          return this.$store.getters.lists2.filter(
-            item => item.projectId === this.projectId
-          )
+          return this.lists.filter(item => item.projectId === this.projectId)
         } else {
-          return this.$store.getters.projects2.filter(
-            item => item.napravId === this.napravId
-          )
+          return this.items.filter(item => item.napravId === this.napravId)
         }
       } else {
-        return this.$store.getters.napravs2
+        return this.items
       }
     }
   },
