@@ -1,5 +1,5 @@
 <template>
-  <div class="row bg-light pt-3 ps-2 kanban">
+  <div class="row d-flex align-items-start bg-light pt-3 ps-2 kanban">
     <List
       v-for="list in items"
       :key="'list' + list.id"

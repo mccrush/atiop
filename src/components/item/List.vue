@@ -89,7 +89,8 @@ export default {
 .my-project {
   width: 210px; /* 226 for scroll */
   vertical-align: top;
-  max-height: calc(100vh - 135px);
+  height: auto;
+  max-height: calc(100vh - 92px);
   overflow-y: hidden;
 }
 
