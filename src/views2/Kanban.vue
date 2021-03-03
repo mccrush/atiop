@@ -20,11 +20,26 @@ export default {
     viewType() {
       return this.$store.getters.viewType
     },
+    napravId() {
+      return this.$store.getters.napravId
+    },
+    projectId() {
+      return this.$store.getters.projectId
+    },
     items() {
-      if (this.viewType === 'tasks') {
-        return this.$store.getters['projects2']
+      if (this.napravId) {
+        if (this.projectId) {
+          return this.$store.getters.lists2.filter(
+            (item) => item.projectId === this.projectId
+          )
+        } else {
+          return this.$store.getters.projects2.filter(
+            (item) => item.napravId === this.napravId
+          )
+        }
+      } else {
+        return this.$store.getters.napravs2
       }
-      return this.$store.getters[this.viewType + '2']
     },
   },
   methods: {

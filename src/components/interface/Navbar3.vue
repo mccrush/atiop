@@ -203,6 +203,15 @@ export default {
   },
   methods: {
     setViewType(type) {
+      if (type === 'napravs') {
+        this.$store.commit('setId', { id: '', typeId: 'napravId' })
+        this.$store.commit('setId', { id: '', typeId: 'projectId' })
+        this.$store.commit('setId', { id: '', typeId: 'listId' })
+      }
+      if (type === 'projects') {
+        this.$store.commit('setId', { id: '', typeId: 'projectId' })
+        this.$store.commit('setId', { id: '', typeId: 'listId' })
+      }
       this.$store.commit('setViewType', type)
     },
     setViewView(view) {

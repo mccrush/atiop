@@ -13,7 +13,7 @@
         v-if="list.type !== 'lists'"
         tag="button"
         class="btn btn-sm btn-light border p-0 ps-2 pe-2 m-0 me-2"
-        @click="setId"
+        @click="setId(list.type)"
       >
         In
       </button>
@@ -67,14 +67,16 @@ export default {
     },
   },
   methods: {
-    setId() {
-      if (this.list.type === 'napravs') {
+    setId(type) {
+      if (type === 'napravs') {
         this.$store.commit('setId', { id: this.list.id, typeId: 'napravId' })
         this.$store.commit('setId', { id: '', typeId: 'projectId' })
         this.$store.commit('setId', { id: '', typeId: 'listId' })
-      } else if (this.list.type === 'projects') {
+        this.$store.commit('setViewType', 'projects')
+      } else if (type === 'projects') {
         this.$store.commit('setId', { id: this.list.id, typeId: 'projectId' })
         this.$store.commit('setId', { id: '', typeId: 'listId' })
+        this.$store.commit('setViewType', 'lists')
       } else {
         this.$store.commit('setId', { id: this.list.id, typeId: 'listId' })
       }
