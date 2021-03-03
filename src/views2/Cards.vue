@@ -1,5 +1,5 @@
 <template>
-  <div class="row align-content-start bg-warning p-3 cards">
+  <div class="row align-content-start bg-white m-0 pt-3 cards">
     <Item
       v-for="item in items"
       :key="'item' + item.id"
