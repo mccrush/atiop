@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom">
+  <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container-fluid">
       <a class="d-none d-md-block navbar-brand" href="#about">
         <img
