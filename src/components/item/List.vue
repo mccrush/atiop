@@ -13,7 +13,7 @@
         v-if="list.type !== 'lists'"
         tag="button"
         class="btn btn-sm btn-light border p-0 ps-2 pe-2 m-0 me-2"
-        @click="saveFilter"
+        @click="setId"
       >
         In
       </button>
@@ -67,15 +67,16 @@ export default {
     },
   },
   methods: {
-    saveFilter() {
+    setId() {
       if (this.list.type === 'napravs') {
-        this.$store.commit('setNap', this.list.id)
-        this.$router.push({ query: { nap: this.list.id } })
+        this.$store.commit('setId', { id: this.list.id, typeId: 'napravId' })
+        this.$store.commit('setId', { id: '', typeId: 'projectId' })
+        this.$store.commit('setId', { id: '', typeId: 'listId' })
+      } else if (this.list.type === 'projects') {
+        this.$store.commit('setId', { id: this.list.id, typeId: 'projectId' })
+        this.$store.commit('setId', { id: '', typeId: 'listId' })
       } else {
-        this.$store.commit('setProj', this.list.id)
-        this.$router.push({
-          query: { nap: this.list.napravId, proj: this.list.id },
-        })
+        this.$store.commit('setId', { id: this.list.id, typeId: 'listId' })
       }
     },
     editItem({ id, type }) {

@@ -306,7 +306,7 @@ export default {
     },
     removeItem({ id, type }) {
       this.$store.commit('removeItem2', { id, type })
-      const res = this.$store.dispatch('removeItem2', { id, type })
+      const res = this.$store.dispatch('removeItem2', { id })
       if (res) {
         this.$store.commit('addMessage', {
           text: 'Данные успешно Удалены',

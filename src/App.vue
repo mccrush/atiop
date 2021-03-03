@@ -62,8 +62,10 @@ export default {
         return 'Kanban'
       } else if (this.viewView === 'cards') {
         return 'Cards'
-      } else {
+      } else if (this.viewView === 'checklist') {
         return 'Checklist'
+      } else {
+        return 'Kanban'
       }
     },
     napravs() {

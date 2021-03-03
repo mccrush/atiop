@@ -8,10 +8,11 @@ export default {
     lists: [],
     tasks: [],
     loading2: false,
-    nap: localStorage.getItem('at-filterNaprav') || '',
-    proj: localStorage.getItem('at-filterProject') || '',
-    viewType: localStorage.getItem('at-viewType') || '',
-    viewView: localStorage.getItem('at-viewView') || '',
+    napravId: localStorage.getItem('at-napravId') || '',
+    projectId: localStorage.getItem('at-projectId') || '',
+    listId: localStorage.getItem('at-listId') || '',
+    viewType: localStorage.getItem('at-viewType') || 'napravs',
+    viewView: localStorage.getItem('at-viewView') || 'kanban',
   },
   mutations: {
     setViewType(state, type) {
@@ -22,21 +23,9 @@ export default {
       state.viewView = view
       localStorage.setItem('at-viewView', view)
     },
-    setNap(state, nap) {
-      state.nap = nap
-      state.proj = ''
-      localStorage.setItem('at-filterNaprav', nap)
-      localStorage.setItem('at-filterProject', '')
-    },
-    setProj(state, proj) {
-      state.proj = proj
-      localStorage.setItem('at-filterProject', proj)
-    },
-    setNapProj(state, { nap, proj }) {
-      state.nap = nap
-      state.proj = proj
-      localStorage.setItem('at-filterNaprav', nap)
-      localStorage.setItem('at-filterProject', proj)
+    setId(state, { id, typeId }) {
+      state[typeId] = id
+      localStorage.setItem('at-' + typeId, id)
     },
     changeLoading(state, value) {
       state.loading2 = value
@@ -59,7 +48,7 @@ export default {
     },
   },
   actions: {
-    async removeItem2({ commit }, { id, type }) {
+    async removeItem2({ commit }, { id }) {
       try {
         const REF = db.collection('users').doc(auth.currentUser.uid).collection('items')
         await REF.doc(id).delete()
@@ -121,8 +110,9 @@ export default {
     lists2: state => state.lists,
     tasks2: state => state.tasks,
     loading2: state => state.loading2,
-    nap: state => state.nap,
-    proj: state => state.proj,
+    napravId: state => state.napravId,
+    projectId: state => state.projectId,
+    listId: state => state.listId,
     viewType: state => state.viewType,
     viewView: state => state.viewView
   }
