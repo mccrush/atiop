@@ -33,6 +33,7 @@
         :key="'item' + item.id"
         :item="item"
         @edit-item="editItem"
+        @set-id="setId"
       />
       <div class="ms-2 me-2">
         <AddItem
