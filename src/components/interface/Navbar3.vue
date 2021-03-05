@@ -73,7 +73,7 @@
             :class="{ active: viewType === 'napravs' }"
             @click="setViewType('napravs')"
           >
-            Направления
+            НПР
           </button>
           <button
             type="button"
@@ -81,24 +81,24 @@
             :class="{ active: viewType === 'projects' }"
             @click="setViewType('projects')"
           >
-            Проекты
+            ПРК
           </button>
           <button
             type="button"
             class="btn btn-outline-light text-secondary"
             :class="{
               active: viewType === 'tasks',
-              disabled: viewView === 'kanban',
+              disabled: viewView === 'kanban'
             }"
             @click="setViewType('tasks')"
           >
-            Задачи
+            ЗДЧ
           </button>
         </div>
 
         <div class="dropdown">
           <button
-            class="btn btn-sm btn-outline-light text-secondary dropdown-toggle"
+            class="btn btn-sm btn-outline-light text-secondary dropdown-toggle me-3"
             type="button"
             id="dropdownFilter"
             data-bs-toggle="dropdown"
@@ -115,6 +115,12 @@
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </div>
+        <div class="me-3">
+          <AddItem v-if="viewType === 'napravs'" :type="'napravs'" />
+        </div>
+        <div class="">
+          <AddItem v-if="viewType === 'napravs'" :type="'projects'" />
+        </div>
       </div>
 
       <div class="d-none d-md-flex align-items-center">
@@ -129,11 +135,11 @@
             class="btn btn-outline-light text-secondary"
             :class="{
               active: viewView === 'kanban',
-              disabled: viewType === 'tasks',
+              disabled: viewType === 'tasks'
             }"
             @click="setViewView('kanban')"
           >
-            Канбан
+            Кан
           </button>
           <button
             type="button"
@@ -141,7 +147,7 @@
             :class="{ active: viewView === 'cards' }"
             @click="setViewView('cards')"
           >
-            Карточки
+            Кар
           </button>
           <button
             type="button"
@@ -149,7 +155,7 @@
             :class="{ active: viewView === 'checklist' }"
             @click="setViewView('checklist')"
           >
-            Чеклист
+            Чек
           </button>
         </div>
 
@@ -184,11 +190,13 @@
 import { Dropdown } from 'bootstrap' // Без него не работает Dropdown
 import SettingsDrop from '@/components/additional/SettingsDrop'
 import Loading2 from '@/components/additional/Loading2'
+import AddItem from '@/components/item/AddItem'
 
 export default {
   components: {
     SettingsDrop,
     Loading2,
+    AddItem
   },
   computed: {
     loading2() {
@@ -199,7 +207,7 @@ export default {
     },
     viewView() {
       return this.$store.getters.viewView
-    },
+    }
   },
   methods: {
     setViewType(type) {
@@ -216,8 +224,8 @@ export default {
     },
     setViewView(view) {
       this.$store.commit('setViewView', view)
-    },
-  },
+    }
+  }
 }
 </script>
 

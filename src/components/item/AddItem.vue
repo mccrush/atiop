@@ -15,7 +15,7 @@ import createItem from '@/scripts/createItem'
 export default {
   props: {
     type: String,
-    listId: String
+    listId: { type: String, default: '' }
   },
   data() {
     return {
