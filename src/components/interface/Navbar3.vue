@@ -73,7 +73,7 @@
             :class="{ active: viewType === 'napravs' }"
             @click="setViewType('napravs')"
           >
-            НПР
+            Напр
           </button>
           <button
             type="button"
@@ -81,7 +81,7 @@
             :class="{ active: viewType === 'projects' }"
             @click="setViewType('projects')"
           >
-            ПРК
+            Проек
           </button>
           <button
             type="button"
@@ -92,7 +92,7 @@
             }"
             @click="setViewType('tasks')"
           >
-            ЗДЧ
+            Задач
           </button>
         </div>
 
@@ -116,17 +116,13 @@
           </ul>
         </div>
         <div>
-          <AddItem
-            v-if="viewType === 'napravs'"
-            :type="'napravs'"
-            class="me-3"
-          />
+          <AddItem v-if="viewType === 'napravs'" :type="'napravs'" />
         </div>
         <div>
-          <AddItem v-if="napravId" :type="'projects'" class="me-3" />
+          <AddItem v-if="napravId && !projectId" :type="'projects'" />
         </div>
         <div>
-          <AddItem v-if="projectId" :type="'lists'" class="ms-3" />
+          <AddItem v-if="projectId" :type="'lists'" />
         </div>
       </div>
 
