@@ -74,7 +74,7 @@
               :class="{ active: viewType === 'napravs' }"
               @click="setViewType('napravs')"
             >
-              Направлен
+              {{ napravTitle }}
             </button>
             <button
               type="button"
@@ -95,7 +95,7 @@
               :class="{ active: viewType === 'projects' }"
               @click="setViewType('projects')"
             >
-              Проекты
+              {{ projectTitle }}
             </button>
             <button
               type="button"
@@ -242,6 +242,22 @@ export default {
     },
     projectId() {
       return this.$store.getters.projectId
+    },
+    napravTitle() {
+      if (this.napravId) {
+        return this.$store.getters.napravs2.find(
+          item => item.id === this.napravId
+        ).title
+      }
+      return 'Направление'
+    },
+    projectTitle() {
+      if (this.projectId) {
+        return this.$store.getters.projects2.find(
+          item => item.id === this.projectId
+        ).title
+      }
+      return 'Проект'
     }
   },
   methods: {
