@@ -67,22 +67,48 @@
           role="group"
           aria-label="Basic example"
         >
-          <button
-            type="button"
-            class="btn btn-outline-light text-secondary"
-            :class="{ active: viewType === 'napravs' }"
-            @click="setViewType('napravs')"
-          >
-            Напр
-          </button>
-          <button
-            type="button"
-            class="btn btn-outline-light text-secondary"
-            :class="{ active: viewType === 'projects' }"
-            @click="setViewType('projects')"
-          >
-            Проек
-          </button>
+          <div class="btn-group">
+            <button
+              type="button"
+              class="btn btn-sm btn-outline-light text-secondary"
+              :class="{ active: viewType === 'napravs' }"
+              @click="setViewType('napravs')"
+            >
+              Направлен
+            </button>
+            <button
+              type="button"
+              class="btn btn-sm btn-outline-light dropdown-toggle dropdown-toggle-split text-secondary"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              id="dropdownNaprav"
+            ></button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownNaprav">
+              ... List napravs
+            </ul>
+          </div>
+
+          <div class="btn-group">
+            <button
+              type="button"
+              class="btn btn-sm btn-outline-light text-secondary"
+              :class="{ active: viewType === 'projects' }"
+              @click="setViewType('projects')"
+            >
+              Проекты
+            </button>
+            <button
+              type="button"
+              class="btn btn-sm btn-outline-light dropdown-toggle dropdown-toggle-split text-secondary"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              id="dropdownProject"
+            ></button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownProject">
+              ... List projects
+            </ul>
+          </div>
+
           <button
             type="button"
             class="btn btn-outline-light text-secondary"
@@ -108,7 +134,7 @@
           </button>
           <ul
             class="dropdown-menu bg-white border-0 shadow p-3 pt-2"
-            aria-labelledby="dropdownMenuButton1"
+            aria-labelledby="dropdownFilter"
           >
             <li><a class="dropdown-item" href="#">Action</a></li>
             <li><a class="dropdown-item" href="#">Another action</a></li>
