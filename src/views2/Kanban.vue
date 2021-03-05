@@ -1,5 +1,7 @@
 <template>
-  <div class="row d-flex align-items-start bg-light pt-3 ps-2 kanban">
+  <div
+    class="row d-flex flex-nowrap align-items-start bg-light pt-3 ps-2 kanban"
+  >
     <List
       v-for="list in itemsFilter"
       :key="'list' + list.id"
@@ -58,7 +60,7 @@ export default {
 <style scoped>
 .kanban {
   height: calc(100vh - 60px);
-  overflow-y: auto;
+  overflow-x: auto;
 }
 
 .my-width-none {
