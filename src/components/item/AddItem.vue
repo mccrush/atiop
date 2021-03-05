@@ -15,7 +15,8 @@ import createItem from '@/scripts/createItem'
 export default {
   props: {
     type: String,
-    listId: { type: String, default: '' }
+    listId: { type: String, default: '' },
+    napravId: { type: String, default: '' }
   },
   data() {
     return {
@@ -40,7 +41,9 @@ export default {
       try {
         if (this.itemTitle) {
           const napravId =
-            this.$store.getters.napravId || localStorage.getItem('at-napravId')
+            this.napravId ||
+            this.$store.getters.napravId ||
+            localStorage.getItem('at-napravId')
           const projectId =
             this.$store.getters.projectId ||
             localStorage.getItem('at-projectId')
