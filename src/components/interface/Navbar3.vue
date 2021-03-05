@@ -159,32 +159,35 @@
           role="group"
           aria-label="Basic example"
         >
-          <!-- <button
-            v-if="viewType === 'napravs' || viewType === 'projects'"
-            type="button"
-            class="btn btn-outline-light text-secondary"
-            :class="{ active: viewView === 'kanban' }"
-            @click="setViewView('kanban')"
-          >
-            Кан
-          </button> -->
           <button
             v-if="viewType === 'tasks'"
             type="button"
-            class="btn btn-outline-light text-secondary"
+            class="btn btn-outline-light text-secondary p-0 pb-1 ps-2 pe-2"
             :class="{ active: viewView === 'cards' }"
             @click="setViewView('cards')"
           >
-            Кар
+            <img
+              src="/img/icons_tool/grid.svg"
+              width="16"
+              height="16"
+              alt="Cards"
+              class="opacity-04"
+            />
           </button>
           <button
             v-if="viewType === 'tasks'"
             type="button"
-            class="btn btn-outline-light text-secondary"
+            class="btn btn-outline-light text-secondary p-0 pb-1 ps-2 pe-2"
             :class="{ active: viewView === 'checklist' }"
             @click="setViewView('checklist')"
           >
-            Чек
+            <img
+              src="/img/icons_tool/list-check.svg"
+              width="16"
+              height="16"
+              alt="Checklist"
+              class="opacity-04"
+            />
           </button>
         </div>
 
