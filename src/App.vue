@@ -39,12 +39,12 @@ export default {
     Kanban,
     Cards,
     Checklist,
-    ModalForm,
+    ModalForm
   },
   data() {
     return {
       showMessage: false,
-      itemForModal: null,
+      itemForModal: null
     }
   },
   computed: {
@@ -74,16 +74,19 @@ export default {
     projects() {
       return this.$store.getters.projects2
     },
+    lists() {
+      return this.$store.getters.lists2
+    },
     tasks() {
       return this.$store.getters.tasks2
-    },
+    }
   },
   methods: {
     editItem({ id, type }) {
-      this.itemForModal = this[type].find((item) => item.id === id)
+      this.itemForModal = this[type].find(item => item.id === id)
       let myModal = new Modal(document.getElementById('exampleModal'))
       myModal.show()
-    },
+    }
   },
   watch: {
     message() {
@@ -93,8 +96,8 @@ export default {
           this.showMessage = false
         }, 3600)
       }
-    },
-  },
+    }
+  }
 }
 </script>
 
