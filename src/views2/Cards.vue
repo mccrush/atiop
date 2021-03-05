@@ -1,5 +1,5 @@
 <template>
-  <div class="row d-flex align-items-start bg-light pt-3 ps-2 cards">
+  <div class="row d-flex align-content-start bg-light pt-3 ps-2 cards">
     <Item
       v-for="item in items"
       :key="'item' + item.id"
@@ -14,7 +14,7 @@ import Item from '@/components/item/Item'
 
 export default {
   components: {
-    Item,
+    Item
   },
   computed: {
     viewType() {
@@ -22,13 +22,13 @@ export default {
     },
     items() {
       return this.$store.getters[this.viewType + '2']
-    },
+    }
   },
   methods: {
     editItem({ id, type }) {
       this.$emit('edit-item', { id, type })
-    },
-  },
+    }
+  }
 }
 </script>
 
