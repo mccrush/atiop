@@ -35,6 +35,14 @@ export default {
       } else {
         return 'Добавить задачу'
       }
+    },
+    lists() {
+      if (this.projectId) {
+        return this.$store.getters.lists2.filter(
+          item => item.projectId === this.projectId
+        )
+      }
+      return []
     }
   },
   methods: {
@@ -49,7 +57,23 @@ export default {
             this.projectId ||
             this.$store.getters.projectId ||
             localStorage.getItem('at-projectId')
-          const listId = this.listId || localStorage.getItem('at-listId') || ''
+          let listId = this.listId || localStorage.getItem('at-listId') || ''
+
+          if (!listId) {
+            let list = this.lists.find(item => item.title === 'Inbox')
+            if (!list) {
+              list = createItem(
+                Date.now().toString(),
+                'Inbox',
+                'lists',
+                napravId,
+                projectId
+              )
+              this.$store.commit('addItem2', list)
+              await this.$store.dispatch('addItem2', list)
+            }
+            listId = list.id
+          }
 
           const item = createItem(
             Date.now().toString(),
