@@ -115,11 +115,18 @@
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </div>
-        <div class="me-3">
-          <AddItem v-if="viewType === 'napravs'" :type="'napravs'" />
+        <div>
+          <AddItem
+            v-if="viewType === 'napravs'"
+            :type="'napravs'"
+            class="me-3"
+          />
         </div>
-        <div class="">
-          <AddItem v-if="viewType === 'napravs'" :type="'projects'" />
+        <div>
+          <AddItem v-if="napravId" :type="'projects'" class="me-3" />
+        </div>
+        <div>
+          <AddItem v-if="projectId" :type="'lists'" class="ms-3" />
         </div>
       </div>
 
@@ -207,6 +214,12 @@ export default {
     },
     viewView() {
       return this.$store.getters.viewView
+    },
+    napravId() {
+      return this.$store.getters.napravId
+    },
+    projectId() {
+      return this.$store.getters.projectId
     }
   },
   methods: {
