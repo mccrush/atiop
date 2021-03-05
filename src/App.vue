@@ -111,6 +111,10 @@ export default {
   box-shadow: none !important;
 }
 
+.dropdown-item {
+  cursor: pointer;
+}
+
 .slide-fade-enter-active {
   transition: all 0.3s ease;
 }
