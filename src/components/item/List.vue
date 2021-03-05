@@ -38,6 +38,9 @@
       <div v-if="list.type === 'napravs'" class="ms-2 me-2 mb-2">
         <AddItem :type="'projects'" :napravId="list.id" />
       </div>
+      <div v-if="list.type === 'projects'" class="ms-2 me-2 mb-2">
+        <AddItem :type="'tasks'" :projectId="list.id" />
+      </div>
       <div v-if="list.type === 'lists'" class="ms-2 me-2">
         <AddItem :type="'tasks'" :listId="list.id" />
       </div>

@@ -16,7 +16,8 @@ export default {
   props: {
     type: String,
     listId: { type: String, default: '' },
-    napravId: { type: String, default: '' }
+    napravId: { type: String, default: '' },
+    projectId: { type: String, default: '' }
   },
   data() {
     return {
@@ -45,6 +46,7 @@ export default {
             this.$store.getters.napravId ||
             localStorage.getItem('at-napravId')
           const projectId =
+            this.projectId ||
             this.$store.getters.projectId ||
             localStorage.getItem('at-projectId')
           const listId = this.listId || localStorage.getItem('at-listId') || ''
