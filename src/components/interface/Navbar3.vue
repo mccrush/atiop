@@ -113,8 +113,7 @@
             type="button"
             class="btn btn-outline-light text-secondary"
             :class="{
-              active: viewType === 'tasks',
-              disabled: viewView === 'kanban'
+              active: viewType === 'tasks'
             }"
             @click="setViewType('tasks')"
           >
@@ -155,22 +154,22 @@
       <div class="d-none d-md-flex align-items-center">
         <Loading2 v-if="loading2" />
         <div
+          v-if="viewType === 'tasks'"
           class="btn-group btn-group-sm me-3"
           role="group"
           aria-label="Basic example"
         >
-          <button
+          <!-- <button
+            v-if="viewType === 'napravs' || viewType === 'projects'"
             type="button"
             class="btn btn-outline-light text-secondary"
-            :class="{
-              active: viewView === 'kanban',
-              disabled: viewType === 'tasks'
-            }"
+            :class="{ active: viewView === 'kanban' }"
             @click="setViewView('kanban')"
           >
             Кан
-          </button>
+          </button> -->
           <button
+            v-if="viewType === 'tasks'"
             type="button"
             class="btn btn-outline-light text-secondary"
             :class="{ active: viewView === 'cards' }"
@@ -179,6 +178,7 @@
             Кар
           </button>
           <button
+            v-if="viewType === 'tasks'"
             type="button"
             class="btn btn-outline-light text-secondary"
             :class="{ active: viewView === 'checklist' }"
@@ -237,6 +237,12 @@ export default {
     viewView() {
       return this.$store.getters.viewView
     },
+    napravs() {
+      return this.$store.getters.napravs2
+    },
+    projects() {
+      return this.$store.getters.projects2
+    },
     napravId() {
       return this.$store.getters.napravId
     },
@@ -244,18 +250,14 @@ export default {
       return this.$store.getters.projectId
     },
     napravTitle() {
-      if (this.napravId) {
-        return this.$store.getters.napravs2.find(
-          item => item.id === this.napravId
-        ).title
+      if (this.napravId && this.napravs.length) {
+        return this.napravs.find(item => item.id === this.napravId).title
       }
       return 'Направление'
     },
     projectTitle() {
-      if (this.projectId) {
-        return this.$store.getters.projects2.find(
-          item => item.id === this.projectId
-        ).title
+      if (this.projectId && this.projects.length) {
+        return this.projects.find(item => item.id === this.projectId).title
       }
       return 'Проект'
     }
@@ -266,10 +268,15 @@ export default {
         this.$store.commit('setId', { id: '', typeId: 'napravId' })
         this.$store.commit('setId', { id: '', typeId: 'projectId' })
         this.$store.commit('setId', { id: '', typeId: 'listId' })
+        this.$store.commit('setViewView', 'kanban')
       }
       if (type === 'projects') {
         this.$store.commit('setId', { id: '', typeId: 'projectId' })
         this.$store.commit('setId', { id: '', typeId: 'listId' })
+        this.$store.commit('setViewView', 'kanban')
+      }
+      if (type === 'tasks') {
+        this.$store.commit('setViewView', 'cards')
       }
       this.$store.commit('setViewType', type)
     },
