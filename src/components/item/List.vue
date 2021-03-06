@@ -111,7 +111,7 @@ export default {
 }
 
 .task-list {
-  max-height: calc(100vh - 178px);
+  max-height: calc(100vh - 134px);
   overflow-y: auto;
   overflow-x: hidden;
 }
