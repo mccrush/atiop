@@ -87,10 +87,14 @@
               class="dropdown-menu border-0 shadow"
               aria-labelledby="dropdownNaprav"
             >
-              <li class="dropdown-item" @click="setViewType('napravs')">
+              <li
+                v-if="napravId"
+                class="dropdown-item"
+                @click="setViewType('napravs')"
+              >
                 Показать все
               </li>
-              <li><hr class="dropdown-divider" /></li>
+              <li v-if="napravId"><hr class="dropdown-divider" /></li>
               <li
                 v-for="naprav in napravs"
                 :key="naprav.id"
@@ -122,10 +126,14 @@
               class="dropdown-menu border-0 shadow"
               aria-labelledby="dropdownProject"
             >
-              <li class="dropdown-item" @click="setViewType('projects')">
+              <li
+                v-if="projectId"
+                class="dropdown-item"
+                @click="setViewType('projects')"
+              >
                 Показать все
               </li>
-              <li><hr class="dropdown-divider" /></li>
+              <li v-if="projectId"><hr class="dropdown-divider" /></li>
               <li
                 v-for="project in projectsFiltered"
                 :key="project.id"
