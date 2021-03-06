@@ -1,7 +1,9 @@
 <template>
-  <div class="my-project d-inline-block border rounded-1 mt-2 me-2 p-2 pb-0">
+  <div
+    class="d-inline-block bg-white border rounded-1 p-0 ms-2 me-2 my-project"
+  >
     <h6
-      class="my-no-select d-flex flex-row align-items-start text-center rounded mt-1 mb-2"
+      class="my-no-select d-flex flex-row align-items-start text-center rounded mt-2 mb-2"
       @dblclick.prevent="editItem({ id: list.id, type: list.type })"
     >
       <div class="w-100" :class="{ 'ps-4': list.type !== 'lists' }">
@@ -10,8 +12,8 @@
       <button
         v-if="list.type !== 'lists'"
         tag="button"
-        class="btn btn-sm btn-light border p-0 ps-2 pe-2 m-0"
-        @click="saveFilter"
+        class="btn btn-sm btn-light border p-0 ps-2 pe-2 m-0 me-2"
+        @click="setId(list.type)"
       >
         In
       </button>
@@ -31,8 +33,17 @@
         :key="'item' + item.id"
         :item="item"
         @edit-item="editItem"
+        @set-id="setId"
       />
-      <AddItem v-if="list.type === 'lists'" :type="'tasks'" :listId="list.id" />
+      <div v-if="list.type === 'napravs'" class="ms-2 me-2 mb-2">
+        <AddItem :type="'projects'" :napravId="list.id" />
+      </div>
+      <div v-if="list.type === 'projects'" class="ms-2 me-2 mb-2">
+        <AddItem :type="'tasks'" :projectId="list.id" />
+      </div>
+      <div v-if="list.type === 'lists'" class="ms-2 me-2">
+        <AddItem :type="'tasks'" :listId="list.id" />
+      </div>
     </div>
   </div>
 </template>
@@ -44,47 +55,45 @@ import AddItem from '@/components/item/AddItem'
 export default {
   components: {
     Item,
-    AddItem,
+    AddItem
   },
   props: ['list'],
   computed: {
-    // projectId() {
-    //   if (this.list.type === 'projects') {
-    //     return this.list.id
-    //   }
-    // },
     items() {
       if (this.list.type === 'napravs') {
         return this.$store.getters.projects2.filter(
-          (proj) => proj.napravId === this.list.id
+          proj => proj.napravId === this.list.id
         )
       } else if (this.list.type === 'projects') {
         return this.$store.getters.tasks2.filter(
-          (task) => task.projectId === this.list.id
+          task => task.projectId === this.list.id
         )
       } else if (this.list.type === 'lists') {
         return this.$store.getters.tasks2.filter(
-          (task) => task.listId === this.list.id
+          task => task.listId === this.list.id
         )
       }
-    },
+    }
   },
   methods: {
-    saveFilter() {
-      if (this.list.type === 'napravs') {
-        this.$store.commit('setNap', this.list.id)
-        this.$router.push({ query: { nap: this.list.id } })
-      } else {
-        this.$store.commit('setProj', this.list.id)
-        this.$router.push({
-          query: { nap: this.list.napravId, proj: this.list.id },
+    setId(type) {
+      if (type === 'napravs') {
+        this.$store.commit('setId', { id: this.list.id, typeId: 'napravId' })
+        this.$store.commit('setId', { id: '', typeId: 'projectId' })
+        this.$store.commit('setViewType', 'projects')
+      } else if (type === 'projects') {
+        this.$store.commit('setId', {
+          id: this.list.napravId,
+          typeId: 'napravId'
         })
+        this.$store.commit('setId', { id: this.list.id, typeId: 'projectId' })
+        this.$store.commit('setViewType', 'projects')
       }
     },
     editItem({ id, type }) {
       this.$emit('edit-item', { id, type })
-    },
-  },
+    }
+  }
 }
 </script>
 
@@ -92,7 +101,8 @@ export default {
 .my-project {
   width: 210px; /* 226 for scroll */
   vertical-align: top;
-  max-height: calc(100vh - 135px);
+  height: auto;
+  max-height: calc(100vh - 92px);
   overflow-y: hidden;
 }
 
@@ -101,7 +111,7 @@ export default {
 }
 
 .task-list {
-  max-height: calc(100vh - 178px);
+  max-height: calc(100vh - 134px);
   overflow-y: auto;
   overflow-x: hidden;
 }

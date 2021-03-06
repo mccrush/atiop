@@ -1,7 +1,7 @@
 <template>
-  <nav class="navbar navbar-expand-md navbar-light bg-white shadow">
+  <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom">
     <div class="container-fluid">
-      <router-link class="d-none d-md-block navbar-brand" to="/about" tag="a">
+      <a class="d-none d-md-block navbar-brand" href="#about">
         <img
           src="/img/icons/logo_8.svg"
           height="26"
@@ -9,7 +9,7 @@
           alt="ATIOP"
         />
         ATIOP
-      </router-link>
+      </a>
 
       <button
         class="opacity-06 navbar-toggler border-0 ps-0 pe-0"
@@ -24,20 +24,19 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <router-link class="d-md-none navbar-brand me-0" to="/about" tag="a">
+      <a class="d-md-none navbar-brand me-0" href="#about">
         <img
           src="/img/icons/logo_8.svg"
           height="26"
           class="d-inline-block mb-1 me-0"
           alt="ATIOP"
         />
-      </router-link>
+      </a>
 
       <div class="d-flex d-md-none align-items-center">
         <Loading2 v-if="loading2" />
         <div class="dropdown">
           <button
-            v-if="$route.path !== '/login'"
             class="opacity-04 btn btn-sm p-0 me-1"
             title="Настройки"
             id="dropdownMenuSettings"
@@ -61,7 +60,7 @@
       </div>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto">
+        <!-- <ul class="navbar-nav me-auto">
           <li class="nav-item">
             <router-link
               to="/"
@@ -80,15 +79,6 @@
               >Проекты</router-link
             >
           </li>
-          <!-- <li class="nav-item">
-            <router-link
-              to="/plan"
-              class="nav-link"
-              :class="{ disabled: !user }"
-              :aria-disabled="user ? 'true' : 'false'"
-              >План</router-link
-            >
-          </li> -->
           <li class="nav-item">
             <router-link
               to="/review"
@@ -98,7 +88,6 @@
               >Обзор</router-link
             >
           </li>
-
           <li class="nav-item">
             <router-link
               to="/items"
@@ -108,23 +97,13 @@
               >Items</router-link
             >
           </li>
-
-          <!-- <li class="nav-item">
-            <router-link
-              to="/calendar"
-              class="nav-link"
-              :class="{'disabled': !user}"
-              :aria-disabled="user ? 'true': 'false'"
-            >Календарь</router-link>
-          </li> -->
-        </ul>
+        </ul> -->
       </div>
 
       <div class="d-none d-md-flex align-items-center">
         <Loading2 v-if="loading2" />
         <div class="dropdown">
           <button
-            v-if="$route.path !== '/login'"
             class="opacity-04 btn btn-sm p-0 me-1"
             title="Настройки"
             id="dropdownMenuSettings"
@@ -153,31 +132,31 @@
 <script>
 import { auth } from '@/firebase.js'
 import { Dropdown } from 'bootstrap'
-import SettingsDrop from '@/components/additional/SettingsDrop'
-import Loading2 from '@/components/additional/Loading2'
+//import SettingsDrop from '@/components/additional/SettingsDrop'
+//import Loading2 from '@/components/additional/Loading2'
 
 export default {
   name: 'navbar',
-  components: {
-    SettingsDrop,
-    Loading2,
-  },
+  // components: {
+  //   SettingsDrop,
+  //   Loading2,
+  // },
   data() {
     return {
       user: auth.currentUser,
       userName: '',
     }
   },
-  computed: {
-    loading2() {
-      return this.$store.getters.loading2
-    },
-  },
-  mounted() {
-    auth.onAuthStateChanged((user) => {
-      this.user = user
-    })
-  },
+  // computed: {
+  //   loading2() {
+  //     return this.$store.getters.loading2
+  //   },
+  // },
+  // mounted() {
+  //   auth.onAuthStateChanged((user) => {
+  //     this.user = user
+  //   })
+  // },
 }
 </script>
 
@@ -197,13 +176,9 @@ export default {
 
 a.router-link-active {
   color: #ffc107 !important;
-  /* font-weight: bold; */
-  /* border-bottom: 2px solid #ffc107; */
 }
 a.router-link-active.login {
   color: #fff !important;
-  /* font-weight: bold; */
-  /* border-bottom: 2px solid #ffc107; */
 }
 
 .btn-light {

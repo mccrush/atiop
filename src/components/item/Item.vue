@@ -1,6 +1,6 @@
 <template>
   <div
-    class="item align-self-start border rounded-1 pt-1 pb-1 ps-2 pe-2 mb-2"
+    class="item align-self-start border rounded-1 pt-1 pb-1 ps-2 pe-2 ms-2 me-2 mb-2"
     :class="{
       ' bg-white': item.status === 'todo' || item.status === 'work',
       ' bg-light': item.status === 'done',
@@ -14,7 +14,7 @@
         Math.ceil(
           (new Date(item.deadline).getTime() - new Date().getTime()) /
             (1000 * 3600 * 24)
-        ) <= 1 && item.status !== 'done',
+        ) <= 1 && item.status !== 'done'
     }"
     @dblclick.prevent="$emit('edit-item', { id: item.id, type: item.type })"
   >
@@ -50,10 +50,10 @@
     <hr class="m-1" />
     <div class="btn-group w-100" role="group">
       <button
-        v-if="item.type === 'projects'"
+        v-if="item.type === 'napravs' || item.type === 'projects'"
         type="button"
         class="btn btn-sm btn-white border p-0 ps-2 pe-2 w-100"
-        @click="saveFilter"
+        @click="setId"
       >
         In
       </button>
@@ -93,7 +93,7 @@ export default {
   computed: {
     settings() {
       return this.$store.getters.settings
-    },
+    }
   },
   methods: {
     async changeTaskStatus(status) {
@@ -103,7 +103,7 @@ export default {
           type: this.item.type,
           status,
           dateStart: getDateNow,
-          dateDone: '',
+          dateDone: ''
         })
       } else if (status === 'done') {
         this.$store.commit('changeTaskStatus2', {
@@ -111,7 +111,7 @@ export default {
           type: this.item.type,
           status,
           dateStart: this.item.dateStart,
-          dateDone: getDateNow,
+          dateDone: getDateNow
         })
       } else {
         console.log('Item: Ошибка при смене статуса')
@@ -120,26 +120,27 @@ export default {
       if (res) {
         this.$store.commit('addMessage', {
           text: 'Данные успешно обновлены',
-          type: 'bg-success',
+          type: 'bg-success'
         })
       } else {
         this.$store.commit('addMessage', {
           text: 'При обновлении данных произошла ошибка',
-          type: 'bg-danger',
+          type: 'bg-danger'
         })
       }
     },
-    saveFilter() {
-      this.$store.commit('setNapProj', {
-        nap: this.item.napravId,
-        proj: this.item.id,
+    setId() {
+      this.$store.commit('setId', {
+        id: this.item.napravId,
+        typeId: 'napravId'
       })
-      this.$router.push({
-        query: { nap: this.item.napravId, proj: this.item.id },
+      this.$store.commit('setId', {
+        id: this.item.id,
+        typeId: 'projectId'
       })
-    },
-    removeItem(id) {},
-  },
+      this.$store.commit('setViewType', 'projects')
+    }
+  }
 }
 </script>
 
