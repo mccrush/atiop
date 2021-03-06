@@ -312,12 +312,10 @@ export default {
       if (type === 'napravs') {
         this.$store.commit('setId', { id: '', typeId: 'napravId' })
         this.$store.commit('setId', { id: '', typeId: 'projectId' })
-        this.$store.commit('setId', { id: '', typeId: 'listId' })
         this.$store.commit('setViewView', 'kanban')
       }
       if (type === 'projects') {
         this.$store.commit('setId', { id: '', typeId: 'projectId' })
-        this.$store.commit('setId', { id: '', typeId: 'listId' })
         this.$store.commit('setViewView', 'kanban')
       }
       if (type === 'tasks') {
