@@ -59,7 +59,7 @@ export default {
             localStorage.getItem('at-projectId')
           let listId = this.listId || localStorage.getItem('at-listId') || ''
 
-          if (!listId) {
+          if (this.type === 'tasks' && !listId) {
             let list = this.lists.find(item => item.title === 'Inbox')
             if (!list) {
               list = createItem(
