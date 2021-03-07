@@ -80,6 +80,7 @@ export default {
     },
     async getItems2({ commit }) {
       try {
+        console.log('Run action getItems2()')
         commit('changeLoading', true)
         let napravs = [], projects = [], lists = [], tasks = []
         const REF = db.collection('users').doc(auth.currentUser.uid).collection('items')

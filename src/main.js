@@ -9,6 +9,7 @@ import { auth } from './firebase'
 let app
 
 auth.onAuthStateChanged((user) => {
+  console.log('User: ', user)
   if (!app) {
     app = createApp(App).use(store).mount('#app')
   }

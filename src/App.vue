@@ -25,10 +25,12 @@
 <script>
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Modal } from 'bootstrap'
+import { auth } from '@/firebase.js'
 import Navbar from '@/components/interface/Navbar3'
 import Message from '@/components/additional/Message'
 import ViewProjects from '@/views2/ViewProjects'
 import ViewTasks from '@/views2/ViewTasks'
+import Login from '@/views2/Login2'
 import ModalForm from '@/components/item/ModalForm'
 
 export default {
@@ -37,10 +39,12 @@ export default {
     Message,
     ViewProjects,
     ViewTasks,
+    Login,
     ModalForm
   },
   data() {
     return {
+      user: auth.currentUser,
       showMessage: false,
       itemForModal: null
     }
@@ -53,10 +57,13 @@ export default {
       return this.$store.getters.viewType
     },
     Component() {
-      if (this.viewType === 'tasks') {
-        return 'ViewTasks'
+      if (this.user) {
+        if (this.viewType === 'tasks') {
+          return 'ViewTasks'
+        }
+        return 'ViewProjects'
       }
-      return 'ViewProjects'
+      return 'Login'
     },
     napravs() {
       return this.$store.getters.napravs2
