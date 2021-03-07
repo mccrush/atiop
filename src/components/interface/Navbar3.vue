@@ -39,7 +39,7 @@
           <button
             class="btn btn-sm p-0 me-1 opacity-06"
             title="Настройки"
-            id="dropdownMenuSettings"
+            id="dropdownMenuSettings1"
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
@@ -51,12 +51,10 @@
             />
           </button>
 
-          <transition name="slide-fade">
-            <SettingsDrop
-              class="dropdown-menu dropdown-menu-end"
-              aria-labelledby="dropdownMenuSettings"
-            />
-          </transition>
+          <SettingsDrop
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="dropdownMenuSettings1"
+          />
         </div>
       </div>
 
@@ -242,12 +240,11 @@
               alt="Настройки"
             />
           </button>
-          <transition name="slide-fade">
-            <SettingsDrop
-              class="dropdown-menu dropdown-menu-end"
-              aria-labelledby="dropdownMenuSettings"
-            />
-          </transition>
+
+          <SettingsDrop
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="dropdownMenuSettings"
+          />
         </div>
       </div>
     </div>

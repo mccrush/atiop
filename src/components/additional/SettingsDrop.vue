@@ -1,11 +1,11 @@
 <template>
   <div class="bg-white border-0 shadow p-3 pt-2 mt-2 settings-form">
     <h5 class="text-center">Настройки</h5>
-    <router-link
-      to="/user"
+    <a
+      href="/user"
       class="btn btn-sm btn-light border p-0 ps-2 pe-2 me-2"
       title="Настройки аккаунта"
-      >Аккаунт</router-link
+      >Аккаунт</a
     >
     <button
       @click.prevent="logOut"
@@ -241,13 +241,13 @@ export default {
       showPrice: null,
       showTime: null,
       sortBy: '',
-      sortUp: true,
+      sortUp: true
     }
   },
   computed: {
     settings() {
       return this.$store.getters.settings
-    },
+    }
   },
 
   mounted() {
@@ -271,7 +271,7 @@ export default {
         showPrice: this.showPrice,
         showTime: this.showTime,
         sortBy: this.sortBy,
-        sortUp: this.sortUp,
+        sortUp: this.sortUp
       })
     },
     updateValue() {
@@ -286,13 +286,13 @@ export default {
       this.showProject = this.settings.showProject
       this.showPrice = this.settings.showPrice
       this.showTime = this.settings.showTime
-    },
+    }
   },
   watch: {
     settings() {
       this.updateValue()
-    },
-  },
+    }
+  }
 }
 </script>
 
