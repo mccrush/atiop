@@ -52,14 +52,11 @@ export default {
     viewType() {
       return this.$store.getters.viewType
     },
-    viewView() {
-      return this.$store.getters.viewView
-    },
     Component() {
-      if (this.viewView === 'kanban') {
-        return 'ViewProjects'
+      if (this.viewType === 'tasks') {
+        return 'ViewTasks'
       }
-      return 'ViewTasks'
+      return 'ViewProjects'
     },
     napravs() {
       return this.$store.getters.napravs2
