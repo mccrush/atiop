@@ -27,18 +27,16 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Modal } from 'bootstrap'
 import Navbar from '@/components/interface/Navbar3'
 import Message from '@/components/additional/Message'
-import Kanban from '@/views2/Kanban'
-import Cards from '@/views2/Cards'
-import Checklist from '@/views2/Checklist'
+import ViewProjects from '@/views2/ViewProjects'
+import ViewTasks from '@/views2/ViewTasks'
 import ModalForm from '@/components/item/ModalForm'
 
 export default {
   components: {
     Navbar,
     Message,
-    Kanban,
-    Cards,
-    Checklist,
+    ViewProjects,
+    ViewTasks,
     ModalForm
   },
   data() {
@@ -59,14 +57,9 @@ export default {
     },
     Component() {
       if (this.viewView === 'kanban') {
-        return 'Kanban'
-      } else if (this.viewView === 'cards') {
-        return 'Cards'
-      } else if (this.viewView === 'checklist') {
-        return 'Checklist'
-      } else {
-        return 'Kanban'
+        return 'ViewProjects'
       }
+      return 'ViewTasks'
     },
     napravs() {
       return this.$store.getters.napravs2
