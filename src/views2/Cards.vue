@@ -17,9 +17,6 @@ export default {
     Item
   },
   computed: {
-    viewType() {
-      return this.$store.getters.viewType
-    },
     napravId() {
       return this.$store.getters.napravId
     },
