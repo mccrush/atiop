@@ -21,8 +21,9 @@
               />
             </div>
             <div class="col-2 ps-0">
-              <!-- <div class="input-group input-group-sm">
+              <div class="input-group input-group-sm">
                 <input
+                  v-if="item"
                   type="number"
                   max="360"
                   min="0"
@@ -32,9 +33,9 @@
                   v-model.trim="item.time"
                 />
                 <span class="input-group-text ps-1 pe-1" id="for-time"
-                  >мин.</span
+                  >мин</span
                 >
-              </div> -->
+              </div>
             </div>
           </div>
 
@@ -64,13 +65,12 @@
               </div> -->
             </div>
             <div class="col-4">
-              <!-- <div class="form-floating">
+              <div class="form-floating">
                 <select
+                  v-if="item"
                   v-model="item.status"
-                  @change="changeStatus"
                   :disabled="
-                    item &&
-                    (item.type === 'napravs' || item.type === 'projects')
+                    item.type === 'napravs' || item.type === 'projects'
                   "
                   class="form-select form-select-sm"
                   id="statusSelect"
@@ -84,7 +84,7 @@
                   </option>
                 </select>
                 <label for="statusSelect">Статус</label>
-              </div> -->
+              </div>
             </div>
           </div>
 
@@ -135,7 +135,7 @@
               </div> -->
             </div>
             <div class="col-2">
-              <!-- <div class="form-floating">
+              <div class="form-floating">
                 <input
                   v-if="item"
                   type="number"
@@ -147,10 +147,10 @@
                   v-model.number="item.position"
                 />
                 <label for="position">#</label>
-              </div> -->
+              </div>
             </div>
             <div class="col-2 ps-0">
-              <!-- <div class="form-floating">
+              <div class="form-floating">
                 <input
                   v-if="item"
                   type="number"
@@ -165,7 +165,7 @@
                   "
                 />
                 <label for="price">Цена</label>
-              </div> -->
+              </div>
             </div>
           </div>
 
@@ -203,7 +203,7 @@
                 @click.prevent="
                   removeItem({
                     id: item.id,
-                    type: item.type,
+                    type: item.type
                   })
                 "
               >
@@ -238,19 +238,21 @@
 
 <script>
 import getDateNow from '@/scripts/getDateNow'
+import getStatus from '@/scripts/getStatus'
 
 export default {
   props: {
     item: {
       type: Object,
-      default: null,
+      default: null
     },
     napravs: Array,
-    projects: Array,
+    projects: Array
   },
   data() {
     return {
       error: false,
+      statusArr: getStatus
     }
   },
   // computed: {
@@ -266,12 +268,12 @@ export default {
   //   },
   // },
   methods: {
-    updateItem() {
+    async updateItem() {
       // Сделать асинхронной и выводить сообщения об ошибках
       if (this.item.title) {
         if (this.napravId) {
           this.item.napravTitle = this.napravs.find(
-            (item) => item.id === this.napravId
+            item => item.id === this.napravId
           ).title
         } else {
           this.item.napravTitle = 'Без направления'
@@ -279,43 +281,43 @@ export default {
 
         if (this.projectId) {
           this.item.projectTitle = this.projects.find(
-            (item) => item.id === this.projectId
+            item => item.id === this.projectId
           ).title
         } else {
           this.item.projectTitle = 'Без проекта'
         }
 
-        const res = this.$store.dispatch('updateItem2', {
+        const res = await this.$store.dispatch('updateItem2', {
           id: this.item.id,
-          type: this.item.type,
+          type: this.item.type
         })
         if (res) {
           this.$store.commit('addMessage', {
             text: 'Данные успешно обновлены',
-            type: 'bg-success',
+            type: 'bg-success'
           })
         } else {
           this.$store.commit('addMessage', {
             text: 'Ошибка при обновлении данных',
-            type: 'bg-danger',
+            type: 'bg-danger'
           })
         }
       } else {
         this.error = true
       }
     },
-    removeItem({ id, type }) {
+    async removeItem({ id, type }) {
       this.$store.commit('removeItem2', { id, type })
-      const res = this.$store.dispatch('removeItem2', { id })
+      const res = await this.$store.dispatch('removeItem2', { id })
       if (res) {
         this.$store.commit('addMessage', {
           text: 'Данные успешно Удалены',
-          type: 'bg-success',
+          type: 'bg-success'
         })
       } else {
         this.$store.commit('addMessage', {
           text: 'Ошибка при удалении данных',
-          type: 'bg-danger',
+          type: 'bg-danger'
         })
       }
     },
@@ -325,10 +327,10 @@ export default {
         type: this.item.type,
         status: this.status,
         dateStart: this.status === 'work' ? getDateNow : this.item.dateStart,
-        dateDone: this.status === 'done' ? getDateNow : '',
+        dateDone: this.status === 'done' ? getDateNow : ''
       })
-    },
-  },
+    }
+  }
 }
 </script>
 
