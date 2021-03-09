@@ -5,7 +5,7 @@
       description="ATIOP — сервис управления задачами"
     />
     <div class="col-12 col-sm-6 col-md-4 col-xl-4 text-left">
-      <form class="mt-5 mb-3 p-3 shadow-sm ms-auto me-auto max-width">
+      <div class="mt-5 mb-3 p-3 shadow-sm ms-auto me-auto max-width">
         <h4 class="text-center mt-2 mb-4">
           {{ mod === '#in' ? 'Авторизация' : 'Регистрация' }}
         </h4>
@@ -80,7 +80,7 @@
             >
           </small>
         </p>
-      </form>
+      </div>
     </div>
   </div>
 </template>
@@ -101,11 +101,6 @@ export default {
       passType: true
     }
   },
-  beforeMount() {
-    if (auth.currentUser) {
-      this.$router.push('/projects')
-    }
-  },
   methods: {
     async login() {
       const formData = {
@@ -115,9 +110,8 @@ export default {
 
       if (this.mod === '#in') {
         try {
+          console.log('login #in')
           await this.$store.dispatch('logIn', formData)
-
-          //this.$router.push('/projects')
         } catch (err) {
           if (err.code === 'auth/invalid-email') {
             this.$store.commit('addMessage', {

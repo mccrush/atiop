@@ -7,6 +7,7 @@ export default {
     projects: [],
     lists: [],
     tasks: [],
+
     loading2: false,
     napravId: localStorage.getItem('at-napravId') || '',
     projectId: localStorage.getItem('at-projectId') || '',
@@ -15,6 +16,9 @@ export default {
     viewView: localStorage.getItem('at-viewView') || 'kanban',
   },
   mutations: {
+    setUserId(state, id) {
+      state.userId = id
+    },
     setViewType(state, type) {
       state.viewType = type
       localStorage.setItem('at-viewType', type)
@@ -80,7 +84,6 @@ export default {
     },
     async getItems2({ commit }) {
       try {
-        console.log('Run action getItems2()')
         commit('changeLoading', true)
         let napravs = [], projects = [], lists = [], tasks = []
         const REF = db.collection('users').doc(auth.currentUser.uid).collection('items')
@@ -117,6 +120,7 @@ export default {
     projectId: state => state.projectId,
     listId: state => state.listId,
     viewType: state => state.viewType,
-    viewView: state => state.viewView
+    viewView: state => state.viewView,
+    userId: state => state.userId
   }
 }

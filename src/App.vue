@@ -44,12 +44,14 @@ export default {
   },
   data() {
     return {
-      user: auth.currentUser,
       showMessage: false,
       itemForModal: null
     }
   },
   computed: {
+    userId() {
+      return this.$store.getters.userId
+    },
     message() {
       return this.$store.getters.getMessage || ''
     },
@@ -57,7 +59,7 @@ export default {
       return this.$store.getters.viewType
     },
     Component() {
-      if (this.user) {
+      if (this.userId) {
         if (this.viewType === 'tasks') {
           return 'ViewTasks'
         }
