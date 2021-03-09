@@ -1,12 +1,12 @@
 <template>
   <div class="bg-white border-0 shadow p-3 pt-2 mt-2 settings-form">
     <h5 class="text-center">Настройки</h5>
-    <a
+    <!-- <a
       href="/user"
       class="btn btn-sm btn-light border p-0 ps-2 pe-2 me-2"
       title="Настройки аккаунта"
       >Аккаунт</a
-    >
+    > -->
     <button
       @click.prevent="logOut"
       class="btn btn-sm btn-light border p-0 ps-3 pe-3"
