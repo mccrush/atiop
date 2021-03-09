@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-    <div class="container-fluid">
-      <a class="d-none d-md-block navbar-brand" href="#about">
+    <div v-if="userId" class="container-fluid">
+      <div class="d-none d-md-block navbar-brand">
         <img
           src="/img/icons/logo_8.svg"
           height="26"
@@ -9,7 +9,7 @@
           alt="ATIOP"
         />
         ATIOP
-      </a>
+      </div>
 
       <button
         class="opacity-06 navbar-toggler border-0 ps-0 pe-0"
@@ -24,14 +24,14 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <a class="d-md-none navbar-brand me-0" href="#about">
+      <div class="d-md-none navbar-brand me-0">
         <img
           src="/img/icons/logo_8.svg"
           height="26"
           class="d-inline-block mb-1 me-0"
           alt="ATIOP"
         />
-      </a>
+      </div>
 
       <div class="d-flex d-md-none align-items-center">
         <Loading2 v-if="loading2" />
@@ -248,6 +248,18 @@
         </div>
       </div>
     </div>
+    <div v-else class="container-fluid">
+      <div class="d-none d-md-block navbar-brand">
+        <img
+          src="/img/icons/logo_8.svg"
+          height="26"
+          class="d-inline-block mb-1 me-1"
+          alt="ATIOP"
+        />
+        ATIOP
+      </div>
+      <a href="#about" class="btn btn-sm btn-light text-muted">О приложении</a>
+    </div>
   </nav>
 </template>
 
@@ -264,6 +276,9 @@ export default {
     AddItem
   },
   computed: {
+    userId() {
+      return this.$store.getters.userId
+    },
     loading2() {
       return this.$store.getters.loading2
     },
