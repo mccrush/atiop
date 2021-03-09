@@ -60,7 +60,7 @@
           {{ mod === '#in' ? 'Войти' : 'Заргегистрироваться' }}
         </button>
 
-        <p class="text-center m-0 mt-2">
+        <!-- <p class="text-center m-0 mt-2">
           <small class="text-center">
             или
             <br />
@@ -79,7 +79,7 @@
               >зарегистрироваться</a
             >
           </small>
-        </p>
+        </p> -->
       </div>
     </div>
   </div>
@@ -110,7 +110,6 @@ export default {
 
       if (this.mod === '#in') {
         try {
-          console.log('login #in')
           await this.$store.dispatch('logIn', formData)
         } catch (err) {
           if (err.code === 'auth/invalid-email') {
