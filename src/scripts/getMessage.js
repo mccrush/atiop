@@ -26,5 +26,5 @@ const messages = {
 }
 
 export default (code) => {
-  return messages.code
+  return messages[code]
 }
