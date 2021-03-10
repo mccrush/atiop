@@ -16,9 +16,13 @@ export default {
     viewView: localStorage.getItem('at-viewView') || 'kanban',
     arrayForRemove: [],
     arrayForRemoveLists: [],
-    arrayForRemoveProjects: []
+    arrayForRemoveProjects: [],
+    allItemsLength: 0
   },
   mutations: {
+    setAllItemsLength(state, length) {
+      state.allItemsLength = length
+    },
     setUserId(state, id) {
       state.userId = id
     },
@@ -123,6 +127,7 @@ export default {
       try {
         commit('changeLoading', true)
         let napravs = [], projects = [], lists = [], tasks = []
+        let allLength = 0
         const REF = db.collection('users').doc(auth.currentUser.uid).collection('items')
         const snapshot = await REF.get()
         snapshot.forEach(doc => {
@@ -135,11 +140,14 @@ export default {
           } else if (doc.data().type === 'tasks') {
             tasks.push(doc.data())
           }
+          allLength++
         })
+
         commit('setItems2', { type: 'napravs', items: napravs })
         commit('setItems2', { type: 'projects', items: projects })
         commit('setItems2', { type: 'lists', items: lists })
         commit('setItems2', { type: 'tasks', items: tasks })
+        commit('setAllItemsLength', allLength)
         commit('changeLoading', false)
         console.log('Данные с сервера переданы в State')
       } catch (error) {
@@ -158,6 +166,7 @@ export default {
     listId: state => state.listId,
     viewType: state => state.viewType,
     viewView: state => state.viewView,
-    userId: state => state.userId
+    userId: state => state.userId,
+    allItemsLength: state => state.allItemsLength
   }
 }

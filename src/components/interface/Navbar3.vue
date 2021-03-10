@@ -192,6 +192,10 @@
             :type="'tasks'"
           />
         </div>
+        <div class="ms-2 small">
+          All:
+          <span class="badge bg-info text-white"> {{ allItemsLength }}</span>
+        </div>
       </div>
 
       <div class="d-none d-md-flex align-items-center">
@@ -326,6 +330,9 @@ export default {
         return this.projects.find(item => item.id === this.projectId).title
       }
       return 'Проекты'
+    },
+    allItemsLength() {
+      return this.$store.getters.allItemsLength
     }
   },
   methods: {
