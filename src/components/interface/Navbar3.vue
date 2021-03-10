@@ -151,7 +151,7 @@
             }"
             @click="setViewType('tasks')"
           >
-            Задач
+            Задачи
           </button>
         </div>
 
