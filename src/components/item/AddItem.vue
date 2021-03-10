@@ -36,28 +36,29 @@ export default {
         return 'Добавить задачу'
       }
     },
+    napravs() {
+      return this.$store.getters.napravs2
+    },
+    projects() {
+      return this.$store.getters.projects2
+    },
     lists() {
       if (this.projectId) {
         return this.$store.getters.lists2.filter(
           item => item.projectId === this.projectId
         )
       }
-      return []
+      return this.$store.getters.lists2
     }
   },
   methods: {
     async addItem() {
       try {
         if (this.itemTitle) {
-          const napravId =
-            this.napravId ||
-            this.$store.getters.napravId ||
-            localStorage.getItem('at-napravId')
-          const projectId =
-            this.projectId ||
-            this.$store.getters.projectId ||
-            localStorage.getItem('at-projectId')
-          let listId = this.listId || localStorage.getItem('at-listId') || ''
+          let napravTitle, projectTitle, listTitle
+          const napravId = this.napravId || this.$store.getters.napravId
+          const projectId = this.projectId || this.$store.getters.projectId
+          let listId = this.listId || this.$store.getters.listId
 
           if (this.type === 'tasks' && !listId) {
             let list = this.lists.find(item => item.title === 'Inbox')
@@ -75,13 +76,37 @@ export default {
             listId = list.id
           }
 
+          if (napravId) {
+            napravTitle = this.napravs.find(item => item.id === napravId).title
+          } else {
+            napravTitle = 'Без направления'
+          }
+
+          if (projectId) {
+            projectTitle = this.projects.find(item => item.id === projectId)
+              .title
+          } else {
+            projectTitle = 'Без проекта'
+          }
+
+          console.log('listId:', listId)
+          if (listId) {
+            console.log('this.lists:', this.lists)
+            listTitle = this.lists.find(item => item.id === listId).title
+          } else {
+            listTitle = 'Inbox'
+          }
+
           const item = createItem(
             Date.now().toString(),
             this.itemTitle,
             this.type,
             napravId,
             projectId,
-            listId
+            listId,
+            napravTitle,
+            projectTitle,
+            listTitle
           )
 
           this.$store.commit('addItem2', item)

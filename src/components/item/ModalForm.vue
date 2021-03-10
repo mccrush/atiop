@@ -299,6 +299,14 @@ export default {
           this.item.projectTitle = 'Без проекта'
         }
 
+        if (this.listId) {
+          this.item.listTitle = this.lists.find(
+            item => item.id === this.listId
+          ).title
+        } else {
+          this.item.listTitle = 'Inbox'
+        }
+
         const res = await this.$store.dispatch('updateItem2', {
           id: this.item.id,
           type: this.item.type
