@@ -102,7 +102,7 @@ export default {
         type: this.item.type,
         status,
         dateStart: status === 'work' ? getDateNow : this.item.dateStart,
-        dateDone: this.status === 'done' ? getDateNow : ''
+        dateDone: status === 'done' ? getDateNow : ''
       })
 
       const res = await this.$store.dispatch('updateItem2', {
@@ -110,15 +110,9 @@ export default {
         type: this.item.type
       })
       if (res) {
-        this.$store.commit('addMessage', {
-          text: 'Данные успешно обновлены',
-          type: 'bg-success'
-        })
+        this.$store.commit('addMessage', 'dus')
       } else {
-        this.$store.commit('addMessage', {
-          text: 'При обновлении данных произошла ошибка',
-          type: 'bg-danger'
-        })
+        this.$store.commit('addMessage', 'due')
       }
     },
     setId() {

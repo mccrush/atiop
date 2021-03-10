@@ -72,6 +72,7 @@
                   :disabled="
                     item.type === 'napravs' || item.type === 'projects'
                   "
+                  @change="changeTaskStatus(value)"
                   class="form-select form-select-sm"
                   id="statusSelect"
                 >
@@ -291,15 +292,9 @@ export default {
           type: this.item.type
         })
         if (res) {
-          this.$store.commit('addMessage', {
-            text: 'Данные успешно обновлены',
-            type: 'bg-success'
-          })
+          this.$store.commit('addMessage', 'dus')
         } else {
-          this.$store.commit('addMessage', {
-            text: 'Ошибка при обновлении данных',
-            type: 'bg-danger'
-          })
+          this.$store.commit('addMessage', 'due')
         }
       } else {
         this.error = true
@@ -309,25 +304,19 @@ export default {
       this.$store.commit('removeItem2', { id, type })
       const res = await this.$store.dispatch('removeItem2', { id })
       if (res) {
-        this.$store.commit('addMessage', {
-          text: 'Данные успешно Удалены',
-          type: 'bg-success'
-        })
+        this.$store.commit('addMessage', 'ris')
       } else {
-        this.$store.commit('addMessage', {
-          text: 'Ошибка при удалении данных',
-          type: 'bg-danger'
-        })
+        this.$store.commit('addMessage', 'rie')
       }
     },
 
-    async changeTaskStatus() {
+    async changeTaskStatus(status) {
       this.$store.commit('changeTaskStatus2', {
         id: this.item.id,
         type: this.item.type,
-        status: this.status,
-        dateStart: this.status === 'work' ? getDateNow : this.item.dateStart,
-        dateDone: this.status === 'done' ? getDateNow : ''
+        status,
+        dateStart: status === 'work' ? getDateNow : this.item.dateStart,
+        dateDone: status === 'done' ? getDateNow : ''
       })
 
       const res = await this.$store.dispatch('updateItem2', {
@@ -335,15 +324,9 @@ export default {
         type: this.item.type
       })
       if (res) {
-        this.$store.commit('addMessage', {
-          text: 'Данные успешно обновлены',
-          type: 'bg-success'
-        })
+        this.$store.commit('addMessage', 'dus')
       } else {
-        this.$store.commit('addMessage', {
-          text: 'При обновлении данных произошла ошибка',
-          type: 'bg-danger'
-        })
+        this.$store.commit('addMessage', 'due')
       }
     }
   }
