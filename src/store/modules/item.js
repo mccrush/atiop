@@ -66,12 +66,15 @@ export default {
       } else if (type === 'projects') {
         state.arrayForRemoveTasks = state.tasks.filter(item => item.projectId === id)
         state.arrayForRemoveLists = state.tasks.filter(item => item.projectId === id)
+        state.arrayForRemoveProjects = []
         state.tasks = state.tasks.filter(item => item.projectId !== id)
         state.lists = state.lists.filter(item => item.projectId !== id)
       } else if (type === 'lists') {
         state.arrayForRemoveTasks = state.tasks.filter(item => item.listId === id)
         state.tasks = state.tasks.filter(item => item.listId !== id)
-      }
+        state.arrayForRemoveLists = []
+        state.arrayForRemoveProjects = []
+      } else if (type === 'tasks') { state.arrayForRemoveTasks = [] }
       state[type] = state[type].filter(item => item.id !== id)
     },
   },
@@ -83,16 +86,19 @@ export default {
         if (state.arrayForRemoveTasks.length) {
           state.arrayForRemoveTasks.forEach(item => {
             REF.doc(item.id).delete()
+            console.log('Suc Tasks remove id:', item.id);
           })
         }
         if (state.arrayForRemoveLists.length) {
           state.arrayForRemoveLists.forEach(item => {
             REF.doc(item.id).delete()
+            console.log('Suc List remove id:', item.id);
           })
         }
         if (state.arrayForRemoveProjects.length) {
           state.arrayForRemoveProjects.forEach(item => {
             REF.doc(item.id).delete()
+            console.log('Suc Proj remove id:', item.id);
           })
         }
         await REF.doc(id).delete()
