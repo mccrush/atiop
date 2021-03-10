@@ -285,6 +285,7 @@ export default {
   },
   methods: {
     async updateItem() {
+      console.log('ModForm updateItem() is run')
       if (this.item.title) {
         if (this.item.napravId) {
           this.item.napravTitle = this.napravs.find(
@@ -325,6 +326,7 @@ export default {
       }
     },
     async removeItem({ id, type }) {
+      this.changes = false
       this.$store.commit('removeItem2', { id, type })
       const res = await this.$store.dispatch('removeItem2', { id })
       if (res) {
