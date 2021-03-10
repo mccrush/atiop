@@ -95,6 +95,7 @@
               <div class="form-floating">
                 <select
                   v-if="item"
+                  @change="changes = true"
                   v-model="item.napravId"
                   :disabled="item && item.type === 'napravs'"
                   class="form-select form-select-sm"
@@ -117,6 +118,7 @@
               <div class="form-floating">
                 <select
                   v-if="item"
+                  @change="changes = true"
                   v-model="item.projectId"
                   class="form-select form-select-sm"
                   :disabled="
@@ -291,6 +293,12 @@ export default {
   methods: {
     async updateItem() {
       if (this.item.title) {
+        console.log(
+          'this.napravId:',
+          this.napravId,
+          'this.projectId:',
+          this.projectId
+        )
         if (this.napravId) {
           this.item.napravTitle = this.napravs.find(
             item => item.id === this.napravId
