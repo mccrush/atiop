@@ -7,8 +7,14 @@ const messages = {
     text: 'При обновлении данных произошла ошибка',
     type: 'bg-danger'
   },
-  'csu': {},
-  'cse': {},
+  'das': {
+    text: 'Данные успешно добавлены',
+    type: 'bg-success'
+  },
+  'dae': {
+    text: 'Ошибка при добавлении данных 01',
+    type: 'bg-danger'
+  },
   'ris': {
     text: 'Данные успешно Удалены',
     type: 'bg-success'

@@ -87,15 +87,9 @@ export default {
           this.$store.commit('addItem2', item)
           const res = await this.$store.dispatch('addItem2', item)
           if (res) {
-            this.$store.commit('addMessage', {
-              text: 'Данные успешно добавлены',
-              type: 'bg-success'
-            })
+            this.$store.commit('addMessage', 'das')
           } else {
-            this.$store.commit('addMessage', {
-              text: 'Ошибка при добавлении данных 01',
-              type: 'bg-danger'
-            })
+            this.$store.commit('addMessage', 'dae')
           }
 
           this.itemTitle = ''
@@ -103,10 +97,7 @@ export default {
           alert('Невозможно создать елемент без заголоака')
         }
       } catch (error) {
-        this.$store.commit('addMessage', {
-          text: 'Ошибка при добавлении данных',
-          type: 'bg-danger'
-        })
+        this.$store.commit('addMessage', 'dae')
         console.log('Ошибка при создании Item: Item.vue = ', error)
       }
     }
