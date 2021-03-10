@@ -7,7 +7,7 @@ export default {
     projects: [],
     lists: [],
     tasks: [],
-
+    userId: null,
     loading2: false,
     napravId: localStorage.getItem('at-napravId') || '',
     projectId: localStorage.getItem('at-projectId') || '',
