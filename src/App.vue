@@ -92,6 +92,7 @@ export default {
         this.showMessage = true
         setTimeout(() => {
           this.showMessage = false
+          this.$store.commit('addMessage', 'null')
         }, 3600)
       }
     }

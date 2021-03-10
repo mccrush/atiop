@@ -22,7 +22,8 @@ const messages = {
   'rie': {
     text: 'Ошибка при удалении данных',
     type: 'bg-danger'
-  }
+  },
+  'null': null
 }
 
 export default (code) => {
