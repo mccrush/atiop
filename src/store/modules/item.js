@@ -14,6 +14,9 @@ export default {
     listId: localStorage.getItem('at-listId') || '',
     viewType: localStorage.getItem('at-viewType') || 'napravs',
     viewView: localStorage.getItem('at-viewView') || 'kanban',
+    arrayForRemove: [],
+    arrayForRemoveLists: [],
+    arrayForRemoveProjects: []
   },
   mutations: {
     setUserId(state, id) {
@@ -50,23 +53,46 @@ export default {
     },
     removeItem2(state, { id, type }) {
       if (type === 'napravs') {
+        state.arrayForRemoveTasks = state.tasks.filter(item => item.napravId === id)
+        state.arrayForRemoveLists = state.tasks.filter(item => item.napravId === id)
+        state.arrayForRemoveProjects = state.tasks.filter(item => item.napravId === id)
         state.tasks = state.tasks.filter(item => item.napravId !== id)
         state.lists = state.lists.filter(item => item.napravId !== id)
         state.projects = state.projects.filter(item => item.napravId !== id)
       } else if (type === 'projects') {
+        state.arrayForRemoveTasks = state.tasks.filter(item => item.projectId === id)
+        state.arrayForRemoveLists = state.tasks.filter(item => item.projectId === id)
         state.tasks = state.tasks.filter(item => item.projectId !== id)
         state.lists = state.lists.filter(item => item.projectId !== id)
       } else if (type === 'lists') {
+        state.arrayForRemoveTasks = state.tasks.filter(item => item.listId === id)
         state.tasks = state.tasks.filter(item => item.listId !== id)
       }
       state[type] = state[type].filter(item => item.id !== id)
     },
   },
   actions: {
-    async removeItem2({ commit }, { id }) {
+    async removeItem2({ commit, state }, { id }) {
       try {
+        commit('changeLoading', true)
         const REF = db.collection('users').doc(auth.currentUser.uid).collection('items')
+        if (state.arrayForRemoveTasks.length) {
+          state.arrayForRemoveTasks.forEach(item => {
+            REF.doc(item.id).delete()
+          })
+        }
+        if (state.arrayForRemoveLists.length) {
+          state.arrayForRemoveLists.forEach(item => {
+            REF.doc(item.id).delete()
+          })
+        }
+        if (state.arrayForRemoveProjects.length) {
+          state.arrayForRemoveProjects.forEach(item => {
+            REF.doc(item.id).delete()
+          })
+        }
         await REF.doc(id).delete()
+        commit('changeLoading', false)
         return true
       } catch (error) {
         console.log('Error items.js, action removeItem2(): ', error);
