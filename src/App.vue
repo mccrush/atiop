@@ -25,7 +25,6 @@
 <script>
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Modal } from 'bootstrap'
-import { auth } from '@/firebase.js'
 import Navbar from '@/components/interface/Navbar3'
 import Message from '@/components/additional/Message'
 import ViewProjects from '@/views2/ViewProjects'

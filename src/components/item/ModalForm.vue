@@ -92,8 +92,9 @@
 
           <div class="row mt-2">
             <div class="col-4 pe-0">
-              <!-- <div class="form-floating">
+              <div class="form-floating">
                 <select
+                  v-if="item"
                   v-model="item.napravId"
                   :disabled="item && item.type === 'napravs'"
                   class="form-select form-select-sm"
@@ -109,12 +110,13 @@
                   </option>
                 </select>
                 <label for="napravSelect">Направление</label>
-              </div> -->
+              </div>
             </div>
 
             <div class="col-4 pe-0">
-              <!-- <div class="form-floating">
+              <div class="form-floating">
                 <select
+                  v-if="item"
                   v-model="item.projectId"
                   class="form-select form-select-sm"
                   :disabled="
@@ -134,7 +136,7 @@
                   </option>
                 </select>
                 <label for="projectSelect">Проект</label>
-              </div> -->
+              </div>
             </div>
             <div class="col-2">
               <div class="form-floating">
@@ -268,18 +270,24 @@ export default {
       }
     })
   },
-  // computed: {
-  //   statusArr() {
-  //     return this.$store.getters.status
-  //   },
-  //   projectsFilter() {
-  //     if (this.napravId) {
-  //       return this.projects.filter((item) => item.napravId === this.napravId)
-  //     } else {
-  //       return this.projects
-  //     }
-  //   },
-  // },
+  computed: {
+    // statusArr() {
+    //   return this.$store.getters.status
+    // },
+    napravId() {
+      return this.$store.getters.napravId
+    },
+    projectId() {
+      return this.$store.getters.projectId
+    },
+    projectsFilter() {
+      if (this.napravId) {
+        return this.projects.filter(item => item.napravId === this.napravId)
+      } else {
+        return this.projects
+      }
+    }
+  },
   methods: {
     async updateItem() {
       if (this.item.title) {
