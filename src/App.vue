@@ -27,18 +27,18 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Modal } from 'bootstrap'
 import Navbar from '@/components/interface/Navbar3'
 import Message from '@/components/additional/Message'
-import Kanban from '@/views2/Kanban'
-import Cards from '@/views2/Cards'
-import Checklist from '@/views2/Checklist'
+import ViewProjects from '@/views2/ViewProjects'
+import ViewTasks from '@/views2/ViewTasks'
+import Login from '@/views2/Login2'
 import ModalForm from '@/components/item/ModalForm'
 
 export default {
   components: {
     Navbar,
     Message,
-    Kanban,
-    Cards,
-    Checklist,
+    ViewProjects,
+    ViewTasks,
+    Login,
     ModalForm
   },
   data() {
@@ -48,25 +48,23 @@ export default {
     }
   },
   computed: {
+    userId() {
+      return this.$store.getters.userId
+    },
     message() {
       return this.$store.getters.getMessage || ''
     },
     viewType() {
       return this.$store.getters.viewType
     },
-    viewView() {
-      return this.$store.getters.viewView
-    },
     Component() {
-      if (this.viewView === 'kanban') {
-        return 'Kanban'
-      } else if (this.viewView === 'cards') {
-        return 'Cards'
-      } else if (this.viewView === 'checklist') {
-        return 'Checklist'
-      } else {
-        return 'Kanban'
+      if (this.userId) {
+        if (this.viewType === 'tasks') {
+          return 'ViewTasks'
+        }
+        return 'ViewProjects'
       }
+      return 'Login'
     },
     napravs() {
       return this.$store.getters.napravs2
@@ -94,6 +92,7 @@ export default {
         this.showMessage = true
         setTimeout(() => {
           this.showMessage = false
+          this.$store.commit('addMessage', 'null')
         }, 3600)
       }
     }

@@ -30,9 +30,9 @@ export default {
         throw err
       }
     },
-    async logIn({ commit, dispatch }, { email, password }) {
+    async logIn({ commit }, { email, password }) {
       try {
-        await auth.signInWithEmailAndPassword(email, password)
+        const res = await auth.signInWithEmailAndPassword(email, password)
       } catch (err) {
         // Передать сообщение об ошибке в шину
         throw err
@@ -40,9 +40,9 @@ export default {
     },
     async logOut() {
       await auth.signOut()
-      localStorage.removeItem('at-settings')
-      localStorage.removeItem('at-filterType')
-      localStorage.removeItem('at-filterValue')
+      //localStorage.removeItem('at-settings')
+      //localStorage.removeItem('at-filterType')
+      //localStorage.removeItem('at-filterValue')
     }
   }
 }

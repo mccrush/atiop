@@ -1,7 +1,7 @@
 <template>
   <div class="row d-flex align-content-start bg-light pt-3 ps-2 cards">
     <Item
-      v-for="item in items"
+      v-for="item in tasksFilter"
       :key="'item' + item.id"
       :item="item"
       @edit-item="editItem"
@@ -17,11 +17,22 @@ export default {
     Item
   },
   computed: {
-    viewType() {
-      return this.$store.getters.viewType
+    napravId() {
+      return this.$store.getters.napravId
     },
-    items() {
-      return this.$store.getters[this.viewType + '2']
+    projectId() {
+      return this.$store.getters.projectId
+    },
+    tasks() {
+      return this.$store.getters.tasks2
+    },
+    tasksFilter() {
+      if (this.projectId) {
+        return this.tasks.filter(item => item.projectId === this.projectId)
+      } else if (this.napravId) {
+        return this.tasks.filter(item => item.napravId === this.napravId)
+      }
+      return this.tasks
     }
   },
   methods: {

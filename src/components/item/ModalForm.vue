@@ -16,25 +16,27 @@
                 type="text"
                 class="form-control form-control-sm"
                 :class="{ 'border-danger': error }"
-                @focus="error = false"
+                @focus="changes = true"
                 v-model.trim="item.title"
               />
             </div>
             <div class="col-2 ps-0">
-              <!-- <div class="input-group input-group-sm">
+              <div class="input-group input-group-sm">
                 <input
+                  v-if="item"
                   type="number"
                   max="360"
                   min="0"
                   step="5"
                   class="form-control form-control-sm"
                   aria-describedby="for-time"
+                  @focus="changes = true"
                   v-model.trim="item.time"
                 />
                 <span class="input-group-text ps-1 pe-1" id="for-time"
-                  >мин.</span
+                  >мин</span
                 >
-              </div> -->
+              </div>
             </div>
           </div>
 
@@ -64,13 +66,13 @@
               </div> -->
             </div>
             <div class="col-4">
-              <!-- <div class="form-floating">
+              <div class="form-floating">
                 <select
+                  v-if="item"
+                  @change="changes = true"
                   v-model="item.status"
-                  @change="changeStatus"
                   :disabled="
-                    item &&
-                    (item.type === 'napravs' || item.type === 'projects')
+                    item.type === 'napravs' || item.type === 'projects'
                   "
                   class="form-select form-select-sm"
                   id="statusSelect"
@@ -84,14 +86,16 @@
                   </option>
                 </select>
                 <label for="statusSelect">Статус</label>
-              </div> -->
+              </div>
             </div>
           </div>
 
           <div class="row mt-2">
             <div class="col-4 pe-0">
-              <!-- <div class="form-floating">
+              <div class="form-floating">
                 <select
+                  v-if="item"
+                  @change="changes = true"
                   v-model="item.napravId"
                   :disabled="item && item.type === 'napravs'"
                   class="form-select form-select-sm"
@@ -107,16 +111,18 @@
                   </option>
                 </select>
                 <label for="napravSelect">Направление</label>
-              </div> -->
+              </div>
             </div>
 
             <div class="col-4 pe-0">
-              <!-- <div class="form-floating">
+              <div class="form-floating">
                 <select
+                  v-if="item"
+                  @change="changes = true"
                   v-model="item.projectId"
                   class="form-select form-select-sm"
                   :disabled="
-                    !napravId ||
+                    !item.napravId ||
                     item.type === 'napravs' ||
                     item.type === 'projects'
                   "
@@ -132,10 +138,10 @@
                   </option>
                 </select>
                 <label for="projectSelect">Проект</label>
-              </div> -->
+              </div>
             </div>
             <div class="col-2">
-              <!-- <div class="form-floating">
+              <div class="form-floating">
                 <input
                   v-if="item"
                   type="number"
@@ -144,13 +150,14 @@
                   step="1"
                   id="position"
                   class="form-control form-control-sm"
+                  @focus="changes = true"
                   v-model.number="item.position"
                 />
                 <label for="position">#</label>
-              </div> -->
+              </div>
             </div>
             <div class="col-2 ps-0">
-              <!-- <div class="form-floating">
+              <div class="form-floating">
                 <input
                   v-if="item"
                   type="number"
@@ -159,13 +166,14 @@
                   step="50"
                   id="price"
                   class="form-control form-control-sm"
+                  @focus="changes = true"
                   v-model.number="item.price"
                   :disabled="
                     item.type === 'napravs' || item.type === 'projects'
                   "
                 />
                 <label for="price">Цена</label>
-              </div> -->
+              </div>
             </div>
           </div>
 
@@ -203,14 +211,14 @@
                 @click.prevent="
                   removeItem({
                     id: item.id,
-                    type: item.type,
+                    type: item.type
                   })
                 "
               >
                 Удалить
               </button>
             </div>
-            <div class="col-4 pe-0">
+            <!-- <div class="col-4 pe-0">
               <button
                 type="button"
                 class="btn btn-sm btn-light w-100"
@@ -218,8 +226,8 @@
               >
                 Отмена
               </button>
-            </div>
-            <div class="col-4">
+            </div> -->
+            <!-- <div class="col-4">
               <button
                 type="button"
                 @click="updateItem"
@@ -228,7 +236,7 @@
               >
                 Сохранить
               </button>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -238,97 +246,117 @@
 
 <script>
 import getDateNow from '@/scripts/getDateNow'
+import getStatus from '@/scripts/getStatus'
 
 export default {
   props: {
     item: {
       type: Object,
-      default: null,
+      default: null
     },
     napravs: Array,
-    projects: Array,
+    projects: Array
   },
   data() {
     return {
+      changes: false,
       error: false,
+      statusArr: getStatus
     }
   },
-  // computed: {
-  //   statusArr() {
-  //     return this.$store.getters.status
-  //   },
-  //   projectsFilter() {
-  //     if (this.napravId) {
-  //       return this.projects.filter((item) => item.napravId === this.napravId)
-  //     } else {
-  //       return this.projects
-  //     }
-  //   },
-  // },
+  mounted() {
+    var myModalEl = document.getElementById('exampleModal')
+    myModalEl.addEventListener('hidden.bs.modal', () => {
+      if (this.changes) {
+        this.updateItem()
+      }
+    })
+  },
+  computed: {
+    projectsFilter() {
+      if (this.item.napravId) {
+        return this.projects.filter(
+          item => item.napravId === this.item.napravId
+        )
+      } else {
+        return this.projects
+      }
+    }
+  },
   methods: {
-    updateItem() {
-      // Сделать асинхронной и выводить сообщения об ошибках
+    async updateItem() {
+      console.log('ModForm updateItem() is run')
       if (this.item.title) {
-        if (this.napravId) {
+        if (this.item.napravId) {
           this.item.napravTitle = this.napravs.find(
-            (item) => item.id === this.napravId
+            item => item.id === this.item.napravId
           ).title
         } else {
           this.item.napravTitle = 'Без направления'
         }
 
-        if (this.projectId) {
+        if (this.item.projectId) {
           this.item.projectTitle = this.projects.find(
-            (item) => item.id === this.projectId
+            item => item.id === this.item.projectId
           ).title
         } else {
           this.item.projectTitle = 'Без проекта'
         }
 
-        const res = this.$store.dispatch('updateItem2', {
+        if (this.listId) {
+          this.item.listTitle = this.lists.find(
+            item => item.id === this.listId
+          ).title
+        } else {
+          this.item.listTitle = 'Inbox'
+        }
+
+        const res = await this.$store.dispatch('updateItem2', {
           id: this.item.id,
-          type: this.item.type,
+          type: this.item.type
         })
         if (res) {
-          this.$store.commit('addMessage', {
-            text: 'Данные успешно обновлены',
-            type: 'bg-success',
-          })
+          this.$store.commit('addMessage', 'dus')
         } else {
-          this.$store.commit('addMessage', {
-            text: 'Ошибка при обновлении данных',
-            type: 'bg-danger',
-          })
+          this.$store.commit('addMessage', 'due')
         }
       } else {
+        alert('Поле заголовка не может быть пустым')
         this.error = true
       }
     },
-    removeItem({ id, type }) {
+    async removeItem({ id, type }) {
+      this.changes = false
       this.$store.commit('removeItem2', { id, type })
-      const res = this.$store.dispatch('removeItem2', { id })
+      const res = await this.$store.dispatch('removeItem2', { id })
       if (res) {
-        this.$store.commit('addMessage', {
-          text: 'Данные успешно Удалены',
-          type: 'bg-success',
-        })
+        this.$store.commit('addMessage', 'ris')
       } else {
-        this.$store.commit('addMessage', {
-          text: 'Ошибка при удалении данных',
-          type: 'bg-danger',
-        })
+        this.$store.commit('addMessage', 'rie')
       }
     },
-    changeStatus() {
-      this.$store.dispatch('changeStatus', {
+
+    async changeTaskStatus() {
+      this.$store.commit('changeTaskStatus2', {
         id: this.item.id,
         type: this.item.type,
-        status: this.status,
-        dateStart: this.status === 'work' ? getDateNow : this.item.dateStart,
-        dateDone: this.status === 'done' ? getDateNow : '',
+        status: this.item.status,
+        dateStart:
+          this.item.status === 'work' ? getDateNow : this.item.dateStart,
+        dateDone: this.item.status === 'done' ? getDateNow : ''
       })
-    },
-  },
+
+      const res = await this.$store.dispatch('updateItem2', {
+        id: this.item.id,
+        type: this.item.type
+      })
+      if (res) {
+        this.$store.commit('addMessage', 'dus')
+      } else {
+        this.$store.commit('addMessage', 'due')
+      }
+    }
+  }
 }
 </script>
 

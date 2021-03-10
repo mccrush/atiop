@@ -97,36 +97,22 @@ export default {
   },
   methods: {
     async changeTaskStatus(status) {
-      if (status === 'work') {
-        this.$store.commit('changeTaskStatus2', {
-          id: this.item.id,
-          type: this.item.type,
-          status,
-          dateStart: getDateNow,
-          dateDone: ''
-        })
-      } else if (status === 'done') {
-        this.$store.commit('changeTaskStatus2', {
-          id: this.item.id,
-          type: this.item.type,
-          status,
-          dateStart: this.item.dateStart,
-          dateDone: getDateNow
-        })
-      } else {
-        console.log('Item: Ошибка при смене статуса')
-      }
-      const res = await this.$store.dispatch('updateItem2', this.item.id)
+      this.$store.commit('changeTaskStatus2', {
+        id: this.item.id,
+        type: this.item.type,
+        status,
+        dateStart: status === 'work' ? getDateNow : this.item.dateStart,
+        dateDone: status === 'done' ? getDateNow : ''
+      })
+
+      const res = await this.$store.dispatch('updateItem2', {
+        id: this.item.id,
+        type: this.item.type
+      })
       if (res) {
-        this.$store.commit('addMessage', {
-          text: 'Данные успешно обновлены',
-          type: 'bg-success'
-        })
+        this.$store.commit('addMessage', 'dus')
       } else {
-        this.$store.commit('addMessage', {
-          text: 'При обновлении данных произошла ошибка',
-          type: 'bg-danger'
-        })
+        this.$store.commit('addMessage', 'due')
       }
     },
     setId() {
