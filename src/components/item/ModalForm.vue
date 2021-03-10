@@ -16,7 +16,7 @@
                 type="text"
                 class="form-control form-control-sm"
                 :class="{ 'border-danger': error }"
-                @focus="error = false"
+                @focus="changes = true"
                 v-model.trim="item.title"
               />
             </div>
@@ -30,6 +30,7 @@
                   step="5"
                   class="form-control form-control-sm"
                   aria-describedby="for-time"
+                  @focus="changes = true"
                   v-model.trim="item.time"
                 />
                 <span class="input-group-text ps-1 pe-1" id="for-time"
@@ -68,11 +69,11 @@
               <div class="form-floating">
                 <select
                   v-if="item"
+                  @change="changes = true"
                   v-model="item.status"
                   :disabled="
                     item.type === 'napravs' || item.type === 'projects'
                   "
-                  @change="changeTaskStatus"
                   class="form-select form-select-sm"
                   id="statusSelect"
                 >
@@ -145,6 +146,7 @@
                   step="1"
                   id="position"
                   class="form-control form-control-sm"
+                  @focus="changes = true"
                   v-model.number="item.position"
                 />
                 <label for="position">#</label>
@@ -160,6 +162,7 @@
                   step="50"
                   id="price"
                   class="form-control form-control-sm"
+                  @focus="changes = true"
                   v-model.number="item.price"
                   :disabled="
                     item.type === 'napravs' || item.type === 'projects'
@@ -252,6 +255,7 @@ export default {
   },
   data() {
     return {
+      changes: false,
       error: false,
       statusArr: getStatus
     }
@@ -259,7 +263,9 @@ export default {
   mounted() {
     var myModalEl = document.getElementById('exampleModal')
     myModalEl.addEventListener('hidden.bs.modal', () => {
-      this.updateItem()
+      if (this.changes) {
+        this.updateItem()
+      }
     })
   },
   // computed: {
@@ -303,6 +309,7 @@ export default {
           this.$store.commit('addMessage', 'due')
         }
       } else {
+        alert('Поле заголовка не может быть пустым')
         this.error = true
       }
     },
