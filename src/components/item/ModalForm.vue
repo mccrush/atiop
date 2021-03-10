@@ -122,7 +122,7 @@
                   v-model="item.projectId"
                   class="form-select form-select-sm"
                   :disabled="
-                    !napravId ||
+                    !item.napravId ||
                     item.type === 'napravs' ||
                     item.type === 'projects'
                   "
@@ -273,18 +273,11 @@ export default {
     })
   },
   computed: {
-    // statusArr() {
-    //   return this.$store.getters.status
-    // },
-    napravId() {
-      return this.$store.getters.napravId
-    },
-    projectId() {
-      return this.$store.getters.projectId
-    },
     projectsFilter() {
-      if (this.napravId) {
-        return this.projects.filter(item => item.napravId === this.napravId)
+      if (this.item.napravId) {
+        return this.projects.filter(
+          item => item.napravId === this.item.napravId
+        )
       } else {
         return this.projects
       }
@@ -293,23 +286,17 @@ export default {
   methods: {
     async updateItem() {
       if (this.item.title) {
-        console.log(
-          'this.napravId:',
-          this.napravId,
-          'this.projectId:',
-          this.projectId
-        )
-        if (this.napravId) {
+        if (this.item.napravId) {
           this.item.napravTitle = this.napravs.find(
-            item => item.id === this.napravId
+            item => item.id === this.item.napravId
           ).title
         } else {
           this.item.napravTitle = 'Без направления'
         }
 
-        if (this.projectId) {
+        if (this.item.projectId) {
           this.item.projectTitle = this.projects.find(
-            item => item.id === this.projectId
+            item => item.id === this.item.projectId
           ).title
         } else {
           this.item.projectTitle = 'Без проекта'
