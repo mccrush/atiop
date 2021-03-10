@@ -196,6 +196,12 @@
           All:
           <span class="badge bg-info text-white"> {{ allItemsLength }}</span>
         </div>
+        <div class="ms-2 small">
+          AllShow:
+          <span class="badge bg-light text-muted">
+            {{ allItemsShowLength }}</span
+          >
+        </div>
       </div>
 
       <div class="d-none d-md-flex align-items-center">
@@ -333,6 +339,9 @@ export default {
     },
     allItemsLength() {
       return this.$store.getters.allItemsLength
+    },
+    allItemsShowLength() {
+      return this.$store.getters.allItemsShowLength
     }
   },
   methods: {

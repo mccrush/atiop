@@ -173,6 +173,9 @@ export default {
     viewType: state => state.viewType,
     viewView: state => state.viewView,
     userId: state => state.userId,
-    allItemsLength: state => state.allItemsLength
+    allItemsLength: state => state.allItemsLength,
+    allItemsShowLength: state => {
+      return state.napravs.length + state.projects.length + state.lists.length + state.tasks.length
+    }
   }
 }
