@@ -72,7 +72,7 @@
                   :disabled="
                     item.type === 'napravs' || item.type === 'projects'
                   "
-                  @change="changeTaskStatus(value)"
+                  @change="changeTaskStatus"
                   class="form-select form-select-sm"
                   id="statusSelect"
                 >
@@ -310,13 +310,14 @@ export default {
       }
     },
 
-    async changeTaskStatus(status) {
+    async changeTaskStatus() {
       this.$store.commit('changeTaskStatus2', {
         id: this.item.id,
         type: this.item.type,
-        status,
-        dateStart: status === 'work' ? getDateNow : this.item.dateStart,
-        dateDone: status === 'done' ? getDateNow : ''
+        status: this.item.status,
+        dateStart:
+          this.item.status === 'work' ? getDateNow : this.item.dateStart,
+        dateDone: this.item.status === 'done' ? getDateNow : ''
       })
 
       const res = await this.$store.dispatch('updateItem2', {
