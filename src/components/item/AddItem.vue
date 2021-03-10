@@ -89,9 +89,7 @@ export default {
             projectTitle = 'Без проекта'
           }
 
-          console.log('listId:', listId)
           if (listId) {
-            console.log('this.lists:', this.lists)
             listTitle = this.lists.find(item => item.id === listId).title
           } else {
             listTitle = 'Inbox'
