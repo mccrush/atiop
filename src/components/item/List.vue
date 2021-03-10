@@ -27,7 +27,7 @@
       </div> -->
     </h6>
 
-    <div class="task-list">
+    <div class="task-list pb-2">
       <Item
         v-for="item in items"
         :key="'item' + item.id"
@@ -38,7 +38,7 @@
       <div v-if="list.type === 'napravs'" class="ms-2 me-2 mb-2">
         <AddItem :type="'projects'" :napravId="list.id" />
       </div>
-      <div v-if="list.type === 'projects'" class="ms-2 me-2 mb-2">
+      <div v-if="list.type === 'projects'" class="ms-2 me-2">
         <AddItem :type="'tasks'" :projectId="list.id" />
       </div>
       <div v-if="list.type === 'lists'" class="ms-2 me-2">

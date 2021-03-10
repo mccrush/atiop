@@ -181,7 +181,16 @@
           <AddItem v-if="napravId && !projectId" :type="'projects'" />
         </div>
         <div>
-          <AddItem v-if="projectId" :type="'lists'" />
+          <AddItem
+            v-if="projectId && viewType === 'projects'"
+            :type="'lists'"
+          />
+        </div>
+        <div>
+          <AddItem
+            v-if="napravId && projectId && viewType === 'tasks'"
+            :type="'tasks'"
+          />
         </div>
       </div>
 
