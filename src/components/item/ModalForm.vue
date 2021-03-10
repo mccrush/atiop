@@ -211,7 +211,7 @@
                 Удалить
               </button>
             </div>
-            <div class="col-4 pe-0">
+            <!-- <div class="col-4 pe-0">
               <button
                 type="button"
                 class="btn btn-sm btn-light w-100"
@@ -219,8 +219,8 @@
               >
                 Отмена
               </button>
-            </div>
-            <div class="col-4">
+            </div> -->
+            <!-- <div class="col-4">
               <button
                 type="button"
                 @click="updateItem"
@@ -229,7 +229,7 @@
               >
                 Сохранить
               </button>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -255,6 +255,12 @@ export default {
       error: false,
       statusArr: getStatus
     }
+  },
+  mounted() {
+    var myModalEl = document.getElementById('exampleModal')
+    myModalEl.addEventListener('hidden.bs.modal', () => {
+      this.updateItem()
+    })
   },
   // computed: {
   //   statusArr() {
