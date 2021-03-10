@@ -269,7 +269,6 @@ export default {
   // },
   methods: {
     async updateItem() {
-      // Сделать асинхронной и выводить сообщения об ошибках
       if (this.item.title) {
         if (this.napravId) {
           this.item.napravTitle = this.napravs.find(
@@ -321,14 +320,31 @@ export default {
         })
       }
     },
-    changeStatus() {
-      this.$store.dispatch('changeStatus', {
+
+    async changeTaskStatus() {
+      this.$store.commit('changeTaskStatus2', {
         id: this.item.id,
         type: this.item.type,
         status: this.status,
         dateStart: this.status === 'work' ? getDateNow : this.item.dateStart,
         dateDone: this.status === 'done' ? getDateNow : ''
       })
+
+      const res = await this.$store.dispatch('updateItem2', {
+        id: this.item.id,
+        type: this.item.type
+      })
+      if (res) {
+        this.$store.commit('addMessage', {
+          text: 'Данные успешно обновлены',
+          type: 'bg-success'
+        })
+      } else {
+        this.$store.commit('addMessage', {
+          text: 'При обновлении данных произошла ошибка',
+          type: 'bg-danger'
+        })
+      }
     }
   }
 }

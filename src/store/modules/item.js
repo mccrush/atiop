@@ -63,9 +63,9 @@ export default {
     },
     async updateItem2({ commit, state }, { id, type }) {
       try {
-        const task = state[type].find(task => task.id === id)
+        const item = state[type].find(item => item.id === id)
         const REF = db.collection('users').doc(auth.currentUser.uid).collection('items')
-        await REF.doc(id).update(task)
+        await REF.doc(id).update(item)
         return true
       } catch (error) {
         console.log('Error items.js, action updateItem2(): ', error);
