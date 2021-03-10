@@ -49,6 +49,16 @@ export default {
       state.tasks = tasks
     },
     removeItem2(state, { id, type }) {
+      if (type === 'napravs') {
+        state.tasks = state.tasks.filter(item => item.napravId !== id)
+        state.lists = state.lists.filter(item => item.napravId !== id)
+        state.projects = state.projects.filter(item => item.napravId !== id)
+      } else if (type === 'projects') {
+        state.tasks = state.tasks.filter(item => item.projectId !== id)
+        state.lists = state.lists.filter(item => item.projectId !== id)
+      } else if (type === 'lists') {
+        state.tasks = state.tasks.filter(item => item.listId !== id)
+      }
       state[type] = state[type].filter(item => item.id !== id)
     },
   },
@@ -80,7 +90,7 @@ export default {
         commit('changeLoading', false)
         return true
       } catch (error) {
-        throw error
+        console.log('Error items.js, action addItem2(): ', error);
       }
     },
     async getItems2({ commit }) {
