@@ -42,20 +42,26 @@
 
           <div class="row mt-2">
             <div class="col-4 pe-0">
-              <!-- <div class="form-floating">
+              <div class="form-floating">
                 <input
-                  :disabled="item && item.type === 'napravs'"
+                  v-if="item"
+                  @change="changes = true"
+                  :disabled="
+                    item.type === 'napravs' || item.type === 'projects'
+                  "
                   type="datetime-local"
                   id="date"
                   class="form-control form-control-sm border-warning"
                   v-model="item.date"
                 />
                 <label for="date">Выполнение</label>
-              </div> -->
+              </div>
             </div>
             <div class="col-4 pe-0">
-              <!-- <div class="form-floating">
+              <div class="form-floating">
                 <input
+                  v-if="item"
+                  @change="changes = true"
                   :disabled="item && item.type === 'napravs'"
                   type="datetime-local"
                   id="deadline"
@@ -63,7 +69,7 @@
                   v-model="item.deadline"
                 />
                 <label for="deadline">Сдача</label>
-              </div> -->
+              </div>
             </div>
             <div class="col-4">
               <div class="form-floating">
