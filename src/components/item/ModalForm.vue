@@ -140,6 +140,34 @@
                 <label for="projectSelect">Проект</label>
               </div>
             </div>
+
+            <div class="col-4 pe-0">
+              <div class="form-floating">
+                <select
+                  v-if="item"
+                  @change="changes = true"
+                  v-model="item.listId"
+                  class="form-select form-select-sm"
+                  :disabled="
+                    !item.projectId ||
+                    item.type === 'projects' ||
+                    item.type === 'lists'
+                  "
+                  id="listSelect"
+                >
+                  <option value selected>Список</option>
+                  <option
+                    v-for="item in listsFilter"
+                    :key="'lis' + item.id"
+                    :value="item.id"
+                  >
+                    {{ item.title }}
+                  </option>
+                </select>
+                <label for="listSelect">Список</label>
+              </div>
+            </div>
+
             <div class="col-2">
               <div class="form-floating">
                 <input
@@ -255,7 +283,8 @@ export default {
       default: null
     },
     napravs: Array,
-    projects: Array
+    projects: Array,
+    lists: Array
   },
   data() {
     return {
@@ -280,6 +309,13 @@ export default {
         )
       } else {
         return this.projects
+      }
+    },
+    listsFilter() {
+      if (this.item.projectId) {
+        return this.lists.filter(item => item.projectId === this.item.projectId)
+      } else {
+        return this.lists
       }
     }
   },
