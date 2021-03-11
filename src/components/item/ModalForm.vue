@@ -141,7 +141,7 @@
               </div>
             </div>
 
-            <div class="col-4 pe-0">
+            <div class="col-4">
               <div class="form-floating">
                 <select
                   v-if="item"
@@ -167,6 +167,24 @@
                 <label for="listSelect">Список</label>
               </div>
             </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-4 pe-0">
+              <button
+                class="btn btn-sm btn-outline-danger w-100"
+                data-bs-dismiss="modal"
+                @click.prevent="
+                  removeItem({
+                    id: item.id,
+                    type: item.type
+                  })
+                "
+              >
+                Удалить
+              </button>
+            </div>
+
+            <div class="col-4"></div>
 
             <div class="col-2">
               <div class="form-floating">
@@ -232,20 +250,9 @@
           <hr />
 
           <div class="row">
-            <div class="col-4 pe-0">
-              <button
-                class="btn btn-sm btn-outline-danger w-100"
-                data-bs-dismiss="modal"
-                @click.prevent="
-                  removeItem({
-                    id: item.id,
-                    type: item.type
-                  })
-                "
-              >
-                Удалить
-              </button>
-            </div>
+            <span class="small text-muted">
+              Данные сохраняются автоматически при закрытии модального окна
+            </span>
             <!-- <div class="col-4 pe-0">
               <button
                 type="button"
