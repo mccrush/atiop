@@ -58,14 +58,14 @@ export default {
     removeItem2(state, { id, type }) {
       if (type === 'napravs') {
         state.arrayForRemoveTasks = state.tasks.filter(item => item.napravId === id)
-        state.arrayForRemoveLists = state.tasks.filter(item => item.napravId === id)
-        state.arrayForRemoveProjects = state.tasks.filter(item => item.napravId === id)
+        state.arrayForRemoveLists = state.lists.filter(item => item.napravId === id)
+        state.arrayForRemoveProjects = state.projects.filter(item => item.napravId === id)
         state.tasks = state.tasks.filter(item => item.napravId !== id)
         state.lists = state.lists.filter(item => item.napravId !== id)
         state.projects = state.projects.filter(item => item.napravId !== id)
       } else if (type === 'projects') {
         state.arrayForRemoveTasks = state.tasks.filter(item => item.projectId === id)
-        state.arrayForRemoveLists = state.tasks.filter(item => item.projectId === id)
+        state.arrayForRemoveLists = state.lists.filter(item => item.projectId === id)
         state.arrayForRemoveProjects = []
         state.tasks = state.tasks.filter(item => item.projectId !== id)
         state.lists = state.lists.filter(item => item.projectId !== id)
