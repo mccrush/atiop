@@ -86,6 +86,12 @@ export default {
       let myModal = new Modal(document.getElementById('exampleModal'))
       myModal.show()
     }
+    // Испльзуется в админских целях, для добавления новых свойств уже существующих задач
+    // addNewField() {
+    //   this.tasks.forEach((item) => {
+    //     this.$store.dispatch('addNewField', item.id)
+    //   })
+    // }
   },
   watch: {
     message() {

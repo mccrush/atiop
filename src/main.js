@@ -12,9 +12,6 @@ auth.onAuthStateChanged((user) => {
   }
   if (user) {
     store.commit('setUserId', user.uid)
-    // store.dispatch('getItems', 'napravs')
-    // store.dispatch('getItems', 'projects')
-    // store.dispatch('getItems', 'tasks')
     store.dispatch('getItems2')
   } else {
     store.commit('setUserId', '')
