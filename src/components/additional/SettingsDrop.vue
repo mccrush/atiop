@@ -15,6 +15,22 @@
       Выйти
     </button>
     <hr class="mt-2 mb-1" />
+
+    <table class="table table-sm text-center text-white small mb-0">
+      <tr class="border-bottom">
+        <td class="bg-info">N</td>
+        <td class="bg-success">P</td>
+        <td class="bg-light text-muted">L</td>
+        <td class="bg-warning">T</td>
+      </tr>
+      <tr>
+        <td class="border-end table-info">{{ napravsLength2 }}</td>
+        <td class="border-end table-success">{{ projectsLength2 }}</td>
+        <td class="border-end table-light">{{ listsLength2 }}</td>
+        <td class="table-warning">{{ tasksLength2 }}</td>
+      </tr>
+    </table>
+    <hr class="mt-2 mb-1" />
     <small>Показывать</small>
     <div class="form-group form-check mb-1">
       <input
@@ -247,6 +263,18 @@ export default {
   computed: {
     settings() {
       return this.$store.getters.settings
+    },
+    napravsLength2() {
+      return this.$store.getters.napravsLength2
+    },
+    projectsLength2() {
+      return this.$store.getters.projectsLength2
+    },
+    listsLength2() {
+      return this.$store.getters.listsLength2
+    },
+    tasksLength2() {
+      return this.$store.getters.tasksLength2
     }
   },
 
@@ -299,7 +327,7 @@ export default {
 .settings-form {
   width: 224px;
   height: calc(100vh - 60px);
-  max-height: 596px;
+  max-height: 655px;
   margin-right: -12px;
   overflow-y: auto;
 }

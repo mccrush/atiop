@@ -7,7 +7,6 @@ export default {
     projects: [],
     lists: [],
     tasks: [],
-    userId: null,
     loading2: false,
     napravId: localStorage.getItem('at-napravId') || '',
     projectId: localStorage.getItem('at-projectId') || '',
@@ -17,15 +16,8 @@ export default {
     arrayForRemove: [],
     arrayForRemoveLists: [],
     arrayForRemoveProjects: [],
-    allItemsLength: 0
   },
   mutations: {
-    setAllItemsLength(state, length) {
-      state.allItemsLength = length
-    },
-    setUserId(state, id) {
-      state.userId = id
-    },
     setViewType(state, type) {
       state.viewType = type
       localStorage.setItem('at-viewType', type)
@@ -58,14 +50,14 @@ export default {
     removeItem2(state, { id, type }) {
       if (type === 'napravs') {
         state.arrayForRemoveTasks = state.tasks.filter(item => item.napravId === id)
-        state.arrayForRemoveLists = state.tasks.filter(item => item.napravId === id)
-        state.arrayForRemoveProjects = state.tasks.filter(item => item.napravId === id)
+        state.arrayForRemoveLists = state.lists.filter(item => item.napravId === id)
+        state.arrayForRemoveProjects = state.projects.filter(item => item.napravId === id)
         state.tasks = state.tasks.filter(item => item.napravId !== id)
         state.lists = state.lists.filter(item => item.napravId !== id)
         state.projects = state.projects.filter(item => item.napravId !== id)
       } else if (type === 'projects') {
         state.arrayForRemoveTasks = state.tasks.filter(item => item.projectId === id)
-        state.arrayForRemoveLists = state.tasks.filter(item => item.projectId === id)
+        state.arrayForRemoveLists = state.lists.filter(item => item.projectId === id)
         state.arrayForRemoveProjects = []
         state.tasks = state.tasks.filter(item => item.projectId !== id)
         state.lists = state.lists.filter(item => item.projectId !== id)
@@ -153,7 +145,7 @@ export default {
         commit('setItems2', { type: 'projects', items: projects })
         commit('setItems2', { type: 'lists', items: lists })
         commit('setItems2', { type: 'tasks', items: tasks })
-        commit('setAllItemsLength', allLength)
+        //commit('setAllItemsLength', allLength)
         commit('changeLoading', false)
         console.log('Данные с сервера переданы в State')
       } catch (error) {
@@ -172,10 +164,9 @@ export default {
     listId: state => state.listId,
     viewType: state => state.viewType,
     viewView: state => state.viewView,
-    userId: state => state.userId,
-    allItemsLength: state => state.allItemsLength,
-    allItemsShowLength: state => {
-      return state.napravs.length + state.projects.length + state.lists.length + state.tasks.length
-    }
+    napravsLength2: state => state.napravs.length,
+    projectsLength2: state => state.projects.length,
+    listsLength2: state => state.lists.length,
+    tasksLength2: state => state.tasks.length
   }
 }

@@ -80,6 +80,7 @@
               data-bs-toggle="dropdown"
               aria-expanded="false"
               id="dropdownNaprav"
+              :disabled="!napravs.length"
             ></button>
             <ul
               class="dropdown-menu border-0 shadow"
@@ -109,6 +110,7 @@
               type="button"
               class="btn btn-sm btn-outline-light text-secondary"
               :class="{ active: viewType === 'projects' }"
+              :disabled="!napravs.length"
               @click="setId(projectId, 'projects')"
             >
               {{ projectTitle }}
@@ -119,6 +121,7 @@
               data-bs-toggle="dropdown"
               aria-expanded="false"
               id="dropdownProject"
+              :disabled="!napravs.length"
             ></button>
             <ul
               class="dropdown-menu border-0 shadow"
@@ -136,6 +139,7 @@
                 v-for="project in projectsFiltered"
                 :key="project.id"
                 class="dropdown-item"
+                :disabled="!napravs.length || !projects.length"
                 @click="setId(project.id, 'projects')"
               >
                 {{ project.title }}
@@ -149,6 +153,7 @@
             :class="{
               active: viewType === 'tasks'
             }"
+            :disabled="!napravs.length || !projects.length"
             @click="setViewType('tasks')"
           >
             Задачи
@@ -162,6 +167,7 @@
             id="dropdownFilter"
             data-bs-toggle="dropdown"
             aria-expanded="false"
+            :disabled="!napravs.length"
           >
             Filter
           </button>
@@ -191,16 +197,6 @@
             v-if="napravId && projectId && viewType === 'tasks'"
             :type="'tasks'"
           />
-        </div>
-        <div class="ms-2 small">
-          All:
-          <span class="badge bg-info text-white"> {{ allItemsLength }}</span>
-        </div>
-        <div class="ms-2 small">
-          AllShow:
-          <span class="badge bg-light text-muted">
-            {{ allItemsShowLength }}</span
-          >
         </div>
       </div>
 
@@ -336,12 +332,6 @@ export default {
         return this.projects.find(item => item.id === this.projectId).title
       }
       return 'Проекты'
-    },
-    allItemsLength() {
-      return this.$store.getters.allItemsLength
-    },
-    allItemsShowLength() {
-      return this.$store.getters.allItemsShowLength
     }
   },
   methods: {

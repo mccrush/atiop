@@ -17,6 +17,7 @@
       :item="itemForModal"
       :napravs="napravs"
       :projects="projects"
+      :lists="lists"
       id="exampleModal"
     />
   </div>
