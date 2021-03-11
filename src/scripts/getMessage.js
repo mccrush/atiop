@@ -23,6 +23,30 @@ const messages = {
     text: 'Ошибка при удалении данных',
     type: 'bg-danger'
   },
+  'lee': {
+    text: 'Некорректный адрес почты!',
+    type: 'bg-danger'
+  },
+  'lpi': {
+    text: 'Некорректный пароль!',
+    type: 'bg-danger'
+  },
+  'lpw': {
+    text: 'Неверный пароль!',
+    type: 'bg-danger'
+  },
+  'lun': {
+    text: 'Пользователь с такой почтой не найден',
+    type: 'bg-danger'
+  },
+  'lue': {
+    text: 'Пользователь с такой почтой уже существует',
+    type: 'bg-danger'
+  },
+  'len': {
+    text: 'Неизвестная ошибка!',
+    type: 'bg-danger'
+  },
   'null': null
 }
 

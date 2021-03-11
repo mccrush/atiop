@@ -113,30 +113,16 @@ export default {
           await this.$store.dispatch('logIn', formData)
         } catch (err) {
           if (err.code === 'auth/invalid-email') {
-            this.$store.commit('addMessage', {
-              text: 'Некорректный адрес почты!',
-              type: 'bg-danger'
-            })
+            this.$store.commit('addMessage', 'lee')
           } else if (err.code === 'auth/invalid-password') {
-            this.$store.commit('addMessage', {
-              text: 'Некорректный пароль!',
-              type: 'bg-danger'
-            })
+            this.$store.commit('addMessage', 'lpi')
           } else if (err.code === 'auth/wrong-password') {
-            this.$store.commit('addMessage', {
-              text: 'Неверный пароль!',
-              type: 'bg-danger'
-            })
+            this.$store.commit('addMessage', 'lpw')
           } else if (err.code === 'auth/user-not-found') {
-            this.$store.commit('addMessage', {
-              text: 'Пользователь с такой почтой не найден',
-              type: 'bg-danger'
-            })
+            this.$store.commit('addMessage', 'lun')
           } else {
-            this.$store.commit('addMessage', {
-              text: 'Ошибка: ' + err.code,
-              type: 'bg-danger'
-            })
+            console.log('Login login() in:', err.code)
+            this.$store.commit('addMessage', 'len')
           }
         }
       } else {
@@ -144,25 +130,14 @@ export default {
           await this.$store.dispatch('regist', formData)
         } catch (err) {
           if (err.code === 'auth/invalid-email') {
-            this.$store.commit('addMessage', {
-              text: 'Некорректный адрес почты!',
-              type: 'bg-danger'
-            })
+            this.$store.commit('addMessage', 'lee')
           } else if (err.code === 'auth/email-already-exists') {
-            this.$store.commit('addMessage', {
-              text: 'Пользователь с такой почтой уже существует',
-              type: 'bg-danger'
-            })
+            this.$store.commit('addMessage', 'lue')
           } else if (err.code === 'auth/weak-password') {
-            this.$store.commit('addMessage', {
-              text: 'Некорректный пароль',
-              type: 'bg-danger'
-            })
+            this.$store.commit('addMessage', 'lpi')
           } else {
-            this.$store.commit('addMessage', {
-              text: 'Ошибка: ' + err.code,
-              type: 'bg-danger'
-            })
+            console.log('Login login() reg:', err.code)
+            this.$store.commit('addMessage', 'len')
           }
         }
       }
