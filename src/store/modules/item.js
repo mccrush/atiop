@@ -7,7 +7,6 @@ export default {
     projects: [],
     lists: [],
     tasks: [],
-    userId: null,
     loading2: false,
     napravId: localStorage.getItem('at-napravId') || '',
     projectId: localStorage.getItem('at-projectId') || '',
@@ -17,15 +16,8 @@ export default {
     arrayForRemove: [],
     arrayForRemoveLists: [],
     arrayForRemoveProjects: [],
-    //allItemsLength: 0
   },
   mutations: {
-    // setAllItemsLength(state, length) {
-    //   state.allItemsLength = length
-    // },
-    setUserId(state, id) {
-      state.userId = id
-    },
     setViewType(state, type) {
       state.viewType = type
       localStorage.setItem('at-viewType', type)
@@ -172,7 +164,6 @@ export default {
     listId: state => state.listId,
     viewType: state => state.viewType,
     viewView: state => state.viewView,
-    userId: state => state.userId,
     napravsLength2: state => state.napravs.length,
     projectsLength2: state => state.projects.length,
     listsLength2: state => state.lists.length,
