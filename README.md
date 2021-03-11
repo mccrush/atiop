@@ -20,7 +20,7 @@
       действия необходимо выполнить?
     </p>
 
-Более подробное описание в приложении <a href="https://atiop.ru/about" target="_blank" title="Перейти в приложение">atiop.ru</a>
+Более подробное описание в <a href="https://github.com/mccrush/atiop/wiki" target="_blank" title="Открыть wiki">wiki</a>
 <hr>
 
 <p align="center">
