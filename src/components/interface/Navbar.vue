@@ -167,7 +167,7 @@
             id="dropdownFilter"
             data-bs-toggle="dropdown"
             aria-expanded="false"
-            :disabled="!napravs.length"
+            :disabled="true"
           >
             Filter
           </button>
