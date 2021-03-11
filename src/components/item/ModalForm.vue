@@ -352,6 +352,7 @@ export default {
           type: this.item.type
         })
         if (res) {
+          this.changes = false
           this.$store.commit('addMessage', 'dus')
         } else {
           this.$store.commit('addMessage', 'due')
