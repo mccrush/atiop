@@ -27,6 +27,7 @@
 
 <script>
 import Item from '@/components/item/Item'
+//import sortMethod from '@/scripts/sortMethod'
 
 export default {
   components: {
@@ -53,6 +54,13 @@ export default {
       }
       return this.tasks
     }
+    // sortTasks() {
+    //   return sortMethod(
+    //     this.tasksFilterValue,
+    //     this.settings.sortUp,
+    //     this.settings.sortBy
+    //   )
+    // },
   },
   methods: {
     editItem({ id, type }) {
