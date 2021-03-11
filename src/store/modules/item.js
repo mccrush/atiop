@@ -17,12 +17,12 @@ export default {
     arrayForRemove: [],
     arrayForRemoveLists: [],
     arrayForRemoveProjects: [],
-    allItemsLength: 0
+    //allItemsLength: 0
   },
   mutations: {
-    setAllItemsLength(state, length) {
-      state.allItemsLength = length
-    },
+    // setAllItemsLength(state, length) {
+    //   state.allItemsLength = length
+    // },
     setUserId(state, id) {
       state.userId = id
     },
@@ -153,7 +153,7 @@ export default {
         commit('setItems2', { type: 'projects', items: projects })
         commit('setItems2', { type: 'lists', items: lists })
         commit('setItems2', { type: 'tasks', items: tasks })
-        commit('setAllItemsLength', allLength)
+        //commit('setAllItemsLength', allLength)
         commit('changeLoading', false)
         console.log('Данные с сервера переданы в State')
       } catch (error) {
@@ -173,9 +173,9 @@ export default {
     viewType: state => state.viewType,
     viewView: state => state.viewView,
     userId: state => state.userId,
-    allItemsLength: state => state.allItemsLength,
-    allItemsShowLength: state => {
-      return state.napravs.length + state.projects.length + state.lists.length + state.tasks.length
-    }
+    napravsLength2: state => state.napravs.length,
+    projectsLength2: state => state.projects.length,
+    listsLength2: state => state.lists.length,
+    tasksLength2: state => state.tasks.length
   }
 }
