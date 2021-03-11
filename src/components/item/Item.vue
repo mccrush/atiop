@@ -97,7 +97,7 @@ export default {
   },
   methods: {
     async changeTaskStatus(status) {
-      this.$store.commit('changeTaskStatus2', {
+      this.$store.commit('changeTaskStatus', {
         id: this.item.id,
         type: this.item.type,
         status,
