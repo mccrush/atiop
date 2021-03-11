@@ -29,7 +29,7 @@
 
     <div class="task-list pb-2">
       <Item
-        v-for="item in items"
+        v-for="item in itemsFilterArchive"
         :key="'item' + item.id"
         :item="item"
         @edit-item="editItem"
@@ -72,6 +72,19 @@ export default {
         return this.$store.getters.tasks.filter(
           task => task.listId === this.list.id
         )
+      }
+    },
+    settings() {
+      return this.$store.getters.settings
+    },
+    itemsFilterArchive() {
+      if (
+        (this.list.type === 'projects' || this.list.type === 'lists') &&
+        !this.settings.showArhived
+      ) {
+        return this.items.filter(item => item.status !== 'done')
+      } else {
+        return this.items
       }
     }
   },

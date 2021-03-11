@@ -4,7 +4,7 @@
     class="row d-flex align-content-start bg-light pt-3 ps-2 cards"
   >
     <Item
-      v-for="item in tasksFilter"
+      v-for="item in itemsFilterArchive"
       :key="'item' + item.id"
       :item="item"
       @edit-item="editItem"
@@ -12,7 +12,11 @@
   </div>
   <div v-else class="row bg-light pt-3 ps-3 pe-3 checklist">
     <ul class="list-group p-0">
-      <li v-for="i in tasksFilter" :key="i + 'kk'" class="list-group-item">
+      <li
+        v-for="i in itemsFilterArchive"
+        :key="i + 'kk'"
+        class="list-group-item"
+      >
         <input
           class="form-check-input me-2"
           type="checkbox"
@@ -34,6 +38,9 @@ export default {
     Item
   },
   computed: {
+    settings() {
+      return this.$store.getters.settings
+    },
     viewView() {
       return this.$store.getters.viewView
     },
@@ -46,13 +53,21 @@ export default {
     tasks() {
       return this.$store.getters.tasks
     },
-    tasksFilter() {
+    tasksFilterType() {
       if (this.projectId) {
         return this.tasks.filter(item => item.projectId === this.projectId)
       } else if (this.napravId) {
         return this.tasks.filter(item => item.napravId === this.napravId)
+      } else {
+        return this.tasks
       }
-      return this.tasks
+    },
+    itemsFilterArchive() {
+      if (!this.settings.showArhived) {
+        return this.tasksFilterType.filter(item => item.status !== 'done')
+      } else {
+        return this.tasksFilterType
+      }
     }
     // sortTasks() {
     //   return sortMethod(
