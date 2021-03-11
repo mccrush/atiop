@@ -26,11 +26,11 @@
 <script>
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Modal } from 'bootstrap'
-import Navbar from '@/components/interface/Navbar3'
+import Navbar from '@/components/interface/Navbar'
 import Message from '@/components/additional/Message'
-import ViewProjects from '@/views2/ViewProjects'
-import ViewTasks from '@/views2/ViewTasks'
-import Login from '@/views2/Login2'
+import ViewProjects from '@/views/ViewProjects'
+import ViewTasks from '@/views/ViewTasks'
+import Login from '@/views/Login'
 import ModalForm from '@/components/item/ModalForm'
 
 export default {
@@ -68,16 +68,16 @@ export default {
       return 'Login'
     },
     napravs() {
-      return this.$store.getters.napravs2
+      return this.$store.getters.napravs
     },
     projects() {
-      return this.$store.getters.projects2
+      return this.$store.getters.projects
     },
     lists() {
-      return this.$store.getters.lists2
+      return this.$store.getters.lists
     },
     tasks() {
-      return this.$store.getters.tasks2
+      return this.$store.getters.tasks
     }
   },
   methods: {

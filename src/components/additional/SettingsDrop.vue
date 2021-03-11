@@ -24,10 +24,10 @@
         <td class="bg-warning">T</td>
       </tr>
       <tr>
-        <td class="border-end table-info">{{ napravsLength2 }}</td>
-        <td class="border-end table-success">{{ projectsLength2 }}</td>
-        <td class="border-end table-light">{{ listsLength2 }}</td>
-        <td class="table-warning">{{ tasksLength2 }}</td>
+        <td class="border-end table-info">{{ napravsLength }}</td>
+        <td class="border-end table-success">{{ projectsLength }}</td>
+        <td class="border-end table-light">{{ listsLength }}</td>
+        <td class="table-warning">{{ tasksLength }}</td>
       </tr>
     </table>
     <hr class="mt-2 mb-1" />
@@ -264,17 +264,17 @@ export default {
     settings() {
       return this.$store.getters.settings
     },
-    napravsLength2() {
-      return this.$store.getters.napravsLength2
+    napravsLength() {
+      return this.$store.getters.napravsLength
     },
-    projectsLength2() {
-      return this.$store.getters.projectsLength2
+    projectsLength() {
+      return this.$store.getters.projectsLength
     },
-    listsLength2() {
-      return this.$store.getters.listsLength2
+    listsLength() {
+      return this.$store.getters.listsLength
     },
-    tasksLength2() {
-      return this.$store.getters.tasksLength2
+    tasksLength() {
+      return this.$store.getters.tasksLength
     }
   },
 

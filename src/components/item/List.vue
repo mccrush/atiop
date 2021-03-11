@@ -61,15 +61,15 @@ export default {
   computed: {
     items() {
       if (this.list.type === 'napravs') {
-        return this.$store.getters.projects2.filter(
+        return this.$store.getters.projects.filter(
           proj => proj.napravId === this.list.id
         )
       } else if (this.list.type === 'projects') {
-        return this.$store.getters.tasks2.filter(
+        return this.$store.getters.tasks.filter(
           task => task.projectId === this.list.id
         )
       } else if (this.list.type === 'lists') {
-        return this.$store.getters.tasks2.filter(
+        return this.$store.getters.tasks.filter(
           task => task.listId === this.list.id
         )
       }

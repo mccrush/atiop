@@ -29,13 +29,13 @@ export default {
       return this.$store.getters.projectId
     },
     lists() {
-      return this.$store.getters.lists2
+      return this.$store.getters.lists
     },
     items() {
       if (this.viewType === 'napravs') {
-        return this.$store.getters.napravs2
+        return this.$store.getters.napravs
       }
-      return this.$store.getters.projects2
+      return this.$store.getters.projects
     },
     itemsFilter() {
       if (this.napravId) {

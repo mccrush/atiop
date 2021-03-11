@@ -347,7 +347,7 @@ export default {
           this.item.listTitle = 'Inbox'
         }
 
-        const res = await this.$store.dispatch('updateItem2', {
+        const res = await this.$store.dispatch('updateItem', {
           id: this.item.id,
           type: this.item.type
         })
@@ -364,8 +364,8 @@ export default {
     },
     async removeItem({ id, type }) {
       this.changes = false
-      this.$store.commit('removeItem2', { id, type })
-      const res = await this.$store.dispatch('removeItem2', { id })
+      this.$store.commit('removeItem', { id, type })
+      const res = await this.$store.dispatch('removeItem', { id })
       if (res) {
         this.$store.commit('addMessage', 'ris')
       } else {
@@ -374,7 +374,7 @@ export default {
     },
 
     async changeTaskStatus() {
-      this.$store.commit('changeTaskStatus2', {
+      this.$store.commit('changeTaskStatus', {
         id: this.item.id,
         type: this.item.type,
         status: this.item.status,
@@ -383,7 +383,7 @@ export default {
         dateDone: this.item.status === 'done' ? getDateNow : ''
       })
 
-      const res = await this.$store.dispatch('updateItem2', {
+      const res = await this.$store.dispatch('updateItem', {
         id: this.item.id,
         type: this.item.type
       })

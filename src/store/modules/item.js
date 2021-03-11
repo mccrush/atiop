@@ -33,13 +33,13 @@ export default {
     changeLoading(state, value) {
       state.loading2 = value
     },
-    addItem2(state, item) {
+    addItem(state, item) {
       state[item.type].push(item)
     },
-    setItems2(state, { type, items = [] }) {
+    setItems(state, { type, items = [] }) {
       state[type] = items
     },
-    changeTaskStatus2(state, { id, status, dateStart, dateDone }) {
+    changeTaskStatus(state, { id, status, dateStart, dateDone }) {
 
       let tasks = state.tasks.concat()
       const index = tasks.findIndex(task => task.id === id)
@@ -47,7 +47,7 @@ export default {
       tasks[index] = { ...task, status, dateStart, dateDone }
       state.tasks = tasks
     },
-    removeItem2(state, { id, type }) {
+    removeItem(state, { id, type }) {
       if (type === 'napravs') {
         state.arrayForRemoveTasks = state.tasks.filter(item => item.napravId === id)
         state.arrayForRemoveLists = state.lists.filter(item => item.napravId === id)
@@ -71,7 +71,7 @@ export default {
     },
   },
   actions: {
-    async removeItem2({ commit, state }, { id }) {
+    async removeItem({ commit, state }, { id }) {
       try {
         commit('changeLoading', true)
         const REF = db.collection('users').doc(auth.currentUser.uid).collection('items')
@@ -97,20 +97,20 @@ export default {
         commit('changeLoading', false)
         return true
       } catch (error) {
-        console.log('Error items.js, action removeItem2(): ', error);
+        console.log('Error items.js, action removeItem(): ', error);
       }
     },
-    async updateItem2({ commit, state }, { id, type }) {
+    async updateItem({ commit, state }, { id, type }) {
       try {
         const item = state[type].find(item => item.id === id)
         const REF = db.collection('users').doc(auth.currentUser.uid).collection('items')
         await REF.doc(id).update(item)
         return true
       } catch (error) {
-        console.log('Error items.js, action updateItem2(): ', error);
+        console.log('Error items.js, action updateItem(): ', error);
       }
     },
-    async addItem2({ commit }, item) {
+    async addItem({ commit }, item) {
       try {
         commit('changeLoading', true)
         const REF = db.collection('users').doc(auth.currentUser.uid).collection('items')
@@ -118,10 +118,10 @@ export default {
         commit('changeLoading', false)
         return true
       } catch (error) {
-        console.log('Error items.js, action addItem2(): ', error);
+        console.log('Error items.js, action addItem(): ', error);
       }
     },
-    async getItems2({ commit }) {
+    async getItems({ commit }) {
       try {
         commit('changeLoading', true)
         let napravs = [], projects = [], lists = [], tasks = []
@@ -141,32 +141,32 @@ export default {
           allLength++
         })
 
-        commit('setItems2', { type: 'napravs', items: napravs })
-        commit('setItems2', { type: 'projects', items: projects })
-        commit('setItems2', { type: 'lists', items: lists })
-        commit('setItems2', { type: 'tasks', items: tasks })
+        commit('setItems', { type: 'napravs', items: napravs })
+        commit('setItems', { type: 'projects', items: projects })
+        commit('setItems', { type: 'lists', items: lists })
+        commit('setItems', { type: 'tasks', items: tasks })
         //commit('setAllItemsLength', allLength)
         commit('changeLoading', false)
         console.log('Данные с сервера переданы в State')
       } catch (error) {
-        console.log('Ошибка item.js: action getItems2():', error)
+        console.log('Ошибка item.js: action getItems():', error)
       }
     }
   },
   getters: {
-    napravs2: state => state.napravs,
-    projects2: state => state.projects,
-    lists2: state => state.lists,
-    tasks2: state => state.tasks,
-    loading2: state => state.loading2,
+    napravs: state => state.napravs,
+    projects: state => state.projects,
+    lists: state => state.lists,
+    tasks: state => state.tasks,
+    loading: state => state.loading2,
     napravId: state => state.napravId,
     projectId: state => state.projectId,
     listId: state => state.listId,
     viewType: state => state.viewType,
     viewView: state => state.viewView,
-    napravsLength2: state => state.napravs.length,
-    projectsLength2: state => state.projects.length,
-    listsLength2: state => state.lists.length,
-    tasksLength2: state => state.tasks.length
+    napravsLength: state => state.napravs.length,
+    projectsLength: state => state.projects.length,
+    listsLength: state => state.lists.length,
+    tasksLength: state => state.tasks.length
   }
 }

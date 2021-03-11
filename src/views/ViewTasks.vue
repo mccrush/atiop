@@ -44,7 +44,7 @@ export default {
       return this.$store.getters.projectId
     },
     tasks() {
-      return this.$store.getters.tasks2
+      return this.$store.getters.tasks
     },
     tasksFilter() {
       if (this.projectId) {

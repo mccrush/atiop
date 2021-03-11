@@ -36,18 +36,18 @@ export default {
       }
     },
     napravs() {
-      return this.$store.getters.napravs2
+      return this.$store.getters.napravs
     },
     projects() {
-      return this.$store.getters.projects2
+      return this.$store.getters.projects
     },
     lists() {
       if (this.projectId) {
-        return this.$store.getters.lists2.filter(
+        return this.$store.getters.lists.filter(
           item => item.projectId === this.projectId
         )
       }
-      return this.$store.getters.lists2
+      return this.$store.getters.lists
     }
   },
   methods: {
@@ -68,8 +68,8 @@ export default {
               napravId,
               projectId
             )
-            this.$store.commit('addItem2', list)
-            await this.$store.dispatch('addItem2', list)
+            this.$store.commit('addItem', list)
+            await this.$store.dispatch('addItem', list)
           }
           listId = list.id
         }
@@ -104,8 +104,8 @@ export default {
           listTitle
         )
 
-        this.$store.commit('addItem2', item)
-        const res = await this.$store.dispatch('addItem2', item)
+        this.$store.commit('addItem', item)
+        const res = await this.$store.dispatch('addItem', item)
         if (res) {
           this.$store.commit('addMessage', 'das')
         } else {

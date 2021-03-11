@@ -12,7 +12,7 @@ auth.onAuthStateChanged((user) => {
   }
   if (user) {
     store.commit('setUserId', user.uid)
-    store.dispatch('getItems2')
+    store.dispatch('getItems')
   } else {
     store.commit('setUserId', '')
     console.log('main.js: user not signed: ', user)

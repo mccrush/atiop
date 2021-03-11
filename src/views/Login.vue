@@ -142,12 +142,6 @@ export default {
       } else {
         try {
           await this.$store.dispatch('regist', formData)
-          //this.$router.push('/projects')
-          if (auth.currentUser) {
-            this.$store.dispatch('getItems', 'napravs')
-            this.$store.dispatch('getItems', 'projects')
-            this.$store.dispatch('getItems', 'tasks')
-          }
         } catch (err) {
           if (err.code === 'auth/invalid-email') {
             this.$store.commit('addMessage', {

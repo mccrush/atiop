@@ -34,7 +34,7 @@
       </div>
 
       <div class="d-flex d-md-none align-items-center">
-        <Loading2 v-if="loading2" />
+        <Loading v-if="loading" />
         <div class="dropdown">
           <button
             class="btn btn-sm p-0 me-1 opacity-06"
@@ -201,7 +201,7 @@
       </div>
 
       <div class="d-none d-md-flex align-items-center">
-        <Loading2 v-if="loading2" />
+        <Loading v-if="loading" />
         <div
           v-if="viewType === 'tasks'"
           class="btn-group btn-group-sm me-3"
@@ -281,21 +281,21 @@
 <script>
 import { Dropdown } from 'bootstrap' // Без него не работает Dropdown
 import SettingsDrop from '@/components/additional/SettingsDrop'
-import Loading2 from '@/components/additional/Loading2'
+import Loading from '@/components/additional/Loading'
 import AddItem from '@/components/item/AddItem'
 
 export default {
   components: {
     SettingsDrop,
-    Loading2,
+    Loading,
     AddItem
   },
   computed: {
     userId() {
       return this.$store.getters.userId
     },
-    loading2() {
-      return this.$store.getters.loading2
+    loading() {
+      return this.$store.getters.loading
     },
     viewType() {
       return this.$store.getters.viewType
@@ -304,10 +304,10 @@ export default {
       return this.$store.getters.viewView
     },
     napravs() {
-      return this.$store.getters.napravs2
+      return this.$store.getters.napravs
     },
     projects() {
-      return this.$store.getters.projects2
+      return this.$store.getters.projects
     },
     projectsFiltered() {
       if (this.napravId) {
