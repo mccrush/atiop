@@ -4,7 +4,7 @@
     class="row d-flex align-content-start bg-light pt-3 ps-2 cards"
   >
     <Item
-      v-for="item in itemsFilterArchive"
+      v-for="item in sortTasks"
       :key="'item' + item.id"
       :item="item"
       @edit-item="editItem"
@@ -12,11 +12,7 @@
   </div>
   <div v-else class="row bg-light pt-3 ps-3 pe-3 checklist">
     <ul class="list-group p-0">
-      <li
-        v-for="i in itemsFilterArchive"
-        :key="i + 'kk'"
-        class="list-group-item"
-      >
+      <li v-for="i in sortTasks" :key="i + 'kk'" class="list-group-item">
         <input
           class="form-check-input me-2"
           type="checkbox"
@@ -31,7 +27,7 @@
 
 <script>
 import Item from '@/components/item/Item'
-//import sortMethod from '@/scripts/sortMethod'
+import sortMethod from '@/scripts/sortMethod'
 
 export default {
   components: {
@@ -68,14 +64,10 @@ export default {
       } else {
         return this.tasksFilterType
       }
+    },
+    sortTasks() {
+      return sortMethod(this.itemsFilterArchive, true, 'position')
     }
-    // sortTasks() {
-    //   return sortMethod(
-    //     this.tasksFilterValue,
-    //     this.settings.sortUp,
-    //     this.settings.sortBy
-    //   )
-    // },
   },
   methods: {
     editItem({ id, type }) {

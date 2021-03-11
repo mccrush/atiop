@@ -29,7 +29,7 @@
 
     <div class="task-list pb-2">
       <Item
-        v-for="item in itemsFilterArchive"
+        v-for="item in sortTasks"
         :key="'item' + item.id"
         :item="item"
         @edit-item="editItem"
@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import sortMethod from '@/scripts/sortMethod'
 import Item from '@/components/item/Item'
 import AddItem from '@/components/item/AddItem'
 
@@ -86,6 +87,9 @@ export default {
       } else {
         return this.items
       }
+    },
+    sortTasks() {
+      return sortMethod(this.itemsFilterArchive, true, 'position')
     }
   },
   methods: {
