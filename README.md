@@ -1,4 +1,5 @@
 # ATIOP
+<p style="border-left: 4px solid #c0e218; padding-left: 8px;">Приложение находится в статусе alpha. Пожалуйста, **примите участие в закрытом тестировании**, помогите ускорить процесс разработки. Напишите нам на почту mccrush2027@gmail.com и мы вышлим вам логин и пароль для доступа к функциям приложения.</p>
 <br>
 <img src="https://repository-images.githubusercontent.com/201769959/42f52b00-ff33-11ea-929d-76fccf26bcf9" alt="ATIOP — сервис управления задачами">
 
