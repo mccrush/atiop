@@ -80,6 +80,7 @@
               data-bs-toggle="dropdown"
               aria-expanded="false"
               id="dropdownNaprav"
+              :disabled="!napravs.length"
             ></button>
             <ul
               class="dropdown-menu border-0 shadow"
@@ -109,6 +110,7 @@
               type="button"
               class="btn btn-sm btn-outline-light text-secondary"
               :class="{ active: viewType === 'projects' }"
+              :disabled="!napravs.length"
               @click="setId(projectId, 'projects')"
             >
               {{ projectTitle }}
@@ -119,6 +121,7 @@
               data-bs-toggle="dropdown"
               aria-expanded="false"
               id="dropdownProject"
+              :disabled="!napravs.length"
             ></button>
             <ul
               class="dropdown-menu border-0 shadow"
@@ -136,6 +139,7 @@
                 v-for="project in projectsFiltered"
                 :key="project.id"
                 class="dropdown-item"
+                :disabled="!napravs.length || !projects.length"
                 @click="setId(project.id, 'projects')"
               >
                 {{ project.title }}
@@ -149,6 +153,7 @@
             :class="{
               active: viewType === 'tasks'
             }"
+            :disabled="!napravs.length || !projects.length"
             @click="setViewType('tasks')"
           >
             Задачи
