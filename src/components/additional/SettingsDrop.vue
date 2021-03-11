@@ -149,7 +149,7 @@
       </label>
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
       <small>Способ сортировки</small>
       <div class="form-check">
         <input
@@ -239,7 +239,7 @@
           Убыван
         </button>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
