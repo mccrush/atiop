@@ -337,7 +337,10 @@ export default {
   methods: {
     setView(id, type) {
       if (type === 'tasks' || this.viewType === 'tasks') {
-        this.$store.commit('setViewType', type)
+        this.$store.commit('setId', { id: this.napravId, typeId: 'napravId' })
+        this.$store.commit('setId', { id: this.projectId, typeId: 'projectId' })
+        this.$store.commit('setViewType', 'tasks')
+
         if (this.viewView === 'cards') {
           this.$store.commit('setViewView', 'cards')
         } else {
@@ -345,8 +348,7 @@ export default {
         }
       } else {
         if (id) {
-          if (this.viewType === 'projects') {
-            this.$store.commit('setId', { id, typeId: 'projectId' })
+          if (type === 'projects') {
             const napravId =
               this.napravId ||
               this.projects.find(item => item.id === id).napravId
@@ -354,30 +356,35 @@ export default {
               id: napravId,
               typeId: 'napravId'
             })
+            this.$store.commit('setId', { id, typeId: 'projectId' })
           } else {
-            this.$store.commit('setId', { id: '', typeId: 'projectId' })
             this.$store.commit('setId', {
               id,
               typeId: 'napravId'
             })
+            this.$store.commit('setId', { id: '', typeId: 'projectId' })
           }
-
           this.$store.commit('setViewType', 'projects')
         } else {
-          if (this.viewType === 'projects') {
+          if (type === 'projects') {
             this.$store.commit('setId', {
-              id,
+              id: this.napravId,
               typeId: 'napravId'
             })
+            this.$store.commit('setId', { id: '', typeId: 'projectId' })
             this.$store.commit('setViewType', 'projects')
           } else {
             this.$store.commit('setId', {
               id: '',
               typeId: 'napravId'
             })
-            this.$store.commit('setViewType', 'napravs')
+            this.$store.commit('setId', { id: '', typeId: 'projectId' })
+            if (this.viewType === 'projects') {
+              this.$store.commit('setViewType', 'projects')
+            } else {
+              this.$store.commit('setViewType', 'napravs')
+            }
           }
-          this.$store.commit('setId', { id: '', typeId: 'projectId' })
         }
         this.$store.commit('setViewView', 'kanban')
       }
