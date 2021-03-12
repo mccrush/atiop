@@ -357,7 +357,9 @@ export default {
       if (type === 'napravs') {
         if (id) {
           this.$store.commit('setId', { id, typeId: 'napravId' })
-          this.$store.commit('setViewType', 'projects')
+          if (!this.viewType === 'tasks') {
+            this.$store.commit('setViewType', 'projects')
+          }
         } else {
           this.$store.commit('setId', { id: '', typeId: 'napravId' })
           this.$store.commit('setViewType', 'napravs')
@@ -373,9 +375,13 @@ export default {
           typeId: 'napravId'
         })
         this.$store.commit('setId', { id, typeId: 'projectId' })
-        this.$store.commit('setViewType', 'projects')
+        if (!this.viewType === 'tasks') {
+          this.$store.commit('setViewType', 'projects')
+        }
       }
-      this.$store.commit('setViewView', 'kanban')
+      if (!this.viewView === 'cards') {
+        this.$store.commit('setViewView', 'kanban')
+      }
     }
   }
 }
