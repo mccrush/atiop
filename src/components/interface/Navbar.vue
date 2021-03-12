@@ -341,10 +341,10 @@ export default {
         this.$store.commit('setId', { id: this.projectId, typeId: 'projectId' })
         this.$store.commit('setViewType', 'tasks')
 
-        if (this.viewView === 'cards') {
-          this.$store.commit('setViewView', 'cards')
-        } else {
+        if (this.viewView === 'checklist') {
           this.$store.commit('setViewView', 'checklist')
+        } else {
+          this.$store.commit('setViewView', 'cards')
         }
       } else {
         if (id) {
