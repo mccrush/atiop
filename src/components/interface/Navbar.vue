@@ -68,9 +68,9 @@
           <div class="btn-group">
             <button
               type="button"
-              class="btn btn-sm btn-outline-light text-secondary"
+              class="my-select-btn-pj btn btn-sm btn-outline-light text-secondary"
               :class="{ active: viewType === 'napravs' }"
-              @click="setView(napravId, '', 'projects')"
+              @click="setView(napravId, '', 'napravs')"
             >
               {{ napravTitle }}
             </button>
@@ -86,18 +86,24 @@
               class="dropdown-menu border-0 shadow"
               aria-labelledby="dropdownNaprav"
             >
-              <li class="dropdown-item" @click="setView('', '', 'napravs')">
-                Отобразить направления
-              </li>
-              <li><hr class="dropdown-divider" /></li>
               <li
                 v-if="napravId"
+                class="dropdown-item"
+                @click="setView('', '', 'napravs')"
+              >
+                Отобразить направления
+              </li>
+              <li v-if="napravId"><hr class="dropdown-divider" /></li>
+              <li
+                v-if="napravId && viewType !== 'napravs'"
                 class="dropdown-item"
                 @click="setView('', '', viewType)"
               >
                 По всем направлениям
               </li>
-              <li v-if="napravId"><hr class="dropdown-divider" /></li>
+              <li v-if="napravId && viewType !== 'napravs'">
+                <hr class="dropdown-divider" />
+              </li>
               <li
                 v-for="naprav in napravs"
                 :key="naprav.id"
@@ -112,7 +118,7 @@
           <div class="btn-group">
             <button
               type="button"
-              class="btn btn-sm btn-outline-light text-secondary"
+              class="my-select-btn-pj btn btn-sm btn-outline-light text-secondary"
               :class="{ active: viewType === 'projects' }"
               :disabled="!napravs.length"
               @click="setView(napravId, projectId, 'projects')"
@@ -132,20 +138,25 @@
               aria-labelledby="dropdownProject"
             >
               <li
+                v-if="napravId && viewType !== 'projects'"
                 class="dropdown-item"
                 @click="setView(napravId, '', 'projects')"
               >
                 Отобразить проекты
               </li>
-              <li><hr class="dropdown-divider" /></li>
+              <li v-if="napravId && viewType !== 'projects'">
+                <hr class="dropdown-divider" />
+              </li>
               <li
-                v-if="projectId"
+                v-if="projectId && viewType === 'tasks'"
                 class="dropdown-item"
                 @click="setView(napravId, '', viewType)"
               >
                 По всем проектам
               </li>
-              <li v-if="projectId"><hr class="dropdown-divider" /></li>
+              <li v-if="projectId && viewType === 'tasks'">
+                <hr class="dropdown-divider" />
+              </li>
               <li
                 v-for="project in projectsFiltered"
                 :key="project.id"
@@ -160,7 +171,7 @@
 
           <button
             type="button"
-            class="btn btn-outline-light text-secondary"
+            class="my-select-btn-ts btn btn-outline-light text-secondary"
             :class="{
               active: viewType === 'tasks'
             }"
@@ -347,8 +358,17 @@ export default {
   },
   methods: {
     setView(napravId, projectId, viewType) {
-      this.$store.commit('setId', { id: napravId, typeId: 'napravId' })
-      this.$store.commit('setId', { id: projectId, typeId: 'projectId' })
+      //if (!napravId && !projectId)
+      if (!napravId && projectId && viewType === 'napravs') {
+        napravId = this.projects.find(item => item.id === projectId).napravId
+        this.$store.commit('setId', { id: napravId, typeId: 'napravId' })
+        this.$store.commit('setId', { id: projectId, typeId: 'projectId' })
+        this.$store.commit('setViewType', 'projects')
+      } else {
+        this.$store.commit('setId', { id: napravId, typeId: 'napravId' })
+        this.$store.commit('setId', { id: projectId, typeId: 'projectId' })
+      }
+
       if (napravId && !projectId && viewType === 'napravs') {
         this.$store.commit('setViewType', 'projects')
       } else {
@@ -369,6 +389,17 @@ export default {
 <style scoped>
 .navbar-brand {
   font-weight: 600;
+}
+
+.my-select-btn-pj {
+  width: 104px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.my-select-btn-ts {
+  width: 64px;
 }
 
 .opacity-04 {
