@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="viewView === 'cards'"
+    v-if="!viewView || viewView === 'cards'"
     class="row d-flex align-content-start bg-light pt-3 ps-2 cards"
   >
     <Item
