@@ -34,8 +34,9 @@ export default {
     items() {
       if (this.viewType === 'napravs') {
         return this.$store.getters.napravs
+      } else {
+        return this.$store.getters.projects
       }
-      return this.$store.getters.projects
     },
     itemsFilter() {
       if (this.napravId) {
