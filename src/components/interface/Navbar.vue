@@ -95,7 +95,7 @@
                 class="dropdown-item"
                 @click="setView('', '', viewType)"
               >
-                Без направления
+                По всем направлениям
               </li>
               <li v-if="napravId"><hr class="dropdown-divider" /></li>
               <li
@@ -143,7 +143,7 @@
                 class="dropdown-item"
                 @click="setView(napravId, '', viewType)"
               >
-                Без проекта
+                По всем проектам
               </li>
               <li v-if="projectId"><hr class="dropdown-divider" /></li>
               <li
