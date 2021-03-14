@@ -70,7 +70,6 @@
               type="button"
               class="btn btn-sm btn-outline-light text-secondary"
               :class="{ active: viewType === 'napravs' }"
-              @click="setView(napravId, projectId, viewType)"
             >
               {{ napravTitle }}
             </button>
@@ -115,7 +114,6 @@
               class="btn btn-sm btn-outline-light text-secondary"
               :class="{ active: viewType === 'projects' }"
               :disabled="!napravs.length"
-              @click="setView(napravId, projectId, viewType)"
             >
               {{ projectTitle }}
             </button>
@@ -349,7 +347,15 @@ export default {
     setView(napravId, projectId, viewType) {
       this.$store.commit('setId', { id: napravId, typeId: 'napravId' })
       this.$store.commit('setId', { id: projectId, typeId: 'projectId' })
-      this.$store.commit('setViewType', viewType)
+      if (napravId && !projectId && viewType === 'napravs') {
+        this.$store.commit('setViewType', 'projects')
+      } else {
+        this.$store.commit('setViewType', viewType)
+      }
+
+      if (viewType === 'tasks' && !this.viewView) {
+        this.setViewView('cards')
+      }
     },
     setViewView(view) {
       this.$store.commit('setViewView', view)
