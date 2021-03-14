@@ -121,6 +121,13 @@ export default {
   cursor: pointer;
 }
 
+.dropdown-item.active,
+.dropdown-item:active {
+  color: #fff;
+  text-decoration: none;
+  background-color: #ffc107;
+}
+
 .slide-fade-enter-active {
   transition: all 0.3s ease;
 }
