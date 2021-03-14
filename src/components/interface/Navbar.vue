@@ -70,7 +70,7 @@
               type="button"
               class="btn btn-sm btn-outline-light text-secondary"
               :class="{ active: viewType === 'napravs' }"
-              @click="setView(napravId, 'napravs')"
+              @click="setView(napravId, projectId, viewType)"
             >
               {{ napravTitle }}
             </button>
@@ -86,19 +86,23 @@
               class="dropdown-menu border-0 shadow"
               aria-labelledby="dropdownNaprav"
             >
+              <li class="dropdown-item" @click="setView('', '', 'napravs')">
+                Отобразить направления
+              </li>
+              <li><hr class="dropdown-divider" /></li>
               <li
                 v-if="napravId"
                 class="dropdown-item"
-                @click="setView('', 'napravs')"
+                @click="setView('', '', viewType)"
               >
-                Показать все
+                Без направления
               </li>
               <li v-if="napravId"><hr class="dropdown-divider" /></li>
               <li
                 v-for="naprav in napravs"
                 :key="naprav.id"
                 class="dropdown-item"
-                @click="setView(naprav.id, 'napravs')"
+                @click="setView(naprav.id, '', viewType)"
               >
                 {{ naprav.title }}
               </li>
@@ -111,7 +115,7 @@
               class="btn btn-sm btn-outline-light text-secondary"
               :class="{ active: viewType === 'projects' }"
               :disabled="!napravs.length"
-              @click="setView(projectId, 'projects')"
+              @click="setView(napravId, projectId, viewType)"
             >
               {{ projectTitle }}
             </button>
@@ -128,11 +132,18 @@
               aria-labelledby="dropdownProject"
             >
               <li
+                class="dropdown-item"
+                @click="setView(napravId, '', 'projects')"
+              >
+                Отобразить проекты
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li
                 v-if="projectId"
                 class="dropdown-item"
-                @click="setView('', 'projects')"
+                @click="setView(napravId, '', viewType)"
               >
-                Показать все
+                Без проекта
               </li>
               <li v-if="projectId"><hr class="dropdown-divider" /></li>
               <li
@@ -140,7 +151,7 @@
                 :key="project.id"
                 class="dropdown-item"
                 :disabled="!napravs.length || !projects.length"
-                @click="setView(project.id, 'projects')"
+                @click="setView(napravId, project.id, viewType)"
               >
                 {{ project.title }}
               </li>
@@ -154,7 +165,7 @@
               active: viewType === 'tasks'
             }"
             :disabled="!napravs.length || !projects.length"
-            @click="setView('', 'tasks')"
+            @click="setView(napravId, projectId, 'tasks')"
           >
             Задачи
           </button>
@@ -335,61 +346,11 @@ export default {
     }
   },
   methods: {
-    setView(id, type) {
-      if (type === 'tasks' || this.viewType === 'tasks') {
-        this.$store.commit('setId', { id: this.napravId, typeId: 'napravId' })
-        this.$store.commit('setId', { id: this.projectId, typeId: 'projectId' })
-        this.$store.commit('setViewType', 'tasks')
-
-        if (this.viewView === 'checklist') {
-          this.$store.commit('setViewView', 'checklist')
-        } else {
-          this.$store.commit('setViewView', 'cards')
-        }
-      } else {
-        if (id) {
-          if (type === 'projects') {
-            const napravId =
-              this.napravId ||
-              this.projects.find(item => item.id === id).napravId
-            this.$store.commit('setId', {
-              id: napravId,
-              typeId: 'napravId'
-            })
-            this.$store.commit('setId', { id, typeId: 'projectId' })
-          } else {
-            this.$store.commit('setId', {
-              id,
-              typeId: 'napravId'
-            })
-            this.$store.commit('setId', { id: '', typeId: 'projectId' })
-          }
-          this.$store.commit('setViewType', 'projects')
-        } else {
-          if (type === 'projects') {
-            this.$store.commit('setId', {
-              id: this.napravId,
-              typeId: 'napravId'
-            })
-            this.$store.commit('setId', { id: '', typeId: 'projectId' })
-            this.$store.commit('setViewType', 'projects')
-          } else {
-            this.$store.commit('setId', {
-              id: '',
-              typeId: 'napravId'
-            })
-            this.$store.commit('setId', { id: '', typeId: 'projectId' })
-            if (this.viewType === 'projects') {
-              this.$store.commit('setViewType', 'projects')
-            } else {
-              this.$store.commit('setViewType', 'napravs')
-            }
-          }
-        }
-        this.$store.commit('setViewView', 'kanban')
-      }
+    setView(napravId, projectId, viewType) {
+      this.$store.commit('setId', { id: napravId, typeId: 'napravId' })
+      this.$store.commit('setId', { id: projectId, typeId: 'projectId' })
+      this.$store.commit('setViewType', viewType)
     },
-
     setViewView(view) {
       this.$store.commit('setViewView', view)
     }
