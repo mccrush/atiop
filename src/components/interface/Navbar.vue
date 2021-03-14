@@ -70,6 +70,7 @@
               type="button"
               class="btn btn-sm btn-outline-light text-secondary"
               :class="{ active: viewType === 'napravs' }"
+              @click="setView(napravId, '', 'projects')"
             >
               {{ napravTitle }}
             </button>
@@ -114,6 +115,7 @@
               class="btn btn-sm btn-outline-light text-secondary"
               :class="{ active: viewType === 'projects' }"
               :disabled="!napravs.length"
+              @click="setView(napravId, projectId, 'projects')"
             >
               {{ projectTitle }}
             </button>
