@@ -70,7 +70,7 @@
               type="button"
               class="my-select-btn-pj btn btn-sm btn-outline-light text-secondary"
               :class="{ active: viewType === 'napravs' }"
-              @click="setView(napravId, '', 'napravs')"
+              @click="setViewNapravs(napravId)"
             >
               {{ napravTitle }}
             </button>
@@ -89,7 +89,7 @@
               <li
                 v-if="napravId"
                 class="dropdown-item"
-                @click="setView('', '', 'napravs')"
+                @click="setViewNapravs('')"
               >
                 Отобразить направления
               </li>
@@ -97,7 +97,7 @@
               <li
                 v-if="napravId && viewType !== 'napravs'"
                 class="dropdown-item"
-                @click="setView('', '', viewType)"
+                @click="setViewNapravs('')"
               >
                 По всем направлениям
               </li>
@@ -108,7 +108,7 @@
                 v-for="naprav in napravs"
                 :key="naprav.id"
                 class="dropdown-item"
-                @click="setView(naprav.id, '', viewType)"
+                @click="setViewNapravs(naprav.id)"
               >
                 {{ naprav.title }}
               </li>
@@ -121,7 +121,7 @@
               class="my-select-btn-pj btn btn-sm btn-outline-light text-secondary"
               :class="{ active: viewType === 'projects' }"
               :disabled="!napravs.length"
-              @click="setView(napravId, projectId, 'projects')"
+              @click="setViewProjects(projectId)"
             >
               {{ projectTitle }}
             </button>
@@ -140,7 +140,7 @@
               <li
                 v-if="napravId && viewType !== 'projects'"
                 class="dropdown-item"
-                @click="setView(napravId, '', 'projects')"
+                @click="setViewProjects('')"
               >
                 Отобразить проекты
               </li>
@@ -150,7 +150,7 @@
               <li
                 v-if="projectId && viewType === 'tasks'"
                 class="dropdown-item"
-                @click="setView(napravId, '', viewType)"
+                @click="setViewProjects('')"
               >
                 По всем проектам
               </li>
@@ -162,7 +162,7 @@
                 :key="project.id"
                 class="dropdown-item"
                 :disabled="!napravs.length || !projects.length"
-                @click="setView(napravId, project.id, viewType)"
+                @click="setViewProjects(project.id)"
               >
                 {{ project.title }}
               </li>
@@ -176,7 +176,7 @@
               active: viewType === 'tasks'
             }"
             :disabled="!napravs.length || !projects.length"
-            @click="setView(napravId, projectId, 'tasks')"
+            @click="setViewTasks()"
           >
             Задачи
           </button>
@@ -357,27 +357,30 @@ export default {
     }
   },
   methods: {
-    setView(napravId, projectId, viewType) {
-      //if (!napravId && !projectId)
-      if (!napravId && projectId && viewType === 'napravs') {
-        napravId = this.projects.find(item => item.id === projectId).napravId
-        this.$store.commit('setId', { id: napravId, typeId: 'napravId' })
-        this.$store.commit('setId', { id: projectId, typeId: 'projectId' })
-        this.$store.commit('setViewType', 'projects')
+    setViewNapravs(id) {
+      if (id) {
+        this.$store.commit('setId', { id, typeId: 'napravId' })
       } else {
+        this.$store.commit('setViewType', 'napravs')
+        // if (this.viewType !== 'tasks' && this.viewType !== 'projects') {
+        //   this.$store.commit('setViewType', 'napravs')
+        // }
+      }
+    },
+    setViewProjects(id) {
+      if (id) {
+        const napravId = this.projects.find(item => item.id === id).napravId
         this.$store.commit('setId', { id: napravId, typeId: 'napravId' })
-        this.$store.commit('setId', { id: projectId, typeId: 'projectId' })
-      }
-
-      if (napravId && !projectId && viewType === 'napravs') {
-        this.$store.commit('setViewType', 'projects')
+        this.$store.commit('setId', { id, typeId: 'projectId' })
       } else {
-        this.$store.commit('setViewType', viewType)
+        this.$store.commit('setViewType', 'projects')
+        // if (this.viewType !== 'tasks') {
+        //   this.$store.commit('setViewType', 'projects')
+        // }
       }
-
-      if (viewType === 'tasks' && !this.viewView) {
-        this.setViewView('cards')
-      }
+    },
+    setViewTasks() {
+      this.$store.commit('setViewType', 'tasks')
     },
     setViewView(view) {
       this.$store.commit('setViewView', view)
