@@ -12,7 +12,7 @@ export default {
     projectId: localStorage.getItem('at-projectId') || '',
     listId: localStorage.getItem('at-listId') || '',
     viewType: localStorage.getItem('at-viewType') || 'napravs',
-    viewView: localStorage.getItem('at-viewView') || '',
+    viewView: localStorage.getItem('at-viewView') || 'cards',
     arrayForRemove: [],
     arrayForRemoveLists: [],
     arrayForRemoveProjects: [],
