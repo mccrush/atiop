@@ -7,7 +7,7 @@ export default {
     projects: [],
     lists: [],
     tasks: [],
-    loading2: false,
+    loading: false,
     napravId: localStorage.getItem('at-napravId') || '',
     projectId: localStorage.getItem('at-projectId') || '',
     listId: localStorage.getItem('at-listId') || '',
@@ -31,7 +31,7 @@ export default {
       localStorage.setItem('at-' + typeId, id)
     },
     changeLoading(state, value) {
-      state.loading2 = value
+      state.loading = value
     },
     addItem(state, item) {
       state[item.type].push(item)
@@ -158,7 +158,7 @@ export default {
     projects: state => state.projects,
     lists: state => state.lists,
     tasks: state => state.tasks,
-    loading: state => state.loading2,
+    loading: state => state.loading,
     napravId: state => state.napravId,
     projectId: state => state.projectId,
     listId: state => state.listId,
