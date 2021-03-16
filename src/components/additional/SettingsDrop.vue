@@ -60,7 +60,7 @@
         <small>Завершенные задачи</small>
       </label>
     </div>
-    <div class="form-group form-check mb-1">
+    <!-- <div class="form-group form-check mb-1">
       <input
         type="checkbox"
         class="form-check-input"
@@ -71,7 +71,7 @@
       <label for="empty" class="form-check-label">
         <small>Проекты без задач</small>
       </label>
-    </div>
+    </div> -->
     <hr class="mt-2 mb-1" />
     <small>Показывать метки</small>
     <div class="form-group form-check mb-1">
