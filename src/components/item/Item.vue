@@ -116,14 +116,8 @@ export default {
       }
     },
     setId() {
-      this.$store.commit('setId', {
-        id: this.item.napravId,
-        typeId: 'napravId'
-      })
-      this.$store.commit('setId', {
-        id: this.item.id,
-        typeId: 'projectId'
-      })
+      this.$store.commit('setNapravId', this.item.napravId)
+      this.$store.commit('setProjectId', this.item.id)
       this.$store.commit('setViewType', 'projects')
     }
   }
