@@ -16,18 +16,34 @@
     </button>
     <hr class="mt-2 mb-1" />
 
-    <table class="table table-sm text-center text-white small mb-0">
-      <tr class="border-bottom">
-        <td class="bg-info">N</td>
-        <td class="bg-success">P</td>
-        <td class="bg-light text-muted">L</td>
-        <td class="bg-warning">T</td>
+    <table class="table table-sm text-center text-white mb-0">
+      <tr>
+        <td class="w-25"><span class="d-block badge bg-info">N</span></td>
+        <td><span class="d-block badge bg-success">P</span></td>
+        <td><span class="d-block badge bg-light text-dark">L</span></td>
+        <td><span class="d-block badge bg-warning">T</span></td>
       </tr>
       <tr>
-        <td class="border-end table-info">{{ napravsLength }}</td>
-        <td class="border-end table-success">{{ projectsLength }}</td>
-        <td class="border-end table-light">{{ listsLength }}</td>
-        <td class="table-warning">{{ tasksLength }}</td>
+        <td>
+          <span class="d-block border badge bg-light text-dark">{{
+            napravsLength
+          }}</span>
+        </td>
+        <td>
+          <span class="d-block border badge bg-light text-dark">{{
+            projectsLength
+          }}</span>
+        </td>
+        <td>
+          <span class="d-block border badge bg-light text-dark">{{
+            listsLength
+          }}</span>
+        </td>
+        <td>
+          <span class="d-block border badge bg-light text-dark">{{
+            tasksLength
+          }}</span>
+        </td>
       </tr>
     </table>
     <hr class="mt-2 mb-1" />
