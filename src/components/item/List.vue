@@ -95,15 +95,12 @@ export default {
   methods: {
     setId(type) {
       if (type === 'napravs') {
-        this.$store.commit('setId', { id: this.list.id, typeId: 'napravId' })
-        this.$store.commit('setId', { id: '', typeId: 'projectId' })
+        this.$store.commit('setNapravId', this.list.id)
+        this.$store.commit('setProjectId', '')
         this.$store.commit('setViewType', 'projects')
       } else if (type === 'projects') {
-        this.$store.commit('setId', {
-          id: this.list.napravId,
-          typeId: 'napravId'
-        })
-        this.$store.commit('setId', { id: this.list.id, typeId: 'projectId' })
+        this.$store.commit('setNapravId', this.list.napravId)
+        this.$store.commit('setProjectId', this.list.id)
         this.$store.commit('setViewType', 'projects')
       }
     },
