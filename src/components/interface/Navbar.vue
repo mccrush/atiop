@@ -70,7 +70,7 @@
               type="button"
               class="my-select-btn-pj btn btn-sm btn-outline-light text-secondary"
               :class="{ active: viewType === 'napravs' }"
-              @click="setViewNapravs(napravId)"
+              @click="setActiveNapravs(napravId)"
             >
               {{ napravTitle }}
             </button>
@@ -87,17 +87,19 @@
               aria-labelledby="dropdownNaprav"
             >
               <li
-                v-if="napravId"
+                v-if="viewType !== 'napravs'"
                 class="dropdown-item"
-                @click="setViewNapravs('')"
+                @click="setShowNapravs()"
               >
                 Отобразить направления
               </li>
-              <li v-if="napravId"><hr class="dropdown-divider" /></li>
+              <li v-if="viewType !== 'napravs'">
+                <hr class="dropdown-divider" />
+              </li>
               <li
                 v-if="napravId && viewType !== 'napravs'"
                 class="dropdown-item"
-                @click="setViewNapravs('')"
+                @click="setByAllNapravs()"
               >
                 По всем направлениям
               </li>
@@ -108,7 +110,7 @@
                 v-for="naprav in napravs"
                 :key="naprav.id"
                 class="dropdown-item"
-                @click="setViewNapravs(naprav.id)"
+                @click="setSelectNapravs(naprav.id)"
               >
                 {{ naprav.title }}
               </li>
@@ -121,7 +123,7 @@
               class="my-select-btn-pj btn btn-sm btn-outline-light text-secondary"
               :class="{ active: viewType === 'projects' }"
               :disabled="!napravs.length"
-              @click="setViewProjects(projectId)"
+              @click="setActiveProjects(projectId)"
             >
               {{ projectTitle }}
             </button>
@@ -138,19 +140,19 @@
               aria-labelledby="dropdownProject"
             >
               <li
-                v-if="napravId && viewType !== 'projects'"
+                v-if="viewType === 'tasks'"
                 class="dropdown-item"
-                @click="setViewProjects('')"
+                @click="setShowProjects()"
               >
                 Отобразить проекты
               </li>
-              <li v-if="napravId && viewType !== 'projects'">
+              <li v-if="viewType === 'tasks'">
                 <hr class="dropdown-divider" />
               </li>
               <li
                 v-if="projectId && viewType === 'tasks'"
                 class="dropdown-item"
-                @click="setViewProjects('')"
+                @click="setByAllProjects()"
               >
                 По всем проектам
               </li>
@@ -162,7 +164,7 @@
                 :key="project.id"
                 class="dropdown-item"
                 :disabled="!napravs.length || !projects.length"
-                @click="setViewProjects(project.id)"
+                @click="setSelectProjects(project.id)"
               >
                 {{ project.title }}
               </li>
@@ -176,7 +178,7 @@
               active: viewType === 'tasks'
             }"
             :disabled="!napravs.length || !projects.length"
-            @click="setViewTasks()"
+            @click="setSelectTasks()"
           >
             Задачи
           </button>
