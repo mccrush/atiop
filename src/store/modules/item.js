@@ -26,9 +26,13 @@ export default {
       state.viewView = view
       localStorage.setItem('at-viewView', view)
     },
-    setId(state, { id, typeId }) {
-      state[typeId] = id
-      localStorage.setItem('at-' + typeId, id)
+    setNapravId(state, id) {
+      state.napravId = id
+      localStorage.setItem('at-napravId', id)
+    },
+    setProjectId(state, id) {
+      state.projectId = id
+      localStorage.setItem('at-projectId', id)
     },
     changeLoading(state, value) {
       state.loading = value

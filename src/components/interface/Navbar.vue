@@ -357,31 +357,60 @@ export default {
     }
   },
   methods: {
-    setViewNapravs(id) {
+    setActiveNapravs(id) {
       if (id) {
-        this.$store.commit('setId', { id, typeId: 'napravId' })
-      } else {
-        this.$store.commit('setViewType', 'napravs')
-        // if (this.viewType !== 'tasks' && this.viewType !== 'projects') {
-        //   this.$store.commit('setViewType', 'napravs')
-        // }
-      }
-    },
-    setViewProjects(id) {
-      if (id) {
-        const napravId = this.projects.find(item => item.id === id).napravId
-        this.$store.commit('setId', { id: napravId, typeId: 'napravId' })
-        this.$store.commit('setId', { id, typeId: 'projectId' })
-      } else {
+        this.$store.commit('setProjectId', '')
         this.$store.commit('setViewType', 'projects')
-        // if (this.viewType !== 'tasks') {
-        //   this.$store.commit('setViewType', 'projects')
-        // }
+      } else {
+        this.$store.commit('setNapravId', '')
+        this.$store.commit('setViewType', 'napravs')
       }
     },
-    setViewTasks() {
+    setShowNapravs() {
+      this.$store.commit('setNapravId', '')
+      this.$store.commit('setProjectId', '')
+      this.$store.commit('setViewType', 'napravs')
+    },
+    setByAllNapravs() {
+      this.$store.commit('setNapravId', '')
+    },
+    setSelectNapravs(id) {
+      this.$store.commit('setNapravId', id)
+      if (!this.viewType) {
+        this.$$store.commit('setViewType', 'napravs')
+      }
+    },
+
+    setActiveProjects(id) {
+      if (id) {
+        if (this.viewType === 'tasks') {
+          this.$store.commit('setViewType', 'projects')
+        }
+      } else {
+        this.$store.commit('setProjectId', '')
+        this.$store.commit('setViewType', 'projects')
+      }
+    },
+    setShowProjects() {
+      this.$store.commit('setProjectId', '')
+      this.$store.commit('setViewType', 'projects')
+    },
+    setByAllProjects() {
+      this.$store.commit('setProjectId', '')
+    },
+    setSelectProjects(id) {
+      const napravId = this.projects.find(item => item.id === id).napravId
+      this.$store.commit('setNapravId', napravId)
+      this.$store.commit('setProjectId', id)
+      if (!this.viewType) {
+        this.$store.commit('setViewType', 'projects')
+      }
+    },
+
+    setSelectTasks() {
       this.$store.commit('setViewType', 'tasks')
     },
+
     setViewView(view) {
       this.$store.commit('setViewView', view)
     }
