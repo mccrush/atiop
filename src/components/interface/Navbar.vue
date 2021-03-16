@@ -297,7 +297,12 @@
         />
         ATIOP
       </div>
-      <a href="#about" class="btn btn-sm btn-light text-muted">О приложении</a>
+      <a
+        href="https://github.com/mccrush/atiop/wiki"
+        target="_blank"
+        class="btn btn-sm btn-light text-muted"
+        >О приложении</a
+      >
     </div>
   </nav>
 </template>
