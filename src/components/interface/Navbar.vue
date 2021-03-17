@@ -383,6 +383,7 @@ export default {
     },
     setSelectNapravs(id) {
       this.$store.commit('setNapravId', id)
+      this.$store.commit('setProjectId', '')
       if (!this.viewType || this.viewType === 'napravs') {
         this.$store.commit('setViewType', 'projects')
       }
