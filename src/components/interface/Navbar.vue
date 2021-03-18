@@ -360,6 +360,7 @@
 
 <script>
 import { Dropdown } from 'bootstrap' // Без него не работает Dropdown
+import getFilters from '@/scripts/getFilters'
 import SettingsDrop from '@/components/additional/SettingsDrop'
 import Loading from '@/components/additional/Loading'
 import AddItem from '@/components/item/AddItem'
@@ -370,16 +371,25 @@ export default {
     Loading,
     AddItem
   },
+  data() {
+    return {
+      filters: getFilters
+    }
+  },
+  mounted() {
+    console.log('fls:', this.filters)
+  },
   computed: {
     filterTitle() {
-      return 'Все задачи'
+      console.log('id was change to:', this.filterId)
+      if (this.filterId) {
+        return this.filters.find(item => item.id === this.filterId).title
+      } else {
+        return 'Все задачи'
+      }
     },
-    filters() {
-      return [
-        { id: '01', title: 'С ценой' },
-        { id: '02', title: 'С Датой' },
-        { id: '03', title: 'Со временм' }
-      ]
+    filterId() {
+      return this.$store.getters.filterId
     },
     userId() {
       return this.$store.getters.userId
@@ -425,7 +435,13 @@ export default {
     }
   },
   methods: {
-    setSelectFilter() {},
+    setSelectFilter(id) {
+      if (id) {
+        this.$store.commit('setFilterId', id)
+      } else {
+        this.$store.commit('setFilterId', '')
+      }
+    },
     setActiveNapravs(id) {
       if (id) {
         this.$store.commit('setProjectId', '')

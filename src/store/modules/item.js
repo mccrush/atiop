@@ -16,8 +16,13 @@ export default {
     arrayForRemove: [],
     arrayForRemoveLists: [],
     arrayForRemoveProjects: [],
+    filterId: localStorage.getItem('at-filterId') || ''
   },
   mutations: {
+    setFilterId(state, id) {
+      state.filterId = id
+      localStorage.setItem('at-filterId', id)
+    },
     setViewType(state, type) {
       state.viewType = type
       localStorage.setItem('at-viewType', type)
@@ -171,6 +176,7 @@ export default {
     napravsLength: state => state.napravs.length,
     projectsLength: state => state.projects.length,
     listsLength: state => state.lists.length,
-    tasksLength: state => state.tasks.length
+    tasksLength: state => state.tasks.length,
+    filterId: state => state.filterId
   }
 }
