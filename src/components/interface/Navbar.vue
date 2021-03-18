@@ -208,7 +208,10 @@
           <AddItem v-if="viewType === 'napravs'" :type="'napravs'" />
         </div>
         <div>
-          <AddItem v-if="napravId && !projectId" :type="'projects'" />
+          <AddItem
+            v-if="napravId && !projectId && viewType === 'projects'"
+            :type="'projects'"
+          />
         </div>
         <div>
           <AddItem
