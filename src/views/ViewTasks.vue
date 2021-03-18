@@ -3,10 +3,6 @@
     v-if="!viewView || viewView === 'cards'"
     class="row d-flex align-content-start bg-light pt-3 ps-2 cards"
   >
-    <vue-headful
-      title="ATIOP Задачи"
-      description="ATIOP — Сервис управления задачами"
-    />
     <Item
       v-for="item in sortTasks"
       :key="'item' + item.id"

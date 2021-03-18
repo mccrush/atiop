@@ -1,9 +1,5 @@
 <template>
   <div class="row justify-content-center">
-    <vue-headful
-      title="ATIOP Авторизация / регистрация"
-      description="ATIOP — Сервис управления задачами"
-    />
     <div class="col-12 col-sm-6 col-md-4 col-xl-4 text-left">
       <div class="mt-5 mb-3 p-3 shadow-sm ms-auto me-auto max-width">
         <h4 class="text-center mt-2 mb-4">
@@ -87,7 +83,6 @@
 
 <script>
 import { auth } from '@/firebase.js'
-import vueHeadful from 'vue-headful'
 
 export default {
   components: {
