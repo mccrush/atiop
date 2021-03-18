@@ -2,6 +2,10 @@
   <div
     class="row d-flex flex-nowrap align-items-start bg-light pt-3 ps-2 kanban"
   >
+    <vue-headful
+      title="ATIOP Проекты"
+      description="ATIOP — Сервис управления задачами"
+    />
     <List
       v-for="list in itemsFilter"
       :key="'list' + list.id"
