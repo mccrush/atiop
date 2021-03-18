@@ -184,14 +184,25 @@
           </button>
         </div>
 
-        <div class="btn-group">
+        <div v-if="viewType === 'tasks'" class="btn-group">
           <button
             type="button"
-            class="my-select-btn-pj btn btn-sm btn-outline-light text-secondary"
-            :disabled="viewType !== 'tasks'"
+            class="btn btn-sm btn-outline-light text-secondary p-0 pb-1 ps-2 pe-2"
+          >
+            <img
+              src="/img/icons_tool/x.svg"
+              width="16"
+              height="16"
+              alt="Cards"
+              class="opacity-04"
+            />
+          </button>
+          <span
+            type="button"
+            class="my-btn-nohover my-select-btn-pj btn btn-sm btn-outline-light text-secondary"
           >
             {{ filterTitle }}
-          </button>
+          </span>
           <button
             type="button"
             class="btn btn-sm btn-outline-light dropdown-toggle dropdown-toggle-split text-secondary"
@@ -203,10 +214,10 @@
             class="dropdown-menu border-0 shadow"
             aria-labelledby="dropdownFilters"
           >
-            <li class="dropdown-item">Сбросить фильтр</li>
+            <!-- <li class="dropdown-item">Сбросить фильтр</li>
             <li>
               <hr class="dropdown-divider" />
-            </li>
+            </li> -->
 
             <li
               v-for="filter in filters"
@@ -495,6 +506,14 @@ export default {
 
 .my-btn-light:hover {
   background-color: #e2e6ea;
+}
+
+.my-btn-nohover {
+  cursor: default;
+}
+
+.my-btn-nohover:hover {
+  background-color: #fff !important;
 }
 
 .my-dropdown-item:focus,
