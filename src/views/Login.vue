@@ -85,9 +85,6 @@
 import { auth } from '@/firebase.js'
 
 export default {
-  components: {
-    vueHeadful
-  },
   data() {
     return {
       email: '',
