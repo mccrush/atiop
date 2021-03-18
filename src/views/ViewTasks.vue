@@ -26,8 +26,8 @@
 </template>
 
 <script>
-import Item from '@/components/item/Item'
 import sortMethod from '@/scripts/sortMethod'
+import Item from '@/components/item/Item'
 
 export default {
   components: {
@@ -36,6 +36,9 @@ export default {
   computed: {
     settings() {
       return this.$store.getters.settings
+    },
+    filterId() {
+      return this.$store.getters.filterId
     },
     viewView() {
       return this.$store.getters.viewView
@@ -58,15 +61,26 @@ export default {
         return this.tasks
       }
     },
-    itemsFilterArchive() {
+    tasksFilterArchive() {
       if (!this.settings.showArhived) {
         return this.tasksFilterType.filter(item => item.status !== 'done')
       } else {
         return this.tasksFilterType
       }
     },
+    tasksFilterMain() {
+      if (this.filterId) {
+        if (this.filterId === 'status') {
+          return this.tasksFilterArchive.filter(item => item.status === 'work')
+        } else {
+          return this.tasksFilterArchive.filter(item => item[this.filterId])
+        }
+      } else {
+        return this.tasksFilterArchive
+      }
+    },
     sortTasks() {
-      return sortMethod(this.itemsFilterArchive, true, 'position')
+      return sortMethod(this.tasksFilterMain, true, 'position')
     }
   },
   methods: {

@@ -1,6 +1,6 @@
 
-import { auth } from '@/firebase.js'
-import { db } from '@/firebase.js'
+//import { auth } from '@/firebase.js'
+//import { db } from '@/firebase.js'
 
 export default {
   state: {

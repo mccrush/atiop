@@ -1,7 +1,7 @@
 export default [
-  { id: '01', title: 'В работе', name: '' },
-  { id: '02', title: 'С датой', name: 'showDate' },
-  { id: '03', title: 'С дедлайном', name: 'showDeadline' },
-  { id: '04', title: 'Со временем', name: 'showTime' },
-  { id: '05', title: 'С ценой', name: 'showPrice' }
+  { id: 'status', title: 'В работе', name: '' },
+  { id: 'date', title: 'С датой', name: 'showDate' },
+  { id: 'deadline', title: 'С дедлайном', name: 'showDeadline' },
+  { id: 'time', title: 'Со временем', name: 'showTime' },
+  { id: 'price', title: 'С ценой', name: 'showPrice' }
 ]
