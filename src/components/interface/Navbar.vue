@@ -185,18 +185,6 @@
         </div>
 
         <div v-if="viewType === 'tasks'" class="btn-group">
-          <button
-            type="button"
-            class="btn btn-sm btn-outline-light text-secondary p-0 pb-1 ps-2 pe-2"
-          >
-            <img
-              src="/img/icons_tool/x.svg"
-              width="16"
-              height="16"
-              alt="Cards"
-              class="opacity-04"
-            />
-          </button>
           <span
             type="button"
             class="my-btn-nohover my-select-btn-pj btn btn-sm btn-outline-light text-secondary"
@@ -210,6 +198,31 @@
             aria-expanded="false"
             id="dropdownFilters"
           ></button>
+
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-light text-secondary p-0 pb-1 ps-2 pe-2"
+            @click="setSelectFilter('')"
+            :disabled="!filterId"
+          >
+            <img
+              v-if="filterId"
+              src="/img/icons_tool/x.svg"
+              width="16"
+              height="16"
+              alt="Cards"
+              class="opacity-04"
+            />
+            <img
+              v-else
+              src="/img/icons_tool/funnel.svg"
+              width="16"
+              height="16"
+              alt="Cards"
+              class="opacity-04"
+            />
+          </button>
+
           <ul
             class="dropdown-menu border-0 shadow"
             aria-labelledby="dropdownFilters"
@@ -225,7 +238,10 @@
               class="my-dropdown-item dropdown-item"
               @click="setSelectFilter(filter.id)"
             >
-              <button class="my-btn-light btn w-100 btn-sm btn-light border">
+              <button
+                class="my-btn-light btn w-100 btn-sm btn-light border"
+                :class="{ 'my-dropdown-select': filter.id === filterId }"
+              >
                 {{ filter.title }}
               </button>
             </li>
@@ -376,12 +392,8 @@ export default {
       filters: getFilters
     }
   },
-  mounted() {
-    console.log('fls:', this.filters)
-  },
   computed: {
     filterTitle() {
-      console.log('id was change to:', this.filterId)
       if (this.filterId) {
         return this.filters.find(item => item.id === this.filterId).title
       } else {
@@ -528,13 +540,14 @@ export default {
   cursor: default;
 }
 
-.my-btn-nohover:hover {
-  background-color: #fff !important;
-}
-
+.my-btn-nohover:hover,
 .my-dropdown-item:focus,
 .my-dropdown-item:hover {
-  background-color: #fff !important;
+  background-color: #fff;
+}
+
+.my-dropdown-select {
+  background-color: #e2e6ea;
 }
 
 .opacity-04 {
