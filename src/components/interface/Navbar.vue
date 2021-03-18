@@ -184,7 +184,44 @@
           </button>
         </div>
 
-        <div class="dropdown">
+        <div class="btn-group">
+          <button
+            type="button"
+            class="my-select-btn-pj btn btn-sm btn-outline-light text-secondary"
+            :disabled="viewType !== 'tasks'"
+          >
+            {{ filterTitle }}
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-light dropdown-toggle dropdown-toggle-split text-secondary"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            id="dropdownFilters"
+          ></button>
+          <ul
+            class="dropdown-menu border-0 shadow"
+            aria-labelledby="dropdownFilters"
+          >
+            <li class="dropdown-item">Сбросить фильтр</li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+
+            <li
+              v-for="filter in filters"
+              :key="filter.id"
+              class="my-dropdown-item dropdown-item"
+              @click="setSelectFilter(filter.id)"
+            >
+              <button class="my-btn-light btn w-100 btn-sm btn-light border">
+                {{ filter.title }}
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <!-- <div class="dropdown">
           <button
             class="btn btn-sm btn-outline-light text-secondary dropdown-toggle me-3"
             type="button"
@@ -193,7 +230,7 @@
             aria-expanded="false"
             :disabled="true"
           >
-            Filter
+            Все
           </button>
           <ul
             class="dropdown-menu bg-white border-0 shadow p-3 pt-2"
@@ -203,7 +240,7 @@
             <li><a class="dropdown-item" href="#">Another action</a></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
-        </div>
+        </div> -->
         <div>
           <AddItem v-if="viewType === 'napravs'" :type="'napravs'" />
         </div>
@@ -323,6 +360,16 @@ export default {
     AddItem
   },
   computed: {
+    filterTitle() {
+      return 'Все задачи'
+    },
+    filters() {
+      return [
+        { id: '01', title: 'С ценой' },
+        { id: '02', title: 'С Датой' },
+        { id: '03', title: 'Со временм' }
+      ]
+    },
     userId() {
       return this.$store.getters.userId
     },
@@ -367,6 +414,7 @@ export default {
     }
   },
   methods: {
+    setSelectFilter() {},
     setActiveNapravs(id) {
       if (id) {
         this.$store.commit('setProjectId', '')
@@ -443,6 +491,15 @@ export default {
 
 .my-select-btn-ts {
   width: 64px;
+}
+
+.my-btn-light:hover {
+  background-color: #e2e6ea;
+}
+
+.my-dropdown-item:focus,
+.my-dropdown-item:hover {
+  background-color: #fff !important;
 }
 
 .opacity-04 {
