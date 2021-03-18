@@ -202,7 +202,7 @@
           <button
             type="button"
             class="btn btn-sm btn-outline-light text-secondary p-0 pb-1 ps-2 pe-2"
-            @click="setSelectFilter('')"
+            @click="setSelectFilter('', '')"
             :disabled="!filterId"
           >
             <img
@@ -236,7 +236,7 @@
               v-for="filter in filters"
               :key="filter.id"
               class="my-dropdown-item dropdown-item"
-              @click="setSelectFilter(filter.id)"
+              @click="setSelectFilter(filter.id, filter.name)"
             >
               <button
                 class="my-btn-light btn w-100 btn-sm btn-light border"
@@ -447,9 +447,12 @@ export default {
     }
   },
   methods: {
-    setSelectFilter(id) {
+    setSelectFilter(id, name) {
       if (id) {
         this.$store.commit('setFilterId', id)
+        if (name) {
+          this.$store.commit('setNewSettingsValue', { name, value: true })
+        }
       } else {
         this.$store.commit('setFilterId', '')
       }
