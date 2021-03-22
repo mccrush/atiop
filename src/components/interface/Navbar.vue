@@ -365,7 +365,7 @@
         ATIOP
       </div>
       <a
-        href="https://github.com/mccrush/atiop/wiki"
+        href="https://fuc.atiop.ru/"
         target="_blank"
         class="btn btn-sm btn-light text-muted"
         >О приложении</a

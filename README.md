@@ -1,5 +1,5 @@
 # ATIOP
-<p style="border-left: 4px solid #c0e218; padding-left: 8px;">Приложение находится в статусе alpha. Пожалуйста, <strong>примите участие в закрытом тестировании</strong>, помогите ускорить процесс разработки. Напишите нам на почту mccrush2027@gmail.com и мы вышлим вам логин и пароль для доступа к функциям приложения.</p>
+<p style="border-left: 4px solid #c0e218; padding-left: 8px;">Приложение находится в статусе alpha. Пожалуйста, <strong>примите участие в закрытом тестировании</strong>, помогите ускорить процесс разработки. Напишите нам на почту mccrush2027@gmail.com и мы вышлем вам логин и пароль для доступа к функциям приложения.</p>
 <br>
 <img src="https://repository-images.githubusercontent.com/201769959/42f52b00-ff33-11ea-929d-76fccf26bcf9" alt="ATIOP — сервис управления задачами">
 
@@ -21,7 +21,7 @@
       действия необходимо выполнить?
     </p>
 
-Более подробное описание в <a href="https://github.com/mccrush/atiop/wiki" target="_blank" title="Открыть wiki">wiki</a>
+Более подробное описание в <a href="https://fuc.atiop.ru/" target="_blank" title="Открыть Руководство">Руководстве</a>
 <hr>
 
 <p align="center">
