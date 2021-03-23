@@ -119,7 +119,7 @@ export default {
         console.log('ca1:', currentArray)
 
         let newArray = currentArray.map((item, index) => {
-          item.position = index + 1
+          return (item.position = index + 1)
         })
         console.log('ca2:', newArray)
       } else if (status === 'done') {
