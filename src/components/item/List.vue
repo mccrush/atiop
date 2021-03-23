@@ -111,17 +111,25 @@ export default {
     updateIndex({ id, status }) {
       if (status === 'work') {
         let currentArray = sortMethod(this.items, true, 'position')
-        console.log('ca0:', currentArray)
+
         const index = currentArray.findIndex(item => item.id === id)
         const currentItem = currentArray[index]
         currentArray.splice(index)
         currentArray.unshift(currentItem)
-        console.log('ca1:', currentArray)
 
-        let newArray = currentArray.map((item, index) => {
-          return (item.position = index + 1)
+        currentArray.forEach((item, index) => {
+          this.$store.commit('updateTaskPosition', {
+            id: item.id,
+            position: index + 1
+          })
         })
-        console.log('ca2:', newArray)
+
+        currentArray.forEach(item => {
+          this.$store.dispatch('updateItem', {
+            id: item.id,
+            type: item.type
+          })
+        })
       } else if (status === 'done') {
       }
     }

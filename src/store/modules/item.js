@@ -48,6 +48,13 @@ export default {
     setItems(state, { type, items = [] }) {
       state[type] = items
     },
+    updateTaskPosition(state, { id, position }) {
+      let tasks = state.tasks.concat()
+      const index = tasks.findIndex(task => task.id === id)
+      const task = tasks[index]
+      tasks[index] = { ...task, position }
+      state.tasks = tasks
+    },
     changeTaskStatus(state, { id, status, dateStart, dateDone }) {
 
       let tasks = state.tasks.concat()

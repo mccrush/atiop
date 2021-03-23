@@ -96,7 +96,7 @@ export default {
     }
   },
   methods: {
-    async changeTaskStatus(status) {
+    changeTaskStatus(status) {
       this.$store.commit('changeTaskStatus', {
         id: this.item.id,
         type: this.item.type,
@@ -107,15 +107,16 @@ export default {
 
       this.$emit('update-index', { id: this.item.id, status })
 
-      const res = await this.$store.dispatch('updateItem', {
-        id: this.item.id,
-        type: this.item.type
-      })
-      if (res) {
-        this.$store.commit('addMessage', 'dus')
-      } else {
-        this.$store.commit('addMessage', 'due')
-      }
+      // Выполняется в компоненте List
+      // const res = await this.$store.dispatch('updateItem', {
+      //   id: this.item.id,
+      //   type: this.item.type
+      // })
+      // if (res) {
+      //   this.$store.commit('addMessage', 'dus')
+      // } else {
+      //   this.$store.commit('addMessage', 'due')
+      // }
     },
     setId() {
       this.$store.commit('setNapravId', this.item.napravId)
