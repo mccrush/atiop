@@ -131,6 +131,10 @@ export default {
           })
         })
       } else if (status === 'done') {
+        this.$store.dispatch('updateItem', {
+          id,
+          type: 'tasks'
+        })
       }
     }
   }
