@@ -365,7 +365,7 @@
         ATIOP
       </div>
       <a
-        href="https://fuc.atiop.ru/"
+        href="https://doc.atiop.ru/"
         target="_blank"
         class="btn btn-sm btn-light text-muted"
         >О приложении</a

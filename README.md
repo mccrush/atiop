@@ -21,7 +21,7 @@
       действия необходимо выполнить?
     </p>
 
-Более подробное описание в <a href="https://fuc.atiop.ru/" target="_blank" title="Открыть Руководство">Руководстве</a>
+Более подробное описание в <a href="https://doc.atiop.ru/" target="_blank" title="Открыть Руководство">Руководстве</a>
 <hr>
 
 <p align="center">
