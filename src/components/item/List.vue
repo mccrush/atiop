@@ -117,6 +117,11 @@ export default {
         currentArray.splice(index)
         currentArray.unshift(currentItem)
         console.log('ca1:', currentArray)
+
+        let newArray = currentArray.map((item, index) => {
+          item.position = index + 1
+        })
+        console.log('ca2:', newArray)
       } else if (status === 'done') {
       }
     }
