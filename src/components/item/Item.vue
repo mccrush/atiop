@@ -105,6 +105,8 @@ export default {
         dateDone: status === 'done' ? getDateNow : ''
       })
 
+      this.$emit('update-index', { id: this.item.id, status })
+
       const res = await this.$store.dispatch('updateItem', {
         id: this.item.id,
         type: this.item.type

@@ -34,6 +34,7 @@
         :item="item"
         @edit-item="editItem"
         @set-id="setId"
+        @update-index="updateIndex"
       />
       <div v-if="list.type === 'napravs'" class="ms-2 me-2">
         <AddItem :type="'projects'" :napravId="list.id" />
@@ -106,6 +107,18 @@ export default {
     },
     editItem({ id, type }) {
       this.$emit('edit-item', { id, type })
+    },
+    updateIndex({ id, status }) {
+      if (status === 'work') {
+        let currentArray = sortMethod(this.items, true, 'position')
+        console.log('ca0:', currentArray)
+        const index = currentArray.findIndex(item => item.id === id)
+        const currentItem = currentArray[index]
+        currentArray.splice(index)
+        currentArray.unshift(currentItem)
+        console.log('ca1:', currentArray)
+      } else if (status === 'done') {
+      }
     }
   }
 }
