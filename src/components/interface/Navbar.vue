@@ -299,7 +299,7 @@
         </div>
         <div>
           <AddItem
-            v-if="napravId && projectId && viewType === 'tasks'"
+            v-if="napravId && projectId && viewType === 'tasks' && !filterId"
             :type="'tasks'"
           />
         </div>
