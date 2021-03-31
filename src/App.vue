@@ -30,6 +30,7 @@ import Navbar from '@/components/interface/Navbar'
 import Message from '@/components/additional/Message'
 import ViewProjects from '@/views/ViewProjects'
 import ViewTasks from '@/views/ViewTasks'
+import ViewPersonPlan from '@/views/ViewPersonPlan'
 import Login from '@/views/Login'
 import ModalForm from '@/components/item/ModalForm'
 
@@ -39,6 +40,7 @@ export default {
     Message,
     ViewProjects,
     ViewTasks,
+    ViewPersonPlan,
     Login,
     ModalForm
   },
@@ -62,10 +64,17 @@ export default {
       if (this.userId) {
         if (this.viewType === 'tasks') {
           return 'ViewTasks'
+        } else if (
+          this.viewType === 'napravs' ||
+          this.viewType === 'projects'
+        ) {
+          return 'ViewProjects'
+        } else if (this.viewType === 'person') {
+          return 'ViewPersonPlan'
         }
-        return 'ViewProjects'
+      } else {
+        return 'Login'
       }
-      return 'Login'
     },
     napravs() {
       return this.$store.getters.napravs

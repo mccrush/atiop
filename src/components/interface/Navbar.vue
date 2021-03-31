@@ -248,6 +248,19 @@
           </ul>
         </div>
 
+        <!-- PersonPlan -->
+        <button
+          type="button"
+          class="btn btn-sm btn-outline-light text-secondary me-3"
+          :class="{
+            active: viewType === 'person'
+          }"
+          @click="setSelectPerson()"
+        >
+          PersonPlan
+        </button>
+        <!-- -->
+
         <!-- <div class="dropdown">
           <button
             class="btn btn-sm btn-outline-light text-secondary dropdown-toggle me-3"
@@ -510,6 +523,10 @@ export default {
 
     setSelectTasks() {
       this.$store.commit('setViewType', 'tasks')
+    },
+
+    setSelectPerson() {
+      this.$store.commit('setViewType', 'person')
     },
 
     setViewView(view) {
