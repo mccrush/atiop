@@ -198,7 +198,7 @@
           </button>
         </div>
 
-        <div v-if="viewType === 'tasks'" class="btn-group">
+        <div v-if="viewType === 'tasks'" class="btn-group me-3">
           <span
             type="button"
             class="my-btn-nohover my-select-btn-pj btn btn-sm btn-outline-light text-secondary"
