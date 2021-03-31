@@ -487,6 +487,7 @@ export default {
     },
     setByAllNapravs() {
       this.$store.commit('setNapravId', '')
+      this.$store.commit('setProjectId', '')
     },
     setSelectNapravs(id) {
       this.$store.commit('setNapravId', id)
