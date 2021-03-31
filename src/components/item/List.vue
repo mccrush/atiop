@@ -6,20 +6,75 @@
       class="my-no-select d-flex flex-row align-items-start text-center rounded mt-2 mb-2"
       @dblclick.prevent="editItem({ id: list.id, type: list.type })"
     >
-      <div
-        class="w-100"
-        :class="{ 'ps-4': list.type !== 'lists' && list.type !== 'person' }"
-      >
+      <div class="w-100 ps-4">
         {{ list.title }}
       </div>
       <button
         v-if="list.type !== 'lists' && list.type !== 'person'"
         tag="button"
-        class="btn btn-sm btn-light border p-0 ps-2 pe-2 m-0 me-2"
+        class="my-btn-light btn btn-sm btn-light border p-0 ps-2 pe-2 m-0 me-2"
         @click="setId(list.type)"
       >
         In
       </button>
+      <button
+        v-if="list.type === 'lists' || list.type === 'person'"
+        tag="button"
+        class="my-btn-light btn btn-sm btn-light border p-0 pb-1 ps-2 pe-2 m-0 me-2"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+        id="dropdownSort"
+      >
+        <img
+          src="/img/icons_tool/sort-down-alt.svg"
+          width="16"
+          height="16"
+          alt="Sort"
+          class="opacity-04"
+        />
+      </button>
+      <ul class="dropdown-menu border-0 shadow" aria-labelledby="dropdownSort">
+        <li
+          v-for="sort in sorts"
+          :key="sort.id"
+          class="my-dropdown-item dropdown-item"
+          @click="setSelectSort(sort.id, sort.name)"
+        >
+          <button class="my-dropdown-btn btn w-100 btn-sm btn-light border">
+            {{ sort.title }}
+          </button>
+        </li>
+        <!-- <li>
+          <hr class="dropdown-divider" />
+        </li> -->
+        <li class="ps-3 pt-1 pe-3 pb-1">
+          <div class="btn-group w-100" role="group">
+            <button
+              class="my-dropdown-btn btn btn-sm btn-light border w-50 p-0 pb-1 ps-2 pe-2"
+              :class="{ 'my-dropdown-select': true }"
+            >
+              <img
+                src="/img/icons_tool/sort-down-alt.svg"
+                width="16"
+                height="16"
+                alt="Sort"
+                class="opacity-06"
+              />
+            </button>
+            <button
+              class="my-dropdown-btn btn btn-sm btn-light border w-50 p-0 pb-1 ps-2 pe-2"
+            >
+              <img
+                src="/img/icons_tool/sort-down.svg"
+                width="16"
+                height="16"
+                alt="Sort"
+                class="opacity-06"
+              />
+            </button>
+          </div>
+        </li>
+      </ul>
       <!-- <div class="btn btn-sm btn-light border-0 p-0 ps-1 pe-1 m-0 ms-2">
         <img
           src="/img/icons_tool/three-dots-vertical.svg"
@@ -54,6 +109,7 @@
 
 <script>
 import sortMethod from '@/scripts/sortMethod'
+import getSorts from '@/scripts/getSorts'
 import Item from '@/components/item/Item'
 import AddItem from '@/components/item/AddItem'
 
@@ -63,6 +119,11 @@ export default {
     AddItem
   },
   props: ['list'],
+  data() {
+    return {
+      sorts: getSorts
+    }
+  },
   computed: {
     items() {
       if (this.list.type === 'napravs') {
@@ -163,6 +224,9 @@ export default {
           type: 'tasks'
         })
       }
+    },
+    setSelectSort(id, name) {
+      console.log('Sort id = ', id, ' name = ', name)
     }
   }
 }
@@ -187,14 +251,35 @@ export default {
   overflow-x: hidden;
 }
 
-.btn-light {
+.my-btn-light {
   background-color: #fff;
   color: #dee2e6;
 }
 
-.btn-light:hover {
+.my-btn-light:hover {
   background-color: #e2e6ea;
   color: #212529;
+}
+
+.opacity-04 {
+  opacity: 0.4;
+}
+
+.opacity-06 {
+  opacity: 0.6;
+}
+
+.my-dropdown-item:focus,
+.my-dropdown-item:hover {
+  background-color: #fff;
+}
+
+.my-dropdown-btn:hover {
+  background-color: #dee2e6;
+}
+
+.my-dropdown-select {
+  background-color: #dee2e6;
 }
 
 ::-webkit-scrollbar {
