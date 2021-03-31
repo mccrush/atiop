@@ -19,9 +19,13 @@
     <table class="table table-sm text-center text-white mb-0">
       <tr>
         <td class="w-25"><span class="d-block badge bg-info">N</span></td>
-        <td><span class="d-block badge bg-success">P</span></td>
-        <td><span class="d-block badge bg-light text-dark">L</span></td>
-        <td><span class="d-block badge bg-warning">T</span></td>
+        <td class="w-25"><span class="d-block badge bg-success">P</span></td>
+        <td class="w-25">
+          <span class="d-block badge bg-light text-dark">L</span>
+        </td>
+        <td class="w-25">
+          <span class="d-block badge bg-warning">T-{{ tasksLength }}</span>
+        </td>
       </tr>
       <tr>
         <td>
@@ -40,8 +44,9 @@
           }}</span>
         </td>
         <td>
-          <span class="d-block border badge bg-light text-dark">{{
-            tasksLength
+          <span class="badge bg-warning">{{ tasksTodoWorkLength }}</span>
+          <span class="border badge bg-light text-dark">{{
+            tasksDoneLength
           }}</span>
         </td>
       </tr>
@@ -291,6 +296,12 @@ export default {
     },
     tasksLength() {
       return this.$store.getters.tasksLength
+    },
+    tasksTodoWorkLength() {
+      return this.$store.getters.tasksTodoWorkLength
+    },
+    tasksDoneLength() {
+      return this.$store.getters.tasksDoneLength
     }
   },
 
