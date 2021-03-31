@@ -6,11 +6,14 @@
       class="my-no-select d-flex flex-row align-items-start text-center rounded mt-2 mb-2"
       @dblclick.prevent="editItem({ id: list.id, type: list.type })"
     >
-      <div class="w-100" :class="{ 'ps-4': list.type !== 'lists' }">
+      <div
+        class="w-100"
+        :class="{ 'ps-4': list.type !== 'lists' && list.type !== 'person' }"
+      >
         {{ list.title }}
       </div>
       <button
-        v-if="list.type !== 'lists'"
+        v-if="list.type !== 'lists' && list.type !== 'person'"
         tag="button"
         class="btn btn-sm btn-light border p-0 ps-2 pe-2 m-0 me-2"
         @click="setId(list.type)"
