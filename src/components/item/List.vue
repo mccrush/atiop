@@ -40,17 +40,12 @@
           class="my-dropdown-item dropdown-item"
           @click="setSelectSort(sort.id, sort.name)"
         >
-          <button class="my-dropdown-btn btn w-100 btn-sm btn-light border">
-            {{ sort.title }}
-          </button>
-        </li>
-        <!-- <li>
-          <hr class="dropdown-divider" />
-        </li> -->
-        <li class="ps-3 pt-1 pe-3 pb-1">
           <div class="btn-group w-100" role="group">
+            <button class="my-cursor-default btn w-50 btn-sm btn-light border">
+              {{ sort.title }}
+            </button>
             <button
-              class="my-dropdown-btn btn btn-sm btn-light border w-50 p-0 pb-1 ps-2 pe-2"
+              class="my-dropdown-btn btn btn-sm btn-light border w-25 p-0 pb-1 ps-2 pe-2"
               :class="{ 'my-dropdown-select': true }"
             >
               <img
@@ -62,7 +57,7 @@
               />
             </button>
             <button
-              class="my-dropdown-btn btn btn-sm btn-light border w-50 p-0 pb-1 ps-2 pe-2"
+              class="my-dropdown-btn btn btn-sm btn-light border w-25 p-0 pb-1 ps-2 pe-2"
             >
               <img
                 src="/img/icons_tool/sort-down.svg"
@@ -75,14 +70,6 @@
           </div>
         </li>
       </ul>
-      <!-- <div class="btn btn-sm btn-light border-0 p-0 ps-1 pe-1 m-0 ms-2">
-        <img
-          src="/img/icons_tool/three-dots-vertical.svg"
-          width="16"
-          height="16"
-          alt="Options"
-        />
-      </div> -->
     </h6>
 
     <div class="task-list pb-2">
@@ -280,6 +267,10 @@ export default {
 
 .my-dropdown-select {
   background-color: #dee2e6;
+}
+
+.my-cursor-default {
+  cursor: default;
 }
 
 ::-webkit-scrollbar {
