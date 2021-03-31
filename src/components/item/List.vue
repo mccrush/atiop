@@ -77,11 +77,19 @@ export default {
       } else if (this.list.type === 'person') {
         if (this.list.mode === 'today') {
           return this.$store.getters.tasks.filter(
-            task => new Date(task.date).getTime() === new Date().getTime()
+            task =>
+              Math.ceil(
+                (new Date(task.date).getTime() - new Date().getTime()) /
+                  (1000 * 3600 * 24)
+              ) === 1
           )
         } else if (this.list.mode === 'lastday') {
           return this.$store.getters.tasks.filter(
-            task => new Date(task.date).getTime() < new Date().getTime()
+            task =>
+              Math.ceil(
+                (new Date(task.date).getTime() - new Date().getTime()) /
+                  (1000 * 3600 * 24)
+              ) < 1 && task.status !== 'done'
           )
         } else if (this.list.mode === 'nexttask') {
           return this.$store.getters.tasks.filter(
