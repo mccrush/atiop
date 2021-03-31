@@ -3,7 +3,7 @@
     class="row d-flex flex-nowrap align-items-start bg-light pt-3 ps-2 kanban"
   >
     <List
-      v-for="list in itemsFilter"
+      v-for="list in lists"
       :key="'list' + list.id"
       :list="list"
       @edit-item="editItem"
@@ -21,8 +21,19 @@ export default {
   computed: {
     lists() {
       return [
-        { id: '01', title: 'Задачи на день', type: 'person' },
-        { id: '02', title: 'Следующие задачи', type: 'person' }
+        { id: '01', title: 'Задачи на день', type: 'person', mode: 'today' },
+        {
+          id: '02',
+          title: 'Просроченные задачи',
+          type: 'person',
+          mode: 'lastday'
+        },
+        {
+          id: '03',
+          title: 'Следующие задачи',
+          type: 'person',
+          mode: 'nexttask'
+        }
       ]
     }
   },

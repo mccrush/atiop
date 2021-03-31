@@ -60,6 +60,20 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <!-- Collapse content -->
+
+        <!-- PersonPlan -->
+        <button
+          type="button"
+          class="btn btn-sm btn-outline-light text-secondary ms-3 me-3"
+          :class="{
+            active: viewType === 'person'
+          }"
+          @click="setSelectPerson()"
+        >
+          PersonPlan
+        </button>
+        <!-- -->
+
         <div
           class="btn-group btn-group-sm me-3"
           role="group"
@@ -247,19 +261,6 @@
             </li>
           </ul>
         </div>
-
-        <!-- PersonPlan -->
-        <button
-          type="button"
-          class="btn btn-sm btn-outline-light text-secondary me-3"
-          :class="{
-            active: viewType === 'person'
-          }"
-          @click="setSelectPerson()"
-        >
-          PersonPlan
-        </button>
-        <!-- -->
 
         <!-- <div class="dropdown">
           <button

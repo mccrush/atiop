@@ -74,6 +74,20 @@ export default {
         return this.$store.getters.tasks.filter(
           task => task.listId === this.list.id
         )
+      } else if (this.list.type === 'person') {
+        if (this.list.mode === 'today') {
+          return this.$store.getters.tasks.filter(
+            task => new Date(task.date).getTime() === new Date().getTime()
+          )
+        } else if (this.list.mode === 'lastday') {
+          return this.$store.getters.tasks.filter(
+            task => new Date(task.date).getTime() < new Date().getTime()
+          )
+        } else if (this.list.mode === 'nexttask') {
+          return this.$store.getters.tasks.filter(
+            task => task.status === 'work'
+          )
+        }
       }
     },
     settings() {
@@ -81,7 +95,9 @@ export default {
     },
     itemsFilterArchive() {
       if (
-        (this.list.type === 'projects' || this.list.type === 'lists') &&
+        (this.list.type === 'projects' ||
+          this.list.type === 'lists' ||
+          this.list.type === 'person') &&
         !this.settings.showArhived
       ) {
         return this.items.filter(item => item.status !== 'done')
