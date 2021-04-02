@@ -1,6 +1,6 @@
 export default (array, sortUp, sortBy) => {
   return array.sort((a, b) => {
-    if (sortUp) {
+    if (sortUp === 'asc') {
       if (sortBy === 'position') {
         return a.position - b.position
       } else if (sortBy === 'date') {

@@ -100,9 +100,7 @@ export default {
     // addNewField() {
     //   this.napravs.forEach(item => {
     //     this.$store.dispatch('addNewField', {
-    //       id: item.id,
-    //       field: 'sort',
-    //       value: 'position'
+    //       id: item.id
     //     })
     //   })
     // }

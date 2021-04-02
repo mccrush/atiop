@@ -18,7 +18,7 @@
         In
       </button>
       <button
-        v-if="list.type === 'lists' || list.type === 'person'"
+        v-if="list.type === 'lists'"
         tag="button"
         class="my-btn-light btn btn-sm btn-light border p-0 pb-1 ps-2 pe-2 m-0 me-2"
         data-bs-toggle="dropdown"
@@ -38,7 +38,6 @@
           v-for="sort in sorts"
           :key="sort.id"
           class="my-dropdown-item dropdown-item"
-          @click="setSelectSort(sort.id, sort.name)"
         >
           <div class="btn-group w-100" role="group">
             <button class="my-cursor-default btn w-50 btn-sm btn-light border">
@@ -46,7 +45,11 @@
             </button>
             <button
               class="my-dropdown-btn btn btn-sm btn-light border w-25 p-0 pb-1 ps-2 pe-2"
-              :class="{ 'my-dropdown-select': true }"
+              :class="{
+                'my-dropdown-select':
+                  list.sortField === sort.id && list.sortDir === 'asc'
+              }"
+              @click="setSelectSort(sort.id, 'asc')"
             >
               <img
                 src="/img/icons_tool/sort-down-alt.svg"
@@ -58,6 +61,11 @@
             </button>
             <button
               class="my-dropdown-btn btn btn-sm btn-light border w-25 p-0 pb-1 ps-2 pe-2"
+              :class="{
+                'my-dropdown-select':
+                  list.sortField === sort.id && list.sortDir === 'desc'
+              }"
+              @click="setSelectSort(sort.id, 'desc')"
             >
               <img
                 src="/img/icons_tool/sort-down.svg"
@@ -165,7 +173,11 @@ export default {
       }
     },
     sortTasks() {
-      return sortMethod(this.itemsFilterArchive, true, this.list.sort)
+      return sortMethod(
+        this.itemsFilterArchive,
+        this.list.sortDir,
+        this.list.sortField
+      )
     }
   },
   methods: {
@@ -212,16 +224,16 @@ export default {
         })
       }
     },
-    // Работа сортировки не реализована. Закончить!
-    setSelectSort(id, name) {
-      console.log('Sort id = ', id, ' name = ', name)
-      this.list.sort = id
-      // sortField: 'position'
-      // sortDir: 'asc'
-      // this.$store.dispatch('updateItem', {
-      //   id: this.list.id,
-      //   type: 'lists'
-      // })
+    // Сортировка работает только для списков в виде item
+    setSelectSort(id, dir) {
+      console.log('Sort id = ', id, ' dir = ', dir)
+      this.list.sortField = id
+      this.list.sortDir = dir
+
+      this.$store.dispatch('updateItem', {
+        id: this.list.id,
+        type: 'lists'
+      })
     }
   }
 }

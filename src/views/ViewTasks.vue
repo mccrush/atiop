@@ -80,7 +80,7 @@ export default {
       }
     },
     sortTasks() {
-      return sortMethod(this.tasksFilterMain, true, 'position')
+      return sortMethod(this.tasksFilterMain, 'asc', 'position')
     }
   },
   methods: {

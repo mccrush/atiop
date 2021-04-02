@@ -21,7 +21,8 @@ export default (id = Date.now().toString(), title, type = 'tasks', napravId = ''
     deadline: '',
     price: 0,
     time: 0,
-    sort: 'position'
+    sortField: 'position',
+    sortDir: 'asc'
   }
   return item
 }
