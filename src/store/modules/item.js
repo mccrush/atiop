@@ -117,6 +117,7 @@ export default {
       }
     },
     async updateItem({ commit, state }, { id, type }) {
+      console.log('In updateItem() id:', id, ' type: ', type)
       try {
         const item = state[type].find(item => item.id === id)
         const REF = db.collection('users').doc(auth.currentUser.uid).collection('items')

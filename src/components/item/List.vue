@@ -165,7 +165,7 @@ export default {
       }
     },
     sortTasks() {
-      return sortMethod(this.itemsFilterArchive, true, 'position')
+      return sortMethod(this.itemsFilterArchive, true, this.list.sort)
     }
   },
   methods: {
@@ -215,6 +215,13 @@ export default {
     // Работа сортировки не реализована. Закончить!
     setSelectSort(id, name) {
       console.log('Sort id = ', id, ' name = ', name)
+      this.list.sort = id
+      // sortField: 'position'
+      // sortDir: 'asc'
+      // this.$store.dispatch('updateItem', {
+      //   id: this.list.id,
+      //   type: 'lists'
+      // })
     }
   }
 }
