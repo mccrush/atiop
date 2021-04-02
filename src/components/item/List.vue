@@ -24,7 +24,6 @@
         data-bs-toggle="dropdown"
         aria-expanded="false"
         id="dropdownSort"
-        disabled="true"
       >
         <img
           src="/img/icons_tool/sort-down-alt.svg"

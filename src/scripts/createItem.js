@@ -20,7 +20,8 @@ export default (id = Date.now().toString(), title, type = 'tasks', napravId = ''
     dateDone: '',
     deadline: '',
     price: 0,
-    time: 0
+    time: 0,
+    sort: 'position'
   }
   return item
 }
