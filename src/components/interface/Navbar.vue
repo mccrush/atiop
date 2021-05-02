@@ -301,6 +301,7 @@
           <AddItem
             v-if="napravId && projectId && viewType === 'tasks' && !filterId"
             :type="'tasks'"
+            :projectId="projectId"
           />
         </div>
       </div>

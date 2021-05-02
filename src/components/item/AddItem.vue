@@ -14,9 +14,9 @@ import createItem from '@/scripts/createItem'
 export default {
   props: {
     type: String,
-    listId: { type: String, default: '' },
     napravId: { type: String, default: '' },
-    projectId: { type: String, default: '' }
+    projectId: { type: String, default: '' },
+    listId: { type: String, default: '' }
   },
   data() {
     return {
@@ -59,7 +59,8 @@ export default {
         let listId = this.listId || this.$store.getters.listId
 
         if (this.type === 'tasks' && !listId) {
-          let list = this.lists.find(item => item.title === 'Inbox')
+          let list = this.lists.find(item => item.title === 'Inbox') || false
+
           if (!list) {
             list = createItem(
               Date.now().toString(),
@@ -68,6 +69,7 @@ export default {
               napravId,
               projectId
             )
+
             this.$store.commit('addItem', list)
             await this.$store.dispatch('addItem', list)
           }
