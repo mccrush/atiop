@@ -4,8 +4,7 @@ export default (array, sortUp, sortBy) => {
       if (sortBy === 'position') {
         return a.position - b.position
       } else if (sortBy === 'title') {
-        console.log('a.title[0] =', a.title[0]);
-        return a.title[0] - b.title[0]
+        return a.title[0].charCodeAt(0) - b.title[0].charCodeAt(0)
       } else if (sortBy === 'date') {
         return new Date(a.dateCreate) - new Date(b.dateCreate)
       } else if (sortBy === 'deadline') {
@@ -19,8 +18,7 @@ export default (array, sortUp, sortBy) => {
       if (sortBy === 'position') {
         return b.position - a.position
       } else if (sortBy === 'title') {
-        console.log('b.title[0] =', b.title[0]);
-        return b.title[0] - a.title[0]
+        return b.title[0].charCodeAt(0) - a.title[0].charCodeAt(0)
       } else if (sortBy === 'date') {
         return new Date(b.dateCreate) - new Date(a.dateCreate)
       } else if (sortBy === 'deadline') {
