@@ -77,7 +77,7 @@
         v-if="item.type === 'tasks' && item.status === 'done'"
         type="button"
         class="btn btn-sm btn-light border p-0 ps-2 pe-2 w-100"
-        @click.prevent="removeItem(item.id)"
+        @click.prevent="removeItem(item.id, 'tasks')"
       >
         Remove
       </button>
@@ -96,6 +96,15 @@ export default {
     }
   },
   methods: {
+    async removeItem({ id, type }) {
+      this.$store.commit('removeItem', { id, type })
+      const res = await this.$store.dispatch('removeItem', { id })
+      if (res) {
+        this.$store.commit('addMessage', 'ris')
+      } else {
+        this.$store.commit('addMessage', 'rie')
+      }
+    },
     changeTaskStatus(status) {
       this.$store.commit('changeTaskStatus', {
         id: this.item.id,
