@@ -77,7 +77,7 @@
         v-if="item.type === 'tasks' && item.status === 'done'"
         type="button"
         class="btn btn-sm btn-light border p-0 ps-2 pe-2 w-100"
-        @click.prevent="removeItem(item.id, 'tasks')"
+        @click.prevent="removeItem({ id: item.id, type: 'tasks' })"
       >
         Remove
       </button>
@@ -97,6 +97,7 @@ export default {
   },
   methods: {
     async removeItem({ id, type }) {
+      console.log('get id = ', id, ' type = ', type)
       this.$store.commit('removeItem', { id, type })
       const res = await this.$store.dispatch('removeItem', { id })
       if (res) {
