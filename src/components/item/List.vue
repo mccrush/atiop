@@ -6,16 +6,23 @@
       class="my-no-select d-flex flex-row align-items-start text-center rounded mt-2 mb-2"
       @dblclick.prevent="editItem({ id: list.id, type: list.type })"
     >
-      <div class="w-100" :class="{ 'ps-4': list.type !== 'person' }">
+      <div class="w-100 pt-1" :class="{ 'ps-4': list.type !== 'person' }">
         {{ list.title }}
       </div>
       <button
         v-if="list.type !== 'lists' && list.type !== 'person'"
         tag="button"
-        class="my-btn-light btn btn-sm btn-light border p-0 ps-2 pe-2 m-0 me-2"
+        class="my-btn-light btn btn-sm btn-light border p-0 pb-1 ps-2 pe-2 m-0 me-2"
         @click="setId(list.type)"
+        title="Перейти в проект"
       >
-        In
+        <img
+          src="/img/icons_tool/box-arrow-in-right.svg"
+          width="16"
+          height="16"
+          alt="Inner"
+          class="opacity-04"
+        />
       </button>
       <button
         v-if="list.type === 'lists'"
