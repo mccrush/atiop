@@ -6,7 +6,7 @@
       class="my-no-select d-flex flex-row align-items-start text-center rounded mt-2 mb-2"
       @dblclick.prevent="editItem({ id: list.id, type: list.type })"
     >
-      <div class="w-100 ps-4">
+      <div class="w-100" :class="{ 'ps-4': list.type !== 'person' }">
         {{ list.title }}
       </div>
       <button
