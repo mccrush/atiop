@@ -97,7 +97,6 @@ export default {
   },
   methods: {
     async removeItem({ id, type }) {
-      console.log('get id = ', id, ' type = ', type)
       this.$store.commit('removeItem', { id, type })
       const res = await this.$store.dispatch('removeItem', { id })
       if (res) {
