@@ -77,6 +77,17 @@
           </small>
         </p> -->
       </div>
+      <div
+        class="max-width border border-warning rounded shadow-sm text-center lh-1 mt-4 m-auto p-2 pt-3"
+      >
+        <h6>Примите участие в бета-тестировании приложения</h6>
+        <p>
+          <small>
+            Напишите на почту mccrush2027@gmail.com,<br />и мы вышлем вам логин
+            и пароль</small
+          >
+        </p>
+      </div>
     </div>
   </div>
 </template>
