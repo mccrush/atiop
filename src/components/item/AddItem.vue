@@ -107,14 +107,13 @@ export default {
         )
 
         this.$store.commit('addItem', item)
+        this.itemTitle = '' // Очищаем до Dispatch
         const res = await this.$store.dispatch('addItem', item)
         if (res) {
           this.$store.commit('addMessage', 'das')
         } else {
           this.$store.commit('addMessage', 'dae')
         }
-
-        this.itemTitle = ''
       } else {
         alert('Невозможно создать елемент без заголоака')
       }
