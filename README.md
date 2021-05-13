@@ -1,5 +1,5 @@
 # ATIOP
-<p style="border-left: 4px solid #c0e218; padding-left: 8px;">Приложение находится в статусе alpha. Пожалуйста, <strong>примите участие в закрытом тестировании</strong>, помогите ускорить процесс разработки. Напишите нам на почту mccrush2027@gmail.com и мы вышлем вам логин и пароль для доступа к функциям приложения.</p>
+<p style="border-left: 4px solid #c0e218; padding-left: 8px;">Приложение находится в статусе beta. Пожалуйста, <strong>примите участие в тестировании</strong>, помогите ускорить процесс разработки. Напишите нам на почту mccrush2027@gmail.com и мы вышлем вам логин и пароль для доступа к функциям приложения.</p>
 <br>
 <img src="https://repository-images.githubusercontent.com/201769959/42f52b00-ff33-11ea-929d-76fccf26bcf9" alt="ATIOP — сервис управления задачами">
 
@@ -26,7 +26,7 @@
 
 <p align="center">
    <a href="https://v5.getbootstrap.com/">
-    <img src="https://flat.badgen.net/badge/bootstrap/5.0.0-alpha2/7952B3" alt="Bootstrap version" target="_blank">
+    <img src="https://flat.badgen.net/badge/bootstrap/5.0.0/7952B3" alt="Bootstrap version" target="_blank">
   </a>
   <a href="https://v3.vuejs.org/">
     <img src="https://flat.badgen.net/badge/vue.js/3.0.0/41B883" alt="Vue.js version" target="_blank">
