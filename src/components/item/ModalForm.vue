@@ -8,6 +8,9 @@
   >
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content border-0 shadow">
+        <div class="grey-top">
+          <!-- Grey top -->
+        </div>
         <div class="modal-body">
           <div class="row">
             <div class="col-10">
@@ -422,5 +425,13 @@ export default {
   width: 32px;
   height: 20px;
   cursor: pointer;
+}
+
+.grey-top {
+  height: 36px;
+  background: #e9ecef;
+  margin-top: 1px;
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
 }
 </style>
