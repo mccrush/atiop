@@ -157,6 +157,8 @@ export default {
           allLength++
         })
 
+        // Вывод в консоль при бэкапе
+        //console.log(JSON.stringify(allItems))
         commit('setItems', { type: 'napravs', items: napravs })
         commit('setItems', { type: 'projects', items: projects })
         commit('setItems', { type: 'lists', items: lists })
