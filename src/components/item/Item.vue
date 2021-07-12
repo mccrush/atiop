@@ -1,6 +1,18 @@
 <template>
   <div
-    class="item align-self-start border rounded-1 pt-1 pb-1 ps-2 pe-2 ms-2 me-2 mb-2"
+    class="
+      item
+      align-self-start
+      border
+      rounded-1
+      pt-1
+      pb-1
+      ps-2
+      pe-2
+      ms-2
+      me-2
+      mb-2
+    "
     :class="{
       ' bg-white': item.status === 'todo' || item.status === 'work',
       ' bg-light': item.status === 'done',
@@ -32,7 +44,7 @@
     <span
       v-if="settings.showPrice && item.price"
       class="badge bg-success me-1"
-      >{{ item.price }}</span
+      >{{ priceFormat }}</span
     >
     <span
       v-if="settings.showTime && item.time"
@@ -93,6 +105,15 @@ export default {
   computed: {
     settings() {
       return this.$store.getters.settings
+    },
+    priceFormat() {
+      if (this.item.price) {
+        if (this.item.price.toString().length > 4) {
+          return new Intl.NumberFormat('ru-RU').format(this.item.price)
+        } else {
+          return this.item.price
+        }
+      }
     }
   },
   methods: {

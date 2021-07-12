@@ -3,7 +3,16 @@
     class="d-inline-block bg-white border rounded-1 p-0 ms-2 me-2 my-project"
   >
     <h6
-      class="my-no-select d-flex flex-row align-items-start text-center rounded mt-2 mb-2"
+      class="
+        my-no-select
+        d-flex
+        flex-row
+        align-items-start
+        text-center
+        rounded
+        mt-2
+        mb-2
+      "
       @dblclick.prevent="editItem({ id: list.id, type: list.type })"
     >
       <div class="w-100 pt-1" :class="{ 'ps-4': list.type !== 'person' }">
@@ -12,7 +21,17 @@
       <button
         v-if="list.type !== 'lists' && list.type !== 'person'"
         tag="button"
-        class="my-btn-light btn btn-sm btn-light border p-0 pb-1 ps-2 pe-2 m-0 me-2"
+        class="
+          my-btn-light
+          btn btn-sm btn-light
+          border
+          p-0
+          pb-1
+          ps-2
+          pe-2
+          m-0
+          me-2
+        "
         @click="setId(list.type)"
         title="Перейти в проект"
       >
@@ -27,7 +46,17 @@
       <button
         v-if="list.type === 'lists'"
         tag="button"
-        class="my-btn-light btn btn-sm btn-light border p-0 pb-1 ps-2 pe-2 m-0 me-2"
+        class="
+          my-btn-light
+          btn btn-sm btn-light
+          border
+          p-0
+          pb-1
+          ps-2
+          pe-2
+          m-0
+          me-2
+        "
         data-bs-toggle="dropdown"
         aria-expanded="false"
         id="dropdownSort"
@@ -51,7 +80,16 @@
               {{ sort.title }}
             </button>
             <button
-              class="my-dropdown-btn btn btn-sm btn-light border w-25 p-0 pb-1 ps-2 pe-2"
+              class="
+                my-dropdown-btn
+                btn btn-sm btn-light
+                border
+                w-25
+                p-0
+                pb-1
+                ps-2
+                pe-2
+              "
               :class="{
                 'my-dropdown-select':
                   list.sortField === sort.id && list.sortDir === 'asc'
@@ -67,7 +105,16 @@
               />
             </button>
             <button
-              class="my-dropdown-btn btn btn-sm btn-light border w-25 p-0 pb-1 ps-2 pe-2"
+              class="
+                my-dropdown-btn
+                btn btn-sm btn-light
+                border
+                w-25
+                p-0
+                pb-1
+                ps-2
+                pe-2
+              "
               :class="{
                 'my-dropdown-select':
                   list.sortField === sort.id && list.sortDir === 'desc'
@@ -104,6 +151,10 @@
       </div>
       <div v-if="list.type === 'lists'" class="ms-2 me-2">
         <AddItem :type="'tasks'" :listId="list.id" />
+      </div>
+      <div v-if="settings.showPrice && sumOfList" class="mt-1 ps-2 pe-2">
+        <span class="badge bg-warning me-2"> {{ priceFormat }} </span>
+        <small>всего</small>
       </div>
     </div>
   </div>
@@ -185,6 +236,18 @@ export default {
         this.list.sortDir,
         this.list.sortField
       )
+    },
+    sumOfList() {
+      return this.sortTasks.reduce((accum, elem) => accum + elem.price, 0)
+    },
+    priceFormat() {
+      if (this.sumOfList) {
+        if (this.sumOfList.toString().length > 4) {
+          return new Intl.NumberFormat('ru-RU').format(this.sumOfList)
+        } else {
+          return this.sumOfList
+        }
+      }
     }
   },
   methods: {
