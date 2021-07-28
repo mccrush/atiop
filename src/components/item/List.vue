@@ -311,7 +311,7 @@ export default {
 
 <style scoped>
 .my-project {
-  width: 210px; /* 226 for scroll */
+  width: 266px;
   vertical-align: top;
   height: auto;
   max-height: calc(100vh - 92px);

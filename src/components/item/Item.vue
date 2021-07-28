@@ -159,7 +159,7 @@ export default {
 
 <style scoped>
 .item {
-  width: 192px;
+  width: 248px;
   line-height: 1.2;
   user-select: none;
   cursor: default;
