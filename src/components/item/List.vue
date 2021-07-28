@@ -1,6 +1,6 @@
 <template>
   <div
-    class="d-inline-block bg-white border rounded-1 p-0 ms-2 me-2 my-project"
+    class="d-inline-block bg-white border rounded-1 p-0 ms-1 me-1 my-project"
   >
     <h6
       class="
