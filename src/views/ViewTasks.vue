@@ -94,7 +94,7 @@ export default {
 <style scoped>
 .cards,
 .checklist {
-  height: calc(100vh - 60px);
+  height: calc(100vh - 59px);
   overflow-y: auto;
 }
 </style>

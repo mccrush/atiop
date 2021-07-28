@@ -47,7 +47,7 @@ export default {
 
 <style scoped>
 .kanban {
-  height: calc(100vh - 60px);
+  height: calc(100vh - 59px);
   overflow-x: auto;
 }
 
