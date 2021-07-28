@@ -82,7 +82,11 @@
           <div class="btn-group">
             <button
               type="button"
-              class="my-select-btn-pj btn btn-sm btn-outline-light text-secondary"
+              class="
+                my-select-btn-pj
+                btn btn-sm btn-outline-light
+                text-secondary
+              "
               :class="{ active: viewType === 'napravs' }"
               @click="setActiveNapravs(napravId)"
             >
@@ -90,7 +94,11 @@
             </button>
             <button
               type="button"
-              class="btn btn-sm btn-outline-light dropdown-toggle dropdown-toggle-split text-secondary"
+              class="
+                btn btn-sm btn-outline-light
+                dropdown-toggle dropdown-toggle-split
+                text-secondary
+              "
               data-bs-toggle="dropdown"
               aria-expanded="false"
               id="dropdownNaprav"
@@ -134,7 +142,11 @@
           <div class="btn-group">
             <button
               type="button"
-              class="my-select-btn-pj btn btn-sm btn-outline-light text-secondary"
+              class="
+                my-select-btn-pj
+                btn btn-sm btn-outline-light
+                text-secondary
+              "
               :class="{ active: viewType === 'projects' }"
               :disabled="!napravs.length"
               @click="setActiveProjects(projectId)"
@@ -143,7 +155,11 @@
             </button>
             <button
               type="button"
-              class="btn btn-sm btn-outline-light dropdown-toggle dropdown-toggle-split text-secondary"
+              class="
+                btn btn-sm btn-outline-light
+                dropdown-toggle dropdown-toggle-split
+                text-secondary
+              "
               data-bs-toggle="dropdown"
               aria-expanded="false"
               id="dropdownProject"
@@ -201,13 +217,21 @@
         <div v-if="viewType === 'tasks'" class="btn-group me-3">
           <span
             type="button"
-            class="my-btn-nohover my-select-btn-pj btn btn-sm btn-outline-light text-secondary"
+            class="
+              my-btn-nohover my-select-btn-pj
+              btn btn-sm btn-outline-light
+              text-secondary
+            "
           >
             {{ filterTitle }}
           </span>
           <button
             type="button"
-            class="btn btn-sm btn-outline-light dropdown-toggle dropdown-toggle-split text-secondary"
+            class="
+              btn btn-sm btn-outline-light
+              dropdown-toggle dropdown-toggle-split
+              text-secondary
+            "
             data-bs-toggle="dropdown"
             aria-expanded="false"
             id="dropdownFilters"
@@ -215,7 +239,14 @@
 
           <button
             type="button"
-            class="btn btn-sm btn-outline-light text-secondary p-0 pb-1 ps-2 pe-2"
+            class="
+              btn btn-sm btn-outline-light
+              text-secondary
+              p-0
+              pb-1
+              ps-2
+              pe-2
+            "
             @click="setSelectFilter('', '')"
             :disabled="!filterId"
           >
@@ -262,26 +293,6 @@
           </ul>
         </div>
 
-        <!-- <div class="dropdown">
-          <button
-            class="btn btn-sm btn-outline-light text-secondary dropdown-toggle me-3"
-            type="button"
-            id="dropdownFilter"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-            :disabled="true"
-          >
-            Все
-          </button>
-          <ul
-            class="dropdown-menu bg-white border-0 shadow p-3 pt-2"
-            aria-labelledby="dropdownFilter"
-          >
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </div> -->
         <div>
           <AddItem v-if="viewType === 'napravs'" :type="'napravs'" />
         </div>
@@ -500,7 +511,7 @@ export default {
 
     setActiveProjects(id) {
       if (id) {
-        if (this.viewType === 'tasks') {
+        if (this.viewType === 'tasks' || this.viewType === 'person') {
           this.$store.commit('setViewType', 'projects')
         }
       } else {
