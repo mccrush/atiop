@@ -52,7 +52,10 @@
       >{{ item.time }} мин</span
     >
     <span class="badge bg-warning me-1" v-if="item.date && settings.showDate">{{
-      new Date(item.date).toLocaleDateString()
+      new Date(item.date).toLocaleDateString('ru-RU', {
+        hour: '2-digit',
+        minute: '2-digit'
+      })
     }}</span>
     <span
       class="badge bg-danger me-1"
@@ -136,17 +139,6 @@ export default {
       })
 
       this.$emit('update-index', { id: this.item.id, status })
-
-      // Выполняется в компоненте List
-      // const res = await this.$store.dispatch('updateItem', {
-      //   id: this.item.id,
-      //   type: this.item.type
-      // })
-      // if (res) {
-      //   this.$store.commit('addMessage', 'dus')
-      // } else {
-      //   this.$store.commit('addMessage', 'due')
-      // }
     },
     setId() {
       this.$store.commit('setNapravId', this.item.napravId)
