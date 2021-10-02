@@ -44,6 +44,19 @@
           </div>
 
           <div class="row mt-2">
+            <div class="col-12">
+              <textarea
+                v-if="item"
+                cols="30"
+                rows="5"
+                @focus="changes = true"
+                v-model.trim="item.description"
+                class="form-control form-control-sm w-100"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="row mt-2">
             <div class="col-4 pe-0">
               <div class="form-floating">
                 <input
