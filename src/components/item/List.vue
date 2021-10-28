@@ -152,10 +152,18 @@
       <div v-if="list.type === 'lists'" class="ms-2 me-2">
         <AddItem :type="'tasks'" :listId="list.id" />
       </div>
-      <div v-if="settings.showPrice && sumOfList" class="mt-1 ps-2 pe-2">
-        <span class="badge bg-warning me-2"> {{ priceFormat }} </span>
-        <small>всего</small>
-      </div>
+      <span
+        v-if="settings.showPrice && sumOfList"
+        class="badge bg-warning ms-2 mt-2 ps-2 pe-2"
+      >
+        {{ priceFormat }} ₽</span
+      >
+      <span
+        v-if="settings.showTime && sumOfTime"
+        class="badge bg-secondary ms-2 mt-2 ps-2 pe-2"
+      >
+        {{ sumOfTime }} мин</span
+      >
     </div>
   </div>
 </template>
@@ -239,6 +247,9 @@ export default {
     },
     sumOfList() {
       return this.sortTasks.reduce((accum, elem) => accum + elem.price, 0)
+    },
+    sumOfTime() {
+      return this.sortTasks.reduce((accum, elem) => accum + +elem.time, 0)
     },
     priceFormat() {
       if (this.sumOfList) {
