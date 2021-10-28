@@ -35,6 +35,11 @@
                   aria-describedby="for-time"
                   @focus="changes = true"
                   v-model.trim="item.time"
+                  :disabled="
+                    item.type === 'napravs' ||
+                    item.type === 'projects' ||
+                    item.type === 'lists'
+                  "
                 />
                 <span class="input-group-text ps-1 pe-1" id="for-time"
                   >мин</span
@@ -43,7 +48,7 @@
             </div>
           </div>
 
-          <div class="row mt-2">
+          <div v-if="item.type === 'tasks'" class="row mt-2">
             <div class="col-12">
               <textarea
                 v-if="item"
@@ -56,7 +61,7 @@
             </div>
           </div>
 
-          <div class="row mt-2">
+          <div v-if="item.type === 'tasks'" class="row mt-2">
             <div class="col-4 pe-0">
               <div class="form-floating">
                 <input
@@ -112,7 +117,7 @@
             </div>
           </div>
 
-          <div class="row mt-2">
+          <div v-if="item.type === 'tasks'" class="row mt-2">
             <div class="col-4 pe-0">
               <div class="form-floating">
                 <select
@@ -237,7 +242,9 @@
                   @focus="changes = true"
                   v-model.number="item.price"
                   :disabled="
-                    item.type === 'napravs' || item.type === 'projects'
+                    item.type === 'napravs' ||
+                    item.type === 'projects' ||
+                    item.type === 'lists'
                   "
                 />
                 <label for="price">Цена</label>
