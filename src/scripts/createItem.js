@@ -3,7 +3,7 @@ export default (id = Date.now().toString(), title, type = 'tasks', napravId = ''
   const item = {
     id,
     title,
-    desc: '',
+    description: '',
     type,
     napravId,
     napravTitle,

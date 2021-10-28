@@ -16,7 +16,7 @@
       @dblclick.prevent="editItem({ id: list.id, type: list.type })"
     >
       <div class="w-100 pt-1" :class="{ 'ps-4': list.type !== 'person' }">
-        {{ list.title }}
+        {{ list.title }} ({{ list.position }})
       </div>
       <button
         v-if="list.type !== 'lists' && list.type !== 'person'"
