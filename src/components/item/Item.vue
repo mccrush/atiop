@@ -42,13 +42,18 @@
       item.projectTitle || 'Без проекта'
     }}</span>
     <span
+      v-if="item.description && item.description.length"
+      class="badge bg-light text-secondary me-1"
+      >{{ 'TXT' }}</span
+    >
+    <span
       v-if="settings.showPrice && item.price"
       class="badge bg-success me-1"
       >{{ priceFormat }}</span
     >
     <span
       v-if="settings.showTime && item.time"
-      class="badge bg-light text-dark me-1"
+      class="badge bg-light text-secondary me-1"
       >{{ item.time }} мин</span
     >
     <span class="badge bg-warning me-1" v-if="item.date && settings.showDate">{{
