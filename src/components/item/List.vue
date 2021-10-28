@@ -69,11 +69,14 @@
           class="opacity-04"
         />
       </button>
-      <ul class="dropdown-menu border-0 shadow" aria-labelledby="dropdownSort">
+      <ul
+        class="my-cursor-default dropdown-menu border-0 shadow"
+        aria-labelledby="dropdownSort"
+      >
         <li
           v-for="sort in sorts"
           :key="sort.id"
-          class="my-dropdown-item dropdown-item"
+          class="my-dropdown-item my-cursor-default dropdown-item"
         >
           <div class="btn-group w-100" role="group">
             <button class="my-cursor-default btn w-50 btn-sm btn-light border">
