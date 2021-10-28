@@ -3,7 +3,7 @@
     class="row d-flex flex-nowrap align-items-start bg-light pt-3 ps-2 kanban"
   >
     <List
-      v-for="list in itemsFilter"
+      v-for="list in sortList"
       :key="'list' + list.id"
       :list="list"
       @edit-item="editItem"
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import sortMethod from '@/scripts/sortMethod'
 import List from '@/components/item/List'
 
 export default {
@@ -48,6 +49,9 @@ export default {
       } else {
         return this.items
       }
+    },
+    sortList() {
+      return sortMethod(this.itemsFilter, 'asc', 'position')
     }
   },
   methods: {
