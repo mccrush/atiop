@@ -45,7 +45,7 @@
             <div class="col-12">
               <textarea
                 cols="30"
-                rows="5"
+                rows="4"
                 @focus="changes = true"
                 v-model.trim="item.description"
                 class="form-control form-control-sm w-100"
@@ -373,7 +373,7 @@ export default {
 }
 
 .grey-top {
-  height: 36px;
+  height: 32px;
   background: #e9ecef;
   margin-top: 1px;
   border-top-left-radius: 0.3rem;
