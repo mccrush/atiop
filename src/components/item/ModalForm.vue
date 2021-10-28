@@ -11,11 +11,10 @@
         <div class="grey-top">
           <!-- Grey top -->
         </div>
-        <div class="modal-body">
+        <div class="modal-body pb-2">
           <div class="row">
             <div class="col-10">
               <input
-                v-if="item"
                 type="text"
                 class="form-control form-control-sm"
                 :class="{ 'border-danger': error }"
@@ -23,10 +22,9 @@
                 v-model.trim="item.title"
               />
             </div>
-            <div class="col-2 ps-0">
+            <div v-if="item.type === 'tasks'" class="col-2 ps-0">
               <div class="input-group input-group-sm">
                 <input
-                  v-if="item"
                   type="number"
                   max="360"
                   min="0"
@@ -35,11 +33,6 @@
                   aria-describedby="for-time"
                   @focus="changes = true"
                   v-model.trim="item.time"
-                  :disabled="
-                    item.type === 'napravs' ||
-                    item.type === 'projects' ||
-                    item.type === 'lists'
-                  "
                 />
                 <span class="input-group-text ps-1 pe-1" id="for-time"
                   >мин</span
@@ -51,7 +44,6 @@
           <div v-if="item.type === 'tasks'" class="row mt-2">
             <div class="col-12">
               <textarea
-                v-if="item"
                 cols="30"
                 rows="5"
                 @focus="changes = true"
@@ -65,11 +57,7 @@
             <div class="col-4 pe-0">
               <div class="form-floating">
                 <input
-                  v-if="item"
                   @change="changes = true"
-                  :disabled="
-                    item.type === 'napravs' || item.type === 'projects'
-                  "
                   type="datetime-local"
                   id="date"
                   class="form-control form-control-sm border-warning"
@@ -81,7 +69,6 @@
             <div class="col-4 pe-0">
               <div class="form-floating">
                 <input
-                  v-if="item"
                   @change="changes = true"
                   :disabled="item && item.type === 'napravs'"
                   type="datetime-local"
@@ -95,12 +82,8 @@
             <div class="col-4">
               <div class="form-floating">
                 <select
-                  v-if="item"
                   @change="changes = true"
                   v-model="item.status"
-                  :disabled="
-                    item.type === 'napravs' || item.type === 'projects'
-                  "
                   class="form-select form-select-sm"
                   id="statusSelect"
                 >
@@ -121,10 +104,8 @@
             <div class="col-4 pe-0">
               <div class="form-floating">
                 <select
-                  v-if="item"
                   @change="changes = true"
                   v-model="item.napravId"
-                  :disabled="item && item.type === 'napravs'"
                   class="form-select form-select-sm"
                   id="napravSelect"
                 >
@@ -144,15 +125,10 @@
             <div class="col-4 pe-0">
               <div class="form-floating">
                 <select
-                  v-if="item"
                   @change="changes = true"
                   v-model="item.projectId"
                   class="form-select form-select-sm"
-                  :disabled="
-                    !item.napravId ||
-                    item.type === 'napravs' ||
-                    item.type === 'projects'
-                  "
+                  :disabled="!item.napravId"
                   id="projectSelect"
                 >
                   <option value selected>Проект</option>
@@ -171,15 +147,10 @@
             <div class="col-4">
               <div class="form-floating">
                 <select
-                  v-if="item"
                   @change="changes = true"
                   v-model="item.listId"
                   class="form-select form-select-sm"
-                  :disabled="
-                    !item.projectId ||
-                    item.type === 'projects' ||
-                    item.type === 'lists'
-                  "
+                  :disabled="!item.projectId"
                   id="listSelect"
                 >
                   <option value selected>Список</option>
@@ -229,7 +200,7 @@
                 <label for="position">#</label>
               </div>
             </div>
-            <div class="col-2 ps-0">
+            <div v-if="item.type === 'tasks'" class="col-2 ps-0">
               <div class="form-floating">
                 <input
                   v-if="item"
@@ -241,66 +212,20 @@
                   class="form-control form-control-sm"
                   @focus="changes = true"
                   v-model.number="item.price"
-                  :disabled="
-                    item.type === 'napravs' ||
-                    item.type === 'projects' ||
-                    item.type === 'lists'
-                  "
                 />
                 <label for="price">Цена</label>
               </div>
             </div>
           </div>
 
-          <div v-if="item" class="row">
-            <!-- Возможно сделать описание опциональным -->
-            <div class="col-12">
-              <!-- <textarea
-                  class="form-control h-100"
-                  placeholder="Подробное описание"
-                  v-model="item.desc"
-                ></textarea>-->
-
-              <!-- <div
-                v-if="item.type === 'projects'"
-                class="d-flex justify-content-between mt-2"
-              >
-                <div
-                  v-for="(scolor, index) in colors"
-                  :key="'cb' + index"
-                  class="m-1 p-1 rounded shadow-sm colorblock"
-                  :style="'background:' + scolor"
-                  :class="{ 'rounded-circle': color === scolor }"
-                  @click="color = scolor"
-                ></div>
-              </div> -->
-            </div>
-          </div>
-          <hr />
+          <hr class="mb-1" />
 
           <div class="row">
-            <span class="small text-muted">
-              Данные сохраняются автоматически при закрытии модального окна
-            </span>
-            <!-- <div class="col-4 pe-0">
-              <button
-                type="button"
-                class="btn btn-sm btn-light w-100"
-                data-bs-dismiss="modal"
-              >
-                Отмена
-              </button>
-            </div> -->
-            <!-- <div class="col-4">
-              <button
-                type="button"
-                @click="updateItem"
-                class="btn btn-sm btn-warning w-100"
-                data-bs-dismiss="modal"
-              >
-                Сохранить
-              </button>
-            </div> -->
+            <div class="col-12 text-center">
+              <span class="small text-muted">
+                Данные сохраняются автоматически при закрытии модального окна
+              </span>
+            </div>
           </div>
         </div>
       </div>

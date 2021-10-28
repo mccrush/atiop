@@ -47,7 +47,7 @@ export default {
   data() {
     return {
       showMessage: false,
-      itemForModal: null
+      itemForModal: {}
     }
   },
   computed: {
@@ -90,8 +90,8 @@ export default {
     }
   },
   methods: {
-    editItem({ id, type }) {
-      this.itemForModal = this[type].find(item => item.id === id)
+    async editItem({ id, type }) {
+      this.itemForModal = await this[type].find(item => item.id === id)
       let myModal = new Modal(document.getElementById('exampleModal'))
       myModal.show()
     }
