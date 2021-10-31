@@ -328,7 +328,7 @@ export default {
   width: 266px;
   vertical-align: top;
   height: auto;
-  max-height: calc(100vh - 92px);
+  max-height: calc(100vh - 132px); /* -92 */
   overflow-y: hidden;
 }
 
@@ -337,7 +337,7 @@ export default {
 }
 
 .task-list {
-  max-height: calc(100vh - 134px);
+  max-height: calc(100vh - 174px); /* -134 */
   overflow-y: auto;
   overflow-x: hidden;
 }
