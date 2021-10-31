@@ -18,21 +18,32 @@ export default {
   components: {
     List
   },
-  computed: {
-    lists() {
-      return [
-        { id: '01', title: 'Задачи на день', type: 'person', mode: 'today' },
+  data() {
+    return {
+      lists: [
+        {
+          id: '01',
+          title: 'Задачи на день',
+          type: 'person',
+          mode: 'today',
+          sortField: 'position',
+          sortDir: 'asc'
+        },
         {
           id: '02',
           title: 'Просроченные задачи',
           type: 'person',
-          mode: 'lastday'
+          mode: 'lastday',
+          sortField: 'position',
+          sortDir: 'asc'
         },
         {
           id: '03',
           title: 'Следующие задачи',
           type: 'person',
-          mode: 'nexttask'
+          mode: 'nexttask',
+          sortField: 'position',
+          sortDir: 'asc'
         }
       ]
     }
@@ -47,7 +58,7 @@ export default {
 
 <style scoped>
 .kanban {
-  height: calc(100vh - 59px);
+  height: calc(100vh - 56px);
   overflow-x: auto;
 }
 

@@ -9,9 +9,9 @@
         flex-row
         align-items-start
         text-center
-        rounded
-        mt-2
-        mb-2
+        border-bottom
+        pt-2
+        pb-2
       "
       @dblclick.prevent="editItem({ id: list.id, type: list.type })"
     >
@@ -44,7 +44,7 @@
         />
       </button>
       <button
-        v-if="list.type === 'lists'"
+        v-if="list.type === 'lists' || list.type === 'person'"
         tag="button"
         class="
           my-btn-light
@@ -137,7 +137,7 @@
       </ul>
     </h6>
 
-    <div class="task-list pb-2">
+    <div class="task-list">
       <Item
         v-for="item in sortTasks"
         :key="'item' + item.id"
@@ -146,6 +146,21 @@
         @set-id="setId"
         @update-index="updateIndex"
       />
+    </div>
+    <div class="border-top pt-2 pb-2">
+      <span
+        v-if="settings.showPrice && sumOfList"
+        class="badge bg-warning ms-2 mb-2 ps-2 pe-2"
+      >
+        {{ priceFormat }} ₽</span
+      >
+      <span
+        v-if="settings.showTime && sumOfTime"
+        class="badge bg-secondary ms-2 mb-2 ps-2 pe-2"
+      >
+        {{ sumOfTime }} мин</span
+      >
+
       <div v-if="list.type === 'napravs'" class="ms-2 me-2">
         <AddItem :type="'projects'" :napravId="list.id" />
       </div>
@@ -155,18 +170,6 @@
       <div v-if="list.type === 'lists'" class="ms-2 me-2">
         <AddItem :type="'tasks'" :listId="list.id" />
       </div>
-      <span
-        v-if="settings.showPrice && sumOfList"
-        class="badge bg-warning ms-2 mt-2 ps-2 pe-2"
-      >
-        {{ priceFormat }} ₽</span
-      >
-      <span
-        v-if="settings.showTime && sumOfTime"
-        class="badge bg-secondary ms-2 mt-2 ps-2 pe-2"
-      >
-        {{ sumOfTime }} мин</span
-      >
     </div>
   </div>
 </template>
@@ -314,10 +317,12 @@ export default {
       this.list.sortField = id
       this.list.sortDir = dir
 
-      this.$store.dispatch('updateItem', {
-        id: this.list.id,
-        type: 'lists'
-      })
+      if (this.list.type !== 'person') {
+        this.$store.dispatch('updateItem', {
+          id: this.list.id,
+          type: 'lists'
+        })
+      }
     }
   }
 }
@@ -328,7 +333,7 @@ export default {
   width: 266px;
   vertical-align: top;
   height: auto;
-  max-height: calc(100vh - 132px); /* -92 */
+  /* max-height: calc(100vh - 132px);  -92 */
   overflow-y: hidden;
 }
 
@@ -337,7 +342,7 @@ export default {
 }
 
 .task-list {
-  max-height: calc(100vh - 174px); /* -134 */
+  max-height: calc(100vh - 224px); /* -134 */
   overflow-y: auto;
   overflow-x: hidden;
 }
