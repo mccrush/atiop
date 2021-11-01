@@ -1,6 +1,7 @@
 <template>
   <div>
     <Navbar />
+    <SettingsBar />
     <div class="container-fluid">
       <component :is="Component" @edit-item="editItem" />
     </div>
@@ -25,8 +26,10 @@
 
 <script>
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Modal } from 'bootstrap'
+//import Offcanvas from 'bootstrap/js/dist/offcanvas'
+import { Offcanvas, Modal } from 'bootstrap'
 import Navbar from '@/components/interface/Navbar'
+import SettingsBar from '@/components/interface/SettingsBar'
 import Message from '@/components/additional/Message'
 import ViewProjects from '@/views/ViewProjects'
 import ViewTasks from '@/views/ViewTasks'
@@ -37,6 +40,7 @@ import ModalForm from '@/components/item/ModalForm'
 export default {
   components: {
     Navbar,
+    SettingsBar,
     Message,
     ViewProjects,
     ViewTasks,

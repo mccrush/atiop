@@ -357,7 +357,22 @@
           </button>
         </div>
 
-        <div class="dropdown">
+        <button
+          class="btn btn-sm p-0 me-1 opacity-06"
+          title="Настройки"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#settingsBar"
+          aria-controls="settingsBar"
+        >
+          <img
+            src="/img/icons_tool/gear.svg"
+            width="24"
+            height="24"
+            alt="Настройки"
+          />
+        </button>
+
+        <!-- <div class="dropdown">
           <button
             class="btn btn-sm p-0 me-1 opacity-06"
             title="Настройки"
@@ -377,7 +392,7 @@
             class="dropdown-menu dropdown-menu-end"
             aria-labelledby="dropdownMenuSettings"
           />
-        </div>
+        </div> -->
       </div>
     </div>
     <div v-else class="container-fluid">
