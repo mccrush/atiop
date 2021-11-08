@@ -5,6 +5,6 @@ export default [
   { title: 'Дедлайн', alias: 'showDeadline', value: true },
   { title: 'Направление', alias: 'showNaprav', value: true },
   { title: 'Проект', alias: 'showProject', value: true },
-  { title: 'Цена', alias: 'showPrice', value: true },
+  { title: 'Цена', alias: 'showPrice', value: false },
   { title: 'Время', alias: 'showTime', value: true }
 ]

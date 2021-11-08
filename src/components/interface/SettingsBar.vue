@@ -47,7 +47,8 @@
               type="checkbox"
               role="switch"
               :id="item.alias"
-              checked
+              :checked="item.value"
+              @change="updateSettings(index)"
             />
           </div>
         </li>
@@ -57,22 +58,19 @@
 </template>
 
 <script>
-import getSettings from '@/scripts/getSettings'
 export default {
   data() {
-    return {
-      getSettings
-    }
+    return {}
   },
   computed: {
     settings() {
       return this.$store.getters.settings
     }
   },
-  mounted() {
-    console.log('settings:', this.settings) // Зачем?
-  },
   methods: {
+    updateSettings(index) {
+      this.$store.commit('updateValue', { index })
+    },
     async logOut() {
       await this.$store.dispatch('logOut')
     }
