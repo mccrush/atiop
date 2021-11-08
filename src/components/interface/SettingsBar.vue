@@ -23,6 +23,7 @@
         Выйти
       </button>
       <hr class="mt-2" />
+      <TaskStatistics />
       <h6 class="mt-4">Что отображать?</h6>
       <ul class="list-group list-group-flush">
         <li
@@ -58,7 +59,11 @@
 </template>
 
 <script>
+import TaskStatistics from '@/components/additional/TaskStatistics'
 export default {
+  components: {
+    TaskStatistics
+  },
   computed: {
     settingsArr() {
       return this.$store.getters.settingsArr
