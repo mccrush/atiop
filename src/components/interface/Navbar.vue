@@ -36,20 +36,6 @@
       <div class="d-flex d-md-none align-items-center">
         <Loading v-if="loading" />
         <div class="dropdown">
-          <!-- <button
-            class="btn btn-sm p-0 me-1 opacity-06"
-            title="Настройки"
-            id="dropdownMenuSettings1"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <img
-              src="/img/icons_tool/gear.svg"
-              width="24"
-              height="24"
-              alt="Настройки"
-            />
-          </button> -->
           <button
             class="btn btn-sm p-0 me-1 opacity-06"
             title="Настройки"
@@ -64,11 +50,6 @@
               alt="Настройки"
             />
           </button>
-
-          <!-- <SettingsDrop
-            class="dropdown-menu dropdown-menu-end"
-            aria-labelledby="dropdownMenuSettings1"
-          /> -->
         </div>
       </div>
 
@@ -78,7 +59,13 @@
         <!-- PersonPlan -->
         <button
           type="button"
-          class="btn btn-sm btn-outline-light text-secondary ms-3 me-3"
+          class="
+            btn btn-sm btn-outline-light
+            text-secondary
+            ms-md-3
+            mt-2 mt-md-0
+            me-3
+          "
           :class="{
             active: viewType === 'person'
           }"
@@ -89,9 +76,9 @@
         <!-- -->
 
         <div
-          class="btn-group btn-group-sm me-3"
+          class="btn-group btn-group-sm mt-2 mt-md-0 me-3"
           role="group"
-          aria-label="Basic example"
+          aria-label="Filter"
         >
           <div class="btn-group">
             <button
@@ -307,22 +294,22 @@
           </ul>
         </div>
 
-        <div>
+        <div class="mt-2 mt-md-0">
           <AddItem v-if="viewType === 'napravs'" :type="'napravs'" />
         </div>
-        <div>
+        <div class="mt-2 mt-md-0">
           <AddItem
             v-if="napravId && !projectId && viewType === 'projects'"
             :type="'projects'"
           />
         </div>
-        <div>
+        <div class="mt-2 mt-md-0">
           <AddItem
             v-if="projectId && viewType === 'projects'"
             :type="'lists'"
           />
         </div>
-        <div>
+        <div class="mt-2 mt-md-0">
           <AddItem
             v-if="napravId && projectId && viewType === 'tasks' && !filterId"
             :type="'tasks'"
@@ -385,28 +372,6 @@
             alt="Настройки"
           />
         </button>
-
-        <!-- <div class="dropdown">
-          <button
-            class="btn btn-sm p-0 me-1 opacity-06"
-            title="Настройки"
-            id="dropdownMenuSettings"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <img
-              src="/img/icons_tool/gear.svg"
-              width="24"
-              height="24"
-              alt="Настройки"
-            />
-          </button>
-
-          <SettingsDrop
-            class="dropdown-menu dropdown-menu-end"
-            aria-labelledby="dropdownMenuSettings"
-          />
-        </div> -->
       </div>
     </div>
     <div v-else class="container-fluid">
@@ -430,9 +395,7 @@
 </template>
 
 <script>
-//import { Dropdown } from 'bootstrap' // Без него не работает Dropdown
 import getFilters from '@/scripts/getFilters'
-//import SettingsDrop from '@/components/additional/SettingsDrop'
 import Loading from '@/components/additional/Loading'
 import AddItem from '@/components/item/AddItem'
 
