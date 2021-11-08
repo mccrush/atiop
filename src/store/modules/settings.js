@@ -12,6 +12,13 @@ export default {
     }
   },
   getters: {
-    settings: state => state.settings,
+    settingsArr: state => state.settings,
+    settingsObj: state => {
+      let newObject = {}
+      state.settings.forEach(elem => {
+        newObject[elem.alias] = elem.value
+      })
+      return newObject
+    }
   }
 }

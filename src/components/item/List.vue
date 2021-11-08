@@ -185,7 +185,11 @@ export default {
     Item,
     AddItem
   },
-  props: ['list'],
+  props: {
+    list: {
+      type: Object
+    }
+  },
   data() {
     return {
       sorts: getSorts
@@ -230,7 +234,7 @@ export default {
       }
     },
     settings() {
-      return this.$store.getters.settings
+      return this.$store.getters.settingsObj
     },
     itemsFilterArchive() {
       if (

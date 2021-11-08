@@ -109,10 +109,14 @@
 import getDateNow from '@/scripts/getDateNow'
 
 export default {
-  props: ['item'],
+  props: {
+    item: {
+      type: Object
+    }
+  },
   computed: {
     settings() {
-      return this.$store.getters.settings
+      return this.$store.getters.settingsObj
     },
     priceFormat() {
       if (this.item.price) {

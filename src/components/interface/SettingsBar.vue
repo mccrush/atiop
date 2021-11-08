@@ -26,7 +26,7 @@
       <h6 class="mt-4">Что отображать?</h6>
       <ul class="list-group list-group-flush">
         <li
-          v-for="(item, index) in settings"
+          v-for="(item, index) in settingsArr"
           :key="index"
           class="list-group-item"
         >
@@ -59,12 +59,9 @@
 
 <script>
 export default {
-  data() {
-    return {}
-  },
   computed: {
-    settings() {
-      return this.$store.getters.settings
+    settingsArr() {
+      return this.$store.getters.settingsArr
     }
   },
   methods: {
