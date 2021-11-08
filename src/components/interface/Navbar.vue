@@ -416,7 +416,7 @@
 </template>
 
 <script>
-import { Dropdown } from 'bootstrap' // Без него не работает Dropdown
+//import { Dropdown } from 'bootstrap' // Без него не работает Dropdown
 import getFilters from '@/scripts/getFilters'
 import SettingsDrop from '@/components/additional/SettingsDrop'
 import Loading from '@/components/additional/Loading'

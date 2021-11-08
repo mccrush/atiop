@@ -27,7 +27,7 @@
 <script>
 import 'bootstrap/dist/css/bootstrap.min.css'
 //import Offcanvas from 'bootstrap/js/dist/offcanvas'
-import { Offcanvas, Modal } from 'bootstrap'
+import { Dropdown, Offcanvas, Modal } from 'bootstrap'
 import Navbar from '@/components/interface/Navbar'
 import SettingsBar from '@/components/interface/SettingsBar'
 import Message from '@/components/additional/Message'
@@ -94,8 +94,8 @@ export default {
     }
   },
   methods: {
-    async editItem({ id, type }) {
-      this.itemForModal = await this[type].find(item => item.id === id)
+    editItem({ id, type }) {
+      this.itemForModal = this[type].find(item => item.id === id)
       let myModal = new Modal(document.getElementById('exampleModal'))
       myModal.show()
     }
