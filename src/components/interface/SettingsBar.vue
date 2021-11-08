@@ -22,10 +22,34 @@
       >
         Выйти
       </button>
-      <hr class="mt-2 mb-1" />
-      <ul>
-        <li v-for="(item, index) in getSettings" :key="index">
-          {{ item.title }} - {{ item.value }}
+      <hr class="mt-2" />
+      <h6 class="mt-4">Что отображать?</h6>
+      <ul class="list-group list-group-flush">
+        <li
+          v-for="(item, index) in settings"
+          :key="index"
+          class="list-group-item"
+        >
+          <div
+            class="
+              form-check form-switch
+              d-flex
+              justify-content-between
+              align-items-senter
+              ps-0
+            "
+          >
+            <label class="form-check-label" :for="item.alias">{{
+              item.title
+            }}</label>
+            <input
+              class="form-check-input"
+              type="checkbox"
+              role="switch"
+              :id="item.alias"
+              checked
+            />
+          </div>
         </li>
       </ul>
     </div>
@@ -46,7 +70,7 @@ export default {
     }
   },
   mounted() {
-    console.log('settings:', this.settings)
+    console.log('settings:', this.settings) // Зачем?
   },
   methods: {
     async logOut() {

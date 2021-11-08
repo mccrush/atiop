@@ -1,10 +1,11 @@
 
 //import { auth } from '@/firebase.js'
 //import { db } from '@/firebase.js'
+import settingsData from '@/data/settings'
 
 export default {
   state: {
-    settings: JSON.parse(localStorage.getItem('at-settings')) || { showArhived: false, showEmpty: true, showPosition: false, showDate: false, showDeadline: false, showNaprav: false, showProject: false, showPrice: false, showTime: false, sortBy: 'date', sortUp: true },
+    settings: JSON.parse(localStorage.getItem('at-settings')) || settingsData,
     filterType: localStorage.getItem('at-filterType') || '',
     filterValue: localStorage.getItem('at-filterValue') || ''
   },
