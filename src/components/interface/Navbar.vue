@@ -36,7 +36,7 @@
       <div class="d-flex d-md-none align-items-center">
         <Loading v-if="loading" />
         <div class="dropdown">
-          <button
+          <!-- <button
             class="btn btn-sm p-0 me-1 opacity-06"
             title="Настройки"
             id="dropdownMenuSettings1"
@@ -49,12 +49,26 @@
               height="24"
               alt="Настройки"
             />
+          </button> -->
+          <button
+            class="btn btn-sm p-0 me-1 opacity-06"
+            title="Настройки"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#settingsBar"
+            aria-controls="settingsBar"
+          >
+            <img
+              src="/img/icons_tool/gear.svg"
+              width="24"
+              height="24"
+              alt="Настройки"
+            />
           </button>
 
-          <SettingsDrop
+          <!-- <SettingsDrop
             class="dropdown-menu dropdown-menu-end"
             aria-labelledby="dropdownMenuSettings1"
-          />
+          /> -->
         </div>
       </div>
 
@@ -418,13 +432,12 @@
 <script>
 //import { Dropdown } from 'bootstrap' // Без него не работает Dropdown
 import getFilters from '@/scripts/getFilters'
-import SettingsDrop from '@/components/additional/SettingsDrop'
+//import SettingsDrop from '@/components/additional/SettingsDrop'
 import Loading from '@/components/additional/Loading'
 import AddItem from '@/components/item/AddItem'
 
 export default {
   components: {
-    SettingsDrop,
     Loading,
     AddItem
   },
