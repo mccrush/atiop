@@ -11,21 +11,25 @@
         pb-2
       "
     >
-      <!-- <SelectYear />
-      <SelectMonth @select-month="getMonths" /> -->
-      <button class="btn btn-outline-light text-secondary me-3">Сегодня</button>
-      <div class="btn-group me-3" role="group" aria-label="Select Month">
-        <button type="button" class="btn btn-outline-light text-secondary">
-          Left
+      <button class="btn btn-sm btn-outline-light text-secondary me-3">
+        Сегодня
+      </button>
+      <div
+        class="btn-group btn-group-sm me-3"
+        role="group"
+        aria-label="Select Month"
+      >
+        <button type="button" class="btn btn-outline-light text-secondary pt-0">
+          <ButtonLeft />
         </button>
-        <button type="button" class="btn btn-outline-light text-secondary">
-          Right
+        <button type="button" class="btn btn-outline-light text-secondary pt-0">
+          <ButtonRight />
         </button>
       </div>
 
       <div class="dropdown">
         <button
-          class="btn btn-outline-light text-secondary dropdown-toggle"
+          class="btn btn-sm btn-outline-light text-secondary dropdown-toggle"
           type="button"
           id="selectNewMonth"
           data-bs-toggle="dropdown"
@@ -73,15 +77,15 @@
 </template>
 
 <script>
-import SelectYear from '@/components/calendar/SelectYear'
-import SelectMonth from '@/components/calendar/SelectMonth'
+import ButtonLeft from '@/components/calendar/ButtonLeft'
+import ButtonRight from '@/components/calendar/ButtonRight'
 import months from '@/data/dataMonths'
 import dayWeek from '@/data/dataDayWeek'
 
 export default {
   components: {
-    SelectYear,
-    SelectMonth
+    ButtonLeft,
+    ButtonRight
   },
   data() {
     return {
