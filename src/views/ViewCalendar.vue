@@ -62,7 +62,7 @@
       </div>
     </div>
     <div class="calendar-days col-12">
-      <div class="row ps-2">
+      <div class="row ps-2 ps-xxl-3">
         <div
           v-for="(dayW, index) in dayWeek"
           :key="dayW.id + 'dw'"
@@ -74,7 +74,7 @@
           <small> {{ dayW.title }}</small>
         </div>
       </div>
-      <div class="row ps-2">
+      <div class="row ps-2 ps-xxl-3">
         <div
           v-for="dayPre in firstWeekDayMonth"
           :key="dayPre + 'cd'"
