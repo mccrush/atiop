@@ -24,6 +24,7 @@
       class="form-select text-center"
       aria-label="Select month"
       v-model="selectMonth"
+      @change="$emit('select-month', { month: selectMonth })"
     >
       <option :value="tecMonth">{{ tecNameMonth }}</option>
       <option v-for="month in months" :key="month.id + 'mnf'" :value="month.id">
