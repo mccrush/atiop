@@ -60,7 +60,6 @@
           Мини-календарь еще не готов
         </div>
       </div>
-      [{{ selectMonth }}]
     </div>
     <div class="calendar-days col-12">
       <div class="row ps-2">
@@ -86,7 +85,7 @@
             text-muted
           "
           :class="{
-            'calendar-day-height-6': firstWeekDayMonth > 5 && countDays > 30
+            'calendar-day-height-6': firstWeekDayMonth > 4 && countDays > 30
           }"
         ></div>
         <div
@@ -99,7 +98,7 @@
             text-muted
           "
           :class="{
-            'calendar-day-height-6': firstWeekDayMonth > 5 && countDays > 30
+            'calendar-day-height-6': firstWeekDayMonth > 4 && countDays > 30
           }"
         >
           <span
@@ -133,7 +132,7 @@ export default {
       months,
       dayWeek,
       todayDate: new Date().getDate(),
-      todayWeekDay: new Date().getDay(),
+      todayWeekDay: new Date().getDay() + 1,
       todaytMonth: new Date().getMonth(),
       todayYear: new Date().getFullYear(),
       selectMonth: new Date().getMonth(),
@@ -154,7 +153,11 @@ export default {
       return this.months.find(item => item.id === this.todaytMonth).title
     },
     firstWeekDayMonth() {
-      return new Date(this.selectYear, this.selectMonth, 1).getDay() - 1
+      if (new Date(this.selectYear, this.selectMonth, 1).getDay() === 0) {
+        return 6
+      } else {
+        return new Date(this.selectYear, this.selectMonth, 1).getDay() - 1
+      }
     }
   },
   methods: {

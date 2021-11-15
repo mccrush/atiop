@@ -5,4 +5,5 @@ export default [
   { id: 4, title: 'ЧТ' },
   { id: 5, title: 'ПТ' },
   { id: 6, title: 'СБ' },
-  { id: 7, title: 'ВС' }]
+  { id: 7, title: 'ВС' }
+]
