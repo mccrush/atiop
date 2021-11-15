@@ -11,7 +11,10 @@
         pb-2
       "
     >
-      <button class="btn btn-sm btn-outline-light text-secondary me-3">
+      <button
+        class="btn btn-sm btn-outline-light text-secondary me-3"
+        @click="selectToday"
+      >
         Сегодня
       </button>
       <div
@@ -19,26 +22,42 @@
         role="group"
         aria-label="Select Month"
       >
-        <button type="button" class="btn btn-outline-light text-secondary pt-0">
+        <button
+          type="button"
+          class="btn btn-outline-light text-secondary pt-0"
+          @click="downMonth"
+        >
           <ButtonLeft />
         </button>
-        <button type="button" class="btn btn-outline-light text-secondary pt-0">
+        <button
+          type="button"
+          class="btn btn-outline-light text-secondary pt-0"
+          @click="upMonth"
+        >
           <ButtonRight />
         </button>
       </div>
 
       <div class="dropdown">
         <button
-          class="btn btn-sm btn-outline-light text-secondary dropdown-toggle"
+          class="
+            select-new-month
+            btn btn-sm btn-outline-light
+            text-secondary
+            dropdown-toggle
+          "
           type="button"
           id="selectNewMonth"
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          {{ todaytMonthName }} {{ todayYear }}
+          {{ selectMonthName }} {{ selectYear }}
         </button>
-        <div class="dropdown-menu" aria-labelledby="selectNewMonth">
-          Mini calendar
+        <div
+          class="dropdown-menu lh-1 shadow border-0 p-2"
+          aria-labelledby="selectNewMonth"
+        >
+          Мини-календарь еще не готов
         </div>
       </div>
     </div>
@@ -93,12 +112,17 @@ export default {
       dayWeek,
       todayWeekDay: new Date().getDay(),
       todaytMonth: new Date().getMonth(),
-      todayYear: new Date().getFullYear()
+      todayYear: new Date().getFullYear(),
+      selectMonth: new Date().getMonth(),
+      selectYear: new Date().getFullYear()
     }
   },
   computed: {
     countDays() {
       //return this.months.find(item => item.id === this.todaytMonth).countdays
+    },
+    selectMonthName() {
+      return this.months.find(item => item.id === this.selectMonth).title
     },
     todayWeekDayName() {
       return this.dayWeek.find(item => item.id === this.todayWeekDay).title
@@ -107,7 +131,28 @@ export default {
       return this.months.find(item => item.id === this.todaytMonth).title
     }
   },
-  methods: {}
+  methods: {
+    upMonth() {
+      if (this.selectMonth === 11) {
+        this.selectMonth = 0
+        this.selectYear++
+      } else {
+        this.selectMonth++
+      }
+    },
+    downMonth() {
+      if (this.selectMonth === 0) {
+        this.selectMonth = 11
+        this.selectYear--
+      } else {
+        this.selectMonth--
+      }
+    },
+    selectToday() {
+      this.selectMonth = this.todaytMonth
+      this.selectYear = this.todayYear
+    }
+  }
 }
 </script>
 
@@ -139,6 +184,10 @@ export default {
 .left-padding-2 {
   width: 4px;
   height: calc(100vh - 59px - 54px - 26px);
+}
+
+.select-new-month {
+  width: 128px;
 }
 </style>
 
