@@ -76,7 +76,7 @@
       </div>
       <div class="row ps-1">
         <div
-          v-for="(day, index) in 25"
+          v-for="(day, index) in countDays"
           :key="day + 'cd'"
           class="calendar-day border-end border-bottom small text-muted"
           :class="{
@@ -119,7 +119,7 @@ export default {
   },
   computed: {
     countDays() {
-      //return this.months.find(item => item.id === this.todaytMonth).countdays
+      return this.months.find(item => item.id === this.selectMonth).countdays
     },
     selectMonthName() {
       return this.months.find(item => item.id === this.selectMonth).title
@@ -173,7 +173,7 @@ export default {
 }
 
 .calendar-day {
-  height: calc((100vh - 59px - 54px - 26px) / 4);
+  height: calc((100vh - 59px - 54px - 26px) / 5);
 }
 
 .left-padding-1 {
