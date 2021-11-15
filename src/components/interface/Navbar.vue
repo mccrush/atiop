@@ -215,7 +215,7 @@
           </button>
         </div>
 
-        <div v-if="viewType === 'tasks'" class="btn-group me-3">
+        <div v-if="viewType === 'tasks'" class="btn-group mt-2 mt-md-0 me-3">
           <span
             type="button"
             class="
@@ -296,20 +296,14 @@
 
         <div class="mt-2 mt-md-0">
           <AddItem v-if="viewType === 'napravs'" :type="'napravs'" />
-        </div>
-        <div class="mt-2 mt-md-0">
           <AddItem
             v-if="napravId && !projectId && viewType === 'projects'"
             :type="'projects'"
           />
-        </div>
-        <div class="mt-2 mt-md-0">
           <AddItem
             v-if="projectId && viewType === 'projects'"
             :type="'lists'"
           />
-        </div>
-        <div class="mt-2 mt-md-0">
           <AddItem
             v-if="napravId && projectId && viewType === 'tasks' && !filterId"
             :type="'tasks'"
