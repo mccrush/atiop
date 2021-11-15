@@ -60,9 +60,10 @@
           Мини-календарь еще не готов
         </div>
       </div>
+      [{{ selectMonth }}]
     </div>
     <div class="calendar-days col-12">
-      <div class="row ps-1">
+      <div class="row ps-2">
         <div
           v-for="(dayW, index) in dayWeek"
           :key="dayW.id + 'dw'"
@@ -74,21 +75,42 @@
           <small> {{ dayW.title }}</small>
         </div>
       </div>
-      <div class="row ps-1">
+      <div class="row ps-2">
         <div
-          v-for="(day, index) in countDays"
-          :key="day + 'cd'"
-          class="calendar-day border-end border-bottom small text-muted"
+          v-for="dayPre in firstWeekDayMonth"
+          :key="dayPre + 'cd'"
+          class="
+            calendar-day calendar-day-height-5
+            border-start border-end border-bottom
+            small
+            text-muted
+          "
           :class="{
-            'border-start':
-              index === 0 ||
-              index === 7 ||
-              index === 14 ||
-              index === 21 ||
-              index === 28
+            'calendar-day-height-6': firstWeekDayMonth > 5 && countDays > 30
+          }"
+        ></div>
+        <div
+          v-for="day in countDays"
+          :key="day + 'cd'"
+          class="
+            calendar-day calendar-day-height-5
+            border-start border-end border-bottom
+            small
+            text-muted
+          "
+          :class="{
+            'calendar-day-height-6': firstWeekDayMonth > 5 && countDays > 30
           }"
         >
-          {{ day }}
+          <span
+            :class="{
+              'fw-bold text-dark':
+                selectYear == todayYear &&
+                selectMonth == todaytMonth &&
+                day == todayDate
+            }"
+            >{{ day }}</span
+          >
         </div>
       </div>
     </div>
@@ -110,6 +132,7 @@ export default {
     return {
       months,
       dayWeek,
+      todayDate: new Date().getDate(),
       todayWeekDay: new Date().getDay(),
       todaytMonth: new Date().getMonth(),
       todayYear: new Date().getFullYear(),
@@ -124,11 +147,14 @@ export default {
     selectMonthName() {
       return this.months.find(item => item.id === this.selectMonth).title
     },
-    todayWeekDayName() {
-      return this.dayWeek.find(item => item.id === this.todayWeekDay).title
-    },
+    // todayWeekDayName() {
+    //   return this.dayWeek.find(item => item.id === this.todayWeekDay).title
+    // },
     todaytMonthName() {
       return this.months.find(item => item.id === this.todaytMonth).title
+    },
+    firstWeekDayMonth() {
+      return new Date(this.selectYear, this.selectMonth, 1).getDay() - 1
     }
   },
   methods: {
@@ -170,10 +196,15 @@ export default {
 .calendar-day-week {
   width: 14.2%;
   text-align: center;
+  margin-right: -1px;
 }
 
-.calendar-day {
+.calendar-day-height-5 {
   height: calc((100vh - 59px - 54px - 26px) / 5);
+}
+
+.calendar-day-height-6 {
+  height: calc((100vh - 59px - 54px - 26px) / 6);
 }
 
 .left-padding-1 {
