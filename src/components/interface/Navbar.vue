@@ -64,7 +64,7 @@
         >
           <button
             type="button"
-            class="btn btn-sm btn-outline-light text-secondary ps-3 pt-0 pe-3"
+            class="btn btn-sm btn-outline-light text-secondary ps-2 pt-0 pe-2"
             :class="{
               active: viewType === 'person'
             }"
@@ -83,8 +83,9 @@
               />
             </svg>
           </button>
+          <button class="btn ps-0 pe-0">&nbsp;</button>
           <button
-            class="btn btn-outline-light btn-sm text-secondary ps-3 pt-0 pe-3"
+            class="btn btn-outline-light btn-sm text-secondary ps-2 pt-0 pe-2"
             :class="{
               active: viewType === 'calendar'
             }"
@@ -288,22 +289,32 @@
             @click="setSelectFilter('', '')"
             :disabled="!filterId"
           >
-            <img
+            <svg
               v-if="filterId"
-              src="/img/icons_tool/x.svg"
+              xmlns="http://www.w3.org/2000/svg"
               width="16"
               height="16"
-              alt="Cards"
-              class="opacity-04"
-            />
-            <img
+              fill="currentColor"
+              class="bi bi-x"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+              />
+            </svg>
+            <svg
               v-else
-              src="/img/icons_tool/funnel.svg"
+              xmlns="http://www.w3.org/2000/svg"
               width="16"
               height="16"
-              alt="Cards"
-              class="opacity-04"
-            />
+              fill="currentColor"
+              class="bi bi-funnel"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"
+              />
+            </svg>
           </button>
 
           <ul
@@ -364,14 +375,20 @@
             :class="{ active: viewView === 'cards' }"
             @click="setViewView('cards')"
           >
-            <img
-              src="/img/icons_tool/grid.svg"
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
               width="16"
               height="16"
-              alt="Cards"
-              class="opacity-04"
-            />
+              fill="currentColor"
+              class="bi bi-grid"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"
+              />
+            </svg>
           </button>
+          <button class="btn ps-0 pe-0">&nbsp;</button>
           <button
             v-if="viewType === 'tasks'"
             type="button"
@@ -379,13 +396,26 @@
             :class="{ active: viewView === 'checklist' }"
             @click="setViewView('checklist')"
           >
-            <img
-              src="/img/icons_tool/list-check.svg"
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
               width="16"
               height="16"
-              alt="Checklist"
-              class="opacity-04"
-            />
+              fill="currentColor"
+              class="bi bi-list-task"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H2zM3 3H2v1h1V3z"
+              />
+              <path
+                d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V7zM2 7h1v1H2V7zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H2zm1 .5H2v1h1v-1z"
+              />
+            </svg>
           </button>
         </div>
 
@@ -396,12 +426,21 @@
           data-bs-target="#settingsBar"
           aria-controls="settingsBar"
         >
-          <img
-            src="/img/icons_tool/gear.svg"
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
-            alt="Настройки"
-          />
+            fill="currentColor"
+            class="bi bi-gear"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"
+            />
+            <path
+              d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"
+            />
+          </svg>
         </button>
       </div>
     </div>
