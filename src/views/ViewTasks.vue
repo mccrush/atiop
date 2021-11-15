@@ -35,7 +35,7 @@ export default {
   },
   computed: {
     settings() {
-      return this.$store.getters.settings
+      return this.$store.getters.settingsObj
     },
     filterId() {
       return this.$store.getters.filterId
