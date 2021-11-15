@@ -34,6 +34,7 @@ import Message from '@/components/additional/Message'
 import ViewProjects from '@/views/ViewProjects'
 import ViewTasks from '@/views/ViewTasks'
 import ViewPersonPlan from '@/views/ViewPersonPlan'
+import ViewCalendar from '@/views/ViewCalendar'
 import Login from '@/views/Login'
 import ModalForm from '@/components/item/ModalForm'
 
@@ -45,6 +46,7 @@ export default {
     ViewProjects,
     ViewTasks,
     ViewPersonPlan,
+    ViewCalendar,
     Login,
     ModalForm
   },
@@ -75,6 +77,8 @@ export default {
           return 'ViewProjects'
         } else if (this.viewType === 'person') {
           return 'ViewPersonPlan'
+        } else if (this.viewType === 'calendar') {
+          return 'ViewCalendar'
         }
       } else {
         return 'Login'
