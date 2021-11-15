@@ -6,12 +6,13 @@
         col-12
         bg-white
         d-flex
-        justify-content-center
+        justify-content-between
         pt-2
         pb-3
       "
     >
       <SelectYear />
+      <SelectMonth />
     </div>
     <div class="col-12">Dates</div>
   </div>
@@ -19,10 +20,12 @@
 
 <script>
 import SelectYear from '@/components/calendar/SelectYear'
+import SelectMonth from '@/components/calendar/SelectMonth'
 
 export default {
   components: {
-    SelectYear
+    SelectYear,
+    SelectMonth
   }
 }
 </script>

@@ -20,7 +20,11 @@
         />
       </svg>
     </button>
-    <select class="form-select" aria-label="Select year" v-model="selectYear">
+    <select
+      class="form-select text-center"
+      aria-label="Select year"
+      v-model="selectYear"
+    >
       <option :value="tecYear">{{ tecYear }}</option>
       <option v-for="year in years" :key="year" :value="year">
         {{ year }}
