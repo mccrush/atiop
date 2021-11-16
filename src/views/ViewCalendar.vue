@@ -61,9 +61,13 @@
           </div>
           <div class="select-month row p-2 pb-0">
             <div
-              v-for="mnf in months"
+              v-for="(mnf, index) in months"
               :key="mnf.id + 'mnf'"
-              class="col-4 p-1 pe-1 pb-0"
+              class="col-4 p-1 pe-0 pb-0"
+              :class="{
+                'pe-1':
+                  index === 2 || index === 5 || index === 8 || index === 11
+              }"
             >
               <button
                 type="button"
