@@ -565,7 +565,12 @@ export default {
     setSelectNapravs(id) {
       this.$store.commit('setNapravId', id)
       this.$store.commit('setProjectId', '')
-      if (!this.viewType || this.viewType === 'napravs') {
+      if (
+        !this.viewType ||
+        this.viewType === 'napravs' ||
+        this.viewType === 'calendar' ||
+        this.viewType === 'person'
+      ) {
         this.$store.commit('setViewType', 'projects')
       }
     },
@@ -591,7 +596,11 @@ export default {
       const napravId = this.projects.find(item => item.id === id).napravId
       this.$store.commit('setNapravId', napravId)
       this.$store.commit('setProjectId', id)
-      if (!this.viewType) {
+      if (
+        !this.viewType ||
+        this.viewType === 'calendar' ||
+        this.viewType === 'person'
+      ) {
         this.$store.commit('setViewType', 'projects')
       }
     },
