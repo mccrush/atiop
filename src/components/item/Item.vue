@@ -38,9 +38,11 @@
     <span v-if="settings.showNaprav" class="badge bg-info me-1">{{
       item.napravTitle || 'Без направления'
     }}</span>
-    <span v-if="settings.showProject" class="badge bg-secondary me-1">{{
-      item.projectTitle || 'Без проекта'
-    }}</span>
+    <span
+      v-if="settings.showProject || viewType === 'person'"
+      class="badge bg-secondary me-1"
+      >{{ item.projectTitle || 'Без проекта' }}</span
+    >
     <span
       v-if="item.description && item.description.length"
       class="badge bg-light text-secondary me-1"
@@ -117,6 +119,9 @@ export default {
   computed: {
     settings() {
       return this.$store.getters.settingsObj
+    },
+    viewType() {
+      return this.$store.getters.viewType
     },
     priceFormat() {
       if (this.item.price) {
