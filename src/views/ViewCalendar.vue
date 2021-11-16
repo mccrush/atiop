@@ -37,6 +37,7 @@
           type="button"
           id="selectNewMonth"
           data-bs-toggle="dropdown"
+          data-bs-auto-close="outside"
           aria-expanded="false"
         >
           {{ selectMonthName }} {{ selectYear }}
@@ -45,7 +46,34 @@
           class="dropdown-menu lh-1 shadow border-0 p-2"
           aria-labelledby="selectNewMonth"
         >
-          Мини-календарь еще не готов
+          <div class="select-year">
+            <div
+              class="btn-group btn-group-sm w-100 me-3"
+              role="group"
+              aria-label="Select Month"
+            >
+              <ButtonLeft @click="selectYear--" class="w-25" />
+              <button class="btn btn-outline-light text-dark w-50" disabled>
+                {{ selectYear }}
+              </button>
+              <ButtonRight @click="selectYear++" class="w-25" />
+            </div>
+          </div>
+          <div class="select-month row p-2 pb-0">
+            <div
+              v-for="mnf in months"
+              :key="mnf.id + 'mnf'"
+              class="col-4 p-1 pe-1 pb-0"
+            >
+              <button
+                type="button"
+                class="btn btn-sm btn-outline-light text-secondary w-100"
+                @click="selectMonth = mnf.id"
+              >
+                <small> {{ mnf.title.slice(0, 3).toUpperCase() }}</small>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
