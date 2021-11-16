@@ -136,6 +136,9 @@
             v-for="task in showDateTask(day)"
             :key="task.id"
             class="task-in-day badge bg-light text-muted text-start w-100"
+            @dblclick.prevent="
+              $emit('edit-item', { id: task.id, type: 'tasks' })
+            "
           >
             {{ task.title }}
           </div>
@@ -271,6 +274,7 @@ export default {
 }
 
 .task-in-day {
+  user-select: none;
   cursor: pointer;
   text-overflow: ellipsis;
   overflow: hidden;
