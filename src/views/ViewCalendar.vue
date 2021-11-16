@@ -22,20 +22,8 @@
         role="group"
         aria-label="Select Month"
       >
-        <button
-          type="button"
-          class="btn btn-outline-light text-secondary pt-0"
-          @click="downMonth"
-        >
-          <ButtonLeft />
-        </button>
-        <button
-          type="button"
-          class="btn btn-outline-light text-secondary pt-0"
-          @click="upMonth"
-        >
-          <ButtonRight />
-        </button>
+        <ButtonLeft @click="downMonth" />
+        <ButtonRight @click="upMonth" />
       </div>
 
       <div class="dropdown">
