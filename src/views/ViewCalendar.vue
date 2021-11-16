@@ -116,6 +116,8 @@
             border-start border-end border-bottom
             small
             text-muted
+            ps-1
+            pe-1
           "
           :class="{
             'calendar-day-height-6': firstWeekDayMonth > 4 && countDays > 30
@@ -129,7 +131,14 @@
                 day == todayDate
             }"
             >{{ day }}</span
+          ><br />
+          <div
+            v-for="task in showDateTask(day)"
+            :key="task.id"
+            class="task-in-day badge bg-light text-muted text-start w-100"
           >
+            {{ task.title }}
+          </div>
         </div>
       </div>
     </div>
@@ -160,6 +169,11 @@ export default {
     }
   },
   computed: {
+    tasks() {
+      return this.$store.getters.tasks
+        .filter(item => item.status !== 'done')
+        .filter(item => item.date !== '')
+    },
     countDays() {
       return this.months.find(item => item.id === this.selectMonth).countdays
     },
@@ -200,6 +214,17 @@ export default {
     selectToday() {
       this.selectMonth = this.todaytMonth
       this.selectYear = this.todayYear
+    },
+    showDateTask(date) {
+      return this.tasks.filter(
+        item =>
+          new Date(item.date).getFullYear() ===
+            new Date(this.selectYear, this.selectMonth, date).getFullYear() &&
+          new Date(item.date).getMonth() ===
+            new Date(this.selectYear, this.selectMonth, date).getMonth() &&
+          new Date(item.date).getDate() ===
+            new Date(this.selectYear, this.selectMonth, date).getDate()
+      )
     }
   }
 }
@@ -242,6 +267,12 @@ export default {
 
 .select-new-month {
   width: 128px;
+}
+
+.task-in-day {
+  cursor: pointer;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 </style>
 
