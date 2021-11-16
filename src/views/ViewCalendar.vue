@@ -245,6 +245,7 @@ export default {
   width: 14.2%;
   text-align: center;
   margin-right: -1px;
+  overflow-y: auto;
 }
 
 .calendar-day-height-5 {
