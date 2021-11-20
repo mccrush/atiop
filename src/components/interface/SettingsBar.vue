@@ -93,7 +93,6 @@
 </template>
 
 <script>
-import { Offcanvas } from 'bootstrap'
 import TaskStatistics from '@/components/additional/TaskStatistics'
 export default {
   components: {
