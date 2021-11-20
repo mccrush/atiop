@@ -111,8 +111,6 @@ export default {
       this.$store.commit('updateValue', { index })
     },
     async logOut() {
-      let offCan = new Offcanvas(document.getElementById('settingsBar'))
-      offCan.hide()
       await this.$store.dispatch('logOut')
     }
   }
