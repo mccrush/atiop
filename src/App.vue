@@ -27,7 +27,7 @@
 <script>
 import 'bootstrap/dist/css/bootstrap.min.css'
 //import Offcanvas from 'bootstrap/js/dist/offcanvas'
-import { Dropdown, Offcanvas, Modal } from 'bootstrap'
+import { Dropdown, Offcanvas, Modal, Tooltip } from 'bootstrap'
 import Navbar from '@/components/interface/Navbar'
 import SettingsBar from '@/components/interface/SettingsBar'
 import Message from '@/components/additional/Message'
@@ -96,6 +96,14 @@ export default {
     tasks() {
       return this.$store.getters.tasks
     }
+  },
+  mounted() {
+    var tooltipTriggerList = [].slice.call(
+      document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    )
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new Tooltip(tooltipTriggerEl)
+    })
   },
   methods: {
     editItem({ id, type }) {

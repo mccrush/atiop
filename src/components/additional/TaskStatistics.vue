@@ -1,13 +1,45 @@
 <template>
   <table class="table table-sm text-center text-white mb-0">
     <tr>
-      <td class="w-25"><span class="d-block badge bg-info">N</span></td>
-      <td class="w-25"><span class="d-block badge bg-success">P</span></td>
       <td class="w-25">
-        <span class="d-block badge bg-light text-dark">L</span>
+        <span
+          class="bg-napravs d-block badge"
+          data-bs-toggle="tooltip"
+          data-bs-placement="bottom"
+          data-bs-html="true"
+          title="Количество<br>направлений"
+          >N</span
+        >
       </td>
       <td class="w-25">
-        <span class="d-block badge bg-warning">T-{{ tasksLength }}</span>
+        <span
+          class="bg-projects d-block badge"
+          data-bs-toggle="tooltip"
+          data-bs-placement="bottom"
+          data-bs-html="true"
+          title="Количество<br>проектов"
+          >P</span
+        >
+      </td>
+      <td class="w-25">
+        <span
+          class="bg-lists d-block badge"
+          data-bs-toggle="tooltip"
+          data-bs-placement="bottom"
+          data-bs-html="true"
+          title="Количество<br>списков"
+          >L</span
+        >
+      </td>
+      <td class="w-25">
+        <span
+          class="bg-tasks d-block badge"
+          data-bs-toggle="tooltip"
+          data-bs-placement="bottom"
+          data-bs-html="true"
+          title="Количество<br>задач"
+          >T-{{ tasksLength }}</span
+        >
       </td>
     </tr>
     <tr>
@@ -27,7 +59,7 @@
         }}</span>
       </td>
       <td>
-        <span class="badge bg-warning w-50">{{ tasksTodoWorkLength }}</span>
+        <span class="bg-tasks badge w-50">{{ tasksTodoWorkLength }}</span>
         <span class="border badge bg-light text-dark w-50">{{
           tasksDoneLength
         }}</span>
@@ -60,3 +92,18 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.bg-napravs {
+  background-color: #206a5d;
+}
+.bg-projects {
+  background-color: #81b214;
+}
+.bg-lists {
+  background-color: #f58634;
+}
+.bg-tasks {
+  background-color: #ffcc29;
+}
+</style>
