@@ -6,10 +6,14 @@ import { auth } from "@/firebase.js";
 export default {
   state: {
     userId: null,
+    userEmail: null
   },
   mutations: {
     setUserId(state, id) {
       state.userId = id
+    },
+    setUserEmail(state, email) {
+      state.userEmail = email.split('@')[0]
     }
   },
   actions: {
@@ -53,5 +57,6 @@ export default {
   },
   getters: {
     userId: state => state.userId,
+    userEmail: state => state.userEmail
   }
 }
