@@ -9,7 +9,7 @@
     > -->
     <button
       @click.prevent="logOut"
-      class="btn btn-sm btn-light border p-0 ps-3 pe-3"
+      class="btn btn btn-light border align-self-end p-0 ps-3 pe-3"
       title="Выйти из системы"
     >
       Выйти

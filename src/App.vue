@@ -27,7 +27,7 @@
 <script>
 import 'bootstrap/dist/css/bootstrap.min.css'
 //import Offcanvas from 'bootstrap/js/dist/offcanvas'
-import { Dropdown, Offcanvas, Modal, Tooltip } from 'bootstrap'
+import { Dropdown, Modal, Tooltip } from 'bootstrap'
 import Navbar from '@/components/interface/Navbar'
 import SettingsBar from '@/components/interface/SettingsBar'
 import Message from '@/components/additional/Message'

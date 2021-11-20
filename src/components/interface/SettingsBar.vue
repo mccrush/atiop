@@ -17,7 +17,7 @@
     <div class="offcanvas-body">
       <button
         @click.prevent="logOut"
-        class="btn btn-sm btn-light border p-0 ps-3 pe-3"
+        class="btn btn btn-light border align-self-end p-0 ps-3 pe-3"
         title="Выйти из системы"
       >
         Выйти
@@ -59,6 +59,7 @@
 </template>
 
 <script>
+import { Offcanvas } from 'bootstrap'
 import TaskStatistics from '@/components/additional/TaskStatistics'
 export default {
   components: {
@@ -74,6 +75,8 @@ export default {
       this.$store.commit('updateValue', { index })
     },
     async logOut() {
+      let offCan = new Offcanvas(document.getElementById('settingsBar'))
+      offCan.hide()
       await this.$store.dispatch('logOut')
     }
   }
