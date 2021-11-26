@@ -178,14 +178,27 @@ export default {
         .filter(item => item.date !== '')
     },
     countDays() {
-      return this.months.find(item => item.id === this.selectMonth).countdays
+      const countdays = this.months.find(
+        item => item.id === this.selectMonth
+      ).countdays
+      if (this.selectMonth === 1) {
+        if (
+          this.selectYear === 2024 ||
+          this.selectYear === 2028 ||
+          this.selectYear === 2032 ||
+          this.selectYear === 2036
+        ) {
+          return countdays + 1
+        } else {
+          return countdays
+        }
+      } else {
+        return countdays
+      }
     },
     selectMonthName() {
       return this.months.find(item => item.id === this.selectMonth).title
     },
-    // todayWeekDayName() {
-    //   return this.dayWeek.find(item => item.id === this.todayWeekDay).title
-    // },
     todaytMonthName() {
       return this.months.find(item => item.id === this.todaytMonth).title
     },
