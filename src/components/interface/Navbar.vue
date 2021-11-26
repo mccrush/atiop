@@ -577,7 +577,11 @@ export default {
 
     setActiveProjects(id) {
       if (id) {
-        if (this.viewType === 'tasks' || this.viewType === 'person') {
+        if (
+          this.viewType === 'tasks' ||
+          this.viewType === 'person' ||
+          this.viewType === 'calendar'
+        ) {
           this.$store.commit('setViewType', 'projects')
         }
       } else {
