@@ -39,7 +39,10 @@
       item.napravTitle || 'Без направления'
     }}</span>
     <span
-      v-if="settings.showProject || viewType === 'person'"
+      v-if="
+        (settings.showProject || viewType === 'person') &&
+        viewType != 'projects'
+      "
       class="badge bg-secondary me-1"
       >{{ item.projectTitle || 'Без проекта' }}</span
     >
