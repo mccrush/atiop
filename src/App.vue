@@ -70,7 +70,7 @@ export default {
     },
     Component() {
       if (this.userId) {
-        return 'ViewNewStruct'
+        //return 'ViewNewStruct'
         if (this.viewType === 'tasks') {
           return 'ViewTasks'
         } else if (
