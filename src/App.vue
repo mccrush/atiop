@@ -35,6 +35,7 @@ import ViewProjects from '@/views/ViewProjects'
 import ViewTasks from '@/views/ViewTasks'
 import ViewPersonPlan from '@/views/ViewPersonPlan'
 import ViewCalendar from '@/views/ViewCalendar'
+import ViewNewStruct from '@/views/ViewNewStruct'
 import Login from '@/views/Login'
 import ModalForm from '@/components/item/ModalForm'
 
@@ -47,6 +48,7 @@ export default {
     ViewTasks,
     ViewPersonPlan,
     ViewCalendar,
+    ViewNewStruct,
     Login,
     ModalForm
   },
@@ -68,6 +70,7 @@ export default {
     },
     Component() {
       if (this.userId) {
+        return 'ViewNewStruct'
         if (this.viewType === 'tasks') {
           return 'ViewTasks'
         } else if (

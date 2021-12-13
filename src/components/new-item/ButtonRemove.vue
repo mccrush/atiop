@@ -3,7 +3,7 @@
     class="btn btn-sm btn-outline-dark"
     @click="$emit('remove-elem', { type, id })"
   >
-    Del {{ type.substring(0, type.length) }}
+    Del {{ type.substring(0, type.length - 1) }}
   </button>
 </template>
 

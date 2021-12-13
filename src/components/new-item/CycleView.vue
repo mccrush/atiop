@@ -6,7 +6,7 @@
       class="border border-success rounded me-2 p-2"
     >
       <div class="mb-2">
-        {{ type.substring(0, type.length) }} title
+        {{ type.substring(0, type.length - 1) }} title
         <ButtonRemove
           :type="elem.type"
           :id="elem.id"
@@ -15,12 +15,21 @@
       </div>
       <CycleView v-if="type !== 'tasks'" :type="nextType" :parentId="elem.id" />
     </div>
-    <ButtonAdd :type="type" :id="parentId" @add-elem="addElem" />
+    <ButtonAdd :type="type" :parentId="parentId" @add-elem="addElem" />
   </div>
 </template>
 
 <script>
+import CycleView from '@/components/new-item/CycleView'
+import ButtonRemove from '@/components/new-item/ButtonRemove'
+import ButtonAdd from '@/components/new-item/ButtonAdd'
+
 export default {
+  components: {
+    CycleView,
+    ButtonRemove,
+    ButtonAdd
+  },
   props: ['type', 'parentId'],
   data() {
     return {
@@ -68,3 +77,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.btn-sm {
+  padding: 2px 4px !important;
+}
+</style>

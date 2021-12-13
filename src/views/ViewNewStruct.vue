@@ -7,6 +7,16 @@
   </div>
 </template>
 
+<script>
+import CycleView from '@/components/new-item/CycleView'
+
+export default {
+  components: {
+    CycleView
+  }
+}
+</script>
+
 <style scoped>
 .kanban {
   height: calc(100vh - 56px);
