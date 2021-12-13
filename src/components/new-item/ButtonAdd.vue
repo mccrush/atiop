@@ -1,7 +1,7 @@
 <template>
   <button
     class="btn btn-sm btn-success"
-    @click="$emit('add-elem', { type, id })"
+    @click="$emit('add-elem', { type, parentId })"
   >
     Add {{ type.substring(0, type.length) }}
   </button>
@@ -9,6 +9,6 @@
 
 <script>
 export default {
-  props: ['type', 'id']
+  props: ['type', 'parentId']
 }
 </script>
