@@ -3,6 +3,8 @@ node_modules
 /dist
 apiKey.js
 package-lock.json
+.firebase
+pnpm-lock.yaml
 
 # local env files
 .env.local

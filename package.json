@@ -9,18 +9,18 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "@popperjs/core": "^2.9.2",
-    "bootstrap": "^5.0.0",
-    "firebase": "^8.5.0",
-    "register-service-worker": "^1.7.2",
-    "vue": "^3.0.11",
-    "vuex": "^4.0.0"
+    "@popperjs/core": "^2.11.7",
+    "bootstrap": "^5.2.3",
+    "firebase": "^9.9.4",
+    "vue": "^3.2.47",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-pwa": "^4.5.13",
-    "@vue/cli-plugin-vuex": "^4.5.13",
-    "@vue/cli-service": "^4.5.13",
-    "@vue/compiler-sfc": "^3.0.11"
+    "@vitejs/plugin-vue": "^4.0.0",
+    "@vue/cli-plugin-pwa": "^5.0.8",
+    "@vue/cli-plugin-vuex": "^5.0.8",
+    "sass": "^1.60.0",
+    "vite": "^4.1.1"
   },
   "prettier": {
     "singleQuote": true,

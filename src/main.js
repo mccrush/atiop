@@ -13,7 +13,7 @@ auth.onAuthStateChanged((user) => {
   if (user) {
     store.commit('setUserId', user.uid)
     store.commit('setUserEmail', user.email)
-    store.dispatch('getItems')
+    //store.dispatch('getItems')
   } else {
     store.commit('setUserId', '')
     store.commit('setUserEmail', '')
