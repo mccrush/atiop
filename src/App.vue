@@ -25,19 +25,19 @@
 </template>
 
 <script>
-import 'bootstrap/dist/css/bootstrap.min.css'
+//import 'bootstrap/dist/css/bootstrap.min.css'
 //import Offcanvas from 'bootstrap/js/dist/offcanvas'
-import { Dropdown, Modal, Tooltip } from 'bootstrap'
-import Navbar from './../components/interface/Navbar'
-import SettingsBar from './../components/interface/SettingsBar'
-import Message from './../components/additional/Message'
-import ViewProjects from './../views/ViewProjects'
-import ViewTasks from './../views/ViewTasks'
-import ViewPersonPlan from './../views/ViewPersonPlan'
-import ViewCalendar from './../views/ViewCalendar'
-import ViewNewStruct from './../views/ViewNewStruct'
-import Login from './../views/Login'
-import ModalForm from './../components/item/ModalForm'
+//import { Dropdown, Modal, Tooltip } from 'bootstrap'
+import Navbar from './components/interface/Navbar.vue'
+import SettingsBar from './components/interface/SettingsBar.vue'
+import Message from './components/additional/Message.vue'
+import ViewProjects from './views/ViewProjects.vue'
+import ViewTasks from './views/ViewTasks.vue'
+import ViewPersonPlan from './views/ViewPersonPlan.vue'
+import ViewCalendar from './views/ViewCalendar.vue'
+import ViewNewStruct from './views/ViewNewStruct.vue'
+import Login from './views/Login.vue'
+import ModalForm from './components/item/ModalForm.vue'
 
 export default {
   components: {
@@ -100,14 +100,14 @@ export default {
       return this.$store.getters.tasks
     }
   },
-  mounted() {
-    var tooltipTriggerList = [].slice.call(
-      document.querySelectorAll('[data-bs-toggle="tooltip"]')
-    )
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-      return new Tooltip(tooltipTriggerEl)
-    })
-  },
+  // mounted() {
+  //   var tooltipTriggerList = [].slice.call(
+  //     document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  //   )
+  //   var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  //     return new Tooltip(tooltipTriggerEl)
+  //   })
+  // },
   methods: {
     editItem({ id, type }) {
       this.itemForModal = this[type].find(item => item.id === id)

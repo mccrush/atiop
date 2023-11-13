@@ -3,17 +3,17 @@
     class="row d-flex flex-nowrap align-items-start bg-light pt-3 ps-2 kanban"
     id="rowScroll"
   >
-    <CycleView type="napravs" parentId="" />
+    <!-- <CycleView type="napravs" parentId="" /> -->
   </div>
 </template>
 
 <script>
-import CycleView from './../components/new-item/CycleView'
+//import CycleView from './../components/new-item/CycleView.vue'
 
 export default {
-  components: {
-    CycleView
-  }
+  // components: {
+  //   CycleView
+  // }
 }
 </script>
 

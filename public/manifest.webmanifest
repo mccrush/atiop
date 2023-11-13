@@ -1,0 +1,21 @@
+{
+  "name": "ATIOP 2.0",
+  "short_name": "ATIOP 2.0",
+  "id": "/",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff",
+  "description": "ATIOP 2.0 Manifest",
+  "icons": [
+    {
+      "src": "/img/icons/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/img/icons/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

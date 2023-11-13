@@ -14,7 +14,7 @@
 
 <script>
 import sortMethod from './../scripts/sortMethod'
-import List from './../components/item/List'
+import List from './../components/item/List.vue'
 
 export default {
   components: {

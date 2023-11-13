@@ -124,8 +124,8 @@
 </template>
 
 <script>
-import ButtonLeft from './../components/calendar/ButtonLeft'
-import ButtonRight from './../components/calendar/ButtonRight'
+import ButtonLeft from './../components/calendar/ButtonLeft.vue'
+import ButtonRight from './../components/calendar/ButtonRight.vue'
 import months from './../data/dataMonths'
 import dayWeek from './../data/dataDayWeek'
 

@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import List from './../components/item/List'
+import List from './../components/item/List.vue'
 
 export default {
   components: {

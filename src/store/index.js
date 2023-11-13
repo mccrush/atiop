@@ -1,16 +1,14 @@
 import { createStore } from 'vuex'
-import item from './modules/item'
-import settings from './modules/settings'
-import user from './modules/user'
-import message from './modules/message'
+import realtime from './modules/realtime'
 import admin from './modules/admin'
+import user from './modules/user'
+import loginMessage from './modules/loginMessage'
 
 export default createStore({
   modules: {
-    item,
-    settings,
+    realtime,
+    admin,
     user,
-    message,
-    admin
+    loginMessage
   }
 })

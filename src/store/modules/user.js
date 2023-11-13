@@ -1,62 +1,59 @@
-import { auth } from "@/firebase.js";
-// Это будет нужно при регистрации пользователя
-//import { db } from "@/firebase.js";
-//import createTask from '@/scripts/createTask'
+import fireApp from './../../firebase'
+import { getAuth, signInWithEmailAndPassword, signOut, sendPasswordResetEmail } from 'firebase/auth'
+
+const auth = getAuth(fireApp)
+auth.languageCode = 'ru'
 
 export default {
   state: {
-    userId: null,
-    userEmail: null
+    currentUserId: '',
+    countLogoClick: 0
   },
   mutations: {
-    setUserId(state, id) {
-      state.userId = id
+    setCurrentUserId(state, value) {
+      state.currentUserId = value
     },
-    setUserEmail(state, email) {
-      state.userEmail = email.split('@')[0]
+    setCountLogoClick(state) {
+      state.countLogoClick++
+    },
+    resetCountLogoClick(state) {
+      state.countLogoClick = 0
     }
   },
   actions: {
-    // async regist({ commit }, { email, password }) {
-    //   try {
-    //     const datenow = Date.now().toString()
-    //     await auth.createUserWithEmailAndPassword(email, password)
-    //     const uid = auth.currentUser.uid
-    //     await db.collection("users").doc(uid).set({
-    //       email,
-    //       status: 'free',
-    //       dateCreate: datenow
-    //     })
-
-    //     const ref = db.collection("users").doc(uid)
-    //     await ref.collection("napravs").doc(datenow).set(createTask(
-    //       datenow, 'Пример направления', 'napravs', '', '', 0, 'Пример направления', 'Пример проекта'
-    //     ))
-    //     await ref.collection("projects").doc(datenow).set(createTask(
-    //       datenow, 'Пример проекта', 'projects', datenow, '', 0, 'Пример направления', 'Пример проекта'
-    //     ))
-    //     await ref.collection("tasks").doc(datenow).set(createTask(
-    //       datenow, 'Пример задачи', 'tasks', datenow, datenow, 0, 'Пример направления', 'Пример проекта'
-    //     ))
-    //   } catch (err) {
-    //     throw err
-    //   }
-    // },
     async logIn({ commit }, { email, password }) {
       try {
-        const res = await auth.signInWithEmailAndPassword(email, password)
-        // Сдлеать проверку res, и возвращать true
+        await signInWithEmailAndPassword(auth, email, password)
+        commit('resetCountLogoClick')
+        return true
       } catch (err) {
-        // Передать сообщение об ошибке в шину
+        console.error('store user.js logIn(): Ошибка при входе в систему, err:', err)
         throw err
       }
     },
-    async logOut() {
-      await auth.signOut()
+
+    async logOut({ commit }) {
+      try {
+        await signOut(auth)
+        return true
+      } catch (err) {
+        console.error('store user.js logOut(): Ошибка при выходе из системы, err:', err)
+      }
+    },
+
+    resetPass({ commit }, { email }) {
+      try {
+        console.log(`user.js resetPass() email: ${email}`)
+        sendPasswordResetEmail(auth, email)
+        alert(`Ссылка для сброса пароля отправленна на email: ${email}`)
+      } catch (err) {
+        console.error('user.js resetPass(): Ошибка при сбросе пароля, err:', err)
+      }
     }
   },
   getters: {
-    userId: state => state.userId,
-    userEmail: state => state.userEmail
+    currentUserId: state => state.currentUserId,
+    countLogoClick: state => state.countLogoClick
   }
+
 }

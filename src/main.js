@@ -1,22 +1,37 @@
+import './scss/styles.scss'
+import { Dropdown } from 'bootstrap'
+
 import { createApp } from 'vue'
 import App from './App.vue'
 //import './registerServiceWorker'
 import store from './store'
-import { auth } from './firebase'
+
+import fireApp from './firebase'
+import { getAuth, onAuthStateChanged } from "firebase/auth"
+const auth = getAuth(fireApp)
 
 let app
 
-auth.onAuthStateChanged((user) => {
+//import { dataModels } from './data/dataModels'
+
+onAuthStateChanged(auth, (user) => {
   if (!app) {
     app = createApp(App).use(store).mount('#app')
   }
+
   if (user) {
-    store.commit('setUserId', user.uid)
-    store.commit('setUserEmail', user.email)
-    //store.dispatch('getItems')
+    console.log('main.js : Пользователь авторизован')
+    store.commit('setCurrentUserId', user.uid)
   } else {
-    store.commit('setUserId', '')
-    store.commit('setUserEmail', '')
-    console.log('main.js: user not signed: ', user)
+    console.log('main.js: Пользователь не авторизован. user = ', user)
+    store.commit('setCurrentUserId', '')
   }
+  /*
+    store.dispatch('getItemsRT', { type: 'order' })
+    dataModels.forEach(element => {
+      if (element.type !== 'order') {
+        store.dispatch('getItems', { type: element.type })
+      }
+    })
+  */
 })
