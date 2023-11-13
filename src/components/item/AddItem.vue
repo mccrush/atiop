@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import createItem from '@/scripts/createItem'
+import createItem from './../../scripts/createItem'
 
 export default {
   props: {

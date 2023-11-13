@@ -121,11 +121,7 @@
           <div class="btn-group">
             <button
               type="button"
-              class="
-                my-select-btn-pj
-                btn btn-sm btn-outline-light
-                text-secondary
-              "
+              class="my-select-btn-pj btn btn-sm btn-outline-light text-secondary"
               :class="{ active: viewType === 'napravs' }"
               @click="setActiveNapravs(napravId)"
             >
@@ -133,11 +129,7 @@
             </button>
             <button
               type="button"
-              class="
-                btn btn-sm btn-outline-light
-                dropdown-toggle dropdown-toggle-split
-                text-secondary
-              "
+              class="btn btn-sm btn-outline-light dropdown-toggle dropdown-toggle-split text-secondary"
               data-bs-toggle="dropdown"
               aria-expanded="false"
               id="dropdownNaprav"
@@ -181,11 +173,7 @@
           <div class="btn-group">
             <button
               type="button"
-              class="
-                my-select-btn-pj
-                btn btn-sm btn-outline-light
-                text-secondary
-              "
+              class="my-select-btn-pj btn btn-sm btn-outline-light text-secondary"
               :class="{ active: viewType === 'projects' }"
               :disabled="!napravs.length"
               @click="setActiveProjects(projectId)"
@@ -194,11 +182,7 @@
             </button>
             <button
               type="button"
-              class="
-                btn btn-sm btn-outline-light
-                dropdown-toggle dropdown-toggle-split
-                text-secondary
-              "
+              class="btn btn-sm btn-outline-light dropdown-toggle dropdown-toggle-split text-secondary"
               data-bs-toggle="dropdown"
               aria-expanded="false"
               id="dropdownProject"
@@ -256,21 +240,13 @@
         <div v-if="viewType === 'tasks'" class="btn-group mt-2 mt-md-0 me-3">
           <span
             type="button"
-            class="
-              my-btn-nohover my-select-btn-pj
-              btn btn-sm btn-outline-light
-              text-secondary
-            "
+            class="my-btn-nohover my-select-btn-pj btn btn-sm btn-outline-light text-secondary"
           >
             {{ filterTitle }}
           </span>
           <button
             type="button"
-            class="
-              btn btn-sm btn-outline-light
-              dropdown-toggle dropdown-toggle-split
-              text-secondary
-            "
+            class="btn btn-sm btn-outline-light dropdown-toggle dropdown-toggle-split text-secondary"
             data-bs-toggle="dropdown"
             aria-expanded="false"
             id="dropdownFilters"
@@ -278,14 +254,7 @@
 
           <button
             type="button"
-            class="
-              btn btn-sm btn-outline-light
-              text-secondary
-              p-0
-              pb-1
-              ps-2
-              pe-2
-            "
+            class="btn btn-sm btn-outline-light text-secondary p-0 pb-1 ps-2 pe-2"
             @click="setSelectFilter('', '')"
             :disabled="!filterId"
           >
@@ -465,9 +434,9 @@
 </template>
 
 <script>
-import getFilters from '@/scripts/getFilters'
-import Loading from '@/components/additional/Loading'
-import AddItem from '@/components/item/AddItem'
+import getFilters from './../../scripts/getFilters'
+import Loading from './../additional/Loading.vue'
+import AddItem from './../item/AddItem.vue'
 
 export default {
   components: {

@@ -1,15 +1,7 @@
 <template>
   <div class="calendar row bg-white align-content-start">
     <div
-      class="
-        select-pole
-        col-12
-        bg-white
-        d-flex
-        justify-content-center
-        pt-2
-        pb-2
-      "
+      class="select-pole col-12 bg-white d-flex justify-content-center pt-2 pb-2"
     >
       <button
         class="btn btn-sm btn-outline-light text-secondary me-3"
@@ -28,12 +20,7 @@
 
       <div class="dropdown">
         <button
-          class="
-            select-new-month
-            btn btn-sm btn-outline-light
-            text-secondary
-            dropdown-toggle
-          "
+          class="select-new-month btn btn-sm btn-outline-light text-secondary dropdown-toggle"
           type="button"
           id="selectNewMonth"
           data-bs-toggle="dropdown"
@@ -98,12 +85,7 @@
         <div
           v-for="dayPre in firstWeekDayMonth"
           :key="dayPre + 'cd'"
-          class="
-            calendar-day calendar-day-height-5
-            border-start border-end border-bottom
-            small
-            text-muted
-          "
+          class="calendar-day calendar-day-height-5 border-start border-end border-bottom small text-muted"
           :class="{
             'calendar-day-height-6': firstWeekDayMonth > 4 && countDays > 30
           }"
@@ -111,14 +93,7 @@
         <div
           v-for="day in countDays"
           :key="day + 'cd'"
-          class="
-            calendar-day calendar-day-height-5
-            border-start border-end border-bottom
-            small
-            text-muted
-            ps-1
-            pe-1
-          "
+          class="calendar-day calendar-day-height-5 border-start border-end border-bottom small text-muted ps-1 pe-1"
           :class="{
             'calendar-day-height-6': firstWeekDayMonth > 4 && countDays > 30
           }"
@@ -149,10 +124,10 @@
 </template>
 
 <script>
-import ButtonLeft from '@/components/calendar/ButtonLeft'
-import ButtonRight from '@/components/calendar/ButtonRight'
-import months from '@/data/dataMonths'
-import dayWeek from '@/data/dataDayWeek'
+import ButtonLeft from './../components/calendar/ButtonLeft'
+import ButtonRight from './../components/calendar/ButtonRight'
+import months from './../data/dataMonths'
+import dayWeek from './../data/dataDayWeek'
 
 export default {
   components: {

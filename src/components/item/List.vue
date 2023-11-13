@@ -3,16 +3,7 @@
     class="d-inline-block bg-white border rounded-1 p-0 ms-1 me-1 my-project"
   >
     <h6
-      class="
-        my-no-select
-        d-flex
-        flex-row
-        align-items-start
-        text-center
-        border-bottom
-        pt-2
-        pb-2
-      "
+      class="my-no-select d-flex flex-row align-items-start text-center border-bottom pt-2 pb-2"
       @dblclick.prevent="editItem({ id: list.id, type: list.type })"
     >
       <div class="w-100 pt-1" :class="{ 'ps-4': list.type !== 'person' }">
@@ -21,17 +12,7 @@
       <button
         v-if="list.type !== 'lists' && list.type !== 'person'"
         tag="button"
-        class="
-          my-btn-light
-          btn btn-sm btn-light
-          border
-          p-0
-          pb-1
-          ps-2
-          pe-2
-          m-0
-          me-2
-        "
+        class="my-btn-light btn btn-sm btn-light border p-0 pb-1 ps-2 pe-2 m-0 me-2"
         @click="setId(list.type)"
         title="Перейти в проект"
       >
@@ -46,17 +27,7 @@
       <button
         v-if="list.type === 'lists' || list.type === 'person'"
         tag="button"
-        class="
-          my-btn-light
-          btn btn-sm btn-light
-          border
-          p-0
-          pb-1
-          ps-2
-          pe-2
-          m-0
-          me-2
-        "
+        class="my-btn-light btn btn-sm btn-light border p-0 pb-1 ps-2 pe-2 m-0 me-2"
         data-bs-toggle="dropdown"
         aria-expanded="false"
         id="dropdownSort"
@@ -83,16 +54,7 @@
               {{ sort.title }}
             </button>
             <button
-              class="
-                my-dropdown-btn
-                btn btn-sm btn-light
-                border
-                w-25
-                p-0
-                pb-1
-                ps-2
-                pe-2
-              "
+              class="my-dropdown-btn btn btn-sm btn-light border w-25 p-0 pb-1 ps-2 pe-2"
               :class="{
                 'my-dropdown-select':
                   list.sortField === sort.id && list.sortDir === 'asc'
@@ -108,16 +70,7 @@
               />
             </button>
             <button
-              class="
-                my-dropdown-btn
-                btn btn-sm btn-light
-                border
-                w-25
-                p-0
-                pb-1
-                ps-2
-                pe-2
-              "
+              class="my-dropdown-btn btn btn-sm btn-light border w-25 p-0 pb-1 ps-2 pe-2"
               :class="{
                 'my-dropdown-select':
                   list.sortField === sort.id && list.sortDir === 'desc'
@@ -175,10 +128,10 @@
 </template>
 
 <script>
-import sortMethod from '@/scripts/sortMethod'
-import getSorts from '@/scripts/getSorts'
-import Item from '@/components/item/Item'
-import AddItem from '@/components/item/AddItem'
+import sortMethod from './../../scripts/sortMethod'
+import getSorts from './../../scripts/getSorts'
+import Item from './Item.vue'
+import AddItem from './AddItem.vue'
 
 export default {
   components: {

@@ -1,18 +1,6 @@
 <template>
   <div
-    class="
-      item
-      align-self-start
-      border
-      rounded-1
-      pt-1
-      pb-1
-      ps-2
-      pe-2
-      ms-2
-      me-2
-      mb-2
-    "
+    class="item align-self-start border rounded-1 pt-1 pb-1 ps-2 pe-2 ms-2 me-2 mb-2"
     :class="{
       ' bg-white': item.status === 'todo' || item.status === 'work',
       ' bg-light': item.status === 'done',
@@ -111,7 +99,7 @@
 </template>
 
 <script>
-import getDateNow from '@/scripts/getDateNow'
+import getDateNow from './../../scripts/getDateNow'
 
 export default {
   props: {

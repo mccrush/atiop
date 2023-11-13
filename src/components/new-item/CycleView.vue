@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import CycleView from '@/components/new-item/CycleView'
-import ButtonRemove from '@/components/new-item/ButtonRemove'
-import ButtonAdd from '@/components/new-item/ButtonAdd'
+import CycleView from './CycleView.vue'
+import ButtonRemove from './ButtonRemove.vue'
+import ButtonAdd from './ButtonAdd.vue'
 
 export default {
   components: {

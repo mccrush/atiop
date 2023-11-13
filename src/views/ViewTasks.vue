@@ -26,8 +26,8 @@
 </template>
 
 <script>
-import sortMethod from '@/scripts/sortMethod'
-import Item from '@/components/item/Item'
+import sortMethod from './../scripts/sortMethod'
+import Item from './../components/item/Item'
 
 export default {
   components: {

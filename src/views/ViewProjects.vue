@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import sortMethod from '@/scripts/sortMethod'
-import List from '@/components/item/List'
+import sortMethod from './../scripts/sortMethod'
+import List from './../components/item/List'
 
 export default {
   components: {

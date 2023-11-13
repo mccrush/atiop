@@ -1,4 +1,4 @@
-import getMessage from '@/scripts/getMessage'
+import getMessage from './../../scripts/getMessage'
 
 export default {
   state: {

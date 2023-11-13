@@ -1,5 +1,5 @@
 
-import dataSettings from '@/data/dataSettings'
+import dataSettings from './../../data/dataSettings'
 
 export default {
   state: {

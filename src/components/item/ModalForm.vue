@@ -234,8 +234,8 @@
 </template>
 
 <script>
-import getDateNow from '@/scripts/getDateNow'
-import getStatus from '@/scripts/getStatus'
+import getDateNow from './../../scripts/getDateNow'
+import getStatus from './../../scripts/getStatus'
 
 export default {
   props: {

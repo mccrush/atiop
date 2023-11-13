@@ -40,15 +40,7 @@
         <div>
           <button
             @click.prevent="logOut"
-            class="
-              btn btn-lg btn-outline-light
-              border
-              text-secondary
-              h-100
-              p-0
-              ps-3
-              pe-3
-            "
+            class="btn btn-lg btn-outline-light border text-secondary h-100 p-0 ps-3 pe-3"
             title="Выйти из системы"
           >
             Выйти
@@ -66,13 +58,7 @@
           class="list-group-item"
         >
           <div
-            class="
-              form-check form-switch
-              d-flex
-              justify-content-between
-              align-items-senter
-              ps-0
-            "
+            class="form-check form-switch d-flex justify-content-between align-items-senter ps-0"
           >
             <label class="form-check-label" :for="item.alias">{{
               item.title
@@ -93,7 +79,7 @@
 </template>
 
 <script>
-import TaskStatistics from '@/components/additional/TaskStatistics'
+import TaskStatistics from './../additional/TaskStatistics.vue'
 export default {
   components: {
     TaskStatistics

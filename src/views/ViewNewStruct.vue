@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import CycleView from '@/components/new-item/CycleView'
+import CycleView from './../components/new-item/CycleView'
 
 export default {
   components: {
