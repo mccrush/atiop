@@ -421,14 +421,14 @@
           class="d-inline-block mb-1 me-1"
           alt="ATIOP"
         />
-        ATIOP
+        ATIOP 2.0
       </div>
-      <a
+      <!-- <a
         href="https://doc.atiop.ru/"
         target="_blank"
         class="btn btn-sm btn-light text-muted"
         >О приложении</a
-      >
+      > -->
     </div>
   </nav>
 </template>

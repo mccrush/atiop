@@ -1,7 +1,9 @@
 <template>
   <div class="row justify-content-center">
     <div class="col-12 col-sm-6 col-md-4 col-xl-4 text-left">
-      <div class="mt-5 mb-3 p-3 shadow-sm ms-auto me-auto max-width">
+      <div
+        class="mt-5 mb-3 p-3 bg-white rounded shadow-sm ms-auto me-auto max-width"
+      >
         <h4 class="text-center mt-2 mb-4">
           {{ mod === '#in' ? 'Авторизация' : 'Регистрация' }}
         </h4>
@@ -77,7 +79,7 @@
           </small>
         </p> -->
       </div>
-      <div
+      <!-- <div
         class="max-width border border-warning rounded shadow-sm text-center lh-1 mt-4 m-auto p-2 pt-3"
       >
         <h6>Примите участие в бета-тестировании приложения</h6>
@@ -87,7 +89,7 @@
             и пароль</small
           >
         </p>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
