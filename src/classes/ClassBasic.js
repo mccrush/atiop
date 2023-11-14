@@ -13,4 +13,5 @@ export default class ClassBasic {
   description = ''
   position = 1
   status = 'active'
+  parentId = ''
 }

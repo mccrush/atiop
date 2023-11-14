@@ -6,7 +6,10 @@ const db = getFirestore(fireApp)
 
 export default {
   state: {
-    user: []
+    user: [],
+    directionId: localStorage.getItem('directionId') || '',
+    projectId: localStorage.getItem('projectId') || '',
+    taskId: localStorage.getItem('taskId') || '',
   },
 
   mutations: {
@@ -15,6 +18,11 @@ export default {
     },
     addItem(state, { item }) {
       state[item.type].push(item)
+    },
+    setItemId(state, { type, item }) {
+      state[type + 'Id'] = item
+      // console.log('admin.js: setItemId(): state[type] = ', state[type + 'Id'])
+      localStorage.setItem(type + 'Id', item)
     },
     setItems(state, { type, items }) {
       state[type] = items
@@ -60,7 +68,7 @@ export default {
         const itemRef = doc(db, item.type, item.id)
         await updateDoc(itemRef, item)
         //commit('updateLoadingStatus', false)
-        console.log('admin.js: a updateItem(): Данные обновлены')
+        console.log('admin.js: updateItem(): Данные обновлены')
       } catch (error) {
         console.error('admin.js: updateItem(): error', error)
       }
@@ -80,14 +88,9 @@ export default {
   },
 
   getters: {
-    client: state => state.client,
-    kotel: state => state.kotel,
-    //order: state => state.order,
-    production: state => state.production,
-    ograda: state => state.ograda,
-    stage: state => state.stage,
-    stageProduction: state => state.stageProduction,
-    obrabotka: state => state.obrabotka,
-    user: state => state.user
+    directionId: state => state.directionId,
+    projectId: state => state.projectId,
+    taskId: state => state.taskId
+
   }
 }
