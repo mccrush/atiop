@@ -1,15 +1,15 @@
 <template>
   <div>
-    <LoginForm />
+    <FormTask />
   </div>
 </template>
 
 <script>
-import LoginForm from './../modules/login/LoginForm1.vue'
+import FormTask from './../../components/forms/FormTask.vue'
 
 export default {
   components: {
-    LoginForm
+    FormTask
   }
 }
 </script>
