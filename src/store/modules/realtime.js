@@ -7,6 +7,8 @@ const db = getDatabase(fireApp)
 export default {
   state: {
     loadingRT: false,
+    direction: [],
+    project: [],
     task: [],
   },
   mutations: {
@@ -78,6 +80,8 @@ export default {
   },
   getters: {
     loadingRT: state => state.loadingRT,
+    direction: state => state.direction,
+    project: state => state.project,
     task: state => state.task,
 
     // serialNumber: state => {
