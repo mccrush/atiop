@@ -1,22 +1,15 @@
 <template>
-  <div class="border rounded bg-white p-3">
+  <div>
     <div class="input-group">
       <input
         type="text"
-        class="form-control"
+        class="form-control bg-white"
         :id="'title' + type"
         aria-describedby="addButton"
-        placeholder="Title"
         v-model="title"
         @keyup.enter="createItem"
       />
-      <button
-        class="btn btn-primary"
-        :id="'addButton' + type"
-        @click="createItem"
-      >
-        Add
-      </button>
+      <BtnAdd @click="createItem" />
     </div>
   </div>
 </template>
@@ -24,7 +17,12 @@
 <script>
 import { mainFabrica } from './../../helpers/fabrics/mainFabrica'
 
+import BtnAdd from './../buttons/BtnAdd.vue'
+
 export default {
+  components: {
+    BtnAdd
+  },
   props: {
     type: String,
     parentId: String

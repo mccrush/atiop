@@ -1,14 +1,14 @@
 <template>
-  <nav class="navbar navbar-expand-md bg-body-tertiary">
+  <nav class="navbar navbar-expand-md bg-white border-bottom">
     <div class="container-fluid">
       <div class="d-none d-md-block navbar-brand">
         <img
           src="/img/icons/logo_8.svg"
           height="26"
-          class="d-inline-block mb-1 me-1"
+          class="d-inline-block mb-1 me-2"
           alt="ATIOP"
         />
-        ATIOP 2.0
+        ATIOP&nbsp;2.0
       </div>
 
       <button
@@ -23,7 +23,8 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <div class="me-auto"></div>
+        <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
@@ -50,22 +51,21 @@
           <li class="nav-item">
             <a class="nav-link disabled" aria-disabled="true">Disabled</a>
           </li>
-        </ul>
+        </ul> -->
 
-        <button
-          v-if="currentUserId"
-          class="btn btn-sm btn-outline-secondary"
-          @click="logOut"
-        >
-          Выйти
-        </button>
+        <BtnLogOut class="btn-sm ps-3 pe-3" @click="logOut" />
       </div>
     </div>
   </nav>
 </template>
 
 <script>
+import BtnLogOut from './../buttons/BtnLogOut.vue'
+
 export default {
+  components: {
+    BtnLogOut
+  },
   computed: {
     currentUserId() {
       return this.$store.getters.currentUserId

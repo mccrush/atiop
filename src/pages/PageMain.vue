@@ -1,20 +1,26 @@
 <template>
   <div>
     <div class="row">
-      <MainItemsList type="direction" class="pe-0" />
+      <MainItemsList type="direction" class="" />
       <MainItemsList
         v-if="directionId"
         :parentId="directionId"
         type="project"
-        class="pe-0"
+        class="ps-0"
       />
-      <MainItemsList v-if="projectId" :parentId="projectId" type="task" />
+      <MainItemsList
+        v-if="projectId"
+        :parentId="projectId"
+        type="task"
+        class="ps-0"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import MainItemsList from './../modules/main/MainItemsList.vue'
+
 export default {
   components: {
     MainItemsList

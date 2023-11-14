@@ -6,13 +6,13 @@
       <li
         v-for="item in items"
         :key="item.id"
-        class="list-group-item bg-white d-flex justify-content-between align-items-center"
+        class="list-group-item bg-white d-flex justify-content-between align-items-center pe-2"
         @click="setItemId(item.id)"
       >
         <div class="me-auto">
           <div class="fw-bold">{{ item.title }}</div>
         </div>
-        <button class="btn btn-sm btn-light">D</button>
+        <BtnTrash class="btn-sm" />
       </li>
     </ul>
   </div>
@@ -20,10 +20,12 @@
 
 <script>
 import FormItem from './../../components/forms/FormItem.vue'
+import BtnTrash from './../../components/buttons/BtnTrash.vue'
 
 export default {
   components: {
-    FormItem
+    FormItem,
+    BtnTrash
   },
   props: {
     parentId: String,
