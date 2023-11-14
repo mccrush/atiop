@@ -38,7 +38,7 @@ export default {
     },
 
     // Получение Универсальное
-    getItemsRT({ commit }, { type, limit = false }) {
+    getItemsRT({ commit }, { type, currentUserId }) {
       try {
         commit('updateLoadingStatusRT', true)
         let itemsRef
@@ -48,7 +48,7 @@ export default {
         //   itemsRef = query(ref(db, type), orderByChild('dateCreate'))
         // }
 
-        itemsRef = query(ref(db, type), orderByChild('dateCreate'))
+        itemsRef = query(ref(db, currentUserId + '/' + type), orderByChild('dateCreate'))
 
         onValue(itemsRef, (snapshot) => {
           console.log('getItemsRT() run ', type)

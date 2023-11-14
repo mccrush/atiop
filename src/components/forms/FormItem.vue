@@ -1,23 +1,29 @@
 <template>
-  <div class="col-4 border rounded bg-white p-3">
-    <div class="mb-3">
+  <div class="border rounded bg-white p-3">
+    <div class="input-group">
       <input
         type="text"
         class="form-control"
         id="title"
+        aria-describedby="addButton"
         placeholder="Title"
         v-model="title"
         @keyup.enter="createItem"
       />
+      <button class="btn btn-primary" id="addButton" @click="createItem">
+        Add
+      </button>
     </div>
-    <button class="btn btn-primary" @click="createItem">Create Task</button>
   </div>
 </template>
 
 <script>
-import { taskFabrica } from './../../helpers/fabrics/taskFabrica'
+import { mainFabrica } from './../../helpers/fabrics/mainFabrica'
 
 export default {
+  props: {
+    type: String
+  },
   data() {
     return {
       title: ''
@@ -31,7 +37,7 @@ export default {
   methods: {
     createItem() {
       if (this.title) {
-        let item = taskFabrica()
+        let item = mainFabrica({ type: this.type })
         item.title = this.title
         this.$store.dispatch('addItemRT', {
           item,

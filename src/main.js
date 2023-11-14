@@ -12,7 +12,7 @@ const auth = getAuth(fireApp)
 
 let app
 
-//import { dataModels } from './data/dataModels'
+import { dataModels } from './data/dataModels'
 
 onAuthStateChanged(auth, (user) => {
   if (!app) {
@@ -26,12 +26,10 @@ onAuthStateChanged(auth, (user) => {
     console.log('main.js: Пользователь не авторизован. user = ', user)
     store.commit('setCurrentUserId', '')
   }
-  /*
-    store.dispatch('getItemsRT', { type: 'order' })
-    dataModels.forEach(element => {
-      if (element.type !== 'order') {
-        store.dispatch('getItems', { type: element.type })
-      }
-    })
-  */
+
+  //store.dispatch('getItemsRT', { type: 'order' })
+  dataModels.forEach(element => {
+    store.dispatch('getItemsRT', { type: element.type, currentUserId: user.uid })
+  })
+
 })

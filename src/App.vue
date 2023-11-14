@@ -2,7 +2,7 @@
   <div>
     <TheNavbar />
     <div class="container-fluid">
-      <component :is="component" />
+      <component :is="component" class="pt-3" />
     </div>
   </div>
 </template>
