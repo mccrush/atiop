@@ -1,5 +1,5 @@
-import getWeek from './../../helpers/getWeek'
-import getYearEnd from './../../helpers/getYearEnd'
+//import getWeek from './../../helpers/getWeek'
+//import getYearEnd from './../../helpers/getYearEnd'
 import fireApp from './../../firebase'
 import { getDatabase, ref, set, onValue, update, remove, query, orderByChild, equalTo, limitToLast } from 'firebase/database'
 const db = getDatabase(fireApp)
@@ -7,7 +7,7 @@ const db = getDatabase(fireApp)
 export default {
   state: {
     loadingRT: false,
-    order: [],
+    task: [],
   },
   mutations: {
     setItemsRT(state, { type, items }) {
@@ -65,10 +65,11 @@ export default {
       }
     },
 
-    async addItemRT({ commit }, { item }) {
+    async addItemRT({ commit }, { item, currentUserId }) {
       try {
         commit('updateLoadingStatusRT', true)
-        await set(ref(db, item.type + '/' + item.id), item)
+        await set(ref(db, currentUserId + '/' + item.type + '/' + item.id), item)
+        console.log('addItemRT() add item.id', item.id)
         commit('updateLoadingStatusRT', false)
       } catch (error) {
         console.error('error realtime.js addItemRT()', error)
@@ -77,17 +78,18 @@ export default {
   },
   getters: {
     loadingRT: state => state.loadingRT,
-    order: state => state.order,
+    task: state => state.task,
 
-    serialNumber: state => {
-      let number = +state.order.filter(item => item.dateCreateWeek === getWeek()).length + 1 || 1
-      if (number < 10) {
-        number = '0' + number
-      } else if (number < 100) {
-        number = '' + number
-      }
-      return getYearEnd() + getWeek() + number
-    },
-    parentOrder: state => id => state.order.find(item => item.id === id) || false
+    // serialNumber: state => {
+    //   let number = +state.order.filter(item => item.dateCreateWeek === getWeek()).length + 1 || 1
+    //   if (number < 10) {
+    //     number = '0' + number
+    //   } else if (number < 100) {
+    //     number = '' + number
+    //   }
+    //   return getYearEnd() + getWeek() + number
+    // },
+
+    // parentOrder: state => id => state.task.find(item => item.id === id) || false
   }
 }

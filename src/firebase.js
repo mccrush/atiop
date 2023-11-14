@@ -6,12 +6,13 @@ import apiKey from './../apiKey'
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey,
-  authDomain: "skcrm-8585.firebaseapp.com",
-  projectId: "skcrm-8585",
-  storageBucket: "skcrm-8585.appspot.com",
-  messagingSenderId: "1097944941935",
-  databaseURL: "https://skcrm-8585-default-rtdb.europe-west1.firebasedatabase.app",
-  appId: "1:1097944941935:web:323680d4d085a5fe04149a"
+  authDomain: "atiop-8c255.firebaseapp.com",
+  databaseURL: "https://atiop-8c255.firebaseio.com",
+  projectId: "atiop-8c255",
+  storageBucket: "atiop-8c255.appspot.com",
+  messagingSenderId: "880500583039",
+  appId: "1:880500583039:web:c0439e9a7b8c970f",
+  measurementId: "G-3L9681ZJ5C"
 };
 
 // Initialize Firebase

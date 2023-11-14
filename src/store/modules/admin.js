@@ -6,12 +6,6 @@ const db = getFirestore(fireApp)
 
 export default {
   state: {
-    client: [],
-    kotel: [],
-    production: [],
-    stage: [],
-    stageProduction: [],
-    obrabotka: [],
     user: []
   },
 
