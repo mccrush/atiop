@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { mainFabrica } from './../../helpers/fabrics/mainFabrica'
+import { modelsFactory } from './../../helpers/modelsFactory'
 
 import BtnAdd from './../buttons/BtnAdd.vue'
 
@@ -40,7 +40,7 @@ export default {
   methods: {
     createItem() {
       if (this.title) {
-        let item = mainFabrica({ type: this.type, parentId: this.parentId })
+        let item = modelsFactory({ type: this.type, parentId: this.parentId })
         item.title = this.title
         this.$store.dispatch('addItemRT', {
           item,
