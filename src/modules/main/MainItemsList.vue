@@ -12,7 +12,10 @@
         <div class="me-auto">
           <div class="">{{ item.title }}</div>
         </div>
-        <BtnTrash class="btn-sm" @click="removeItem(item)" />
+        <div class="hide-buttons">
+          <BtnTrash class="btn-sm" @click="removeItem(item)" />
+          <BtnEdit class="btn-sm ms-1" @click="edit(item)" />
+        </div>
       </li>
     </ul>
   </div>
@@ -21,11 +24,13 @@
 <script>
 import FormItem from './../../components/forms/FormItem.vue'
 import BtnTrash from './../../components/buttons/BtnTrash.vue'
+import BtnEdit from './../../components/buttons/BtnEdit.vue'
 
 export default {
   components: {
     FormItem,
-    BtnTrash
+    BtnTrash,
+    BtnEdit
   },
   props: {
     parentId: String,
@@ -88,3 +93,16 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.hide-buttons {
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s ease-in-out;
+}
+
+.list-group-item:hover > .hide-buttons {
+  visibility: visible;
+  opacity: 1;
+}
+</style>
