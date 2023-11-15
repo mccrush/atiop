@@ -42,8 +42,13 @@ export default {
   box-shadow: none !important;
 }
 
+.cursor-pointer,
 .dropdown-item {
   cursor: pointer;
+}
+
+.cursor-default {
+  cursor: default;
 }
 
 .dropdown-item.active,

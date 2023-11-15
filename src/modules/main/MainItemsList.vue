@@ -6,11 +6,11 @@
       <li
         v-for="item in items"
         :key="item.id"
-        class="list-group-item lh-1 bg-white d-flex justify-content-between align-items-center pe-2"
+        class="cursor-default list-group-item lh-1 bg-white d-flex justify-content-between align-items-center pe-2"
         @click="setItemId(item.id)"
       >
         <div class="me-auto">
-          <div class="fw-bold">{{ item.title }}</div>
+          <div class="">{{ item.title }}</div>
         </div>
         <BtnTrash class="btn-sm" @click="removeItem(item)" />
       </li>
