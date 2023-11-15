@@ -7,6 +7,7 @@
         v-for="item in items"
         :key="item.id"
         class="cursor-default list-group-item lh-1 d-flex justify-content-between align-items-center pe-2"
+        :class="{ active: item.id === currentItemId }"
         @click="setItemId(item.id)"
       >
         <div class="me-auto">
@@ -54,6 +55,16 @@ export default {
     },
     currentUserId() {
       return this.$store.getters.currentUserId
+    },
+    currentItemId() {
+      switch (this.type) {
+        case 'direction':
+          return this.$store.getters.directionId
+        case 'project':
+          return this.$store.getters.projectId
+        case 'task':
+          return this.$store.getters.taskId
+      }
     }
   },
   methods: {
