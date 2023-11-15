@@ -20,10 +20,10 @@ export default {
     },
   },
   actions: {
-    async removeItemRT({ commit }, { item }) {
+    async removeItemRT({ commit }, { item, currentUserId }) {
       try {
         commit('updateLoadingStatusRT', true)
-        await remove(ref(db, item.type + '/' + item.id))
+        await remove(ref(db, currentUserId + '/' + item.type + '/' + item.id))
         commit('updateLoadingStatusRT', false)
       } catch (error) {
         console.error('error realtime.js removeItemRT()', error)

@@ -6,13 +6,13 @@
       <li
         v-for="item in items"
         :key="item.id"
-        class="list-group-item bg-white d-flex justify-content-between align-items-center pe-2"
+        class="list-group-item lh-1 bg-white d-flex justify-content-between align-items-center pe-2"
         @click="setItemId(item.id)"
       >
         <div class="me-auto">
           <div class="fw-bold">{{ item.title }}</div>
         </div>
-        <BtnTrash class="btn-sm" />
+        <BtnTrash class="btn-sm" @click="removeItem(item)" />
       </li>
     </ul>
   </div>
@@ -40,6 +40,9 @@ export default {
       } else {
         return this.$store.getters[this.type]
       }
+    },
+    currentUserId() {
+      return this.$store.getters.currentUserId
     }
   },
   methods: {
@@ -48,6 +51,39 @@ export default {
         this.$store.commit('setItemId', { type: 'project', item: '' })
       }
       this.$store.commit('setItemId', { type: this.type, item: id })
+    },
+
+    removeOneItem(item) {
+      this.$store.dispatch('removeItemRT', {
+        item,
+        currentUserId: this.currentUserId
+      })
+    },
+
+    removeItem(item) {
+      if (item.type === 'direction') {
+        if (confirm('Будут удалены все дочерние Проекты и Задачи')) {
+          const childrenTasks = this.$store.getters.project.filter(
+            el => el.parentId === item.id
+          )
+          childrenTasks.forEach(el => {
+            this.removeItem(el)
+          })
+          this.removeOneItem(item)
+        }
+      } else if (item.type === 'project') {
+        if (confirm('Будут удалены все дочерние Задачи')) {
+          const childrenTasks = this.$store.getters.task.filter(
+            el => el.parentId === item.id
+          )
+          childrenTasks.forEach(el => {
+            this.removeItem(el)
+          })
+          this.removeOneItem(item)
+        }
+      } else {
+        this.removeOneItem(item)
+      }
     }
   }
 }
