@@ -6,7 +6,7 @@ $enable-shadows: true;
 
 // Customize some defaults
 $body-color: #2c3e50;
-$body-bg: #f2f2f2;
+//$body-bg: #f8f9fa;
 //$border-radius: .4rem;
 //$success: #7952b3;
 $list-group-active-bg: #2c3e50;
@@ -30,7 +30,7 @@ $list-group-active-bg: #2c3e50;
 @import "bootstrap/scss/containers";
 @import "bootstrap/scss/grid";
 
-@import "bootstrap/scss/tables";
+//@import "bootstrap/scss/tables";
 @import "bootstrap/scss/forms";
 @import "bootstrap/scss/buttons";
 @import "bootstrap/scss/transitions";
@@ -40,7 +40,7 @@ $list-group-active-bg: #2c3e50;
 @import "bootstrap/scss/navbar";
 //@import "bootstrap/scss/card";
 //@import "bootstrap/scss/accordion";
-@import "bootstrap/scss/badge";
+//@import "bootstrap/scss/badge";
 //@import "bootstrap/scss/progress";
 @import "bootstrap/scss/list-group";
 @import "bootstrap/scss/close";

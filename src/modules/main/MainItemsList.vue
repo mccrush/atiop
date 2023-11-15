@@ -1,12 +1,12 @@
 <template>
   <div class="col-4">
-    <FormItem :type="type" :parentId="parentId" />
+    <FormAddItem :type="type" :parentId="parentId" />
 
     <ul class="list-group mt-2">
       <li
         v-for="item in items"
         :key="item.id"
-        class="cursor-default list-group-item lh-1 bg-white d-flex justify-content-between align-items-center pe-2"
+        class="cursor-default list-group-item lh-1 d-flex justify-content-between align-items-center pe-2"
         @click="setItemId(item.id)"
       >
         <div class="me-auto">
@@ -14,7 +14,12 @@
         </div>
         <div class="hide-buttons">
           <BtnTrash class="btn-sm" @click="removeItem(item)" />
-          <BtnEdit class="btn-sm ms-1" @click="edit(item)" />
+          <BtnEdit
+            class="btn-sm ms-1"
+            @click="editItem(item)"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
+          />
         </div>
       </li>
     </ul>
@@ -22,13 +27,13 @@
 </template>
 
 <script>
-import FormItem from './../../components/forms/FormItem.vue'
+import FormAddItem from './../../components/forms/FormAddItem.vue'
 import BtnTrash from './../../components/buttons/BtnTrash.vue'
 import BtnEdit from './../../components/buttons/BtnEdit.vue'
 
 export default {
   components: {
-    FormItem,
+    FormAddItem,
     BtnTrash,
     BtnEdit
   },
@@ -36,6 +41,7 @@ export default {
     parentId: String,
     type: String
   },
+  emits: ['edit-item'],
   computed: {
     items() {
       if (this.type === 'project' || this.type === 'task') {
@@ -51,6 +57,9 @@ export default {
     }
   },
   methods: {
+    editItem(item) {
+      this.$emit('edit-item', { item })
+    },
     setItemId(id) {
       if (this.type === 'direction') {
         this.$store.commit('setItemId', { type: 'project', item: '' })

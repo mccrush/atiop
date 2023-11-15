@@ -1,5 +1,5 @@
 <template>
-  <button class="btn btn-primary">
+  <button class="btn btn-warning text-white">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="16"

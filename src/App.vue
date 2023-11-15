@@ -35,11 +35,15 @@ export default {
 
 <style>
 .btn:focus,
+.btn-close:focus,
+.btn-check:focus + .btn-outline-dark,
 .form-control:focus,
 .form-select:focus,
+.accordion-button:focus,
 .navbar-toggler:focus {
   outline: 0 !important;
   box-shadow: none !important;
+  /* border-color: #dee2e6; */
 }
 
 .cursor-pointer,

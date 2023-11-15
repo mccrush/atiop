@@ -3,7 +3,7 @@
     <div class="input-group">
       <input
         type="text"
-        class="form-control bg-white"
+        class="form-control"
         :id="'title' + type"
         aria-describedby="addButton"
         v-model="title"
@@ -40,6 +40,8 @@ export default {
   methods: {
     createItem() {
       if (this.title) {
+        console.log('type = ', this.type)
+        //return false
         let item = modelsFactory({ type: this.type, parentId: this.parentId })
         item.title = this.title
         this.$store.dispatch('addItemRT', {

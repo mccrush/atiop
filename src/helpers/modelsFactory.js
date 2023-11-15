@@ -8,10 +8,13 @@ export const modelsFactory = ({ type, parentId }) => {
   switch (type) {
     case 'direction':
       newObject = new directionClass()
+      break
     case 'project':
       newObject = new projectClass({ parentId })
+      break
     case 'task':
       newObject = new taskClass({ parentId })
+      break
   }
 
   return Object.assign({}, newObject)

@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-md bg-white border-bottom">
+  <nav class="navbar navbar-expand-md border-bottom">
     <div class="container-fluid">
       <div class="d-none d-md-block navbar-brand">
         <img
