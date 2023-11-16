@@ -13,14 +13,21 @@
         <div class="me-auto">
           <div class="">{{ item.title }}</div>
         </div>
-        <div class="hide-buttons">
-          <BtnTrash class="btn-sm" @click="removeItem(item)" />
-          <BtnEdit
-            class="btn-sm ms-1"
-            @click="editItem(item)"
-            data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop"
-          />
+        <div
+          class="info-block d-flex justify-content-between align-items-center"
+        >
+          <span class="badge text-bg-light me-2">{{
+            getChildrenItemsLength(item.id)
+          }}</span>
+          <div class="hide-buttons">
+            <BtnTrash class="btn-sm" @click="removeItem(item)" />
+            <BtnEdit
+              class="btn-sm ms-1"
+              @click="editItem(item)"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop"
+            />
+          </div>
         </div>
       </li>
     </ul>
@@ -68,6 +75,31 @@ export default {
     }
   },
   methods: {
+    getChildrenItemsLength(parentId) {
+      if (this.type === 'direction') {
+        const childrenItemsLength = this.$store.getters.childrenItemsLength(
+          'project',
+          parentId
+        )
+
+        const childrenItems = this.$store.getters.childrenItems(
+          'project',
+          parentId
+        )
+
+        let grandChildLenth = 0
+        childrenItems.forEach(item => {
+          grandChildLenth += this.$store.getters.childrenItemsLength(
+            'task',
+            item.id
+          )
+        })
+        return childrenItemsLength + '/' + grandChildLenth
+      }
+      if (this.type === 'project') {
+        return this.$store.getters.childrenItemsLength('task', parentId)
+      }
+    },
     editItem(item) {
       this.$emit('edit-item', { item })
     },
@@ -121,7 +153,7 @@ export default {
   transition: 0.3s ease-in-out;
 }
 
-.list-group-item:hover > .hide-buttons {
+.list-group-item:hover > .info-block > .hide-buttons {
   visibility: visible;
   opacity: 1;
 }

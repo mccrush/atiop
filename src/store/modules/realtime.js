@@ -84,6 +84,9 @@ export default {
     project: state => state.project,
     task: state => state.task,
 
+    childrenItems: state => (type, parentId) => state[type].filter(item => item.parentId === parentId),
+    childrenItemsLength: state => (type, parentId) => state[type].filter(item => item.parentId === parentId).length
+
     // serialNumber: state => {
     //   let number = +state.order.filter(item => item.dateCreateWeek === getWeek()).length + 1 || 1
     //   if (number < 10) {
