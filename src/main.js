@@ -22,14 +22,12 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     console.log('main.js : Пользователь авторизован')
     store.commit('setCurrentUserId', user.uid)
+
+    dataModels.forEach(element => {
+      store.dispatch('getItemsRT', { type: element.type, currentUserId: user.uid })
+    })
   } else {
     console.log('main.js: Пользователь не авторизован. user = ', user)
     store.commit('setCurrentUserId', '')
   }
-
-  //store.dispatch('getItemsRT', { type: 'order' })
-  dataModels.forEach(element => {
-    store.dispatch('getItemsRT', { type: element.type, currentUserId: user.uid })
-  })
-
 })
