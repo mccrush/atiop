@@ -9,6 +9,7 @@
         class="cursor-default list-group-item lh-1 d-flex justify-content-between align-items-center pe-2"
         :class="{ active: item.id === currentItemId }"
         @click="setItemId(item.id)"
+        @dblclick="editItem(item)"
       >
         <div class="me-auto">
           <div class="">{{ item.title }}</div>
@@ -16,10 +17,10 @@
         <div
           class="info-block d-flex justify-content-between align-items-center"
         >
-          <span class="badge text-bg-light me-2">{{
+          <span class="badge text-bg-light">{{
             getChildrenItemsLength(item.id)
           }}</span>
-          <div class="hide-buttons">
+          <!-- <div class="hide-buttons">
             <BtnTrash class="btn-sm" @click="removeItem(item)" />
             <BtnEdit
               class="btn-sm ms-1"
@@ -27,7 +28,7 @@
               data-bs-toggle="modal"
               data-bs-target="#staticBackdrop"
             />
-          </div>
+          </div> -->
         </div>
       </li>
     </ul>
@@ -147,7 +148,7 @@ export default {
 </script>
 
 <style scoped>
-.hide-buttons {
+/* .hide-buttons {
   visibility: hidden;
   opacity: 0;
   transition: 0.3s ease-in-out;
@@ -156,5 +157,5 @@ export default {
 .list-group-item:hover > .info-block > .hide-buttons {
   visibility: visible;
   opacity: 1;
-}
+} */
 </style>

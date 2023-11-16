@@ -18,7 +18,7 @@
       />
     </div>
 
-    <ModalMain :item="modalItem" />
+    <ModalMain id="staticBackdrop" :item="modalItem" />
   </div>
 </template>
 
@@ -48,6 +48,10 @@ export default {
   methods: {
     editItem({ item }) {
       this.modalItem = item
+      const staticBackdrop = new Modal(
+        document.getElementById('staticBackdrop')
+      )
+      staticBackdrop.show()
     }
   }
 }
