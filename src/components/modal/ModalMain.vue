@@ -9,7 +9,7 @@
   >
     <div class="modal-dialog">
       <div v-if="item" class="modal-content border-0">
-        <div class="modal-header">
+        <!-- <div class="modal-header">
           <h1 class="modal-title fs-5" id="staticBackdropLabel">
             {{ item.title }}
           </h1>
@@ -19,9 +19,17 @@
             data-bs-dismiss="modal"
             aria-label="Close"
           ></button>
-        </div>
+        </div> -->
         <div class="modal-body">
           <FormTask :item="item" :currentUserId="currentUserId" />
+          <hr />
+          <button
+            type="button"
+            class="btn btn-sm btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Закрыть
+          </button>
         </div>
         <!-- <div class="modal-footer">
           <button

@@ -12,6 +12,12 @@
       v-model="item.description"
       @blur="saveItem"
     ></textarea>
+    <input
+      type="number"
+      class="form-control bg-white mt-3"
+      v-model="item.position"
+      @blur="saveItem"
+    />
   </div>
 </template>
 
