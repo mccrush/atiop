@@ -62,6 +62,12 @@ export default {
   background-color: #ffc107;
 }
 
+.text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .slide-fade-enter-active {
   transition: all 0.3s ease;
 }

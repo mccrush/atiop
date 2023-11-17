@@ -1,19 +1,24 @@
 <template>
   <div>
+    <MainNavigator />
     <div class="row">
-      <MainItemsList type="direction" @edit-item="editItem" />
       <MainItemsList
-        v-if="directionId"
+        v-if="!directionId && !projectId"
+        type="direction"
+        @edit-item="editItem"
+      />
+      <MainItemsList
+        v-if="directionId && !projectId"
         :parentId="directionId"
         type="project"
-        class="ps-0"
+        class="ps-sm-0"
         @edit-item="editItem"
       />
       <MainItemsList
         v-if="projectId"
         :parentId="projectId"
         type="task"
-        class="ps-0"
+        class="ps-sm-0"
         @edit-item="editItem"
       />
     </div>
@@ -24,11 +29,13 @@
 
 <script>
 import Modal from 'bootstrap/js/dist/modal'
+import MainNavigator from './../modules/main/MainNavigator.vue'
 import MainItemsList from './../modules/main/MainItemsList.vue'
 import ModalMain from './../components/modal/ModalMain.vue'
 
 export default {
   components: {
+    MainNavigator,
     MainItemsList,
     ModalMain
   },

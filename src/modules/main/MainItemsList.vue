@@ -1,5 +1,5 @@
 <template>
-  <div class="col-4">
+  <div class="col-12 col-sm-6 col-md-4">
     <FormAddItem :type="type" :parentId="parentId" />
 
     <ul class="list-group mt-2">
