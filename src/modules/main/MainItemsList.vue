@@ -26,15 +26,6 @@
           <span class="badge text-bg-light">{{
             getChildrenItemsLength(item.id)
           }}</span>
-          <!-- <div class="hide-buttons">
-            <BtnTrash class="btn-sm" @click="removeItem(item)" />
-            <BtnEdit
-              class="btn-sm ms-1"
-              @click="editItem(item)"
-              data-bs-toggle="modal"
-              data-bs-target="#staticBackdrop"
-            />
-          </div> -->
         </div>
       </li>
     </ul>
@@ -118,39 +109,6 @@ export default {
         this.$store.commit('setItemId', { type: 'project', item: '' })
       }
       this.$store.commit('setItemId', { type: this.type, item: id })
-    },
-
-    removeOneItem(item) {
-      this.$store.dispatch('removeItemRT', {
-        item,
-        currentUserId: this.currentUserId
-      })
-    },
-
-    removeItem(item) {
-      if (item.type === 'direction') {
-        if (confirm('Будут удалены все дочерние Проекты и Задачи')) {
-          const childrenTasks = this.$store.getters.project.filter(
-            el => el.parentId === item.id
-          )
-          childrenTasks.forEach(el => {
-            this.removeItem(el)
-          })
-          this.removeOneItem(item)
-        }
-      } else if (item.type === 'project') {
-        if (confirm('Будут удалены все дочерние Задачи')) {
-          const childrenTasks = this.$store.getters.task.filter(
-            el => el.parentId === item.id
-          )
-          childrenTasks.forEach(el => {
-            this.removeItem(el)
-          })
-          this.removeOneItem(item)
-        }
-      } else {
-        this.removeOneItem(item)
-      }
     }
   }
 }

@@ -13,7 +13,7 @@
       @blur="saveItem"
     ></textarea>
     <div class="row">
-      <div class="col-3">
+      <div class="col-3 pe-0">
         <input
           type="number"
           class="form-control bg-white mt-3"
@@ -21,7 +21,7 @@
           @blur="saveItem"
         />
       </div>
-      <div class="col-3">
+      <div class="col-3 pe-0">
         <input
           type="number"
           class="form-control bg-white mt-3"

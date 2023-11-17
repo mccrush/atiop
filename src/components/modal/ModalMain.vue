@@ -23,24 +23,15 @@
         <div class="modal-body">
           <FormTask :item="item" :currentUserId="currentUserId" />
           <hr />
-          <button
-            type="button"
-            class="btn btn-sm btn-secondary"
-            data-bs-dismiss="modal"
-          >
-            Закрыть
-          </button>
+          <div class="d-flex justify-content-end">
+            <BtnTrash
+              class="btn-sm"
+              data-bs-dismiss="modal"
+              @click="removeItem(item)"
+            />
+            <BtnClose class="btn-sm ms-2" data-bs-dismiss="modal" />
+          </div>
         </div>
-        <!-- <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
-            Close
-          </button>
-          <button type="button" class="btn btn-primary">Understood</button>
-        </div> -->
       </div>
     </div>
   </div>
@@ -48,10 +39,14 @@
 
 <script>
 import FormTask from './../forms/FormTask.vue'
+import BtnTrash from './../buttons/BtnTrash.vue'
+import BtnClose from './../buttons/BtnClose.vue'
 
 export default {
   components: {
-    FormTask
+    FormTask,
+    BtnTrash,
+    BtnClose
   },
   props: {
     item: Object
@@ -59,6 +54,40 @@ export default {
   computed: {
     currentUserId() {
       return this.$store.getters.currentUserId
+    }
+  },
+  methods: {
+    removeOneItem(item) {
+      this.$store.dispatch('removeItemRT', {
+        item,
+        currentUserId: this.currentUserId
+      })
+    },
+
+    removeItem(item) {
+      if (item.type === 'direction') {
+        if (confirm('Будут удалены все дочерние Проекты и Задачи')) {
+          const childrenTasks = this.$store.getters.project.filter(
+            el => el.parentId === item.id
+          )
+          childrenTasks.forEach(el => {
+            this.removeItem(el)
+          })
+          this.removeOneItem(item)
+        }
+      } else if (item.type === 'project') {
+        if (confirm('Будут удалены все дочерние Задачи')) {
+          const childrenTasks = this.$store.getters.task.filter(
+            el => el.parentId === item.id
+          )
+          childrenTasks.forEach(el => {
+            this.removeItem(el)
+          })
+          this.removeOneItem(item)
+        }
+      } else {
+        this.removeOneItem(item)
+      }
     }
   }
 }
