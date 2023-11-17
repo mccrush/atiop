@@ -6,4 +6,5 @@ export default class taskClass extends ClassBasic {
     this.parentId = parentId
   }
   type = 'task'
+  price = 0
 }

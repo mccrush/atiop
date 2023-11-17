@@ -17,6 +17,9 @@
         <div
           class="info-block d-flex justify-content-between align-items-center"
         >
+          <span v-if="item.price" class="badge text-bg-success me-1">{{
+            item.price
+          }}</span>
           <span class="badge text-bg-light">{{
             getChildrenItemsLength(item.id)
           }}</span>
