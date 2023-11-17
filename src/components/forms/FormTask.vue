@@ -13,25 +13,32 @@
       @blur="saveItem"
     ></textarea>
     <div class="row">
-      <div class="col-4">
+      <div class="col-3">
         <input
           type="number"
-          class="col-4 form-control bg-white mt-3"
+          class="form-control bg-white mt-3"
           v-model.number="item.position"
           @blur="saveItem"
         />
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <input
           type="number"
-          class="col-4 form-control bg-white mt-3"
+          class="form-control bg-white mt-3"
           min="0"
           step="10"
           v-model.number="item.price"
           @blur="saveItem"
         />
       </div>
-      <div class="col-4"></div>
+      <div class="col-6">
+        <input
+          @blur="saveItem"
+          type="datetime-local"
+          class="form-control mt-3"
+          v-model="item.dateReminde"
+        />
+      </div>
     </div>
   </div>
 </template>

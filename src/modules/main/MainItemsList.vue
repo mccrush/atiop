@@ -17,6 +17,9 @@
         <div
           class="info-block d-flex justify-content-between align-items-center"
         >
+          <span class="badge text-bg-light me-1" v-if="item.dateReminde">{{
+            getLocaleDateFromDateDigit(item.dateReminde)
+          }}</span>
           <span v-if="item.price" class="badge text-bg-success me-1">{{
             item.price
           }}</span>
@@ -39,6 +42,8 @@
 </template>
 
 <script>
+import { getLocaleDateFromDateDigit } from './../../helpers/getDateFormat'
+
 import FormAddItem from './../../components/forms/FormAddItem.vue'
 import BtnTrash from './../../components/buttons/BtnTrash.vue'
 import BtnEdit from './../../components/buttons/BtnEdit.vue'
@@ -79,6 +84,7 @@ export default {
     }
   },
   methods: {
+    getLocaleDateFromDateDigit,
     getChildrenItemsLength(parentId) {
       if (this.type === 'direction') {
         const childrenItemsLength = this.$store.getters.childrenItemsLength(
