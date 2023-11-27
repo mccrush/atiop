@@ -10,13 +10,14 @@
 <script>
 import TheNavbar from './components/interface/TheNavbar.vue'
 import PageLogin from './pages/PageLogin.vue'
-import PageMain from './pages/PageMain.vue'
+//import PageMain from './pages/PageMain.vue'
+import PageWeb from './pages/PageWeb.vue'
 
 export default {
   components: {
     TheNavbar,
     PageLogin,
-    PageMain
+    PageWeb
   },
   computed: {
     currentUserId() {
@@ -24,7 +25,7 @@ export default {
     },
     component() {
       if (this.currentUserId) {
-        return 'PageMain'
+        return 'PageWeb'
       } else {
         return 'PageLogin'
       }
