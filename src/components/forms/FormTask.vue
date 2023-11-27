@@ -3,12 +3,14 @@
     <input
       type="text"
       class="form-control bg-white"
+      name="itemTitle"
       v-model.trim="item.title"
       @blur="saveItem"
     />
     <textarea
       class="form-control bg-white mt-3"
       rows="3"
+      name="itemDescription"
       v-model="item.description"
       @blur="saveItem"
     ></textarea>
@@ -17,6 +19,7 @@
         <input
           type="number"
           class="form-control bg-white mt-3"
+          name="itemPosition"
           v-model.number="item.position"
           @blur="saveItem"
         />
@@ -25,6 +28,7 @@
         <input
           type="number"
           class="form-control bg-white mt-3"
+          name="itemPrice"
           min="0"
           step="10"
           v-model.number="item.price"
@@ -33,10 +37,11 @@
       </div>
       <div class="col-6">
         <input
-          @blur="saveItem"
           type="datetime-local"
           class="form-control mt-3"
+          name="itemDateremind"
           v-model="item.dateReminde"
+          @blur="saveItem"
         />
       </div>
     </div>

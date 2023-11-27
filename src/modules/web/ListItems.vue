@@ -1,14 +1,25 @@
 <template>
-  <div>
-    <div class="fw-bold">{{ title }}</div>
-
+  <div class="mt-3">
+    <div
+      v-if="directionItem"
+      class="fw-bold cursor-default"
+      @click="setItemId(directionItem)"
+    >
+      {{ title }}
+    </div>
+    <div v-else class="fw-bold">{{ title }}</div>
+    <FormAddItem
+      v-if="type === 'project' && parentId === directionId"
+      type="project"
+      :parentId="directionId"
+    />
     <ul class="list-group mt-1 mb-3">
       <li
         v-for="item in items"
         :key="item.id"
         class="cursor-default list-group-item lh-1 d-flex justify-content-between align-items-center pe-2"
         :class="{ active: item.id === currentItemId }"
-        @click="setItemId(item.id, item)"
+        @click="setItemId(item)"
         @dblclick="editItem(item)"
       >
         <div class="me-auto">
@@ -35,13 +46,22 @@
 <script>
 import { getLocaleDateFromDateDigit } from './../../helpers/getDateFormat'
 
+import FormAddItem from './../../components/forms/FormAddItem.vue'
+
 export default {
+  components: {
+    FormAddItem
+  },
   props: {
+    directionItem: Object,
     title: String,
     parentId: String,
     type: String
   },
   computed: {
+    directionId() {
+      return this.$store.getters.directionId
+    },
     items() {
       if (this.type === 'project' || this.type === 'task') {
         return this.$store.getters[this.type].filter(
@@ -53,8 +73,6 @@ export default {
     },
     currentItemId() {
       switch (this.type) {
-        case 'direction':
-          return this.$store.getters.directionId
         case 'project':
           return this.$store.getters.projectId
         case 'task':
@@ -64,12 +82,16 @@ export default {
   },
   methods: {
     getLocaleDateFromDateDigit,
-    setItemId(id, item) {
-      if (this.type === 'project') {
+    setItemId(item) {
+      if (item.type === 'direction') {
+        this.$store.commit('setItemId', { type: 'project', id: '' })
         this.$store.commit('setItemId', { type: 'task', id: '' })
       }
-      this.$store.commit('setItemId', { type: this.type, id })
-      this.$store.commit('setItem', { type: this.type, item })
+      if (item.type === 'project') {
+        this.$store.commit('setItemId', { type: 'task', id: '' })
+      }
+      this.$store.commit('setItemId', { type: item.type, id: item.id })
+      this.$store.commit('setItem', { type: item.type, item })
     }
   }
 }

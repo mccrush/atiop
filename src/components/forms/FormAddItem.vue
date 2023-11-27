@@ -1,16 +1,16 @@
 <template>
-  <div>
-    <div class="input-group">
-      <input
-        type="text"
-        class="form-control"
-        :id="'title' + type"
-        aria-describedby="addButton"
-        v-model="title"
-        @keyup.enter="createItem"
-      />
-      <BtnAdd @click="createItem" />
-    </div>
+  <div class="input-group input-group-sm">
+    <input
+      type="text"
+      class="form-control"
+      aria-describedby="addButton"
+      :id="'id' + type"
+      :placeholder="type"
+      :disabled="(type == 'task' || type == 'project') && !parentId"
+      v-model="title"
+      @keyup.enter="createItem"
+    />
+    <BtnAdd @click="createItem" />
   </div>
 </template>
 

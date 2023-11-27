@@ -1,14 +1,17 @@
 <template>
   <div class="col-2">
-    <ListItems title="Tasks" :parentId="projectId" type="task" />
+    <FormAddItem type="task" :parentId="projectId" />
+    <ListItems title="Задачи" :parentId="projectId" type="task" />
   </div>
 </template>
 
 <script>
+import FormAddItem from './../../components/forms/FormAddItem.vue'
 import ListItems from './ListItems.vue'
 
 export default {
   components: {
+    FormAddItem,
     ListItems
   },
   computed: {
