@@ -1,5 +1,6 @@
 <template>
-  <div class="row border border-warning">
+  <div class="row">
+    <div class="col-1"></div>
     <CoverListDirections />
     <CoverListTasks />
     <CoverCard />

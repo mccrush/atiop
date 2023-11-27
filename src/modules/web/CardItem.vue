@@ -1,12 +1,16 @@
 <template>
-  <div class="border rounded">
-    <div>{{ item.title }}</div>
-    <div>{{ item.id }}</div>
+  <div class="border rounded p-3">
+    <FormTask :item="item" />
   </div>
 </template>
 
 <script>
+import FormTask from './../../components/forms/FormTask.vue'
+
 export default {
+  components: {
+    FormTask
+  },
   props: {
     item: Object
   }

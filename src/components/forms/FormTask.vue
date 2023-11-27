@@ -40,14 +40,27 @@
         />
       </div>
     </div>
+
+    <div class="d-flex justify-content-end mt-3">
+      <BtnTrash class="btn-sm" @click="removeItem(item)" />
+    </div>
   </div>
 </template>
 
 <script>
+import BtnTrash from './../buttons/BtnTrash.vue'
+
 export default {
+  components: {
+    BtnTrash
+  },
   props: {
-    item: Object,
-    currentUserId: String
+    item: Object
+  },
+  computed: {
+    currentUserId() {
+      return this.$store.getters.currentUserId
+    }
   },
   methods: {
     saveItem() {
@@ -55,6 +68,42 @@ export default {
         item: this.item,
         currentUserId: this.currentUserId
       })
+    },
+
+    removeOneItem(item) {
+      this.$store.dispatch('removeItemRT', {
+        item,
+        currentUserId: this.currentUserId
+      })
+
+      this.$store.commit('setItem', { type: this.item.type, item: null })
+      this.$store.commit('setItemId', { type: this.item.type, id: '' })
+    },
+
+    removeItem(item) {
+      if (item.type === 'direction') {
+        if (confirm('Будут удалены все дочерние Проекты и Задачи')) {
+          const childrenTasks = this.$store.getters.project.filter(
+            el => el.parentId === item.id
+          )
+          childrenTasks.forEach(el => {
+            this.removeItem(el)
+          })
+          this.removeOneItem(item)
+        }
+      } else if (item.type === 'project') {
+        if (confirm('Будут удалены все дочерние Задачи')) {
+          const childrenTasks = this.$store.getters.task.filter(
+            el => el.parentId === item.id
+          )
+          childrenTasks.forEach(el => {
+            this.removeItem(el)
+          })
+          this.removeOneItem(item)
+        }
+      } else {
+        this.removeOneItem(item)
+      }
     }
   }
 }
