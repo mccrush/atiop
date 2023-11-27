@@ -10,6 +10,7 @@ export default {
     directionId: localStorage.getItem('directionId') || '',
     projectId: localStorage.getItem('projectId') || '',
     taskId: localStorage.getItem('taskId') || '',
+    item: JSON.parse(localStorage.getItem('item')) || null
   },
 
   mutations: {
@@ -19,10 +20,15 @@ export default {
     addItem(state, { item }) {
       state[item.type].push(item)
     },
-    setItemId(state, { type, item }) {
-      state[type + 'Id'] = item
+    setItemId(state, { type, id }) {
+      state[type + 'Id'] = id
       // console.log('admin.js: setItemId(): state[type] = ', state[type + 'Id'])
-      localStorage.setItem(type + 'Id', item)
+      localStorage.setItem(type + 'Id', id)
+    },
+    setItem(state, { type, item }) {
+      state.item = item
+      // console.log('admin.js: setItemId(): state[type] = ', state[type + 'Id'])
+      localStorage.setItem('item', JSON.stringify(item))
     },
     setItems(state, { type, items }) {
       state[type] = items
@@ -90,7 +96,8 @@ export default {
   getters: {
     directionId: state => state.directionId,
     projectId: state => state.projectId,
-    taskId: state => state.taskId
+    taskId: state => state.taskId,
+    item: state => state.item
 
   }
 }
