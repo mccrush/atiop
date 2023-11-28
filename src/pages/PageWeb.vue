@@ -1,10 +1,10 @@
 <template>
   <div class="row">
     <div class="col-1"></div>
-    <CoverListDirections />
-    <CoverListTasks />
-    <CoverListLostday />
-    <CoverListToday />
+    <CoverListDirections v-if="view === 'all'" />
+    <CoverListTasks v-if="view === 'all'" />
+    <CoverListLostday v-if="view === 'date'" />
+    <CoverListToday v-if="view === 'date'" />
     <CoverCard />
   </div>
 </template>
@@ -23,6 +23,11 @@ export default {
     CoverListLostday,
     CoverListToday,
     CoverCard
+  },
+  computed: {
+    view() {
+      return this.$store.getters.view
+    }
   }
 }
 </script>

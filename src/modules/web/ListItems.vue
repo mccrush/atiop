@@ -67,9 +67,6 @@ export default {
     listType: String
   },
   computed: {
-    view() {
-      return this.$store.getters.view
-    },
     directionId() {
       return this.$store.getters.directionId
     },
@@ -128,7 +125,6 @@ export default {
           Math.ceil(new Date(dateReminde).getTime() / (1000 * 3600 * 24)) -
           Math.ceil(new Date().getTime() / (1000 * 3600 * 24)) +
           1
-        console.log('dayDifference() difference = ', difference)
         return difference
       } else {
         return 1

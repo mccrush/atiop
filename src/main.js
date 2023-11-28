@@ -1,5 +1,5 @@
 import './scss/styles.scss'
-import { Dropdown } from 'bootstrap'
+//import { Dropdown } from 'bootstrap'
 
 import { createApp } from 'vue'
 import App from './App.vue'

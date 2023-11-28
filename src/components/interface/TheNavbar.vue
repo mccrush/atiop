@@ -23,18 +23,20 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <BtnSelectView
-          class="btn-sm ps-3 pe-3"
-          :class="{ active: view === 'all' }"
-          title="Все"
-          @click="setView('all')"
-        />
-        <BtnSelectView
-          class="btn-sm ps-3 pe-3"
-          :class="{ active: view === 'date' }"
-          title="На сегодня"
-          @click="setView('date')"
-        />
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <BtnSelectView
+            class="btn-sm ps-3 pe-3"
+            :class="{ active: view === 'all' }"
+            title="Все"
+            @click="setView('all')"
+          />
+          <BtnSelectView
+            class="btn-sm ps-3 pe-3"
+            :class="{ active: view === 'date' }"
+            title="На сегодня"
+            @click="setView('date')"
+          />
+        </div>
         <div class="me-auto"></div>
         <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
