@@ -1,11 +1,11 @@
 <template>
   <div class="row">
-    <div class="col-1"></div>
-    <CoverListDirections v-if="view === 'all'" />
-    <CoverListTasks v-if="view === 'all'" />
-    <CoverListLostday v-if="view === 'date'" />
-    <CoverListToday v-if="view === 'date'" />
-    <CoverCard />
+    <div class="d-none d-xxl-block col-2"></div>
+    <CoverListDirections v-if="view === 'all'" class="col-3 col-xxl-2" />
+    <CoverListTasks v-if="view === 'all'" class="col-3 col-xxl-2" />
+    <CoverListLostday v-if="view === 'date'" class="col-3 col-xxl-2" />
+    <CoverListToday v-if="view === 'date'" class="col-3 col-xxl-2" />
+    <CoverCard class="col-6 col-xxl-4" />
   </div>
 </template>
 

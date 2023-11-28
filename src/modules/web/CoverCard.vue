@@ -1,5 +1,5 @@
 <template>
-  <div class="col-4">
+  <div>
     <CardItem v-if="item" :item="item" />
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <div class="col-2">
+  <div>
     <ListItems title="На сегодня" type="task" listType="today" />
   </div>
 </template>

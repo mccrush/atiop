@@ -1,5 +1,5 @@
 <template>
-  <div class="col-2">
+  <div>
     <FormAddItem type="task" :parentId="projectId" />
     <ListItems title="Задачи" :parentId="projectId" type="task" />
   </div>
