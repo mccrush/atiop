@@ -31,8 +31,8 @@
           <span
             class="badge me-1"
             :class="{
-              'text-bg-warning': dayDifference(item.dateReminde) <= 0,
-              'text-bg-light': dayDifference(item.dateReminde) > 0
+              'text-bg-warning': dayDifference(item.dateReminde) < 1,
+              'text-bg-light': dayDifference(item.dateReminde) >= 1
             }"
             v-if="item.dateReminde"
             >{{ getLocaleDateFromDateDigit(item.dateReminde) }}</span
