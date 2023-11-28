@@ -73,11 +73,11 @@ export default {
     items() {
       if (this.listType === 'lostday') {
         return this.$store.getters.task.filter(
-          item => item.dateReminde && this.dayDifference(item.dateReminde) <= 0
+          item => item.dateReminde && this.dayDifference(item.dateReminde) < 1
         )
       } else if (this.listType === 'today') {
         return this.$store.getters.task.filter(
-          item => item.dateReminde && this.dayDifference(item.dateReminde) > 0
+          item => item.dateReminde && this.dayDifference(item.dateReminde) == 1
         )
       } else {
         if (this.type === 'project' || this.type === 'task') {
