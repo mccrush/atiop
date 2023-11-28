@@ -4,11 +4,13 @@
     <div class="container-fluid">
       <component :is="component" class="pt-3" />
     </div>
+    <TheFooter />
   </div>
 </template>
 
 <script>
 import TheNavbar from './components/interface/TheNavbar.vue'
+import TheFooter from './components/interface/TheFooter.vue'
 import PageLogin from './pages/PageLogin.vue'
 //import PageMain from './pages/PageMain.vue'
 import PageWeb from './pages/PageWeb.vue'
@@ -16,6 +18,7 @@ import PageWeb from './pages/PageWeb.vue'
 export default {
   components: {
     TheNavbar,
+    TheFooter,
     PageLogin,
     PageWeb
   },
