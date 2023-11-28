@@ -9,7 +9,7 @@
     />
     <textarea
       class="form-control bg-white mt-3"
-      rows="4"
+      rows="6"
       name="itemDescription"
       v-model="item.description"
       @blur="saveItem"
