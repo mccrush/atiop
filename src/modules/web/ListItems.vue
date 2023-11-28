@@ -28,9 +28,15 @@
         <div
           class="info-block d-flex justify-content-between align-items-center"
         >
-          <span class="badge text-bg-light me-1" v-if="item.dateReminde">{{
-            getLocaleDateFromDateDigit(item.dateReminde)
-          }}</span>
+          <span
+            class="badge me-1"
+            :class="{
+              'text-bg-warning': dayDifference(item.dateReminde) <= 0,
+              'text-bg-light': dayDifference(item.dateReminde) > 0
+            }"
+            v-if="item.dateReminde"
+            >{{ getLocaleDateFromDateDigit(item.dateReminde) }}</span
+          >
           <span v-if="item.price" class="badge text-bg-success me-1">{{
             item.price
           }}</span>
@@ -69,9 +75,13 @@ export default {
     },
     items() {
       if (this.listType === 'lostday') {
-        return this.$store.getters.task.filter(item => item.dateReminde)
+        return this.$store.getters.task.filter(
+          item => item.dateReminde && this.dayDifference(item.dateReminde) <= 0
+        )
       } else if (this.listType === 'today') {
-        return this.$store.getters.task.filter(item => item.dateReminde)
+        return this.$store.getters.task.filter(
+          item => item.dateReminde && this.dayDifference(item.dateReminde) > 0
+        )
       } else {
         if (this.type === 'project' || this.type === 'task') {
           return this.$store.getters[this.type].filter(
@@ -110,6 +120,18 @@ export default {
     getChildrenItemsLength(parentId) {
       if (this.type === 'project') {
         return this.$store.getters.childrenItemsLength('task', parentId)
+      }
+    },
+    dayDifference(dateReminde) {
+      if (dateReminde) {
+        const difference =
+          Math.ceil(new Date(dateReminde).getTime() / (1000 * 3600 * 24)) -
+          Math.ceil(new Date().getTime() / (1000 * 3600 * 24)) +
+          1
+        console.log('dayDifference() difference = ', difference)
+        return difference
+      } else {
+        return 1
       }
     }
   }
