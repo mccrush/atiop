@@ -111,6 +111,9 @@ export default {
       if (item.type === 'project') {
         this.$store.commit('setItemId', { type: 'task', id: '' })
       }
+      if (item.type === 'task') {
+        this.$store.commit('setItemId', { type: 'project', id: item.parentId })
+      }
       this.$store.commit('setItemId', { type: item.type, id: item.id })
       this.$store.commit('setItem', { type: item.type, item })
     },
