@@ -57,19 +57,29 @@ export default {
     directionItem: Object,
     title: String,
     parentId: String,
-    type: String
+    type: String,
+    listType: String
   },
   computed: {
+    view() {
+      return this.$store.getters.view
+    },
     directionId() {
       return this.$store.getters.directionId
     },
     items() {
-      if (this.type === 'project' || this.type === 'task') {
-        return this.$store.getters[this.type].filter(
-          item => item.parentId === this.parentId
-        )
+      if (this.listType === 'lostday') {
+        return this.$store.getters.task.filter(item => item.dateReminde)
+      } else if (this.listType === 'today') {
+        return this.$store.getters.task.filter(item => item.dateReminde)
       } else {
-        return this.$store.getters[this.type]
+        if (this.type === 'project' || this.type === 'task') {
+          return this.$store.getters[this.type].filter(
+            item => item.parentId === this.parentId
+          )
+        } else {
+          return this.$store.getters[this.type]
+        }
       }
     },
     itemsSort() {

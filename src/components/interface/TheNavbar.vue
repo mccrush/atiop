@@ -23,6 +23,18 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <BtnSelectView
+          class="btn-sm ps-3 pe-3"
+          :class="{ active: view === 'all' }"
+          title="Все"
+          @click="setView('all')"
+        />
+        <BtnSelectView
+          class="btn-sm ps-3 pe-3"
+          :class="{ active: view === 'date' }"
+          title="На сегодня"
+          @click="setView('date')"
+        />
         <div class="me-auto"></div>
         <!-- <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
@@ -60,18 +72,26 @@
 </template>
 
 <script>
+import BtnSelectView from './../buttons/BtnSelectView.vue'
 import BtnLogOut from './../buttons/BtnLogOut.vue'
 
 export default {
   components: {
+    BtnSelectView,
     BtnLogOut
   },
   computed: {
     currentUserId() {
       return this.$store.getters.currentUserId
+    },
+    view() {
+      return this.$store.getters.view
     }
   },
   methods: {
+    setView(view) {
+      this.$store.commit('setView', view)
+    },
     logOut() {
       this.$store.dispatch('logOut')
     }

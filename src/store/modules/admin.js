@@ -10,7 +10,8 @@ export default {
     directionId: localStorage.getItem('directionId') || '',
     projectId: localStorage.getItem('projectId') || '',
     taskId: localStorage.getItem('taskId') || '',
-    item: JSON.parse(localStorage.getItem('item')) || null
+    item: JSON.parse(localStorage.getItem('item')) || null,
+    view: localStorage.getItem('view') || 'all',
   },
 
   mutations: {
@@ -22,12 +23,10 @@ export default {
     },
     setItemId(state, { type, id }) {
       state[type + 'Id'] = id
-      // console.log('admin.js: setItemId(): state[type] = ', state[type + 'Id'])
       localStorage.setItem(type + 'Id', id)
     },
-    setItem(state, { type, item }) {
+    setItem(state, { item }) {
       state.item = item
-      // console.log('admin.js: setItemId(): state[type] = ', state[type + 'Id'])
       localStorage.setItem('item', JSON.stringify(item))
     },
     setItems(state, { type, items }) {
@@ -40,6 +39,10 @@ export default {
     updateLoadingStatus(state, value) {
       state.loading = value
     },
+    setView(state, view) {
+      state.view = view
+      localStorage.setItem('view', view)
+    }
   },
 
   actions: {
@@ -97,7 +100,7 @@ export default {
     directionId: state => state.directionId,
     projectId: state => state.projectId,
     taskId: state => state.taskId,
-    item: state => state.item
-
+    item: state => state.item,
+    view: state => state.view
   }
 }
