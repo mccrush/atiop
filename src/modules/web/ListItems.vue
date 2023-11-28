@@ -34,9 +34,9 @@
           <span v-if="item.price" class="badge text-bg-success me-1">{{
             item.price
           }}</span>
-          <!-- <span class="badge text-bg-light">{{
+          <span class="badge text-bg-light">{{
             getChildrenItemsLength(item.id)
-          }}</span> -->
+          }}</span>
         </div>
       </li>
     </ul>
@@ -92,6 +92,11 @@ export default {
       }
       this.$store.commit('setItemId', { type: item.type, id: item.id })
       this.$store.commit('setItem', { type: item.type, item })
+    },
+    getChildrenItemsLength(parentId) {
+      if (this.type === 'project') {
+        return this.$store.getters.childrenItemsLength('task', parentId)
+      }
     }
   }
 }
