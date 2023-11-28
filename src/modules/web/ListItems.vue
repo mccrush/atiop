@@ -15,7 +15,7 @@
     />
     <ul class="list-group mt-1 mb-3">
       <li
-        v-for="item in items"
+        v-for="item in itemsSort"
         :key="item.id"
         class="cursor-default list-group-item lh-1 d-flex justify-content-between align-items-center pe-2"
         :class="{ active: item.id === currentItemId }"
@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import { sortMethod } from './../../helpers/sortMethod'
 import { getLocaleDateFromDateDigit } from './../../helpers/getDateFormat'
 
 import FormAddItem from './../../components/forms/FormAddItem.vue'
@@ -70,6 +71,9 @@ export default {
       } else {
         return this.$store.getters[this.type]
       }
+    },
+    itemsSort() {
+      return sortMethod(this.items, 'asc', 'position')
     },
     currentItemId() {
       switch (this.type) {

@@ -3,7 +3,7 @@
     <FormAddItem type="direction" />
 
     <ListItems
-      v-for="direction in directions"
+      v-for="direction in directionsSort"
       :key="direction.id"
       :directionItem="direction"
       :title="direction.title"
@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import { sortMethod } from './../../helpers/sortMethod'
+
 import FormAddItem from './../../components/forms/FormAddItem.vue'
 import ListItems from './ListItems.vue'
 
@@ -25,6 +27,9 @@ export default {
   computed: {
     directions() {
       return this.$store.getters.direction
+    },
+    directionsSort() {
+      return sortMethod(this.directions, 'asc', 'position')
     }
   }
 }
