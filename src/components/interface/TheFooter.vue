@@ -1,5 +1,5 @@
 <template>
-  <div class="small bg-dark position-fixed bottom-0 w-100 p-1 ps-2">
+  <div class="small bg-dark text-center position-fixed bottom-0 w-100 p-1 ps-2">
     <code class="text-light">v{{ version }}</code>
     <code class="text-secondary"> from </code>
     <code class="text-light">

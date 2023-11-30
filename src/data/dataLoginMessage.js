@@ -35,6 +35,10 @@ const messages = {
     text: 'Неверный пароль!',
     type: 'bg-danger'
   },
+  'lmp': {
+    text: 'Введите пароль!',
+    type: 'bg-danger'
+  },
   'lun': {
     text: 'Пользователь с такой почтой не найден',
     type: 'bg-danger'

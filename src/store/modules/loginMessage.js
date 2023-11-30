@@ -6,6 +6,7 @@ export default {
   },
   mutations: {
     addMessage(state, code) {
+      console.log('commit addMessage, code = ', code);
       state.loginMessage = getLoginMessage(code)
     }
   },

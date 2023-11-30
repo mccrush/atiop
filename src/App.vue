@@ -2,20 +2,24 @@
   <div>
     <TheNavbar />
     <div class="container-fluid pt-3 pb-5">
-      <div class="d-md-none">
-        <component :is="componentM" />
-      </div>
-      <div class="d-none d-md-block">
-        <component :is="componentW" />
-      </div>
+      <component :is="component" />
     </div>
     <TheFooter />
+
+    <transition name="slide-fade">
+      <TheMessage
+        v-if="showMessage"
+        :message="loginMessage.text"
+        :class="loginMessage.type"
+      />
+    </transition>
   </div>
 </template>
 
 <script>
 import TheNavbar from './components/interface/TheNavbar.vue'
 import TheFooter from './components/interface/TheFooter.vue'
+import TheMessage from './components/interface/TheMessage.vue'
 import PageLogin from './pages/PageLogin.vue'
 import PageMob from './pages/PageMob.vue'
 import PageWeb from './pages/PageWeb.vue'
@@ -24,26 +28,44 @@ export default {
   components: {
     TheNavbar,
     TheFooter,
+    TheMessage,
     PageLogin,
     PageMob,
     PageWeb
+  },
+  data() {
+    return {
+      showMessage: false
+    }
   },
   computed: {
     currentUserId() {
       return this.$store.getters.currentUserId
     },
-    componentM() {
-      if (this.currentUserId) {
-        return 'PageMob'
-      } else {
+    component() {
+      if (!this.currentUserId) {
         return 'PageLogin'
+      } else {
+        if (window.innerWidth < 768) {
+          return 'PageMob'
+        } else {
+          return 'PageWeb'
+        }
       }
     },
-    componentW() {
-      if (this.currentUserId) {
-        return 'PageWeb'
-      } else {
-        return 'PageLogin'
+    loginMessage() {
+      return this.$store.getters.loginMessage
+    }
+  },
+  watch: {
+    loginMessage() {
+      if (this.loginMessage) {
+        console.log('new message = ', this.loginMessage)
+        this.showMessage = true
+        setTimeout(() => {
+          this.showMessage = false
+          this.$store.commit('addMessage', 'null')
+        }, 3600)
       }
     }
   }

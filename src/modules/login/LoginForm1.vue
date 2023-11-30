@@ -1,5 +1,7 @@
 <template>
-  <div class="col-4 border bg-white rounded shadow-sm mt-5 m-auto p-3">
+  <div
+    class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 border bg-white rounded shadow-sm mt-5 m-auto p-3"
+  >
     <h4 class="text-center mt-2 mb-4">
       {{ mod === '#in' ? 'Авторизация' : 'Регистрация' }}
     </h4>
@@ -10,8 +12,9 @@
       class="form-control"
       id="email"
       required
-      v-model="email"
+      v-model.trim="email"
       :placeholder="mod === '#reg' ? 'example@mail.ru' : ''"
+      @keyup.enter="login"
     />
     <br />
     <label for="password">Пароль</label>
@@ -21,10 +24,11 @@
         class="form-control"
         id="password"
         required
-        v-model="password"
+        v-model.trim="password"
         ref="pass"
         maxlength="20"
         :placeholder="mod === '#reg' ? 'От 6 до 20 символов' : ''"
+        @keyup.enter="login"
       />
       <button
         class="btn btn-light p-0 ps-2 pe-2 border"
@@ -78,11 +82,14 @@ export default {
           await this.$store.dispatch('logIn', formData)
         } catch (err) {
           if (err.code === 'auth/invalid-email') {
+            console.log('My err: auth/invalid-email')
             this.$store.commit('addMessage', 'lee')
           } else if (err.code === 'auth/invalid-password') {
             this.$store.commit('addMessage', 'lpi')
           } else if (err.code === 'auth/wrong-password') {
             this.$store.commit('addMessage', 'lpw')
+          } else if (err.code === 'auth/missing-password') {
+            this.$store.commit('addMessage', 'lmp')
           } else if (err.code === 'auth/user-not-found') {
             this.$store.commit('addMessage', 'lun')
           } else {

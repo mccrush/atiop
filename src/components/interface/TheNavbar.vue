@@ -32,7 +32,12 @@
       </button> -->
 
       <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
-      <div class="btn-group" role="group" aria-label="Basic example">
+      <div
+        v-if="currentUserId"
+        class="btn-group"
+        role="group"
+        aria-label="Basic example"
+      >
         <BtnSelectView
           class="btn-sm ps-3 pe-3"
           :class="{ active: view === 'all' }"
@@ -47,7 +52,11 @@
         />
       </div>
       <div class="me-auto"></div>
-      <BtnLogOut class="btn-sm ps-3 pe-3" @click="logOut" />
+      <BtnLogOut
+        v-if="currentUserId"
+        class="btn-sm ps-3 pe-3"
+        @click="logOut"
+      />
     </div>
     <!-- </div> -->
   </nav>
