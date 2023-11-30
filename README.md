@@ -1,7 +1,7 @@
 # ATIOP
-<p style="border-left: 4px solid #c0e218; padding-left: 8px;">Приложение находится в статусе beta. Пожалуйста, <strong>примите участие в тестировании</strong>, помогите ускорить процесс разработки. Напишите нам на почту mccrush2027@gmail.com и мы вышлем вам логин и пароль для доступа к функциям приложения.</p>
+<!-- <p style="border-left: 4px solid #c0e218; padding-left: 8px;">Приложение находится в статусе beta. Пожалуйста, <strong>примите участие в тестировании</strong>, помогите ускорить процесс разработки. Напишите нам на почту mccrush2027@gmail.com и мы вышлем вам логин и пароль для доступа к функциям приложения.</p>
 <br>
-<img src="https://repository-images.githubusercontent.com/201769959/42f52b00-ff33-11ea-929d-76fccf26bcf9" alt="ATIOP — сервис управления задачами">
+<img src="https://repository-images.githubusercontent.com/201769959/42f52b00-ff33-11ea-929d-76fccf26bcf9" alt="ATIOP — сервис управления задачами">-->
 
 
 <p>
@@ -21,9 +21,9 @@
       действия необходимо выполнить?
     </p>
 
-Более подробное описание в <a href="https://doc.atiop.ru/" target="_blank" title="Открыть Руководство">Руководстве</a>
+<!-- Более подробное описание в <a href="https://doc.atiop.ru/" target="_blank" title="Открыть Руководство">Руководстве</a> -->
 <hr>
-
+<!--
 <p align="center">
    <a href="https://v5.getbootstrap.com/">
     <img src="https://flat.badgen.net/badge/bootstrap/5.0.0/7952B3" alt="Bootstrap version" target="_blank">
@@ -37,4 +37,4 @@
   <a href="https://patreon.com/mccrush">
     <img src="https://flat.badgen.net/badge/become/a%20patron/F96854" alt="Sponsor this project" target="_blank">
   </a>
-</p>
+</p> -->
