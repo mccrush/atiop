@@ -4,7 +4,7 @@
       type="text"
       class="form-control"
       aria-describedby="addButton"
-      :id="'id' + type"
+      :name="'id' + type"
       :placeholder="type"
       :disabled="(type == 'task' || type == 'project') && !parentId"
       v-model="title"
