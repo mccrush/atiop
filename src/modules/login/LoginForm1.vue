@@ -82,7 +82,6 @@ export default {
           await this.$store.dispatch('logIn', formData)
         } catch (err) {
           if (err.code === 'auth/invalid-email') {
-            console.log('My err: auth/invalid-email')
             this.$store.commit('addMessage', 'lee')
           } else if (err.code === 'auth/invalid-password') {
             this.$store.commit('addMessage', 'lpi')
