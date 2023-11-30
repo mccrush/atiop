@@ -1,6 +1,9 @@
 <template>
   <div class="row">
-    <div class="col-12 d-flex justify-content-between mb-3">
+    <div
+      v-if="view === 'all'"
+      class="col-12 d-flex justify-content-between mb-3"
+    >
       <BtnNavigation
         class="w-50"
         title="Направления"
@@ -22,8 +25,8 @@
       class="col-12"
     />
 
-    <!-- <CoverListLostday v-if="view === 'date'" class="col-12" />
-    <CoverListToday v-if="view === 'date'" class="col-3 12" /> -->
+    <CoverListLostday v-if="view === 'date'" class="col-12" />
+    <CoverListToday v-if="view === 'date'" class="col-12" />
     <CoverCard v-if="taskId" class="col-12" />
   </div>
 </template>
