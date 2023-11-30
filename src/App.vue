@@ -17,7 +17,6 @@
 import TheNavbar from './components/interface/TheNavbar.vue'
 import TheFooter from './components/interface/TheFooter.vue'
 import PageLogin from './pages/PageLogin.vue'
-//import PageMain from './pages/PageMain.vue'
 import PageMob from './pages/PageMob.vue'
 import PageWeb from './pages/PageWeb.vue'
 
