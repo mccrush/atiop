@@ -1,8 +1,13 @@
 <template>
   <div>
     <TheNavbar />
-    <div class="container-fluid">
-      <component :is="component" class="pt-3" />
+    <div class="container-fluid pt-3">
+      <div class="d-md-none">
+        <component :is="componentM" />
+      </div>
+      <div class="d-none d-md-block">
+        <component :is="componentW" />
+      </div>
     </div>
     <TheFooter />
   </div>
@@ -13,6 +18,7 @@ import TheNavbar from './components/interface/TheNavbar.vue'
 import TheFooter from './components/interface/TheFooter.vue'
 import PageLogin from './pages/PageLogin.vue'
 //import PageMain from './pages/PageMain.vue'
+import PageMob from './pages/PageMob.vue'
 import PageWeb from './pages/PageWeb.vue'
 
 export default {
@@ -20,13 +26,21 @@ export default {
     TheNavbar,
     TheFooter,
     PageLogin,
+    PageMob,
     PageWeb
   },
   computed: {
     currentUserId() {
       return this.$store.getters.currentUserId
     },
-    component() {
+    componentM() {
+      if (this.currentUserId) {
+        return 'PageMob'
+      } else {
+        return 'PageLogin'
+      }
+    },
+    componentW() {
       if (this.currentUserId) {
         return 'PageWeb'
       } else {

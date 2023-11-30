@@ -1,0 +1,50 @@
+<template>
+  <div class="row">
+    <div class="col-12 d-flex justify-content-between mb-3">
+      <BtnNavigation class="w-50" title="Направления" />
+      <div class="ps-2 pt-1 pe-2">⨠</div>
+      <BtnNavigation class="w-50" title="Проект" />
+    </div>
+    <CoverListDirections v-if="view === 'all' && !projectId" class="col-12" />
+
+    <CoverListTasks
+      v-if="view === 'all' && projectId && !taskId"
+      class="col-12"
+    />
+
+    <!-- <CoverListLostday v-if="view === 'date'" class="col-12" />
+    <CoverListToday v-if="view === 'date'" class="col-3 12" /> -->
+    <CoverCard v-if="taskId" class="col-12" />
+  </div>
+</template>
+
+<script>
+import BtnNavigation from './../components/buttons/BtnNavigation.vue'
+import CoverListDirections from './../modules/web/CoverListDirections.vue'
+import CoverListTasks from './../modules/web/CoverListTasks.vue'
+import CoverListLostday from './../modules/web/CoverListLostday.vue'
+import CoverListToday from './../modules/web/CoverListToday.vue'
+import CoverCard from './../modules/web/CoverCard.vue'
+
+export default {
+  components: {
+    BtnNavigation,
+    CoverListDirections,
+    CoverListTasks,
+    CoverListLostday,
+    CoverListToday,
+    CoverCard
+  },
+  computed: {
+    projectId() {
+      return this.$store.getters.projectId
+    },
+    taskId() {
+      return this.$store.getters.taskId
+    },
+    view() {
+      return this.$store.getters.view
+    }
+  }
+}
+</script>
