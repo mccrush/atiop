@@ -27,7 +27,7 @@
 
     <CoverListLostday v-if="view === 'date'" class="col-12" />
     <CoverListToday v-if="view === 'date'" class="col-12" />
-    <CoverCard v-if="taskId" class="col-12" />
+    <CoverCardMobile v-if="taskId" class="col-12" />
   </div>
 </template>
 
@@ -37,7 +37,7 @@ import CoverListDirections from './../modules/web/CoverListDirections.vue'
 import CoverListTasks from './../modules/web/CoverListTasks.vue'
 import CoverListLostday from './../modules/web/CoverListLostday.vue'
 import CoverListToday from './../modules/web/CoverListToday.vue'
-import CoverCard from './../modules/web/CoverCard.vue'
+import CoverCardMobile from './../modules/web/CoverCardMobile.vue'
 
 export default {
   components: {
@@ -46,7 +46,7 @@ export default {
     CoverListTasks,
     CoverListLostday,
     CoverListToday,
-    CoverCard
+    CoverCardMobile
   },
   computed: {
     projectId() {
