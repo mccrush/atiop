@@ -2,9 +2,10 @@
   <div class="small bg-dark text-center position-fixed bottom-0 w-100 p-1 ps-2">
     <code class="text-light">v{{ version }}</code>
     <code class="text-secondary"> from </code>
-    <code class="text-light">
+    <!-- <code class="text-light">
       {{ getLocaleDateFromDateDigit(new Date()) }}</code
-    >
+    > -->
+    <code class="text-light"> {{ VITE_BD }}</code>
     <code class="text-secondary"> by </code>
     <code class="text-light">mccrush.ru</code>
   </div>
@@ -17,7 +18,8 @@ import { getLocaleDateFromDateDigit } from './../../helpers/getDateFormat'
 export default {
   data() {
     return {
-      version
+      version,
+      VITE_BD: import.meta.env.VITE_BD
     }
   },
   methods: {
