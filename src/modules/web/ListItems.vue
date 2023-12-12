@@ -79,6 +79,10 @@ export default {
         return this.$store.getters.task.filter(
           item => item.dateReminde && this.dayDifference(item.dateReminde) == 1
         )
+      } else if (this.listType === 'comingday') {
+        return this.$store.getters.task.filter(
+          item => item.dateReminde && this.dayDifference(item.dateReminde) > 1
+        )
       } else {
         if (this.type === 'project' || this.type === 'task') {
           return this.$store.getters[this.type].filter(

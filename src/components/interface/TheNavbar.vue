@@ -50,6 +50,12 @@
           title="Сегодня"
           @click="setView('date')"
         />
+        <BtnSelectView
+          class="btn-sm ps-3 pe-3"
+          :class="{ active: view === 'coming' }"
+          title="Скоро"
+          @click="setView('coming')"
+        />
       </div>
       <div class="me-auto"></div>
       <BtnLogOut
