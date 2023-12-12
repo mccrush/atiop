@@ -88,6 +88,8 @@ export default {
   methods: {
     setView(view) {
       this.$store.commit('setView', view)
+      this.$store.commit('setItemId', { type: 'task', id: '' })
+      this.$store.commit('setItem', { type: 'task', item: null })
     },
     logOut() {
       this.$store.dispatch('logOut')
