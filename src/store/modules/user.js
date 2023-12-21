@@ -1,5 +1,5 @@
 import fireApp from './../../firebase'
-import { getAuth, signInWithEmailAndPassword, signOut, sendPasswordResetEmail } from 'firebase/auth'
+import { getAuth, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, createUserWithEmailAndPassword } from 'firebase/auth'
 
 const auth = getAuth(fireApp)
 auth.languageCode = 'ru'
@@ -16,15 +16,11 @@ export default {
     setCountLogoClick(state) {
       state.countLogoClick++
     },
-    resetCountLogoClick(state) {
-      state.countLogoClick = 0
-    }
   },
   actions: {
     async logIn({ commit }, { email, password }) {
       try {
         await signInWithEmailAndPassword(auth, email, password)
-        commit('resetCountLogoClick')
         return true
       } catch (err) {
         console.error('store user.js logIn(): Ошибка при входе в систему, err:', err)
@@ -48,6 +44,16 @@ export default {
         alert(`Ссылка для сброса пароля отправленна на email: ${email}`)
       } catch (err) {
         console.error('user.js resetPass(): Ошибка при сбросе пароля, err:', err)
+      }
+    },
+
+    async registerUser({ commit }, { email, password }) {
+      try {
+        await createUserWithEmailAndPassword(auth, email, password)
+        return true
+      } catch (err) {
+        console.error('store user.js registerUser(): Ошибка при регистрации, err:', err)
+        throw err
       }
     }
   },

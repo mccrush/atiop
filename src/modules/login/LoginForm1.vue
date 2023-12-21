@@ -57,6 +57,14 @@
     <button class="btn btn-success w-100" type="submit" @click="login">
       {{ mod === '#in' ? 'Войти' : 'Заргегистрироваться' }}
     </button>
+    <p class="text-center m-0 mt-3">
+      <span v-if="mod === '#in'"
+        >или <a href="#" @click="mod = '#reg'">зарегистрироваться</a></span
+      >
+      <span v-if="mod === '#reg'"
+        >или <a href="#" @click="mod = '#in'">войти</a></span
+      >
+    </p>
   </div>
 </template>
 
@@ -98,7 +106,7 @@ export default {
         }
       } else {
         try {
-          await this.$store.dispatch('regist', formData)
+          await this.$store.dispatch('registerUser', formData)
         } catch (err) {
           if (err.code === 'auth/invalid-email') {
             this.$store.commit('addMessage', 'lee')

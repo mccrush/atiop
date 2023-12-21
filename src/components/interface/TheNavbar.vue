@@ -92,6 +92,7 @@ export default {
       this.$store.commit('setItem', { type: 'task', item: null })
     },
     logOut() {
+      this.$store.commit('setItem', { type: 'task', item: null })
       this.$store.dispatch('logOut')
     }
   }
