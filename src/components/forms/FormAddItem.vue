@@ -5,7 +5,7 @@
       class="form-control"
       aria-describedby="addButton"
       :name="'id' + type"
-      :placeholder="type"
+      :placeholder="getPlaceholder"
       :disabled="(type == 'task' || type == 'project') && !parentId"
       v-model="title"
       @keyup.enter="createItem"
@@ -16,6 +16,7 @@
 
 <script>
 import { modelsFactory } from './../../helpers/modelsFactory'
+import { dataModels } from './../../data/dataModels'
 
 import BtnAdd from './../buttons/BtnAdd.vue'
 
@@ -35,6 +36,9 @@ export default {
   computed: {
     currentUserId() {
       return this.$store.getters.currentUserId
+    },
+    getPlaceholder() {
+      return dataModels.find(item => item.type === this.type).title
     }
   },
   methods: {
