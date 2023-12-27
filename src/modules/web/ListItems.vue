@@ -17,16 +17,16 @@
       <li
         v-for="item in itemsSort"
         :key="item.id"
-        class="cursor-default list-group-item lh-1 d-flex justify-content-between align-items-center ps-2 ps-xxl-3 pe-1 pe-xxl-2"
+        class="cursor-default list-group-item lh-1 d-flex justify-content-between align-items-strache ps-2 ps-xxl-3 pe-1 pe-xxl-2"
         :class="{ active: item.id === currentItemId }"
         @click="setItemId(item)"
         @dblclick="editItem(item)"
       >
-        <div class="me-auto">
-          <div class="">{{ item.title }}</div>
+        <div class="d-flex align-items-center me-auto pe-1">
+          <div>{{ item.title }}</div>
         </div>
         <div
-          class="info-block d-flex justify-content-between align-items-center"
+          class="info-block d-flex align-items-start justify-content-between"
         >
           <span
             class="badge me-1"
