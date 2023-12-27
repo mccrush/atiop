@@ -1,6 +1,7 @@
 <template>
   <div>
     <TheNavbar />
+    <TheSidebar />
     <div class="container-fluid pt-3 pb-5">
       <component :is="component" />
     </div>
@@ -18,6 +19,7 @@
 
 <script>
 import TheNavbar from './components/interface/TheNavbar.vue'
+import TheSidebar from './components/interface/TheSidebar.vue'
 import TheFooter from './components/interface/TheFooter.vue'
 import TheMessage from './components/interface/TheMessage.vue'
 import PageLogin from './pages/PageLogin.vue'
@@ -27,6 +29,7 @@ import PageWeb from './pages/PageWeb.vue'
 export default {
   components: {
     TheNavbar,
+    TheSidebar,
     TheFooter,
     TheMessage,
     PageLogin,

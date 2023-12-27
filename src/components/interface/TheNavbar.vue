@@ -58,11 +58,28 @@
         />
       </div>
       <div class="me-auto"></div>
+      <a
+        href="https://doc.atiop.ru/"
+        target="_blank"
+        class="btn btn-sm btn-light text-secondary d-none d-sm-block ps-2 pe-2 me-2"
+        title="Руководство"
+        >Руководство ⇗</a
+      >
+
       <BtnLogOut
         v-if="currentUserId"
-        class="btn-sm ps-3 pe-3"
+        class="btn-sm d-none d-sm-block ps-3 pe-3"
         @click="logOut"
       />
+
+      <button
+        class="d-sm-none btn btn-sm btn-light p-1 ps-3 pe-3"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasExample"
+        aria-controls="offcanvasExample"
+      >
+        =
+      </button>
     </div>
     <!-- </div> -->
   </nav>
