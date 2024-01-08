@@ -22,6 +22,7 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     console.log('main.js : Пользователь авторизован')
     store.commit('setCurrentUserId', user.uid)
+    store.commit('setCurrentUserEmail', user.email)
 
     dataModels.forEach(element => {
       store.dispatch('getItemsRT', { type: element.type, currentUserId: user.uid })

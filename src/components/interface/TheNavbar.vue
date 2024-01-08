@@ -58,6 +58,10 @@
         />
       </div>
       <div class="me-auto"></div>
+      <span class="d-none d-sm-block text-secondary me-2">{{
+        currentUserEmail
+      }}</span>
+
       <a
         href="https://doc.atiop.ru/"
         target="_blank"
@@ -97,6 +101,9 @@ export default {
   computed: {
     currentUserId() {
       return this.$store.getters.currentUserId
+    },
+    currentUserEmail() {
+      return this.$store.getters.currentUserEmail
     },
     view() {
       return this.$store.getters.view

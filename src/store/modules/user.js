@@ -7,11 +7,15 @@ auth.languageCode = 'ru'
 export default {
   state: {
     currentUserId: '',
+    currentUserEmail: '',
     countLogoClick: 0
   },
   mutations: {
     setCurrentUserId(state, value) {
       state.currentUserId = value
+    },
+    setCurrentUserEmail(state, value) {
+      state.currentUserEmail = value
     },
     setCountLogoClick(state) {
       state.countLogoClick++
@@ -59,6 +63,7 @@ export default {
   },
   getters: {
     currentUserId: state => state.currentUserId,
+    currentUserEmail: state => state.currentUserEmail,
     countLogoClick: state => state.countLogoClick
   }
 

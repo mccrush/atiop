@@ -29,6 +29,8 @@
         class="btn-dark w-100 ps-3 pe-3 mt-3"
         @click="logOut"
       />
+
+      <div class="text-secondary text-center mt-2">{{ currentUserEmail }}</div>
     </div>
   </div>
 </template>
@@ -43,6 +45,9 @@ export default {
   computed: {
     currentUserId() {
       return this.$store.getters.currentUserId
+    },
+    currentUserEmail() {
+      return this.$store.getters.currentUserEmail
     }
   },
   methods: {
