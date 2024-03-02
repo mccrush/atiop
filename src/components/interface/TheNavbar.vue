@@ -7,6 +7,7 @@
           height="26"
           class="d-inline-block mb-1 me-0"
           alt="ATIOP"
+          :class="{ rotate: loadingRT }"
         />
       </div>
       <div class="d-none d-sm-block navbar-brand p-0">
@@ -15,6 +16,7 @@
           height="26"
           class="d-inline-block mb-1 me-2"
           alt="ATIOP"
+          :class="{ rotate: loadingRT }"
         />
         ATIOP
       </div>
@@ -144,6 +146,9 @@ export default {
     },
     view() {
       return this.$store.getters.view
+    },
+    loadingRT() {
+      return this.$store.getters.loadingRT
     }
   },
   methods: {
@@ -168,3 +173,18 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.rotate {
+  animation: rotation 1s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+</style>

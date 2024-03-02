@@ -55,7 +55,7 @@ export default {
         itemsRef = query(ref(db, currentUserId + '/' + appMode + '/' + type), orderByChild('dateCreate'))
 
         onValue(itemsRef, (snapshot) => {
-          console.log('getItemsRT() run ', type)
+          //console.log('getItemsRT() run ', type)
           let tempArray = []
           const data = snapshot.val()
           for (let item in data) {
