@@ -43,7 +43,9 @@ export default {
       return this.$store.getters.currentUserId
     },
     getPlaceholder() {
-      return dataModels.find(item => item.type === this.type).title
+      return dataModels.find(
+        item => item.appMode === this.appMode && item.type === this.type
+      ).title
     },
     appMode() {
       return this.$store.getters.appMode

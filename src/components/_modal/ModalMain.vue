@@ -70,7 +70,7 @@ export default {
 
     removeItem(item) {
       if (item.type === 'direction') {
-        if (confirm('Будут удалены все дочерние Проекты и Задачи')) {
+        if (confirm('Будут удалены все дочерние Проекты и элементы')) {
           const childrenTasks = this.$store.getters.project.filter(
             el => el.parentId === item.id
           )
@@ -80,7 +80,7 @@ export default {
           this.removeOneItem(item)
         }
       } else if (item.type === 'project') {
-        if (confirm('Будут удалены все дочерние Задачи')) {
+        if (confirm('Будут удалены все дочерние элементы')) {
           const childrenTasks = this.$store.getters.task.filter(
             el => el.parentId === item.id
           )

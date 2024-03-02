@@ -9,7 +9,7 @@
     />
     <ListItems
       ref="listItems"
-      title="Задачи"
+      :title="appMode === 'tasks' ? 'Задачи' : 'Заметки'"
       :parentId="projectId"
       :searchFilter="searchFilter"
       type="task"
@@ -36,6 +36,9 @@ export default {
   computed: {
     projectId() {
       return this.$store.getters.projectId
+    },
+    appMode() {
+      return this.$store.getters.appMode
     }
   },
   methods: {
