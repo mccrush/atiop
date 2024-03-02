@@ -7,11 +7,12 @@ const db = getFirestore(fireApp)
 export default {
   state: {
     user: [],
-    directionId: localStorage.getItem('directionId') || '',
-    projectId: localStorage.getItem('projectId') || '',
-    taskId: localStorage.getItem('taskId') || '',
-    item: JSON.parse(localStorage.getItem('item')) || null,
-    view: localStorage.getItem('view') || 'all',
+    directionId: localStorage.getItem('at-directionId') || '',
+    projectId: localStorage.getItem('at-projectId') || '',
+    taskId: localStorage.getItem('at-taskId') || '',
+    item: JSON.parse(localStorage.getItem('at-item')) || null,
+    view: localStorage.getItem('at-view') || 'all',
+    appMode: localStorage.getItem('at-appMode') || 'task',
   },
 
   mutations: {
@@ -23,11 +24,11 @@ export default {
     },
     setItemId(state, { type, id }) {
       state[type + 'Id'] = id
-      localStorage.setItem(type + 'Id', id)
+      localStorage.setItem('at-' + type + 'Id', id)
     },
     setItem(state, { item }) {
       state.item = item
-      localStorage.setItem('item', JSON.stringify(item))
+      localStorage.setItem('at-item', JSON.stringify(item))
     },
     setItems(state, { type, items }) {
       state[type] = items
@@ -41,7 +42,7 @@ export default {
     },
     setView(state, view) {
       state.view = view
-      localStorage.setItem('view', view)
+      localStorage.setItem('at-view', view)
     }
   },
 
