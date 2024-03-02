@@ -58,9 +58,6 @@
         />
       </div>
       <div class="me-auto"></div>
-      <span class="d-none d-sm-block text-secondary me-2">{{
-        currentUserEmail
-      }}</span>
 
       <a
         href="https://doc.atiop.ru/"
@@ -70,11 +67,26 @@
         >Руководство ⇗</a
       >
 
-      <BtnLogOut
-        v-if="currentUserId"
-        class="btn-sm d-none d-sm-block ps-3 pe-3"
-        @click="logOut"
-      />
+      <div class="dropdown">
+        <BtnUser
+          v-if="currentUserId"
+          class="btn-sm d-none d-sm-block"
+          :title="currentUserEmail"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        />
+        <div class="dropdown-menu dropdown-menu-end border-0 p-3">
+          <span class="d-none d-sm-block text-secondary small me-2">{{
+            currentUserEmail
+          }}</span>
+
+          <BtnLogOut
+            v-if="currentUserId"
+            class="btn-sm d-none d-sm-block w-100 mt-2 ps-3 pe-3"
+            @click="logOut"
+          />
+        </div>
+      </div>
 
       <button
         class="d-sm-none btn btn-sm btn-light p-1 ps-3 pe-3"
@@ -92,11 +104,13 @@
 <script>
 import BtnSelectView from './../buttons/BtnSelectView.vue'
 import BtnLogOut from './../buttons/BtnLogOut.vue'
+import BtnUser from './../buttons/BtnUser.vue'
 
 export default {
   components: {
     BtnSelectView,
-    BtnLogOut
+    BtnLogOut,
+    BtnUser
   },
   computed: {
     currentUserId() {
