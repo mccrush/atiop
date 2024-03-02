@@ -159,6 +159,7 @@ export default {
     },
     setAppMode(appMode) {
       this.$store.commit('setAppMode', appMode)
+      this.$store.commit('setView', 'all')
       this.$store.commit('setItemId', { type: 'direction', id: '' })
       this.$store.commit('setItemId', { type: 'project', id: '' })
       this.$store.commit('setItemId', { type: 'task', id: '' })
