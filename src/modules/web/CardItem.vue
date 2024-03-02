@@ -1,5 +1,5 @@
 <template>
-  <div class="border rounded p-3">
+  <div>
     <FormTask :item="item" />
   </div>
 </template>

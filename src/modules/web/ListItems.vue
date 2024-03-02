@@ -17,11 +17,17 @@
       <li
         v-for="item in itemsSort"
         :key="item.id"
-        class="cursor-default list-group-item lh-1 d-flex justify-content-between align-items-strache ps-2 ps-xxl-3 pe-1 pe-xxl-2"
+        class="cursor-default list-group-item border-0 rounded-3 shadow-sm lh-1 d-flex justify-content-between align-items-strache mt-1 mb-1 ps-2 ps-xxl-3 pe-1 pe-xxl-2"
         :class="{ active: item.id === currentItemId }"
         @click="setItemId(item)"
         @dblclick="editItem(item)"
       >
+        <input
+          v-if="type === 'task'"
+          type="checkbox"
+          class="border form-check-input m-0 me-2"
+        />
+
         <div class="d-flex align-items-center me-auto pe-1">
           <div>{{ item.title }}</div>
         </div>
