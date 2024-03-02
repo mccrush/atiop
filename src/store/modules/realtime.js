@@ -9,6 +9,7 @@ export default {
     direction: [],
     project: [],
     task: [],
+    tags: [],
   },
   mutations: {
     setItemsRT(state, { type, items }) {
@@ -85,6 +86,7 @@ export default {
     direction: state => state.direction,
     project: state => state.project,
     task: state => state.task,
+    tags: state => state.tags,
 
     childrenItems: state => (type, parentId) => state[type].filter(item => item.parentId === parentId),
     childrenItemsLength: state => (type, parentId) => state[type].filter(item => item.parentId === parentId).length

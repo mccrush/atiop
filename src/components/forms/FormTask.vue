@@ -1,66 +1,103 @@
 <template>
   <div>
-    <input
-      type="text"
-      class="form-control bg-white"
-      name="itemTitle"
-      v-model.trim="item.title"
-      @blur="saveItem"
-    />
-    <textarea
-      class="form-control bg-white mt-3"
-      rows="6"
-      name="itemDescription"
-      v-model="item.description"
-      @blur="saveItem"
-    ></textarea>
-    <div class="row">
-      <div class="col-6 col-md-3 pe-0">
+    <div class="row ps-2 ps-md-0 pe-2 pe-md-0">
+      <div class="col-10 col-md-10 pe-0">
         <input
-          type="number"
-          class="form-control bg-white mt-3"
-          name="itemPosition"
-          v-model.number="item.position"
+          type="text"
+          class="form-control bg-white"
+          name="itemTitle"
+          v-model.trim="item.title"
           @blur="saveItem"
         />
       </div>
-      <div class="col-6 col-md-3 pe-md-0">
-        <input
-          type="number"
-          class="form-control bg-white mt-3"
-          name="itemPrice"
-          min="0"
-          step="10"
-          v-model.number="item.price"
-          @blur="saveItem"
-        />
-      </div>
-      <div class="col-12 col-md-6">
-        <input
-          type="datetime-local"
-          class="form-control mt-3"
-          name="itemDateremind"
-          v-model="item.dateReminde"
-          @blur="saveItem"
-        />
+      <div class="col-2 col-md-2">
+        <div class="d-flex justify-content-end pt-1">
+          <BtnTrash class="btn-sm" @click="removeItem(item)" />
+        </div>
       </div>
     </div>
 
-    <div class="d-flex justify-content-end mt-3">
-      <BtnTrash class="btn-sm" @click="removeItem(item)" />
+    <div class="mt-3">
+      <Editor
+        :api-key="apiKey"
+        :initialValue="item.description"
+        :init="conf"
+        v-model="item.description"
+        @blur="saveItem"
+      />
+    </div>
+
+    <div v-if="appMode === 'notes'" class="row mt-2 ps-md-0 pe-2 pe-md-0">
+      <div class="col-6 col-md-7">
+        <div v-if="item.type === 'task'" class="d-flex p-1">
+          <div class="dropdown">
+            <button
+              class="btn btn-sm btn-light text-muted me-2 ps-2 pe-2"
+              data-bs-toggle="dropdown"
+            >
+              +
+            </button>
+            <FormAddTag class="dropdown-menu" @toggle-tag="toggleTag" />
+          </div>
+
+          <div class="d-flex align-items-center">
+            <button
+              v-for="tag in item.tags"
+              :key="tag.id"
+              class="btn btn-sm btn-light text-muted me-2 ps-2 pe-2"
+              @click="setTagFilter(tag)"
+            >
+              {{ tag.title }}
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-5 d-flex align-items-center ps-0">
+        <select
+          v-if="item.type === 'task' || item.type === 'project'"
+          class="form-select form-select-sm"
+          aria-label="Выбор блокнота"
+          v-model="item.parentId"
+          @change="saveItem"
+        >
+          <option
+            v-for="parentItem in parentItems"
+            :key="parentItem.id"
+            :value="parentItem.id"
+          >
+            {{ parentItem.title }}
+          </option>
+        </select>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import Editor from '@tinymce/tinymce-vue'
 import BtnTrash from './../buttons/BtnTrash.vue'
+import FormAddTag from './FormAddTag.vue'
 
 export default {
   components: {
-    BtnTrash
+    Editor,
+    BtnTrash,
+    FormAddTag
   },
   props: {
     item: Object
+  },
+  data() {
+    return {
+      apiKey: 'hanxollva4phpflvvnv1lje4y82fvprrkqrmpqeclw066js2',
+      conf: {
+        menubar: false,
+        plugins: 'lists link table code wordcount',
+        toolbar:
+          'bold forecolor link numlist bullist alignleft aligncenter table code removeformat',
+        height: '70vh'
+      }
+    }
   },
   computed: {
     currentUserId() {
@@ -68,9 +105,33 @@ export default {
     },
     appMode() {
       return this.$store.getters.appMode
+    },
+    parentItems() {
+      if (this.item.type === 'task') {
+        return this.$store.getters.project
+      } else if (this.item.type === 'project') {
+        return this.$store.getters.direction
+      }
     }
   },
   methods: {
+    setTagFilter(tag) {
+      this.$store.commit('setTag', tag)
+    },
+    toggleTag(tag) {
+      //console.log('1 tag = ', tag)
+      if (!this.item.tags) {
+        this.item.tags = []
+        // Не знаю, как пока избавится от этой необходимости
+      }
+
+      if (this.item.tags.find(item => item === tag)) {
+        this.item.tags = this.item.tags.filter(item => item !== tag)
+      } else {
+        this.item.tags.push(tag)
+      }
+      this.saveItem()
+    },
     saveItem() {
       this.$store.dispatch('updateItemRT', {
         item: this.item,
@@ -112,7 +173,9 @@ export default {
           this.removeOneItem(item)
         }
       } else {
-        this.removeOneItem(item)
+        if (confirm('Точно удалить?')) {
+          this.removeOneItem(item)
+        }
       }
     }
   }

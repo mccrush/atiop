@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
+    "@tinymce/tinymce-vue": "^5.1.1",
     "bootstrap": "^5.3.3",
     "firebase": "^10.8.1",
     "vue": "^3.4.21",

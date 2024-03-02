@@ -3,11 +3,11 @@
     <div v-if="tag" class="d-flex align-items-center">
       <div class="btn-group me-2">
         <button class="btn btn-sm btn-light disabled shadow-sm p-0 ps-2 pe-2">
-          {{ tag }}
+          {{ tag.title }}
         </button>
         <button
           class="btn btn-sm btn-light text-muted p-0 ps-2 pe-2"
-          @click="setTagFilter('')"
+          @click="setTagFilter(null)"
         >
           x
         </button>

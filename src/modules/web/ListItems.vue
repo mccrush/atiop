@@ -108,11 +108,19 @@ export default {
       }
     },
     itemsFilter() {
+      //console.log('itemsFilter() this.type =', this.type)
+      //console.log('itemsFilter() this.tag =', this.tag)
       if (this.type === 'task') {
         if (this.tag) {
-          return this.tasks.filter(
-            item => item.tags && item.tags.includes(this.tag)
-          )
+          return this.tasks.filter(item => {
+            if (item.tags && item.tags.length) {
+              let arr = []
+              item.tags.forEach(el => {
+                if (el.title.includes(this.tag.title)) arr.push(item)
+              })
+              return arr
+            }
+          })
         } else if (this.searchFilter) {
           return this.tasks.filter(item =>
             item.title.toUpperCase().includes(this.searchFilter.toUpperCase())

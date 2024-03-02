@@ -13,6 +13,7 @@ export default {
     item: JSON.parse(localStorage.getItem('at-item')) || null,
     view: localStorage.getItem('at-view') || 'all',
     appMode: localStorage.getItem('at-appMode') || 'task',
+    tag: JSON.parse(localStorage.getItem('at-tag')) || null,
   },
 
   mutations: {
@@ -48,6 +49,10 @@ export default {
       state.appMode = appMode
       localStorage.setItem('at-appMode', appMode)
     },
+    setTag(state, tag) {
+      state.tag = tag
+      localStorage.setItem('at-tag', JSON.stringify(tag))
+    }
   },
 
   actions: {
@@ -107,6 +112,7 @@ export default {
     taskId: state => state.taskId,
     item: state => state.item,
     view: state => state.view,
-    appMode: state => state.appMode
+    appMode: state => state.appMode,
+    tag: state => state.tag
   }
 }

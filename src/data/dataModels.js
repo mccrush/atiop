@@ -5,5 +5,6 @@ export const dataModels = [
   { id: '04', appMode: 'notes', type: 'direction', title: 'Группа блокнотов', menu: true, access: 2 },
   { id: '05', appMode: 'notes', type: 'project', title: 'Блокнот', menu: true, access: 2 },
   { id: '06', appMode: 'notes', type: 'task', title: 'Заметка', menu: true, access: 2 },
+  { id: '07', appMode: 'notes', type: 'tags', title: 'Тэг', menu: true, access: 2 }
 ]
 
