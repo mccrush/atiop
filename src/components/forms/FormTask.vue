@@ -119,14 +119,11 @@ export default {
       this.$store.commit('setTag', tag)
     },
     toggleTag(tag) {
-      //console.log('1 tag = ', tag)
       if (!this.item.tags) {
         this.item.tags = []
-        // Не знаю, как пока избавится от этой необходимости
       }
-
-      if (this.item.tags.find(item => item === tag)) {
-        this.item.tags = this.item.tags.filter(item => item !== tag)
+      if (this.item.tags.find(item => item.id === tag.id)) {
+        this.item.tags = this.item.tags.filter(item => item.id !== tag.id)
       } else {
         this.item.tags.push(tag)
       }

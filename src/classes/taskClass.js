@@ -9,4 +9,5 @@ export default class taskClass extends ClassBasic {
   price = 0
   dateReminde = ''
   archive = false
+  tags = []
 }

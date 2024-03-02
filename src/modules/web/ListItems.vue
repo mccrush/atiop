@@ -108,18 +108,26 @@ export default {
       }
     },
     itemsFilter() {
-      //console.log('itemsFilter() this.type =', this.type)
-      //console.log('itemsFilter() this.tag =', this.tag)
       if (this.type === 'task') {
         if (this.tag) {
           return this.tasks.filter(item => {
+            let arr = []
             if (item.tags && item.tags.length) {
-              let arr = []
               item.tags.forEach(el => {
-                if (el.title.includes(this.tag.title)) arr.push(item)
+                // console.log(
+                //   'el.title.includes(this.tag.title) = ',
+                //   el.title.includes(this.tag.title)
+                // )
+                // if (el.title.includes(this.tag.title)) {
+                //   arr.push(item)
+                // }
+                if (el.id === this.tag.id) {
+                  arr.push(item)
+                }
               })
-              return arr
             }
+            console.log('arr = ', arr)
+            return arr
           })
         } else if (this.searchFilter) {
           return this.tasks.filter(item =>
