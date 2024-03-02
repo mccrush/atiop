@@ -20,19 +20,19 @@ export default {
     },
   },
   actions: {
-    async removeItemRT({ commit }, { item, currentUserId }) {
+    async removeItemRT({ commit }, { item, currentUserId, appMode }) {
       try {
         commit('updateLoadingStatusRT', true)
-        await remove(ref(db, currentUserId + '/' + item.type + '/' + item.id))
+        await remove(ref(db, currentUserId + '/' + appMode + '/' + item.type + '/' + item.id))
         commit('updateLoadingStatusRT', false)
       } catch (error) {
         console.error('error realtime.js removeItemRT()', error)
       }
     },
-    async updateItemRT({ commit }, { item, currentUserId }) {
+    async updateItemRT({ commit }, { item, currentUserId, appMode }) {
       try {
         commit('updateLoadingStatusRT', true)
-        await update(ref(db, currentUserId + '/' + item.type + '/' + item.id), item)
+        await update(ref(db, currentUserId + '/' + appMode + '/' + item.type + '/' + item.id), item)
         commit('updateLoadingStatusRT', false)
       } catch (error) {
         console.error('error realtime.js updateItemRT()', error)
@@ -40,8 +40,9 @@ export default {
     },
 
     // Получение Универсальное
-    getItemsRT({ commit }, { type, currentUserId }) {
+    getItemsRT({ commit }, { type, currentUserId, appMode }) {
       try {
+        console.log('getItemsRT() appMode ', appMode)
         commit('updateLoadingStatusRT', true)
         let itemsRef
         // if (limit) {
@@ -50,7 +51,7 @@ export default {
         //   itemsRef = query(ref(db, type), orderByChild('dateCreate'))
         // }
 
-        itemsRef = query(ref(db, currentUserId + '/' + type), orderByChild('dateCreate'))
+        itemsRef = query(ref(db, currentUserId + '/' + appMode + '/' + type), orderByChild('dateCreate'))
 
         onValue(itemsRef, (snapshot) => {
           console.log('getItemsRT() run ', type)
@@ -67,10 +68,10 @@ export default {
       }
     },
 
-    async addItemRT({ commit }, { item, currentUserId }) {
+    async addItemRT({ commit }, { item, currentUserId, appMode }) {
       try {
         commit('updateLoadingStatusRT', true)
-        await set(ref(db, currentUserId + '/' + item.type + '/' + item.id), item)
+        await set(ref(db, currentUserId + '/' + appMode + '/' + item.type + '/' + item.id), item)
         console.log('addItemRT() add item.id', item.id)
         commit('updateLoadingStatusRT', false)
       } catch (error) {

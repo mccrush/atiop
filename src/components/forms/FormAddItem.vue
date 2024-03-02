@@ -44,6 +44,9 @@ export default {
     },
     getPlaceholder() {
       return dataModels.find(item => item.type === this.type).title
+    },
+    appMode() {
+      return this.$store.getters.appMode
     }
   },
   methods: {
@@ -55,7 +58,8 @@ export default {
         item.title = this.title
         this.$store.dispatch('addItemRT', {
           item,
-          currentUserId: this.currentUserId
+          currentUserId: this.currentUserId,
+          appMode: this.appMode
         })
         this.title = ''
 

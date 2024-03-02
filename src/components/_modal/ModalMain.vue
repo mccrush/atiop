@@ -54,13 +54,17 @@ export default {
   computed: {
     currentUserId() {
       return this.$store.getters.currentUserId
+    },
+    appMode() {
+      return this.$store.getters.appMode
     }
   },
   methods: {
     removeOneItem(item) {
       this.$store.dispatch('removeItemRT', {
         item,
-        currentUserId: this.currentUserId
+        currentUserId: this.currentUserId,
+        appMode: this.appMode
       })
     },
 

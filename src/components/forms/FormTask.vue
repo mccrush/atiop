@@ -65,20 +65,25 @@ export default {
   computed: {
     currentUserId() {
       return this.$store.getters.currentUserId
+    },
+    appMode() {
+      return this.$store.getters.appMode
     }
   },
   methods: {
     saveItem() {
       this.$store.dispatch('updateItemRT', {
         item: this.item,
-        currentUserId: this.currentUserId
+        currentUserId: this.currentUserId,
+        appMode: this.appMode
       })
     },
 
     removeOneItem(item) {
       this.$store.dispatch('removeItemRT', {
         item,
-        currentUserId: this.currentUserId
+        currentUserId: this.currentUserId,
+        appMode: this.appMode
       })
 
       this.$store.commit('setItem', { type: this.item.type, item: null })
