@@ -43,7 +43,11 @@ export default {
     setView(state, view) {
       state.view = view
       localStorage.setItem('at-view', view)
-    }
+    },
+    setAppMode(state, appMode) {
+      state.appMode = appMode
+      localStorage.setItem('at-appMode', appMode)
+    },
   },
 
   actions: {
@@ -102,6 +106,7 @@ export default {
     projectId: state => state.projectId,
     taskId: state => state.taskId,
     item: state => state.item,
-    view: state => state.view
+    view: state => state.view,
+    appMode: state => state.appMode
   }
 }

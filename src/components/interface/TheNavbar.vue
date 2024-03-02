@@ -36,7 +36,26 @@
         v-if="currentUserId"
         class="btn-group"
         role="group"
-        aria-label="Basic example"
+        aria-label="Select appMode"
+      >
+        <BtnSelectView
+          class="btn-sm ps-3 pe-3"
+          :class="{ active: appMode === 'tasks' }"
+          title="Задачи"
+          @click="setAppMode('tasks')"
+        />
+        <BtnSelectView
+          class="btn-sm ps-3 pe-3"
+          :class="{ active: appMode === 'notes' }"
+          title="Заметки"
+          @click="setAppMode('notes')"
+        />
+      </div>
+      <div
+        v-if="currentUserId && appMode === 'tasks'"
+        class="btn-group ms-2"
+        role="group"
+        aria-label="Select view"
       >
         <BtnSelectView
           class="btn-sm ps-3 pe-3"
@@ -119,6 +138,9 @@ export default {
     currentUserEmail() {
       return this.$store.getters.currentUserEmail
     },
+    appMode() {
+      return this.$store.getters.appMode
+    },
     view() {
       return this.$store.getters.view
     }
@@ -126,6 +148,11 @@ export default {
   methods: {
     setView(view) {
       this.$store.commit('setView', view)
+      this.$store.commit('setItemId', { type: 'task', id: '' })
+      this.$store.commit('setItem', { type: 'task', item: null })
+    },
+    setAppMode(appMode) {
+      this.$store.commit('setAppMode', appMode)
       this.$store.commit('setItemId', { type: 'task', id: '' })
       this.$store.commit('setItem', { type: 'task', item: null })
     },
