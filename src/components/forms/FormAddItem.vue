@@ -6,7 +6,10 @@
       aria-describedby="addButton"
       :name="'id' + type"
       :placeholder="getPlaceholder"
-      :disabled="(type == 'task' || type == 'project') && !parentId"
+      :disabled="
+        ((type == 'task' || type == 'project') && !parentId) ||
+        (type == 'task' && searchFilter.length)
+      "
       v-model="title"
       @keyup.enter="createItem"
     />
@@ -26,8 +29,10 @@ export default {
   },
   props: {
     type: String,
-    parentId: String
+    parentId: String,
+    searchFilter: String
   },
+  emits: ['set-item-id'],
   data() {
     return {
       title: ''
@@ -53,6 +58,8 @@ export default {
           currentUserId: this.currentUserId
         })
         this.title = ''
+
+        this.$emit('set-item-id', item)
       }
     }
   }

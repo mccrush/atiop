@@ -12,6 +12,7 @@
       v-if="type === 'project' && parentId === directionId"
       type="project"
       :parentId="directionId"
+      @set-item-id="setItemId"
     />
     <ul class="list-group mt-1 mb-3">
       <li
@@ -70,11 +71,18 @@ export default {
     title: String,
     parentId: String,
     type: String,
-    listType: String
+    listType: String,
+    searchFilter: String
   },
   computed: {
     directionId() {
       return this.$store.getters.directionId
+    },
+    tag() {
+      return this.$store.getters.tag
+    },
+    tasks() {
+      return this.$store.getters.task
     },
     items() {
       if (this.listType === 'lostday') {
@@ -99,8 +107,25 @@ export default {
         }
       }
     },
+    itemsFilter() {
+      if (this.type === 'task') {
+        if (this.tag) {
+          return this.tasks.filter(
+            item => item.tags && item.tags.includes(this.tag)
+          )
+        } else if (this.searchFilter) {
+          return this.tasks.filter(item =>
+            item.title.toUpperCase().includes(this.searchFilter.toUpperCase())
+          )
+        } else {
+          return this.items
+        }
+      } else {
+        return this.items
+      }
+    },
     itemsSort() {
-      return sortMethod(this.items, 'asc', 'position')
+      return sortMethod(this.itemsFilter, 'asc', 'position')
     },
     currentItemId() {
       switch (this.type) {
