@@ -121,6 +121,7 @@
 </template>
 
 <script>
+import { dataModels } from './../../data/dataModels'
 import BtnSelectView from './../buttons/BtnSelectView.vue'
 import BtnLogOut from './../buttons/BtnLogOut.vue'
 import BtnUser from './../buttons/BtnUser.vue'
@@ -155,6 +156,10 @@ export default {
       this.$store.commit('setAppMode', appMode)
       this.$store.commit('setItemId', { type: 'task', id: '' })
       this.$store.commit('setItem', { type: 'task', item: null })
+      this.$store.dispatch('getAllItemsRT', {
+        currentUserId: this.currentUserId,
+        appMode
+      })
     },
     logOut() {
       this.$store.commit('setItem', { type: 'task', item: null })

@@ -1,5 +1,4 @@
-//import getWeek from './../../helpers/getWeek'
-//import getYearEnd from './../../helpers/getYearEnd'
+import { dataModels } from './../../data/dataModels'
 import fireApp from './../../firebase'
 import { getDatabase, ref, set, onValue, update, remove, query, orderByChild, equalTo, limitToLast } from 'firebase/database'
 const db = getDatabase(fireApp)
@@ -20,6 +19,13 @@ export default {
     },
   },
   actions: {
+    getAllItemsRT({ dispatch }, { currentUserId, appMode }) {
+      dataModels.forEach(element => {
+        if (element.appMode === appMode) {
+          dispatch('getItemsRT', { type: element.type, currentUserId, appMode })
+        }
+      })
+    },
     async removeItemRT({ commit }, { item, currentUserId, appMode }) {
       try {
         commit('updateLoadingStatusRT', true)
@@ -42,14 +48,9 @@ export default {
     // Получение Универсальное
     getItemsRT({ commit }, { type, currentUserId, appMode }) {
       try {
-        console.log('getItemsRT() appMode ', appMode)
+        //console.log('getItemsRT() appMode ', appMode)
         commit('updateLoadingStatusRT', true)
         let itemsRef
-        // if (limit) {
-        //   itemsRef = query(ref(db, type), orderByChild('dateCreate'), limitToLast(limit))
-        // } else {
-        //   itemsRef = query(ref(db, type), orderByChild('dateCreate'))
-        // }
 
         itemsRef = query(ref(db, currentUserId + '/' + appMode + '/' + type), orderByChild('dateCreate'))
 
@@ -87,17 +88,5 @@ export default {
 
     childrenItems: state => (type, parentId) => state[type].filter(item => item.parentId === parentId),
     childrenItemsLength: state => (type, parentId) => state[type].filter(item => item.parentId === parentId).length
-
-    // serialNumber: state => {
-    //   let number = +state.order.filter(item => item.dateCreateWeek === getWeek()).length + 1 || 1
-    //   if (number < 10) {
-    //     number = '0' + number
-    //   } else if (number < 100) {
-    //     number = '' + number
-    //   }
-    //   return getYearEnd() + getWeek() + number
-    // },
-
-    // parentOrder: state => id => state.task.find(item => item.id === id) || false
   }
 }

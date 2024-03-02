@@ -12,8 +12,6 @@ const auth = getAuth(fireApp)
 
 let app
 
-import { dataModels } from './data/dataModels'
-
 onAuthStateChanged(auth, (user) => {
   if (!app) {
     app = createApp(App).use(store).mount('#app')
@@ -24,9 +22,7 @@ onAuthStateChanged(auth, (user) => {
     store.commit('setCurrentUserId', user.uid)
     store.commit('setCurrentUserEmail', user.email)
 
-    dataModels.forEach(element => {
-      store.dispatch('getItemsRT', { type: element.type, currentUserId: user.uid, appMode: store.getters.appMode })
-    })
+    store.dispatch('getAllItemsRT', { currentUserId: user.uid, appMode: store.getters.appMode })
   } else {
     console.log('main.js: Пользователь не авторизован. user = ', user)
     store.commit('setCurrentUserId', '')
