@@ -159,6 +159,8 @@ export default {
     },
     setAppMode(appMode) {
       this.$store.commit('setAppMode', appMode)
+      this.$store.commit('setItemId', { type: 'direction', id: '' })
+      this.$store.commit('setItemId', { type: 'project', id: '' })
       this.$store.commit('setItemId', { type: 'task', id: '' })
       this.$store.commit('setItem', { type: 'task', item: null })
       this.$store.dispatch('getAllItemsRT', {
