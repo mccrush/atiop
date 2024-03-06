@@ -21,7 +21,6 @@
         class="cursor-default list-group-item lh-1 d-flex justify-content-between align-items-strache ps-2 ps-xxl-3 pe-1 pe-xxl-2"
         :class="{ active: item.id === currentItemId }"
         @click="setItemId(item)"
-        @dblclick="editItem(item)"
       >
         <!-- <input
           v-if="type === 'task'"
