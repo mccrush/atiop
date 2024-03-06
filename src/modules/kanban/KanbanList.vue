@@ -1,5 +1,5 @@
 <template>
-  <div class="col-3 rounded p-2 ms-3">
+  <div class="col-3 rounded p-2 ms-2">
     <h5>{{ project.title }}</h5>
     <div>
       <KanbanCard v-for="task in tasks" :key="task" :task="task" />

@@ -75,7 +75,7 @@
       </div>
 
       <div
-        v-if="currentUserId && appMode === 'tasks'"
+        v-if="currentUserId && appMode === 'tasks' && mainView === 'list'"
         class="btn-group ms-2"
         role="group"
         aria-label="Select view"
