@@ -12,6 +12,7 @@ export default {
     taskId: localStorage.getItem('at-taskId') || '',
     item: JSON.parse(localStorage.getItem('at-item')) || null,
     view: localStorage.getItem('at-view') || 'all',
+    mainView: localStorage.getItem('at-mainView') || 'classic',
     appMode: localStorage.getItem('at-appMode') || 'task',
     tag: JSON.parse(localStorage.getItem('at-tag')) || null,
   },
@@ -44,6 +45,10 @@ export default {
     setView(state, view) {
       state.view = view
       localStorage.setItem('at-view', view)
+    },
+    setMainView(state, mainView) {
+      state.mainView = mainView
+      localStorage.setItem('at-mainView', mainView)
     },
     setAppMode(state, appMode) {
       state.appMode = appMode
@@ -112,6 +117,7 @@ export default {
     taskId: state => state.taskId,
     item: state => state.item,
     view: state => state.view,
+    mainView: state => state.mainView,
     appMode: state => state.appMode,
     tag: state => state.tag
   }
