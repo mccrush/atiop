@@ -53,6 +53,27 @@
           @click="setAppMode('notes')"
         />
       </div>
+
+      <div
+        v-if="currentUserId"
+        class="btn-group ms-2"
+        role="group"
+        aria-label="Select appMode"
+      >
+        <BtnSelectView
+          class="btn-sm ps-3 pe-3"
+          :class="{ active: mainView === 'list' }"
+          title="Списки"
+          @click="setMainView('list')"
+        />
+        <BtnSelectView
+          class="btn-sm ps-3 pe-3"
+          :class="{ active: mainView === 'kanban' }"
+          title="Канбан"
+          @click="setMainView('kanban')"
+        />
+      </div>
+
       <div
         v-if="currentUserId && appMode === 'tasks'"
         class="btn-group ms-2"
@@ -147,11 +168,17 @@ export default {
     view() {
       return this.$store.getters.view
     },
+    mainView() {
+      return this.$store.getters.mainView
+    },
     loadingRT() {
       return this.$store.getters.loadingRT
     }
   },
   methods: {
+    setMainView(mainView) {
+      this.$store.commit('setMainView', mainView)
+    },
     setView(view) {
       this.$store.commit('setView', view)
       this.$store.commit('setItemId', { type: 'task', id: '' })
