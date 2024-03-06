@@ -34,12 +34,12 @@
 
 <script>
 import BtnNavigation from './../components/buttons/BtnNavigation.vue'
-import CoverListDirections from './../modules/web/CoverListDirections.vue'
-import CoverListTasks from './../modules/web/CoverListTasks.vue'
-import CoverListLostday from './../modules/web/CoverListLostday.vue'
-import CoverListToday from './../modules/web/CoverListToday.vue'
-import CoverListComingday from './../modules/web/CoverListComingday.vue'
-import CoverCardMobile from './../modules/web/CoverCardMobile.vue'
+import CoverListDirections from './../modules/list/CoverListDirections.vue'
+import CoverListTasks from './../modules/list/CoverListTasks.vue'
+import CoverListLostday from './../modules/list/CoverListLostday.vue'
+import CoverListToday from './../modules/list/CoverListToday.vue'
+import CoverListComingday from './../modules/list/CoverListComingday.vue'
+import CoverCardMobile from './../modules/list/CoverCardMobile.vue'
 
 export default {
   components: {
