@@ -44,9 +44,16 @@
             v-if="item.dateReminde"
             >{{ getLocaleDateFromDateDigit(item.dateReminde) }}</span
           >
-          <span v-if="item.price" class="badge text-bg-success me-1">{{
-            item.price
-          }}</span>
+          <span
+            v-if="item.type === 'task' && item.price"
+            class="badge text-bg-success me-1"
+            >{{ item.price }}</span
+          >
+          <span
+            v-if="item.type === 'task' && item.minutes"
+            class="badge text-bg-secondary me-1"
+            >{{ item.minutes }}</span
+          >
           <span class="badge text-bg-light">{{
             getChildrenItemsLength(item.id)
           }}</span>

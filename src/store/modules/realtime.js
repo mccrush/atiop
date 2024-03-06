@@ -37,9 +37,11 @@ export default {
       }
     },
     async updateItemRT({ commit }, { item, currentUserId, appMode }) {
+
       try {
         commit('updateLoadingStatusRT', true)
         await update(ref(db, currentUserId + '/' + appMode + '/' + item.type + '/' + item.id), item)
+        console.log('updateItemRT() item.id', item.id)
         commit('updateLoadingStatusRT', false)
       } catch (error) {
         console.error('error realtime.js updateItemRT()', error)

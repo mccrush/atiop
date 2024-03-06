@@ -7,7 +7,7 @@
           class="form-control bg-white"
           name="itemTitle"
           v-model.trim="item.title"
-          @blur="saveItem"
+          @change="saveItem"
         />
       </div>
       <div class="col-2 col-md-2">
@@ -23,8 +23,51 @@
         :initialValue="item.description"
         :init="conf"
         v-model="item.description"
-        @blur="saveItem"
+        @change="saveItem"
       />
+    </div>
+
+    <div v-if="appMode === 'tasks'" class="row">
+      <div class="col-4 col-md-2 pe-0">
+        <input
+          type="number"
+          class="form-control bg-white mt-3"
+          name="itemPosition"
+          v-model.number="item.position"
+          @change="saveItem"
+        />
+      </div>
+      <div class="col-4 col-md-2 pe-md-0">
+        <input
+          type="number"
+          class="form-control bg-white mt-3"
+          name="itemPrice"
+          min="0"
+          step="10"
+          v-model.number="item.price"
+          @change="saveItem"
+        />
+      </div>
+      <div class="col-4 col-md-2 pe-md-0">
+        <input
+          type="number"
+          class="form-control bg-white mt-3"
+          name="itemMinutes"
+          min="0"
+          step="5"
+          v-model.number="item.minutes"
+          @change="saveItem"
+        />
+      </div>
+      <div class="col-12 col-md-6">
+        <input
+          type="datetime-local"
+          class="form-control mt-3"
+          name="itemDateremind"
+          v-model="item.dateReminde"
+          @change="saveItem"
+        />
+      </div>
     </div>
 
     <div v-if="appMode === 'notes'" class="row mt-2 ps-md-0 pe-2 pe-md-0">
