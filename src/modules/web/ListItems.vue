@@ -110,25 +110,24 @@ export default {
     itemsFilter() {
       if (this.type === 'task') {
         if (this.tag) {
-          return this.tasks.filter(item => {
-            let arr = []
-            if (item.tags && item.tags.length) {
-              item.tags.forEach(el => {
-                // console.log(
-                //   'el.title.includes(this.tag.title) = ',
-                //   el.title.includes(this.tag.title)
-                // )
-                // if (el.title.includes(this.tag.title)) {
-                //   arr.push(item)
-                // }
-                if (el.id === this.tag.id) {
-                  arr.push(item)
-                }
-              })
-            }
-            console.log('arr = ', arr)
-            return arr
-          })
+          // let arr = []
+          // this.tasks.forEach(task => {
+          //   if (task.tags && task.tags.length) {
+          //     task.tags.forEach(el => {
+          //       if (el.id === this.tag.id) {
+          //         arr.push(task)
+          //       }
+          //     })
+          //   }
+          // })
+          // return arr
+
+          return this.tasks.filter(
+            task =>
+              task.tags &&
+              task.tags.length &&
+              task.tags.some(e => e.id === this.tag.id)
+          )
         } else if (this.searchFilter) {
           return this.tasks.filter(item =>
             item.title.toUpperCase().includes(this.searchFilter.toUpperCase())
