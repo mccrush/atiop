@@ -54,6 +54,8 @@
             class="badge text-bg-secondary me-1"
             >{{ item.minutes }}</span
           >
+          <!-- Для проектов выводить суммы денег и времени -->
+          <!-- В Канбан это будет выводиться в заголовке столбца -->
           <span class="badge text-bg-light">{{
             getChildrenItemsLength(item.id)
           }}</span>
