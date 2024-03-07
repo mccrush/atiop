@@ -13,7 +13,7 @@ export default {
     item: JSON.parse(localStorage.getItem('at-item')) || null,
     view: localStorage.getItem('at-view') || 'all',
     mainView: localStorage.getItem('at-mainView') || 'list',
-    appMode: localStorage.getItem('at-appMode') || 'task',
+    appMode: localStorage.getItem('at-appMode') || 'tasks',
     tag: JSON.parse(localStorage.getItem('at-tag')) || null,
   },
 

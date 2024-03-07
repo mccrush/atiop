@@ -30,7 +30,7 @@ export default {
     BtnAdd
   },
   props: {
-    type: String,
+    type: { type: String, default: 'direction' },
     parentId: String,
     searchFilter: { type: String, default: '' }
   },
@@ -44,13 +44,13 @@ export default {
     currentUserId() {
       return this.$store.getters.currentUserId
     },
+    appMode() {
+      return this.$store.getters.appMode
+    },
     getPlaceholder() {
       return dataModels.find(
         item => item.appMode === this.appMode && item.type === this.type
       ).title
-    },
-    appMode() {
-      return this.$store.getters.appMode
     }
   },
   methods: {
