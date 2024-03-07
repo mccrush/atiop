@@ -1,6 +1,6 @@
 <template>
   <button
-    class="btn btn-light w-100 mt-2 p-2"
+    class="btn btn-light w-100 mt-2 p-2 pb-1"
     data-bs-toggle="offcanvas"
     data-bs-target="#offcanvasForm"
     aria-controls="offcanvasForm"

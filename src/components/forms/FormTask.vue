@@ -76,8 +76,8 @@
       </div>
     </div>
 
-    <div v-if="appMode === 'notes'" class="row mt-2 ps-md-0 pe-2 pe-md-0">
-      <div class="col-6 col-md-7">
+    <div class="row mt-2 ps-md-0 pe-2 pe-md-0">
+      <div v-if="appMode === 'notes'" class="col-6 col-md-7">
         <div v-if="item.type === 'task'" class="d-flex p-1">
           <div class="dropdown">
             <button
@@ -101,7 +101,7 @@
           </div>
         </div>
       </div>
-      <div class="col-6 col-md-5 d-flex align-items-center ps-0">
+      <div class="col-6 col-md-6 d-flex align-items-center">
         <select
           v-if="item.type === 'task' || item.type === 'project'"
           class="form-select form-select-sm"
