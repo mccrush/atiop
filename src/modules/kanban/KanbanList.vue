@@ -1,5 +1,5 @@
 <template>
-  <div class="col-3 rounded p-2 ms-2">
+  <div class="col-3 col-xxl-2 rounded p-2 ms-2">
     <h6 class="fw-bold m-0">{{ project.title }}</h6>
     <div class="d-flex justify-content-end border-bottom pb-2">
       <span class="badge text-bg-light">{{ tasks.length }}</span>

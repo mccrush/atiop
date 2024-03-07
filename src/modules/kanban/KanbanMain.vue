@@ -1,13 +1,15 @@
 <template>
   <div class="row">
     <KanbanListDirections />
-    <div class="at-height-100 col-10 d-flex overflow-x-scroll ps-0 pt-2">
+    <div
+      class="at-height-100 col-10 col-lg-11 d-flex overflow-x-scroll ps-0 pt-2"
+    >
       <KanbanList
         v-for="project in projects"
         :key="project.id"
         :project="project"
       />
-      <div v-if="directionId" class="col-3 p-2 ms-2">
+      <div v-if="directionId" class="col-3 col-lg-2 p-2 ms-2">
         <BtnAddLight v-show="!createItem" @click="showAddForm" />
         <FormAddItem
           v-show="createItem"

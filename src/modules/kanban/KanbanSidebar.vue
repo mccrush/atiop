@@ -1,6 +1,6 @@
 <template>
   <div
-    class="offcanvas offcanvas-end border-0"
+    class="offcanvas offcanvas-end border-0 w-50"
     data-bs-theme="light"
     tabindex="-1"
     id="offcanvasForm"
