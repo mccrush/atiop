@@ -1,11 +1,5 @@
 <template>
-  <button
-    class="btn btn-light w-100 mt-2 p-2 pb-1"
-    data-bs-toggle="offcanvas"
-    data-bs-target="#offcanvasForm"
-    aria-controls="offcanvasForm"
-    @click="setItemId(item)"
-  >
+  <button class="btn btn-light w-100 mt-2 p-2 pb-1">
     <div class="text-start lh-1">{{ item.title }}</div>
     <div class="info-block d-flex align-items-center justify-content-end">
       <span
@@ -47,20 +41,6 @@ export default {
       } else {
         return 1
       }
-    },
-    setItemId(item) {
-      if (item.type === 'direction') {
-        this.$store.commit('setItemId', { type: 'project', id: '' })
-        this.$store.commit('setItemId', { type: 'task', id: '' })
-      }
-      if (item.type === 'project') {
-        this.$store.commit('setItemId', { type: 'task', id: '' })
-      }
-      if (item.type === 'task') {
-        this.$store.commit('setItemId', { type: 'project', id: item.parentId })
-      }
-      this.$store.commit('setItemId', { type: item.type, id: item.id })
-      this.$store.commit('setItem', { type: item.type, item })
     }
   }
 }

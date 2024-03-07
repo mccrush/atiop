@@ -1,6 +1,14 @@
 <template>
   <div class="col-3 col-xxl-2 rounded p-2 ms-2">
-    <h6 class="fw-bold m-0">{{ project.title }}</h6>
+    <h6
+      class="cursor-pointer fw-bold m-0"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasForm"
+      aria-controls="offcanvasForm"
+      @click="setItemId(project)"
+    >
+      {{ project.title }}
+    </h6>
     <div class="d-flex justify-content-end border-bottom pb-2">
       <span class="badge text-bg-light">{{ tasks.length }}</span>
       <span v-if="taskMoneySum" class="badge bg-light text-success ms-1">{{
@@ -11,7 +19,15 @@
       }}</span>
     </div>
     <div>
-      <KanbanCard v-for="task in itemsSort" :key="task" :item="task" />
+      <KanbanCard
+        v-for="task in itemsSort"
+        :key="task"
+        :item="task"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasForm"
+        aria-controls="offcanvasForm"
+        @click="setItemId(task)"
+      />
     </div>
     <div class="pt-2">
       <BtnAddLight v-show="!createItem" @click="showAddForm" />
@@ -71,7 +87,12 @@ export default {
   },
   methods: {
     setItemId(item) {
-      this.$store.commit('setItemId', { type: 'project', id: item.parentId })
+      if (item.type === 'project') {
+        this.$store.commit('setItemId', { type: 'task', id: '' })
+      }
+      if (item.type === 'task') {
+        this.$store.commit('setItemId', { type: 'project', id: item.parentId })
+      }
       this.$store.commit('setItemId', { type: item.type, id: item.id })
       this.$store.commit('setItem', { type: item.type, item })
     },
