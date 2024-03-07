@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="col-3 col-xxl-2 pt-3">
     <FormSearchItem @update-search="updateSearch" />
     <FormAddItem
       type="task"

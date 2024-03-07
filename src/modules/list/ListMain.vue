@@ -1,13 +1,13 @@
 <template>
-  <div class="row pt-3">
+  <div class="row">
     <div class="d-none d-xxl-block col-2"></div>
-    <CoverListDirections v-if="view === 'all'" class="col-3 col-xxl-2" />
-    <CoverListTasks v-if="view === 'all'" class="col-3 col-xxl-2" />
-    <CoverListLostday v-if="view === 'date'" class="col-3 col-xxl-2" />
-    <CoverListToday v-if="view === 'date'" class="col-3 col-xxl-2" />
+    <CoverListDirections v-if="view === 'all'" />
+    <CoverListTasks v-if="view === 'all'" />
+    <CoverListLostday v-if="view === 'date'" />
+    <CoverListToday v-if="view === 'date'" />
     <div v-if="view === 'coming'" class="col-3 col-xxl-2"></div>
-    <CoverListComingday v-if="view === 'coming'" class="col-3 col-xxl-2" />
-    <CoverCard class="col-6 col-xxl-4" />
+    <CoverListComingday v-if="view === 'coming'" />
+    <CoverCard />
   </div>
 </template>
 

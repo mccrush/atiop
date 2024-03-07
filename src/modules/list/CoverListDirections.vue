@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="at-height-100 col-3 col-xxl-2 pt-3 pb-4 overflow-y-auto">
     <FormAddItem type="direction" />
 
     <ListItems
@@ -34,3 +34,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.at-height-100 {
+  height: calc(100svh - 70px);
+}
+</style>
