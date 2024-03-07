@@ -1,5 +1,5 @@
 <template>
-  <div class="col-3 col-xxl-2 rounded p-2 ms-2">
+  <div class="col-md-4 col-lg-3 col-xxl-2 rounded p-2 ms-1">
     <h6
       class="cursor-pointer fw-bold m-0"
       data-bs-toggle="offcanvas"
@@ -18,7 +18,7 @@
         taskMoneyTime
       }}</span>
     </div>
-    <div>
+    <div class="at-height-100 overflow-y-auto">
       <KanbanCard
         v-for="task in itemsSort"
         :key="task"
@@ -28,17 +28,17 @@
         aria-controls="offcanvasForm"
         @click="setItemId(task)"
       />
-    </div>
-    <div class="pt-2">
-      <BtnAddLight v-show="!createItem" @click="showAddForm" />
-      <FormAddItem
-        v-show="createItem"
-        type="task"
-        ref="addForm"
-        :parentId="project.id"
-        @set-item-id="setItemId"
-        @hide-add-form="createItem = false"
-      />
+      <div class="pt-2">
+        <BtnAddLight v-show="!createItem" @click="showAddForm" />
+        <FormAddItem
+          v-show="createItem"
+          type="task"
+          ref="addForm"
+          :parentId="project.id"
+          @set-item-id="setItemId"
+          @hide-add-form="createItem = false"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -103,3 +103,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.at-height-100 {
+  height: calc(100svh - 164px);
+}
+</style>
