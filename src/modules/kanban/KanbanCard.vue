@@ -1,12 +1,12 @@
 <template>
   <button
-    class="btn btn-light w-100 mt-2 p-1"
+    class="btn btn-light w-100 mt-2 p-2"
     data-bs-toggle="offcanvas"
     data-bs-target="#offcanvasForm"
     aria-controls="offcanvasForm"
     @click="setItemId(item)"
   >
-    <h6 class="text-start">{{ item.title }}</h6>
+    <div class="text-start lh-1">{{ item.title }}</div>
     <div class="info-block d-flex align-items-center justify-content-end">
       <span
         class="badge"

@@ -15,7 +15,7 @@
           <BtnTrash
             class="btn-sm w-100"
             @click="removeItem(item)"
-            data-bs-dismiss="offcanvas"
+            :data-bs-dismiss="mainView === 'kanban' ? 'offcanvas' : ''"
           />
         </div>
       </div>
@@ -154,6 +154,9 @@ export default {
     },
     appMode() {
       return this.$store.getters.appMode
+    },
+    mainView() {
+      return this.$store.getters.mainView
     },
     parentItems() {
       if (this.item.type === 'task') {
