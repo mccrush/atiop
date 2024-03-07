@@ -4,6 +4,7 @@
       v-for="direction in directions"
       :key="direction.id"
       class="btn btn-light btn-sm lh-1 mt-2 w-100"
+      :class="{ active: direction.id === directionId }"
       @click="setItemId(direction)"
     >
       {{ direction.title }}
@@ -38,6 +39,9 @@ export default {
   computed: {
     directions() {
       return this.$store.getters.direction
+    },
+    directionId() {
+      return this.$store.getters.directionId
     }
   },
   methods: {
