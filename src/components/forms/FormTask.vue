@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="row ps-2 ps-md-0 pe-2 pe-md-0">
+    <div class="row ps-md-0 pe-md-0">
       <div class="col-10 col-md-10 pe-0">
         <input
           type="text"
@@ -37,7 +37,7 @@
           @change="saveItem"
         />
       </div>
-      <div class="col-4 col-md-2 pe-md-0">
+      <div class="col-4 col-md-2 ps-md-1 pe-md-0">
         <input
           v-if="item.type === 'task'"
           type="number"
@@ -49,7 +49,7 @@
           @change="saveItem"
         />
       </div>
-      <div class="col-4 col-md-2 pe-md-0">
+      <div class="col-4 col-md-2 ps-md-1 pe-md-0">
         <input
           v-if="item.type === 'task'"
           type="number"

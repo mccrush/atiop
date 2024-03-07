@@ -45,12 +45,12 @@
           >
           <span
             v-if="item.type === 'task' && item.price"
-            class="badge text-bg-success me-1"
+            class="badge bg-light text-success me-1"
             >{{ item.price }}</span
           >
           <span
             v-if="item.type === 'task' && item.minutes"
-            class="badge text-bg-secondary me-1"
+            class="badge bg-light text-secondary me-1"
             >{{ item.minutes }}</span
           >
           <!-- Для проектов выводить суммы денег и времени -->

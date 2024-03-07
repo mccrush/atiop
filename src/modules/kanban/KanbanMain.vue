@@ -10,17 +10,20 @@
         />
       </div>
     </div>
+    <KanbanSidebar />
   </div>
 </template>
 
 <script>
 import KanbanListDirections from './KanbanListDirections.vue'
 import KanbanList from './KanbanList.vue'
+import KanbanSidebar from './KanbanSidebar.vue'
 
 export default {
   components: {
     KanbanListDirections,
-    KanbanList
+    KanbanList,
+    KanbanSidebar
   },
   computed: {
     directionId() {
