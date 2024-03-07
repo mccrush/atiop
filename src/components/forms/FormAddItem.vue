@@ -30,7 +30,7 @@ export default {
   props: {
     type: String,
     parentId: String,
-    searchFilter: String
+    searchFilter: { type: String, default: '' }
   },
   emits: ['set-item-id'],
   data() {
