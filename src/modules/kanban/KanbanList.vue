@@ -14,12 +14,14 @@
       <KanbanCard v-for="task in tasks" :key="task" :item="task" />
     </div>
     <div class="pt-2">
-      <BtnAddLight v-if="!createItem" @click="createItem = true" />
+      <BtnAddLight v-show="!createItem" @click="showAddForm" />
       <FormAddItem
-        v-if="createItem"
+        v-show="createItem"
         type="task"
+        ref="addForm"
         :parentId="project.id"
         @set-item-id="setItemId"
+        @hide-add-form="createItem = false"
       />
     </div>
   </div>
@@ -68,6 +70,10 @@ export default {
       this.$store.commit('setItemId', { type: 'project', id: item.parentId })
       this.$store.commit('setItemId', { type: item.type, id: item.id })
       this.$store.commit('setItem', { type: item.type, item })
+    },
+    showAddForm() {
+      this.createItem = true
+      this.$refs.addForm.setFocus()
     }
   }
 }

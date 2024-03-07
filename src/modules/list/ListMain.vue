@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row pt-3">
     <div class="d-none d-xxl-block col-2"></div>
     <CoverListDirections v-if="view === 'all'" class="col-3 col-xxl-2" />
     <CoverListTasks v-if="view === 'all'" class="col-3 col-xxl-2" />

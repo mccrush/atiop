@@ -2,7 +2,7 @@
   <div>
     <TheNavbar />
     <TheSidebar />
-    <div class="container-fluid pt-3 pb-5">
+    <div class="container-fluid pt-0">
       <component :is="component" />
     </div>
     <TheFooter />

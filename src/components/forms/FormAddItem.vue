@@ -2,6 +2,7 @@
   <div class="input-group input-group-sm">
     <input
       type="text"
+      ref="inputForm"
       class="form-control"
       aria-describedby="addButton"
       :name="'id' + type"
@@ -12,6 +13,7 @@
       "
       v-model="title"
       @keyup.enter="createItem"
+      @blur="hideAddForm"
     />
     <BtnAdd @click="createItem" />
   </div>
@@ -32,7 +34,7 @@ export default {
     parentId: String,
     searchFilter: { type: String, default: '' }
   },
-  emits: ['set-item-id'],
+  emits: ['set-item-id', 'hide-add-form'],
   data() {
     return {
       title: ''
@@ -67,6 +69,17 @@ export default {
 
         this.$emit('set-item-id', item)
       }
+    },
+    hideAddForm() {
+      if (!this.title) {
+        this.$emit('hide-add-form')
+      }
+    },
+    setFocus() {
+      this.$nextTick(() => {
+        const inputForm = this.$refs.inputForm
+        inputForm.focus()
+      })
     }
   }
 }

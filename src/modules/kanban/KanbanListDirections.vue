@@ -1,5 +1,5 @@
 <template>
-  <div class="col-2 col-lg-1">
+  <div class="at-height-100 col-2 col-lg-1 shadow-sm">
     <button
       v-for="direction in directions"
       :key="direction.id"
@@ -28,3 +28,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.at-height-100 {
+  height: calc(100svh - 53px);
+}
+</style>
