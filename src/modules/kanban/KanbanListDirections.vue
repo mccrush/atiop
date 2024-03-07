@@ -8,11 +8,33 @@
     >
       {{ direction.title }}
     </button>
+    <div class="mt-2">
+      <BtnAddLight v-show="!createItem" @click="showAddForm" />
+      <FormAddItem
+        v-show="createItem"
+        type="direction"
+        ref="addForm"
+        @set-item-id="setItemId"
+        @hide-add-form="createItem = false"
+      />
+    </div>
   </div>
 </template>
 
 <script>
+import BtnAddLight from './../../components/buttons/BtnAddLight.vue'
+import FormAddItem from './../../components/forms/FormAddItem.vue'
+
 export default {
+  components: {
+    BtnAddLight,
+    FormAddItem
+  },
+  data() {
+    return {
+      createItem: false
+    }
+  },
   computed: {
     directions() {
       return this.$store.getters.direction
@@ -24,6 +46,10 @@ export default {
       this.$store.commit('setItemId', { type: 'task', id: '' })
       this.$store.commit('setItemId', { type: item.type, id: item.id })
       this.$store.commit('setItem', { type: item.type, item })
+    },
+    showAddForm() {
+      this.createItem = true
+      this.$refs.addForm.setFocus()
     }
   }
 }

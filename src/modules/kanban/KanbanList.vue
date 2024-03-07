@@ -11,7 +11,7 @@
       }}</span>
     </div>
     <div>
-      <KanbanCard v-for="task in tasks" :key="task" :item="task" />
+      <KanbanCard v-for="task in itemsSort" :key="task" :item="task" />
     </div>
     <div class="pt-2">
       <BtnAddLight v-show="!createItem" @click="showAddForm" />
@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import { sortMethod } from './../../helpers/sortMethod'
 import KanbanCard from './KanbanCard.vue'
 import BtnAddLight from './../../components/buttons/BtnAddLight.vue'
 import FormAddItem from './../../components/forms/FormAddItem.vue'
@@ -57,6 +58,9 @@ export default {
         )
       }
       return []
+    },
+    itemsSort() {
+      return sortMethod(this.tasks, 'asc', 'position')
     },
     taskMoneySum() {
       return this.tasks.reduce((sum, item) => sum + item.price, 0)

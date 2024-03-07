@@ -7,7 +7,7 @@
         :key="project.id"
         :project="project"
       />
-      <div class="col-3">
+      <div class="col-3 p-2 ms-2">
         <BtnAddLight v-show="!createItem" @click="showAddForm" />
         <FormAddItem
           v-show="createItem"

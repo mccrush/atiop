@@ -1,10 +1,10 @@
-// v2.1
+// v2.2
 // Это вторая улучшенная версия метода сортировки, универсальная
 
-const numberFields = ['position', 'price', 'sum', 'time', 'power', 'square', 'weight', 'metall']
+const numberFields = ['position', 'price', 'sum', 'time', 'power', 'square', 'weight', 'metall', 'minutes']
 const stringFields = ['title', 'client', 'name', 'city', 'phone', 'typek', 'sours']
 const stringFieldsNested = ['client.name']
-const dateFields = ['dateCreate', 'deadline', 'dateForReady', 'dateFinish']
+const dateFields = ['dateCreate', 'deadline', 'dateForReady', 'dateFinish', 'dateReminde']
 
 export const sortMethod = (array, sortUp = 'desc', sortBy = 'dateCreate') => {
   return array.sort((a, b) => {
