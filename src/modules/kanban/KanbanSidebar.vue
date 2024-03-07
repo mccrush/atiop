@@ -16,7 +16,7 @@
       ></button>
     </div> -->
     <div class="offcanvas-body overflow-hidden p-0 pt-3 pb-2">
-      <FormTask :item="item" />
+      <FormTask v-if="item" :item="item" />
     </div>
   </div>
 </template>

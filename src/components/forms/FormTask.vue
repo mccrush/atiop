@@ -12,7 +12,11 @@
       </div>
       <div class="col-2 col-md-2">
         <div class="d-flex justify-content-end pt-1">
-          <BtnTrash class="btn-sm w-100" @click="removeItem(item)" />
+          <BtnTrash
+            class="btn-sm w-100"
+            @click="removeItem(item)"
+            data-bs-dismiss="offcanvas"
+          />
         </div>
       </div>
     </div>
