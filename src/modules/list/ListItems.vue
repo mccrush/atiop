@@ -2,12 +2,12 @@
   <div class="mt-3">
     <div
       v-if="directionItem"
-      class="fw-bold cursor-default"
+      class="cursor-default"
       @click="setItemId(directionItem)"
     >
       {{ title }}
     </div>
-    <div v-else class="fw-bold">{{ title }}</div>
+    <div v-else class="">{{ title }}</div>
     <FormAddItem
       v-if="type === 'project' && parentId === directionId"
       type="project"
@@ -35,27 +35,27 @@
           class="info-block d-flex align-items-start justify-content-between"
         >
           <span
-            class="badge me-1"
+            class="badge fw-normal me-1"
             :class="{
               'text-bg-warning': dayDifference(item.dateReminde) < 1,
-              'text-bg-light': dayDifference(item.dateReminde) >= 1
+              'text-bg-dark': dayDifference(item.dateReminde) >= 1
             }"
             v-if="item.dateReminde"
             >{{ getLocaleDateFromDateDigit(item.dateReminde) }}</span
           >
           <span
             v-if="item.type === 'task' && item.price"
-            class="badge bg-light text-success me-1"
+            class="badge bg-dark text-success me-1"
             >{{ item.price }}</span
           >
           <span
             v-if="item.type === 'task' && item.minutes"
-            class="badge bg-light text-secondary me-1"
+            class="badge bg-dark text-secondary me-1"
             >{{ item.minutes }}</span
           >
           <!-- Для проектов выводить суммы денег и времени -->
           <!-- В Канбан это будет выводиться в заголовке столбца -->
-          <span class="badge text-bg-light">{{
+          <span class="badge text-bg-dark">{{
             getChildrenItemsLength(item.id)
           }}</span>
         </div>

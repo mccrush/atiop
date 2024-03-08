@@ -1,6 +1,6 @@
 <template>
   <div
-    class="at-z-2 small bg-dark text-center position-fixed bottom-0 z-5 w-100 p-1 ps-2"
+    class="at-z-2 small bg-dark text-center border-top position-fixed bottom-0 z-5 w-100 p-1 ps-2"
   >
     <code class="text-light">v{{ version }}</code>
     <code class="text-secondary"> from </code>

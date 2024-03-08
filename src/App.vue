@@ -81,11 +81,12 @@ export default {
 .btn-check:focus + .btn-outline-dark,
 .form-control:focus,
 .form-select:focus,
+.form-select:active,
 .accordion-button:focus,
 .navbar-toggler:focus {
   outline: 0 !important;
   box-shadow: none !important;
-  /* border-color: #dee2e6; */
+  border-color: #495057;
 }
 
 .cursor-pointer,

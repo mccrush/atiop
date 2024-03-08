@@ -1,5 +1,5 @@
 <template>
-  <button class="btn btn-light text-secondary">{{ title }}</button>
+  <button class="btn btn-dark">{{ title }}</button>
 </template>
 
 <script>

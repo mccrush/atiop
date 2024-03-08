@@ -4,7 +4,7 @@
       <div class="col-10 col-md-10 pe-0">
         <input
           type="text"
-          class="form-control bg-white"
+          class="form-control"
           name="itemTitle"
           v-model.trim="item.title"
           @change="saveItem"
@@ -35,7 +35,7 @@
       <div class="col-4 col-md-2 pe-0">
         <input
           type="number"
-          class="form-control bg-white mt-3"
+          class="form-control mt-3"
           name="itemPosition"
           v-model.number="item.position"
           @change="saveItem"
@@ -45,7 +45,7 @@
         <input
           v-if="item.type === 'task'"
           type="number"
-          class="form-control bg-white mt-3"
+          class="form-control mt-3"
           name="itemPrice"
           min="0"
           step="10"
@@ -57,7 +57,7 @@
         <input
           v-if="item.type === 'task'"
           type="number"
-          class="form-control bg-white mt-3"
+          class="form-control mt-3"
           name="itemMinutes"
           min="0"
           step="5"
@@ -81,7 +81,7 @@
         <div v-if="item.type === 'task'" class="d-flex p-1">
           <div class="dropdown">
             <button
-              class="btn btn-sm btn-light text-muted me-2 ps-2 pe-2"
+              class="btn btn-sm btn-dark text-secondary me-2 ps-2 pe-2"
               data-bs-toggle="dropdown"
             >
               +
@@ -93,7 +93,7 @@
             <button
               v-for="tag in item.tags"
               :key="tag.id"
-              class="btn btn-sm btn-light text-muted me-2 ps-2 pe-2"
+              class="btn btn-sm btn-dark text-secondary me-2 ps-2 pe-2"
               @click="setTagFilter(tag)"
             >
               {{ tag.title }}
@@ -144,7 +144,9 @@ export default {
         plugins: 'lists link table code wordcount',
         toolbar:
           'bold forecolor link numlist bullist alignleft aligncenter table code removeformat',
-        height: '70vh'
+        height: '70vh',
+        skin: 'oxide-dark',
+        content_css: 'dark'
       }
     }
   },

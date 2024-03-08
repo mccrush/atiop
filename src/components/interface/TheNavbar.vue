@@ -104,7 +104,7 @@
       <a
         href="https://doc.atiop.ru/"
         target="_blank"
-        class="btn btn-sm btn-light text-secondary d-none d-sm-block ps-2 pe-2 me-2"
+        class="btn btn-sm btn-dark text-secondary d-none d-sm-block ps-2 pe-2 me-2"
         title="Руководство"
         >Руководство ⇗</a
       >
