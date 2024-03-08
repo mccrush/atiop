@@ -45,17 +45,17 @@
           >
           <span
             v-if="item.type === 'task' && item.price"
-            class="badge bg-dark text-success me-1"
+            class="badge bg-dark fw-normal text-success me-1"
             >{{ item.price }}</span
           >
           <span
             v-if="item.type === 'task' && item.minutes"
-            class="badge bg-dark text-secondary me-1"
+            class="badge bg-dark fw-normal text-secondary me-1"
             >{{ item.minutes }}</span
           >
           <!-- Для проектов выводить суммы денег и времени -->
           <!-- В Канбан это будет выводиться в заголовке столбца -->
-          <span class="badge text-bg-dark">{{
+          <span class="badge fw-normal text-bg-dark">{{
             getChildrenItemsLength(item.id)
           }}</span>
         </div>

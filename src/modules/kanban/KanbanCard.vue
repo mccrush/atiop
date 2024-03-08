@@ -1,23 +1,27 @@
 <template>
-  <button class="btn btn-light w-100 mt-2 p-2 pb-1">
+  <button class="btn btn-dark w-100 mt-2 p-2 pb-1">
     <div class="text-start lh-1">{{ item.title }}</div>
     <div class="info-block d-flex align-items-center justify-content-end">
       <span
-        class="badge"
+        class="badge fw-normal"
         :class="{
           'text-bg-warning': dayDifference(item.dateReminde) < 1,
-          'text-bg-light': dayDifference(item.dateReminde) >= 1
+          'text-bg-dark': dayDifference(item.dateReminde) >= 1
         }"
         v-if="item.dateReminde"
         >{{ getLocaleDateFromDateDigit(item.dateReminde) }}</span
       >
 
-      <span v-if="item.price" class="badge bg-light text-success ms-1 p-1">{{
-        item.price
-      }}</span>
-      <span v-if="item.minutes" class="badge bg-light text-secondary ms-1">{{
-        item.minutes
-      }}</span>
+      <span
+        v-if="item.price"
+        class="badge bg-dark fw-normal text-success ms-1 p-1"
+        >{{ item.price }}</span
+      >
+      <span
+        v-if="item.minutes"
+        class="badge bg-dark fw-normal text-secondary ms-1"
+        >{{ item.minutes }}</span
+      >
     </div>
   </button>
 </template>

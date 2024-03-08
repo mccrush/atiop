@@ -1,7 +1,7 @@
 <template>
   <div class="col-md-4 col-lg-3 col-xxl-2 rounded p-2 ms-1">
     <h6
-      class="cursor-pointer fw-bold m-0"
+      class="cursor-pointer m-0"
       data-bs-toggle="offcanvas"
       data-bs-target="#offcanvasForm"
       aria-controls="offcanvasForm"
@@ -10,13 +10,17 @@
       {{ project.title }}
     </h6>
     <div class="d-flex justify-content-end border-bottom pb-2">
-      <span class="badge text-bg-light">{{ tasks.length }}</span>
-      <span v-if="taskMoneySum" class="badge bg-light text-success ms-1">{{
-        taskMoneySum
-      }}</span>
-      <span v-if="taskMoneyTime" class="badge bg-light text-secondary ms-1">{{
-        taskMoneyTime
-      }}</span>
+      <span class="badge fw-normal text-bg-dark">{{ tasks.length }}</span>
+      <span
+        v-if="taskMoneySum"
+        class="badge bg-dark fw-normal text-success ms-1"
+        >{{ taskMoneySum }}</span
+      >
+      <span
+        v-if="taskMoneyTime"
+        class="badge bg-dark fw-normal text-secondary ms-1"
+        >{{ taskMoneyTime }}</span
+      >
     </div>
     <div class="at-height-100 overflow-y-auto">
       <KanbanCard
