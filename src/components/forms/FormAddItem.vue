@@ -15,7 +15,7 @@
       @keyup.enter="createItem"
       @blur="hideAddForm"
     />
-    <BtnAdd @click="createItem" />
+    <BtnAdd @click="createItem" class="border" />
   </div>
 </template>
 

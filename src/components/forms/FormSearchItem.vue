@@ -22,7 +22,7 @@
       v-model="searchFilter"
       @keyup="$emit('update-search', searchFilter)"
     />
-    <BtnBackspace @click="clearSearch" />
+    <BtnBackspace @click="clearSearch" class="border" />
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="row ps-md-0 pe-md-0">
+    <div class="row ps-md-0 pe-md-0 pb-5 pb-md-0">
       <div class="col-10 col-md-10 pe-0">
         <input
           type="text"
@@ -31,21 +31,21 @@
       />
     </div>
 
-    <div v-if="appMode === 'tasks'" class="row">
-      <div class="col-4 col-md-2 pe-0">
+    <div class="row">
+      <div class="col-4 pe-0">
         <input
           type="number"
-          class="form-control mt-3"
+          class="form-control mt-2"
           name="itemPosition"
           v-model.number="item.position"
           @change="saveItem"
         />
       </div>
-      <div class="col-4 col-md-2 ps-md-1 pe-md-0">
+      <div v-if="appMode === 'tasks'" class="col-4 ps-md-2 pe-md-0">
         <input
           v-if="item.type === 'task'"
           type="number"
-          class="form-control mt-3"
+          class="form-control mt-2"
           name="itemPrice"
           min="0"
           step="10"
@@ -53,11 +53,11 @@
           @change="saveItem"
         />
       </div>
-      <div class="col-4 col-md-2 ps-md-1 pe-md-0">
+      <div v-if="appMode === 'tasks'" class="col-4 ps-md-2">
         <input
           v-if="item.type === 'task'"
           type="number"
-          class="form-control mt-3"
+          class="form-control mt-2"
           name="itemMinutes"
           min="0"
           step="5"
@@ -65,19 +65,17 @@
           @change="saveItem"
         />
       </div>
-      <div class="col-12 col-md-6">
+      <div v-if="appMode === 'tasks'" class="col-12 col-md-6 pe-md-0">
         <input
           type="datetime-local"
-          class="form-control mt-3"
+          class="form-control form-control-sm mt-2"
           name="itemDateremind"
           v-model="item.dateReminde"
           @change="saveItem"
         />
       </div>
-    </div>
 
-    <div class="row mt-2 ps-md-0 pe-2 pe-md-0">
-      <div v-if="appMode === 'notes'" class="col-6 col-md-7">
+      <div v-if="appMode === 'notes'" class="col-12 col-md-8 mt-2">
         <div v-if="item.type === 'task'" class="d-flex p-1">
           <div class="dropdown">
             <button
@@ -101,10 +99,11 @@
           </div>
         </div>
       </div>
-      <div class="col-6 col-md-6 d-flex align-items-center">
+
+      <div class="col-12 col-md-6 d-flex align-items-center">
         <select
           v-if="item.type === 'task' || item.type === 'project'"
-          class="form-select form-select-sm"
+          class="form-select form-select-sm mt-2"
           aria-label="Выбор блокнота"
           v-model="item.parentId"
           @change="saveItem"
@@ -119,6 +118,11 @@
         </select>
       </div>
     </div>
+
+    <!-- <div class="row mt-2 ps-md-0 pe-2 pe-md-0">
+      
+      
+    </div> -->
   </div>
 </template>
 
