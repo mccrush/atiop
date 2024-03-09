@@ -2,7 +2,7 @@
   <div class="row">
     <KanbanListDirections />
     <div
-      class="at-height-100 col-10 col-lg-11 d-flex overflow-x-scroll ps-0 pt-2"
+      class="at-height-100 col-10 col-lg-11 d-flex overflow-x-auto ps-0 pt-2"
     >
       <KanbanList
         v-for="project in projects"

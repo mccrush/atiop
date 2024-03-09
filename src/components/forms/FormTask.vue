@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="row ps-md-0 pe-md-0 pb-5 pb-md-0">
+    <div class="row ps-md-0 pe-md-0 pb-md-0">
       <div class="col-10 col-md-10 pe-0">
         <input
           type="text"
@@ -100,7 +100,7 @@
         </div>
       </div>
 
-      <div class="col-12 col-md-6 d-flex align-items-center">
+      <div class="col-12 col-md-6 d-flex align-items-center mb-5">
         <select
           v-if="item.type === 'task' || item.type === 'project'"
           class="form-select form-select-sm mt-2"

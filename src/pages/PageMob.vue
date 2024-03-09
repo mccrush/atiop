@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row pt-3">
     <div
       v-if="view === 'all'"
       class="col-12 d-flex justify-content-between mb-3"
@@ -18,7 +18,11 @@
         @click="resetItemId('project')"
       />
     </div>
-    <CoverListDirections v-if="view === 'all' && !projectId" class="col-12" />
+
+    <CoverListDirections
+      v-if="view === 'all' && !projectId && !taskId"
+      class="col-12"
+    />
 
     <CoverListTasks
       v-if="view === 'all' && projectId && !taskId"

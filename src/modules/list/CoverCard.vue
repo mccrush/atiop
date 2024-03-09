@@ -1,5 +1,5 @@
 <template>
-  <div class="col-6 col-xxl-4 pt-3 pb-5">
+  <div class="col-6 col-xxl-4 pt-3">
     <CardItem v-if="item" :item="item" />
   </div>
 </template>

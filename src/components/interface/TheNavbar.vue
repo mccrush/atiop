@@ -149,7 +149,7 @@ import BtnNavTasks from './../buttons/BtnNavTasks.vue'
 import BtnNavNotes from './../buttons/BtnNavNotes.vue'
 import BtnNavList from './../buttons/BtnNavList.vue'
 import BtnNavKanban from './../buttons/BtnNavKanban.vue'
-import BtnSelectView from './../buttons/BtnSelectView.vue'
+//import BtnSelectView from './../buttons/BtnSelectView.vue'
 import BtnLogOut from './../buttons/BtnLogOut.vue'
 import BtnUser from './../buttons/BtnUser.vue'
 
@@ -159,7 +159,6 @@ export default {
     BtnNavNotes,
     BtnNavList,
     BtnNavKanban,
-    BtnSelectView,
     BtnLogOut,
     BtnUser
   },
