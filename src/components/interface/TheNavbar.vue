@@ -40,13 +40,13 @@
         role="group"
         aria-label="Select appMode"
       >
-        <BtnSelectView
+        <BtnNavTasks
           class="btn-sm ps-3 pe-3"
           :class="{ active: appMode === 'tasks' }"
           title="Задачи"
           @click="setAppMode('tasks')"
         />
-        <BtnSelectView
+        <BtnNavNotes
           class="btn-sm ps-3 pe-3"
           :class="{ active: appMode === 'notes' }"
           title="Заметки"
@@ -60,13 +60,13 @@
         role="group"
         aria-label="Select appMode"
       >
-        <BtnSelectView
+        <BtnNavList
           class="btn-sm ps-3 pe-3"
           :class="{ active: mainView === 'list' }"
           title="Списки"
           @click="setMainView('list')"
         />
-        <BtnSelectView
+        <BtnNavKanban
           class="btn-sm ps-3 pe-3"
           :class="{ active: mainView === 'kanban' }"
           title="Канбан"
@@ -131,10 +131,10 @@
       </div>
 
       <button
-        class="d-sm-none btn btn-sm btn-light p-1 ps-3 pe-3"
+        class="d-sm-none btn btn-sm btn-dark p-1 ps-3 pe-3"
         data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasExample"
-        aria-controls="offcanvasExample"
+        data-bs-target="#offcanvasMenu"
+        aria-controls="offcanvasMenu"
       >
         =
       </button>
@@ -144,13 +144,21 @@
 </template>
 
 <script>
-import { dataModels } from './../../data/dataModels'
+//import { dataModels } from './../../data/dataModels'
+import BtnNavTasks from './../buttons/BtnNavTasks.vue'
+import BtnNavNotes from './../buttons/BtnNavNotes.vue'
+import BtnNavList from './../buttons/BtnNavList.vue'
+import BtnNavKanban from './../buttons/BtnNavKanban.vue'
 import BtnSelectView from './../buttons/BtnSelectView.vue'
 import BtnLogOut from './../buttons/BtnLogOut.vue'
 import BtnUser from './../buttons/BtnUser.vue'
 
 export default {
   components: {
+    BtnNavTasks,
+    BtnNavNotes,
+    BtnNavList,
+    BtnNavKanban,
     BtnSelectView,
     BtnLogOut,
     BtnUser
