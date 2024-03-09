@@ -10,7 +10,7 @@
           :class="{ rotate: loadingRT }"
         />
       </div>
-      <div class="d-none d-sm-block navbar-brand p-0">
+      <div class="d-none d-sm-block navbar-brand text-muted p-0">
         <img
           src="/img/icons/logo_8.svg"
           height="26"
@@ -41,13 +41,13 @@
         aria-label="Select appMode"
       >
         <BtnNavTasks
-          class="btn-sm ps-3 pe-3"
+          class="btn-sm text-muted ps-3 pe-3"
           :class="{ active: appMode === 'tasks' }"
           title="Задачи"
           @click="setAppMode('tasks')"
         />
         <BtnNavNotes
-          class="btn-sm ps-3 pe-3"
+          class="btn-sm text-muted ps-3 pe-3"
           :class="{ active: appMode === 'notes' }"
           title="Заметки"
           @click="setAppMode('notes')"
@@ -61,13 +61,13 @@
         aria-label="Select appMode"
       >
         <BtnNavList
-          class="btn-sm ps-3 pe-3"
+          class="btn-sm text-muted ps-3 pe-3"
           :class="{ active: mainView === 'list' }"
           title="Списки"
           @click="setMainView('list')"
         />
         <BtnNavKanban
-          class="btn-sm ps-3 pe-3"
+          class="btn-sm text-muted ps-3 pe-3"
           :class="{ active: mainView === 'kanban' }"
           title="Канбан"
           @click="setMainView('kanban')"
@@ -81,19 +81,19 @@
         aria-label="Select view"
       >
         <BtnSelectView
-          class="btn-sm ps-3 pe-3"
+          class="btn-sm text-muted ps-3 pe-3"
           :class="{ active: view === 'all' }"
           title="Все"
           @click="setView('all')"
         />
         <BtnSelectView
-          class="btn-sm ps-3 pe-3"
+          class="btn-sm text-muted ps-3 pe-3"
           :class="{ active: view === 'date' }"
           title="Сегодня"
           @click="setView('date')"
         />
         <BtnSelectView
-          class="btn-sm ps-3 pe-3"
+          class="btn-sm text-muted ps-3 pe-3"
           :class="{ active: view === 'coming' }"
           title="Скоро"
           @click="setView('coming')"
@@ -131,7 +131,7 @@
       </div>
 
       <button
-        class="d-sm-none btn btn-sm btn-dark p-1 ps-3 pe-3"
+        class="d-sm-none btn btn-sm btn-dark text-muted p-1 ps-3 pe-3"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasMenu"
         aria-controls="offcanvasMenu"
@@ -149,7 +149,7 @@ import BtnNavTasks from './../buttons/BtnNavTasks.vue'
 import BtnNavNotes from './../buttons/BtnNavNotes.vue'
 import BtnNavList from './../buttons/BtnNavList.vue'
 import BtnNavKanban from './../buttons/BtnNavKanban.vue'
-//import BtnSelectView from './../buttons/BtnSelectView.vue'
+import BtnSelectView from './../buttons/BtnSelectView.vue'
 import BtnLogOut from './../buttons/BtnLogOut.vue'
 import BtnUser from './../buttons/BtnUser.vue'
 
@@ -158,6 +158,7 @@ export default {
     BtnNavTasks,
     BtnNavNotes,
     BtnNavList,
+    BtnSelectView,
     BtnNavKanban,
     BtnLogOut,
     BtnUser

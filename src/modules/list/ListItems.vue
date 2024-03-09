@@ -18,7 +18,7 @@
       <li
         v-for="item in itemsSort"
         :key="item.id"
-        class="cursor-default list-group-item lh-1 d-flex justify-content-between align-items-strache ps-2 ps-xxl-3 pe-1 pe-xxl-2"
+        class="cursor-pointer list-group-item lh-1 d-flex justify-content-between align-items-strache ps-2 ps-xxl-3 pe-1 pe-xxl-2"
         :class="{ active: item.id === currentItemId }"
         @click="setItemId(item)"
       >
@@ -148,6 +148,13 @@ export default {
       }
     },
     itemsSort() {
+      if (
+        this.listType === 'lostday' ||
+        this.listType === 'today' ||
+        this.listType === 'comingday'
+      ) {
+        return sortMethod(this.itemsFilter, 'asc', 'dateReminde')
+      }
       return sortMethod(this.itemsFilter, 'asc', 'position')
     },
     currentItemId() {

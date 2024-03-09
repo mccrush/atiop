@@ -1,5 +1,5 @@
 <template>
-  <button class="btn btn-dark w-100 mt-2 p-2 pb-1">
+  <button class="btn btn-dark text-muted w-100 mt-2 p-2 pb-1">
     <div class="text-start lh-1">{{ item.title }}</div>
     <div class="info-block d-flex align-items-center justify-content-end">
       <span
