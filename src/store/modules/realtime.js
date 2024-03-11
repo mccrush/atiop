@@ -27,17 +27,19 @@ export default {
         }
       })
     },
-    async removeItemRT({ commit }, { item, currentUserId, appMode }) {
+
+    async removeItemRT({ commit, dispatch }, { item, currentUserId, appMode }) {
       try {
         commit('updateLoadingStatusRT', true)
         await remove(ref(db, currentUserId + '/' + appMode + '/' + item.type + '/' + item.id))
+        dispatch('getItemsRT', { type: item.type, currentUserId, appMode })
         commit('updateLoadingStatusRT', false)
       } catch (error) {
         console.error('error realtime.js removeItemRT()', error)
       }
     },
-    async updateItemRT({ commit }, { item, currentUserId, appMode }) {
 
+    async updateItemRT({ commit }, { item, currentUserId, appMode }) {
       try {
         commit('updateLoadingStatusRT', true)
         await update(ref(db, currentUserId + '/' + appMode + '/' + item.type + '/' + item.id), item)
