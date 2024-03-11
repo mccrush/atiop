@@ -15,6 +15,7 @@
       <span
         v-if="item.price"
         class="badge bg-dark fw-normal text-success ms-1 p-1"
+        :class="{ 'text-decoration-line-through': item.status === 'done' }"
         >{{ item.price }}</span
       >
       <span

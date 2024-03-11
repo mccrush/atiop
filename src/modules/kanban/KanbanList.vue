@@ -83,7 +83,11 @@ export default {
       return sortMethod(this.tasks, 'asc', 'position')
     },
     taskMoneySum() {
-      return this.tasks.reduce((sum, item) => sum + item.price, 0)
+      const onlyWithPrice = this.tasks.filter(item => item.price)
+      const onlyActiveTask = onlyWithPrice.filter(
+        item => item.status === 'active'
+      )
+      return onlyActiveTask.reduce((sum, item) => sum + item.price, 0)
     },
     taskMoneyTime() {
       return this.tasks.reduce((sum, item) => sum + item.minutes, 0)
