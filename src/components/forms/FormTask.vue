@@ -31,11 +31,11 @@
       />
     </div>
 
-    <div class="row">
+    <div class="row pb-5">
       <div class="col-4 pe-0">
         <input
           type="number"
-          class="form-control mt-2"
+          class="form-control form-control-sm mt-2"
           name="itemPosition"
           v-model.number="item.position"
           @change="saveItem"
@@ -45,7 +45,7 @@
         <input
           v-if="item.type === 'task'"
           type="number"
-          class="form-control mt-2"
+          class="form-control form-control-sm mt-2"
           name="itemPrice"
           min="0"
           step="10"
@@ -57,7 +57,7 @@
         <input
           v-if="item.type === 'task'"
           type="number"
-          class="form-control mt-2"
+          class="form-control form-control-sm mt-2"
           name="itemMinutes"
           min="0"
           step="5"
@@ -65,7 +65,24 @@
           @change="saveItem"
         />
       </div>
-      <div v-if="appMode === 'tasks'" class="col-12 col-md-6 pe-md-0">
+
+      <div
+        v-if="appMode === 'tasks' && item.type === 'task'"
+        class="col-12 col-md-4 d-flex align-items-center pe-md-0"
+      >
+        <select
+          class="form-select form-select-sm mt-2"
+          aria-label="Статус"
+          v-model="item.status"
+          @change="saveItem"
+        >
+          <option v-for="status in statuses" :key="status" :value="status">
+            {{ status }}
+          </option>
+        </select>
+      </div>
+
+      <div v-if="appMode === 'tasks'" class="col-12 col-md-4 pe-md-0">
         <input
           type="datetime-local"
           class="form-control form-control-sm mt-2"
@@ -75,8 +92,31 @@
         />
       </div>
 
-      <div v-if="appMode === 'notes'" class="col-12 col-md-8 mt-2">
-        <div v-if="item.type === 'task'" class="d-flex p-1">
+      <div
+        v-if="item.type === 'task' || item.type === 'project'"
+        class="col-12 col-md-4 d-flex align-items-center"
+      >
+        <select
+          class="form-select form-select-sm mt-2"
+          aria-label="Выбор блокнота"
+          v-model="item.parentId"
+          @change="saveItem"
+        >
+          <option
+            v-for="parentItem in parentItems"
+            :key="parentItem.id"
+            :value="parentItem.id"
+          >
+            {{ parentItem.title }}
+          </option>
+        </select>
+      </div>
+
+      <div
+        v-if="appMode === 'notes' && item.type === 'task'"
+        class="col-12 col-md-8 mt-2"
+      >
+        <div class="d-flex p-1">
           <div class="dropdown">
             <button
               class="btn btn-sm btn-dark text-secondary me-2 ps-2 pe-2"
@@ -98,24 +138,6 @@
             </button>
           </div>
         </div>
-      </div>
-
-      <div class="col-12 col-md-6 d-flex align-items-center mb-5">
-        <select
-          v-if="item.type === 'task' || item.type === 'project'"
-          class="form-select form-select-sm mt-2"
-          aria-label="Выбор блокнота"
-          v-model="item.parentId"
-          @change="saveItem"
-        >
-          <option
-            v-for="parentItem in parentItems"
-            :key="parentItem.id"
-            :value="parentItem.id"
-          >
-            {{ parentItem.title }}
-          </option>
-        </select>
       </div>
     </div>
 
@@ -151,7 +173,8 @@ export default {
         height: '70vh',
         skin: 'oxide-dark',
         content_css: 'dark'
-      }
+      },
+      statuses: ['active', 'done', 'archive']
     }
   },
   computed: {
