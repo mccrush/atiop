@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@editorjs/editorjs": "^2.29.1",
+    "@editorjs/header": "^2.8.1",
+    "@editorjs/list": "^1.9.0",
     "@popperjs/core": "^2.11.8",
     "@tinymce/tinymce-vue": "^5.1.1",
     "bootstrap": "^5.3.3",
