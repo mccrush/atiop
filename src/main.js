@@ -1,4 +1,5 @@
 import './scss/styles.scss'
+import './scss/custom.scss'
 import { Offcanvas, Dropdown } from 'bootstrap'
 
 import { createApp } from 'vue'

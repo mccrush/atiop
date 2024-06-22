@@ -1,6 +1,6 @@
 <template>
-  <nav class="navbar navbar-expand-md border-bottom">
-    <div class="container-fluid pt-1">
+  <nav class="navbar navbar-expand-md border-bottom border-black">
+    <div class="container-fluid pt-1 pb-1">
       <div class="d-sm-none navbar-brand p-0">
         <img
           src="/img/icons/logo_8.svg"

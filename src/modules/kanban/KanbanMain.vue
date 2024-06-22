@@ -74,6 +74,6 @@ export default {
 
 <style scoped>
 .at-height-100 {
-  height: calc(100svh - 81px);
+  height: calc(100svh - 89px);
 }
 </style>

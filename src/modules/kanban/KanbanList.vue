@@ -9,7 +9,9 @@
     >
       {{ project.title }}
     </h6>
-    <div class="d-flex justify-content-end border-bottom pb-2">
+    <div
+      class="d-flex justify-content-end border-bottom border-dark-subtle pb-2"
+    >
       <span class="badge fw-normal text-bg-dark">{{ tasks.length }}</span>
       <span
         v-if="taskMoneySum"
@@ -114,6 +116,6 @@ export default {
 
 <style scoped>
 .at-height-100 {
-  height: calc(100svh - 164px);
+  height: calc(100svh - 173px);
 }
 </style>
