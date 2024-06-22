@@ -10,3 +10,16 @@
   border-color: rgb(33, 37, 41);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
 }
+
+.btn:focus,
+.btn-close:focus,
+.btn-check:focus+.btn-outline-dark,
+.form-control:focus,
+.form-select:focus,
+.form-select:active,
+.accordion-button:focus,
+.navbar-toggler:focus {
+  // border-color: rgb(33, 37, 41);
+  border-color: rgb(210, 245, 10);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+}

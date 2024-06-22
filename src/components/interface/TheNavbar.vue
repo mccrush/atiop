@@ -10,7 +10,7 @@
           :class="{ rotate: loadingRT }"
         />
       </div>
-      <div class="d-none d-sm-block navbar-brand text-muted p-0">
+      <div class="d-none d-sm-block navbar-brand text-body-secondary p-0">
         <img
           src="/img/icons/logo_8.svg"
           height="26"
@@ -41,13 +41,13 @@
         aria-label="Select appMode"
       >
         <BtnNavTasks
-          class="btn-sm text-muted ps-3 pe-3"
+          class="btn-sm ps-3 pe-3 pb-2"
           :class="{ active: appMode === 'tasks' }"
           title="Задачи"
           @click="setAppMode('tasks')"
         />
         <BtnNavNotes
-          class="btn-sm text-muted ps-3 pe-3"
+          class="btn-sm ps-3 pe-3 pb-2"
           :class="{ active: appMode === 'notes' }"
           title="Заметки"
           @click="setAppMode('notes')"
@@ -61,13 +61,13 @@
         aria-label="Select appMode"
       >
         <BtnNavList
-          class="btn-sm text-muted ps-3 pe-3"
+          class="btn-sm ps-3 pe-3 pb-2"
           :class="{ active: mainView === 'list' }"
           title="Списки"
           @click="setMainView('list')"
         />
         <BtnNavKanban
-          class="btn-sm text-muted ps-3 pe-3"
+          class="btn-sm ps-3 pe-3 pb-2"
           :class="{ active: mainView === 'kanban' }"
           title="Канбан"
           @click="setMainView('kanban')"
@@ -81,19 +81,19 @@
         aria-label="Select view"
       >
         <BtnSelectView
-          class="btn-sm text-muted ps-3 pe-3"
+          class="btn-sm ps-3 pe-3"
           :class="{ active: view === 'all' }"
           title="Все"
           @click="setView('all')"
         />
         <BtnSelectView
-          class="btn-sm text-muted ps-3 pe-3"
+          class="btn-sm ps-3 pe-3"
           :class="{ active: view === 'date' }"
           title="Сегодня"
           @click="setView('date')"
         />
         <BtnSelectView
-          class="btn-sm text-muted ps-3 pe-3"
+          class="btn-sm ps-3 pe-3"
           :class="{ active: view === 'coming' }"
           title="Скоро"
           @click="setView('coming')"
@@ -104,7 +104,7 @@
       <a
         href="https://doc.atiop.ru/"
         target="_blank"
-        class="btn btn-sm btn-dark text-secondary d-none d-sm-block ps-2 pe-2 me-2"
+        class="btn btn-sm btn-dark text-body-secondary d-none d-sm-block ps-2 pe-2 me-2"
         title="Руководство"
         >Руководство ⇗</a
       >
@@ -118,7 +118,7 @@
           aria-expanded="false"
         />
         <div class="dropdown-menu dropdown-menu-end border-0 p-3">
-          <span class="d-none d-sm-block text-secondary small me-2">{{
+          <span class="d-none d-sm-block text-body-secondary small me-2">{{
             currentUserEmail
           }}</span>
 
@@ -131,7 +131,7 @@
       </div>
 
       <button
-        class="d-sm-none btn btn-sm btn-dark text-muted p-1 ps-3 pe-3"
+        class="d-sm-none btn btn-sm btn-dark text-body-secondary p-1 ps-3 pe-3"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasMenu"
         aria-controls="offcanvasMenu"

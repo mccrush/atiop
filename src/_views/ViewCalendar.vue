@@ -4,7 +4,7 @@
       class="select-pole col-12 bg-white d-flex justify-content-center pt-2 pb-2"
     >
       <button
-        class="btn btn-sm btn-outline-light text-secondary me-3"
+        class="btn btn-sm btn-outline-light text-body-secondary me-3"
         @click="selectToday"
       >
         Сегодня
@@ -20,7 +20,7 @@
 
       <div class="dropdown">
         <button
-          class="select-new-month btn btn-sm btn-outline-light text-secondary dropdown-toggle"
+          class="select-new-month btn btn-sm btn-outline-light text-body-secondary dropdown-toggle"
           type="button"
           id="selectNewMonth"
           data-bs-toggle="dropdown"
@@ -58,7 +58,7 @@
             >
               <button
                 type="button"
-                class="btn btn-sm btn-outline-light text-secondary w-100"
+                class="btn btn-sm btn-outline-light text-body-secondary w-100"
                 @click="selectMonth = mnf.id"
               >
                 <small> {{ mnf.title.slice(0, 3).toUpperCase() }}</small>
@@ -73,7 +73,7 @@
         <div
           v-for="(dayW, index) in dayWeek"
           :key="dayW.id + 'dw'"
-          class="calendar-day-week border-top border-end small text-muted"
+          class="calendar-day-week border-top border-end small text-body-secondary"
           :class="{
             'border-start': index === 0
           }"
@@ -85,7 +85,7 @@
         <div
           v-for="dayPre in firstWeekDayMonth"
           :key="dayPre + 'cd'"
-          class="calendar-day calendar-day-height-5 border-start border-end border-bottom small text-muted"
+          class="calendar-day calendar-day-height-5 border-start border-end border-bottom small text-body-secondary"
           :class="{
             'calendar-day-height-6': firstWeekDayMonth > 4 && countDays > 30
           }"
@@ -93,7 +93,7 @@
         <div
           v-for="day in countDays"
           :key="day + 'cd'"
-          class="calendar-day calendar-day-height-5 border-start border-end border-bottom small text-muted ps-1 pe-1"
+          class="calendar-day calendar-day-height-5 border-start border-end border-bottom small text-body-secondary ps-1 pe-1"
           :class="{
             'calendar-day-height-6': firstWeekDayMonth > 4 && countDays > 30
           }"
@@ -110,7 +110,7 @@
           <div
             v-for="task in showDateTask(day)"
             :key="task.id"
-            class="task-in-day badge bg-light text-muted text-start w-100"
+            class="task-in-day badge bg-light text-body-secondary text-start w-100"
             @dblclick.prevent="
               $emit('edit-item', { id: task.id, type: 'tasks' })
             "

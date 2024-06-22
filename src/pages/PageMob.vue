@@ -10,7 +10,7 @@
         :disabled="!projectId"
         @click="resetItemId('direction')"
       />
-      <div class="text-secondary ps-2 pt-1 pe-2">⨠</div>
+      <div class="text-body-secondary ps-2 pt-1 pe-2">⨠</div>
       <BtnNavigation
         class="w-50"
         title="Проект"

@@ -222,7 +222,7 @@
 
           <div class="row">
             <div class="col-12 text-center">
-              <span class="small text-muted">
+              <span class="small text-body-secondary">
                 Данные сохраняются автоматически при закрытии модального окна
               </span>
             </div>

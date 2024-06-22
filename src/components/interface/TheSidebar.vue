@@ -19,7 +19,7 @@
       <a
         href="https://doc.atiop.ru/"
         target="_blank"
-        class="btn btn-dark text-secondary d-sm-none w-100 ps-2 pe-2 mt-2"
+        class="btn btn-dark text-body-secondary d-sm-none w-100 ps-2 pe-2 mt-2"
         title="Руководство"
         >Руководство ⇗</a
       >
@@ -30,7 +30,9 @@
         @click="logOut"
       />
 
-      <div class="text-secondary text-center mt-2">{{ currentUserEmail }}</div>
+      <div class="text-body-secondary text-center mt-2">
+        {{ currentUserEmail }}
+      </div>
     </div>
   </div>
 </template>

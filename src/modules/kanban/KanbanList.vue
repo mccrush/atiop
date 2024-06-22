@@ -20,7 +20,7 @@
       >
       <span
         v-if="taskMoneyTime"
-        class="badge bg-dark fw-normal text-secondary ms-1"
+        class="badge bg-dark fw-normal text-body-secondary ms-1"
         >{{ taskMoneyTime }}</span
       >
     </div>

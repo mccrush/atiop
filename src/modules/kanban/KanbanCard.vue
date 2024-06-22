@@ -20,7 +20,7 @@
       >
       <span
         v-if="item.minutes"
-        class="badge bg-dark fw-normal text-secondary ms-1"
+        class="badge bg-dark fw-normal text-body-secondary ms-1"
         >{{ item.minutes }}</span
       >
     </div>

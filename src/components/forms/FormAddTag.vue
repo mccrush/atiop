@@ -17,7 +17,7 @@
             {{ tag.title }}
           </div>
           <button
-            class="btn btn-sm btn-dark text-secondary p-0 ps-2 pe-2"
+            class="btn btn-sm btn-dark text-body-secondary p-0 ps-2 pe-2"
             @click="removeTag(tag)"
           >
             x
@@ -27,7 +27,7 @@
     </ul>
     <button
       v-if="searchTag"
-      class="btn btn-sm btn-dark text-secondary w-100 mt-1"
+      class="btn btn-sm btn-dark text-body-secondary w-100 mt-1"
       @click="createTag"
     >
       Создать тег

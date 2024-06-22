@@ -6,7 +6,7 @@
           {{ tag.title }}
         </button>
         <button
-          class="btn btn-sm btn-light text-muted p-0 ps-2 pe-2"
+          class="btn btn-sm btn-light text-body-secondary p-0 ps-2 pe-2"
           @click="setTagFilter(null)"
         >
           x

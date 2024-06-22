@@ -14,7 +14,7 @@
       :parentId="directionId"
       @set-item-id="setItemId"
     />
-    <ul class="list-group mt-1 mb-3">
+    <ul class="list-group rounded-1 mt-1 mb-3">
       <li
         v-for="item in itemsSort"
         :key="item.id"
@@ -50,7 +50,7 @@
           >
           <span
             v-if="item.type === 'task' && item.minutes"
-            class="badge bg-dark fw-normal text-secondary me-1"
+            class="badge bg-dark fw-normal text-body-secondary me-1"
             >{{ item.minutes }}</span
           >
           <!-- Для проектов выводить суммы денег и времени -->
