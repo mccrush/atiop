@@ -21,19 +21,6 @@
         ATIOP
       </div>
 
-      <!-- <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button> -->
-
-      <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
       <div
         v-if="currentUserId"
         class="btn-group"
@@ -41,13 +28,11 @@
         aria-label="Select appMode"
       >
         <BtnNavTasks
-          class="btn-sm ps-3 pe-3 pb-2"
           :class="{ active: appMode === 'tasks' }"
           title="Задачи"
           @click="setAppMode('tasks')"
         />
         <BtnNavNotes
-          class="btn-sm ps-3 pe-3 pb-2"
           :class="{ active: appMode === 'notes' }"
           title="Заметки"
           @click="setAppMode('notes')"
@@ -61,13 +46,11 @@
         aria-label="Select appMode"
       >
         <BtnNavList
-          class="btn-sm ps-3 pe-3 pb-2"
           :class="{ active: mainView === 'list' }"
           title="Списки"
           @click="setMainView('list')"
         />
         <BtnNavKanban
-          class="btn-sm ps-3 pe-3 pb-2"
           :class="{ active: mainView === 'kanban' }"
           title="Канбан"
           @click="setMainView('kanban')"
@@ -81,19 +64,16 @@
         aria-label="Select view"
       >
         <BtnSelectView
-          class="btn-sm ps-3 pe-3"
           :class="{ active: view === 'all' }"
           title="Все"
           @click="setView('all')"
         />
         <BtnSelectView
-          class="btn-sm ps-3 pe-3"
           :class="{ active: view === 'date' }"
           title="Сегодня"
           @click="setView('date')"
         />
         <BtnSelectView
-          class="btn-sm ps-3 pe-3"
           :class="{ active: view === 'coming' }"
           title="Скоро"
           @click="setView('coming')"
@@ -104,7 +84,7 @@
       <a
         href="https://doc.atiop.ru/"
         target="_blank"
-        class="btn btn-sm btn-dark text-body-secondary d-none d-sm-block ps-2 pe-2 me-2"
+        class="btn btn-sm btn-dark text-body-secondary lh-1 d-none d-sm-block ps-2 pe-2 me-2 pt-2 pb-2"
         title="Руководство"
         >Руководство ⇗</a
       >
@@ -112,7 +92,7 @@
       <div class="dropdown">
         <BtnUser
           v-if="currentUserId"
-          class="btn-sm d-none d-sm-block"
+          class="d-none d-sm-block"
           :title="currentUserEmail"
           data-bs-toggle="dropdown"
           aria-expanded="false"
