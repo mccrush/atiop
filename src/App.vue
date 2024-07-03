@@ -76,7 +76,7 @@ export default {
 </script>
 
 <style>
-.btn:focus,
+/*.btn:focus,
 .btn-close:focus,
 .btn-check:focus + .btn-outline-dark,
 .form-control:focus,
@@ -87,7 +87,7 @@ export default {
   outline: 0 !important;
   box-shadow: none !important;
   border-color: #495057;
-}
+}*/
 
 .cursor-pointer,
 .dropdown-item {

@@ -1,3 +1,3 @@
 <template>
-  <button class="btn btn-dark text-body-secondary">Выйти</button>
+  <button class="btn btn-dark">Выйти</button>
 </template>

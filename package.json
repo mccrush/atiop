@@ -24,6 +24,7 @@
     "@vitejs/plugin-vue": "^5.0.4",
     "@vue/cli-plugin-pwa": "^5.0.8",
     "@vue/cli-plugin-vuex": "^5.0.8",
+    "bs-dark-theme": "^1.0.0",
     "sass": "^1.71.1",
     "vite": "^5.1.4"
   },

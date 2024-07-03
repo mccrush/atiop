@@ -65,7 +65,7 @@
 
       <div class="col-2 d-sm-none ps-1 pe-1">
         <button
-          class="btn btn-dark text-body-secondary lh-1 w-100 ps-3 pe-3"
+          class="btn btn-dark lh-1 w-100 ps-3 pe-3"
           data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasMenu"
           aria-controls="offcanvasMenu"

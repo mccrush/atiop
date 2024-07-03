@@ -3,10 +3,7 @@
     <div
       class="select-pole col-12 bg-white d-flex justify-content-center pt-2 pb-2"
     >
-      <button
-        class="btn btn-sm btn-outline-light text-body-secondary me-3"
-        @click="selectToday"
-      >
+      <button class="btn btn-sm btn-outline-light me-3" @click="selectToday">
         Сегодня
       </button>
       <div
@@ -20,7 +17,7 @@
 
       <div class="dropdown">
         <button
-          class="select-new-month btn btn-sm btn-outline-light text-body-secondary dropdown-toggle"
+          class="select-new-month btn btn-sm btn-outline-light dropdown-toggle"
           type="button"
           id="selectNewMonth"
           data-bs-toggle="dropdown"

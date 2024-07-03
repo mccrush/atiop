@@ -119,7 +119,7 @@
         <div class="d-flex p-1">
           <div class="dropdown">
             <button
-              class="btn btn-sm btn-dark text-body-secondary me-2 ps-2 pe-2"
+              class="btn btn-sm btn-dark me-2 ps-2 pe-2"
               data-bs-toggle="dropdown"
             >
               +
@@ -131,7 +131,7 @@
             <button
               v-for="tag in item.tags"
               :key="tag.id"
-              class="btn btn-sm btn-dark text-body-secondary me-2 ps-2 pe-2"
+              class="btn btn-sm btn-dark me-2 ps-2 pe-2"
               @click="setTagFilter(tag)"
             >
               {{ tag.title }}
