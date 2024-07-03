@@ -1,6 +1,6 @@
 {
   "name": "atiop",
-  "version": "3.5.1",
+  "version": "3.5.2",
   "private": true,
   "description": "ATIOP 2.0 - Сервис управления задачами",
   "author": "mccrush.ru",
@@ -24,7 +24,7 @@
     "@vitejs/plugin-vue": "^5.0.4",
     "@vue/cli-plugin-pwa": "^5.0.8",
     "@vue/cli-plugin-vuex": "^5.0.8",
-    "bs-dark-theme": "^1.0.1",
+    "bs-dark-theme": "^1.1.0",
     "sass": "^1.71.1",
     "vite": "^5.1.4"
   },
