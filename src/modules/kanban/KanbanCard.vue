@@ -17,7 +17,8 @@
         class="badge fw-normal"
         :class="{
           'text-bg-warning': dayDifference(item.dateReminde) < 1,
-          'text-bg-dark': dayDifference(item.dateReminde) >= 1
+          'text-bg-dark  text-body-secondary':
+            dayDifference(item.dateReminde) >= 1
         }"
         v-if="item.dateReminde"
         >{{ getLocaleDateFromDateDigit(item.dateReminde) }}</span

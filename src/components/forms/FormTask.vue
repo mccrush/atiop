@@ -31,48 +31,65 @@
       />
     </div>
 
-    <div class="row pb-5">
+    <div class="row pt-2">
       <div class="col-4 pe-0">
+        <label for="itemPosition" class="small text-body-secondary"
+          >Позиция</label
+        >
         <input
           type="number"
-          class="form-control form-control-sm mt-2"
-          name="itemPosition"
+          class="form-control form-control-sm"
+          id="itemPosition"
           v-model.number="item.position"
-          @change="saveItem"
-        />
-      </div>
-      <div v-if="appMode === 'tasks'" class="col-4 ps-md-2 pe-md-0">
-        <input
-          v-if="item.type === 'task'"
-          type="number"
-          class="form-control form-control-sm mt-2"
-          name="itemPrice"
-          min="0"
-          step="10"
-          v-model.number="item.price"
-          @change="saveItem"
-        />
-      </div>
-      <div v-if="appMode === 'tasks'" class="col-4 ps-md-2">
-        <input
-          v-if="item.type === 'task'"
-          type="number"
-          class="form-control form-control-sm mt-2"
-          name="itemMinutes"
-          min="0"
-          step="5"
-          v-model.number="item.minutes"
           @change="saveItem"
         />
       </div>
 
       <div
         v-if="appMode === 'tasks' && item.type === 'task'"
-        class="col-12 col-md-4 d-flex align-items-center pe-md-0"
+        class="col-4 ps-md-2 pe-md-0"
       >
+        <label for="itemPrice" class="small text-body-secondary">Сумма</label>
+        <input
+          type="number"
+          class="form-control form-control-sm"
+          id="itemPrice"
+          min="0"
+          step="10"
+          v-model.number="item.price"
+          @change="saveItem"
+        />
+      </div>
+
+      <div
+        v-if="appMode === 'tasks' && item.type === 'task'"
+        class="col-4 ps-md-2"
+      >
+        <label for="itemMinutes" class="small text-body-secondary"
+          >Время мин.</label
+        >
+        <input
+          type="number"
+          class="form-control form-control-sm"
+          id="itemMinutes"
+          min="0"
+          step="5"
+          v-model.number="item.minutes"
+          @change="saveItem"
+        />
+      </div>
+    </div>
+
+    <div class="row pt-2 pb-3">
+      <div
+        v-if="appMode === 'tasks' && item.type === 'task'"
+        class="col-12 col-md-4 align-items-center pe-md-0"
+      >
+        <label for="itemStatus" class="small text-body-secondary">Статус</label>
         <select
-          class="form-select form-select-sm mt-2"
+          class="form-select form-select-sm"
           aria-label="Статус"
+          id="itemStatus"
           v-model="item.status"
           @change="saveItem"
         >
@@ -83,9 +100,12 @@
       </div>
 
       <div v-if="appMode === 'tasks'" class="col-12 col-md-4 pe-md-0">
+        <label for="itemDateremind" class="small text-body-secondary"
+          >Срок</label
+        >
         <input
           type="datetime-local"
-          class="form-control form-control-sm mt-2"
+          class="form-control form-control-sm"
           name="itemDateremind"
           v-model="item.dateReminde"
           @change="saveItem"
@@ -94,11 +114,15 @@
 
       <div
         v-if="item.type === 'task' || item.type === 'project'"
-        class="col-12 col-md-4 d-flex align-items-center pe-2"
+        class="col-12 col-md-4 align-items-center pe-2"
       >
+        <label for="itemParentId" class="small text-body-secondary"
+          >Родитель</label
+        >
         <select
-          class="form-select form-select-sm mt-2"
+          class="form-select form-select-sm"
           aria-label="Выбор блокнота"
+          id="itemParentId"
           v-model="item.parentId"
           @change="saveItem"
         >
@@ -114,28 +138,34 @@
 
       <div
         v-if="item.type === 'project'"
-        class="col-12 col-md-4 d-flex align-items-center ps-1"
+        class="col-12 col-md-4 align-items-center ps-1"
       >
-        <input
-          type="color"
-          class="form-control form-control-sm mt-2"
-          name="itemColor"
-          v-model="item.color"
-          @change="saveItem"
-        />
-        <button
-          class="btn btn-sm btn-dark mt-2 ps-2 pe-2"
-          @click=";(item.color = ''), saveItem()"
+        <label for="itemColor" class="small text-body-secondary"
+          >Цвет заголовка</label
         >
-          c
-        </button>
+        <div class="d-flex">
+          <input
+            type="color"
+            class="form-control form-control-sm me-1"
+            id="itemColor"
+            v-model="item.color"
+            @change="saveItem"
+          />
+          <button
+            class="btn btn-sm btn-dark ps-2 pe-2"
+            @click=";(item.color = ''), saveItem()"
+          >
+            c
+          </button>
+        </div>
       </div>
 
       <div
         v-if="appMode === 'notes' && item.type === 'task'"
-        class="col-12 col-md-8 mt-2"
+        class="col-12 col-md-8"
       >
-        <div class="d-flex p-1">
+        <label for="itemTags" class="small text-body-secondary">Тэги</label>
+        <div class="d-flex" id="itemTags">
           <div class="dropdown">
             <button
               class="btn btn-sm btn-dark me-2 ps-2 pe-2"
