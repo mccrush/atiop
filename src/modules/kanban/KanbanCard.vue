@@ -1,6 +1,17 @@
 <template>
-  <button class="btn btn-sm btn-dark w-100 mt-1">
-    <div class="text-start">{{ item.title }}</div>
+  <button class="btn btn-sm btn-dark lh-sm w-100 mt-1 p-2">
+    <div class="text-start d-flex justify-content-start">
+      <div>
+        <IconCardText
+          v-if="item.description"
+          class="d-block text-body-tertiary me-2"
+        />
+      </div>
+      <div>
+        {{ item.title }}
+      </div>
+    </div>
+
     <div class="info-block d-flex align-items-center justify-content-end">
       <span
         class="badge fw-normal"
@@ -30,7 +41,10 @@
 <script>
 import { getLocaleDateFromDateDigit } from './../../helpers/getDateFormat'
 
+import IconCardText from './../../components/icons/IconCardText.vue'
+
 export default {
+  components: { IconCardText },
   props: {
     item: Object
   },

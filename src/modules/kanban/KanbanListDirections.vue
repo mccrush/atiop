@@ -3,7 +3,7 @@
     <button
       v-for="direction in directions"
       :key="direction.id"
-      class="btn btn-sm btn-dark mt-1 w-100"
+      class="btn btn-sm btn-dark lh-1 p-2 mt-1 w-100"
       :class="{ active: direction.id === directionId }"
       @click="setItemId(direction)"
     >

@@ -1,7 +1,7 @@
 <template>
   <div class="col-md-4 col-lg-3 col-xxl-2 rounded p-2 ms-1">
     <h6
-      class="cursor-pointer m-0"
+      class="cursor-pointer text-ellipsis rounded lh-1 m-0 mb-1 p-1 ps-2 pe-2"
       data-bs-toggle="offcanvas"
       data-bs-target="#offcanvasForm"
       aria-controls="offcanvasForm"
@@ -26,7 +26,7 @@
         >{{ taskMoneyTime }}</span
       >
     </div>
-    <div class="at-height-100 overflow-y-auto">
+    <div class="at-height-100 overflow-y-auto ps-1 pe-1">
       <KanbanCard
         v-for="task in itemsSort"
         :key="task"
