@@ -1,7 +1,8 @@
 <template>
-  <div class="col-md-4 col-lg-3 col-xxl-2 rounded p-2 ms-1">
+  <div class="col-md-4 col-lg-3 col-xxl-2 rounded ms-1 p-1">
     <h6
-      class="cursor-pointer text-ellipsis rounded lh-1 m-0 mb-1 p-1 ps-2 pe-2"
+      class="cursor-pointer text-ellipsis rounded-1 lh-1 m-0 mb-1 pt-1 pb-2 ps-2 pe-2"
+      :style="project.color ? 'background-color:' + project.color + ';' : ''"
       data-bs-toggle="offcanvas"
       data-bs-target="#offcanvasForm"
       aria-controls="offcanvasForm"
@@ -118,6 +119,6 @@ export default {
 
 <style scoped>
 .at-height-100 {
-  height: calc(100svh - 173px);
+  height: calc(100svh - 179px); /* 173 */
 }
 </style>

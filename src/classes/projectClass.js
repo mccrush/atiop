@@ -6,6 +6,7 @@ export default class projectClass extends ClassBasic {
     this.parentId = parentId
   }
   type = 'project'
+  color = ''
 }
 
 

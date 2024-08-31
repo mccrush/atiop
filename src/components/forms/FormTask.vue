@@ -94,7 +94,7 @@
 
       <div
         v-if="item.type === 'task' || item.type === 'project'"
-        class="col-12 col-md-4 d-flex align-items-center"
+        class="col-12 col-md-4 d-flex align-items-center pe-2"
       >
         <select
           class="form-select form-select-sm mt-2"
@@ -110,6 +110,25 @@
             {{ parentItem.title }}
           </option>
         </select>
+      </div>
+
+      <div
+        v-if="item.type === 'project'"
+        class="col-12 col-md-4 d-flex align-items-center ps-1"
+      >
+        <input
+          type="color"
+          class="form-control form-control-sm mt-2"
+          name="itemColor"
+          v-model="item.color"
+          @change="saveItem"
+        />
+        <button
+          class="btn btn-sm btn-dark mt-2 ps-2 pe-2"
+          @click=";(item.color = ''), saveItem()"
+        >
+          c
+        </button>
       </div>
 
       <div
