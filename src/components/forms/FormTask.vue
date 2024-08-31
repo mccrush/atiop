@@ -32,7 +32,7 @@
     </div>
 
     <div class="row pt-2">
-      <div class="col-4 pe-0">
+      <div class="col-4">
         <label for="itemPosition" class="small text-body-secondary"
           >Позиция</label
         >
@@ -45,10 +45,7 @@
         />
       </div>
 
-      <div
-        v-if="appMode === 'tasks' && item.type === 'task'"
-        class="col-4 ps-md-2 pe-md-0"
-      >
+      <div v-if="appMode === 'tasks' && item.type === 'task'" class="col-4">
         <label for="itemPrice" class="small text-body-secondary">Сумма</label>
         <input
           type="number"
@@ -61,10 +58,7 @@
         />
       </div>
 
-      <div
-        v-if="appMode === 'tasks' && item.type === 'task'"
-        class="col-4 ps-md-2"
-      >
+      <div v-if="appMode === 'tasks' && item.type === 'task'" class="col-4">
         <label for="itemMinutes" class="small text-body-secondary"
           >Время мин.</label
         >
@@ -80,10 +74,10 @@
       </div>
     </div>
 
-    <div class="row pt-2 pb-3">
+    <div class="row pt-2 pb-5">
       <div
         v-if="appMode === 'tasks' && item.type === 'task'"
-        class="col-12 col-md-4 align-items-center pe-md-0"
+        class="col-12 col-md-4 align-items-center"
       >
         <label for="itemStatus" class="small text-body-secondary">Статус</label>
         <select
@@ -99,7 +93,7 @@
         </select>
       </div>
 
-      <div v-if="appMode === 'tasks'" class="col-12 col-md-4 pe-md-0">
+      <div v-if="appMode === 'tasks'" class="col-12 col-md-4 mt-1 mt-md-0">
         <label for="itemDateremind" class="small text-body-secondary"
           >Срок</label
         >
@@ -114,7 +108,7 @@
 
       <div
         v-if="item.type === 'task' || item.type === 'project'"
-        class="col-12 col-md-4 align-items-center pe-2"
+        class="col-12 col-md-4 align-items-center mt-1 mt-md-0"
       >
         <label for="itemParentId" class="small text-body-secondary"
           >Родитель</label
@@ -162,7 +156,7 @@
 
       <div
         v-if="appMode === 'notes' && item.type === 'task'"
-        class="col-12 col-md-8"
+        class="col-12 col-md-8 mt-1 mt-md-0"
       >
         <label for="itemTags" class="small text-body-secondary">Тэги</label>
         <div class="d-flex" id="itemTags">
