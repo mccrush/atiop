@@ -1,7 +1,7 @@
 <template>
   <div class="col-md-4 col-lg-3 col-xxl-2 rounded ms-2 p-0 pt-1">
     <h6
-      class="cursor-pointer text-ellipsis rounded-1 lh-1 m-0 ms-1 me-1 mb-1 pt-1 pb-2 ps-2 pe-2"
+      class="cursor-pointer text-ellipsis rounded-1 lh-1 m-0 ms-1 me-1 mb-1 pt-2 pb-2 ps-2 pe-2"
       :style="project.color ? 'background-color:' + project.color + ';' : ''"
       data-bs-toggle="offcanvas"
       data-bs-target="#offcanvasForm"
