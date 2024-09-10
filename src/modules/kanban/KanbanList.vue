@@ -35,7 +35,7 @@
         aria-controls="offcanvasForm"
         @click="setItemId(task)"
       />
-      <div class="pt-2">
+      <div class="pt-1">
         <BtnAddLight v-show="!createItem" @click="showAddForm" />
         <FormAddItem
           v-show="createItem"

@@ -11,7 +11,7 @@
     >
       {{ direction.title }}
     </button>
-    <div class="mt-2">
+    <div class="mt-1">
       <BtnAddLight v-show="!createItem" @click="showAddForm" />
       <FormAddItem
         v-show="createItem"
