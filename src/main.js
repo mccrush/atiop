@@ -1,5 +1,6 @@
 import './scss/styles.scss'
 import 'bs-dark-theme'
+import './scss/custom.scss'
 
 import { Offcanvas, Dropdown } from 'bootstrap'
 
