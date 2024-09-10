@@ -29,7 +29,13 @@
         /> -->
 
         <div class="d-flex align-items-center me-auto pe-1">
-          <div>{{ item.title }}</div>
+          <div class="text-start d-flex justify-content-start">
+            <IconCardText
+              v-if="item.description"
+              class="d-block text-body-tertiary me-2"
+            />
+            <div>{{ item.title }}</div>
+          </div>
         </div>
         <div
           class="info-block d-flex align-items-start justify-content-between"
@@ -68,10 +74,12 @@
 import { sortMethod } from './../../helpers/sortMethod'
 import { getLocaleDateFromDateDigit } from './../../helpers/getDateFormat'
 
+import IconCardText from './../../components/icons/IconCardText.vue'
 import FormAddItem from './../../components/forms/FormAddItem.vue'
 
 export default {
   components: {
+    IconCardText,
     FormAddItem
   },
   props: {
