@@ -8,7 +8,7 @@
         />
         <IconCardText
           v-if="item.descriptionJSON"
-          class="d-block text-warning me-2"
+          class="d-block text-body-tertiary me-2"
         />
       </div>
       <div>

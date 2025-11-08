@@ -22,16 +22,6 @@
     </div>
 
     <div class="mt-3">
-      <Editor
-        :api-key="apiKeyTM"
-        :initialValue="item.description"
-        :init="conf"
-        v-model="item.description"
-        @change="saveItem"
-      />
-    </div>
-
-    <div class="mt-3">
       <div ref="editorContainer" id="editorjs"></div>
     </div>
 
@@ -196,18 +186,14 @@
 </template>
 
 <script>
-import { apiKeyTM } from '../../../apiKey'
 import EditorJS from '@editorjs/editorjs'
 import Header from '@editorjs/header'
-import EditorjsList from '@editorjs/list'
 
-import Editor from '@tinymce/tinymce-vue'
 import BtnTrash from './../buttons/BtnTrash.vue'
 import FormAddTag from './FormAddTag.vue'
 
 export default {
   components: {
-    Editor,
     BtnTrash,
     FormAddTag
   },
@@ -216,16 +202,6 @@ export default {
   },
   data() {
     return {
-      apiKeyTM,
-      conf: {
-        menubar: false,
-        plugins: 'lists link table code wordcount',
-        toolbar:
-          'bold forecolor link numlist bullist alignleft aligncenter table code removeformat',
-        height: '35vh',
-        skin: 'oxide-dark',
-        content_css: 'dark'
-      },
       statuses: ['active', 'done', 'archive'],
       editor: null
     }
@@ -401,7 +377,7 @@ export default {
   border: 1px solid #343a40;
   padding: 10px;
   border-radius: 5px;
-  min-height: 150px;
+  min-height: 250px;
   /* height: 150px; */
 }
 </style>

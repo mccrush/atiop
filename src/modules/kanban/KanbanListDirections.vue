@@ -1,6 +1,6 @@
 <template>
   <div
-    class="at-height-100 col-2 col-lg-1 shadow-sm border-end border-dark-subtle"
+    class="at-height-100 col-2 col-lg-2 col-xxl-1 shadow-sm border-end border-dark-subtle"
   >
     <button
       v-for="direction in directions"
