@@ -7,5 +7,17 @@ export default defineConfig({
   root: '.',
   build: {
     outDir: 'dist_vite'
-  }
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        silenceDeprecations: [
+          'import',
+          'color-functions',
+          'global-builtin',
+          'legacy-js-api',
+        ],
+      },
+    },
+  },
 })

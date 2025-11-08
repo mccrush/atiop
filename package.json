@@ -10,23 +10,23 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@editorjs/editorjs": "^2.29.1",
-    "@editorjs/header": "^2.8.1",
-    "@editorjs/list": "^1.9.0",
+    "@editorjs/editorjs": "^2.31.0",
+    "@editorjs/header": "^2.8.8",
+    "@editorjs/list": "^2.0.8",
     "@popperjs/core": "^2.11.8",
-    "@tinymce/tinymce-vue": "^5.1.1",
-    "bootstrap": "^5.3.3",
-    "firebase": "^10.8.1",
-    "vue": "^3.4.21",
+    "@tinymce/tinymce-vue": "^6.3.0",
+    "bootstrap": "^5.3.8",
+    "firebase": "^12.5.0",
+    "vue": "^3.5.24",
     "vuex": "^4.1.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.0.4",
-    "@vue/cli-plugin-pwa": "^5.0.8",
-    "@vue/cli-plugin-vuex": "^5.0.8",
-    "bs-dark-theme": "^1.1.0",
-    "sass": "^1.71.1",
-    "vite": "^5.1.4"
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vue/cli-plugin-pwa": "^5.0.9",
+    "@vue/cli-plugin-vuex": "^5.0.9",
+    "bs-dark-theme": "^1.2.0",
+    "sass": "^1.93.3",
+    "vite": "^7.2.2"
   },
   "prettier": {
     "singleQuote": true,
