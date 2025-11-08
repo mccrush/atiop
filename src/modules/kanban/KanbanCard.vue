@@ -6,6 +6,10 @@
           v-if="item.description"
           class="d-block text-body-tertiary me-2"
         />
+        <IconCardText
+          v-if="item.descriptionJSON"
+          class="d-block text-warning me-2"
+        />
       </div>
       <div>
         {{ item.title }}

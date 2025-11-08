@@ -14,7 +14,7 @@
         <div class="d-flex justify-content-end pt-1">
           <BtnTrash
             class="w-100"
-            @click="removeItem(item)"
+            @click.stop="removeItem(item)"
             :data-bs-dismiss="mainView === 'kanban' ? 'offcanvas' : ''"
           />
         </div>
@@ -198,6 +198,9 @@
 <script>
 import { apiKeyTM } from '../../../apiKey'
 import EditorJS from '@editorjs/editorjs'
+import Header from '@editorjs/header'
+import EditorjsList from '@editorjs/list'
+
 import Editor from '@tinymce/tinymce-vue'
 import BtnTrash from './../buttons/BtnTrash.vue'
 import FormAddTag from './FormAddTag.vue'
@@ -256,7 +259,7 @@ export default {
     // за свойством 'content' внутри него.
     // Это более производительно, чем 'deep: true'.
     'item.descriptionJSON'(newContent, oldContent) {
-      console.log('watch newContent=', newContent)
+      //console.log('watch newContent=', newContent)
       // Если редактор еще не создан (например, если props пришли с задержкой),
       // то мы его создаем.
       if (!this.editor) {
@@ -297,13 +300,29 @@ export default {
       this.editor = new EditorJS({
         holder: this.$refs.editorContainer,
 
+        tools: {
+          header: {
+            class: Header,
+            inlineToolbar: ['link']
+          }
+          /*List: {
+            class: EditorjsList,
+            inlineToolbar: true,
+            config: {
+              defaultStyle: 'unordered'
+            }
+          }*/
+        },
+
         data: initialData,
 
         onChange: async (api, event) => {
           //console.log('onChange', event)
           this.item.descriptionJSON = await this.editor.save()
           this.saveItem()
-        }
+        },
+
+        autofocus: true
       })
     },
     setTagFilter(tag) {
@@ -379,10 +398,10 @@ export default {
 
 <style scoped>
 #editorjs {
-  background-color: #1e1e1e;
+  border: 1px solid #343a40;
   padding: 10px;
   border-radius: 5px;
-  min-height: 200px;
-  height: 150px;
+  min-height: 150px;
+  /* height: 150px; */
 }
 </style>
