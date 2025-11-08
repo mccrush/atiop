@@ -31,6 +31,10 @@
       />
     </div>
 
+    <div class="mt-3">
+      <div ref="editorContainer" id="editorjs"></div>
+    </div>
+
     <div class="row pt-2">
       <div class="col-4">
         <label for="itemPosition" class="small text-body-secondary"
@@ -193,7 +197,7 @@
 
 <script>
 import { apiKeyTM } from '../../../apiKey'
-
+import EditorJS from '@editorjs/editorjs'
 import Editor from '@tinymce/tinymce-vue'
 import BtnTrash from './../buttons/BtnTrash.vue'
 import FormAddTag from './FormAddTag.vue'
@@ -215,11 +219,12 @@ export default {
         plugins: 'lists link table code wordcount',
         toolbar:
           'bold forecolor link numlist bullist alignleft aligncenter table code removeformat',
-        height: '70vh',
+        height: '35vh',
         skin: 'oxide-dark',
         content_css: 'dark'
       },
-      statuses: ['active', 'done', 'archive']
+      statuses: ['active', 'done', 'archive'],
+      editor: null
     }
   },
   computed: {
@@ -240,7 +245,67 @@ export default {
       }
     }
   },
+
+  mounted() {
+    // Хук mounted() гарантирует, что <div ref="editorContainer"> уже в DOM.
+    this.initEditor()
+  },
+
+  watch: {
+    // Мы будем следить не за всем объектом, а конкретно
+    // за свойством 'content' внутри него.
+    // Это более производительно, чем 'deep: true'.
+    'item.descriptionJSON'(newContent, oldContent) {
+      console.log('watch newContent=', newContent)
+      // Если редактор еще не создан (например, если props пришли с задержкой),
+      // то мы его создаем.
+      if (!this.editor) {
+        this.initEditor()
+        return
+      }
+
+      // Если редактор уже есть, мы обновляем его содержимое.
+      // Метод .render() в Editor.js как раз предназначен для загрузки новых данных.
+
+      // Добавим простую проверку, чтобы не рендерить те же самые данные
+      if (JSON.stringify(newContent) === JSON.stringify(oldContent)) {
+        return
+      }
+
+      if (!newContent) {
+        newContent = { blocks: [] }
+      }
+
+      this.editor.render(newContent).catch(error => {
+        console.error('Editor.js: Ошибка при рендеринге новых данных', error)
+      })
+    }
+  },
   methods: {
+    initEditor() {
+      // Безопасная проверка: если редактор уже есть, уничтожаем старый
+      if (this.editor) {
+        this.editor.destroy()
+      }
+
+      // Получаем начальные данные. Если их нет, передаем пустой объект.
+      const initialData =
+        this.item && this.item.descriptionJSON
+          ? this.item.descriptionJSON
+          : { blocks: [] }
+
+      this.editor = new EditorJS({
+        holder: this.$refs.editorContainer,
+
+        data: initialData,
+
+        onChange: async (api, event) => {
+          //console.log('onChange', event)
+          this.item.descriptionJSON = await this.editor.save()
+          this.saveItem()
+        }
+      })
+    },
     setTagFilter(tag) {
       this.$store.commit('setTag', tag)
     },
@@ -255,6 +320,7 @@ export default {
       }
       this.saveItem()
     },
+
     saveItem() {
       this.$store.dispatch('updateItemRT', {
         item: this.item,
@@ -301,6 +367,22 @@ export default {
         }
       }
     }
+  },
+  beforeDestroy() {
+    if (this.editor) {
+      this.editor.destroy()
+      this.editor = null
+    }
   }
 }
 </script>
+
+<style scoped>
+#editorjs {
+  background-color: #1e1e1e;
+  padding: 10px;
+  border-radius: 5px;
+  min-height: 200px;
+  height: 150px;
+}
+</style>
