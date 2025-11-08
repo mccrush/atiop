@@ -23,7 +23,7 @@
 
     <div class="mt-3">
       <Editor
-        :api-key="apiKey"
+        :api-key="apiKeyTM"
         :initialValue="item.description"
         :init="conf"
         v-model="item.description"
@@ -192,6 +192,8 @@
 </template>
 
 <script>
+import { apiKeyTM } from '../../../apiKey'
+
 import Editor from '@tinymce/tinymce-vue'
 import BtnTrash from './../buttons/BtnTrash.vue'
 import FormAddTag from './FormAddTag.vue'
@@ -207,7 +209,7 @@ export default {
   },
   data() {
     return {
-      apiKey: 'hanxollva4phpflvvnv1lje4y82fvprrkqrmpqeclw066js2',
+      apiKeyTM,
       conf: {
         menubar: false,
         plugins: 'lists link table code wordcount',
